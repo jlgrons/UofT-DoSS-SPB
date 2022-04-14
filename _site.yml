@@ -1,0 +1,31 @@
+name: DoSSspbwebsite
+output_dir: '.'
+navbar:
+  title: DoSS SPB
+  left:
+    - text: Syllabus
+      href: syllabus.html
+    - text: Schedule
+      href: schedule.html
+    - text: Course Documents
+      menu:
+        - text: Methods and Computing
+          href: methods_computing.html
+#        - text: "-----------------"
+        - text: Probability
+          href: probability.html
+#        - text: Laboratories Grading
+#          href: tut_grading.html
+#        - text: "-----------------"
+        - text: Operational Math
+          href: operational_math.html
+#    - text: Discussion Forum
+#      href: XXXXXTO-UPDATEXXX
+#    - text: Resources
+#      href: resources.html
+    - text: Announcements
+      href: announcements.html
+output:
+  html_document:
+    lib_dir: site_libs
+    self_contained: no
