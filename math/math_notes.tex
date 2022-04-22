@@ -1,0 +1,292 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{setspace}
+\pagenumbering{arabic}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr} 
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{bbm}
+\usepackage{nth}
+\usepackage{dsfont}
+
+
+
+\input{commands}
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = black, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+\allowdisplaybreaks % fixes align environment weird spacing on page
+\setlength{\parindent}{0cm}
+
+\usepackage[natbib=true, style=authoryear]{biblatex}
+% \usepackage[backend= biber, style=authoryear]{biblatex}
+\bibliography{refs}
+
+\title{Mathematics Bootcamp \\
+\vspace{0.5em}
+\large Department of Statistical Sciences, University of Toronto}
+\author{Emma Kroell}
+\date{Last updated: \today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Review of proof techniques with examples from algebra and analysis}
+\subsection{Axioms of a field}
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
+    \item[(A2)] \textit{Commutativity in multiplication:} $x \times y = y \times x$
+    \item[(B1)] \textit{Associativity in addition:} $x + (y + z) = (x + y) + z$ 
+    \item[(B2)] \textit{Associativity in multiplication:} $x \times (y\times z) = (x\times y) \times z$ 
+    \item[(C)] \textit{Distributivity:} $x \times (y + z) = x \times y + x \times z$
+    \item[(D1)]\textit{Existence of a neutral element, addition:} There exists a number 0 such that $x + 0 = x$ for every $x$.
+    \item[(D2)] \textit{Existence of a neutral element, multiplication:} There exists a number 1 such that $x \times 1 = x$ for every $x$. 
+    \item[(E1)]\textit{Existence of an inverse, addition:} For each number $x$, there exists a number $-x$ such that $x + (-x) = 0$.
+     \item[(E2)]\textit{Existence of an inverse, multiplication:} For each number $x \neq 0$, there exists a number $1/x$ such that $x \times 1/x = 1$.
+\end{enumerate}
+
+%\vspace{1em}
+%
+%We also make the following assumptions about the order of the real numbers:
+%\begin{enumerate}
+%\setlength\itemsep{0.1em}
+%    \item[(F)] \textit{Uniqueness of ordering:} For any $x,y \in \R$, only one of the following holds: $x <y$, $x=y$, or $x > y$.
+%    \item[(G)] \textit{Transitivity:} If $x <y$ and $y < z$, then $x < z$.
+%    \item[(H1)] \textit{Ordering with addition:} For any $x$, if $y < z$ then $x + y < x + z$.
+%    \item[(H2)] \textit{Ordering with multiplication:} For any $x>0$, if $y < z$ then $x \times y < x \times z$.
+%\end{enumerate}
+
+
+\subsubsection{Exercises}
+\begin{enumerate}
+\item For any $a,b \neq 0$, $1/(ab) = 1/a \times 1/b$
+\item For $a > 0$, $1/(-a) = -1/a$.
+\item For $a, b \neq 0$, $1/(a/b) = b/a$
+\end{enumerate}
+
+\section{Linear Algebra Part I}
+
+\subsection{Vector spaces}
+\subsubsection{Axioms of a vector space}
+Let $V$ be a set and let $\mathbb{F}$ be a field. We call $V$ a \emph{vector space} if the following hold: \\
+Addition:
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A)] \textit{Commutativity in addition:} $\bu + \bv = \bv + \bu$ for all $\bu, \bv \in V$
+    \item[(B)] \textit{Associativity in addition:} $\bu + (\bv + \bw) = (\bu + \bv) + \bw$ for all $\bu, \bv, \bw \in V$
+    \item[(C)] \textit{Existence of a neutral element, addition:} There exists a vector $\zerovec$ such that for any $\bv \in V$, $\zerovec + \bv = \bv$
+    \item[(D)] \textit{Additive inverse:} For every $\bv \in V$, there exists another vector, which we denote $-\bv$, such that $\bv + (-\bv) = \zerovec$.
+\end{enumerate}
+
+Multiplication by a scalar:
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(E)] \textit{Existence of a neutral element, multiplication:} For any $\bv \in V$, $1\times \bv = \bv$
+    \item[(F)] \textit{Associativity in multiplication:} Let $\alpha, \beta \in \mathbb{F}$. For any $\bv \in V$, $(\alpha \beta) \bv = \alpha (\beta \bv)$ 
+\end{enumerate}
+
+Associativity:
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \beta \bv$.
+    \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
+\end{enumerate}
+
+Elements of the vector space are called vectors.
+
+Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
+
+Examples of vector spaces: $\R^n$. $\mathbb{C}^n$, $M_{m \times n}$ (matrices of size $m \times n$), $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
+
+\subsubsection{Subspaces}
+
+\begin{definition}
+A subset $U$ of $V$ is called a \textbf{subspace} of of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
+\end{definition}
+
+
+\begin{proposition}
+A subset $U$ of $V$ is a subspace of $V$ if
+and only if $U$ satisfies the following three conditions:
+\begin{itemize}
+\item Additive identity: $\zerovec \in U$
+\item Closed under addition: $u,w\in U$ implies $\bu+\bv \in U$
+\item Closed under scalar multiplication: $\alpha \in\F$ and $u\in U$
+implies $\alpha \bu \in U$
+\end{itemize}
+\end{proposition}
+
+\emma{Add intersections and unions of subspaces}
+
+\begin{definition}
+Suppose $U_{1},...,U_{m}$ are subsets of $V$. The sum
+of $U_{1},...,U_{m}$, denoted $U_{1}+...+U_{m}$, is the set of all
+possible sums of elements of $U_{1},...,U_{m}.$ More precisely,
+\[
+U_{1}+...+U_{m}=\{\bu_{1}+...+\bu_{m}:\bu_{1}\in U_{1},...,\bu_{m}\in U_{m}\}
+\]
+\end{definition}
+
+
+\begin{proposition}
+Suppose $U_{1},...,U_{m}$ are subspaces of $V$. Then
+$U_{1}+...+U_{m}$ is the smallest subspace of $V$ containing $U_{1},...,U_{m}$.
+\end{proposition}
+
+
+
+\subsubsection{Exercises}
+From Harvard Bootcamp:
+
+Exercise: Prove that $-(-v)=v$ for every $v\in V$.
+
+
+
+Exercise: Suppose that $a\in\mathbf{F},v\in V$, and $av=0$. Prove that $a=0$
+or $v=0$.
+
+
+Exercise: The empty set is not a vector space because it fails to satisfy only
+one of the requirements listed above. Which one?
+
+Exercise:  Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
+multiplication, but $U$ is not a subspace of $\mathbb{R}$.
+
+Exercise:  A function $f:\mathbb{R} \rightarrow \mathbb{R}$ is called periodic if there exists a positive number such that $f(x)=f(x+p)$ for 
+all $x\in \mathbb{R}$.  Is the a set of periodic functions from $\mathbb{R}$ to $\mathbb{R}$ a subspace of $\mathbb{R}^{\mathbb{R}}$?
+
+
+
+Exercise:  A function $f:\mathbb{R} \rightarrow \mathbb{R}$ is called odd if
+\[
+f(-x)=-f(x)
+\]
+
+for all $x\in\mathbb{R}$.  Let $U_{e}$ denote the set of real-valued even functions on $\mathbb{R}$ and let $U_{o}$ denote the set
+of real-valued odd functions on $\mathbb{R}$. Show that $\mathbb{R}^\mathbb{R}=U_{e} \oplus U_{o}$.
+
+
+\subsection{Linear (in)dependence and bases}
+
+\begin{definition}
+A linear combination of a list $\bv_{1},...,\bv_{n}$ of vectors
+in $V$ is a vector of the form 
+$$
+\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
+$$
+ where $\alpha_{1},...,\alpha_{m}\in\F$.
+\end{definition}
+
+\begin{definition}
+The set of all linear combinations of a list of vectors
+$v_{1},...,v_{m}$ in $V$ is called the \textbf{span} of $v_{1},...,v_{m}$,
+denoted span$\{\bv_{1},...,\bv_{n}\}$. In other words, 
+$$
+\text{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
+$$
+\end{definition}
+The span of the empty list is defined to be $\{\zerovec\}$.
+
+\begin{definition}
+A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
+$$
+\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k
+$$
+\end{definition}
+
+\begin{definition}
+The linear combination $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$ is called trivial if $\alpha_k = 0$ for every $k$.
+
+\end{definition}
+
+\begin{proposition}
+ A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and complete (generating).
+\end{proposition}
+
+\emma{Proof done by hand}
+
+\subsection{Exercises}
+From Harvard:
+Exercise: Suppose $v_{1},v_{2},v_{3},v_{4}$ (a) spans $V$ and (b)
+is linearly independent. Prove that the list 
+\[
+v_{1}-v_{2},v_{2}-v_{3},v_{3}-v_{4},v_{4}
+\]
+ also (a) spans $V$ and (b) is linearly independent. 
+
+\vspace{7mm}
+
+Exercise: Suppose $v_{1},...,v_{m}$ is linearly independent in $V$
+and $w\in V$. Prove that if $v_{1}+w,...,v_{m}+w$ is linearly dependent,
+then $w\in\text{span}(v_{1},...,v_{m})$. 
+
+Exercise: Suppose that $v_{1},...,v_{m}$ is linearly independent
+in $V$ and $w\in V$. Show that $v_{1},...,v_{m},w$ is linearly
+independent if and only if 
+\[
+w\notin\text{span}(v_{1},...,v_{m})
+\]
+on{Exercises}
+Exercise: Suppose $v_{1},v_{2},v_{3},v_{4}$ (a) spans $V$ and (b)
+is linearly independent. Prove that the list 
+\[
+v_{1}-v_{2},v_{2}-v_{3},v_{3}-v_{4},v_{4}
+\]
+ also (a) spans $V$ and (b) is linearly independent. 
+
+Exercise: Suppose $v_{1},...,v_{m}$ is linearly independent in $V$
+and $w\in V$. Prove that if $v_{1}+w,...,v_{m}+w$ is linearly dependent,
+then $w\in\text{span}(v_{1},...,v_{m})$. 
+
+Exercise: Suppose that $v_{1},...,v_{m}$ is linearly independent
+in $V$ and $w\in V$. Show that $v_{1},...,v_{m},w$ is linearly
+independent if and only if 
+\[
+w\notin\text{span}(v_{1},...,v_{m})
+\]
+
+\emma{Add a few from books}
+
+\subsection{Linear transformations}
+
+\subsection{Solving linear equations}
+
+\subsection{Determinants}
+
+\section{Linear Algebra II}
+
+\subsection{Spectral theory}
+
+\subsection{Inner product spaces}
+
+\subsection{Matrix decomposition}
+
+\section{Set theory}
+
+\section{Metric spaces}
+
+\section{Topology}
+
+\section{Functions on $\R$}
+
+\section{Multivariable calculus}
+
+\section{Functional analysis}
+
+\section{Complex analysis and Fourier analysis}
+
+
+\end{document}
