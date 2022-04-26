@@ -17,11 +17,9 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 ******
 
-<!-- Documents from class will be posted on this page. -->
+Documents from class will be posted on this page. 
 
-<!-- <br> -->
-
-<!-- ## Lecture 1: Introduction - Jan 10 -->
+#### Module 1: Module 1: Basic programming in R 
 
 <!-- * <a href="https://drive.google.com/file/d/177-GVP5ZYFuQxca-HYkwK5ao8Wog6btR/view?usp=sharing" target="_blank">Slides</a> -->
 
