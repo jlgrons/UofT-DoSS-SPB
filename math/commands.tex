@@ -5,6 +5,9 @@
 \newcommand{\miaoshiqi}[1]{\comment{ForestGreen}{ML}{#1}}
 \newcommand{\siyue}[1]{\comment{blue}{SY}{#1}}
 
+%For references using Lemma, Theorem, etc, use \cref
+\usepackage[nameinlink,capitalize,sort]{cleveref}
+
 % theorems
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -20,10 +23,13 @@
 \makeatletter
 \AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
 
+
+
 % lin alg
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
 \newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
 \newcommand{\zerovec}{{\mathbf{0}}}
 
 % other useful stuff
