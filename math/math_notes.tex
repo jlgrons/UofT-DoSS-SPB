@@ -26,9 +26,10 @@
 \allowdisplaybreaks % fixes align environment weird spacing on page
 \setlength{\parindent}{0cm}
 
-\usepackage[natbib=true, style=authoryear]{biblatex}
-% \usepackage[backend= biber, style=authoryear]{biblatex}
-\bibliography{refs}
+
+%\usepackage[natbib=true, style=vancouver]{biblatex}
+ \usepackage[backend= biber, style=vancouver]{biblatex}
+\bibliography{references.bib}
 
 \title{Mathematics Bootcamp \\
 \vspace{0.5em}
@@ -42,7 +43,15 @@
 \tableofcontents
 
 \newpage
+\section*{Preface}
+\addcontentsline{toc}{section}{Preface}
+These notes were prepared for the inaugaral Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto, which is to be held in July 2022. 
+
+References are provided for each section. All references are freely available online, though some may require a University of Toronto library log-in to access. 
+
+\newpage
 \section{Review of proof techniques with examples from algebra and analysis}
+
 \subsection{Axioms of a field}
 \begin{enumerate}
 \setlength\itemsep{0.1em}
@@ -69,6 +78,9 @@
 %\end{enumerate}
 
 
+\emma{This section to be worked on later}
+
+
 \subsubsection{Exercises}
 \begin{enumerate}
 \item For any $a,b \neq 0$, $1/(ab) = 1/a \times 1/b$
@@ -76,11 +88,15 @@
 \item For $a, b \neq 0$, $1/(a/b) = b/a$
 \end{enumerate}
 
-\section{Linear Algebra Part I}
+\section{Linear Algebra}
 
 \subsection{Vector spaces}
 \subsubsection{Axioms of a vector space}
-Let $V$ be a set and let $\mathbb{F}$ be a field. We call $V$ a \emph{vector space} if the following hold: \\
+Let $V$ be a set and let $\mathbb{F}$ be a field.
+
+\begin{definition}
+\label{def:vec_space}
+We call $V$ a \textbf{vector space} if the following hold: \\
 Addition:
 \begin{enumerate}
 \setlength\itemsep{0.1em}
@@ -104,12 +120,27 @@ Associativity:
     \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \beta \bv$.
     \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
 \end{enumerate}
+\end{definition}
 
 Elements of the vector space are called vectors.
 
 Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
 
 Examples of vector spaces: $\R^n$. $\mathbb{C}^n$, $M_{m \times n}$ (matrices of size $m \times n$), $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
+
+\begin{lemma}
+\label{lem:neg_vec}
+For every $\bv \in V$, we have $-\bv = (-1) \times \bv$.
+\end{lemma}
+\begin{proof}
+Our goal is to show that $(-1) \times \bv$ is the additive inverse of $\bv$.
+We show this as follows:
+\begin{align*}
+    \bv + (-1) \times \bv = \bv \times (1 + (-1)) = \bv \times 0 = 0
+\end{align*}
+The last step uses exercise \ref{ex:zero}.
+\emma{Done by hand in class}
+\end{proof}
 
 \subsubsection{Subspaces}
 
@@ -121,13 +152,20 @@ A subset $U$ of $V$ is called a \textbf{subspace} of of $V$ if $U$ is also a vec
 \begin{proposition}
 A subset $U$ of $V$ is a subspace of $V$ if
 and only if $U$ satisfies the following three conditions:
-\begin{itemize}
-\item Additive identity: $\zerovec \in U$
+\begin{enumerate}
+\item  $\zerovec \in U$
 \item Closed under addition: $u,w\in U$ implies $\bu+\bv \in U$
 \item Closed under scalar multiplication: $\alpha \in\F$ and $u\in U$
 implies $\alpha \bu \in U$
-\end{itemize}
+\end{enumerate}
 \end{proposition}
+
+\begin{proof}
+$\Rightarrow$ If $U$ is a subspace of $V$, then $U$ satisfies these 3 properties by Definition \ref{def:vec_space}.
+
+$\Leftarrow$ Suppose $U$ satisfies the given 3 conditions. Then for any $\bv \in U$, there must exist $-\bv \in U$ by property 3, since $-\bv = (-1) \times \bv$ by Lemma \ref{lem:neg_vec} (property D). Property 1 assures property C. Properties 2 and 3, and the fact that $U \subset V$, assure the remaining properties hold. 
+
+\end{proof}
 
 \emma{Add intersections and unions of subspaces}
 
@@ -149,18 +187,21 @@ $U_{1}+...+U_{m}$ is the smallest subspace of $V$ containing $U_{1},...,U_{m}$.
 
 
 \subsubsection{Exercises}
-From Harvard Bootcamp:
-
-Exercise: Prove that $-(-v)=v$ for every $v\in V$.
-
-
-
-Exercise: Suppose that $a\in\mathbf{F},v\in V$, and $av=0$. Prove that $a=0$
+\begin{exercise}[1.7 in \cite{linalgwrong}]
+\label{ex:zero}
+Show that $0 \bv= \zerovec$ for $\bv\in V$.
+\end{exercise}
+\begin{exercise}[1.B.1 in \cite{linalgright}]
+Show that $-(-v)=v$ for $\bv\in V$.
+\end{exercise}
+\begin{exercise}[1.B.2 in \cite{linalgright}]
+Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=0$. Prove that $a=0$
 or $v=0$.
+\end{exercise}
+\begin{exercise}[1.B.4 in \cite{linalgright}]
+Why is the empty space not a vector space?
+\end{exercise}
 
-
-Exercise: The empty set is not a vector space because it fails to satisfy only
-one of the requirements listed above. Which one?
 
 Exercise:  Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
 multiplication, but $U$ is not a subspace of $\mathbb{R}$.
@@ -266,13 +307,17 @@ w\notin\text{span}(v_{1},...,v_{m})
 
 \subsection{Determinants}
 
-\section{Linear Algebra II}
-
 \subsection{Spectral theory}
 
 \subsection{Inner product spaces}
 
 \subsection{Matrix decomposition}
+
+
+\subsection{References}
+The following texts: \\
+Linear Algebra Done Right \cite{linalgright} \\
+Linear Algebra Done Wrong \cite{linalgwrong}
 
 \section{Set theory}
 
@@ -287,6 +332,10 @@ w\notin\text{span}(v_{1},...,v_{m})
 \section{Functional analysis}
 
 \section{Complex analysis and Fourier analysis}
+
+\newpage
+
+\printbibliography
 
 
 \end{document}
