@@ -15,22 +15,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 ```
 
-******
+---
 
 Documents from class will be posted on this page. 
 
-#### Module 1: Basic programming in R 
 
-<a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/methods_computing/wk1/ex1.html" target="_blank">Exercise 1</a>
+#### Module 1: Basic programming in R
+
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk1/mod1.pdf" target="_blank">Slides</a>
+
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk1/ex1.pdf" target="_blank">Exercise 1</a>
 
 #### Module 2: Reporting, Data Wrangling and Graphing (I)
 
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk2/mod2.pdf" target="_blank">Slides</a>
+
 #### Module 3: Reporting, Data Wrangling and Graphing (II)
 
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk3/mod3.pdf" target="_blank">Slides</a>
 
-<!-- * <a href="https://utoronto.zoom.us/rec/share/p8nlgJ8l65LmY89CpgqkvcvWm_q6jLYtbielzfFOp4ybGOJ6RE4qctFLgrsi3yNr.IjIFwZ-lpejQldZC" target="_blank">Recording</a> -->
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk3/ex2.pdf" target="_blank">Exercise 2</a>
 
-<!-- The password that will be used for all recordings is on the [Quercus](https://q.utoronto.ca/courses/256475) homepage. -->
 
 <!-- ## Lecture 2: EDA - Jan 17 -->
 
