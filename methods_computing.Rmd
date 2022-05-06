@@ -19,9 +19,14 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 Documents from class will be posted on this page. 
 
-#### Module 1: Module 1: Basic programming in R 
+#### Module 1: Basic programming in R 
 
-<!-- * <a href="https://drive.google.com/file/d/177-GVP5ZYFuQxca-HYkwK5ao8Wog6btR/view?usp=sharing" target="_blank">Slides</a> -->
+<a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/methods_computing/wk1/ex1.html" target="_blank">Exercise 1</a>
+
+#### Module 2: Reporting, Data Wrangling and Graphing (I)
+
+#### Module 3: Reporting, Data Wrangling and Graphing (II)
+
 
 <!-- * <a href="https://utoronto.zoom.us/rec/share/p8nlgJ8l65LmY89CpgqkvcvWm_q6jLYtbielzfFOp4ybGOJ6RE4qctFLgrsi3yNr.IjIFwZ-lpejQldZC" target="_blank">Recording</a> -->
 
