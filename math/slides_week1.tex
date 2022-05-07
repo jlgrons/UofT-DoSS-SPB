@@ -1,0 +1,464 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\newcommand{\Z}{{\mathbb{Z}}}
+
+
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\title[]{Day 1: Proofs \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{\today}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+    	\item Logic
+        \item Review of Proof Techniques
+        \item Examples
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Propositional logic}{}
+{\bf Propositions} are statements that could be true or false. They have a corresponding {\bf truth value}. \\
+
+\vspace{1em}
+
+ex. ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions . Let's call them $P$ and $Q$. \\
+
+Whether they are true or not depends on what $n$ is. \\
+
+\vspace{1em}
+\pause
+
+We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
+
+\pause
+\vspace{1em}
+ We can combine statements: 
+ \begin{itemize}
+ \item $P \wedge Q$ is the statement ``$n$ is odd and $n$ is divisible by 2''.
+ \item $P \vee Q$ is the statement ``$n$ is odd or $n$ is divisible by 2''. We always assume the inclusive or unless specifically stated otherwise.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Examples}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+          \begin{tabular}{|c|c|}
+\hline
+    Symbol & Meaning  \\
+    \hline
+     Capital letters & propositions  \\
+     $\implies$ & implies \\
+     $\wedge$ & and \\
+     $\vee$ & inclusive or \\
+     $\neg$ & not \\
+     \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+          \begin{itemize}
+              \item If it's not raining, I won't bring my umbrella.
+              \item I'm a banana or Toronto is in Canada.
+              \item If I pass this exam, I'll be both happy and surprised.
+          \end{itemize}
+      \end{columns}
+\end{frame}
+
+\begin{frame}{Truth values}
+
+\begin{exampleblock}{Example}
+If it is snowing, then it is cold out. \\
+It is snowing. \\
+Therefore, it is cold out.  
+\end{exampleblock}
+
+Write this using propositional logic: \\
+
+\pause
+\begin{center}
+$P \implies Q$ \\
+$P$ \\
+Conclusion: $Q$ \\
+\end{center}
+
+\vspace{1em}
+How do we know if this statement is true or not?
+\end{frame}
+
+
+
+\begin{frame}{Truth table}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+If it is snowing, then it is cold out. \\
+It is snowing. \\
+Therefore, it is cold out. 
+\end{center}
+\pause
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Logical equivalence}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+\pause
+        \column{.5\textwidth}
+        \begin{center}
+        $\neg P \vee Q$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c | c | c | c|}
+\hline
+     $P$& $Q$ & $\neg P$ & $\neg P \vee Q$  \\ \hline
+     T& T & F & T \\ \hline
+     T & F & F & F \\ \hline
+     F & T &  T &T \\ \hline
+     F & F & T & T \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\vspace{2em}
+\pause
+\centering
+What is $\neg (P \implies Q)$?
+\end{frame}
+
+
+\begin{frame}{Types of proof}
+\begin{itemize}
+	\item Direct
+	\item Contradiction
+	\item Contrapositive
+	\item Induction
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Direct Proof}
+
+{\bf Approach:} Use the definition and known results. \\
+\vspace{1em}
+
+\large{\bf Example}
+
+\begin{exampleblock}{Claim}
+The product of an even number with another integer is even.
+\end{exampleblock}
+
+\vspace{1em}
+Approach: use the definition of even.
+
+
+%We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$.
+
+
+\end{frame}
+
+\begin{frame}{Direct Proof}
+
+\begin{exampleblock}{Claim}
+The product of an even number with another integer is even.
+\end{exampleblock}
+
+
+\begin{alertblock}{Definition}
+We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$. \\
+We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such that $n=2j+1$.
+\end{alertblock}
+
+\begin{proof}
+Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
+$$ n m  =  (2 j) m = 2 (j m)$$
+Therefore $n m$ is even by definition. 
+\end{proof}
+
+\end{frame}
+
+
+
+
+\begin{frame}{}
+\begin{exampleblock}{Claim}
+If an integer squared is even, then the integer is itself even.
+\end{exampleblock}
+
+\vspace{1em}
+
+How would you approach this proof?
+
+\end{frame}
+
+
+
+\begin{frame}{Proof by contrapositive}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+        \begin{center}
+        $\neg P \implies \neg Q$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c | c | c |  c | c |}
+\hline
+     $P$& $Q$ & $\neg P$ &  $\neg Q$ & $\neg Q \implies \neg P$ \\ \hline
+     T& T & F & F &  \\ \hline
+     T & F & F &  T & \\ \hline
+     F & T &  T  & F & \\ \hline
+     F & F & T & T &  \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Proof by contrapositive}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+        \begin{center}
+        $\neg Q \implies \neg P$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c | c | c |  c | c |}
+\hline
+     $P$& $Q$ & $\neg P$ &  $\neg Q$ & $\neg Q \implies \neg P$ \\ \hline
+     T& T & F & F & T \\ \hline
+     T & F & F &  T & T \\ \hline
+     F & T &  T  & F & F \\ \hline
+     F & F & T & T & T \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Proof by contrapositive}
+\begin{exampleblock}{Claim}
+If an integer squared is even, then the integer is itself even.
+\end{exampleblock}
+
+\vspace{1em}
+
+\begin{proof}
+We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
+$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
+Thus $n^2$ is odd.
+
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}{Proof by contradiction}
+\begin{exampleblock}{Claim}
+The sum of a rational number and an irrational number is irrational.
+\end{exampleblock}
+
+\begin{proof}
+Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
+Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
+But then $r = s - q \in \mathbb{Q}$. Contradiction.
+\end{proof}
+\end{frame}
+
+
+
+\begin{frame}{Summary}
+
+{\bf In sum, to prove $P \implies Q$:} \\
+
+\vspace{1em}
+
+
+\begin{tabular}{r l}
+     Direct proof:  & assume $P$, prove $Q$ \\
+     Proof by contrapositive:  & assume $\neg Q$, prove $\neg P$ \\ 
+     Proof by contradiction: & assume $P \wedge \neg Q$ and derive something that is impossible \\ 
+\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}{Induction}
+
+\begin{block}{Well-ordering principle for $\mathbb{N}$}
+Every nonempty set of natural numbers has a least element.
+\end{block}
+
+\begin{block}{Principle of mathematical induction}
+Let $n_0$ be a non-negative integer. Suppose $P$ is a property such that 
+\begin{enumerate}
+\item(base case) $P(n_0)$ is true 
+\item (induction step) For every integer $k \geq n_0$, if $P(k)$ is true, then $P(k+1)$ is true.
+\end{enumerate}
+Then $P(n)$ is true for every integer $n \geq n_0$
+\end{block}
+
+Note: Principle of strong mathematical induction: For every integer $k \geq n_0$, if $P(n)$ is true for every $n = n_0, \ldots, k$, then $P(k+1)$ is true.
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Claim}
+$n! > 2^n$ if $n \geq 4$.
+\end{exampleblock}
+
+
+\begin{proof}
+We prove this by induction on $n$. \\
+{\it Base case:} Let $n = 4$. Then $n! = 4! = 24 > 16 = 2^4$. \\
+\pause
+{\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
+\pause
+Then
+$$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
+\end{proof}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Claim}
+Every integer $n \geq 2$ can be written as the product of primes.
+\end{exampleblock}
+
+\begin{proof}
+We prove this by induction on $n$. \\
+{\it Base case:} $n = 2$ is prime. \\
+\pause
+{\it Inductive hypothesis:} Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
+\pause
+We must show that we can write $k+1$ as a product of primes. \\
+First, if $k+1$ is prime then we are done.  \\
+\pause
+Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
+By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}{Exercises}
+\begin{enumerate}
+\item Prove De Morgan's Laws: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ .
+\item Prove the Fundamental Theorem of Arithmetic, that every integer $n \geq 2$ has a unique prime factorization (i.e. prove that the prime factorization from the last proof is unique).
+\end{enumerate}
+
+
+\end{frame}
+
+
+
+\end{document}
