@@ -20,6 +20,10 @@
 *.cb2
 .*.lb
 
+## Beamer
+*.nav
+*.snm
+
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
