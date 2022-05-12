@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fancyhdr} 
-\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
 \usepackage{bbm}
 \usepackage{nth}
 \usepackage{dsfont}
@@ -51,8 +51,275 @@ References are provided for each section. All references are freely available on
 
 \newpage
 \section{Review of proof techniques with examples from algebra and analysis}
+\subsection{Propositional logic}
 
-\subsection{Axioms of a field}
+{\bf Propositions} are statements that could be true or false. They have a corresponding {\bf truth value}.We will use capital letters to denote propositions. 
+
+\vspace{1em}
+
+ex. ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions . 
+
+Let's call them $P$ and $Q$. Whether they are true or not (i.e. their truth value) depends on what $n$ is. 
+
+\vspace{1em}
+
+We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
+
+\vspace{1em}
+ We can combine statements: 
+ \begin{itemize}
+ \item $P \wedge Q$ is the statement ``$n$ is odd and $n$ is divisible by 2''.
+ \item $P \vee Q$ is the statement ``$n$ is odd or $n$ is divisible by 2''. We always assume the inclusive or unless specifically stated otherwise.
+\end{itemize}
+
+Examples:
+\begin{itemize}
+              \item If it's not raining, I won't bring my umbrella.
+              \item I'm a banana or Toronto is in Canada.
+              \item If I pass this exam, I'll be both happy and surprised.
+\end{itemize}
+
+
+\subsubsection{Truth values}
+
+\begin{example} Write the following using propositional logic
+If it is snowing, then it is cold out. \\
+It is snowing. \\
+Therefore, it is cold out.  
+\end{example}
+
+\begin{solution}
+$P \implies Q$ \\
+$P$ \\
+Conclusion: $Q$ \\
+\end{solution}
+
+
+To examine if statement is true or not, we use a truth table
+
+
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+
+
+
+\subsubsection{Logical equivalence}
+
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular} \hspace{2cm} \begin{tabular}{|c | c | c | c|}
+\hline
+     $P$& $Q$ & $\neg P$ & $\neg P \vee Q$  \\ \hline
+     T& T & F & T \\ \hline
+     T & F & F & F \\ \hline
+     F & T &  T &T \\ \hline
+     F & F & T & T \\ \hline
+\end{tabular}
+
+
+What is $\neg (P \implies Q)$?
+
+
+
+\subsection{Types of proof}
+\begin{itemize}
+	\item Direct
+	\item Contradiction
+	\item Contrapositive
+	\item Induction
+\end{itemize}
+
+
+\subsubsection{Direct Proof}
+
+{\bf Approach:} Use the definition and known results.
+\vspace{1em}
+
+\begin{example}
+The product of an even number with another integer is even.
+\end{example}
+
+Approach: use the definition of even.
+
+\begin{definition}
+We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$. \\
+We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such that $n=2j+1$.
+\end{definition}
+
+\begin{proof}
+Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
+$$ n m  =  (2 j) m = 2 (j m)$$
+Therefore $n m$ is even by definition. 
+\end{proof}
+
+\subsubsection{Proof by contrapositive}
+\begin{example}
+If an integer squared is even, then the integer is itself even.
+\end{example}
+
+
+How would you approach this proof?
+
+
+$P \implies Q$  \hspace{5cm}  $\neg P \implies \neg Q$
+
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}   \hspace{2cm}  \begin{tabular}{|c | c | c |  c | c |}
+\hline
+     $P$& $Q$ & $\neg P$ &  $\neg Q$ & $\neg Q \implies \neg P$ \\ \hline
+     T& T & F & F & T \\ \hline
+     T & F & F &  T & T \\ \hline
+     F & T &  T  & F & F \\ \hline
+     F & F & T & T & T \\ \hline
+\end{tabular}
+\vspace{1.5em}
+
+
+\begin{proof}
+We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
+$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
+Thus $n^2$ is odd.
+
+\end{proof}
+
+
+\subsubsection{Proof by contradiction}
+\begin{example}
+The sum of a rational number and an irrational number is irrational.
+\end{example}
+
+\begin{proof}
+Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
+Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
+But then $r = s - q \in \mathbb{Q}$. Contradiction.
+\end{proof}
+
+
+
+
+\subsubsection{Summary}
+
+{\bf In sum, to prove $P \implies Q$:} \\
+
+\vspace{1em}
+
+
+\begin{tabular}{r l}
+     Direct proof:  & assume $P$, prove $Q$ \\
+     Proof by contrapositive:  & assume $\neg Q$, prove $\neg P$ \\ 
+     Proof by contradiction: & assume $P \wedge \neg Q$ and derive something that is impossible \\ 
+\end{tabular}
+
+
+\subsubsection{Induction}
+
+\begin{theorem}[Well-ordering principle for $\mathbb{N}$]
+Every nonempty set of natural numbers has a least element.
+\end{theorem}
+
+\begin{theorem}[Principle of mathematical induction]
+Let $n_0$ be a non-negative integer. Suppose $P$ is a property such that 
+\begin{enumerate}
+\item(base case) $P(n_0)$ is true 
+\item (induction step) For every integer $k \geq n_0$, if $P(k)$ is true, then $P(k+1)$ is true.
+\end{enumerate}
+Then $P(n)$ is true for every integer $n \geq n_0$
+\end{theorem}
+
+Note: Principle of strong mathematical induction: For every integer $k \geq n_0$, if $P(n)$ is true for every $n = n_0, \ldots, k$, then $P(k+1)$ is true.
+
+
+\begin{example}
+$n! > 2^n$ if $n \geq 4$.
+\end{example}
+
+
+\begin{proof}
+We prove this by induction on $n$. \\
+{\it Base case:} Let $n = 4$. Then $n! = 4! = 24 > 16 = 2^4$. \\
+{\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
+Then
+$$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
+\end{proof}
+
+\begin{example}
+Every integer $n \geq 2$ can be written as the product of primes.
+\end{example}
+
+\begin{proof}
+We prove this by induction on $n$. \\
+
+{\it Base case:} $n = 2$ is prime. \\
+
+{\it Inductive hypothesis:} Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
+
+We must show that we can write $k+1$ as a product of primes. \\
+First, if $k+1$ is prime then we are done.  \\
+
+Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
+By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
+\end{proof}
+
+
+\subsection{Exercises}
+\begin{enumerate}
+\item Prove De Morgan's Laws: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ .
+\item Prove the Fundamental Theorem of Arithmetic, that every integer $n \geq 2$ has a unique prime factorization (i.e. prove that the prime factorization from the last proof is unique).
+\end{enumerate}
+
+\subsubsection{Axioms of a field}
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
+    \item[(A2)] \textit{Commutativity in multiplication:} $x \times y = y \times x$
+    \item[(B1)] \textit{Associativity in addition:} $x + (y + z) = (x + y) + z$ 
+    \item[(B2)] \textit{Associativity in multiplication:} $x \times (y\times z) = (x\times y) \times z$ 
+    \item[(C)] \textit{Distributivity:} $x \times (y + z) = x \times y + x \times z$
+    \item[(D1)]\textit{Existence of a neutral element, addition:} There exists a number 0 such that $x + 0 = x$ for every $x$.
+    \item[(D2)] \textit{Existence of a neutral element, multiplication:} There exists a number 1 such that $x \times 1 = x$ for every $x$. 
+    \item[(E1)]\textit{Existence of an inverse, addition:} For each number $x$, there exists a number $-x$ such that $x + (-x) = 0$.
+     \item[(E2)]\textit{Existence of an inverse, multiplication:} For each number $x \neq 0$, there exists a number $1/x$ such that $x \times 1/x = 1$.
+\end{enumerate}
+
+%\vspace{1em}
+%
+%We also make the following assumptions about the order of the real numbers:
+%\begin{enumerate}
+%\setlength\itemsep{0.1em}
+%    \item[(F)] \textit{Uniqueness of ordering:} For any $x,y \in \R$, only one of the following holds: $x <y$, $x=y$, or $x > y$.
+%    \item[(G)] \textit{Transitivity:} If $x <y$ and $y < z$, then $x < z$.
+%    \item[(H1)] \textit{Ordering with addition:} For any $x$, if $y < z$ then $x + y < x + z$.
+%    \item[(H2)] \textit{Ordering with multiplication:} For any $x>0$, if $y < z$ then $x \times y < x \times z$.
+%\end{enumerate}
+
+
+\emma{This section to be worked on later}
+
+
+\subsubsection{Exercises}
+\begin{enumerate}
+\item For any $a,b \neq 0$, $1/(ab) = 1/a \times 1/b$
+\item For $a > 0$, $1/(-a) = -1/a$.
+\item For $a, b \neq 0$, $1/(a/b) = b/a$
+\end{enumerate}
 \begin{enumerate}
 \setlength\itemsep{0.1em}
     \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
