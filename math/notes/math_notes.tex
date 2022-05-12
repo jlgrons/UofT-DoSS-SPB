@@ -28,7 +28,7 @@
 
 
 %\usepackage[natbib=true, style=vancouver]{biblatex}
- \usepackage[backend= biber, style=vancouver]{biblatex}
+ \usepackage[backend= biber, style=authoryear]{biblatex}
 \bibliography{references.bib}
 
 \title{Mathematics Bootcamp \\
@@ -345,7 +345,8 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 %\end{enumerate}
 
 
-\emma{This section to be worked on later}
+\subsection{References}
+A good resource for this is \textcite{proofs}. \textcite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T.
 
 
 \subsubsection{Exercises}
@@ -602,7 +603,7 @@ Examples: differentiation, rotation of vectors, reflection of vectors
 \subsection{Determinants}
 
 \subsection{Spectral theory}
-Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly nice way. For example, if there exists a basis $\{\bv_1, \ldots, \bv_n\}$ of $V$ such that $T\bv_i = \alpha_i \bv_i$ where $\alpha_i \in \F$ for $i = 1, \ldots, n$, then $T$ acts on this particular basis merely by scaling the basis vectors. If we look at the matrix of $T$ with respect to this basis, $T$ is a diagonal matrix with $\alpha_i$ in the diagonal. In this section, we will recall when such a basis and other nice descriptions of $T$ exist.
+Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly nice way. For example, if there exists a basis $\{\bv_1, \ldots, \bv_n\}$ of $V$ such that $T\bv_i = \alpha_i \bv_i$ where $\alpha_i \in \F$ for $i = 1, \ldots, n$, then $T$ acts on this particular basis merely by scaling the basis vectors. If we look at the matrix of $T$ with respect to this basis, $T$ is a diagonal matrix with $\alpha_i$ in the diagonal. 
 
 \begin{definition}
 Let $V$ be a vector space. Given a linear map $T \colon V \to V$ and $\alpha \in \F$, $\alpha$ is called an \textbf{eigenvalue} of $T$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that $Tv = \alpha v$. We call such $\bv$ an \textbf{eigenvector} of $T$ with eigenvalue $\alpha$.
@@ -633,17 +634,14 @@ Linear Algebra Done Wrong \cite{linalgwrong}
 
 \section{Set theory}
 
-\section{Metric spaces}
+\section{Metric spaces and sequences}
 
 \section{Topology}
 
-\section{Functions on $\R$}
+\section{Differentiation and integration}
 
 \section{Multivariable calculus}
 
-\section{Functional analysis}
-
-\section{Complex analysis and Fourier analysis}
 
 \newpage
 
