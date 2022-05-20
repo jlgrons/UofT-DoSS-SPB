@@ -27,7 +27,7 @@
 \setlength{\parindent}{0cm}
 
 
-%\usepackage[natbib=true, style=vancouver]{biblatex}
+% \usepackage[natbib=true, style=vancouver]{biblatex}
  \usepackage[backend= biber, style=authoryear]{biblatex}
 \bibliography{references.bib}
 
@@ -314,25 +314,6 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 \emma{This section to be worked on later}
 
 
-\subsubsection{Exercises}
-\begin{enumerate}
-\item For any $a,b \neq 0$, $1/(ab) = 1/a \times 1/b$
-\item For $a > 0$, $1/(-a) = -1/a$.
-\item For $a, b \neq 0$, $1/(a/b) = b/a$
-\end{enumerate}
-\begin{enumerate}
-\setlength\itemsep{0.1em}
-    \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
-    \item[(A2)] \textit{Commutativity in multiplication:} $x \times y = y \times x$
-    \item[(B1)] \textit{Associativity in addition:} $x + (y + z) = (x + y) + z$ 
-    \item[(B2)] \textit{Associativity in multiplication:} $x \times (y\times z) = (x\times y) \times z$ 
-    \item[(C)] \textit{Distributivity:} $x \times (y + z) = x \times y + x \times z$
-    \item[(D1)]\textit{Existence of a neutral element, addition:} There exists a number 0 such that $x + 0 = x$ for every $x$.
-    \item[(D2)] \textit{Existence of a neutral element, multiplication:} There exists a number 1 such that $x \times 1 = x$ for every $x$. 
-    \item[(E1)]\textit{Existence of an inverse, addition:} For each number $x$, there exists a number $-x$ such that $x + (-x) = 0$.
-     \item[(E2)]\textit{Existence of an inverse, multiplication:} For each number $x \neq 0$, there exists a number $1/x$ such that $x \times 1/x = 1$.
-\end{enumerate}
-
 %\vspace{1em}
 %
 %We also make the following assumptions about the order of the real numbers:
@@ -349,12 +330,7 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 A good resource for this is \textcite{proofs}. \textcite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T.
 
 
-\subsubsection{Exercises}
-\begin{enumerate}
-\item For any $a,b \neq 0$, $1/(ab) = 1/a \times 1/b$
-\item For $a > 0$, $1/(-a) = -1/a$.
-\item For $a, b \neq 0$, $1/(a/b) = b/a$
-\end{enumerate}
+
 
 \section{Linear Algebra}
 
@@ -502,7 +478,7 @@ Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2
 \subsection{Linear (in)dependence and bases}
 
 \begin{definition}
-A linear combination of vectors $\bv_{1},...,\bv_{n}$ of vectors in $V$ is a vector of the form 
+A linear combination of vectors $\bv_{1},...,\bv_{n}$  in $V$ is a vector of the form 
 $$
 \alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
 $$
@@ -542,7 +518,7 @@ The linear combination $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$ is called trivi
 
 \emma{Proof done by hand}
 
-\subsection{Exercises}
+\subsubsection{Exercises}
 From Harvard:
 Exercise: Suppose $v_{1},v_{2},v_{3},v_{4}$ (a) spans $V$ and (b)
 is linearly independent. Prove that the list 
@@ -586,43 +562,172 @@ w\notin\text{span}(v_{1},...,v_{m})
 
 \subsection{Linear transformations}
 \begin{definition}
-A \textbf{transformation} $T$ from domain $X$ to codomain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
+A \textbf{map} $T$ from domain $X$ to codomain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
 \end{definition}
 
 \begin{definition}
-A transformation from a vector space $U$ to a vector space $V$ is \textbf{linear} if
+A map from a vector space $U$ to a vector space $V$ is \textbf{linear} if
 \begin{equation*}
     T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
 \end{equation*}
 \end{definition}
 
-Examples: differentiation, rotation of vectors, reflection of vectors
+Let's denote the set of all linear maps from vector space $U$ to vector space $V$ by $\mathcal{L}(U,V)$.
 
-\emma{transpose, adjoint}
+\begin{example}[Differentiation is a linear map]
+\label{ex:diff_map}
+Let $D \in \mathcal{L}(\mathcal{P}(\R),\mathcal{P}(\R))$, (i.e. $D$ is a linear map from the polynomials on $\R$ to  the polynomials on $\R$), defined as $Dp = p'$. The fact that such a map is linear follows from basic facts about derivatives, i.e. $\frac{d}{dx} (\alpha f(x) + \beta g(x)) = \alpha f'(x) + \beta g'(x)$.
+
+\end{example}
+
+Other examples: integration, rotation of vectors, reflection of vectors
+
+\begin{lemma}
+\label{lemm:map_0}
+Let $T \in \cL(U,V)$. Then $T(0) = 0$.
+\end{lemma}
+\begin{proof}
+By linearity, $T(0) = T(0+0) = T(0) + T(0)$. Add $-T(0)$ to both sides to obtain the result.
+\end{proof}
+
+
+\begin{theorem}
+Let $S,T \in \mathcal{L}(U,V)$ and $\alpha \in \F$. $\mathcal{L}(U,V)$ is a vector space with addition defined as the sum $S+T$ and multiplication as the product $\alpha T$.
+\end{theorem}
+
+\begin{definition}[Product of linear maps]
+Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
+\end{definition}
+
+\begin{definition}
+Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
+\begin{itemize}
+\item \emph{Kernel or null space}: $\ker T = \{\bu \in U : T\bu = 0 \}$
+\item \emph{Range} $\range \, T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$
+\end{itemize}
+The dimensions of these spaces are often called the following:
+\begin{itemize}
+\item \emph{Nullity} $\nullity(T) = \dim(\ker(T))$
+\item \emph{Rank} $\rank(T) = \dim(\range(T))$
+\end{itemize}
+\end{definition}
+
+\begin{example}
+The null space of the differentiation map (see \cref{ex:diff_map}) is the set of constant functions.
+\end{example}
+
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$ and $T$ is \emph{surjective} if $\forall \bu \in U, \, \exists \bv \in V$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+\begin{theorem}
+$T \in \cL(U,v)$ is injective $\Longleftrightarrow$ $\ker T = 0$.
+\end{theorem}
+
+\begin{proof}
+$\Rightarrow$ Suppose $T$ is injective. By \cref{lemm:map_0}, we know that 0 is in the null space of $T$, i.e. $T(0) = 0$. Suppose $\exists \bv \in \ker T$. Then $T(\bv) = 0 = T(0)$, and by injectivity, $\bv = 0$ . \\
+$\Leftarrow$ Suppose $\ker T = 0$. Let $T\bu = T\bv$; we want to show $\bv = \bu$. \\
+$T\bu = T\bv$ $\implies$ $T (\bu - \bv) = 0$, which implies $\bu - \bv \in \ker T$. But $\ker T = 0$, so then $\bu - \bv = 0$ $\implies$ $\bu=\bv$.
+\end{proof}
+
+\begin{theorem}[Rank Theorem]
+For a matrix $A$ or equivalently a linear transformation $A: \F^n \to \F^m$:
+\begin{equation*}
+\rank A = \rank A^T 
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}{Rank Nullity Theorem}
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\rank T + \nullity  T = \dim U.
+\end{equation*}
+\end{theorem}
+
+\subsubsection{Exercises}
+\begin{exercise}
+Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
+\begin{enumerate}
+    \item[(i)] Show that $T$ is linear.
+    \item[(ii)] Find $\ker T$.
+\end{enumerate}
+\end{exercise}
+
+\subsection{Linear maps and matrices}
+
 
 \subsection{Determinants}
 
+\subsection{Inner product spaces}
+\emma{transpose, adjoint}
+
 \subsection{Spectral theory}
-Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly nice way. For example, if there exists a basis $\{\bv_1, \ldots, \bv_n\}$ of $V$ such that $T\bv_i = \alpha_i \bv_i$ where $\alpha_i \in \F$ for $i = 1, \ldots, n$, then $T$ acts on this particular basis merely by scaling the basis vectors. If we look at the matrix of $T$ with respect to this basis, $T$ is a diagonal matrix with $\alpha_i$ in the diagonal. 
+
+Note: here we will assume $\F = \C$, so that we are working on an algebraically closed field.
+
+
+Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly ``nice'' way. For example, if there exists a basis $\{\bv_1, \ldots, \bv_n\}$ of $V$ such that $T\bv_i = \alpha_i \bv_i$ where $\alpha_i \in \F$ for $i = 1, \ldots, n$, then $T$ acts on this basis merely by scaling the basis vectors. If we look at the matrix of $T$ with respect to this basis, $T$ is a diagonal matrix with $\alpha_i$ in the diagonal. 
 
 \begin{definition}
-Let $V$ be a vector space. Given a linear map $T \colon V \to V$ and $\alpha \in \F$, $\alpha$ is called an \textbf{eigenvalue} of $T$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that $Tv = \alpha v$. We call such $\bv$ an \textbf{eigenvector} of $T$ with eigenvalue $\alpha$.
+Let $V$ be a vector space. Given a linear map $T \colon V \to V$ and $\alpha \in \F$, $\alpha$ is called an \textbf{eigenvalue} of $T$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that $Tv = \alpha v$. We call such $\bv$ an \textbf{eigenvector} of $T$ with eigenvalue $\alpha$. We call the set of all eigenvalues of $T$ \textbf{spectrum} of $T$ and denote it by $\sigma(T)$.
 \end{definition}
 
-Note that $Tv = \alpha v$ can be rewritten as $(T-\alpha I)v = 0$. Thus, if $\alpha $ is an eigenvalue, the map $T-\alpha I$ is not invertible, since it must have non-trivial kernel. Using the known characterizations of invertability, this gives the following characterization for eigenvalues.
+\emma{Define just for matrices?}
+
+Note that $Tv = \alpha v$ can be rewritten as $(T-\alpha I)v = 0$. Thus, if $\alpha $ is an eigenvalue, the map $T-\alpha I$ is not invertible, since it must have non-trivial kernel. Using the known characterizations of invertability, this gives the following characterization for eigenvalues. 
 
 \begin{theorem}
-Let $V$ be a vector space and $T \colon V \to V$ be a linear map. The following are equivalent
+Let $V$ be a vector space and $T \colon V \to V$ be a linear map and let $A_T$ be a matrix representation of $T$. The following are equivalent
 \begin{enumerate}
     \item $\alpha\in \F$ is an eigenvalue of $T$,
-    \item $(T-\alpha I)\bx = 0$ has a non-trivial solution,
-    \item $\det (T-\alpha I) = 0$.
+    \item $(A_T-\alpha I)\bx = 0$ has a non-trivial solution,
+    \item $\det (A_T-\alpha I) = 0$.
 \end{enumerate}
 \end{theorem}
 
-Note that the last part is to be understood as the determinant of a matrix description of $T$ with respect to a basis of $V$. We call the polynomial $p_A(\alpha) = \det (T-\alpha I)$ characteristic polynomial of $T$. Hence, the eigenvalues of $T$ are the zeros of the characteristic polynomial. Recall that basis transformations can be expressed as invertible matrices, thus this is well-defined, since the characteristic polynomial and therefore the eigenvalues are independent of the choice of basis.  We will now examine when there exists a basis of eigenvectors. 
+\begin{theorem}
+Suppose $A$ is a square matrix with distinct eigenvalues $\alpha_1, \ldots, \alpha_k$. Let $\bv_1, \ldots, \bv_k$ be eigenvectors corresponding to these eigenvalues. Then $\bv_1, \ldots, \bv_k$ are linearly independent.
+\end{theorem}
 
-\subsection{Inner product spaces}
+\begin{proof}
+Induction on $k$.
+\end{proof}
+
+Hence, if all the eigenvalues are distinct, there exists a basis of eigenvectors. This gives the next result. 
+
+\begin{corollary}
+If a $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. That is there exists an invertible matrix $U\in M_n(\C)$ such that $A = UDU^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+\end{corollary}
+
+\emma{mention problem of eigenspaces not having high enough dimension when eigenvalues are repeated, not necessarily introducing geometric and algebraic multiplicity}
+
+\begin{theorem}
+Let $A\in M_n(\C)$ be a Hermitian matrix. Then, there exists a unitary matrix $U\in M_n(\C)$ such that $A=UDU^*$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+\begin{proof}
+It suffices to show that there exists an orthogonal basis of eigenvectors and that the eigenvalues are real. We will prove the former by induction.
+\end{proof}
+
+Note that in the previous theorem, the orthogonality of the eigenvectors is special. In general, even if a matrix is diagonalizable, there might not exists a orthogonal eigenbasis. The next theorem states a characterization of matrices that exhibit an orthogonal eigenbasis. 
+
+\begin{theorem}
+A matrix $A$ is diagonalizable by a unitary matrix if and only if $AA^*= A^*A$. We call such a matrix \textbf{normal}.
+\end{theorem}
+
+Proof omitted.
+
+
+\subsubsection{Exercises}
+
+\begin{exercise}\label{ex: char pol indep of basis}
+Let $A,U \in M_n(\F)$ be matrices, where $U$ is invertible. Show that $\sigma(A) =\sigma(UAU^\inv)$.
+\end{exercise}
+
+\begin{exercise}
+Let $A\in M_n(\C)$ be an invertible matrix with $\sigma(A) = \{\alpha_1,\ldots, \alpha_n\}$ counted with multiplicities. Determine $\sigma(A^\inv)$, $\sigma(A^T)$ and $\sigma(A^*)$.
+\end{exercise}
+
 
 \subsection{Matrix decomposition}
 
