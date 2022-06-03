@@ -654,6 +654,52 @@ Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (
 \end{exercise}
 
 \subsection{Linear maps and matrices}
+We can use matrices to represent linear maps. 
+
+\begin{definition}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $u_1, \ldots, u_n$ and $v_1, \ldots, v_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{i,j}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T u_k = A_{1,k} v_1 + \cdots + A_{m,k} v_m
+\end{equation*}
+i.e. the $k$th column of $A$ is the scalars needed to write $T u_k$ as a linear combination of the basis of $V$:
+\begin{equation*}
+    T u_k = \sum_{i=1}^m A_{i,k} v_i 
+\end{equation*}
+\end{definition}
+
+\begin{example}
+Let $D \in \mathcal{L}(\mathcal{P}_5(\R),\mathcal{P}_4(\R))$ be the diiferentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathcal{P}_4(\R)$ and $\mathcal{P}_5(\R)$.
+
+Standard basis: $1, x, x^2, x^3, x^4, (x^5)$ \\
+$T(u_1) = (1)' = 0$ \\
+$T(u_2) = (x)' = 1$ \\ 
+$T(u_3) = (x^2)' = 2 x$ \\ 
+$T(u_4) = (x^3)' = 3 x^2$ \\
+$T(u_5) = (x^4)' = 4 x^3$ \\
+
+\begin{equation*}
+    \mathcal{M}(D) = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix}
+\end{equation*}
+\end{example}
+
+This way of looking at matrices gives us an intuitive explanation for why we do matrix multiplication the way we do!
+Let $T: U \to V$ and $S:V \to W$, where $T, S$ are linear maps and $U,V,W$ are vector spaces with bases $u_1, \ldots, u_n$, $v_1, \ldots, v_m$, and $w_1, \ldots, w_p$. If we want to have 
+\begin{equation*}
+    \mathcal{M}(ST) := \mathcal{M}(S) \mathcal{M}(T),
+\end{equation*}
+how would we need to define matrix multiplication? \\
+Let $A = \mathcal{M}(S)$ and $B = \mathcal{M}(T)$. Then
+\begin{align*}
+    (ST)u_k = S(T(u_k)) = S(B u_k) = S(b_k) = Ab_k,
+\end{align*}
+where $b_k$ is the $k$th column of $B$.
+
+We also have $\mathcal{M}(S+T) = \mathcal{M}(S) + \mathcal{M}(T)$ when $S,T \in \mathcal{L}(U,V)$.
 
 
 \subsection{Determinants}
