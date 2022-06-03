@@ -36,6 +36,6 @@ Important information related to the course will be posted on this website inclu
 
 <br>
 
-<a href="https://github.com/JSC270/JSC270.github.io">R Markdown source for this website</a>
+<a href="https://github.com/jlgrons/UofT-DoSS-SPB">R Markdown source for this website</a>
 
 

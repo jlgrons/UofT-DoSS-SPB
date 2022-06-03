@@ -13,7 +13,7 @@
 
 <title>Methods and Computing</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -308,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +328,7 @@ div.tocify {
   <a href="schedule.html">Schedule</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Course Documents
      
     <span class="caret"></span>
@@ -363,25 +367,77 @@ div.tocify {
 
 <hr />
 <p>Documents from class will be posted on this page.</p>
-<div id="module-1-basic-programming-in-r" class="section level4">
-<h4>Module 1: Basic programming in R</h4>
+<p><br></p>
+<div id="basic-programming-in-r" class="section level3">
+<h3>Basic programming in R</h3>
+<div id="module-1-r-syntax" class="section level4">
+<h4>Module 1: R Syntax</h4>
 <ul>
 <li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk1/mod1.pdf" target="_blank">Slides</a></p></li>
 <li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk1/ex1.pdf" target="_blank">Exercise 1</a></p></li>
 </ul>
+<p><br></p>
 </div>
-<div id="module-2-reporting-data-wrangling-and-graphing-i" class="section level4">
-<h4>Module 2: Reporting, Data Wrangling and Graphing (I)</h4>
+</div>
+<div id="reporting-data-wrangling-and-graphing" class="section level3">
+<h3>Reporting, data Wrangling and graphing</h3>
+<div id="module-2-latex-markdown-tidyverse" class="section level4">
+<h4>Module 2: LaTeX, Markdown, tidyverse</h4>
 <ul>
 <li><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk2/mod2.pdf" target="_blank">Slides</a></li>
 </ul>
 </div>
-<div id="module-3-reporting-data-wrangling-and-graphing-ii" class="section level4">
-<h4>Module 3: Reporting, Data Wrangling and Graphing (II)</h4>
+<div id="module-3-ggplot2" class="section level4">
+<h4>Module 3: ggplot2</h4>
 <ul>
 <li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk3/mod3.pdf" target="_blank">Slides</a></p></li>
 <li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk3/ex2.pdf" target="_blank">Exercise 2</a></p></li>
 </ul>
+<p><br></p>
+</div>
+</div>
+<div id="statistical-inference" class="section level3">
+<h3>Statistical inference</h3>
+<div id="module-4-probability-distribtions" class="section level4">
+<h4>Module 4: Probability distribtions</h4>
+<ul>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk4/mod4.pdf" target="_blank">Slides</a></p></li>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk4/ex4.pdf" target="_blank">Exercise 4</a></p></li>
+</ul>
+</div>
+<div id="module-5-estimation" class="section level4">
+<h4>Module 5: Estimation</h4>
+<ul>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk5/mod5.pdf" target="_blank">Slides</a></p></li>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk5/ex5.pdf" target="_blank">Exercise 5</a></p></li>
+</ul>
+</div>
+<div id="module-6-hypothesis-testing" class="section level4">
+<h4>Module 6: Hypothesis testing</h4>
+<ul>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk6/mod6.pdf" target="_blank">Slides</a></p></li>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk6/ex6.pdf" target="_blank">Exercise 6</a></p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="simulations" class="section level3">
+<h3>Simulations</h3>
+<div id="module-7-monte-carlo-simulations" class="section level4">
+<h4>Module 7: Monte Carlo simulations</h4>
+<ul>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk7/mod7.pdf" target="_blank">Slides</a></p></li>
+<li><p><a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/computing/wk7/ex7.pdf" target="_blank">Exercise 7</a></p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="bootstrap" class="section level3">
+<h3>Bootstrap</h3>
+<p><br></p>
+</div>
+<div id="regression" class="section level3">
+<h3>Regression</h3>
 <!-- ## Lecture 2: EDA - Jan 17 -->
 <!-- * <a href="https://drive.google.com/file/d/1_tUiEvLg3yB_lRyu-v1SwE3HWyeIuOOo/view?usp=sharing" target="_blank">Slides</a> -->
 <!-- * <a href="https://utoronto.zoom.us/rec/share/32k7HmLWR3nKx37lMHTWJSnzIfcIUN866Ig5y9hy1g_4da-8rvA-GQ8Ggqty4ohX.NU88gtXkgrmOMJsF" target="_blank">Recording</a> -->
@@ -478,7 +534,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
