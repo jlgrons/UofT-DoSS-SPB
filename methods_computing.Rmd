@@ -87,7 +87,7 @@ Documents from class will be posted on this page.
 
 ### Regression
 
-
+<br>
 
 <!-- ## Lecture 2: EDA - Jan 17 -->
 
