@@ -785,6 +785,105 @@ Linear Algebra Done Wrong \cite{linalgwrong}
 
 \section{Set theory}
 
+\subsection{Basics}
+
+For our purposes, we define a \emph{set} to be a collection of mathematical objects. If $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$. The set of no elements is called empty set and is denoted by $\emptyset$.
+
+\begin{definition}[Subsets, Union, Intersection]
+Let $S, T$ be sets. 
+\begin{itemize}
+    \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
+    \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ and $T$.
+    \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
+    \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
+\end{itemize}
+\end{definition}
+
+Note that the definition of union and intersection can be inductively extended to a finite number of sets.
+
+\begin{example}
+$\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
+\end{example}
+
+\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
+Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
+We can also define half-open intervals. 
+\end{example}
+
+\begin{example}
+$$\bigcup_{n=1}^\infty [-n,n] = \R$$
+\end{example}
+
+Since a set is itself a mathematical object, a set can itself contain sets.
+\begin{definition}
+The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
+\end{definition}
+
+\begin{example}
+Let $S = \{a,b,c\}$. Then $\cP(S) = \{ \emptyset, \{a\}, \{b\}, \{c\}, \{a,b\},\{b,c\}, \{b,c\}, S \}$. 
+\end{example}
+
+Another way of building a new set from two old ones is the Cartesian product of two sets.
+
+\begin{definition}\label{def:cartes_prod}
+Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the set of tuples with elements from $S,T$, i.e 
+\begin{equation*}
+    S\times T = \{ (s,t) \; \colon \; s \in S \; \text{ and } \; t \in T\}.
+\end{equation*}
+\end{definition}
+
+This can also be extended inductively. 
+
+\begin{definition}[\cite{marcoux2019}[Definition 2.4] ]
+A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
+\begin{enumerate}
+\item reflexivity: $x \leq x$ for all $x \in X$
+\item transitivity: for $x,y,z \in X$, $x \leq y$ and $y \leq z$ implies $x \leq z$
+\item anti-symmetry: for $x,y \in X$, $x \leq y$ and $y \leq x$ implies $x = y$
+\end{enumerate}
+The pair $(X, \leq)$ is called a \emph{partially ordered set}.
+
+A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is such that $x \leq y$ or $y \leq x$ for any $x,y \in C$.
+\end{definition}
+
+\subsection{Functions}
+
+\begin{definition}[Image and pre-image]
+Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. The image of $f$ is the set $f(A) := \{f(x): x \in A \}$ and the pre-image of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$
+\end{definition}
+
+\begin{example}
+Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
+\end{example}
+\begin{proof}
+Let $x \in A$. Let $B = f(A)$, $B \subseteq Y$. By definition, $f(x) \in B$. So then again by definition, $x \in f^{-1}(B)$. Thus $x \in f^{-1}(f(A))$.
+\end{proof}
+
+\subsubsection{Exercises}
+
+\emma{Include some of these as exercises (maybe prove one or two) \url{https://math.stackexchange.com/questions/359693/overview-of-basic-results-about-images-and-preimages}}
+
+\subsection{Cardinality}
+\begin{definition}
+Let $A$ be a set. 
+\begin{enumerate}
+\item $A$ is \emph{finite} if there exists a $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
+\item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
+\item $A$ is \emph{countable} if it is finite or countably infinite
+\item $A$ is \emph{uncountable} otherwise
+\end{enumerate}
+\end{definition}
+
+We say that the empty set has cardinality 0 and is finite.
+
+
+\subsection{References}
+The following texts: \\
+A Taste of Topology \cite{tastetopology}\\
+The first chapter in Marcoux's Real Analysis notes (University of Waterloo) \cite{marcoux2019}
+
 \section{Metric spaces and sequences}
 
 \section{Topology}
