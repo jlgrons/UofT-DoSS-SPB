@@ -6,9 +6,9 @@ output:
     toc_depth: 4
     toc_float: true
     theme: yeti
-  pdf_document:
-    toc: yes
-    toc_depth: '4'
+  # pdf_document:
+  #   toc: yes
+  #   toc_depth: '4'
 ---
 
 ```{r setup, include=FALSE}
