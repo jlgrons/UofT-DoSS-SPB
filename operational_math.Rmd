@@ -1,5 +1,6 @@
 ---
 title: 'Operational Math'
+author: "Instructor: [Emma Kroell](https://www.emmakroell.ca)"
 output: 
   html_document:
    toc: true
@@ -7,13 +8,12 @@ output:
    theme: yeti
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, message = F, warning = F)
-library(tidyverse)
-```
+<br>
 
 ## Syllabus
 
 [Click here to download the pdf syllabus](math/syllabus_operational_math.pdf)
+
+<br>
 
 ## Lectures
