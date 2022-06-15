@@ -21,12 +21,9 @@ __Overview__
 This three-week bootcamp is designed to get incoming PhD students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester. 
 
 
-Important information related to the course will be posted on this website including:
+Important information related to the course will be posted on this website.
 
- - [Course syllabus](syllabus.html)
- 
- - [Class Documents](class_docs.html) 
- 
+The schedule may be found [here](schedule.html).
 
  
  ******

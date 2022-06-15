@@ -13,6 +13,12 @@ knitr::opts_chunk$set(echo = F, warning = F, message = F)
 library(tidyverse)
 ```
 
+## Syllabus
+
+## Lectures
+
+
+
 ******
 
 <!-- Documents from tutorials will be posted on this page. -->

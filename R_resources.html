@@ -249,31 +249,16 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="syllabus.html">Syllabus</a>
-</li>
-<li>
   <a href="schedule.html">Schedule</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Course Documents
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="methods_computing.html">Methods and Computing</a>
-    </li>
-    <li>
-      <a href="probability.html">Probability</a>
-    </li>
-    <li>
-      <a href="operational_math.html">Operational Math</a>
-    </li>
-  </ul>
+<li>
+  <a href="operational_math.html">Operational Math</a>
 </li>
 <li>
-  <a href="announcements.html">Announcements</a>
+  <a href="methods_computing.html">Methods and Computing</a>
+</li>
+<li>
+  <a href="probability.html">Probability</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -292,23 +277,36 @@ $(document).ready(function () {
 </div>
 
 
-<p>There are lots of free resources available for learning R. This page contains some excellent resources, but we certainly can’t list all the excellent resources available.</p>
+<p>There are lots of free resources available for learning R. This page
+contains some excellent resources, but we certainly can’t list all the
+excellent resources available.</p>
 <p><br></p>
 <hr />
 <div id="running-r" class="section level1">
 <h1>Running R</h1>
-<p><a href= "https://www.r-project.org"><i class="fab fa-r-project fa-1x"></i></a> is a software environment for statistical computing and graphics that can be freely downloaded at <a href="https://cran.r-project.org">CRAN</a>.</p>
-<p><a href="https://www.rstudio.com">RStudio</a> is a popular integrated development environment for <i class="fab fa-r-project fa-1x"></i> that we will be using throughout the course.</p>
+<p><a href= "https://www.r-project.org"><i class="fab fa-r-project fa-1x"></i></a>
+is a software environment for statistical computing and graphics that
+can be freely downloaded at <a
+href="https://cran.r-project.org">CRAN</a>.</p>
+<p><a href="https://www.rstudio.com">RStudio</a> is a popular integrated
+development environment for <i class="fab fa-r-project fa-1x"></i> that
+we will be using throughout the course.</p>
 <p>There are two ways that students can run R using RStudio:</p>
 <ol style="list-style-type: decimal">
-<li><p>Create an account on <a href="https://rstudio.cloud">RStudio Cloud</a>.</p></li>
-<li><p>Install RStudio on your computer. A desktop version is available to <a href="https://www.rstudio.com/products/rstudio/#Desktop">download</a> on to your personal computer for free.</p></li>
+<li><p>Create an account on <a href="https://rstudio.cloud">RStudio
+Cloud</a>.</p></li>
+<li><p>Install RStudio on your computer. A desktop version is available
+to <a
+href="https://www.rstudio.com/products/rstudio/#Desktop">download</a> on
+to your personal computer for free.</p></li>
 </ol>
 <p><br></p>
 <div class="yourturn">
-<p><i class="fas fa-puzzle-piece" aria-hidden="true"></i> <strong> Test your setup! </strong><br><br></p>
+<p><i class="fas fa-puzzle-piece" aria-hidden="true"></i> <strong> Test
+your setup! </strong><br><br></p>
 <ol style="list-style-type: decimal">
-<li>Create a new project in RStudio (desktop or cloud version), and create a new R script file</li>
+<li>Create a new project in RStudio (desktop or cloud version), and
+create a new R script file</li>
 <li>Type and run the following code:</li>
 </ol>
 <pre><code>    print(&quot;Hello World!&quot;)
@@ -320,8 +318,16 @@ $(document).ready(function () {
 <pre><code>    install.packages(&quot;car&quot;)
     library(&quot;car&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>One of the data sets in the package, called <code>Prestige</code>, contains data on the prestige and other characteristics of 102 Canadian occupations around 1970. Find out what’s in the data set by looking at its help page <code>(?Prestige)</code></p></li>
-<li><p>Copy and execute the code <a href="https://rstudio-pubs-static.s3.amazonaws.com/291237_ccac14a9e129479c8d07e1dcfac5a697.html">Descriptive analysis and visualization in R using Prestige dataset in the car package</a> to familiarize yourself with the language and the R Studio environment.</p></li>
+<li><p>One of the data sets in the package, called
+<code>Prestige</code>, contains data on the prestige and other
+characteristics of 102 Canadian occupations around 1970. Find out what’s
+in the data set by looking at its help page
+<code>(?Prestige)</code></p></li>
+<li><p>Copy and execute the code <a
+href="https://rstudio-pubs-static.s3.amazonaws.com/291237_ccac14a9e129479c8d07e1dcfac5a697.html">Descriptive
+analysis and visualization in R using Prestige dataset in the car
+package</a> to familiarize yourself with the language and the R Studio
+environment.</p></li>
 </ol>
 </div>
 <p><br></p>
@@ -330,9 +336,16 @@ $(document).ready(function () {
 <div id="getting-started-with-r" class="section level1">
 <h1>Getting Started with R</h1>
 <ul>
-<li>If you have never programmed before then <a href="https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf">Hands-On Programming with R, by Garrett Grolemund</a> is a great place to start.</li>
-<li><a href="http://r4ds.had.co.nz">R for Data Science, by Hadley Wickham and Garrett Grolemund</a> is a wonderful resource.</li>
-<li><a href="https://www.datacamp.com">Datacamp</a> offers a free online <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>.</li>
+<li>If you have never programmed before then <a
+href="https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf">Hands-On
+Programming with R, by Garrett Grolemund</a> is a great place to
+start.</li>
+<li><a href="http://r4ds.had.co.nz">R for Data Science, by Hadley
+Wickham and Garrett Grolemund</a> is a wonderful resource.</li>
+<li><a href="https://www.datacamp.com">Datacamp</a> offers a free online
+<a
+href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction
+to R</a>.</li>
 </ul>
 <p><br></p>
 <hr />
@@ -340,31 +353,65 @@ $(document).ready(function () {
 <div id="r-style-guide" class="section level1">
 <h1>R Style Guide</h1>
 <blockquote>
-<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Just as with punctuation, while there are many code styles to choose from, some are more reader-friendly than others. <em>Hadley Wickham, <a href="http://style.tidyverse.org/index.html">Tidyverse Style Guide</a>.</em></p>
+<p>Good coding style is like correct punctuation: you can manage without
+it, butitsuremakesthingseasiertoread. Just as with punctuation, while
+there are many code styles to choose from, some are more reader-friendly
+than others. <em>Hadley Wickham, <a
+href="http://style.tidyverse.org/index.html">Tidyverse Style
+Guide</a>.</em></p>
 </blockquote>
-<p>When you write code, especially when it will be read by other people (e.g., your TA), refer to the <a href="http://style.tidyverse.org/index.html">Tidyverse Style Guide</a> for best practices.</p>
+<p>When you write code, especially when it will be read by other people
+(e.g., your TA), refer to the <a
+href="http://style.tidyverse.org/index.html">Tidyverse Style Guide</a>
+for best practices.</p>
 <p><br></p>
 <hr />
 </div>
 <div id="r-markdown" class="section level1">
 <h1>R Markdown</h1>
-<p><a href="http://rmarkdown.rstudio.com">R Markdown</a> documents can be used to create documents that weave together code and text.</p>
-<p>An R Markdown Cheat Sheet downloaded from <a href="https://www.rstudio.com/resources/cheatsheets/">RStudio</a> is available <a href="rmarkdown-2.0.pdf">here</a>.</p>
-<p>A guide to producing R Markdown documents for class assignments is available <a href="Rmarkdownforclassreports.html">here</a>. This guide also includes a short introduction to <span class="math inline">\(\LaTeX\)</span> for including math in R Markdown.</p>
+<p><a href="http://rmarkdown.rstudio.com">R Markdown</a> documents can
+be used to create documents that weave together code and text.</p>
+<p>An R Markdown Cheat Sheet downloaded from <a
+href="https://www.rstudio.com/resources/cheatsheets/">RStudio</a> is
+available <a href="rmarkdown-2.0.pdf">here</a>.</p>
+<p>A guide to producing R Markdown documents for class assignments is
+available <a href="Rmarkdownforclassreports.html">here</a>. This guide
+also includes a short introduction to <span
+class="math inline">\(\LaTeX\)</span> for including math in R
+Markdown.</p>
 <p><br></p>
 <p class="yourturn">
-<i class="fas fa-puzzle-piece" aria-hidden="true"></i> <strong> Test your setup! </strong><br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+<i class="fas fa-puzzle-piece" aria-hidden="true"></i> <strong> Test
+your setup! </strong><br><br> Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 </p>
 <p><br></p>
 <hr />
 </div>
 <div id="getting-help-with-r" class="section level1">
 <h1>Getting Help with R</h1>
-<p>Students can always ask a member of the teaching staff for help during office hours, tutorial, or on the class <a href="https://piazza.com/utoronto.ca/winter2018/sta130h1/home">discussion forum</a>.</p>
-<p><a href="https://stackoverflow.com">stackoverflow</a> is a popular forum for posting and answering questions related to programming. Questions tagged R can be found <a href="https://stackoverflow.com/questions/tagged/r">here</a> and questions tagged RStudio can be found <a href="https://stackoverflow.com/questions/tagged/rstudio">here</a>.</p>
+<p>Students can always ask a member of the teaching staff for help
+during office hours, tutorial, or on the class <a
+href="https://piazza.com/utoronto.ca/winter2018/sta130h1/home">discussion
+forum</a>.</p>
+<p><a href="https://stackoverflow.com">stackoverflow</a> is a popular
+forum for posting and answering questions related to programming.
+Questions tagged R can be found <a
+href="https://stackoverflow.com/questions/tagged/r">here</a> and
+questions tagged RStudio can be found <a
+href="https://stackoverflow.com/questions/tagged/rstudio">here</a>.</p>
 <p><br></p>
 <hr />
-<p>R Markdown source for this page <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/R_resources.Rmd"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
+<p>R Markdown source for this page
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/R_resources.Rmd">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
 </div>
 
 

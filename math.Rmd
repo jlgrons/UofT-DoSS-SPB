@@ -1,5 +1,8 @@
 ---
-title: 'Operational Math'
+title: "DoSS SPB"
+subtitle: "Operational Math"
+date: Summer 2022
+
 output: 
   html_document:
    toc: true
@@ -7,13 +10,10 @@ output:
    theme: yeti
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, message = F, warning = F)
-library(tidyverse)
-```
-
-## Syllabus
+# Syllabus
 
 [Click here to download the pdf syllabus](math/syllabus_operational_math.pdf)
 
-## Lectures
+# Lectures
+
+# Additional content
