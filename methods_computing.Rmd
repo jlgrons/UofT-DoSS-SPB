@@ -17,11 +17,15 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 ---
 
+<br>
+
 ## Syllabus
 
-## Lectures
+[Click here to download the pdf syllabus](computing/syllabus_computing.pdf)
 
-Documents from class will be posted on this page. 
+<br>
+
+## Lectures
 
 <br>
 
@@ -86,6 +90,9 @@ Documents from class will be posted on this page.
 <br>
 
 ### Bootstrap
+
+- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod8.pdf"target="_blank">Slides</a>
+
 
 <br>
 
