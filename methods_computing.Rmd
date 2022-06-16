@@ -1,5 +1,6 @@
 ---
 title: "Methods and Computing"
+author: "Instructor: [Siyue Yang](https://siyueyang.github.io)"
 output:
   html_document:
     toc: yes
@@ -21,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 ## Syllabus
 
-[Click here to download the pdf syllabus](computing/syllabus_computing.pdf)
+[Click here to download the syllabus](Computing/syllabus_computing.pdf)
 
 <br>
 

@@ -1,5 +1,6 @@
 ---
 title: "Probability"
+author: "Instructor: Miaoshiqi (Shiki) Liu"
 output: 
   html_document:
    toc: true
@@ -20,7 +21,7 @@ library(tidyverse)
 
 ## Syllabus
 
-[Click here to download the pdf syllabus](Probability/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+[Click here to download the syllabus](Probability/Syllabus/Bootcamp_Probability_Syllabus.pdf)
 
 <br>
 

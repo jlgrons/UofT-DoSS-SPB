@@ -12,8 +12,10 @@ output:
 
 ## Syllabus
 
-[Click here to download the pdf syllabus](math/syllabus_operational_math.pdf)
+[Click here to download the syllabus](math/syllabus_operational_math.pdf)
 
 <br>
 
 ## Lectures
+
+Material will be added here as the course progresses.
