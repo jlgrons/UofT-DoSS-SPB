@@ -13,10 +13,40 @@ knitr::opts_chunk$set(echo = F, warning = F, message = F)
 library(tidyverse)
 ```
 
+
+---
+
+<br>
+
 ## Syllabus
+
+[Click here to download the pdf syllabus](Probability/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+
+<br>
 
 ## Lectures
 
+<br>
+
+### Module 1: Basics of Probability
+
+### Module 2: Random Variables
+
+### Module 3: Common Random Variables
+
+### Module 4: Distribution
+
+### Module 5: Expectation
+
+### Module 6: Inequalities
+
+### Module 7: Stochastic Convergence
+
+### Module 8: Limit Theorems
+
+### Module 9: Markov Chain
+
+### Module 10: Stochastic Processes
 
 
 ******
