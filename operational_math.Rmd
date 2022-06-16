@@ -8,6 +8,8 @@ output:
    theme: yeti
 ---
 
+---
+
 <br>
 
 ## Syllabus
