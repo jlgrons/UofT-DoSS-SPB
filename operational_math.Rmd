@@ -20,4 +20,17 @@ output:
 
 ## Lectures
 
-Material will be added here as the course progresses.
+You may download the [lecture notes](math/notes/math_notes.pdf), which will be updated after each course.
+
+<br>
+
+### Module 1: Introduction to proofs
+
+Slides: [blank](math/module1/slides.pdf), [filled](math/module1/slides_filled.pdf)
+
+Exercises: [pdf](math/module1/exercises.pdf), [LaTeX](math/module1/exercises.tex)
+
+
+
+
+

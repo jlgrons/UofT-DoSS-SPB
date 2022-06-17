@@ -13,16 +13,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-Welcome to the Summer 2022 course website for the Summer Prep Bootcamp offered by the Department of [Statistical Sciences](http://utstat.toronto.edu).
-
+Welcome to the Summer 2022 course website for the Summer Prep Bootcamp offered by the [Department of Statistical Sciences](https://www.statistics.utoronto.ca) at the University of Toronto.
 
 __Overview__
 
 This three-week bootcamp is designed to get incoming PhD students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester. 
 
-
+<br>
 Important information related to the course will be posted on this website.
 
+<br>
 The schedule may be found [here](schedule.html).
 
  
