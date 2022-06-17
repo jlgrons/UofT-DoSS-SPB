@@ -163,6 +163,19 @@ $$ n m  =  (2 j) m = 2 (j m)$$
 Therefore $n m$ is even by definition. 
 \end{proof}
 
+\begin{definition}
+Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder is zero when $b$ is divided by $a$, i.e. $\exists j \in \Z$ such that $b = a j$.
+\end{definition}
+
+% https://hsm.stackexchange.com/questions/5656/who-invented-the-divisibility-symbol-and-why-is-it-backwards
+
+\begin{example}
+Let $a,b,c \in \Z$ with $a \neq 0$. Prove that if $a | b$ and $b | c$, then $a | c$.
+\end{example}
+\begin{proof}
+Suppose $a | b$ and $b | c$. Then by definition, there exists $j,k \in \Z$ such that $b = aj$ and $c = kb$. Combining these two equations gives $c = k (aj) = a (kj)$. Thus $a | c$ by definition.
+\end{proof}
+
 \subsubsection{Proof by contrapositive}
 \begin{example}
 If an integer squared is even, then the integer is itself even.
@@ -278,26 +291,30 @@ Otherwise, if $k+1$ is not prime, by definition it can be written as a product o
 By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
 \end{proof}
 
-
 \subsection{Exercises}
 \begin{enumerate}
-\item Prove De Morgan's Laws: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ .
+\item Prove De Morgan's Laws for propositions: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ (Hint: use truth tables).
+\item If $a | b$ and $a,n \in \Z_{>0}$ (positive integers), then $a \leq b$.
+\item If $a | b$ and $a | c$, then $a | (x b + y c)$, where $x,y \in \Z$.
+\item Let $a,b,n \in \Z$. If $n$ does not divide the product $ab$, then $n$ does not divide $a$ and $n$ does not divide $b$.
+\item Prove that for all integers $n \geq 1$, $3|(2^{2n}-1)$.
 \item Prove the Fundamental Theorem of Arithmetic, that every integer $n \geq 2$ has a unique prime factorization (i.e. prove that the prime factorization from the last proof is unique).
 \end{enumerate}
 
-\subsubsection{Axioms of a field}
-\begin{enumerate}
-\setlength\itemsep{0.1em}
-    \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
-    \item[(A2)] \textit{Commutativity in multiplication:} $x \times y = y \times x$
-    \item[(B1)] \textit{Associativity in addition:} $x + (y + z) = (x + y) + z$ 
-    \item[(B2)] \textit{Associativity in multiplication:} $x \times (y\times z) = (x\times y) \times z$ 
-    \item[(C)] \textit{Distributivity:} $x \times (y + z) = x \times y + x \times z$
-    \item[(D1)]\textit{Existence of a neutral element, addition:} There exists a number 0 such that $x + 0 = x$ for every $x$.
-    \item[(D2)] \textit{Existence of a neutral element, multiplication:} There exists a number 1 such that $x \times 1 = x$ for every $x$. 
-    \item[(E1)]\textit{Existence of an inverse, addition:} For each number $x$, there exists a number $-x$ such that $x + (-x) = 0$.
-     \item[(E2)]\textit{Existence of an inverse, multiplication:} For each number $x \neq 0$, there exists a number $1/x$ such that $x \times 1/x = 1$.
-\end{enumerate}
+%\subsubsection{Axioms of a field}
+%\begin{enumerate}
+%\setlength\itemsep{0.1em}
+%    \item[(A1)] \textit{Commutativity in addition:} $x + y = y + x$
+%    \item[(A2)] \textit{Commutativity in multiplication:} $x \times y = y \times x$
+%    \item[(B1)] \textit{Associativity in addition:} $x + (y + z) = (x + y) + z$ 
+%    \item[(B2)] \textit{Associativity in multiplication:} $x \times (y\times z) = (x\times y) \times z$ 
+%    \item[(C)] \textit{Distributivity:} $x \times (y + z) = x \times y + x \times z$
+%    \item[(D1)]\textit{Existence of a neutral element, addition:} There exists a number 0 such that $x + 0 = x$ for every $x$.
+%    \item[(D2)] \textit{Existence of a neutral element, multiplication:} There exists a number 1 such that $x \times 1 = x$ for every $x$. 
+%    \item[(E1)]\textit{Existence of an inverse, addition:} For each number $x$, there exists a number $-x$ such that $x + (-x) = 0$.
+%     \item[(E2)]\textit{Existence of an inverse, multiplication:} For each number $x \neq 0$, there exists a number $1/x$ such that $x \times 1/x = 1$.
+%\end{enumerate}
+
 
 %\vspace{1em}
 %
@@ -309,9 +326,6 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 %    \item[(H1)] \textit{Ordering with addition:} For any $x$, if $y < z$ then $x + y < x + z$.
 %    \item[(H2)] \textit{Ordering with multiplication:} For any $x>0$, if $y < z$ then $x \times y < x \times z$.
 %\end{enumerate}
-
-
-\emma{This section to be worked on later}
 
 
 %\vspace{1em}
@@ -349,7 +363,6 @@ Let $S, T$ be sets.
 
 \begin{example}
 Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
-\emma{is this notation introduced already?}
 Show that $B \subseteq A$. 
 \end{example}
 \begin{proof}
