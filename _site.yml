@@ -11,8 +11,6 @@ navbar:
       href: methods_computing.html
     - text: Probability
       href: probability.html
-    # - text: Syllabus
-    #   href: syllabus.html
     # - text: Course Documents
       # menu:
       #   - text: Methods and Computing
