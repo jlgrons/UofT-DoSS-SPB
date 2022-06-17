@@ -14,7 +14,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Math/syllabus_operational_math.pdf)
+[Click here to download the syllabus](Math/syllabus/syllabus_operational_math.pdf)
 
 <br>
 
