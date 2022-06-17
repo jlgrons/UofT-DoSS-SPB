@@ -800,7 +800,52 @@ Let $S, T$ be sets.
 \end{itemize}
 \end{definition}
 
-Note that the definition of union and intersection can be inductively extended to a finite number of sets.
+\begin{example}
+Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
+\emma{is this notation introduced already?}
+Show that $B \subseteq A$. 
+\end{example}
+\begin{proof}
+Let $x \in B$. Then $6 |x$, i.e. $\exists j \in \Z$ such that $x = 6j$. Therefore $x = 3 (2j)$, so $3|x$. Thus $x \in A$.
+\end{proof}
+
+\begin{definition}
+Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
+
+The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
+\end{definition}
+
+We extend the definition of union and intersection to an arbitrary family of sets as follows:
+
+\begin{definition}
+Let $S_\alpha$, $\alpha \in A$, be a family of sets. $A$ is called the \emph{index set}. We define
+\begin{equation*}
+    \bigcup_{\alpha \in A} S_\alpha := \{ x: \exists \alpha \text{ such that } x \in S_\alpha \}
+\end{equation*}
+\begin{equation*}
+    \bigcap_{\alpha \in A} S_\alpha := \{ x: x \in S_\alpha \forall \alpha \in A \}
+\end{equation*}
+\end{definition}
+
+\begin{example}
+$$\bigcup_{n=1}^\infty [-n,n] = \R$$
+$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = \R$$
+\end{example}
+
+
+
+\begin{theorem}[De Morgan's law]
+Let $\{S_\alpha\}_{\alpha \in A}$ be an arbitrary collection of sets. Then 
+\begin{equation*}
+    \left( \bigcup_{\alpha \in A} S_\alpha \right)^c = \bigcap_{\alpha \in A}  S_\alpha^c \quad \text{and} \quad \left( \bigcap_{\alpha \in A} S_\alpha \right)^c = \bigcup_{\alpha \in A}  S_\alpha^c
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+For the first part: Let $x \in \left( \bigcup_{\alpha \in A} S_\alpha \right)^c$. This is true if and only if $x \notin \left( \bigcup_{\alpha \in A} S_\alpha \right)$, or in other words $x \in S_\alpha^c$ $\forall \alpha \in A$. This is true if and only if $x \in \bigcap_{\alpha \in A} S_\alpha^c$, which gives the result \\
+The second part is similar and is left is an exercise. 
+\end{proof}
+
 
 \begin{example}
 $\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
@@ -822,7 +867,7 @@ The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
 \end{definition}
 
 \begin{example}
-Let $S = \{a,b,c\}$. Then $\cP(S) = \{ \emptyset, \{a\}, \{b\}, \{c\}, \{a,b\},\{b,c\}, \{b,c\}, S \}$. 
+Let $S = \{a,b,c\}$. Then $\cP(S) = \{ \emptyset, \{a\}, \{b\}, \{c\}, \{a,b\},\{b,c\}, \{a,c\}, S \}$. 
 \end{example}
 
 Another way of building a new set from two old ones is the Cartesian product of two sets.
@@ -836,7 +881,7 @@ Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the se
 
 This can also be extended inductively. 
 
-\begin{definition}[\cite{marcoux2019}[Definition 2.4] ]
+\begin{definition}
 A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
 \begin{enumerate}
 \item reflexivity: $x \leq x$ for all $x \in X$
@@ -845,8 +890,30 @@ A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq
 \end{enumerate}
 The pair $(X, \leq)$ is called a \emph{partially ordered set}.
 
-A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is such that $x \leq y$ or $y \leq x$ for any $x,y \in C$.
+A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is a subset with the property $x \leq y$ or $y \leq x$ for any $x,y \in C$.
 \end{definition}
+
+
+\begin{example}
+The real numbers with the usual ordering, $(\R, \leq)$ are totally ordered. 
+\end{example}
+
+\begin{example}
+The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subseteq)$ is partially ordered set. 
+
+Let $X = \{a,b,c,d\}$. What is $\cP(X)$? Find a chain in $\cP(X)$.
+
+$\cP(X) = \{\emptyset,\{a\},\{b\},\{c\},\{d\},\{a,b\},\{b,c\},\{c,d\},\{b,d\},\{a,c\},\{a,d\}, \{a,b,c\},\{b,c,d\},\{a,b,d\},\{a,c,d\},X\}$
+
+An example of a chain $C \subseteq \cP(X)$ is $C = \{\emptyset,\{b\},\{b,c\}, \{a,b,c\},X\}$
+\end{example}
+
+\begin{example}
+Consider the set $C([0,1],\R):= {f:[0,1] \to \R : f \text{ is continuous}}$.
+
+For two function $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. Can you think of a chain that is a subset of $(C([0,1],\R)$?
+\end{example}
+
 
 \subsection{Functions}
 
