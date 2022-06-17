@@ -14,7 +14,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](math/syllabus_operational_math.pdf)
+[Click here to download the syllabus](Math/syllabus_operational_math.pdf)
 
 <br>
 
@@ -25,93 +25,93 @@ Material will be added here as the course progresses.
 <!-- Note: I will comment these in as the course progresses. Before each lecture students will have access to the slides with blanks as well as the exercises (either a pdf or a tex file they can fill in). After each lecture I will add the filled-in slides (I will hand-write during the lecture) and update the lecture notes -->
 
 <!--
-You may download the [lecture notes](math/notes/math_notes.pdf), which will be updated after each lecture.
+You may download the [lecture notes](Math/notes/math_notes.pdf), which will be updated after each lecture.
 -->
 
 <!--
 <br>
 ### Module 1: Introduction to proofs
 
-Slides: [blank](math/module1/slides.pdf)--><!--, [filled](math/module1/slides_filled.pdf)-->
+Slides: [blank](Math/module1/slides.pdf)--><!--, [filled](Math/module1/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module1/exercises.pdf), [LaTeX](math/module1/exercises.tex) -->
+Exercises: [pdf](Math/module1/exercises.pdf), [LaTeX](Math/module1/exercises.tex) -->
 
 
 <!--
 <br>
 ### Module 2: Set theory
 
-Slides: [blank](math/module2/slides.pdf)--><!--, [filled](math/module2/slides_filled.pdf)-->
+Slides: [blank](Math/module2/slides.pdf)--><!--, [filled](Math/module2/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module2/exercises.pdf), [LaTeX](math/module2/exercises.tex) -->
+Exercises: [pdf](Math/module2/exercises.pdf), [LaTeX](Math/module2/exercises.tex) -->
 
 <!--
 <br>
 ### Module 3: Linear Algebra I
 
-Slides: [blank](math/module3/slides.pdf)--><!--, [filled](math/module3/slides_filled.pdf)-->
+Slides: [blank](Math/module3/slides.pdf)--><!--, [filled](Math/module3/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module3/exercises.pdf), [LaTeX](math/module3/exercises.tex) -->
+Exercises: [pdf](Math/module3/exercises.pdf), [LaTeX](Math/module3/exercises.tex) -->
 
 
 <!--
 <br>
 ### Module 4: Linear Algebra II
 
-Slides: [blank](math/module4/slides.pdf)--><!--, [filled](math/module4/slides_filled.pdf)-->
+Slides: [blank](Math/module4/slides.pdf)--><!--, [filled](Math/module4/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module4/exercises.pdf), [LaTeX](math/module4/exercises.tex) -->
+Exercises: [pdf](Math/module4/exercises.pdf), [LaTeX](Math/module4/exercises.tex) -->
 
 <!--
 <br>
 ### Module 5: Linear Algebra III
 
-Slides: [blank](math/module5/slides.pdf)--><!--, [filled](math/module5/slides_filled.pdf)-->
+Slides: [blank](Math/module5/slides.pdf)--><!--, [filled](Math/module5/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module5/exercises.pdf), [LaTeX](math/module5/exercises.tex) -->
+Exercises: [pdf](Math/module5/exercises.pdf), [LaTeX](Math/module5/exercises.tex) -->
 
 
 <!--
 <br>
 ### Module 6: Metric spaces and sequences I
 
-Slides: [blank](math/module6/slides.pdf)--><!--, [filled](math/module6/slides_filled.pdf)-->
+Slides: [blank](Math/module6/slides.pdf)--><!--, [filled](Math/module6/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module6/exercises.pdf), [LaTeX](math/module6/exercises.tex) -->
+Exercises: [pdf](Math/module6/exercises.pdf), [LaTeX](Math/module6/exercises.tex) -->
 
 
 <!--
 <br>
 ### Module 7: Metric spaces and sequences II
 
-Slides: [blank](math/module7/slides.pdf)--><!--, [filled](math/module7/slides_filled.pdf)-->
+Slides: [blank](Math/module7/slides.pdf)--><!--, [filled](Math/module7/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module7/exercises.pdf), [LaTeX](math/module7/exercises.tex) -->
+Exercises: [pdf](Math/module7/exercises.pdf), [LaTeX](Math/module7/exercises.tex) -->
 
 <!--
 <br>
 ### Module 8: Topology
 
-Slides: [blank](math/module8/slides.pdf)--><!--, [filled](math/module8/slides_filled.pdf)-->
+Slides: [blank](Math/module8/slides.pdf)--><!--, [filled](Math/module8/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module8/exercises.pdf), [LaTeX](math/module8/exercises.tex) -->
+Exercises: [pdf](Math/module8/exercises.pdf), [LaTeX](Math/module8/exercises.tex) -->
 
 
 <!--
 <br>
 ### Module 9: Differentiation and integration
 
-Slides: [blank](math/module9/slides.pdf)--><!--, [filled](math/module9/slides_filled.pdf)-->
+Slides: [blank](Math/module9/slides.pdf)--><!--, [filled](Math/module9/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module9/exercises.pdf), [LaTeX](math/module9/exercises.tex) -->
+Exercises: [pdf](Math/module9/exercises.pdf), [LaTeX](Math/module9/exercises.tex) -->
 
 <!--
 <br>
 ### Module 10: Multivariable calculus
 
-Slides: [blank](math/module10/slides.pdf)--><!--, [filled](math/module10/slides_filled.pdf)-->
+Slides: [blank](Math/module10/slides.pdf)--><!--, [filled](Math/module10/slides_filled.pdf)-->
 <!--
-Exercises: [pdf](math/module10/exercises.pdf), [LaTeX](math/module10/exercises.tex) -->
+Exercises: [pdf](Math/module10/exercises.pdf), [LaTeX](Math/module10/exercises.tex) -->
 
 
 
