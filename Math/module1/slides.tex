@@ -38,10 +38,13 @@
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
-\newcommand{\R}{{\mathds{R}}}
-\newcommand{\C}{{\mathds{C}}}
-\newcommand{\F}{{\mathds{F}}}
-\newcommand{\Z}{{\mathds{Z}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\cP}{\mathcal{P}}
 
 
 
@@ -98,9 +101,10 @@
 
 \begin{frame}{Outline}
     \begin{itemize}
+      \setlength\itemsep{1em}
     	\item Logic
         \item Review of Proof Techniques
-        \item Examples
+        \item Introduction to Set Theory
     \end{itemize}
 \end{frame}
 
@@ -471,14 +475,70 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 \end{frame}
 
 
-\begin{frame}{Exercises}
-\begin{enumerate}
-\item Prove De Morgan's Laws: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ .
-\item Prove the Fundamental Theorem of Arithmetic, that every integer $n \geq 2$ has a unique prime factorization (i.e. prove that the prime factorization from the last proof is unique).
-\end{enumerate}
+\begin{frame}{Introduction to Set Theory}
+\begin{itemize}
+  \setlength\itemsep{1em}
+\item we define a \emph{set} to be a collection of mathematical objects
+\item  if $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$.
+\item the set of no elements is called empty set and is denoted by $\emptyset$
+\end{itemize}
+\end{frame}
 
+\begin{frame}
+\begin{definition}[Subsets, Union, Intersection]
+Let $S, T$ be sets. 
+\begin{itemize}
+    \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
+    \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ and $T$.
+    \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
+    \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Some examples}
+
+\begin{example}
+$\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
+\end{example}
+
+\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
+Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
+We can also define half-open intervals. 
+\end{example}
 
 \end{frame}
+
+
+\begin{frame}
+\begin{example}
+Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
+Show that $B \subseteq A$. 
+\end{example}
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
+
+The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
+\end{definition}
+
+\vspace{2em}
+
+\begin{example}
+Let $X\subseteq\R$ defined as $X = \{x \in \R: 0 < x \leq 40 \}$. Then $X^c = \{x \in \R: x \leq 0 \text{ or } x > 40 \}$.
+\end{example}
+
+\end{frame}
+
+
+
 
 \begin{frame}{References}
 Gerstein, Larry J. (2012). \textit{Introduction to Mathematical Structures and Proofs}. Undergraduate Texts in Mathematics. url: \href{https://link.springer.com/book/10.1007/978-1-4614-4265-3}{https://link.springer.com/book/10.1007/978-1-4614-4265-3}
@@ -488,6 +548,10 @@ Gerstein, Larry J. (2012). \textit{Introduction to Mathematical Structures and P
 \vspace{1em}
 
 Lakins, Tamara J. (2016). \textit{The Tools of Mathematical Reasoning}. Pure and Applied Undergraduate Texts. 
+
+\vspace{1em}
+
+Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 
 \end{frame}
 

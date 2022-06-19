@@ -102,7 +102,7 @@
 
 \begin{frame}{Outline}
     \begin{itemize}
-    	\item Basics of Set Theory
+    	\item Review of basic set theory
 	\item Ordered Sets
         \item Functions
         \item Cardinality
@@ -110,60 +110,15 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Introduction}
-\begin{itemize}
-  \setlength\itemsep{1em}
-\item we define a \emph{set} to be a collection of mathematical objects
-\item  if $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$.
-\item the set of no elements is called empty set and is denoted by $\emptyset$
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{definition}[Subsets, Union, Intersection]
-Let $S, T$ be sets. 
-\begin{itemize}
-    \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
-    \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
-    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ and $T$.
-    \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
-    \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
-\end{itemize}
-\end{definition}
-\end{frame}
-
-\begin{frame}
-
-\begin{example}
-$\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
-\end{example}
-
-\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
-Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
-Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
-We can also define half-open intervals. 
-\end{example}
-
-\end{frame}
 
 
 \begin{frame}
-\begin{example}
-Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
-Show that $B \subseteq A$. 
-\end{example}
-\begin{proof}
-\vspace{3cm}
-\end{proof}
-\end{frame}
 
-
-\begin{frame}
-\begin{definition}
-Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
-
-The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
-\end{definition}
+Recall that for sets $S, T$:
+    \begin{itemize}
+    	\item  the \emph{union} of $S$ and $T$, denoted $S \cup T$, is all the elements that are in \emph{either} $S$ and $T$
+	\item  and the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, is all the elements that are in \emph{both} $S$ and $T$.
+    \end{itemize}
 
 We extend the definition of union and intersection to an arbitrary family of sets as follows:
 
