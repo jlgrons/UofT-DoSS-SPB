@@ -45,7 +45,7 @@
 \newpage
 \section*{Preface}
 \addcontentsline{toc}{section}{Preface}
-These notes were prepared for the inaugaral Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto, which is to be held in July 2022. 
+These notes were prepared for the inaugural Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto, which is to be held in July 2022. 
 
 References are provided for each section. All references are freely available online, though some may require a University of Toronto library log-in to access. 
 
@@ -362,6 +362,18 @@ Let $S, T$ be sets.
 \end{definition}
 
 \begin{example}
+$\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
+\end{example}
+
+\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
+Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
+We can also define half-open intervals. 
+\end{example}
+
+
+
+\begin{example}
 Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
 Show that $B \subseteq A$. 
 \end{example}
@@ -389,12 +401,12 @@ Let $S_\alpha$, $\alpha \in A$, be a family of sets. $A$ is called the \emph{ind
 
 \begin{example}
 $$\bigcup_{n=1}^\infty [-n,n] = \R$$
-$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = \R$$
+$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = \{0 \}$$
 \end{example}
 
 
 
-\begin{theorem}[De Morgan's law]
+\begin{theorem}[De Morgan's Laws]
 Let $\{S_\alpha\}_{\alpha \in A}$ be an arbitrary collection of sets. Then 
 \begin{equation*}
     \left( \bigcup_{\alpha \in A} S_\alpha \right)^c = \bigcap_{\alpha \in A}  S_\alpha^c \quad \text{and} \quad \left( \bigcap_{\alpha \in A} S_\alpha \right)^c = \bigcup_{\alpha \in A}  S_\alpha^c
@@ -406,16 +418,6 @@ For the first part: Let $x \in \left( \bigcup_{\alpha \in A} S_\alpha \right)^c$
 The second part is similar and is left is an exercise. 
 \end{proof}
 
-
-\begin{example}
-$\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
-\end{example}
-
-\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
-Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
-Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
-We can also define half-open intervals. 
-\end{example}
 
 
 Since a set is itself a mathematical object, a set can itself contain sets.
@@ -438,6 +440,8 @@ Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the se
 
 This can also be extended inductively. 
 
+\subsection{Ordered sets}
+
 \begin{definition}
 A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
 \begin{enumerate}
@@ -457,7 +461,9 @@ The real numbers with the usual ordering, $(\R, \leq)$ are totally ordered.
 
 \begin{example}
 The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subseteq)$ is partially ordered set. 
+\end{example}
 
+\begin{example}
 Let $X = \{a,b,c,d\}$. What is $\cP(X)$? Find a chain in $\cP(X)$.
 
 $\cP(X) = \{\emptyset,\{a\},\{b\},\{c\},\{d\},\{a,b\},\{b,c\},\{c,d\},\{b,d\},\{a,c\},\{a,d\}, \{a,b,c\},\{b,c,d\},\{a,b,d\},\{a,c,d\},X\}$
@@ -471,45 +477,225 @@ Consider the set $C([0,1],\R):= {f:[0,1] \to \R : f \text{ is continuous}}$.
 For two function $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. Can you think of a chain that is a subset of $(C([0,1],\R)$?
 \end{example}
 
+\begin{definition}
+A non-empty partially ordered set $(X,\leq)$ is \emph{well-ordered} if every non-empty subset $A \subseteq X$ has a mimimum element.
+\end{definition}
+
+Recall that we already saw that $\N$ is well-ordered, as we used it to prove the principle of mathematical induction. $\R$ does not have this property.
+
 
 \subsection{Functions}
+
+One way to define a function is as follows \cite[Definition 1.1.14]{tastetopology}:
+\begin{definition}
+A function $f$ from a set $X$ to a set $Y$ is a subset of $X \times Y$ with the properties:
+\begin{enumerate}
+    \item For every $x \in X$, there exists a $y \in Y$ such that $(x,y) \in f$
+    \item If $(x,y) \in f$ and $(x,z) \in f$, then $y = z$.
+\end{enumerate}
+$X$ is called the \emph{domain} of $f$.
+\end{definition}
+How does this connect to other descriptions of functions you may have seen?
+
+\begin{example}
+For a set $X$, the identity function is:
+$$ 1_X: X \to X, \quad x \mapsto x $$
+\end{example}
 
 \begin{definition}[Image and pre-image]
 Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. The image of $f$ is the set $f(A) := \{f(x): x \in A \}$ and the pre-image of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$
 \end{definition}
 
+Helpful way to think about it for proofs: \\
+If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$. \\
+If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
+
+
+\begin{definition}[Surjective, injective and bijective]
+Let $f:X \to Y$, where $X$ and $Y$ are sets. Then
+\begin{itemize}
+    \item $f$ is \emph{injective} if $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$
+    \item $f$ is \emph{surjective} if for every $y \in Y$, there exists an $x \in X$ such that $y = f(x)$
+    \item $f$ is \emph{bijective} if it is both injective and bijective
+\end{itemize}
+\end{definition}
+
 \begin{example}
-Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
+Let $f:X \to Y$, $ x \mapsto x^2$. \\
+If $X = \R$ and $Y= [0,\infty)$: $f$ is surjective. \\
+If $X = [0,\infty)$ and $Y = \R$: $f$ is injective. \\
+If $X = Y = [0,\infty)$: $f$ is bijective. \\
+If $X=Y=\R$, then $f$ is neither surjective nor injective.
 \end{example}
+
+\begin{proposition}
+Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
+\end{proposition}
 \begin{proof}
+First we show $A \subseteq f^{-1}(f(A))$. \\
 Let $x \in A$. Let $B = f(A)$, $B \subseteq Y$. By definition, $f(x) \in B$. So then again by definition, $x \in f^{-1}(B)$. Thus $x \in f^{-1}(f(A))$.
+
+\vspace{1em}
+Next, suppose $f$ is injective. We have already shown that $A \subseteq f^{-1}(f(A))$, so it remains to show that  $f^{-1}(f(A)) \subseteq  A$. Let $x \in f^{-1}(f(A))$. Then $f(x) \in f(A)$ by the definition of the pre-image. This means that there exists a $\tilde x \in A$ such that $f(x) = f(\tilde x)$. Since $f$ is injective, we have $x = \tilde x$, and hence $x \in A$.
 \end{proof}
 
-\subsubsection{Exercises}
 
-\emma{Include some of these as exercises (maybe prove one or two) \url{https://math.stackexchange.com/questions/359693/overview-of-basic-results-about-images-and-preimages}}
 
 \subsection{Cardinality}
+
+\begin{definition}
+The \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. 
+\end{definition}
+
+We say that the empty set has cardinality 0 and is finite.
+
+\begin{proposition}
+ If $X$ is finite set of cardinality $n$, then the cardinality of $\cP(X)$ is $2^n$.
+\end{proposition}
+\begin{proof}
+We proceed by induction. First, suppose $n=0$. Then $X = \emptyset$, and $\cP(X) = \{ \emptyset \}$ which has cardinality $1 = 2^0$.
+
+Next, suppose that the claim holds for some $n \in \N_0$. Let $X$ have $n+1$ elements. Let's call them $\{x_1, \ldots, x_n, x_{n+1}\}$. Then we can split $X$ up into subsets $A=\{x_1, \ldots, x_n\}$ and $B=\{ x_{n_1}\}$. By the inductive hypothesis, $\cP(A)$ has cardinality $2^n$. Any subset of $X$ must either be a subset of $A$ or contain $x_{n+1}$. How many subsets are there for the latter form? Let's count them out. Each subset will be formed by taking elements from $A$ and combining them with $x_{n+1}$. We start with no elements from $A$ and count up to all of them:
+\begin{align*}
+& 1 + \binom{n}{1} + \binom{n}{2} + \ldots + \binom{n}{n-1}  + \binom{n}{n} \\
+=& \sum_{k=0}^n \binom{n}{k} \\
+=& 2^n
+\end{align*}
+Therefore the total number of elements in $\cP(X)$ is the number of subsets of $A$ ($2^n$) plus the number of mixed subsets ($2^n$), i.e. the cardinality of $\cP(X)$ is $2^n+ 2^n = 2^{n+1}.$
+
+Thus the claim holds by induction. 
+\end{proof}
+
+\begin{definition}
+Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijection $f:A \to B$.
+\end{definition}
+
+\begin{example}
+Which is bigger, $\N$ or $\N_0$? \\
+Intuitively (at least to me), it seems that $\N_0$ should be bigger, since it includes exactly one more element than $\N$, namely 0. However, clearly the function $f:\N_0 \to \N$ defined by $n \mapsto n+1$ is a bijection. Therefore $\N_0$ and $\N$ have the same cardinality! One way to think about this is that $\N_0$ and $\N$ are the ``same size'' of infinity. 
+\end{example}
+
+It may sometimes be difficult to find such a bijection. However you can also use the following definition and theorem to instead show that two sets have the same cardinality by finding two injective functions between them.
+
+\begin{definition}
+We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
+\end{definition}
+
+\begin{theorem}[Cantor-Schr\"{o}der-Bernstein]
+Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
+\end{theorem}
+Proof is omitted. See \cite[Theorem 1.2.7]{tastetopology}
+
+\begin{example}
+$|\N| = |\N \times \N|$
+\end{example}
+\begin{proof}
+First, we show $|\N| \leq|\N \times \N|$. The function $f: \N \to \N \times \N$ defined by $n \mapsto (n,1)$ is a injection, thus $|\N| \leq|\N \times \N|$. 
+
+Next, we show $|\N \times \N| \leq |\N|$. We define the function $g: \N \times \N \to \N$  by $(n,m) \mapsto 2^n 3^m$. Why is this an injection? Assume we have $n_1,n_2,m_1,m_2$ such that $2^{n_1}3^{m_1} = 2^{n_2}3^{m_2}$. We need to show $n_1 = n_2$ and $m_1 = m_2$.  By the Fundamental Theorem of Arithmetic, every natural number greater than 1 has a unique prime factorization, so therefore the result must hold.
+\end{proof}
+
+
 \begin{definition}
 Let $A$ be a set. 
 \begin{enumerate}
-\item $A$ is \emph{finite} if there exists a $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
+\item $A$ is \emph{finite} if there exists an $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
 \item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
 \item $A$ is \emph{countable} if it is finite or countably infinite
 \item $A$ is \emph{uncountable} otherwise
 \end{enumerate}
 \end{definition}
 
-We say that the empty set has cardinality 0 and is finite.
+\begin{example}
+The rational numbers are countable, and in fact $|\Q| = |\N|$. \\
+Let's look at $\Q^+ := \{ x \in \Q : x > 0\}$. The fact that the rationals are countable relies on this famous way of listing the rational numbers:
+\begin{equation*}
+\scalebox{1.2}{$
+ \begin{array}{cccccc}
+ 1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} &\frac{1}{5} &\ldots \\[0.5em]
+ 2 & \textcolor{red}{\frac{2}{2}} & \frac{2}{3} &\textcolor{red}{\frac{2}{4}} &\frac{2}{5} & \ldots \\[0.5em]
+ 3 & \frac{3}{2} & \textcolor{red}{\frac{3}{3}} &\frac{3}{4} &\frac{3}{5} &\ldots \\[0.5em]
+ 4 & \textcolor{red}{\frac{4}{2}} & \frac{4}{3} & \textcolor{red}{\frac{4}{4}} &\frac{4}{5} &\ldots \\[0.5em]
+ \vdots & \vdots & \vdots & \vdots &\vdots & \ddots 
+\end{array}  $} 
+\end{equation*}
+This is a map from $\N$ to $\Q^+$. As long as we skip any fraction that is already in our list as we go along, it is injective.  Since we can find an injection from $\Q^+$ to $\N \times \N$ (exercise), we have that $|\Q^+| = |\N|$.  We can extend this to $\Q$. To do so, let $f\colon \N \to \Q^+$ be a bijection (which exists by the previous part). Then we can define another bijection $g\colon \N \to \Q$ by setting $g(1) = 0$ and 
+\begin{equation*}
+    g(n) =\begin{cases}
+    f(n) & \text{ if } n \text{ is even,} \\
+    -f(n) & \text{ if }  n \text{ is odd},
+    \end{cases}
+\end{equation*}
+for $n>1$.
+\end{example}
 
+Next we show that $\N$ is ``smaller'' than $(0,1)$.
+\begin{theorem}
+The cardinality of $\N$ is smaller than that of $(0,1)$.
+\end{theorem}
+\begin{proof}
+First, we show that there is an injective map from $\N$ to $(0, 1)$. The map $n \to \frac{1}{n}$ fulfils this. 
+
+Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fact that every number $r \in (0,1)$ has a binary expansion of the form $r=0.\sigma_1\sigma_2\sigma_3\ldots$ where $\sigma_i \in \{0, 1\}$, $i \in \N$.
+
+Now we suppose in order to derive a contradiction that there does exist a surjective map $f$ from $\N$ to (0, 1)., i.e. for $n \in \N$ we have $f(n) = 0.\sigma_1(n)\sigma_2(n)\sigma_3(n)\ldots$. This means we can list out the binary expansions, for example like
+\begin{align*}
+f(1)= & 0.\textcolor{red}{0}0000000\ldots \\
+f(2)=& 0.1\textcolor{red}{1}11111111\ldots\\
+f(3)=& 0.01\textcolor{red}{0}1010101\ldots  \\
+f(4)= & 0.101\textcolor{red}{0}101010\ldots  \\
+& 
+\end{align*}
+
+We will construct a number $\tilde r \in (0,1)$ that is not in the image of $f$. Define $\tilde r = 0.\tilde\sigma_1 \tilde\sigma_2 \ldots$, where we define the $n$th entry of $\tilde r$ to be the the opposite of the  $n$th entry of the $n$th item in our list:
+\begin{equation*}
+    \tilde\sigma_n = \begin{cases} 1 & \text{if } \sigma_n(n) = 0, \\
+    0 & \text{if }  \sigma_n(n) = 1.
+    \end{cases}
+\end{equation*}
+Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary expansion for all $n\in \N$. Hence, $\tilde r\not\in f(\N)$, which is a contradiction to $f$ being surjective. This technique is often referred to as Cantor's diagonal argument. 
+\end{proof}
+
+\begin{proposition}
+(0,1) and $\R$ have the same cardinality. 
+\end{proposition}
+\begin{proof}
+The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
+\end{proof}
+
+We have shown that there are different sizes of infinity, as the cardinality of $\N$ is infinite but still smaller than that of $\R$ or $(0,1)$. In fact, we have
+$$ |\N| = |\N_0| = |\Z| = |\Q| < | \R|.$$
+Because of this, there are special symbols for these two cardinalities: The cardinality of $\N$ is denoted $\aleph_0$, while the cardinality of $\R$ is denoted $\mathfrak{c}$. There is even a relationship between them:
+\begin{proposition}
+ $\mathfrak{c} = 2^{\aleph_0}$, i.e. the cardinality of $\R$ is the same as the cardinality of $\cP(\N)$.
+\end{proposition}
+This proof is omitted; see \cite[Proposition 1.2.9]{tastetopology}.
+
+\subsection{Exercises}
+\begin{enumerate}
+    \item Is $\R \times \R$ with the ordering $(x_1,y_1) \preceq (x_2,y_2)$ if $x_1 \leq y_1$ a partially ordered set? 
+     \item \cite[Exercise 1.3.1]{tastetopology} Let $S$ be a non-empty set. A relation $R$ on $S$ is called an equivalence relation if it is
+    \begin{enumerate}
+        \item[(i)] Reflexive: $(x,x) \in R$ for all $x \in S$
+        \item[(ii)] Symmetric: if $(x,y) \in R$  then $(y,x) \in R$ for all $x,y \in S$
+        \item[(iii)] Transitive: if $(x,y), (y,z) \in R$ then $(x,z) \in R$ for all $x,y,z \in S$
+    \end{enumerate}
+Given $x \in S$ the equivalence class of $x$ (with respect to a given equivalence relation $R$) is defined to consist of those $y \in S$ for which $(x,y) \in \R$. Show that two equivalence classes are either disjoint or identical.
+    \item Let $f: X \to Y$ be defined by the map $x \mapsto \sin(x)$. For what choices of $X$ and $Y$ is $f$ injective, surjective, bijective, or neither?
+    \item Show that for sets $A,B \subseteq X$ and $f: X \to Y$, $f(A \cap B) \subseteq f(A) \cap f(B)$.
+    \item Let $f: X \to Y$ and $B \subseteq Y$. Prove that $f(f^{-1}(B)) \subseteq B$, with equality iff $f$ is surjective.
+    \item Prove that $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$.
+    \item Show that $\N$ and $\Z$ have the same cardinality. 
+    \item Show that $|(0,1)| =|(1,\infty)|$.
+\end{enumerate}
+
+%https://math.stackexchange.com/questions/359693/overview-of-basic-results-about-images-and-preimages
 
 \subsection{References}
-The following texts: \\
+The content in this section comes following texts: \\
 A Taste of Topology \cite{tastetopology}\\
-The first chapter in Marcoux's Real Analysis notes (University of Waterloo) \cite{marcoux2019} \\
+The first chapter in Laurent Marcoux's Real Analysis notes (University of Waterloo) \cite{marcoux2019} \\
 The first chapter of Piotr Zwiernik's  \textit{Lecture notes in Mathematics for Economics and Statistics} \cite{piotr}
-
-
 
 \section{Linear Algebra}
 
