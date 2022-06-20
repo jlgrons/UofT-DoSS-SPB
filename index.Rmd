@@ -1,6 +1,6 @@
 ---
 title: "DoSS Summer Prep Bootcamp (SPB)"
-subtitle: "Summer 2022, Course Website"
+subtitle: "Summer 2022"
 
 output: 
   html_document:
@@ -13,14 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-Welcome to the Summer 2022 course website for the Summer Prep Bootcamp offered by the [Department of Statistical Sciences](https://www.statistics.utoronto.ca) at the University of Toronto.
+Welcome to the course website for the Summer Prep Bootcamp offered by the [Department of Statistical Sciences](https://www.statistics.utoronto.ca) at the University of Toronto.  Important information related to the bootcamp will be posted on this website.
 
 __Overview__
 
-This three-week bootcamp is designed to get incoming PhD students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester. 
-
-<br>
-Important information related to the course will be posted on this website.
+This three-week bootcamp is designed to get incoming graduate students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester. 
 
 <br>
 The schedule may be found [here](schedule.html).
