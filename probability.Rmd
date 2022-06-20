@@ -1,6 +1,6 @@
 ---
 title: "Probability"
-author: "Instructor: Miaoshiqi (Shiki) Liu"
+author: "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"
 output: 
   html_document:
    toc: true
@@ -27,27 +27,29 @@ library(tidyverse)
 
 ## Lectures
 
-<br>
+Material will be added here as the course progresses.
 
-### Module 1: Basics of Probability
+<!-- <br> -->
 
-### Module 2: Random Variables
+<!-- ### Module 1: Basics of Probability -->
 
-### Module 3: Common Random Variables
+<!-- ### Module 2: Random Variables -->
 
-### Module 4: Distribution
+<!-- ### Module 3: Common Random Variables -->
 
-### Module 5: Expectation
+<!-- ### Module 4: Distribution -->
 
-### Module 6: Inequalities
+<!-- ### Module 5: Expectation -->
 
-### Module 7: Stochastic Convergence
+<!-- ### Module 6: Inequalities -->
 
-### Module 8: Limit Theorems
+<!-- ### Module 7: Stochastic Convergence -->
 
-### Module 9: Markov Chain
+<!-- ### Module 8: Limit Theorems -->
 
-### Module 10: Stochastic Processes
+<!-- ### Module 9: Markov Chain -->
+
+<!-- ### Module 10: Stochastic Processes -->
 
 
 
