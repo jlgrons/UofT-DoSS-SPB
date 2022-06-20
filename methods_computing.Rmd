@@ -28,87 +28,89 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 ## Lectures
 
-<br>
-
-### Basic programming in R
-
-#### Module 1: R Syntax
-
-<!-- EK: This is another way to do it that avoids the GitHub repo interface, if you like it better. -->
-
-- [Slides](Computing/Slides/mod1.pdf)
-
-- [Exercise 1](Computing/Exercises/ex1.pdf)
-
-<!--
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod1.pdf"target="_blank">Slides</a>
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex1.pdf" target="_blank">Exercise 1</a>
-
--->
-
-<br>
-
-### Reporting, data Wrangling and graphing
-
-#### Module 2: LaTeX, Markdown, tidyverse
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod2.pdf"target="_blank">Slides</a>
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex2.pdf" target="_blank">Exercise 2</a>
-
-#### Module 3: ggplot2
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod3.pdf"target="_blank">Slides</a>
-
-<br> 
-
-### Statistical inference
-
-#### Module 4: Probability distribtions
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod4.pdf"target="_blank">Slides</a>
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex4.pdf" target="_blank">Exercise 4</a>
+Material will be added here as the course progresses.
 
 
-#### Module 5: Estimation
 
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod5.pdf"target="_blank">Slides</a>
+<!-- ### Basic programming in R -->
 
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex5.pdf" target="_blank">Exercise 5</a>
+<!-- #### Module 1: R Syntax -->
+
+<!-- <!-- EK: This is another way to do it that avoids the GitHub repo interface, if you like it better. --> 
+
+<!-- - [Slides](Computing/Slides/mod1.pdf) -->
+
+<!-- - [Exercise 1](Computing/Exercises/ex1.pdf) -->
+
+<!-- <!-- -->
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod1.pdf"target="_blank">Slides</a> -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex1.pdf" target="_blank">Exercise 1</a> -->
+
+<!-- --> 
+
+<!-- <br> -->
+
+<!-- ### Reporting, data Wrangling and graphing -->
+
+<!-- #### Module 2: LaTeX, Markdown, tidyverse -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod2.pdf"target="_blank">Slides</a> -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex2.pdf" target="_blank">Exercise 2</a> -->
+
+<!-- #### Module 3: ggplot2 -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod3.pdf"target="_blank">Slides</a> -->
+
+<!-- <br>  -->
+
+<!-- ### Statistical inference -->
+
+<!-- #### Module 4: Probability distribtions -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod4.pdf"target="_blank">Slides</a> -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex4.pdf" target="_blank">Exercise 4</a> -->
 
 
-#### Module 6: Hypothesis testing
+<!-- #### Module 5: Estimation -->
 
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod6.pdf"target="_blank">Slides</a>
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod5.pdf"target="_blank">Slides</a> -->
 
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex6.pdf" target="_blank">Exercise 6</a>
-
-
-<br>
-
-### Simulations 
-
-#### Module 7: Monte Carlo simulations
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod7.pdf"target="_blank">Slides</a>
-
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex7.pdf" target="_blank">Exercise 7</a>
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex5.pdf" target="_blank">Exercise 5</a> -->
 
 
-<br>
+<!-- #### Module 6: Hypothesis testing -->
 
-### Bootstrap
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod6.pdf"target="_blank">Slides</a> -->
 
-- <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod8.pdf"target="_blank">Slides</a>
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex6.pdf" target="_blank">Exercise 6</a> -->
 
 
-<br>
+<!-- <br> -->
 
-### Regression
+<!-- ### Simulations  -->
 
-<br>
+<!-- #### Module 7: Monte Carlo simulations -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod7.pdf"target="_blank">Slides</a> -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex7.pdf" target="_blank">Exercise 7</a> -->
+
+
+<!-- <br> -->
+
+<!-- ### Bootstrap -->
+
+<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod8.pdf"target="_blank">Slides</a> -->
+
+
+<!-- <br> -->
+
+<!-- ### Regression -->
+
+<!-- <br> -->
 
 
 
