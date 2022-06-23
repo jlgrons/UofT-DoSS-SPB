@@ -13,6 +13,7 @@
 \usepackage{dsfont}
 \usepackage{subfig}
 \usepackage{tikz}
+\usepackage{accents}
 
 
 \input{commands}
@@ -26,6 +27,14 @@
 
 \allowdisplaybreaks % fixes align environment weird spacing on page
 \setlength{\parindent}{0cm}
+
+% get rid of dot after theorem 
+\usepackage{xpatch}
+\makeatletter
+% Patch to accommodate for \begin{theorem}[...]
+\AtBeginDocument{\xpatchcmd{\cref@thmoptarg}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+% Patch to accommodate \begin{theorem} (without an optional argument)
+\AtBeginDocument{\xpatchcmd{\cref@thmnoarg}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
 
 
 % \usepackage[natbib=true, style=vancouver]{biblatex}
@@ -77,12 +86,15 @@ These lectures are based on the following books or lecture notes:
 
 \vspace{1em}
 
-The material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone). 
+Chapter 1 of Gerstein (2012) is used a reference for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
+
 \vspace{1em}
 
+The material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone).
 
-I would like to acknowledge the work and assistance of Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman in developing the list of topics for the course. 
+\vspace{1em}
 
+I would like to acknowledge Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman for their assistance in developing the list of topics for the course. 
 
 \newpage
 \tableofcontents
@@ -384,9 +396,7 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 
 
 \subsection{References}
-A good resource for this is \textcite{proofs}. \textcite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T.
-
-
+Most of this content may be found in Chapter 1 of \textcite{proofs}, though many of the examples are my own. \textcite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T. 
 \section{Set theory}
 
 \subsection{Basics}
@@ -890,23 +900,21 @@ Let $(X,d)$ be a metric space.
 Let $A\subseteq X$ where $(X,d)$ is a metric space. 
 \begin{itemize}
     \item The \emph{closure} of $A$ is  $\overline A :=\{x \in A: \forall \epsilon > 0 \; B_\epsilon(x) \cap A \neq \emptyset \}$
-    \item The \emph{interior} of $A$ is  $\dot A :=\{x \in A: \exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A \}$
+    \item The \emph{interior} of $A$ is  $\interior A :=\{x \in A: \exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A \}$
     \item The \emph{boundary} of $A$ is $\partial A := \{ a \in X: \forall \epsilon > 0, \, B_\epsilon(x) \cap A \neq \emptyset \text{ and }  B_\epsilon(x) \cap A^c \neq \emptyset\}$
 \end{itemize}
 \end{definition}
 The closure of a set is the smallest closed set that contains it while the interior of a set is the largest open set contained by it.
 
-
-
 \begin{proposition}
- Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\dot A = A \setminus \partial A$.
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
 \end{proposition}
 \begin{proof}
-First, we show $\dot A\subseteq A \setminus \partial A$. Let $x \in \dot A$. Then by definition $\exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A$. Clearly $x \ A$ and also by definition, $x \notin \partial A$.
+First, we show $\interior A\subseteq A \setminus \partial A$. Let $x \in \interior A$. Then by definition $\exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A$. Clearly $x \ A$ and also by definition, $x \notin \partial A$.
 
 \vspace{1em}
 
-Next, we show $A \setminus \partial A \subseteq \dot A$. Let $x \in A \setminus \partial A$. Then $x \in A$ and $x \notin \partial A$. The latter means that $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A \neq \emptyset$ or  $B_\epsilon(x) \cap A^c \neq \emptyset$. Since $x \in B_\epsilon(x) \cap A$ for any $\epsilon$, the former cannot be true for any $\epsilon$. Therefore $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c \neq \emptyset$, i.e. $B_\epsilon(x) \subseteq A$. Thus $x \in \dot A$.
+Next, we show $A \setminus \partial A \subseteq \interior A$. Let $x \in A \setminus \partial A$. Then $x \in A$ and $x \notin \partial A$. The latter means that $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A \neq \emptyset$ or  $B_\epsilon(x) \cap A^c \neq \emptyset$. Since $x \in B_\epsilon(x) \cap A$ for any $\epsilon$, the former cannot be true for any $\epsilon$. Therefore $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c \neq \emptyset$, i.e. $B_\epsilon(x) \subseteq A$. Thus $x \in \interior A$.
 \end{proof}
 
 \begin{definition}
@@ -963,9 +971,28 @@ A metric space where every Cauchy sequence converges is called \emph{complete}.
 
 In addition, a normed space that is complete with respect to the metric induced by the norm is called a \emph{Banach space}. $\R^n$ with the Euclidean distance is complete (and is in fact a Banach space). 
 
-\vspace{2em}
+\subsubsection{Subsequences}
 
-\emma{add subsequences, accumulation point of a set}
+\begin{definition}
+Let $(x_n)_{n \in \N}$ be a sequence in a metric space $(X,d)$. Let $(n_k)_{k \in \N}$ be a sequence of natural numbers with $n_1 < n_2 < \cdots$. The sequence $(x_{n_k})_{k \in \N}$ is called a \emph{subsequence} of $(x_n)_{n \in \N}$. If $(x_{n_k})_{k \in \N}$ converges to $x \in X$, we call $x$ a \emph{subsequential limit}.
+\end{definition}
+
+\begin{example}
+The sequence $\left((-1)^n\right)_{n \in \N}$ diverges but the subsequences $\left((-1)^{2n}\right)_{n \in \N}$ and $\left((-1)^{2n-1}\right)_{n\in \N}$ converge to subsequential limit points 1 and $-1$, respectively.
+\end{example}
+
+\begin{proposition}
+A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ if and only if every subsequence of $(x_n)_{n \in \N}$  also converges to $x$.
+\end{proposition}
+\begin{proof}
+($\Leftarrow$) If every subsequence of $(x_n)_{n \in \N}$ converges to $x \in X$, then  $(x_n)_{n \in \N}$ must converge to it as well, since a sequence is a subsequence of itself. 
+
+($\Rightarrow$) Suppose $(x_n)_{n \in \N}$ converges to $x \in X$ and let $(x_{n_k})_{k \in \N}$ be an arbitrary subsequence of $(x_n)_{n \in \N}$. Let $\epsilon > 0$ be arbitrary. There exists $n_\epsilon \in \N$ such that $d(x_n,x) < \epsilon$ for all $n \geq n_\epsilon$. Choose $k_\epsilon$ such that $n_{k_\epsilon} \geq n_\epsilon$, which must exist since $(n_k)_{k\in\N}$ is strictly increasing. Then for all $k \geq k_\epsilon$, $d(x_{n_k},x) < \epsilon$. Thus $(x_{n_k})_{k \in \N}$ converges to $x$.
+\end{proof}
+
+\vspace{1em}
+\emma{accumulation point of a set}
+
 
 \subsection{Continuity}
 
