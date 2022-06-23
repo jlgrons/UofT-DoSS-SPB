@@ -47,7 +47,7 @@ Exercises: [pdf](Math/module2/exercises.pdf), [LaTeX](Math/module2/exercises.tex
 
 <!--
 <br>
-### Module 3: Linear Algebra I
+### Module 3: Metric spaces and sequences I
 
 Slides: [blank](Math/module3/slides.pdf)--><!--, [filled](Math/module3/slides_filled.pdf)-->
 <!--
@@ -56,7 +56,7 @@ Exercises: [pdf](Math/module3/exercises.pdf), [LaTeX](Math/module3/exercises.tex
 
 <!--
 <br>
-### Module 4: Linear Algebra II
+### Module 4: Metric spaces and sequences II
 
 Slides: [blank](Math/module4/slides.pdf)--><!--, [filled](Math/module4/slides_filled.pdf)-->
 <!--
@@ -64,7 +64,7 @@ Exercises: [pdf](Math/module4/exercises.pdf), [LaTeX](Math/module4/exercises.tex
 
 <!--
 <br>
-### Module 5: Linear Algebra III
+### Module 5: Topology
 
 Slides: [blank](Math/module5/slides.pdf)--><!--, [filled](Math/module5/slides_filled.pdf)-->
 <!--
@@ -73,7 +73,7 @@ Exercises: [pdf](Math/module5/exercises.pdf), [LaTeX](Math/module5/exercises.tex
 
 <!--
 <br>
-### Module 6: Metric spaces and sequences I
+### Module 6: Linear algebra I
 
 Slides: [blank](Math/module6/slides.pdf)--><!--, [filled](Math/module6/slides_filled.pdf)-->
 <!--
@@ -82,7 +82,7 @@ Exercises: [pdf](Math/module6/exercises.pdf), [LaTeX](Math/module6/exercises.tex
 
 <!--
 <br>
-### Module 7: Metric spaces and sequences II
+### Module 7: Linear algebra II
 
 Slides: [blank](Math/module7/slides.pdf)--><!--, [filled](Math/module7/slides_filled.pdf)-->
 <!--
@@ -90,7 +90,7 @@ Exercises: [pdf](Math/module7/exercises.pdf), [LaTeX](Math/module7/exercises.tex
 
 <!--
 <br>
-### Module 8: Topology
+### Module 8: Linear algebra III
 
 Slides: [blank](Math/module8/slides.pdf)--><!--, [filled](Math/module8/slides_filled.pdf)-->
 <!--
