@@ -863,7 +863,7 @@ Consider $\R^2$ with the taxicab or Manhattan metric (1-norm) $d(x,y) = \sum_{i=
 \begin{definition}[Open and closed sets]
 Let $(X,d)$ be a metric space. 
 \begin{itemize}
-    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \in U$.
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
     \item A set $K \subseteq X$ is \emph{closed} if $K^c:= X\setminus K$ is open.
 \end{itemize}
 \end{definition}
@@ -879,11 +879,11 @@ Let $(X,d)$ be a metric space.
  \end{enumerate}
 \end{proposition}
 \begin{proof}
-(i) Since $A_1$ is open, for each $x \in A_1$, there exists an $\epsilon_1 > 0$ such that $B_{\epsilon_1}(x) \in A_1$. Since $A_2$ is open, for each $x \in A_2$, there exists an $\epsilon_2 > 0$ such that $B_{\epsilon_2}(x) \in A_2$. Let $x \in A_1 \cap A_2$. Choose $\epsilon = \min\{\epsilon_1,\epsilon_2\}$. Then  $B_{\epsilon}(x) \in A_1 \cap A_2$ as required. 
+(i) Since $A_1$ is open, for each $x \in A_1$, there exists an $\epsilon_1 > 0$ such that $B_{\epsilon_1}(x) \subseteq  A_1$. Since $A_2$ is open, for each $x \in A_2$, there exists an $\epsilon_2 > 0$ such that $B_{\epsilon_2}(x) \subseteq A_2$. Let $x \in A_1 \cap A_2$. Choose $\epsilon = \min\{\epsilon_1,\epsilon_2\}$. Then  $B_{\epsilon}(x) \subseteq A_1 \cap A_2$ as required. 
 
 \vspace{1em}
 
-(i) Let $x\in \cup_{i\in I} A_i$. Then there exists $i \in I$ such that $x \in A_i$, and since $A_i$ is open there exists $\epsilon>0$ such that $B_\epsilon(x) \in A_i$. Since $A_i \subseteq \cup_{i\in I} A_i$, we are done.
+(i) Let $x\in \cup_{i\in I} A_i$. Then there exists $i \in I$ such that $x \in A_i$, and since $A_i$ is open there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq  A_i$. Since $A_i \subseteq \cup_{i\in I} A_i$, we are done.
 
 \end{proof}
 
@@ -933,6 +933,7 @@ Let $(X,d)$ be a metric space. A \emph{sequence} is a list of points $x_n$, $n\i
 \end{definition}
 
 \begin{proposition}
+\label{prop:closure_limit}
 Let $(X, d)$ be a metric space, and let $A \subseteq X$. Then $\overline A$ is equal to the set of points in $X$ which are limits of a sequence in $A$.
 \end{proposition}
 
@@ -943,9 +944,28 @@ Let $x \in X$ be the limit of a sequence $(x_n)_{n \in \N} \in A$. Then for $\ep
 \end{proof}
 
 \begin{corollary}
-A set $K \subseteq X$, where $(X, d)$ is a metric space, is closed if an only if every sequence in $K$ which converges in $X$ converges to a point in $K$.
+\label{cor:closed_converge}
+A set $K \subseteq X$, where $(X, d)$ is a metric space, is closed if and only if every sequence in $K$ which converges in $X$ converges to a point in $K$.
 \end{corollary}
 
+We also define a concept related to the closure of a set: a cluster or accumulation point.
+
+\begin{definition}
+Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point}of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains uncountably many points in $A$.
+\end{definition}
+
+The following result also follows from \cref{prop:closure_limit}.
+
+\begin{corollary}
+ $x \in X$ is a cluster point of $A \subseteq X$ where $(X,d)$ is a metric space if and only if there exists a sequence of points $x_n \in A$, $n \in \N$, such that $x_n \to x$.
+\end{corollary}
+
+\begin{proposition}
+For $A \subseteq X$, $(X,d)$ a metric space, we have $\overline{A} = A \cup \{x \in X : x \text{ is a cluster point of }A \}$.
+\end{proposition}
+
+
+\subsubsection{Cauchy sequences}
 
 \begin{definition}[Cauchy sequence]
 Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is called a \emph{Cauchy sequence} if
@@ -955,6 +975,7 @@ Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is ca
 \end{definition}
 
 \begin{proposition}
+\label{prop:converge_means_Cauchy}
 Let $(X, d)$ be a metric space, and let $(x_n)_{n\in\N}$ be a convergent sequence in $X$. The  $(x_n)_{n\in\N}$ is Cauchy.
 \end{proposition}
 
@@ -967,10 +988,25 @@ Thus $(x_n)_{n\in\N}$ is Cauchy.
 \end{proof}
 
 \begin{definition}
-A metric space where every Cauchy sequence converges is called \emph{complete}.
+A metric space where every Cauchy sequence converges (to a point in the space) is called \emph{complete}.
 \end{definition}
 
 In addition, a normed space that is complete with respect to the metric induced by the norm is called a \emph{Banach space}. $\R^n$ with the Euclidean distance is complete (and is in fact a Banach space). 
+
+\begin{proposition}[{\cite[Proposition 2.4.5]{tastetopology}}]
+\label{prop:closed_subset_complete}
+Let $(X, d)$ be a metric space, and let $Y\subseteq X$.
+\begin{enumerate}
+    \item[(i)] If $X$ is complete and if $Y$ is closed in $X$, then $Y$ is complete.
+    \item[(ii)] If $Y$ is complete, then it is closed in $X$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Let $X$ be a complete metric space and $Y$ be a closed subset of $X$. Let $(x_n)_{n\in\N}$ be a Cauchy sequence in $Y$. Since $Y \subseteq X$, $(x_n)_{n\in\N}$ is also a Cauchy sequence in $X$. Therefore $(x_n)_{n\in\N}$ converges to an $x \in X$ since $X$ is complete. But since $Y$ is closed, by \cref{prop:closure_limit}, we must have $x \in Y$. Therefore $Y$ is complete.
+
+(ii) Let $(X, d)$ be a metric space and let $Y\subseteq X$ be complete. Let $(y_n)_{n\in\N}$ be a sequence in $Y$ that converges to some point $y \in X$.  By \cref{prop:converge_means_Cauchy},  $(y_n)_{n\in\N}$ is Cauchy in $X$ and therefore also in $Y$. Since $Y$ is complete, $(y_n)_{n\in\N}$ converges to a point $y' \in Y$. Since sequences in metric spaces converge to unique points (\cref{exercises:metric_spaces}, exercise 6), $y=y'$. Thus $Y$ is closed by \cref{cor:closed_converge}.
+\end{proof}
 
 \subsubsection{Subsequences}
 
@@ -991,20 +1027,125 @@ A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ i
 ($\Rightarrow$) Suppose $(x_n)_{n \in \N}$ converges to $x \in X$ and let $(x_{n_k})_{k \in \N}$ be an arbitrary subsequence of $(x_n)_{n \in \N}$. Let $\epsilon > 0$ be arbitrary. There exists $n_\epsilon \in \N$ such that $d(x_n,x) < \epsilon$ for all $n \geq n_\epsilon$. Choose $k_\epsilon$ such that $n_{k_\epsilon} \geq n_\epsilon$, which must exist since $(n_k)_{k\in\N}$ is strictly increasing. Then for all $k \geq k_\epsilon$, $d(x_{n_k},x) < \epsilon$. Thus $(x_{n_k})_{k \in \N}$ converges to $x$.
 \end{proof}
 
-\vspace{1em}
-\emma{accumulation point of a set}
-
 
 \subsection{Continuity}
 
-\emma{Topics:
-\begin{itemize}
-    \item Continuous functions on metric spaces
-    \item Equivalent definitions of continuity ($\epsilon-\delta$, sequential continuity, left- and right-continuity, topological definition)
-\item Other notions of continuity (Uniform continuity, Lipschitz continuity, Holder continuity)
-\item contractions and fixed points; Banach contraction mapping theorem
-\end{itemize}}
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. $f$ is \emph{continuous} at $x_0$ if for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+We say that $f$ is continuous if it is continuous at every point in $X$.
+\end{definition}
 
+\begin{theorem}[{\cite[Theorem 2.3.7.]{tastetopology}}]
+\label{thm:cont_equiv}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous at $x_0$
+    \item[(ii)] for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+    \item[(iii)] for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^\inv (B_\epsilon(f(x_0)))$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $\Rightarrow$ (ii) We prove the contrapositive. Assume
+\begin{equation}
+\label{star1} 
+\exists \epsilon_0 \text{ such that } \forall \delta > 0 \text{ there exists an } x_\delta \in X \text{ with } d_X(x_\delta,x_0) < \delta \text{ and } d_Y(f(x_\delta),f(x_0))) \geq \epsilon_0
+\tag{$\star$}
+\end{equation}
+We need to find a sequence in $X$ that converges to  $x_0$ but the sequence of images does not converge. Let's construct such a sequence. 
+
+Let $\delta=\frac{1}{n}$ in \eqref{star1} for $n \in \N$. Then we have a sequence $x_n := x_{1/n}$ given by \eqref{star1} which converges to $x_0$. However, for each $n \in \N$, we have $d_Y(f(x_n),f(x_0))) \geq \epsilon_0$, so we cannot have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+
+\vspace{1em}
+
+(ii) $\Rightarrow$ (iii) Follows from the definitions of the pre-image and open balls. 
+
+\vspace{1em}
+
+(iii) $\Rightarrow$ (i) Let $(x_n)_{n\in\N}$ be a sequence in $X$ that converges to $x_0$. Let $\epsilon > 0$. Then by (iii), there exists $\delta > 0$ such that $B_\delta(x_0) \subseteq f^\inv (B_\epsilon(f(x_0)))$, i.e. if $x$ is such that $d_X(x,x_0) < \delta$, then $x$ is such that  $d_Y(f(x),f(x_0)) < \epsilon$. By the definition of convergence, there exists a $N \in \N$ such that $d(x_n,x_0)< \delta$ for all $n \geq N$. Then by(iii), $d(f(x_n),f(x_0))< \epsilon$ for all $n \geq N$. Thus $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+
+\end{proof}
+
+\begin{corollary}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous
+    \item[(ii)] if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
+    \item[(iii)] if $F \subseteq Y$ is closed, then $f^\inv(F)$ is closed
+\end{enumerate}
+\end{corollary}
+
+\textit{Note: the following proof uses the following results, which you may wish to prove as an exercise using techniques from the set theory section if they are not clear to you: Let $X$ and $Y$ be sets and $f:X \to Y$. Let $A,B \subseteq Y$. Then 
+\begin{enumerate}
+\item $f^\inv(A) \subseteq f^\inv(B)$
+\item $f^\inv(Y \setminus A) = X \setminus f^\inv(A)$
+\end{enumerate}}
+
+\begin{proof}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$.
+
+\vspace{1em}
+
+(i) $\Rightarrow$ (ii): Suppose $f$ is continuous (on every point in $X$) and let $U \subseteq Y$ be open. Let $x \in f^\inv(U)$, then $f(x) \in U$, and since $U$ is open, there exists $\epsilon_0 > 0$ such that $B_{\epsilon_0}(f(x)) \subseteq U$. By \cref{thm:cont_equiv}(iii), there exists a $\delta_0$ such that $B_{\delta_0}(x) \subseteq f^\inv (B_{\epsilon_0}(f(x)))$. Since $B_{\epsilon_0}(f(x))) \subseteq U$, $f^\inv (B_{\epsilon_0}(f(x))) \subseteq f^\inv(U)$. Thus for each $x \in f^\inv(U)$, there exists $\delta_0$ such that $B_{\delta_0}(x) \subseteq f^\inv (B_{\epsilon_0}(f(x))) \subseteq f^\inv(U)$, so $f^\inv(U)$ is open.
+
+\vspace{1em}
+
+(ii) $\Rightarrow$ (i): We want to prove that $f$ is continuous at every $x \in X$ using the definition from \cref{thm:cont_equiv}(iii), i.e. we must show that for $x \in X$, for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x) \subseteq f^\inv (B_\epsilon(f(x)))$. 
+
+Let $x\in X$ and let $\epsilon > 0$ be arbitrary. Since $B_\epsilon(f(x))$ is an open set, by (ii), $f^\inv(B_\epsilon(f(x)))$ is also open. Since $x \in f^\inv(B_\epsilon(f(x)))$, there exists a $\delta > 0$ such that $B_\delta(x) \subseteq f^\inv(B_\epsilon(f(x)))$ by the definition of a set being open, so we are done.
+
+\vspace{1em}
+
+
+(ii) $\Rightarrow$ (iii): Let $F \subseteq Y$ be closed. Then $Y \setminus F$ is open, so by (ii), $f^\inv(Y \setminus F)$ is open as well. Since $f^\inv(Y \setminus F) = X\setminus f^\inv(F)$, $f^\inv(F)$ is closed.
+
+\vspace{1em} 
+
+(iii) $\Rightarrow$ (ii) follows from the above, exchanging ``open'' and ``closed''.
+
+\end{proof}
+
+
+
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+\begin{itemize}
+    \item $f$ is \emph{uniformly continuous} if for all $\epsilon>0$, there exists $\delta > 0$ such that for every $x_1,x_2\in X$ with $d_X(x_1,x_2) < \delta$, we have  $d_Y(f(x_1),f(x_2))) < \epsilon$ 
+    \item $f$ is \emph{Lipschitz continuous} if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $d_Y(f(x_1),f(x_2))) < K d_X(x_1,x_2)$
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+$$f \text{ is Lipschitz continuous } \Rightarrow \text{ f is uniformly continuous } \Rightarrow \text{ f is continuous}$$
+\end{proposition}
+
+The proof is left as an exercise. 
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. We say that $x^* \in X$ is a \emph{fixed point} of $f$ if $f(x^*) = x^*$.
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. $f$ is a \emph{contraction} if there exists a constant $k \in [0,1)$ such that for all $x,y \in X$, $d(f(x),f(y))) \leq k d(x,y)$.
+\end{definition}
+
+Observe that a function is a contraction iff it is Lipschitz continuous with constant $K < 1$.
+
+\begin{theorem}
+Suppose that $f : X \to X$ is a contraction and the metric space $X$ is complete. Then $f$ has a unique fixed point $x^*$.
+\end{theorem}
+
+We omit the proof here; see \cite[p.240]{realanalysis} for the proof as well as more details on how to find the fixed point.
+
+\begin{example}
+Let $f:\left[-\frac{1}{3},\frac{1}{3}\right] \to \left[-\frac{1}{3},\frac{1}{3}\right]$ be defined by the mapping $x \mapsto x^2$. Assume we use the standard Euclidean metric, $d(x,y) = |x-y|$. $f$ has a unique fixed point because $\left[-\frac{1}{3},\frac{1}{3}\right]$ is a complete metric space (see \cref{prop:closed_subset_complete}) and $f$ is a contraction with Lipschitz constant 2/3.
+
+To see that it is a contraction, let $x,y \in \left[-\frac{1}{3},\frac{1}{3}\right]$. Then
+\begin{equation*}
+   |x^2 - y^2| = |x+y| |x-y| \leq \frac{2}{3} |x-y|. 
+\end{equation*}
+\end{example}
 
 \subsection{Equivalence of metrics}
 
@@ -1042,12 +1183,13 @@ Thus the two metrics are strongly equivalent.
 
 \subsection{Extra properties of $\R^n$}
 
-\emma{
+
+\emma{left- and right- continuous on $\R$, \\
 series, Conditional and absolute convergence, Convergence tests \\
-sup, inf lim sup, lim inf}
+sup, inf lim sup, lim inf, sup norm?}
 
 \subsection{Exercises}
-\label{subsec:ex_set_theory}
+\label{exercises:metric_spaces}
 \begin{enumerate}
     \item Show that the infinity norm $||x||_\infty$, $x \in \R^n$, defined in \cref{p-norm} is a norm.
     \item Let $(X,d)$ be any metric space, and define $\tilde d: X \times X \to \R$ by 
@@ -1069,7 +1211,11 @@ sup, inf lim sup, lim inf}
         \item[(i)] Show that $\alpha \, x_n \to \alpha \, x$.
         \item[(i)] Show that $x_n + y_n \to x + y$.
     \end{enumerate}
-    \item Show that discrete metric spaces are complete. 
+    \item Show that discrete metric spaces (i.e. those with the metric from exercise 3) are complete. 
+    \item Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. Prove that
+$$f \text{ is Lipschitz continuous } \Rightarrow f \text{ is uniformly continuous } \Rightarrow f \text{ is continuous}.$$
+Provide examples to show that the other directions does not hold.
+    \item Show that the function $f(x) = \frac{1}{2} \left(x + \frac{5}{x} \right)$ has a unique fixed point on $(0,\infty)$. What is it? (Hint: you will have to restrict the interval.)
     \item Prove the following: If two metrics are strongly equivalent then they are equivalent. 
 \end{enumerate}
 
@@ -1077,8 +1223,8 @@ sup, inf lim sup, lim inf}
 The content in this section comes following texts:
 
 A Taste of Topology \cite{tastetopology} \\
+Real Mathematical Analysis \cite{realanalysis} \\
 The first chapter of Piotr Zwiernik's  \textit{Lecture notes in Mathematics for Economics and Statistics} \cite{piotr}
-
 
 
 \section{Topology}
