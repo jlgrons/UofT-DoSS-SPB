@@ -65,36 +65,31 @@ These lectures are based on the following books or lecture notes:
 
 1. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-1-4614-4265-3}{{\emph{An Introduction to Mathematical Structures and Proofs}}} by Larry J. Gerstein
 
-
 2. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/0-387-28387-0}{\emph{A Taste of Topology}} by Volker Runde
-
 
 3. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{{\emph{Linear Algebra Done Right}}} by Sheldon Axler
 
 4. \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{{\emph{Linear Algebra Done Wrong}}} by Sergei Treil
 
-
 5. \href{https://digitalcommons.trinity.edu/mono/7/}{{\emph{Introduction to Real Analysis}}} by William F. Trench
 
-6. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-1-4939-2712-8}{{\emph{Understanding Analysis}}} by Stephen Abbott
+6. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{\emph{Real Mathematical Analysis}} by Charles C. Pugh
 
-7. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{\emph{Real Mathematical Analysis}} by Charles C. Pugh
+7. \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{\emph{Lecture notes in Mathematics for Economics and Statistics}} by Piotr Zwiernik
 
-8. \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{\emph{Lecture notes in Mathematics for Economics and Statistics}} by Piotr Zwiernik
-
-9. \href{http://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}{{\emph{Real Analysis Lecture Notes}}} by Laurent Marcoux
+8. \href{http://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}{{\emph{Real Analysis Lecture Notes}}} by Laurent Marcoux
 
 \vspace{1em}
 
-Chapter 1 of Gerstein (2012) is used a reference for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
+Chapter 1 of Gerstein (2012) is used as reference for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
 
 \vspace{1em}
 
-The material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone).
+Most of the material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone).
 
 \vspace{1em}
 
-I would like to acknowledge Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman for their assistance in developing the list of topics for the course. 
+I would like to acknowledge the assistance of Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman in developing the list of topics for the course. 
 
 \newpage
 \tableofcontents
@@ -133,7 +128,7 @@ Examples:
 
 \subsubsection{Truth values}
 
-\begin{example} Write the following using propositional logic
+\begin{example} Write the following using propositional logic:
 If it is snowing, then it is cold out. \\
 It is snowing. \\
 Therefore, it is cold out.  
@@ -181,16 +176,96 @@ To examine if statement is true or not, we use a truth table
 
 What is $\neg (P \implies Q)$?
 
+\subsubsection{Quantifiers}
+There are two important logical operators that we have not yet discussed. They are the following symbols: $\forall$, read as ``for all'' or ``for each'', and $\exists$, read as ``there exists''. We will explore their meanings, how they can help us simplify statements we need to prove, and how we prove such statements.
+
+\vspace{1em}
+
+\textbf{For all}
+
+``for all'', $\forall$, is also called the universal quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. An example is the statement ``Every real number has a non-negative square.'' We write this as $\forall x \in \R, \, x^2 \geq 0$. In logic, people use brackets to separate parts of the logical expression, ex. $(\forall x \in \R) (x^2 \geq 0)$.
+
+\vspace{1em}
+
+How do we prove a for all statement? We need to take an arbitrary element of the set, and show the property holds for that element.
+
+\vspace{1em}
+
+\textbf{There exists}
+
+``there exists'', $\exists$, is also called the existential quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. An example is the statement that 4 has a square root in the reals. We write this as $\exists x \in \R$ such that $x^2 = 4$ or in proper logic notation as $(\exists x \in \R$) ($x^2 = 4)$.
+
+\vspace{1em}
+
+How do we prove a there exists statement? We need to find an element of the set for which the property holds (find an example).
+
+\vspace{1em}
+
+There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer such that the integer squared is 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
+
+
+\vspace{1em}
+
+\textbf{Combining quantifiers}
+
+Often we will need to prove statements where we combine quantifiers.
+
+Here are some examples:
+\vspace{1em}
+
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Statement & Logical expression \\
+     \hline
+     Every non-zero rational number has a multiplicative inverse & $\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$ \\
+     Each integer has a unique additive inverse & $\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$ \\
+     $f:\R \to \R$ is continuous at $x_0\in\R$ \ &  $\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$
+\end{tabular}
+
+\vspace{1em}
+
+
+The order of quantifiers is important! Changing the order changes the meaning. Consider the following example. Which are true? Which are false?
+
+\begin{center}
+
+$\forall x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\forall x \in \R \, \exists y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \exists y \in \R$ $x + y = 2$ 
+\end{center}
+\vspace{1em}
+
+It's also important to know how to negate logical statements that include quantifiers, as it will often help us prove or disprove the statements. The results are intuitive, but things can get complicated when we have more complex statements. The negation of a statement being true for all $x$ is that is isn't true for at least one $x$. The negation of a statement being true for at least one $x$ is that is isn't true for any $x$. 
+
+In summary,
+
+\begin{center}
+    $\neg \forall x P(x)$ = $\exists \neg P(X)$ \\
+$\neg \exists x P(x)$ = $\forall \neg P(X)$
+\end{center}
+
+\vspace{1em}
+
+The negations of the statements above are (note that we use De Morgan's laws, as well as the negation of an if, then statement). 
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Logical expression & Negation \\
+     \hline
+     $\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$ & $\exists q \in \Q \setminus \{0\}$ such that  $\forall s \in \Q, \, qs \neq 1$\\
+     $\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$ & $\exists x \in \Z$ such  that $(\forall y \in \Z, x+y \neq 0)$ $\vee$ $(\exists y_1, y_2 \in \Z$ such that $y_1 \neq y_2 \wedge x+y_1 = 0 \wedge x+y_2 = 0$  ) \\
+     $\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$ & $\exists \epsilon >0$ such that $\forall \delta > 0$,  $|x - x_0| < \delta$ and  $|f(x)-f(x_0)| \geq \epsilon$
+\end{tabular}
+
+
+
+\vspace{1em}
+
+What do these mean in English?
+
 
 
 \subsection{Types of proof}
-\begin{itemize}
-	\item Direct
-	\item Contradiction
-	\item Contrapositive
-	\item Induction
-\end{itemize}
-
 
 \subsubsection{Direct Proof}
 
@@ -214,6 +289,7 @@ $$ n m  =  (2 j) m = 2 (j m)$$
 Therefore $n m$ is even by definition. 
 \end{proof}
 
+
 \begin{definition}
 Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder is zero when $b$ is divided by $a$, i.e. $\exists j \in \Z$ such that $b = a j$.
 \end{definition}
@@ -226,6 +302,7 @@ Let $a,b,c \in \Z$ with $a \neq 0$. Prove that if $a | b$ and $b | c$, then $a |
 \begin{proof}
 Suppose $a | b$ and $b | c$. Then by definition, there exists $j,k \in \Z$ such that $b = aj$ and $c = kb$. Combining these two equations gives $c = k (aj) = a (kj)$. Thus $a | c$ by definition.
 \end{proof}
+
 
 \subsubsection{Proof by contrapositive}
 \begin{example}
@@ -285,17 +362,11 @@ But then $r = s - q \in \mathbb{Q}$. Contradiction.
 
 \vspace{1em}
 
-
 \begin{tabular}{r l}
      Direct proof:  & assume $P$, prove $Q$ \\
      Proof by contrapositive:  & assume $\neg Q$, prove $\neg P$ \\ 
      Proof by contradiction: & assume $P \wedge \neg Q$ and derive something that is impossible \\ 
 \end{tabular}
-
-
-\vspace{2em}
-\emma{add section explaining $\forall$ and $\exists$ and how to do proofs with them?}
-
 
 \subsubsection{Induction}
 
@@ -346,12 +417,24 @@ Otherwise, if $k+1$ is not prime, by definition it can be written as a product o
 By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
 \end{proof}
 
+
+
+
 \subsection{Exercises}
 \begin{enumerate}
 \item Prove De Morgan's Laws for propositions: $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$ (Hint: use truth tables).
-\item If $a | b$ and $a,n \in \Z_{>0}$ (positive integers), then $a \leq b$.
-\item If $a | b$ and $a | c$, then $a | (x b + y c)$, where $x,y \in \Z$.
-\item Let $a,b,n \in \Z$. If $n$ does not divide the product $ab$, then $n$ does not divide $a$ and $n$ does not divide $b$.
+\item Write the following statements and their negations using logical quantifier notation and then prove or disprove them:
+\begin{enumerate}
+    \item[(i)] Every odd integer is divisible by three.
+    \item [(ii)] For any real number, twice its square plus twice itself plus 6 is greater than or equal to five. \textit{(You may assume knowledge of calculus.)}
+    \item[(iii)] Every integer can be written as a unique difference  of two natural numbers.
+\end{enumerate}
+\item Prove the following statements:
+\begin{enumerate}
+    \item[(i)] If $a | b$ and $a,n \in \Z_{>0}$ (positive integers), then $a \leq b$.
+    \item[(ii)] If $a | b$ and $a | c$, then $a | (x b + y c)$, where $x,y \in \Z$.
+    \item[(iii)] Let $a,b,n \in \Z$. If $n$ does not divide the product $ab$, then $n$ does not divide $a$ and $n$ does not divide $b$.
+\end{enumerate}
 \item Prove that for all integers $n \geq 1$, $3|(2^{2n}-1)$.
 \item Prove the Fundamental Theorem of Arithmetic, that every integer $n \geq 2$ has a unique prime factorization (i.e. prove that the prime factorization from the last proof is unique).
 \end{enumerate}
@@ -727,6 +810,7 @@ This proof is omitted; see \cite[Proposition 1.2.9]{tastetopology}.
 
 \subsection{Exercises}
 \begin{enumerate}
+	\item Let $A = \{x\in \R : x <100\}$, $B = \{x\in \Z : |x| \geq 20\}$, and $C = \{y \in \N : y \text{ is prime}\}$. Find $A \cap B$, $B^c \cap C$, $B \cup C$, and $(A \cup B )^c$.
     \item Is $\R \times \R$ with the ordering $(x_1,y_1) \preceq (x_2,y_2)$ if $x_1 \leq y_1$ a partially ordered set? 
      \item \cite[Exercise 1.3.1]{tastetopology} Let $S$ be a non-empty set. A relation $R$ on $S$ is called an equivalence relation if it is
     \begin{enumerate}
@@ -1104,7 +1188,6 @@ Let $x\in X$ and let $\epsilon > 0$ be arbitrary. Since $B_\epsilon(f(x))$ is an
 (iii) $\Rightarrow$ (ii) follows from the above, exchanging ``open'' and ``closed''.
 
 \end{proof}
-
 
 
 \begin{definition}
@@ -1958,6 +2041,16 @@ Linear Algebra Done Wrong \cite{linalgwrong}
 \end{itemize}}
 
 \subsection{Integration}
+
+\subsection{Exercises}
+
+\begin{enumerate}
+    \item Consider the space of continuous functions on the unit interval, $C([0,1])$. Prove that there exists a unique $f\in C([0,1])$ such that for all $x\in [0,1]$
+    \begin{align*}
+        f(x) = x + \int_0^x sf(s) \mathrm{d}s.
+    \end{align*}
+    Hint: You can use that $C([0,1])$ is a complete metric space with respect to the supremums metric $d_\infty (f,g) = \sup_{x\in [0,1]} \vert f(x) -g(x)\vert$ for $f,g \in C([0,1])$.
+\end{enumerate}
 
 \emma{Topics:
 \begin{itemize}

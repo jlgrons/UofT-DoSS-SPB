@@ -119,16 +119,15 @@ ex. ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions . Let's call t
 Whether they are true or not depends on what $n$ is. \\
 
 \vspace{1em}
-\pause
 
 We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
 
-\pause
 \vspace{1em}
  We can combine statements: 
  \begin{itemize}
- \item $P \wedge Q$ is the statement ``$n$ is odd and $n$ is divisible by 2''.
- \item $P \vee Q$ is the statement ``$n$ is odd or $n$ is divisible by 2''. We always assume the inclusive or unless specifically stated otherwise.
+ \item $P \wedge Q$ is the statement :
+ \item $P \vee Q$ is the statement: \\
+ We always assume the inclusive or unless specifically stated otherwise.
 \end{itemize}
 \end{frame}
 
@@ -150,6 +149,7 @@ We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
 \end{center}
         \column{.5\textwidth}
           \begin{itemize}
+          \setlength\itemsep{1em}
               \item If it's not raining, I won't bring my umbrella.
               \item I'm a banana or Toronto is in Canada.
               \item If I pass this exam, I'll be both happy and surprised.
@@ -167,12 +167,7 @@ Therefore, it is cold out.
 
 Write this using propositional logic: \\
 
-\pause
-\begin{center}
-$P \implies Q$ \\
-$P$ \\
-Conclusion: $Q$ \\
-\end{center}
+\vspace{4em}
 
 \vspace{1em}
 How do we know if this statement is true or not?
@@ -188,7 +183,7 @@ If it is snowing, then it is cold out. \\
 It is snowing. \\
 Therefore, it is cold out. 
 \end{center}
-\pause
+
         \column{.5\textwidth}
         \begin{center}
         $P \implies Q$ \\
@@ -196,10 +191,10 @@ Therefore, it is cold out.
         \begin{tabular}{|c|c| c|}
 \hline
      $P$& $Q$ &  $P \implies Q$ \\ \hline
-     T& T & T \\ \hline
-     T & F & F \\ \hline
-     F & T & T \\ \hline
-     F & F & T \\ \hline
+     T& T &  \\ \hline
+     T & F &  \\ \hline
+     F & T & \\ \hline
+     F & F &  \\ \hline
 \end{tabular}
 \end{center}
 \end{columns}
@@ -221,7 +216,6 @@ Therefore, it is cold out.
      F & F & T \\ \hline
 \end{tabular}
 \end{center}
-\pause
         \column{.5\textwidth}
         \begin{center}
         $\neg P \vee Q$ \\
@@ -229,17 +223,127 @@ Therefore, it is cold out.
         \begin{tabular}{|c | c | c | c|}
 \hline
      $P$& $Q$ & $\neg P$ & $\neg P \vee Q$  \\ \hline
-     T& T & F & T \\ \hline
-     T & F & F & F \\ \hline
-     F & T &  T &T \\ \hline
-     F & F & T & T \\ \hline
+     T& T &  &  \\ \hline
+     T & F &  &  \\ \hline
+     F & T &   & \\ \hline
+     F & F & & \\ \hline
 \end{tabular}
 \end{center}
 \end{columns}
 \vspace{2em}
-\pause
 \centering
 What is $\neg (P \implies Q)$?
+\end{frame}
+
+\begin{frame}{Quantifiers}
+
+
+\textbf{For all}
+
+\vspace{1em}
+
+``for all'', $\forall$, is also called the universal quantifier.  
+
+\vspace{1em}
+
+If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. 
+
+\vspace{1em}
+
+
+``Every real number has a non-negative square.'' We write this as 
+
+\vspace{2em}
+
+How do we prove a for all statement? 
+\end{frame}
+
+\begin{frame}{Quantifiers}
+\textbf{There exists}
+
+``there exists'', $\exists$, is also called the existential quantifier. 
+
+
+If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. 
+
+\vspace{1em}
+
+4 has a square root in the reals. We write this as
+
+\vspace{2em}
+
+How do we prove a there exists statement?
+
+\vspace{2em}
+
+There is also a special way of writing when there exists a unique element: $\exists!$ .
+
+For example, we write the statement ``there exists a unique positive integer such that the integer squared is 64'' as
+
+\vspace{2em}
+\end{frame}
+
+\begin{frame}{Combining quantifiers}
+
+Often we will need to prove statements where we combine quantifiers.
+
+Here are some examples:
+\vspace{1em}
+
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Statement & Logical expression \\
+     \hline
+     Every non-zero rational number has a multiplicative inverse &  \textcolor{white}{$\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$} \\
+          & \\
+     Each integer has a unique additive inverse &  \textcolor{white}{$\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$} \\
+          & \\
+     $f:\R \to \R$ is continuous at $x_0\in\R$ \ &  \textcolor{white}{$\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$}
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}{Quantifier order \& negation}
+
+The order of quantifiers is important! Changing the order changes the meaning. Consider the following example. Which are true? Which are false?
+
+\begin{center}
+
+$\forall x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\forall x \in \R \, \exists y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \exists y \in \R$ $x + y = 2$ 
+\end{center}
+\vspace{1em}
+
+
+Negating quantifiers:
+
+
+\begin{center}
+    $\neg \forall x P(x)$ = $\exists \neg P(X)$ \\
+$\neg \exists x P(x)$ = $\forall \neg P(X)$
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+
+The negations of the statements above are (note that we use De Morgan's laws, as well as the negation of an if, then statement). 
+
+\vspace{1em}
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Logical expression & Negation \\
+     \hline
+     $\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$ & \textcolor{white}{$\exists q \in \Q \setminus \{0\}$ such that  $\forall s \in \Q, \, qs \neq 1$ space space space space space space space space space space}\\
+     $\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$ & \textcolor{white}{$\exists x \in \Z$ such  that $(\forall y \in \Z, x+y \neq 0)$ $\vee$ $(\exists y_1, y_2 \in \Z$ such that $y_1 \neq y_2 \wedge x+y_1 = 0 \wedge x+y_2 = 0$  )} \\
+     $\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$ & \textcolor{white}{$\exists \epsilon >0$ such that $\forall \delta > 0$,  $|x - x_0| < \delta$ and  $|f(x)-f(x_0)| \geq \epsilon$}
+\end{tabular}
+
+\vspace{1em}
+
+What do these mean in English?
 \end{frame}
 
 
@@ -285,9 +389,10 @@ We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such
 \end{alertblock}
 
 \begin{proof}
-Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
-$$ n m  =  (2 j) m = 2 (j m)$$
-Therefore $n m$ is even by definition. 
+%Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
+%$$ n m  =  (2 j) m = 2 (j m)$$
+%Therefore $n m$ is even by definition. 
+\vspace{4em}
 \end{proof}
 
 \end{frame}
@@ -339,36 +444,6 @@ How would you approach this proof?
 \end{columns}
 \end{frame}
 
-\begin{frame}{Proof by contrapositive}
-    \begin{columns}
-        \column{.5\textwidth}
-        \begin{center}
-        $P \implies Q$ \\
-        \vspace{1.5em}
-\begin{tabular}{|c|c| c|}
-\hline
-     $P$& $Q$ &  $P \implies Q$ \\ \hline
-     T& T & T \\ \hline
-     T & F & F \\ \hline
-     F & T & T \\ \hline
-     F & F & T \\ \hline
-\end{tabular}
-\end{center}
-        \column{.5\textwidth}
-        \begin{center}
-        $\neg Q \implies \neg P$ \\
-        \vspace{1.5em}
-        \begin{tabular}{|c | c | c |  c | c |}
-\hline
-     $P$& $Q$ & $\neg P$ &  $\neg Q$ & $\neg Q \implies \neg P$ \\ \hline
-     T& T & F & F & T \\ \hline
-     T & F & F &  T & T \\ \hline
-     F & T &  T  & F & F \\ \hline
-     F & F & T & T & T \\ \hline
-\end{tabular}
-\end{center}
-\end{columns}
-\end{frame}
 
 \begin{frame}{Proof by contrapositive}
 \begin{exampleblock}{Claim}
@@ -378,10 +453,11 @@ If an integer squared is even, then the integer is itself even.
 \vspace{1em}
 
 \begin{proof}
-We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
-$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
-Thus $n^2$ is odd.
+%We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
+%$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
+%Thus $n^2$ is odd.
 
+\vspace{6em}
 \end{proof}
 
 \end{frame}
@@ -393,9 +469,10 @@ The sum of a rational number and an irrational number is irrational.
 \end{exampleblock}
 
 \begin{proof}
-Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
-Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
-But then $r = s - q \in \mathbb{Q}$. Contradiction.
+%Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
+%Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
+%But then $r = s - q \in \mathbb{Q}$. Contradiction.
+\vspace{5em}
 \end{proof}
 \end{frame}
 
@@ -442,13 +519,12 @@ $n! > 2^n$ if $n \geq 4$.
 
 
 \begin{proof}
-We prove this by induction on $n$. \\
-{\it Base case:} Let $n = 4$. Then $n! = 4! = 24 > 16 = 2^4$. \\
-\pause
-{\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
-\pause
-Then
-$$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
+%We prove this by induction on $n$. \\
+%{\it Base case:} Let $n = 4$. Then $n! = 4! = 24 > 16 = 2^4$. \\
+%{\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
+%Then
+%$$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
+\vspace{7em}
 \end{proof}
 \end{frame}
 
@@ -461,15 +537,19 @@ Every integer $n \geq 2$ can be written as the product of primes.
 
 \begin{proof}
 We prove this by induction on $n$. \\
-{\it Base case:} $n = 2$ is prime. \\
-\pause
-{\it Inductive hypothesis:} Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
-\pause
-We must show that we can write $k+1$ as a product of primes. \\
-First, if $k+1$ is prime then we are done.  \\
-\pause
-Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
-By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
+{\it Base case:} \\ %$n = 2$ is prime. \\
+
+{\it Inductive hypothesis:} \\  %Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
+\vspace{1em}
+
+{\it Inductive step:} \\
+\vspace{4em}
+%We must show that we can write $k+1$ as a product of primes. \\
+%First, if $k+1$ is prime then we are done.  \\
+%
+%Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
+%By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
+
 \end{proof}
 
 \end{frame}
@@ -539,7 +619,6 @@ Let $X\subseteq\R$ defined as $X = \{x \in \R: 0 < x \leq 40 \}$. Then $X^c = \{
 
 
 
-
 \begin{frame}{References}
 Gerstein, Larry J. (2012). \textit{Introduction to Mathematical Structures and Proofs}. Undergraduate Texts in Mathematics. url: \href{https://link.springer.com/book/10.1007/978-1-4614-4265-3}{https://link.springer.com/book/10.1007/978-1-4614-4265-3}
 
@@ -551,7 +630,7 @@ Lakins, Tamara J. (2016). \textit{The Tools of Mathematical Reasoning}. Pure and
 
 \vspace{1em}
 
-Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 
 \end{frame}
 
