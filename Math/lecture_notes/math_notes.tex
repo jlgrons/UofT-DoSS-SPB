@@ -201,7 +201,7 @@ How do we prove a there exists statement? We need to find an element of the set 
 
 \vspace{1em}
 
-There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer such that the integer squared is 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
+There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer square root of 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
 
 
 \vspace{1em}
@@ -313,7 +313,7 @@ If an integer squared is even, then the integer is itself even.
 How would you approach this proof?
 
 
-$P \implies Q$  \hspace{5cm}  $\neg P \implies \neg Q$
+$P \implies Q$  \hspace{5cm}  $\neg Q \implies \neg P$
 
         \vspace{1.5em}
 \begin{tabular}{|c|c| c|}
@@ -352,8 +352,6 @@ Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
 Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
 But then $r = s - q \in \mathbb{Q}$. Contradiction.
 \end{proof}
-
-
 
 
 \subsubsection{Summary}
@@ -491,7 +489,7 @@ Let $S, T$ be sets.
 \begin{itemize}
     \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
     \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
-    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ and $T$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ or $T$.
     \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
     \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
 \end{itemize}
@@ -501,8 +499,8 @@ Let $S, T$ be sets.
 $\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
 \end{example}
 
-\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
-Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
+\begin{example} Let $a, b \in \R$ such that $a < b$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$  ($a,b$ may be $- \infty$ or $+ \infty$)\\
 Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
 We can also define half-open intervals. 
 \end{example}
@@ -522,6 +520,10 @@ Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and 
 
 The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
 \end{definition}
+
+\begin{example}
+Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then $X^c = \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
+\end{example}
 
 We extend the definition of union and intersection to an arbitrary family of sets as follows:
 

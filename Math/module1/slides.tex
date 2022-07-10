@@ -58,7 +58,7 @@
 \title[]{Module 1: Proofs \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 11, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -125,7 +125,7 @@ We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
 \vspace{1em}
  We can combine statements: 
  \begin{itemize}
- \item $P \wedge Q$ is the statement :
+ \item $P \wedge Q$ is the statement:
  \item $P \vee Q$ is the statement: \\
  We always assume the inclusive or unless specifically stated otherwise.
 \end{itemize}
@@ -139,7 +139,7 @@ We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
 \hline
     Symbol & Meaning  \\
     \hline
-     Capital letters & propositions  \\
+     capital letters & propositions  \\
      $\implies$ & implies \\
      $\wedge$ & and \\
      $\vee$ & inclusive or \\
@@ -179,9 +179,12 @@ How do we know if this statement is true or not?
     \begin{columns}
         \column{.5\textwidth}
         \begin{center}
-If it is snowing, then it is cold out. \\
-It is snowing. \\
-Therefore, it is cold out. 
+If it is snowing, then it is cold out. 
+
+\vspace{2em}
+
+\textcolor{deptoran}{When is this true or false?}
+
 \end{center}
 
         \column{.5\textwidth}
@@ -278,7 +281,7 @@ How do we prove a there exists statement?
 
 There is also a special way of writing when there exists a unique element: $\exists!$ .
 
-For example, we write the statement ``there exists a unique positive integer such that the integer squared is 64'' as
+For example, we write the statement ``there exists a unique positive integer square root of 64'' as
 
 \vspace{2em}
 \end{frame}
@@ -321,15 +324,17 @@ Negating quantifiers:
 
 
 \begin{center}
-    $\neg \forall x P(x)$ = $\exists \neg P(X)$ \\
-$\neg \exists x P(x)$ = $\forall \neg P(X)$
+    $\neg \forall x P(x)$ = $\exists x (\neg P(x))$ \\
+$\neg \exists x P(x)$ = $\forall x (\neg P(x))$
 \end{center}
 \end{frame}
 
 
 \begin{frame}
 
-The negations of the statements above are (note that we use De Morgan's laws, as well as the negation of an if, then statement). 
+The negations of the statements above are: \\
+ (Note that we use De Morgan's laws, which are in your exercises: \\
+ $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$.)
 
 \vspace{1em}
 
@@ -430,7 +435,7 @@ How would you approach this proof?
 \end{center}
         \column{.5\textwidth}
         \begin{center}
-        $\neg P \implies \neg Q$ \\
+        $\neg Q \implies \neg P$ \\
         \vspace{1.5em}
         \begin{tabular}{|c | c | c |  c | c |}
 \hline
@@ -558,9 +563,9 @@ We prove this by induction on $n$. \\
 \begin{frame}{Introduction to Set Theory}
 \begin{itemize}
   \setlength\itemsep{1em}
-\item we define a \emph{set} to be a collection of mathematical objects
-\item  if $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$.
-\item the set of no elements is called empty set and is denoted by $\emptyset$
+\item We define a \emph{set} to be a collection of mathematical objects.
+\item  If $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$.
+\item The set of no elements is called empty set and is denoted by $\emptyset$.
 \end{itemize}
 \end{frame}
 
@@ -570,7 +575,7 @@ Let $S, T$ be sets.
 \begin{itemize}
     \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
     \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
-    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ and $T$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ or $T$.
     \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
     \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
 \end{itemize}
@@ -583,8 +588,8 @@ Let $S, T$ be sets.
 $\mathbb{N} \subset \mathbb{N}_0 \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$
 \end{example}
 
-\begin{example} Let $a < b \cup \{-\infty, \infty \}$. \\
-Open interval: $(a,b) := \{x \in \R : a < x < b \}$ \\
+\begin{example}  Let $a, b \in \R$ such that $a < b$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$  ($a,b$ may be $- \infty$ or $+ \infty$)\\
 Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
 We can also define half-open intervals. 
 \end{example}
@@ -602,7 +607,7 @@ Show that $B \subseteq A$.
 \end{proof}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Difference of sets}
 \begin{definition}
 Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
 
@@ -612,7 +617,7 @@ The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
 \vspace{2em}
 
 \begin{example}
-Let $X\subseteq\R$ defined as $X = \{x \in \R: 0 < x \leq 40 \}$. Then $X^c = \{x \in \R: x \leq 0 \text{ or } x > 40 \}$.
+Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then $X^c = \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
 \end{example}
 
 \end{frame}

@@ -13,7 +13,8 @@
 
 <title>schedule.knit</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -66,6 +67,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -86,6 +88,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -311,7 +316,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -350,12 +355,19 @@ div.tocify {
 
 <p><br></p>
 <div id="course-schedule" class="section level1">
-<h1><span class="glyphicon glyphicon-calendar" aria-hidden="false"></span> Course Schedule</h1>
-<p>Below is our course schedule, which may change as the course progresses.</p>
-<p>The morning session will run from 10:00 am-12:00 pm and the afternoon session will run from 1:30-3:30 pm (all times EDT/Toronto time).</p>
-<p>Some days will include a lunchtime guest speaker from DoSS or the university from 12:15-1:15 pm. A list of guest speakers will be added closer to the start of the program.</p>
+<h1><span class="glyphicon glyphicon-calendar"
+aria-hidden="false"></span> Course Schedule</h1>
+<p>Below is our course schedule, which may change as the course
+progresses.</p>
+<p>The morning session will run from 10:00 am-12:00 pm and the afternoon
+session will run from 1:30-3:30 pm (all times EDT/Toronto time).</p>
+<p>Some days will include a lunchtime guest speaker from DoSS or the
+university from 12:15-1:15 pm. A list of guest speakers will be added
+closer to the start of the program.</p>
 <p>All sessions will use the following zoom meeting:</p>
-<p><a href="https://utoronto.zoom.us/j/88309575061" class="uri">https://utoronto.zoom.us/j/88309575061</a> (Meeting ID: 883 0957 5061)</p>
+<p><a href="https://utoronto.zoom.us/j/88309575061"
+class="uri">https://utoronto.zoom.us/j/88309575061</a> (Meeting ID: 883
+0957 5061)</p>
 <table class="table" style="float: left; margin-right: 10px;">
 <thead>
 <tr>

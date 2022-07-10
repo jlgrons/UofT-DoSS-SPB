@@ -13,7 +13,8 @@
 
 <title>DoSS Summer Prep Bootcamp (SPB)</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -59,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -79,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -231,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -272,22 +277,43 @@ $(document).ready(function () {
 
 <p><br></p>
 <p><strong>Overview</strong></p>
-<p>Welcome to the course website for the Summer Prep Bootcamp (SPB) offered by the <a href="https://www.statistics.utoronto.ca">Department of Statistical Sciences</a> (DoSS) at the University of Toronto! All information related to the bootcamp will be posted on this website.</p>
-<p>The purpose of DoSS SPB is to get incoming graduate students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester.</p>
-<p>The bootcamp will take place on Monday through Friday between July 11 and July 29 from 10 am to 3:30 pm. The schedule and zoom link may be found <a href="schedule.html">here</a>.</p>
+<p>Welcome to the course website for the Summer Prep Bootcamp (SPB)
+offered by the <a href="https://www.statistics.utoronto.ca">Department
+of Statistical Sciences</a> (DoSS) at the University of Toronto! All
+information related to the bootcamp will be posted on this website.</p>
+<p>The purpose of DoSS SPB is to get incoming graduate students up to
+speed on foundational mathematical, statistical, and computing concepts
+in a low pressure environment to prepare for coursework in the upcoming
+semester.</p>
+<p>The bootcamp will take place on Monday through Friday between July 11
+and July 29 from 10 am to 3:30 pm. The schedule and zoom link may be
+found <a href="schedule.html">here</a>.</p>
 <p><br></p>
 <p><strong>Acknowledgements</strong></p>
-<p>The following people contributed to the design of the course materials and website: Prof. Jesse Gronsbell (2022), Robert Zimmerman (2022), Siyue Yang (2022), Emma Kroell (2022), and Shiki Liu (2022).</p>
-<p>Profs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong, Linbo Wang, Stanislav Volgushev, Piotr Zwiernik, Nathan Taback, and Arvind Gupta provided invaluable feedback regarding course content.</p>
-<p>DoSS SPB is made possible through the support of Katy Wang, Christine Bulguryemez, and Angela Fleury - thank you!</p>
-<p>Lastly, DoSS SPB is inspired by the preparatory course for incoming PhD students offered by the Department of Biostatistics at Harvard University. We thank alum instructor, Prof. Ryan Sun of MD Anderson Cancer Center, for kindly sharing course materials.</p>
+<p>The following people contributed to the design of the course
+materials and website: Prof. Jesse Gronsbell (2022), Robert Zimmerman
+(2022), Siyue Yang (2022), Emma Kroell (2022), and Shiki Liu (2022).</p>
+<p>Profs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong,
+Linbo Wang, Stanislav Volgushev, Piotr Zwiernik, Nathan Taback, and
+Arvind Gupta provided invaluable feedback regarding course content.</p>
+<p>DoSS SPB is made possible through the support of Katy Wang, Christine
+Bulguryemez, and Angela Fleury - thank you!</p>
+<p>Lastly, DoSS SPB is inspired by the preparatory course for incoming
+PhD students offered by the Department of Biostatistics at Harvard
+University. We thank alum instructor, Prof. Ryan Sun of MD Anderson
+Cancer Center, for kindly sharing course materials.</p>
 <p><br></p>
 <hr />
 <hr />
 <p><br></p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This
+website is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License</a>.</p>
 <p><br></p>
-<p><a href="https://github.com/jlgrons/UofT-DoSS-SPB">R Markdown source for this website</a></p>
+<p><a href="https://github.com/jlgrons/UofT-DoSS-SPB">R Markdown source
+for this website</a></p>
 
 
 
