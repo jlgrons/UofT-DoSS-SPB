@@ -38,15 +38,9 @@ Material will be added here as the course progresses.
 
 - Exercises: [pdf](Computing/Exercises/ex1.pdf), [Rmd](Computing/Exercises/ex1.Rmd)
 
+- Solutions: [pdf](Computing/Solutions/sol1.pdf), [Rmd](Computing/Solutions/sol1.Rmd)
 
-<!-- <!-- -->
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod1.pdf"target="_blank">Slides</a> -->
-
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex1.pdf" target="_blank">Exercise 1</a> -->
-
-<!-- --> 
-
-<!-- <br> -->
+<br>
 
 <!-- ### Reporting, data Wrangling and graphing -->
 
