@@ -5,7 +5,7 @@ date: "04/15/2022"
 output: pdf_document
 ---
 
-# Prat 1: Matrix and vector operations. 
+# Part 1: Matrix and vector operations. 
 
 1. Solve the following system: 
 

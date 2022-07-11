@@ -5,7 +5,7 @@ date: "06/11/2022"
 output: pdf_document
 ---
 
-# Prat 1: Matrix and vector operations. 
+# Part 1: Matrix and vector operations. 
 
 1. Solve the following system: 
 
@@ -103,9 +103,10 @@ E_m2(100)
 Hint: Complex numbers can be used to represent points in the $xy$ plane. The following script works for even or odd $n$, and the polygon always has a flat bottom. 
 
 ```{r, fig.width=5}
-n <- 8
+n <- 5
 t <- c(0:n) - 0.5
 z <- exp(2i * pi * (t/n - 0.25))
+
 
 plot(Re(z), Im(z))
 ```
@@ -131,6 +132,7 @@ z <- exp(2i * pi * (t/n - 0.25))
 
 # in the jth iteration, randomly choose one corner and update p(j+1)
 for (j in c(2:n_points)) {
+  # sample 1 corner
   zs <- z[sample(n, 1)]
   p[j] <- p[j-1] + r*(zs - p[j-1])
 }
