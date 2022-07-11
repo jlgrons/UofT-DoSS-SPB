@@ -30,17 +30,14 @@ knitr::opts_chunk$set(echo = TRUE,warning = F, message = F)
 
 Material will be added here as the course progresses.
 
+<br>
 
+### Module 1: Basic programming in R
 
-<!-- ### Basic programming in R -->
+- Slides: [pdf](Computing/Slides/mod1.pdf) 
 
-<!-- #### Module 1: R Syntax -->
+- Exercises: [pdf](Computing/Exercises/ex1.pdf), [Rmd](Computing/Exercises/ex1.Rmd)
 
-<!-- <!-- EK: This is another way to do it that avoids the GitHub repo interface, if you like it better. --> 
-
-<!-- - [Slides](Computing/Slides/mod1.pdf) -->
-
-<!-- - [Exercise 1](Computing/Exercises/ex1.pdf) -->
 
 <!-- <!-- -->
 <!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod1.pdf"target="_blank">Slides</a> -->
