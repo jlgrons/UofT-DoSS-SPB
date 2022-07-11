@@ -91,58 +91,92 @@ Most of the material in these notes belongs to these texts. All of these texts a
 
 I would like to acknowledge the assistance of Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman in developing the list of topics for the course. 
 
+\vspace{1em}
+
+Please notify me of any typos or corrections at emma.kroell@mail.utoronto.ca.
+
+
 \newpage
 \tableofcontents
 
 
 \newpage
+
+{\bf A short note on notation: }
+
+\vspace{0.5em}
+
+$\N$ denotes the whole numbers, i.e. $\N = \{1,2,\ldots \}$
+
+$\N_0$ denotes the non-negative integers, i.e. $\N_0 = \{0, 1,2,\ldots \}$
+
+$\Z$ denotes the integers, i.e. $\Z = \{ \ldots, -2,-1,0,1,2,\ldots \}$
+
+$\Q$ denotes the rational numbers, i.e. $\Q = \{ \frac{p}{q} \, | \, p, q \in \Z \text{ and } q \neq 0 \}$
+
+$\R$ denotes the real numbers
+
+$\C$ denotes the complex numbers
+
+
+
 \section{Review of proof techniques}
 \subsection{Propositional logic}
 
-{\bf Propositions} are statements that could be true or false. They have a corresponding {\bf truth value}.We will use capital letters to denote propositions. 
+\emph{Propositions} are statements that could be true or false. They have a corresponding \emph{truth value}. We will use capital letters to denote propositions. For example, ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions. Let's call them $P$ and $Q$. Whether they are true or not (i.e. their truth value) depends on what $n$ is. 
 
 \vspace{1em}
 
-ex. ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions . 
-
-Let's call them $P$ and $Q$. Whether they are true or not (i.e. their truth value) depends on what $n$ is. 
-
-\vspace{1em}
-
-We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
+We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''.
 
 \vspace{1em}
  We can combine statements: 
  \begin{itemize}
  \item $P \wedge Q$ is the statement ``$n$ is odd and $n$ is divisible by 2''.
- \item $P \vee Q$ is the statement ``$n$ is odd or $n$ is divisible by 2''. We always assume the inclusive or unless specifically stated otherwise.
+ \item $P \vee Q$ is the statement ``$n$ is odd or $n$ is divisible by 2''.
 \end{itemize}
+We always assume the inclusive or unless specifically stated otherwise.
 
-Examples:
+
+\begin{example}
+Here are some statements, which we want to write in propositional logic.
 \begin{itemize}
               \item If it's not raining, I won't bring my umbrella.
               \item I'm a banana or Toronto is in Canada.
               \item If I pass this exam, I'll be both happy and surprised.
 \end{itemize}
 
+For the first one, let $A$ be the statement ``it's raining'' and $B$ be the statement ``I will bring my umbrella''. In logic, the statement is $\neg A \implies \neg B$.
+
+\vspace{1em}
+
+For the second, let $C$ be the statement ``I'm a banana'' and let $D$ be the statement ``Toronto is in Canada''. We write this as $C \vee D$.
+
+\vspace{1em}
+
+For the third, let $P$ be the statement ``I pass this exam'', let $Q$ be the statement ``I am happy'', and let $R$ be the statement ``I am surprised''. This one is written $P \implies (Q \wedge R)$.
+\end{example}
 
 \subsubsection{Truth values}
 
-\begin{example} Write the following using propositional logic:
+\begin{example} Write the following using propositional logic: \\
 If it is snowing, then it is cold out. \\
 It is snowing. \\
-Therefore, it is cold out.  
-\end{example}
+Therefore, it is cold out.
 
-\begin{solution}
+\vspace{1em}
+
+Solution. \\
 $P \implies Q$ \\
 $P$ \\
 Conclusion: $Q$ \\
-\end{solution}
+\end{example}
 
 
-To examine if statement is true or not, we use a truth table
+To examine if a statement is true or not, we use a truth table, where we write out all the possibilities. 
 
+\begin{example}
+The truth table for $P \implies Q$ where $P$, $Q$ are propositions is:
 
 \begin{tabular}{|c|c| c|}
 \hline
@@ -152,11 +186,19 @@ To examine if statement is true or not, we use a truth table
      F & T & T \\ \hline
      F & F & T \\ \hline
 \end{tabular}
-
+\end{example}
 
 
 \subsubsection{Logical equivalence}
+We say that two statements are \emph{logically equivalent} if they have the same truth tables.
 
+
+\begin{example}
+\label{ex:implication_table}
+Let $P$, $Q$ be propositions. $P \implies Q$ is logically equivalent to $\neg P \vee Q$.
+ 
+ \vspace{1em}
+ 
 \begin{tabular}{|c|c| c|}
 \hline
      $P$& $Q$ &  $P \implies Q$ \\ \hline
@@ -172,36 +214,55 @@ To examine if statement is true or not, we use a truth table
      F & T &  T &T \\ \hline
      F & F & T & T \\ \hline
 \end{tabular}
+\end{example}
 
+\vspace{1em}
 
-What is $\neg (P \implies Q)$?
+\begin{theorem}[De Morgan's Laws]
+\label{thm:demorgan}
+Let $P$, $Q$ be propositions.
+\begin{enumerate}
+    \item[(i)] $\neg (P \wedge Q)$ is logically equivalent to $\neg P \vee \neg Q$.
+    \item[(ii)] $\neg (P \vee Q)$ is logically equivalent to $\neg P \wedge \neg Q$.
+\end{enumerate}
+\end{theorem}
+
+Proving this is your first exercise.
+
+\vspace{1em}
+
+The following fact is often useful.
+\begin{example}
+\label{ex:ifthen}
+$\neg (P \implies Q)$ is logically equivalent to $P \wedge \neg Q$. This follows from \cref{ex:implication_table} and \cref{thm:demorgan}.
+\end{example}
 
 \subsubsection{Quantifiers}
-There are two important logical operators that we have not yet discussed. They are the following symbols: $\forall$, read as ``for all'' or ``for each'', and $\exists$, read as ``there exists''. We will explore their meanings, how they can help us simplify statements we need to prove, and how we prove such statements.
+There are two important logical operators that we have not yet discussed. They are denoted using the following symbols: $\forall$, read as ``for all'' or ``for each'', and $\exists$, read as ``there exists''. We will explore their meanings, how they can help us simplify statements we need to prove, and how we prove such statements.
 
 \vspace{1em}
 
 \textbf{For all}
 
-``for all'', $\forall$, is also called the universal quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. An example is the statement ``Every real number has a non-negative square.'' We write this as $\forall x \in \R, \, x^2 \geq 0$. In logic, people use brackets to separate parts of the logical expression, ex. $(\forall x \in \R) (x^2 \geq 0)$.
+``for all'', $\forall$, is also called the universal quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. An example is the statement ``Every real number has a non-negative square.'' We write this as $\forall x \in \R, \, x^2 \geq 0$. In logic, people often use brackets to separate parts of the logical expression, ex. $(\forall x \in \R) (x^2 \geq 0)$.
 
 \vspace{1em}
 
-How do we prove a for all statement? We need to take an arbitrary element of the set, and show the property holds for that element.
+How do we prove a for all statement? We need to take an arbitrary element of the domain, and show the property holds for that element.
 
 \vspace{1em}
 
 \textbf{There exists}
 
-``there exists'', $\exists$, is also called the existential quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. An example is the statement that 4 has a square root in the reals. We write this as $\exists x \in \R$ such that $x^2 = 4$ or in proper logic notation as $(\exists x \in \R$) ($x^2 = 4)$.
+``there exists'', $\exists$, is also called the existential quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. An example is the statement that 4 has a square root in the reals. We write this as $\exists x \in \R$ such that $x^2 = 4$ or in proper logic notation, $(\exists x \in \R$) ($x^2 = 4)$.
 
 \vspace{1em}
 
-How do we prove a there exists statement? We need to find an element of the set for which the property holds (find an example).
+How do we prove a there exists statement? We need to find an element in the domain for which the property holds (find an example).
 
 \vspace{1em}
 
-There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer square root of 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
+There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer such that the integer squared is 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
 
 
 \vspace{1em}
@@ -241,13 +302,14 @@ It's also important to know how to negate logical statements that include quanti
 In summary,
 
 \begin{center}
-    $\neg \forall x P(x)$ = $\exists \neg P(X)$ \\
-$\neg \exists x P(x)$ = $\forall \neg P(X)$
+    $\neg \forall x P(x)$ = $\exists  x (\neg P(x))$ \\
+$\neg \exists x P(x)$ = $\forall x (\neg P(x))$
 \end{center}
 
 \vspace{1em}
 
-The negations of the statements above are (note that we use De Morgan's laws, as well as the negation of an if, then statement). 
+The negations of the statements above are:
+\vspace{1em}
 
 \begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
      Logical expression & Negation \\
@@ -257,31 +319,29 @@ The negations of the statements above are (note that we use De Morgan's laws, as
      $\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$ & $\exists \epsilon >0$ such that $\forall \delta > 0$,  $|x - x_0| < \delta$ and  $|f(x)-f(x_0)| \geq \epsilon$
 \end{tabular}
 
-
-
 \vspace{1em}
 
-What do these mean in English?
-
+Note that we use De Morgan's laws (\cref{thm:demorgan}), as well as the negation of an implication (\cref{ex:ifthen}). What do these negations mean in English?
 
 
 \subsection{Types of proof}
 
-\subsubsection{Direct Proof}
+\subsubsection{Direct proof}
 
-{\bf Approach:} Use the definition and known results.
-\vspace{1em}
+In a direct proof, our approach is to use the definition and known results.
 
 \begin{example}
 The product of an even number with another integer is even.
 \end{example}
 
-Approach: use the definition of even.
+To prove this statement, we will use the definition of even. First we state that definition.
 
 \begin{definition}
-We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$. \\
-We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such that $n=2j+1$.
+We say that an integer $n$ is \emph{even} if there exists another integer $j$ such that $n=2j$. \\
+We say that an integer $n$ is \emph{odd} if there exists another integer $j$ such that $n=2j+1$.
 \end{definition}
+
+Now we prove the example directly.
 
 \begin{proof}
 Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
@@ -289,6 +349,7 @@ $$ n m  =  (2 j) m = 2 (j m)$$
 Therefore $n m$ is even by definition. 
 \end{proof}
 
+Here is another example, which uses the concept of divisibility.
 
 \begin{definition}
 Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder is zero when $b$ is divided by $a$, i.e. $\exists j \in \Z$ such that $b = a j$.
@@ -300,22 +361,16 @@ Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder
 Let $a,b,c \in \Z$ with $a \neq 0$. Prove that if $a | b$ and $b | c$, then $a | c$.
 \end{example}
 \begin{proof}
-Suppose $a | b$ and $b | c$. Then by definition, there exists $j,k \in \Z$ such that $b = aj$ and $c = kb$. Combining these two equations gives $c = k (aj) = a (kj)$. Thus $a | c$ by definition.
+Let $a,b,c \in \Z$. Suppose $a | b$ and $b | c$. Then by definition, there exists $j,k \in \Z$ such that $b = aj$ and $c = kb$. Combining these two equations gives $c = k (aj) = a (kj)$. Thus $a | c$ by definition.
 \end{proof}
 
 
 \subsubsection{Proof by contrapositive}
-\begin{example}
-If an integer squared is even, then the integer is itself even.
-\end{example}
-
-
-How would you approach this proof?
-
+Sometimes instead of proving an implication $P \implies Q$ directly, it is easier to prove $\neg Q \implies \neg P$. This is called the contrapositive. First, we show that these two statements are logically equivalent using truth tables. 
 
 $P \implies Q$  \hspace{5cm}  $\neg Q \implies \neg P$
 
-        \vspace{1.5em}
+        \vspace{1em}
 \begin{tabular}{|c|c| c|}
 \hline
      $P$& $Q$ &  $P \implies Q$ \\ \hline
@@ -333,16 +388,30 @@ $P \implies Q$  \hspace{5cm}  $\neg Q \implies \neg P$
 \end{tabular}
 \vspace{1.5em}
 
+Note that $\neg P \implies \neg Q$ is \emph{not} logically equivalent to  $P \implies Q$ (can you think of an example?). This is a common mistake.
+
+\vspace{1em}
+
+Here is an example of a statement that is easier to prove using the contrapositive as opposed to directly.
+
+\begin{example}
+If an integer squared is even, then the integer is itself even.
+\end{example}
+
 
 \begin{proof}
 We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
 $$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
 Thus $n^2$ is odd.
-
 \end{proof}
 
 
 \subsubsection{Proof by contradiction}
+
+Another proof technique is to assume something we know to be (or think to be) false, and then try to derive a contradiction. A contradiction is something that is impossible, like 0=1 or showing that a number is both odd and even. 
+
+In sum, to prove that a statement $P$ is true by contradiction, we assume $\neg P$ is true, derive a contradiction, and conclude that $P$ is true. Here is an example.
+
 \begin{example}
 The sum of a rational number and an irrational number is irrational.
 \end{example}
@@ -350,8 +419,10 @@ The sum of a rational number and an irrational number is irrational.
 \begin{proof}
 Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
 Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
-But then $r = s - q \in \mathbb{Q}$. Contradiction.
+But then $r = s - q \in \mathbb{Q}$. Contradiction. Therefore the sum of a rational number and an irrational number is irrational.
 \end{proof}
+
+
 
 
 \subsubsection{Summary}
@@ -368,12 +439,16 @@ But then $r = s - q \in \mathbb{Q}$. Contradiction.
 
 \subsubsection{Induction}
 
+Finally, we consider a special proof technique for proving statements about the natural numbers (or subsets of them of certain forms). It is based on the following theorem, which we state without proof. 
+
 \begin{theorem}[Well-ordering principle for $\mathbb{N}$]
 Every nonempty set of natural numbers has a least element.
 \end{theorem}
 
+Because of the well-ordering principle, we can prove something holds for the natural numbers by proving it holds for the smallest one, and then creating a logical ladder linking them together as follows:
+
 \begin{theorem}[Principle of mathematical induction]
-Let $n_0$ be a non-negative integer. Suppose $P$ is a property such that 
+Let $n_0$ be a non-negative integer. Suppose $P$ is a statement about positive integers $n$ such that 
 \begin{enumerate}
 \item(base case) $P(n_0)$ is true 
 \item (induction step) For every integer $k \geq n_0$, if $P(k)$ is true, then $P(k+1)$ is true.
@@ -381,13 +456,11 @@ Let $n_0$ be a non-negative integer. Suppose $P$ is a property such that
 Then $P(n)$ is true for every integer $n \geq n_0$
 \end{theorem}
 
-Note: Principle of strong mathematical induction: For every integer $k \geq n_0$, if $P(n)$ is true for every $n = n_0, \ldots, k$, then $P(k+1)$ is true.
-
+Here is an example of a proof by induction.
 
 \begin{example}
 $n! > 2^n$ if $n \geq 4$.
 \end{example}
-
 
 \begin{proof}
 We prove this by induction on $n$. \\
@@ -395,25 +468,59 @@ We prove this by induction on $n$. \\
 {\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
 Then
 $$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
+Thus the statement holds by induction on $n$.
 \end{proof}
+
+Sometimes we use a different version of induction, called strong induction.  
+
+\begin{theorem}[Principle of strong mathematical induction]
+Let $n_0$ be a non-negative integer.  Suppose $P$ is a statement about positive integers $n$ such that
+\begin{enumerate}
+\item(base case) $P(n_0)$ is true 
+\item (induction step) For every integer $k \geq n_0$, if $P(m)$ is true for every integer $m$ with $n_0 \leq m \leq k$, then $P(m+1)$ is true.
+\end{enumerate}
+Then $P(n)$ is true for every integer $n \geq n_0$.
+\end{theorem}
+
+Next, we will consider an example where it is much simpler to use the strong version of induction than the regular one. First, we recall the definition of a prime number.
+
+\begin{definition}
+\label{def:prime}
+A positive integer $p$ is prime if $p$ has exactly two positive integer factors: 1 and $p$. Note that $1$ is not prime. We can write this as 
+$$ p > 1 \text{ is prime if } \forall \, a, b \in \N, \, p=ab \implies (a = 1 \text{ or } b =1).$$
+\end{definition}
+
+We want to prove the existence part of the Fundamental Theorem of Arithmetic, that every integer greater than or equal to 2 has a prime factorization. The fact that such a factorization is unique is left as an exercise.
 
 \begin{example}
 Every integer $n \geq 2$ can be written as the product of primes.
 \end{example}
 
 \begin{proof}
-We prove this by induction on $n$. \\
+We prove this using the Principle of Strong Mathematical Induction on $n$.
 
-{\it Base case:} $n = 2$ is prime. \\
+{\it Base case:} $n = 2$ is prime. 
 
-{\it Inductive hypothesis:} Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
+{\it Inductive hypothesis:} Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes.
 
-We must show that we can write $k+1$ as a product of primes. \\
-First, if $k+1$ is prime then we are done.  \\
+We must show that we can write $k+1$ as a product of primes.
 
-Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
-By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
+{\it Case 1:} if $k+1$ is prime, then we are done. 
+
+{\it Case 2:} if $k+1$ is not prime, then by \cref{def:prime}, there exists $a,b \in \N$ such that $k+1 = ab$ where $a,b \neq 1$. Then it must also be the case that $a,b \leq k$.
+
+By the inductive hypothesis, we can write $a$ and $b$ as products of primes, i.e. $\exists p_1, \ldots p_\ell, q_1, \ldots q_m$, all prime, such that 
+$$ a = p_1 \cdots p_\ell, \qquad b = q_1 \cdots q_m.$$
+
+Then 
+$$ k+1 = ab =  p_1 \cdots p_\ell \, q_1 \cdots q_m, $$
+therefore we can write $k+1$ as a product of primes.
+
+Thus the claim holds by strong induction.
 \end{proof}
+
+
+The Principle of Strong Mathematical Induction and the Principle of Mathematical Induction are logically equivalent, but sometimes it is easier to use one or the other, as we saw.
 
 
 \subsection{Exercises}
@@ -422,13 +529,12 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 \item Write the following statements and their negations using logical quantifier notation and then prove or disprove them:
 \begin{enumerate}
     \item[(i)] Every odd integer is divisible by three.
-    \item [(ii)] For any real number, twice its square plus twice itself plus 6 is greater than or equal to five. \textit{(You may assume knowledge of calculus.)}
+    \item [(ii)] For any real number, twice its square plus twice itself plus six is greater than or equal to five. \textit{(You may assume knowledge of calculus.)}
     \item[(iii)] Every integer can be written as a unique difference  of two natural numbers.
 \end{enumerate}
 \item Prove the following statements:
 \begin{enumerate}
-    \item[(i)] If $a | b$ and $a,n \in \Z_{>0}$ (positive integers), then $a \leq b$.
-    \item[(ii)] If $a | b$ and $a | c$, then $a | (x b + y c)$, where $x,y \in \Z$.
+    \item[(i)] If $a | b$ and $a,b \in \N$ (positive integers), then $a \leq b$.    \item[(ii)] If $a | b$ and $a | c$, then $a | (x b + y c)$, where $a,b,c,x,y \in \Z$.
     \item[(iii)] Let $a,b,n \in \Z$. If $n$ does not divide the product $ab$, then $n$ does not divide $a$ and $n$ does not divide $b$.
 \end{enumerate}
 \item Prove that for all integers $n \geq 1$, $3|(2^{2n}-1)$.
@@ -438,7 +544,6 @@ By the induction hypothesis, $a$ and $b$ can both be written as products of prim
 
 \subsection{References}
 Most of this content may be found in Chapter 1 of \cite{proofs}, though many of the examples are my own. \cite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T. 
-
 
 
 \newpage
