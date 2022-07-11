@@ -33,7 +33,7 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 ### Module 1: Introduction to proofs
 
-- Slides: [fillable](Math/module1/slides.pdf) <!--, [filled](Math/module1/slides_filled.pdf)-->
+- Slides: [fillable](Math/module1/slides.pdf),  [filled](Math/module1/slides_filled.pdf)
 
 - Exercises: [pdf](Math/module1/exercises.pdf), [LaTeX template](Math/module1/exercises.tex)
 
