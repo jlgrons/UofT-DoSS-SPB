@@ -4,7 +4,7 @@ author: "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"
 output: 
   html_document:
    toc: true
-   toc_depth: 3
+   toc_depth: 4
    toc_float: true
    theme: yeti
 ---
@@ -32,6 +32,16 @@ Material will be added here as the course progresses.
 <!-- <br> -->
 
 <!-- ### Module 1: Basics of Probability -->
+
+<br>
+
+### Module 1: Basics of Probability
+
+- Slides: [Module One](Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf) 
+
+- Problem Set Solutions: to appear
+
+<br>
 
 <!-- ### Module 2: Random Variables -->
 
