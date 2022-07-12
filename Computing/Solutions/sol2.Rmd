@@ -1,0 +1,109 @@
+---
+title: 'Exercise 2: Reporting, Data Wrangling and Graphing'
+author: "Siyue Yang"
+date: "05/06/2022"
+output: pdf_document
+---
+
+- [Quick R](https://www.statmethods.net/r-tutorial/index.html)
+- [Rstudio cheatsheet](https://www.rstudio.com/resources/cheatsheets/)
+- [Rstudio for beginners](https://education.rstudio.com/learn/beginner/)
+
+# Part 1: Analyze NYC flight delays.   
+
+Install the "nycflits13" package. The data comes from the US Bureau of Transportation Statistics. Using the data, complete the following tasks: 
+
+1. Find all flights that had an arrival delay of >4 hours, return the first 5 row. (Note: `arr_delay` is in mins)
+2. Find all flight names that flew from JFK to IAH, i.e. return only unique values of "flight" variable after filtering. Hint: `unique()` would help. 
+3. Find how many flights were operated by UA. 
+4. Find how many unique flights were operated by UA. 
+5. Sort flights that have the most delayed flights. Show the first 5 row. 
+6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+head(flights)
+```
+
+**Solution**
+
+1. Find all flights that had an arrival delay of >4 hours, i.e. return the first 5 row. (Note: `arr_delay` is in mins)
+
+```{r}
+flights %>% filter(arr_delay > 240) %>% head(5)
+```
+
+2. Find all flight names that flew from JFK to IAH, i.e. return only unique values of "flight" variable after filtering. Hint: `unique()` would help. 
+
+```{r}
+df <- flights %>% filter(origin == "JFK" & dest == "IAH")
+unique(df$flight)
+```
+
+3. Find how many flights were operated by UA. 
+
+```{r}
+nrow(filter(flights, carrier %in% c("UA")))
+```
+
+4. Find how many unique flights were operated by UA. 
+
+```{r}
+df <- filter(flights, carrier %in% c("UA")) 
+length(unique(df$flight))
+```
+
+5. Sort flights that have the most delayed flights. Show the first 5 row. 
+
+```{r}
+flights %>% arrange(desc(dep_delay)) %>% head(5)
+```
+
+6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
+
+```{r}
+flights %>%
+  group_by(flight, dest) %>%
+  summarise(delay = mean(arr_delay), dist = mean(distance), n = n()) %>%
+  ggplot() +
+  geom_point(aes(x = dist, y = delay, size = n)) 
+```
+
+\clearpage
+
+# Part 2: LaTeX.
+
+1. Finish the Markdown tutorial: https://www.markdowntutorial.com/
+2. (Tossing for a head, C&B Example 1.5.4) Suppose we do an experiment that consists of tossing a coin until a head appears. Let $p=$ probability of a head on any given toss, and define a random variable $X=$ number of tosses required to get a head. **Use Rmarkdown to type the the solution.**
+
+  (i) What is $P(X = x)$?
+  (ii) For any positive integer $x$, calculate $P(X \leq x)$. 
+  (iii) Calculate the cdf $F_{X}(x)$. 
+  (iv) What is $\lim _{x \rightarrow \infty} F_{X}(x)$? 
+  
+**Solution**:
+
+(i) 
+$$
+P(X=x)=(1-p)^{x-1} p
+$$
+
+(ii) 
+$$
+P(X \leq x)=\sum_{i=1}^{x} P(X=i)=\sum_{i=1}^{x}(1-p)^{i-1} p
+$$
+
+(iii)
+$$
+\begin{aligned}
+F_{X}(x) &=P(X \leq x) \\
+&=\frac{1-(1-p)^{x}}{1-(1-p)} p \\
+&=1-(1-p)^{x}, \quad x=1,2, \ldots .
+\end{aligned}
+$$
+
+(iv)
+$$
+\lim _{x \rightarrow \infty} F_{X}(x)=\lim _{x \rightarrow \infty} 1-(1-p)^{x}=1
+$$

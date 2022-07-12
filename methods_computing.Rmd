@@ -42,13 +42,17 @@ Material will be added here as the course progresses.
 
 <br>
 
-<!-- ### Reporting, data Wrangling and graphing -->
+### Module 2: Reporting, data Wrangling and graphing (I)
 
-<!-- #### Module 2: LaTeX, Markdown, tidyverse -->
+LaTeX, Markdown, tidyverse
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod2.pdf"target="_blank">Slides</a> -->
+- Slides: [pdf](Computing/Slides/mod2.pdf) 
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex2.pdf" target="_blank">Exercise 2</a> -->
+- Exercises: [pdf](Computing/Exercises/ex2.pdf), [Rmd](Computing/Exercises/ex2.Rmd)
+
+- Solutions: [pdf](Computing/Solutions/sol2.pdf), [Rmd](Computing/Solutions/sol2.Rmd)
+
+<br>
 
 <!-- #### Module 3: ggplot2 -->
 
