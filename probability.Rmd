@@ -39,7 +39,7 @@ Material will be added here as the course progresses.
 
 - Slides: [Module One](Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf) 
 
-- Problem Set Solutions: to appear
+- Problem Set Solutions: [Module 1 Solution](Probability/Solutions/Module_1_Solutions.pdf) 
 
 <br>
 
