@@ -50,6 +50,8 @@ LaTeX, Markdown, tidyverse
 
 - Exercises: [pdf](Computing/Exercises/ex2.pdf), [Rmd](Computing/Exercises/ex2.Rmd)
 
+- Solutions: [pdf](Computing/Solutions/sol2.pdf), [Rmd](Computing/Solutions/sol2.Rmd)
+
 <br>
 
 <!-- #### Module 3: ggplot2 -->
