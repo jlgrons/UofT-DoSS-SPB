@@ -18,12 +18,13 @@ Below is our course schedule, which may change as the course progresses.
 
 The morning session will run from 10:00 am-12:00 pm and the afternoon session will run from 1:30-3:30 pm (all times EDT/Toronto time).  
 
-Some days will include a lunchtime guest speaker from DoSS or the university from 12:15-1:15 pm.  A list of guest speakers will be added closer to the start of the program.
+Some days will include a lunchtime guest speaker from DoSS or the university from 12:15-1:15 pm.  A list of guest speakers is given below.
 
 All sessions will use the following zoom meeting:
 
 https://utoronto.zoom.us/j/88309575061 (Meeting ID: 883 0957 5061)
 
+## Class schedule
 
 ```{r, echo=FALSE}
 library(tidyverse)
@@ -40,5 +41,13 @@ knitr::kable(jsc270courseschedule[1:31,]) %>%
 
 <br>
 
+## Guest speaker schedule
 
-
+```{r, echo=FALSE}
+my_backgrounds <- colorRampPalette(c("white", "gray"))(5)
+row_nums <-c(1,2,3,4,10,11)
+jsc270courseschedule <- read_csv("guest_speaker_schedule.csv")
+knitr::kable(jsc270courseschedule[1:12,]) %>%  
+  kable_styling(full_width = T, position = "float_left")   %>%   
+  row_spec(row_nums ,background = my_backgrounds[2]) 
+```
