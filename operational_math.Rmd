@@ -40,7 +40,7 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 ### Module 2: Set theory
 
-- Slides: [fillable](Math/module2/slides.pdf)<!--, [filled](Math/module2/slides_filled.pdf)-->
+- Slides: [fillable](Math/module2/slides.pdf), [filled](Math/module2/slides_filled.pdf)
 
 - Exercises: [pdf](Math/module2/exercises.pdf), [LaTeX template](Math/module2/exercises.tex)
 
