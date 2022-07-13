@@ -33,16 +33,16 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 - Slides: [fillable](Math/module1/slides.pdf),  [filled](Math/module1/slides_filled.pdf)
 
-- Exercises: [pdf](Math/module1/exercises.pdf), [LaTeX template](Math/module1/exercises.tex)
+- Exercises: [pdf](Math/module1/exercises.pdf), [LaTeX template](Math/module1/exercises.tex), [solutions](Math/module1/exercise_solutions.pdf)
 
 
-<!--
 <br>
+
 ### Module 2: Set theory
 
-Slides: [blank](Math/module2/slides.pdf)--><!--, [filled](Math/module2/slides_filled.pdf)-->
-<!--
-Exercises: [pdf](Math/module2/exercises.pdf), [LaTeX](Math/module2/exercises.tex) -->
+- Slides: [fillable](Math/module2/slides.pdf), [filled](Math/module2/slides_filled.pdf)
+
+- Exercises: [pdf](Math/module2/exercises.pdf), [LaTeX template](Math/module2/exercises.tex)
 
 <!--
 <br>
