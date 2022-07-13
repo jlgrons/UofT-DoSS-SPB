@@ -40,14 +40,13 @@
 \newcommand{\Id}{{\mathds{1}}}
 \newcommand{\R}{{\mathbb{R}}}
 \newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
 \newcommand{\Z}{{\mathbb{Z}}}
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand{\Q}{{\mathbb{Q}}}
-\newcommand{\F}{{\mathbb{F}}}
-\newcommand{\cL}{{\mathcal{L}}}
 \newcommand{\cP}{\mathcal{P}}
-\newcommand{\cT}{\mathcal{T}}
-\newcommand{\inv}{{-1}}
+
+\newtheorem{proposition}[theorem]{Proposition}
 
 
 \beamertemplatenavigationsymbolsempty
@@ -108,7 +107,137 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+\begin{definition}
+Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijection $f:A \to B$.
+\end{definition}
 
+\begin{example}
+Which is bigger, $\N$ or $\N_0$? \\
+\vspace{3cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Cantor-Schr\"{o}der-Bernstein}
+\begin{definition}
+We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
+\end{definition}
+
+\begin{theorem}[Cantor-Bernstein]
+Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+$|\N| = |\N \times \N|$
+\end{example}
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $A$ be a set. 
+\begin{enumerate}
+\item $A$ is \emph{finite} if there exists an $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
+\item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
+\item $A$ is \emph{countable} if it is finite or countably infinite
+\item $A$ is \emph{uncountable} otherwise
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+The rational numbers are countable, and in fact $|\Q| = |\N|$. \\
+\vspace{1em}
+Let's look at $\Q^+ := \{ x \in \Q : x > 0\}$. The fact that the rationals are countable relies on this famous way of listing the rational numbers:
+\begin{equation*}
+\scalebox{1.2}{$
+ \begin{array}{cccccc}
+ 1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} &\frac{1}{5} &\ldots \\[0.5em]
+ 2 & \textcolor{red}{\frac{2}{2}} & \frac{2}{3} &\textcolor{red}{\frac{2}{4}} &\frac{2}{5} & \ldots \\[0.5em]
+ 3 & \frac{3}{2} & \textcolor{red}{\frac{3}{3}} &\frac{3}{4} &\frac{3}{5} &\ldots \\[0.5em]
+ 4 & \textcolor{red}{\frac{4}{2}} & \frac{4}{3} & \textcolor{red}{\frac{4}{4}} &\frac{4}{5} &\ldots \\[0.5em]
+ \vdots & \vdots & \vdots & \vdots &\vdots & \ddots 
+\end{array}  $} 
+\end{equation*}
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+This is a map from $\N$ to $\Q^+$. As long as we skip any fraction that is already in our list as we go along, it is injective.  Since we can find an injection from $\Q^+$ to $\N \times \N$ (exercise), we have that $|\Q^+| = |\N|$.  We can extend this to $\Q$. To do so, let $f\colon \N \to \Q^+$ be a bijection (which exists by the previous part). Then we can define another bijection $g\colon \N \to \Q$ by setting $g(1) = 0$ and 
+\begin{equation*}
+    g(n) =\begin{cases}
+    f(n) & \text{ if } n \text{ is even,} \\
+    -f(n) & \text{ if }  n \text{ is odd},
+    \end{cases}
+\end{equation*}
+for $n>1$.
+
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+The cardinality of $\N$ is smaller than that of $(0,1)$.
+\end{theorem}
+\begin{proof}
+First, we show that there is an injective map from $\N$ to $(0, 1)$.
+
+\vspace{2em} 
+
+Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fact that every number $r \in (0,1)$ has a binary expansion of the form $r=0.\sigma_1\sigma_2\sigma_3\ldots$ where $\sigma_i \in \{0, 1\}$, $i \in \N$.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{proof}
+Now we suppose in order to derive a contradiction that there does exist a surjective map $f$ from $\N$ to (0, 1)., i.e. for $n \in \N$ we have $f(n) = 0.\sigma_1(n)\sigma_2(n)\sigma_3(n)\ldots$. This means we can list out the binary expansions, for example like
+\begin{align*}
+f(1)= & 0.\textcolor{red}{0}0000000\ldots \\
+f(2)=& 0.1\textcolor{red}{1}11111111\ldots\\
+f(3)=& 0.01\textcolor{red}{0}1010101\ldots  \\
+f(4)= & 0.101\textcolor{red}{0}101010\ldots  \\
+& 
+\end{align*}
+
+We will construct a number $\tilde r \in (0,1)$ that is not in the image of $f$. 
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+Define $\tilde r = 0.\tilde\sigma_1 \tilde\sigma_2 \ldots$, where we define the $n$th entry of $\tilde r$ to be the the opposite of the  $n$th entry of the $n$th item in our list:
+\begin{equation*}
+    \tilde\sigma_n = \begin{cases} 1 & \text{if } \sigma_n(n) = 0, \\
+    0 & \text{if }  \sigma_n(n) = 1.
+    \end{cases}
+\end{equation*}
+Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary expansion for all $n\in \N$. Hence, $\tilde r\not\in f(\N)$, which is a contradiction to $f$ being surjective. This technique is often referred to as Cantor's diagonal argument. 
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{proposition}
+(0,1) and $\R$ have the same cardinality. 
+\end{proposition}
+\begin{proof}
+The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
+\end{proof}
+
+We have shown that there are different sizes of infinity, as the cardinality of $\N$ is infinite but still smaller than that of $\R$ or $(0,1)$. In fact, we have
+$$ |\N| = |\N_0| = |\Z| = |\Q| < | \R|.$$
+Because of this, there are special symbols for these two cardinalities: The cardinality of $\N$ is denoted $\aleph_0$, while the cardinality of $\R$ is denoted $\mathfrak{c}$. 
+
+\end{frame}
 
 
 

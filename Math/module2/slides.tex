@@ -1,4 +1,4 @@
-\documentclass [aspectratio=169]{beamer}
+\documentclass [aspectratio=169, handout]{beamer}
 \usetheme{Boadilla}
 \usepackage{textpos} % package for the positioning
 \usepackage[]{graphicx}
@@ -59,7 +59,7 @@
 \title[]{Module 2: Set Theory \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 13, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -106,7 +106,6 @@
 	\item Ordered Sets
         \item Functions
         \item Cardinality
-        \item The Axiom of Choice
     \end{itemize}
 \end{frame}
 
@@ -186,19 +185,20 @@ We extend the definition of union and intersection to an arbitrary family of set
 \begin{definition}
 Let $S_\alpha$, $\alpha \in A$, be a family of sets. $A$ is called the \emph{index set}. We define
 \begin{equation*}
-    \bigcup_{\alpha \in A} S_\alpha := \{ x: \exists \alpha \text{ such that } x \in S_\alpha \}
+    \bigcup_{\alpha \in A} S_\alpha := \{ x: \exists \alpha \text{ such that } x \in S_\alpha \},
 \end{equation*}
 \begin{equation*}
-    \bigcap_{\alpha \in A} S_\alpha := \{ x: x \in S_\alpha \forall \alpha \in A \}
+    \bigcap_{\alpha \in A} S_\alpha := \{ x: x \in S_\alpha \text{ for all } \alpha \in A \}.
 \end{equation*}
 \end{definition}
+
 \end{frame}
 
 \begin{frame}
 
 \begin{example}
-$$\bigcup_{n=1}^\infty [-n,n] = \R$$
-$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = \{ 0\}$$
+$$\bigcup_{n=1}^\infty [-n,n] = $$
+$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = $$
 \end{example}
 
 \end{frame}
@@ -228,6 +228,7 @@ The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
 \begin{example}
 Let $S = \{a,b,c\}$.  \\
 Then $\cP(S) = $ 
+\vspace{1em}
 \end{example}
 \end{frame}
 
@@ -240,6 +241,9 @@ Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the se
     S\times T = \{ (s,t) \; \colon \; s \in S \; \text{ and } \; t \in T\}.
 \end{equation*}
 \end{definition}
+\vspace{1em}
+
+This can also be extended inductively to a finite family of sets. 
 
 \end{frame}
 
@@ -247,11 +251,13 @@ Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the se
 \begin{definition}
 A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
 \begin{enumerate}
-\item reflexivity: $x \leq x$ for all $x \in X$
-\item transitivity: for $x,y,z \in X$, $x \leq y$ and $y \leq z$ implies $x \leq z$
-\item anti-symmetry: for $x,y \in X$, $x \leq y$ and $y \leq x$ implies $x = y$
+\item reflexivity: 
+\item transitivity: 
+\item anti-symmetry: 
 \end{enumerate}
 The pair $(X, \leq)$ is called a \emph{partially ordered set}.
+
+\vspace{1em}
 
 A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is a subset with the property $x \leq y$ or $y \leq x$ for any $x,y \in C$.
 \end{definition}
@@ -272,23 +278,100 @@ The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subset
 \begin{example}
 Let $X = \{a,b,c,d\}$. What is $\cP(X)$? Find a chain in $\cP(X)$.
 
+\vspace{1em}
+\pause
+$\cP(X) = \{\emptyset,\{a\},\{b\},\{c\},\{d\},\{a,b\},\{b,c\},\{c,d\},\{b,d\},\{a,c\},\{a,d\},\{a,b,c\}, $
+ $ \{b,c,d\},\{a,b,d\},\{a,c,d\},X\}$
+
+
 \vspace{3cm}
 \end{example}
 \end{frame}
 
 \begin{frame}
 \begin{example}
-Consider the set $C([0,1],\R):= {f:[0,1] \to \R : f \text{ is continuous}}$.
+Consider the set $C([0,1],\R):= \{f:[0,1] \to \R : f \text{ is continuous}\}$.
 
-For two function $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. Can you think of a chain that is a subset of $(C([0,1],\R)$?
+\vspace{1em}
+
+For two functions $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. 
+
+\vspace{1em}
+
+Can you think of a chain that is a subset of $(C([0,1],\R)$?
 \end{example}
 
 \end{frame}
 
 
 
+\begin{frame}
+\begin{definition}
+A non-empty partially ordered set $(X,\leq)$ is \emph{well-ordered} if every non-empty subset $A \subseteq X$ has a mimimum element.
+\end{definition}
+
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $x\leq s$. Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
+\end{definition}
+
+\end{frame}
 
 \begin{frame}
+
+We can also ask if there exists a least upper bound or a greatest lower bound. 
+
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. We call $x\in X$ \emph{least upper bound} or \emph{supremum}, denoted $x= \sup S$, if $x$ is an upper bound and for any other upper bound $y\in X$ of $S$ we have $x\leq y$. Likewise $x\in X$ is the \emph{greatest lower bound} or \emph{infimum} for $S$, denoted $x= \inf S$, if it is a lower bound and for any other lower bound $y\in X$, $y\leq x$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+Note that the supremum and infimum of a bounded set do not necessarily need to exist. However, if they do exists they are unique, which justifies the article \emph{the} (exercise). Nevertheless, the reals have a remarkable property, which we will take as an axiom.
+
+\begin{alertblock}{Completeness Axiom}
+Let $S\subseteq \R$ be bounded above. Then there exists $r\in \R$ such that $r= \sup S$, i.e. $S$ has a least upper bound. 
+\end{alertblock}
+
+By setting $S^\prime = -S:= \{ -s \; \colon \; s\in S\}$ and noting $\inf S = - \sup S^\prime$, we obtain a similar statement for infima if $S$ is bounded below. As mentioned above, this property is fairly special, for example it fails for the rationals.
+
+\begin{example}
+Let $S= \{q \in \Q \; \colon \; x^2 < 7 \}$. Then $S$ is bounded above in $\Q$, but there exists no least upper bound in $\Q$.
+\end{example}
+
+
+
+\end{frame}
+
+\begin{frame}
+There is a nice alternative characterization for suprema in the real numbers. 
+
+\begin{proposition}
+ Let $S\subseteq \R$ be bounded above. Then $r= \sup S$ if and only if $r$ is an upper bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r-\epsilon <s$. 
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) 
+\vspace{3cm}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+
+\begin{proof}
+($\Leftarrow$) 
+\vspace{3cm}
+\end{proof}
+
+Using the same trick, we may obtain a similar result for infima.
+
+\vspace{1em}
+
+\begin{example}
+Consider $S = \{1/n \; \colon \; n\in \N\}$. Then $\sup S = 1$ and $\inf S = 0$.
+\end{example}
+\end{frame}
+
+\begin{frame}{Functions}
 \begin{definition}
 A function $f$ from a set $X$ to a set $Y$ is a subset of $X \times Y$ with the properties:
 \begin{enumerate}
@@ -298,20 +381,26 @@ A function $f$ from a set $X$ to a set $Y$ is a subset of $X \times Y$ with the 
 $X$ is called the \emph{domain} of $f$.
 \end{definition}
 How does this connect to other descriptions of functions you may have seen?
-
+\vspace{2em}
 
 \begin{example}
 For a set $X$, the identity function is:
 $$ 1_X: X \to X, \quad x \mapsto x $$
 \end{example}
-
 \end{frame}
+
 
 
 \begin{frame}
 \begin{definition}[Image and pre-image]
-Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. The image of $f$ is the set $f(A) := \{f(x): x \in A \}$ and the pre-image of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$
+Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. 
+\begin{itemize}
+\item The \emph{image} of $f$ is the set $f(A) := \{f(x): x \in A \}$.
+\item The \emph{pre-image} of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$.
+\end{itemize}
 \end{definition}
+
+\vspace{1em}
 
 Helpful way to think about it for proofs: \\
 If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$. \\
@@ -354,11 +443,12 @@ Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, wit
 
 
 \begin{frame}{Cardinality}
-\begin{definition}
-The \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. 
-\end{definition}
+Intuitively, the \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. For sets with only a finite number of elements, this intuition is correct. We call a set with finitely many elements finite. 
+
+\vspace{1em}
 
 We say that the empty set has cardinality 0 and is finite.
+
 
 
 \end{frame}
@@ -375,138 +465,14 @@ We say that the empty set has cardinality 0 and is finite.
 \end{proof}
 \end{frame}
 
-
 \begin{frame}
-\begin{definition}
-Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijection $f:A \to B$.
-\end{definition}
 
-\begin{example}
-Which is bigger, $\N$ or $\N_0$? \\
-\vspace{3cm}
-\end{example}
-\end{frame}
-
-
-\begin{frame}{Cantor-Schr\"{o}der-Bernstein}
-\begin{definition}
-We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
-\end{definition}
-
-\begin{theorem}[Cantor-Bernstein]
-Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
-\end{theorem}
-
-\end{frame}
-
-
-\begin{frame}
-\begin{example}
-$|\N| = |\N \times \N|$
-\end{example}
 \begin{proof}
-\vspace{4cm}
+continued
+\vspace{6cm}
 \end{proof}
 \end{frame}
 
-\begin{frame}
-\begin{definition}
-Let $A$ be a set. 
-\begin{enumerate}
-\item $A$ is \emph{finite} if there exists an $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
-\item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
-\item $A$ is \emph{countable} if it is finite or countably infinite
-\item $A$ is \emph{uncountable} otherwise
-\end{enumerate}
-\end{definition}
-\end{frame}
-
-\begin{frame}
-\begin{example}
-The rational numbers are countable, and in fact $|\Q| = |\N|$. \\
-\vspace{1em}
-Let's look at $\Q^+ := \{ x \in \Q : x > 0\}$. The fact that the rationals are countable relies on this famous way of listing the rational numbers:
-\begin{equation*}
-\scalebox{1.2}{$
- \begin{array}{cccccc}
- 1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} &\frac{1}{5} &\ldots \\[0.5em]
- 2 & \textcolor{red}{\frac{2}{2}} & \frac{2}{3} &\textcolor{red}{\frac{2}{4}} &\frac{2}{5} & \ldots \\[0.5em]
- 3 & \frac{3}{2} & \textcolor{red}{\frac{3}{3}} &\frac{3}{4} &\frac{3}{5} &\ldots \\[0.5em]
- 4 & \textcolor{red}{\frac{4}{2}} & \frac{4}{3} & \textcolor{red}{\frac{4}{4}} &\frac{4}{5} &\ldots \\[0.5em]
- \vdots & \vdots & \vdots & \vdots &\vdots & \ddots 
-\end{array}  $} 
-\end{equation*}
-\end{example}
-\end{frame}
-
-\begin{frame}
-\begin{example}
-This is a map from $\N$ to $\Q^+$. As long as we skip any fraction that is already in our list as we go along, it is injective.  Since we can find an injection from $\Q^+$ to $\N \times \N$ (exercise), we have that $|\Q^+| = |\N|$.  We can extend this to $\Q$. To do so, let $f\colon \N \to \Q^+$ be a bijection (which exists by the previous part). Then we can define another bijection $g\colon \N \to \Q$ by setting $g(1) = 0$ and 
-\begin{equation*}
-    g(n) =\begin{cases}
-    f(n) & \text{ if } n \text{ is even,} \\
-    -f(n) & \text{ if }  n \text{ is odd},
-    \end{cases}
-\end{equation*}
-for $n>1$.
-
-\end{example}
-\end{frame}
-
-\begin{frame}
-\begin{theorem}
-The cardinality of $\N$ is smaller than that of $(0,1)$.
-\end{theorem}
-\begin{proof}
-First, we show that there is an injective map from $\N$ to $(0, 1)$.
-
-\vspace{2em} 
-
-Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fact that every number $r \in (0,1)$ has a binary expansion of the form $r=0.\sigma_1\sigma_2\sigma_3\ldots$ where $\sigma_i \in \{0, 1\}$, $i \in \N$.
-\end{proof}
-\end{frame}
-
-\begin{frame}
-\begin{proof}
-Now we suppose in order to derive a contradiction that there does exist a surjective map $f$ from $\N$ to (0, 1)., i.e. for $n \in \N$ we have $f(n) = 0.\sigma_1(n)\sigma_2(n)\sigma_3(n)\ldots$. This means we can list out the binary expansions, for example like
-\begin{align*}
-f(1)= & 0.\textcolor{red}{0}0000000\ldots \\
-f(2)=& 0.1\textcolor{red}{1}11111111\ldots\\
-f(3)=& 0.01\textcolor{red}{0}1010101\ldots  \\
-f(4)= & 0.101\textcolor{red}{0}101010\ldots  \\
-& 
-\end{align*}
-
-We will construct a number $\tilde r \in (0,1)$ that is not in the image of $f$. 
-\end{proof}
-\end{frame}
-
-
-\begin{frame}
-\begin{proof}
-Define $\tilde r = 0.\tilde\sigma_1 \tilde\sigma_2 \ldots$, where we define the $n$th entry of $\tilde r$ to be the the opposite of the  $n$th entry of the $n$th item in our list:
-\begin{equation*}
-    \tilde\sigma_n = \begin{cases} 1 & \text{if } \sigma_n(n) = 0, \\
-    0 & \text{if }  \sigma_n(n) = 1.
-    \end{cases}
-\end{equation*}
-Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary expansion for all $n\in \N$. Hence, $\tilde r\not\in f(\N)$, which is a contradiction to $f$ being surjective. This technique is often referred to as Cantor's diagonal argument. 
-\end{proof}
-\end{frame}
-
-\begin{frame}
-\begin{proposition}
-(0,1) and $\R$ have the same cardinality. 
-\end{proposition}
-\begin{proof}
-The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
-\end{proof}
-
-We have shown that there are different sizes of infinity, as the cardinality of $\N$ is infinite but still smaller than that of $\R$ or $(0,1)$. In fact, we have
-$$ |\N| = |\N_0| = |\Z| = |\Q| < | \R|.$$
-Because of this, there are special symbols for these two cardinalities: The cardinality of $\N$ is denoted $\aleph_0$, while the cardinality of $\R$ is denoted $\mathfrak{c}$. There is even a relationship between them: $\mathfrak{c} = 2^{\aleph_0}$, i.e. the cardinality of $\R$ is the same as the cardinality of $\cP(\N)$.
-
-\end{frame}
 
 
 \begin{frame}{References}
