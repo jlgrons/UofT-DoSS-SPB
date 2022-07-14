@@ -49,7 +49,7 @@ Material will be added here as the course progresses.
 
 ### Module 1: Basics of Probability
 
-- Slides: [Module Two](Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf)
+- Slides: [Module Two](Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module Two Annotated](Probability/Slides/module_2_annotated.pdf) 
 
 - Problem Set Solutions: [Module 2 Solution](Probability/Solutions/Module_2_Solutions.pdf) 
 
