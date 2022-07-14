@@ -62,7 +62,7 @@ ggplot2
 
 - Exercises: [pdf](Computing/Exercises/ex3.pdf), [Rmd](Computing/Exercises/ex3.Rmd)
 
-<!-- - Solutions: [pdf](Computing/Solutions/sol3.pdf), [Rmd](Computing/Solutions/sol3.Rmd) -->
+- Solutions: [pdf](Computing/Solutions/sol3.pdf), [Rmd](Computing/Solutions/sol3.Rmd)
 
 <br>
 

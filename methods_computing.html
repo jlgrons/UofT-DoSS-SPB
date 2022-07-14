@@ -14,8 +14,8 @@
 
 <title>Methods and Computing</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -84,6 +85,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -309,7 +313,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -343,8 +347,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Methods and Computing</h1>
-<h4 class="author">Instructor: <a
-href="https://siyueyang.github.io">Siyue Yang</a></h4>
+<h4 class="author">Instructor: <a href="https://siyueyang.github.io">Siyue Yang</a></h4>
 
 </div>
 
@@ -353,8 +356,7 @@ href="https://siyueyang.github.io">Siyue Yang</a></h4>
 <p><br></p>
 <div id="syllabus" class="section level2">
 <h2>Syllabus</h2>
-<p><a href="Computing/syllabus_computing.pdf">Click here to download the
-syllabus</a></p>
+<p><a href="Computing/syllabus_computing.pdf">Click here to download the syllabus</a></p>
 <p><br></p>
 </div>
 <div id="lectures" class="section level2">
@@ -365,36 +367,29 @@ syllabus</a></p>
 <h3>Module 1: Basic programming in R</h3>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod1.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/Exercises/ex1.pdf">pdf</a>, <a
-href="Computing/Exercises/ex1.Rmd">Rmd</a></p></li>
-<li><p>Solutions: <a href="Computing/Solutions/sol1.pdf">pdf</a>, <a
-href="Computing/Solutions/sol1.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/Exercises/ex1.pdf">pdf</a>, <a href="Computing/Exercises/ex1.Rmd">Rmd</a></p></li>
+<li><p>Solutions: <a href="Computing/Solutions/sol1.pdf">pdf</a>, <a href="Computing/Solutions/sol1.Rmd">Rmd</a></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="module-2-reporting-data-wrangling-and-graphing-i"
-class="section level3">
+<div id="module-2-reporting-data-wrangling-and-graphing-i" class="section level3">
 <h3>Module 2: Reporting, data Wrangling and graphing (I)</h3>
 <p>LaTeX, Markdown, tidyverse</p>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod2.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/Exercises/ex2.pdf">pdf</a>, <a
-href="Computing/Exercises/ex2.Rmd">Rmd</a></p></li>
-<li><p>Solutions: <a href="Computing/Solutions/sol2.pdf">pdf</a>, <a
-href="Computing/Solutions/sol2.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/Exercises/ex2.pdf">pdf</a>, <a href="Computing/Exercises/ex2.Rmd">Rmd</a></p></li>
+<li><p>Solutions: <a href="Computing/Solutions/sol2.pdf">pdf</a>, <a href="Computing/Solutions/sol2.Rmd">Rmd</a></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="module-3-reporting-data-wrangling-and-graphing-ii"
-class="section level3">
+<div id="module-3-reporting-data-wrangling-and-graphing-ii" class="section level3">
 <h3>Module 3: Reporting, data Wrangling and graphing (II)</h3>
 <p>ggplot2</p>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod3.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/Exercises/ex3.pdf">pdf</a>, <a
-href="Computing/Exercises/ex3.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/Exercises/ex3.pdf">pdf</a>, <a href="Computing/Exercises/ex3.Rmd">Rmd</a></p></li>
+<li><p>Solutions: <a href="Computing/Solutions/sol3.pdf">pdf</a>, <a href="Computing/Solutions/sol3.Rmd">Rmd</a></p></li>
 </ul>
-<!-- - Solutions: [pdf](Computing/Solutions/sol3.pdf), [Rmd](Computing/Solutions/sol3.Rmd) -->
 <p><br></p>
 <!-- ### Statistical inference -->
 <!-- #### Module 4: Probability distribtions -->
