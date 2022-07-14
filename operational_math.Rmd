@@ -49,7 +49,7 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 ### Module 3: Set theory II and metric spaces I
 
-- Slides: [fillable](Math/module3/slides.pdf)<!--, [filled](Math/module3/slides_filled.pdf)-->
+- Slides: [fillable](Math/module3/slides.pdf), [filled](Math/module3/slides_filled.pdf)
 
 - Exercises: [pdf](Math/module3/exercises.pdf), [LaTeX template](Math/module3/exercises.tex) <!--, [solutions](Math/module3/exercise_solutions.pdf) -->
 
