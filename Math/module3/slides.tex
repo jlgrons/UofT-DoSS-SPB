@@ -16,6 +16,8 @@
 \usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{enumerate items}[circle]
+\usepackage{tikz}
+\usepackage{accents}
 
 \newcommand*{\logofont}{\fontfamily{phv}\selectfont}
 \definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
@@ -46,6 +48,9 @@
 \newcommand{\Q}{{\mathbb{Q}}}
 \newcommand{\cP}{\mathcal{P}}
 
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
 \newtheorem{proposition}[theorem]{Proposition}
 
 
@@ -59,7 +64,7 @@
 \title[]{Module 3: Metric Spaces and Sequences I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 14, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -81,9 +86,23 @@
 \setbeamercolor{block title alerted}{fg=white}
 \setbeamercolor{block body alerted}{bg=deptoran!10!white}
 
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+
 
 % set logo at non-title pages
 \logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 
 % set margin
 \setbeamersize{text margin left=10mm,text margin right=10mm}
@@ -103,7 +122,10 @@
 \begin{frame}{Outline}
     \begin{itemize}
       \setlength\itemsep{1em}
-    	\item 
+    	\item Finish cardinality section
+	\item Metrics and norms
+	\item Open and closed sets
+%	\item sequences
     \end{itemize}
 \end{frame}
 
@@ -114,7 +136,7 @@ Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijecti
 
 \begin{example}
 Which is bigger, $\N$ or $\N_0$? \\
-\vspace{3cm}
+\vspace{4cm}
 \end{example}
 \end{frame}
 
@@ -124,9 +146,11 @@ Which is bigger, $\N$ or $\N_0$? \\
 We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
 \end{definition}
 
-\begin{theorem}[Cantor-Bernstein]
+\vspace{1cm}
+
+\begin{alertblock}{Theorem (Cantor-Bernstein)}
 Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
-\end{theorem}
+\end{alertblock}
 
 \end{frame}
 
@@ -136,7 +160,7 @@ Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
 $|\N| = |\N \times \N|$
 \end{example}
 \begin{proof}
-\vspace{4cm}
+\vspace{5cm}
 \end{proof}
 \end{frame}
 
@@ -154,40 +178,38 @@ Let $A$ be a set.
 
 \begin{frame}
 \begin{example}
-The rational numbers are countable, and in fact $|\Q| = |\N|$. \\
-\vspace{1em}
-Let's look at $\Q^+ := \{ x \in \Q : x > 0\}$. The fact that the rationals are countable relies on this famous way of listing the rational numbers:
-\begin{equation*}
-\scalebox{1.2}{$
- \begin{array}{cccccc}
- 1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} &\frac{1}{5} &\ldots \\[0.5em]
- 2 & \textcolor{red}{\frac{2}{2}} & \frac{2}{3} &\textcolor{red}{\frac{2}{4}} &\frac{2}{5} & \ldots \\[0.5em]
- 3 & \frac{3}{2} & \textcolor{red}{\frac{3}{3}} &\frac{3}{4} &\frac{3}{5} &\ldots \\[0.5em]
- 4 & \textcolor{red}{\frac{4}{2}} & \frac{4}{3} & \textcolor{red}{\frac{4}{4}} &\frac{4}{5} &\ldots \\[0.5em]
- \vdots & \vdots & \vdots & \vdots &\vdots & \ddots 
-\end{array}  $} 
-\end{equation*}
+The rational numbers are countable, and in fact $|\Q| = |\N|$.
 \end{example}
+
+\begin{proof}
+First we show $|\N| \leq |\Q^+|$.
+\vspace{4.5cm}
+\end{proof}
 \end{frame}
 
 \begin{frame}
-\begin{example}
-This is a map from $\N$ to $\Q^+$. As long as we skip any fraction that is already in our list as we go along, it is injective.  Since we can find an injection from $\Q^+$ to $\N \times \N$ (exercise), we have that $|\Q^+| = |\N|$.  We can extend this to $\Q$. To do so, let $f\colon \N \to \Q^+$ be a bijection (which exists by the previous part). Then we can define another bijection $g\colon \N \to \Q$ by setting $g(1) = 0$ and 
-\begin{equation*}
-    g(n) =\begin{cases}
-    f(n) & \text{ if } n \text{ is even,} \\
-    -f(n) & \text{ if }  n \text{ is odd},
-    \end{cases}
-\end{equation*}
-for $n>1$.
+\begin{proof}
+Next, we show that $|\Q^+| \leq |\N \times \N|$.
 
-\end{example}
+\vspace{5cm}
+
+Since we already proved $|\N| = |\N \times \N|$, this means $|\N| = |\Q^+|$.
+\end{proof}
+
 \end{frame}
 
 \begin{frame}
-\begin{theorem}
+\begin{proof}
+We can extend this to $\Q$ as follows:.
+\vspace{5cm}
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Theorem}
 The cardinality of $\N$ is smaller than that of $(0,1)$.
-\end{theorem}
+\end{alertblock}
 \begin{proof}
 First, we show that there is an injective map from $\N$ to $(0, 1)$.
 
@@ -201,10 +223,10 @@ Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fa
 \begin{proof}
 Now we suppose in order to derive a contradiction that there does exist a surjective map $f$ from $\N$ to (0, 1)., i.e. for $n \in \N$ we have $f(n) = 0.\sigma_1(n)\sigma_2(n)\sigma_3(n)\ldots$. This means we can list out the binary expansions, for example like
 \begin{align*}
-f(1)= & 0.\textcolor{red}{0}0000000\ldots \\
-f(2)=& 0.1\textcolor{red}{1}11111111\ldots\\
-f(3)=& 0.01\textcolor{red}{0}1010101\ldots  \\
-f(4)= & 0.101\textcolor{red}{0}101010\ldots  \\
+f(1)= & 0.{0}0000000\ldots \\
+f(2)=& 0.1{1}11111111\ldots\\
+f(3)=& 0.01{0}1010101\ldots  \\
+f(4)= & 0.101{0}101010\ldots  \\
 & 
 \end{align*}
 
@@ -226,19 +248,240 @@ Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary ex
 \end{frame}
 
 \begin{frame}
-\begin{proposition}
+\begin{exampleblock}{Proposition}
 (0,1) and $\R$ have the same cardinality. 
-\end{proposition}
+\end{exampleblock}
 \begin{proof}
-The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
+\vspace{1cm}
+%The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
 \end{proof}
 
 We have shown that there are different sizes of infinity, as the cardinality of $\N$ is infinite but still smaller than that of $\R$ or $(0,1)$. In fact, we have
-$$ |\N| = |\N_0| = |\Z| = |\Q| < | \R|.$$
+$$ |\N| \quad |\N_0| \quad  |\Z|  \quad |\Q|  \quad |\R|.$$
 Because of this, there are special symbols for these two cardinalities: The cardinality of $\N$ is denoted $\aleph_0$, while the cardinality of $\R$ is denoted $\mathfrak{c}$. 
 
 \end{frame}
 
+\section{Metric Spaces}
+
+\begin{frame}
+\begin{definition}[Metric]
+A \emph{metric} on a set $X$ is a function $d:X \times X \to \R$ that satisfies:
+\vspace{0.5em}
+\begin{enumerate}
+ \setlength\itemsep{0.5em}
+    \item[(a)] Positive definiteness: 
+    \item[(b)] Symmetry: 
+    \item[(c)] Triangle inequality: 
+\end{enumerate}
+\vspace{0.5em}
+A set together with a metric is called a metric space.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Example ($\R^n$ with the Euclidean distance)}
+\vspace{3.5cm}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Norm]
+A \emph{norm} on an $\F$-vector space $E$ is a function $\|\cdot\|:E \to \R$ that satisfies:
+\vspace{0.5em}
+\begin{enumerate}
+ \setlength\itemsep{0.5em}
+    \item[(a)] Positive definiteness: 
+    \item[(b)] Homogeneity: 
+    \item[(c)] Triangle inequality: 
+\end{enumerate}
+\vspace{0.5em}
+A vector space with a norm is called a normed space. A normed space is a metric space using the metric $d(x,y) = \| x-y \|$.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}[$p$-norm on $\R^n$]
+The $p$-norm is defined for $p \geq 1$ for a vector $x = (x_1, \ldots, x_n) \in \R^n$ as
+
+\vspace{2.5cm}
+
+The infinity norm is the limit of the $p$-norm as $p \to \infty$, defined as
+\vspace{2cm}
+
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}[$p$-norm on  {$C([0,1];\R)$} ]
+If we look at the space of continuous functions $C([0,1];\R)$, the $p$-norm is 
+
+\vspace{2.5cm}
+
+and the $\infty-$norm (or sup norm) is 
+\vspace{2cm}
+
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+A subset $A$ of a metric space $(X,d)$ is \emph{bounded} if there exists $M>0$ such that $d(x,y) < M$ for all $x,y \in A$. 
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $(X,d)$ be a metric space. We define the \emph{open ball} centred at a point $x_0 \in X$ of radius $r > 0$ as
+\begin{equation*}
+    B_r(x_0) := \{x \in X : d(x,x_0) < r_0 \}.
+\end{equation*}
+\end{definition}
+
+\vspace{1cm}
+
+\begin{example}
+In $\R$ with the usual norm (absolute value), open balls are symmetric open intervals, \\
+i.e. 
+\vspace{1em}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Example: Open ball in $\R^2$ with different metrics}
+
+\begin{figure}[h]
+    \centering
+    \subfloat[1-norm (taxicab metric)]{\begin{tikzpicture}[scale=0.4]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+%    \draw[densely dotted, thick, color=red] (3,0)--(0,3);
+%    \draw[densely dotted, thick, color=red] (-3,0)--(0,-3);
+%    \draw[densely dotted, thick, color=red] (-3,0)--(0,3);
+%    \draw[densely dotted, thick, color=red] (3,0)--(0,-3);
+
+    \end{tikzpicture}}
+    \subfloat[2-norm (Euclidean metric)]{\begin{tikzpicture}[scale=0.4]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+%    \draw[densely dotted,thick, color = red] (0,0) circle [radius=3];
+
+    \end{tikzpicture}}
+    \subfloat[$\infty$-norm]{\begin{tikzpicture}[scale=0.4]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+%    \draw[densely dotted, thick, color=red] (3,-3) --(3,3);
+%    \draw[densely dotted, thick, color=red] (3,3) --(-3,3);
+%    \draw[densely dotted, thick, color=red] (-3,-3) --(-3,3);
+%    \draw[densely dotted, thick, color=red] (3,-3) --(-3,-3);
+
+    \end{tikzpicture}}
+    \caption{$B_r(0)$ for different metrics}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Open and closed sets]
+Let $(X,d)$ be a metric space. 
+\begin{itemize}
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
+    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
+\end{itemize}
+\end{definition}
+
+\vspace{1.5cm}
+
+\begin{proposition}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+     \item If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+ \end{enumerate}
+\end{proposition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+(1) Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+
+\vspace{3cm}
+
+(2) If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+
+\vspace{2.5cm}
+
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+Using DeMorgan, we immediately have the following corollary:
+\begin{corollary}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
+     \item If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
+ \end{enumerate}
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Interior and closure]
+Let $A\subseteq X$ where $(X,d)$ is a metric space. 
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item The \emph{closure} of $A$ is $\overline A :=$
+    \item The \emph{interior} of $A$ is  $\interior A :=$
+    \item The \emph{boundary} of $A$ is $\partial A :=$
+\end{itemize}
+\vspace{2em}
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{example}
+Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then
+
+\vspace{1cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{proposition}
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
+\end{proposition}
+\begin{proof}
+\vspace{5cm}
+\end{proof}
+\end{frame}
 
 
 \begin{frame}{References}

@@ -27,6 +27,7 @@
 
 \allowdisplaybreaks % fixes align environment weird spacing on page
 \setlength{\parindent}{0cm}
+\usepackage[parfill]{parskip}
 
 % get rid of dot after theorem 
 \usepackage{xpatch}
@@ -55,45 +56,27 @@
 \newpage
 \section*{Preface}
 
-These lecture notes were prepared for the Mathematics course at the inaugural Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto. The course taught an overview of necessary mathematics prerequisites to incoming statistics graduate students, with an emphasis on proofs.
+These lecture notes were prepared for the Mathematics course at the inaugural Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto. The course teaches an overview of necessary mathematics prerequisites to incoming statistics graduate students, with an emphasis on proofs.
 
-\vspace{1em}
 
 These lectures are based on the following books or lecture notes:
 
-\vspace{1em}
-
-1. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-1-4614-4265-3}{{\emph{An Introduction to Mathematical Structures and Proofs}}} by Larry J. Gerstein
-
-2. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/0-387-28387-0}{\emph{A Taste of Topology}} by Volker Runde
-
-3. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{{\emph{Linear Algebra Done Right}}} by Sheldon Axler
-
-4. \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{{\emph{Linear Algebra Done Wrong}}} by Sergei Treil
-
-5. \href{https://digitalcommons.trinity.edu/mono/7/}{{\emph{Introduction to Real Analysis}}} by William F. Trench
-
-6. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{\emph{Real Mathematical Analysis}} by Charles C. Pugh
-
-7. \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{\emph{Lecture notes in Mathematics for Economics and Statistics}} by Piotr Zwiernik
-
+1. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-1-4614-4265-3}{{\emph{An Introduction to Mathematical Structures and Proofs}}} by Larry J. Gerstein \\
+2. \href{https://bookstore.ams.org/amstext-26/}{{\emph{The Tools of Mathematical Reasoning}}} by Tamara J. Lakins \\
+3. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/0-387-28387-0}{\emph{A Taste of Topology}} by Volker Runde \\
+4. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{\emph{Real Mathematical Analysis}} by Charles C. Pugh \\
+5. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{{\emph{Linear Algebra Done Right}}} by Sheldon Axler \\
+6. \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{{\emph{Linear Algebra Done Wrong}}} by Sergei Treil \\
+7. \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{\emph{Lecture notes in Mathematics for Economics and Statistics}} by Piotr Zwiernik \\
 8. \href{http://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}{{\emph{Real Analysis Lecture Notes}}} by Laurent Marcoux
 
-\vspace{1em}
-
-Chapter 1 of Gerstein (2012) is used as reference for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
-
-\vspace{1em}
+Chapter 1 of Gerstein (2012) and the first three chapters of Lakins (2016) are used as references for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. Some additional topics come from Pugh (2015). The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
 
 Most of the material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone).
 
-\vspace{1em}
-
 I would like to acknowledge the assistance of Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman in developing the list of topics for the course. 
 
-\vspace{1em}
-
-Please notify me of any typos or corrections at emma.kroell@mail.utoronto.ca.
+Please notify me of any typos or corrections at emma.kroell@mail.utoronto.ca .
 
 
 \newpage
@@ -125,11 +108,8 @@ $\C$ denotes the complex numbers
 
 \emph{Propositions} are statements that could be true or false. They have a corresponding \emph{truth value}. We will use capital letters to denote propositions. For example, ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions. Let's call them $P$ and $Q$. Whether they are true or not (i.e. their truth value) depends on what $n$ is. 
 
-\vspace{1em}
-
 We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''.
 
-\vspace{1em}
  We can combine statements: 
  \begin{itemize}
  \item $P \wedge Q$ is the statement ``$n$ is odd and $n$ is divisible by 2''.
@@ -148,11 +128,7 @@ Here are some statements, which we want to write in propositional logic.
 
 For the first one, let $A$ be the statement ``it's raining'' and $B$ be the statement ``I will bring my umbrella''. In logic, the statement is $\neg A \implies \neg B$.
 
-\vspace{1em}
-
 For the second, let $C$ be the statement ``I'm a banana'' and let $D$ be the statement ``Toronto is in Canada''. We write this as $C \vee D$.
-
-\vspace{1em}
 
 For the third, let $P$ be the statement ``I pass this exam'', let $Q$ be the statement ``I am happy'', and let $R$ be the statement ``I am surprised''. This one is written $P \implies (Q \wedge R)$.
 \end{example}
@@ -164,14 +140,11 @@ If it is snowing, then it is cold out. \\
 It is snowing. \\
 Therefore, it is cold out.
 
-\vspace{1em}
-
 Solution. \\
 $P \implies Q$ \\
 $P$ \\
 Conclusion: $Q$ \\
 \end{example}
-
 
 To examine if a statement is true or not, we use a truth table, where we write out all the possibilities. 
 
@@ -188,16 +161,13 @@ The truth table for $P \implies Q$ where $P$, $Q$ are propositions is:
 \end{tabular}
 \end{example}
 
-
 \subsubsection{Logical equivalence}
 We say that two statements are \emph{logically equivalent} if they have the same truth tables.
-
 
 \begin{example}
 \label{ex:implication_table}
 Let $P$, $Q$ be propositions. $P \implies Q$ is logically equivalent to $\neg P \vee Q$.
  
- \vspace{1em}
  
 \begin{tabular}{|c|c| c|}
 \hline
@@ -229,8 +199,6 @@ Let $P$, $Q$ be propositions.
 
 Proving this is your first exercise.
 
-\vspace{1em}
-
 The following fact is often useful.
 \begin{example}
 \label{ex:ifthen}
@@ -240,40 +208,23 @@ $\neg (P \implies Q)$ is logically equivalent to $P \wedge \neg Q$. This follows
 \subsubsection{Quantifiers}
 There are two important logical operators that we have not yet discussed. They are denoted using the following symbols: $\forall$, read as ``for all'' or ``for each'', and $\exists$, read as ``there exists''. We will explore their meanings, how they can help us simplify statements we need to prove, and how we prove such statements.
 
-\vspace{1em}
-
 \textbf{For all}
 
 ``for all'', $\forall$, is also called the universal quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. An example is the statement ``Every real number has a non-negative square.'' We write this as $\forall x \in \R, \, x^2 \geq 0$. In logic, people often use brackets to separate parts of the logical expression, ex. $(\forall x \in \R) (x^2 \geq 0)$.
 
-\vspace{1em}
-
 How do we prove a for all statement? We need to take an arbitrary element of the domain, and show the property holds for that element.
-
-\vspace{1em}
 
 \textbf{There exists}
 
 ``there exists'', $\exists$, is also called the existential quantifier. If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. An example is the statement that 4 has a square root in the reals. We write this as $\exists x \in \R$ such that $x^2 = 4$ or in proper logic notation, $(\exists x \in \R$) ($x^2 = 4)$.
 
-\vspace{1em}
-
 How do we prove a there exists statement? We need to find an element in the domain for which the property holds (find an example).
-
-\vspace{1em}
 
 There is also a special way of writing when there exists a unique element. We use $\exists!$ for this case. For example, the statement ``there exists a unique positive integer such that the integer squared is 64'' is written $\exists!  z \in \N$ such that $z^2 = 64$.
 
-
-\vspace{1em}
-
 \textbf{Combining quantifiers}
 
-Often we will need to prove statements where we combine quantifiers.
-
-Here are some examples:
-\vspace{1em}
-
+Often we will need to prove statements where we combine quantifiers. Here are some examples:
 
 \begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
      Statement & Logical expression \\
@@ -284,7 +235,6 @@ Here are some examples:
 \end{tabular}
 
 \vspace{1em}
-
 
 The order of quantifiers is important! Changing the order changes the meaning. Consider the following example. Which are true? Which are false?
 
@@ -390,14 +340,11 @@ $P \implies Q$  \hspace{5cm}  $\neg Q \implies \neg P$
 
 Note that $\neg P \implies \neg Q$ is \emph{not} logically equivalent to  $P \implies Q$ (can you think of an example?). This is a common mistake.
 
-\vspace{1em}
-
 Here is an example of a statement that is easier to prove using the contrapositive as opposed to directly.
 
 \begin{example}
 If an integer squared is even, then the integer is itself even.
 \end{example}
-
 
 \begin{proof}
 We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
@@ -423,19 +370,17 @@ But then $r = s - q \in \mathbb{Q}$. Contradiction. Therefore the sum of a ratio
 \end{proof}
 
 
-
-
 \subsubsection{Summary}
 
 {\bf In sum, to prove $P \implies Q$:} 
-
-\vspace{1em}
 
 \begin{tabular}{r l}
      Direct proof:  & assume $P$, prove $Q$ \\
      Proof by contrapositive:  & assume $\neg Q$, prove $\neg P$ \\ 
      Proof by contradiction: & assume $P \wedge \neg Q$ and derive something that is impossible \\ 
 \end{tabular}
+
+\vspace{0.5em}
 
 \subsubsection{Induction}
 
@@ -519,7 +464,6 @@ therefore we can write $k+1$ as a product of primes.
 Thus the claim holds by strong induction.
 \end{proof}
 
-
 The Principle of Strong Mathematical Induction and the Principle of Mathematical Induction are logically equivalent, but sometimes it is easier to use one or the other, as we saw.
 
 
@@ -543,7 +487,7 @@ The Principle of Strong Mathematical Induction and the Principle of Mathematical
 
 
 \subsection{References}
-Most of this content may be found in Chapter 1 of \cite{proofs}, though many of the examples are my own. \cite{toolsreasoning} is also a great resource, but sadly it is not freely available online or at U of T. 
+Most of this content may be found in Chapter 1 of \cite{proofs}, though many of the examples are my own. \cite{toolsreasoning} is also a great resource. In particular, the content on induction comes from there. Unfortunately the latter text is not freely available online or at U of T. 
 
 
 \section{Set theory}
@@ -682,7 +626,7 @@ Recall that we already saw that $\N$ is well-ordered, as we used it to prove the
 Having a partially ordered set allows us to talk about upper and lower bounds. 
 
 \begin{definition}%Marcoux Definition 2.12
-Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $s\leq x$. Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $x\leq s$. Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
 \end{definition}
 
 We can also ask if there exists a least upper bound or a greatest lower bound. 
@@ -780,7 +724,7 @@ Let $x \in A$. Let $B = f(A)$, $B \subseteq Y$. By definition, $f(x) \in B$. So 
 
 Next, suppose $f$ is injective. We have already shown that $A \subseteq f^{-1}(f(A))$, so it remains to show that  $f^{-1}(f(A)) \subseteq  A$. Let $x \in f^{-1}(f(A))$. Then $f(x) \in f(A)$ by the definition of the pre-image. This means that there exists a $\tilde x \in A$ such that $f(x) = f(\tilde x)$. Since $f$ is injective, we have $x = \tilde x$, and hence $x \in A$.
 \end{proof}
-
+% could make this an iff
 
 \subsection{Cardinality}
 
@@ -813,7 +757,7 @@ Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijecti
 
 \begin{example}
 Which is bigger, $\N$ or $\N_0$? \\
-Intuitively (at least to me), it seems that $\N_0$ should be bigger, since it includes exactly one more element than $\N$, namely 0. However, clearly the function $f:\N_0 \to \N$ defined by $n \mapsto n+1$ is a bijection. Therefore $\N_0$ and $\N$ have the same cardinality! One way to think about this is that $\N_0$ and $\N$ are the ``same size'' of infinity. 
+Intuitively, it seems that $\N_0$ should be bigger, since it includes exactly one more element than $\N$, namely 0. However, clearly the function $f:\N_0 \to \N$ defined by $n \mapsto n+1$ is a bijection. Therefore $\N_0$ and $\N$ have the same cardinality! One way to think about this is that $\N_0$ and $\N$ are the ``same size'' of infinity. 
 \end{example}
 
 It may sometimes be difficult to find such a bijection. However you can also use the following definition and theorem to instead show that two sets have the same cardinality by finding two injective functions between them.
@@ -921,13 +865,13 @@ Because of this, there are special symbols for these two cardinalities: The card
         \item[(iii)] Transitive: if $(x,y), (y,z) \in R$ then $(x,z) \in R$ for all $x,y,z \in S$
     \end{enumerate}
 Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalence relation $R$) is defined to consist of those $y \in S$ for which $(x,y) \in R$. Show that two equivalence classes are either disjoint or identical.
-    \item Let $(X, \leq)$ be a partially ordered set and $S\subseteq X$ be bounded. Show that the infimum and supremum of $S$ are unique.
+    \item Let $(X, \leq)$ be a partially ordered set and $S\subseteq X$ be bounded. Show that the infimum and supremum of $S$ are unique (if they exist).
     \item Let $S,T \subseteq \R$ and suppose both are bounded above. Define $S+T = \{s + t \; \colon \; s\in S,t\in T\}$. Show that $S+T$ is bounded above and $\sup(S+T) = \sup S + \sup T$. 
-    \item Let $f: X \to Y$ be defined by the map $x \mapsto \sin(x)$. For what choices of $X$ and $Y$ is $f$ injective, surjective, bijective, or neither?
+    \item Let $f: X \to Y$, $X, y \subseteq \R$ be defined by the map $x \mapsto \sin(x)$. For what choices of $X$ and $Y$ is $f$ injective, surjective, bijective, or neither?
     \item Show that for sets $A,B \subseteq X$ and $f: X \to Y$, $f(A \cap B) \subseteq f(A) \cap f(B)$.
     \item Let $f: X \to Y$ and $B \subseteq Y$. Prove that $f(f^{-1}(B)) \subseteq B$, with equality iff $f$ is surjective.
-    \item Prove that $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$.
-    \item Show that $\N$ and $\Z$ have the same cardinality. 
+    \item Prove that $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $f:X \to Y$, $A_i \subseteq Y \, \forall i \in I$.
+    \item Show that $\N$ and $\Z$ have the same cardinality.
     \item Show that $|(0,1)| =|(1,\infty)|$.
 \end{enumerate}
 
@@ -937,9 +881,9 @@ Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalen
 The content in this section mostly follows \cite{tastetopology}, but is supplemented by \cite{marcoux2019} (ordered sets) and \cite{piotr} (introductory set theory).
 
 
+
 \newpage
 
 \printbibliography
-
 
 \end{document}
