@@ -161,7 +161,7 @@ A set $F \subseteq X$, where $(X, d)$ is a metric space, is closed if and only i
 
 \begin{frame}{Cluster points of a set}
 \begin{definition}
-Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point} of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains uncountably many points in $A$.
+Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point} of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains infinitely many points in $A$.
 \end{definition}
 \end{frame}
 
@@ -419,38 +419,6 @@ Let $f:\left[-\frac{1}{3},\frac{1}{3}\right] \to \left[-\frac{1}{3},\frac{1}{3}\
 \vspace{3cm}
 \end{example}
 
-\end{frame}
-
-
-\begin{frame}{Equivalent metrics}
-\begin{definition}[Equivalent metrics]
-Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{equivalent} if the identity maps from $(X,d_1)$ to $(X,d_2)$ and from $(X,d_2)$ to $(X,d_1)$ are continuous. 
-\end{definition}
-
-
-\begin{exampleblock}{Proposition}
-Two metrics $d_1$, $d_2$ on a set $X$ are equivalent if and only if they have the same open sets or the same closed sets.
-\end{exampleblock}
-\end{frame}
-
-
-\begin{frame}
-
-\begin{definition}
-Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{strongly equivalent} if for every $x,y\in X$, there exists constants $\alpha>0$ and $\beta>0$ such
-\begin{equation*}
-    \alpha d_1(x,y) \leq d_2(x,y) \leq \beta d_1(x,y).
-\end{equation*}
-\end{definition}
-
-If two metrics are strongly equivalent then they are equivalent. The proof of this is one of the exercises. 
-\end{frame}
-
-\begin{frame}
-\begin{example}
-We show that the Euclidean distance (induced by 2-norm) and the metric induced by the $\infty$-norm are equivalent on $\R^n$. 
-\vspace{5.5cm}
-\end{example}
 \end{frame}
 
 
