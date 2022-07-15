@@ -74,7 +74,7 @@ Probability distributions
 
 - Exercises: [pdf](Computing/Exercises/ex4.pdf), [Rmd](Computing/Exercises/ex4.Rmd)
 
-- Slides: [pdf](Computing/Exercises/sol4.pdf), [Rmd](Computing/Exercises/sol4.Rmd)
+- Slides: [pdf](Computing/Solutions/sol4.pdf), [Rmd](Computing/Solutions/sol4.Rmd)
 
 
 <!-- #### Module 5: Estimation -->
