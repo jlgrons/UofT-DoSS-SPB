@@ -51,19 +51,20 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 - Slides: [fillable](Math/module3/slides.pdf), [filled](Math/module3/slides_filled.pdf)
 
-- Exercises: [pdf](Math/module3/exercises.pdf), [LaTeX template](Math/module3/exercises.tex) <!--, [solutions](Math/module3/exercise_solutions.pdf) -->
+- Exercises: [pdf](Math/module3/exercises.pdf), [LaTeX template](Math/module3/exercises.tex), [solutions](Math/module3/exercise_solutions.pdf)
 
 
-<!--
 <br>
+
 ### Module 4: Metric spaces II
 
-Slides: [blank](Math/module4/slides.pdf)--><!--, [filled](Math/module4/slides_filled.pdf)-->
-<!--
-Exercises: [pdf](Math/module4/exercises.pdf), [LaTeX](Math/module4/exercises.tex) -->
+- Slides: [fillable](Math/module4/slides.pdf)<!--, [filled](Math/module4/slides_filled.pdf)-->
+
+- Exercises: [pdf](Math/module4/exercises.pdf), [LaTeX template](Math/module4/exercises.tex) <!--, [solutions](Math/module4/exercise_solutions.pdf) -->
 
 <!--
 <br>
+
 ### Module 5: Topology
 
 Slides: [blank](Math/module5/slides.pdf)--><!--, [filled](Math/module5/slides_filled.pdf)-->
@@ -73,6 +74,7 @@ Exercises: [pdf](Math/module5/exercises.pdf), [LaTeX](Math/module5/exercises.tex
 
 <!--
 <br>
+
 ### Module 6: Linear algebra I
 
 Slides: [blank](Math/module6/slides.pdf)--><!--, [filled](Math/module6/slides_filled.pdf)-->

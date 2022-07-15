@@ -162,9 +162,9 @@ Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{
 
 \begin{frame}
 
-\begin{proposition}
+\begin{exampleblock}{Proposition}
  $x \in X$ is a cluster point of $A \subseteq X$ where $(X,d)$ is a metric space if and only if there exists a sequence of points $x_n \in A$, $n \in \N$, such that $x_n \to x$.
-\end{proposition}
+\end{exampleblock}
 \begin{proof}
 \vspace{4.5cm}
 \end{proof}
@@ -174,9 +174,9 @@ Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{
 \begin{frame}
 Combining the previous result with the limit characterization of closure gives the following: 
 
-\begin{exampleblock}{Corollary}
+\begin{alertblock}{Corollary}
 For $A \subseteq X$, $(X,d)$ a metric space, we have $$\overline{A} = A \cup \{x \in X : x \text{ is a cluster point of }A \}.$$
-\end{exampleblock}
+\end{alertblock}
 
 \end{frame}
 
@@ -261,10 +261,9 @@ A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ i
 
 \begin{frame}
 \begin{block}{Proof continued}
-\vspace{4cm}
+\vspace{5cm}
 \end{block}
 
-\vspace{2cm}
 \end{frame}
 
 
@@ -325,15 +324,14 @@ Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y
 
 
 \begin{frame}
-\begin{corollary}
-\label{cor:open_closed}
+\begin{exampleblock}{Corollary}
 Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. The following are equivalent:
 \begin{enumerate}
     \item[(i)] $f$ is continuous
     \item[(ii)] if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
     \item[(iii)] if $F \subseteq Y$ is closed, then $f^\inv(F)$ is closed
 \end{enumerate}
-\end{corollary}
+\end{exampleblock}
 
 \end{frame}
 
@@ -376,21 +374,78 @@ Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$.
 
 
 \begin{frame}
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+\begin{itemize}
+    \item $f$ is \emph{uniformly continuous} if for all $\epsilon>0$, there exists $\delta > 0$ such that for every $x_1,x_2\in X$ with $d_X(x_1,x_2) < \delta$, we have  $d_Y(f(x_1),f(x_2))) < \epsilon$ 
+    \item $f$ is \emph{Lipschitz continuous} if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $d_Y(f(x_1),f(x_2))) \leq K d_X(x_1,x_2)$
+\end{itemize}
+\end{definition}
 
+\begin{exampleblock}{Proposition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+$$f \text{ is Lipschitz continuous } \Rightarrow \text{ f is uniformly continuous } \Rightarrow \text{ f is continuous}$$
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{Contraction Mapping Theorem}
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. We say that $x^* \in X$ is a \emph{fixed point} of $f$ if $f(x^*) = x^*$.
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. $f$ is a \emph{contraction} if there exists a constant $k \in [0,1)$ such that for all $x,y \in X$, $d(f(x),f(y))) \leq k d(x,y)$.
+\end{definition}
+
+Observe that a function is a contraction if and only if it is Lipschitz continuous with constant $K < 1$.
+
+\begin{theorem}[Contraction Mapping Theorem]
+Suppose that $f : X \to X$ is a contraction and the metric space $X$ is complete. Then $f$ has a unique fixed point $x^*$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+
+\begin{example}
+Let $f:\left[-\frac{1}{3},\frac{1}{3}\right] \to \left[-\frac{1}{3},\frac{1}{3}\right]$ be defined by the mapping $x \mapsto x^2$. Assume we use the standard Euclidean metric, $d(x,y) = |x-y|$. $f$ has a unique fixed point because
+
+\vspace{3cm}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}{Equivalent metrics}
+\begin{definition}[Equivalent metrics]
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{equivalent} if the identity maps from $(X,d_1)$ to $(X,d_2)$ and from $(X,d_2)$ to $(X,d_1)$ are continuous. 
+\end{definition}
+
+
+\begin{exampleblock}{Proposition}
+Two metrics $d_1$, $d_2$ on a set $X$ are equivalent if and only if they have the same open sets or the same closed sets.
+\end{exampleblock}
 \end{frame}
 
 
 \begin{frame}
 
-\end{frame}
+\begin{definition}
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{strongly equivalent} if for every $x,y\in X$, there exists constants $\alpha>0$ and $\beta>0$ such
+\begin{equation*}
+    \alpha d_1(x,y) \leq d_2(x,y) \leq \beta d_1(x,y).
+\end{equation*}
+\end{definition}
 
+If two metrics are strongly equivalent then they are equivalent. The proof of this is one of the exercises. 
+\end{frame}
 
 \begin{frame}
-
+\begin{example}
+We show that the Euclidean distance (induced by 2-norm) and the metric induced by the $\infty$-norm are equivalent on $\R^n$. 
+\vspace{5.5cm}
+\end{example}
 \end{frame}
-
-
-
 
 
 \begin{frame}{References}
