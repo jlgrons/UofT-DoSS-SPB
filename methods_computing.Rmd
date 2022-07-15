@@ -66,14 +66,13 @@ ggplot2
 
 <br>
 
+### Module 4: Statistical inference (I)
 
-<!-- ### Statistical inference -->
+Probability distributions
 
-<!-- #### Module 4: Probability distribtions -->
+- Slides: [pdf](Computing/Slides/mod4.pdf) 
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod4.pdf"target="_blank">Slides</a> -->
-
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex4.pdf" target="_blank">Exercise 4</a> -->
+- Exercises: [pdf](Computing/Exercises/ex4.pdf), [Rmd](Computing/Exercises/ex4.Rmd)
 
 
 <!-- #### Module 5: Estimation -->
