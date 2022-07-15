@@ -16,6 +16,8 @@
 \usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{enumerate items}[circle]
+\usepackage{tikz}
+\usepackage{accents}
 
 \newcommand*{\logofont}{\fontfamily{phv}\selectfont}
 \definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
@@ -35,19 +37,23 @@
 \newcommand{\bw}{{\mathbf{w}}}
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\inv}{{-1}}
+
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
 \newcommand{\R}{{\mathbb{R}}}
 \newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
 \newcommand{\Z}{{\mathbb{Z}}}
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand{\Q}{{\mathbb{Q}}}
-\newcommand{\F}{{\mathbb{F}}}
-\newcommand{\cL}{{\mathcal{L}}}
 \newcommand{\cP}{\mathcal{P}}
-\newcommand{\cT}{\mathcal{T}}
-\newcommand{\inv}{{-1}}
+
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
+\newtheorem{proposition}[theorem]{Proposition}
 
 
 \beamertemplatenavigationsymbolsempty
@@ -60,7 +66,7 @@
 \title[]{Module 4: Metric Spaces and Sequences II\\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 15, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -104,8 +110,283 @@
 \begin{frame}{Outline}
     \begin{itemize}
       \setlength\itemsep{1em}
-    	\item 
+    	\item Sequences
+	\begin{itemize}
+	\item Cauchy sequences
+	\item subsequences
+	\end{itemize}
     \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Sequences}
+\begin{definition}[Sequence]
+Let $(X,d)$ be a metric space. A \emph{sequence} is an ordered list of points $x_n$, $n\in\N$, in $X$, denoted $(x_n)_{n \in \N}$. We say that a sequence $(x_n)_{n \in \N}$ \emph{converges} to a point $x \in X$ if 
+\vspace{1cm}
+%\begin{equation*}
+%    \forall \epsilon > 0 \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x) < \epsilon \text{ for all } n \geq n_\epsilon .
+%\end{equation*}
+
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(X, d)$ be a metric space, and let $A \subseteq X$. Then $\overline A$ is equal to the set of points in $X$ which are limits of a sequence in $A$.
+\end{exampleblock}
+
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{3cm}
+\end{block}
+\vspace{0.75cm}
+\begin{alertblock}{Corollary}
+\label{cor:closed_converge}
+A set $F \subseteq X$, where $(X, d)$ is a metric space, is closed if and only if every sequence in $F$ which converges in $X$ converges to a point in $F$.
+\end{alertblock}
+\end{frame}
+
+
+\begin{frame}{Cluster points of a set}
+\begin{definition}
+Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point} of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains uncountably many points in $A$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+
+\begin{proposition}
+ $x \in X$ is a cluster point of $A \subseteq X$ where $(X,d)$ is a metric space if and only if there exists a sequence of points $x_n \in A$, $n \in \N$, such that $x_n \to x$.
+\end{proposition}
+\begin{proof}
+\vspace{4.5cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+Combining the previous result with the limit characterization of closure gives the following: 
+
+\begin{exampleblock}{Corollary}
+For $A \subseteq X$, $(X,d)$ a metric space, we have $$\overline{A} = A \cup \{x \in X : x \text{ is a cluster point of }A \}.$$
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}{Cauchy sequences}
+\begin{definition}[Cauchy sequence]
+Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is called a \emph{Cauchy sequence} if
+\vspace{1cm}
+%\begin{equation*}
+%    \forall \epsilon \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon .
+%\end{equation*}
+
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+\label{prop:converge_means_Cauchy}
+Let $(X, d)$ be a metric space, and let $(x_n)_{n\in\N}$ be a convergent sequence in $X$. Then  $(x_n)_{n\in\N}$ is Cauchy.
+\end{exampleblock}
+
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+A metric space where every Cauchy sequence converges (to a point in the space) is called \emph{complete}.
+\end{definition}
+\vspace{1cm}
+
+\begin{exampleblock}{Proposition}
+Let $(X, d)$ be a metric space, and let $Y\subseteq X$.
+\begin{enumerate}
+    \item[(i)] If $X$ is complete and if $Y$ is closed in $X$, then $Y$ is complete.
+    \item[(ii)] If $Y$ is complete, then it is closed in $X$.
+\end{enumerate}
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+\vspace{5cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}{Subsequences}
+\begin{definition}
+Let $(x_n)_{n \in \N}$ be a sequence in a metric space $(X,d)$. Let $(n_k)_{k \in \N}$ be a sequence of natural numbers with $n_1 < n_2 < \cdots$. The sequence $(x_{n_k})_{k \in \N}$ is called a \emph{subsequence} of $(x_n)_{n \in \N}$. If $(x_{n_k})_{k \in \N}$ converges to $x \in X$, we call $x$ a \emph{subsequential limit}.
+\end{definition}
+
+\vspace{0.5cm}
+
+\begin{example}
+$\left((-1)^n\right)_{n \in \N}$ 
+
+\vspace{2cm}
+
+%The sequence $\left((-1)^n\right)_{n \in \N}$ diverges but the subsequences $\left((-1)^{2n}\right)_{n \in \N}$ and $\left((-1)^{2n-1}\right)_{n\in \N}$ converge to subsequential limits 1 and $-1$, respectively.
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ if and only if every subsequence of $(x_n)_{n \in \N}$  also converges to $x$.
+\end{exampleblock}
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{4cm}
+\end{block}
+
+\vspace{2cm}
+\end{frame}
+
+
+\begin{frame}{Continuity}
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. $f$ is \emph{continuous} at $x_0$ if for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+
+\vspace{1em}
+
+We say that $f$ is continuous if it is continuous at every point in $X$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+\label{thm:cont_equiv}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous at $x_0$
+    \item[(ii)] for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+    \item[(iii)] for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
+\end{enumerate}
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+\small
+(i) $f$ is continuous at $x_0$ \\
+(ii) for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+
+\normalsize
+\begin{proof}
+(i) $\Rightarrow$ (ii) 
+\vspace{4cm}
+
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+\small
+(i) $f$ is continuous at $x_0$ \\
+(ii) for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$ \\
+(iii) for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
+\normalsize
+\begin{block}{Proof continued}
+(ii) $\Rightarrow$ (iii)
+
+\vspace{0.5cm}
+(iii) $\Rightarrow$ (i)
+
+\vspace{3cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{corollary}
+\label{cor:open_closed}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous
+    \item[(ii)] if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
+    \item[(iii)] if $F \subseteq Y$ is closed, then $f^\inv(F)$ is closed
+\end{enumerate}
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+We need the following results about sets and functions: \\
+Let $X$ and $Y$ be sets and $f:X \to Y$. Let $A,B \subseteq Y$. Then 
+\begin{enumerate}
+\item $f^\inv(A) \subseteq f^\inv(B)$
+\item $f^\inv(Y \setminus A) = X \setminus f^\inv(A)$
+\end{enumerate}
+
+\begin{proof}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$.
+
+(i) $\Rightarrow$ (ii): 
+
+\vspace{3cm}
+
+
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Proof continued}
+(ii) $\Rightarrow$ (i)
+
+\vspace{3cm}
+(ii) $\Rightarrow$ (iii)
+
+\vspace{1cm}
+(iii) $\Rightarrow$ (ii) 
+\vspace{0.5cm}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+
+\end{frame}
+
+
+\begin{frame}
+
+\end{frame}
+
+
+\begin{frame}
+
 \end{frame}
 
 
@@ -113,6 +394,10 @@
 
 
 \begin{frame}{References}
+ 
+Charles C. Pugh (2015). \textit{Real Mathematical Analysis}. Undergraduate Texts in Mathematics. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}
+
+\vspace{1em}
 
 Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 

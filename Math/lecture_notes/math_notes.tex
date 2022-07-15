@@ -880,7 +880,186 @@ Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalen
 \subsection{References}
 The content in this section mostly follows \cite{tastetopology}, but is supplemented by \cite{marcoux2019} (ordered sets) and \cite{piotr} (introductory set theory).
 
+\section{Metric spaces and sequences}
 
+\subsection{Metric spaces}
+\begin{definition}
+A \emph{metric} on a set $X$ is a function $d:X \times X \to \R$ that satisfies:
+\begin{enumerate}
+    \item[(a)] Positive definiteness: $d(x,y) \geq 0$ for $x,y \in X$ and $d(x,y) = 0 \Leftrightarrow x = y$
+    \item[(b)] Symmetry: for $x,y \in X$, $d(x,y)= d(y,x)$
+    \item[(c)] Triangle inequality: for $x,y,z \in X, d(x,z) \leq d(x,y) + d(y,z)$
+\end{enumerate}
+A set together with a metric is called a metric space.
+\end{definition}
+
+\begin{example}
+$\R^n$ with the Euclidean distance 
+\begin{equation*}
+    d(x,y) = \sqrt{\sum_{j=1}^n (x_j - y_j)^2} \quad \text{for } x,y \in \R^n
+\end{equation*}
+is a metric space.
+\end{example}
+
+Many metric spaces we know are in fact normed spaces, which have more structure than metric spaces. We will briefly discuss normed spaces. This assumes some knowledge of vector spaces, which we will discuss in a further section. In particular, we denote a field by $\F$. For now, we can think of this as $\R$ or $\C$.
+
+\begin{definition}
+A \emph{norm} on an $\F$-vector space $E$ is a function $\|\cdot\|:E \to \R$ that satisfies:
+\begin{enumerate}
+    \item[(a)] Positive definiteness: $\|x\| \geq 0$ for $x \in E$ and $||x|| = 0 \Leftrightarrow x = 0$
+    \item[(b)] Homogeneity: for $x \in E$ and $\alpha \in \F$, $||\alpha x || = |\alpha| ||x||$
+    \item[(c)] Triangle inequality: for $x,y \in E, ||x+y|| \leq ||x|| + ||y||$
+\end{enumerate}
+A vector space with a norm is called a normed space. A normed space is a metric space using the metric $d(x,y) = \| x-y \|$.
+\end{definition}
+
+\begin{example}
+\label{p-norm} 
+The $p$-norm is defined for $p \geq 1$ for a vector $x = (x_1, \ldots, x_n) \in \R^n$ as
+\begin{equation*}
+    ||x||_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}.
+\end{equation*}
+The infinity norm is the limit of the $p$-norm as $p \to \infty$, defined as
+\begin{equation*}
+    ||x||_\infty = \max_{i=1,\ldots, n} |x_i|.
+\end{equation*}
+
+If we look at the space of continuous functions $C([0,1];\R)$, the $p$-norm is 
+\begin{equation*}
+    ||f||_p = \left( \int_0^1 |f(x)|^p dx \right)^{1/p}
+\end{equation*}
+and the $\infty-$norm (or sup norm) is 
+\begin{equation*}
+    ||f||_\infty = \max_{x \in [0,1]} |f(x)|.
+\end{equation*}
+\end{example}
+
+\begin{definition}
+A subset $A$ of a metric space $(X,d)$ is \emph{bounded} if there exists $M>0$ such that $d(x,y) < M$ for all $x,y \in A$. 
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. We define the \emph{open ball} centred at a point $x_0 \in X$ of radius $r > 0$ as
+\begin{equation*}
+    B_r(x_0) := \{x \in X : d(x,x_0) < r_0 \}.
+\end{equation*}
+\end{definition}
+
+\begin{example}
+In $\R$ with the usual norm (absolute value), open balls are symmetric open intervals, i.e. $B_r(x_0) = (x_0-r,x_0+r)$.
+\end{example}
+
+\begin{example}
+Consider $\R^2$ with the taxicab or Manhattan metric (1-norm) $d(x,y) = \sum_{i=1}^2 |x_i - y_i|$, the usual Euclidean distance (2-norm) $d(x,y) = \sqrt{\sum_{j=1}^2 (x_j - y_j)^2}$, and the $\infty$-norm $d(x,y) = \max_{j=1,2} |x_j - y_j|$. The open ball $B_r(0)$ in these three metric spaces is shown in \cref{fig:open_ball}.
+\begin{figure}[h]
+    \centering
+    \subfloat[1-norm (taxicab metric)]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted, thick, color=red] (3,0)--(0,3);
+    \draw[densely dotted, thick, color=red] (-3,0)--(0,-3);
+    \draw[densely dotted, thick, color=red] (-3,0)--(0,3);
+    \draw[densely dotted, thick, color=red] (3,0)--(0,-3);
+    \end{tikzpicture}}
+    \subfloat[2-norm (Euclidean metric)]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted,thick, color = red] (0,0) circle [radius=3];
+    \end{tikzpicture}}
+    \subfloat[$\infty$-norm]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted, thick, color=red] (3,-3) --(3,3);
+    \draw[densely dotted, thick, color=red] (3,3) --(-3,3);
+    \draw[densely dotted, thick, color=red] (-3,-3) --(-3,3);
+    \draw[densely dotted, thick, color=red] (3,-3) --(-3,-3);
+    \end{tikzpicture}}
+    \caption{$B_r(0)$ for different metrics}
+    \label{fig:open_ball}
+\end{figure}
+
+\end{example}
+
+\begin{definition}[Open and closed sets]
+Let $(X,d)$ be a metric space. 
+\begin{itemize}
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
+    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
+\end{itemize}
+\end{definition}
+
+We note that $\emptyset$ and $X$ are both open and closed! 
+
+\vspace{1em}
+
+\begin{proposition}
+\label{prop:open_sets}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item[(i)] Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+     \item[(ii)] If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+ \end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Since $A_1$ is open, for each $x \in A_1$, there exists an $\epsilon_1 > 0$ such that $B_{\epsilon_1}(x) \subseteq  A_1$. Since $A_2$ is open, for each $x \in A_2$, there exists an $\epsilon_2 > 0$ such that $B_{\epsilon_2}(x) \subseteq A_2$. Let $x \in A_1 \cap A_2$. Choose $\epsilon = \min\{\epsilon_1,\epsilon_2\}$. Then  $B_{\epsilon}(x) \subseteq A_1 \cap A_2$ as required. 
+
+(ii) Let $x\in \cup_{i\in I} A_i$. Then there exists $i \in I$ such that $x \in A_i$, and since $A_i$ is open there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq  A_i$. Since $A_i \subseteq \cup_{i\in I} A_i$, we are done.
+\end{proof}
+
+Using DeMorgan, we immediately have the following corollary:
+\begin{corollary}
+\label{cor:closed_sets}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item[(i)] Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
+     \item[(ii)]  If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
+ \end{enumerate}
+\end{corollary}
+
+\begin{definition}[Interior and closure]
+Let $A\subseteq X$ where $(X,d)$ is a metric space. 
+\begin{itemize}
+    \item The \emph{closure} of $A$ is  $\overline A :=\{x \in X: \forall \epsilon > 0 \; B_\epsilon(x) \cap A \neq \emptyset \}$
+    \item The \emph{interior} of $A$ is  $\interior A :=\{x \in X: \exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A \}$
+    \item The \emph{boundary} of $A$ is $\partial A := \{ x \in X: \forall \epsilon > 0, \, B_\epsilon(x) \cap A \neq \emptyset \text{ and }  B_\epsilon(x) \cap A^c \neq \emptyset\}$
+\end{itemize}
+\end{definition}
+The closure of a set is the smallest closed set that contains it while the interior of a set is the largest open set contained by it.
+
+\begin{example}
+Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then $\overline X = [a,b]$, $\interior X = (a,b)$ and $\partial X = \{a,b\}$.
+\end{example}
+
+\begin{proposition}
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
+\end{proposition}
+\begin{proof}
+First, we show $\interior A\subseteq A \setminus \partial A$. Let $x \in \interior A$. Then by definition $\exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A$. Clearly $x \in A$ and also $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c = \emptyset$. Thus by definition, $x \notin \partial A$. Thus $x \in A \setminus \partial A$.
+
+Next, we show $A \setminus \partial A \subseteq \interior A$. Let $x \in A \setminus \partial A$. Then $x \in A$ and $x \notin \partial A$. The latter means that $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A = \emptyset$ or  $B_\epsilon(x) \cap A^c = \emptyset$. Since $x \in A$, $x \in B_\epsilon(x) \cap A$ for any $\epsilon > 0$, so the former cannot be true. Therefore $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c = \emptyset$, i.e. $B_\epsilon(x) \subseteq A$. Thus $x \in \interior A$.
+\end{proof}
+
+
+\subsection{References}
+The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points comes from there. \cite{piotr} is also used for some additional topics.
 
 \newpage
 
