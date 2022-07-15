@@ -39,8 +39,9 @@
 
 
 % \usepackage[natbib=true, style=vancouver]{biblatex}
- \usepackage[backend= biber, style=alphabetic]{biblatex}
-\bibliography{references.bib}
+ %\usepackage[backend= biber, style=alphabetic]{biblatex}
+ \usepackage{natbib}
+%\bibliography{references.bib}
 
 \title{Mathematics Bootcamp Lecture Notes \\
 \vspace{0.5em}
@@ -1284,6 +1285,7 @@ The content in this section comes mostly from \cite{tastetopology}. \cite{realan
 
 \newpage
 
-\printbibliography
+\bibliographystyle{alphaurl} 
+\bibliography{references}
 
 \end{document}
