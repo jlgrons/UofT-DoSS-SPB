@@ -41,6 +41,7 @@
 % \usepackage[natbib=true, style=vancouver]{biblatex}
  %\usepackage[backend= biber, style=alphabetic]{biblatex}
  \usepackage{natbib}
+ \setcitestyle{square}
 %\bibliography{references.bib}
 
 \title{Mathematics Bootcamp Lecture Notes \\
@@ -1279,9 +1280,173 @@ To see that it is a contraction, let $x,y \in \left[-\frac{1}{3},\frac{1}{3}\rig
 \end{equation*}
 \end{example}
 
+\subsection{Equivalence of metrics}
+
+\begin{definition}[Equivalent metrics]
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{equivalent} if the identity maps from $(X,d_1)$ to $(X,d_2)$ and from $(X,d_2)$ to $(X,d_1)$ are continuous. 
+\end{definition}
+
+The following result follows from the definition and \cref{cor:open_closed}:
+
+\begin{proposition}
+Two metrics $d_1$, $d_2$ on a set $X$ are equivalent if and only if they have the same open sets or the same closed sets.
+\end{proposition}
+
+So, in a certain sense, equivalent metrics induce the same structure.
+
+\begin{definition}
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{strongly equivalent} if for every $x,y\in X$, there exists constants $\alpha>0$ and $\beta>0$ such
+\begin{equation*}
+    \alpha d_1(x,y) \leq d_2(x,y) \leq \beta d_1(x,y).
+\end{equation*}
+\end{definition}
+
+If two metrics are strongly equivalent then they are equivalent. The proof of this is part of the exercises. 
+
+\begin{example}
+We show that the Euclidean distance (induced by 2-norm) and the metric induced by the $\infty$-norm are equivalent on $\R^n$. 
+
+\vspace{1em}
+Let $\|x-y\|_2=\sqrt{\sum_{j=1}^n (x_j - y_j)^2}$ be the Euclidean metric and $\|x-y\|_\infty= \max_{j=1,\ldots,n} |x_j - y_j|$ be the metric induced by the $\infty$-norm. We have
+\begin{equation*}
+   \|x-y\|_2 = \sqrt{\sum_{j=1}^n (x_j - y_j)^2} \leq  \sqrt{ n \max_{j=1,\ldots,n} (x_j - y_j)^2}  = \sqrt{n} \max_{j=1,\ldots,n} |x_j - y_j| = \sqrt{n} \, \|x-y\|_\infty
+\end{equation*}
+and
+\begin{equation*}
+    \|x-y\|_\infty = \max_{j=1,\ldots,n} |x_j - y_j|  = \sqrt{\max_{j=1,\ldots,n} (x_j - y_j)^2} \leq \sqrt{\sum_{j=1}^n(x_j - y_j)^2}  = \|x-y\|_2  \, .
+\end{equation*}
+Thus the two metrics are strongly equivalent. 
+\end{example}
+
+\subsection{Extra properties of $\R$}
+
+Using the definition of continuity in terms of $\epsilon$-balls and equipping $\R$ with the metric induced by the absolute value, i.e. $d(x,y) = \vert x- y\vert$ for $x,y\in \R$, we obtain the usual $\epsilon-\delta$ definition of continuity. Hence, a function $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$. Since $\R$ is also totally ordered we can also talk about left and right continuity, by separating $B_\epsilon(x) = (x-\epsilon, x+ \epsilon) = (x-\epsilon, x] \cup [x, x+\epsilon)$.
+
+\begin{definition}
+A function $f\colon \R \to \R$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$. We call $f$ left continuous if it is left continuous at all $x\in \R$. Similarly, $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta $.
+\end{definition}
+
+Similar to the ordinary sense of continuity, one can describe left and right continuity in terms of sequences. 
+
+\begin{proposition}
+ A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
+\end{proposition}
+
+This proof essentially follows from the definitions (try it as an exercise if you do not see it).
+
+Using the least upper bound property of sets, we can introduce the concepts of limit inferior and limit superior as the limit of infima and suprema when we view the sequence as a set. First, we recall what it means for a sequence to be bounded.
+
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bounded} if there exists an $M > 0$ such that $\vert x_n\vert<M$ for all $n\in \N$.
+\end{definition}
+
+This definition is equivalent to the set of sequence elements being bounded in the metric space setting. Similarly, one can talk about a sequence being bounded above or below in the order theoretic setting (see \cref{sec:ordered_sets}), by looking at the set of sequence elements. The next theorem is useful.
+
+\begin{theorem}[Monotone convergence theorem]
+\label{thm:mon_conv}
+Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$ and that it is bounded. Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\end{theorem}
+
+The proof is omitted. A similar result can be obtained for decreasing sequences which are bounded below. In particular if $(x_n)_{n\in \N}$ is a bounded decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n$. Moreover, observe that if the sequence is increasing, but not bounded above, then $\lim_{n\to \infty} x_n = \infty$. We would like to use the monotone convergence theorem for arbitrary sequences. We do so by building an increasing sequence (or decreasing) sequence from an arbitrary one. First, we recall some facts about infima and suprema and introduce the convention that $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
+
+\begin{lemma}\label{lem:inf_sup_inequality}
+If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
+\end{lemma}
+The proof of this follows from the definition of greatest lower and least upper bound. 
+
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We define the \emph{limit superior} of $(x_n)_{n\in \N}$ as 
+$$\limsup_{n\to \infty} x_n: = \lim_{n\to \infty} \sup_{k\geq n} x_k.$$ 
+Similarly we define  the \emph{limit inferior} of $(x_n)_{n\in \N}$ as 
+$$\liminf_{n\to \infty} x_n: = \lim_{n\to \infty} \inf_{k\geq n} x_k.$$
+\end{definition}
+
+\begin{proposition}\label{prop:limsup_monotonicity}
+Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
+\begin{itemize} 
+\item The sequence of suprema, $s_n = \sup_{k\geq n} x_k$, is decreasing and the sequence of infima, $i_n = \inf_{k\geq n} x_k$, is increasing.
+\item The limit superior and the limit inferior of a bounded sequence always exist and are finite.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+The first part is true by Lemma 3.45. The second the follows by the Monotone Convergence Theorem.
+\end{proof}
+
+Conceptually, we can think of the limit superior as the greatest cluster point of a sequence, and of the limit inferior as the least.
+If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. This is inline with our convention that $\sup A = \infty$, if $A$ is not bounded above and $\inf A = -\infty$, if $A$ not bounded below. 
+
+\begin{theorem}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
+\end{theorem}
+
+\begin{proof}
+For convenience, denote $i_n := \inf_{k\geq n} x_k$ and $s_n :=  \sup_{k\geq n} x_k$ for $n\in \N$.
+
+
+($\Rightarrow$) Suppose $\lim_{n\to \infty} x_n = x\in \R$ and let $\epsilon>0$. Since the sequence converges, there exists an $N\in \N$ such that $\vert x-x_n\vert <\epsilon$, i.e. $x-\epsilon<x_n<x+\epsilon$, for all $n\geq N$. 
+
+In particular, $x-\epsilon<x_n$ for all $n\geq N$, so $x-\epsilon$ is a lower bound for the set $\{x_n \colon n\geq N\}$. Therefore $x-\epsilon\leq i_N$. 
+
+Similarly, since $x_n<x - \epsilon$ for all $n\geq N$, $x+\epsilon$ is an upper bound for the set $\{x_n \colon n\geq N\}$. Therefore $s_N \leq x + \epsilon$. 
+
+By \cref{prop:limsup_monotonicity} the sequence of infima is increasing and by the Monotone Convergence Theorem, its limit is given by the supremum of the sequence. Hence, we obtain 
+$$x-\epsilon\leq i_N \leq \lim_{n \to \infty} i_n =  \liminf_{n\to \infty} x_n.$$ 
+
+Similarly, since the sequence of suprema is decreasing and using the Monotone Convergence theorem again, we obtain 
+$$\limsup_{n\to \infty} x_n\leq s_N<x+\epsilon.$$
+Now observe that $\liminf_{n\to \infty} x_n\leq \limsup_{n\to \infty} x_n $, since $i_n\leq s_n$ for all $n\in \N$ by \cref{lem:inf_sup_inequality} (exercise: $x_n \leq y_n$ for all $n \in \N$ implies $\lim_{n\to \infty} x_n \leq \lim_{n\to \infty} y_n$). Thus we have
+\begin{align*}
+    x-\epsilon \leq \liminf_{n\to \infty}x_n \leq \limsup_{n\to \infty} x_n \leq x+\epsilon.
+\end{align*}
+Since this holds for any $\epsilon$, the desired result follows.
+
+($\Leftarrow$) Now suppose $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$. We need to show that $\lim_{n\to\infty} x_n = x$. 
+
+Let $\epsilon>0$. Then since $\limsup_{n\to \infty} x_n = \lim_{n\to \infty} s_n= x$, there exists an $N_1\in \N$ such that $\vert s_n - x\vert <\epsilon$ for all $n\geq N_1$. In particular, 
+$$x_n<s_{N_1} < x+\epsilon \qquad \text{ for all } n\geq N_1.$$ 
+
+Similarly, there exists $N_2\in \N$ such that $\vert i_n - x\vert <\epsilon$ for all $n\geq N_2$ giving 
+$$x-\epsilon< i_{N_2} x_k< x_n  \qquad \text{ for all } n\geq N_2.$$ Hence, by setting $N= \max\{N_1,N_2\}$ we see $x-\epsilon < x_n < x+ \epsilon$ or equivalently $\vert x_n - x\vert < \epsilon$ for all $n\geq N$, which proves the result. 
+\end{proof}
+
+Note that we only talked about limit superior and limit inferior for real sequences. However, we can extend this easily to a sequence of functions $f_n \colon X \to \R$ by setting $f = \limsup_{n\to \infty } f_n$ to be the function defined pointwise by $f(x) = \limsup_{n\to \infty } (f_n (x)) $ and similar for the limit inferior. There also exists a set theoretic version in terms of unions and intersections which you will encounter in probability.
+
+\subsection{Exercises}
+\label{exercises:metric_spaces}
+\begin{enumerate}
+    \item Show that the infinity norm $||x||_\infty$, $x \in \R^n$, defined in \cref{p-norm} is a norm.
+    \item Let $(X,d)$ be any metric space, and define $\tilde d: X \times X \to \R$ by 
+    \begin{equation*}
+        \tilde d(x,y) = \frac{d(x,y)}{1+d(x,y)}, \quad x,y \in X .
+    \end{equation*}
+    Show that $\tilde d$ is a metric on $X$.
+    \item Let $X$ be a set and define $d\colon X \times X \to \R$ by $d(x,x) = 0$ and $d(x,y)=1$ for $x\neq y \in X$. Prove that $d$ is a metric on $X$. What do open balls look like for different radii $r>0$? What does an arbitrary open set look like?
+    \item Following up on \cref{prop:open_sets} and \cref{cor:closed_sets}: Show that the infinite intersection of open sets may not be open and that the infinite union of closed sets may not be closed.
+    \item Find the closure, interior, and boundary of the following sets using Euclidean distance:
+    \begin{enumerate}
+        \item[(i)] $\{(x,y)\in \R^2 : y < x^2 \} \subseteq \R^2$
+        \item[(ii)]  $[0,1)\times[0,1) \subseteq \R^2$
+        \item[(iii)] $\{0 \} \cup  \{1/n \colon n \in \N\} \subseteq \R$ 
+    \end{enumerate}
+    \item Prove the following: Let $(x_n)_{n\in\N}$ be a sequence in a metric space $(X,d)$ that converges to a point $x \in X$. Then $x$ is unique.
+    \item Let $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$ be sequences in $\R$ such that $x_n \to x$ and and $y_n \to y$, with $\alpha, x,y, \in \R$. 
+    \begin{enumerate}
+        \item[(i)] Show that $\alpha \, x_n \to \alpha \, x$.
+        \item[(i)] Show that $x_n + y_n \to x + y$.
+    \end{enumerate}
+    \item Let $(x_n)$, $(y_n)$ be two convergent sequences in $\R$ such that $x_n \leq y_n$ for all $n \in \N$. Show that $\lim_{n\to \infty} x_n \leq \lim_{n\to \infty} y_n$.
+    \item Show that discrete metric spaces (i.e. those with the metric from exercise 3) are complete. 
+    \item Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. Prove that
+$$f \text{ is Lipschitz continuous } \Rightarrow f \text{ is uniformly continuous } \Rightarrow f \text{ is continuous}.$$
+Provide examples to show that the other directions do not hold.
+    \item Show that the function $f(x) = \frac{1}{2} \left(x + \frac{5}{x} \right)$ has a unique fixed point on a subset of $(0,\infty)$. What is it? (Hint: you will have to restrict the interval in such a way that $f$ is a contraction.)
+    \item Prove the following: If two metrics are strongly equivalent then they are equivalent.
+    \item Let $(x_n)$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
+\end{enumerate}
 
 \subsection{References}
-The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points and contractions comes from there. \cite{piotr} is also used for some additional topics.
+The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points and contractions comes from there. For lim sup and lim inf, see \cite{BasicAnalysis1}.
+
 
 \newpage
 
