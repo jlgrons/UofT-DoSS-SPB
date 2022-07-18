@@ -74,15 +74,21 @@ Probability distributions
 
 - Exercises: [pdf](Computing/Exercises/ex4.pdf), [Rmd](Computing/Exercises/ex4.Rmd)
 
-- Slides: [pdf](Computing/Solutions/sol4.pdf), [Rmd](Computing/Solutions/sol4.Rmd)
+- Solutions: [pdf](Computing/Solutions/sol4.pdf), [Rmd](Computing/Solutions/sol4.Rmd)
 
+<br>
 
-<!-- #### Module 5: Estimation -->
+### Module 5: Statistical inference (II)
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod5.pdf"target="_blank">Slides</a> -->
+Estimation
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex5.pdf" target="_blank">Exercise 5</a> -->
+- Slides: [pdf](Computing/Slides/mod5.pdf) 
 
+- Exercises: [pdf](Computing/Exercises/ex5.pdf)
+
+<!-- - Solutions: [pdf](Computing/Solutions/sol5.pdf) -->
+
+<br>
 
 <!-- #### Module 6: Hypothesis testing -->
 
