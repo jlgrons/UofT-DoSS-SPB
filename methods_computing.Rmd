@@ -86,7 +86,7 @@ Estimation
 
 - Exercises: [pdf](Computing/Exercises/ex5.pdf)
 
-- Solutions: [pdf](Computing/Solutions/sol5.pdf)
+- Solutions: [pdf](Computing/Solutions/sol5.pdf), [Rmd](Computing/Solutions/sol5.Rmd)
 
 <br>
 
