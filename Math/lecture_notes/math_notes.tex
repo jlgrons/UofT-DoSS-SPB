@@ -1116,7 +1116,7 @@ For $A \subseteq X$, $(X,d)$ a metric space, we have $\overline{A} = A \cup \{x 
 \begin{definition}[Cauchy sequence]
 Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is called a \emph{Cauchy sequence} if
 \begin{equation*}
-    \forall \epsilon \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon .
+    \forall \epsilon >0  \; \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon .
 \end{equation*}
 \end{definition}
 
@@ -1322,8 +1322,12 @@ Thus the two metrics are strongly equivalent.
 
 Using the definition of continuity in terms of $\epsilon$-balls and equipping $\R$ with the metric induced by the absolute value, i.e. $d(x,y) = \vert x- y\vert$ for $x,y\in \R$, we obtain the usual $\epsilon-\delta$ definition of continuity. Hence, a function $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$. Since $\R$ is also totally ordered we can also talk about left and right continuity, by separating $B_\epsilon(x) = (x-\epsilon, x+ \epsilon) = (x-\epsilon, x] \cup [x, x+\epsilon)$.
 
-\begin{definition}
-A function $f\colon \R \to \R$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$. We call $f$ left continuous if it is left continuous at all $x\in \R$. Similarly, $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta $.
+\begin{definition} Let $f\colon \R \to \R$.
+\begin{itemize}
+    \item $f$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$.
+    \item $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta$.
+\end{itemize}
+We say that $f$ is left continuous if is left continuous at all points in the domain, and similar for right continuous.
 \end{definition}
 
 Similar to the ordinary sense of continuity, one can describe left and right continuity in terms of sequences. 
@@ -1332,7 +1336,24 @@ Similar to the ordinary sense of continuity, one can describe left and right con
  A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
 \end{proposition}
 
-This proof essentially follows from the definitions (try it as an exercise if you do not see it).
+This proof essentially follows from the definitions:
+\begin{proof}
+($\Leftarrow$) Suppose $f:\R \to \R$ is both right and left continuous. Let $\epsilon > 0$ be arbitrary. Then by the definition of left continuous, there exists a $\delta_1>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta_1 <x<x_0$, and by the definition of right continuous, there exists a $\delta_2>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta_2$.
+
+Let $\delta = \min\{\delta_1,\delta_2\}$. Let $x \in \R$ such that $\vert x_0-x\vert <\delta$. Then $x_0- \delta < x < x_0 + \delta$. 
+
+Case 1: Suppose $x < x_0$. Then $x_0- \delta_1 < x <x_0$, so $\vert f(x_0)-f(x)\vert<\epsilon$, so $f$ is continuous.
+
+Case 2: Suppose $x > x_0$. Then $x_0 < x < x_0 + \delta_2$, so $\vert f(x_0)-f(x)\vert<\epsilon$, so $f$ is continuous.
+
+If $x=x_0$, the result is trivial, so we conclude that $f$ is continuous.
+
+($\Rightarrow$) Let $f:\R \to \R$ be continuous. Then for every $\epsilon >0$, $\exists \delta_0 > 0$ such that when $x$ is such that $|x - x_0| < \delta$, then $|f(x) - f(x_0)| < \epsilon$.
+
+For $\epsilon > 0$ arbitrary, take $\delta_0$ from the definition of $f$ being continuous.  Take $x \in \R$ such that $x_0 < x < x_0 + \delta_0 $. Then $x_0 - \delta_0 < x < x_0 + \delta_0 $, which implies $|x - x_0| < \delta_0 $. Thus  $|f(x) - f(x_0)| < \epsilon$, so $f$ is right-continuous.
+
+The proof for left-continuity is similar. 
+\end{proof}
 
 Using the least upper bound property of sets, we can introduce the concepts of limit inferior and limit superior as the limit of infima and suprema when we view the sequence as a set. First, we recall what it means for a sequence to be bounded.
 
@@ -1344,10 +1365,18 @@ This definition is equivalent to the set of sequence elements being bounded in t
 
 \begin{theorem}[Monotone convergence theorem]
 \label{thm:mon_conv}
-Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$ and that it is bounded. Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\textcolor{white}{skip}
+\begin{itemize}
+\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$ and that it is bounded above. Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\item[(ii)] $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded below. Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
+\end{itemize}
 \end{theorem}
 
-The proof is omitted. A similar result can be obtained for decreasing sequences which are bounded below. In particular if $(x_n)_{n\in \N}$ is a bounded decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n$. Moreover, observe that if the sequence is increasing, but not bounded above, then $\lim_{n\to \infty} x_n = \infty$. We would like to use the monotone convergence theorem for arbitrary sequences. We do so by building an increasing sequence (or decreasing) sequence from an arbitrary one. First, we recall some facts about infima and suprema and introduce the convention that $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
+The proof is omitted. We call increasing or decreasing sequences monotone, hence the theorem name.
+
+If the sequence is increasing but not bounded above, then $\lim_{n\to \infty} x_n = \infty$, and if it is decreasing but not bounded below, then $\lim_{n\to \infty} x_n = -\infty$.
+
+ We would like to use the monotone convergence theorem for arbitrary sequences. We do so by building an increasing sequence (or decreasing) sequence from an arbitrary one. First, we recall some facts about infima and suprema and introduce the convention that $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
 
 \begin{lemma}\label{lem:inf_sup_inequality}
 If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
@@ -1373,7 +1402,7 @@ The first part is true by Lemma 3.45. The second the follows by the Monotone Con
 \end{proof}
 
 Conceptually, we can think of the limit superior as the greatest cluster point of a sequence, and of the limit inferior as the least.
-If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. This is inline with our convention that $\sup A = \infty$, if $A$ is not bounded above and $\inf A = -\infty$, if $A$ not bounded below. 
+If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. This is in line with our convention that $\sup A = \infty$, if $A$ is not bounded above and $\inf A = -\infty$, if $A$ not bounded below. 
 
 \begin{theorem}
 Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
@@ -1441,13 +1470,11 @@ $$f \text{ is Lipschitz continuous } \Rightarrow f \text{ is uniformly continuou
 Provide examples to show that the other directions do not hold.
     \item Show that the function $f(x) = \frac{1}{2} \left(x + \frac{5}{x} \right)$ has a unique fixed point on a subset of $(0,\infty)$. What is it? (Hint: you will have to restrict the interval in such a way that $f$ is a contraction.)
     \item Prove the following: If two metrics are strongly equivalent then they are equivalent.
-    \item Let $(x_n)$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
+    \item Let $(x_n)_{n\in N}$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
 \end{enumerate}
 
 \subsection{References}
 The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points and contractions comes from there. For lim sup and lim inf, see \cite{BasicAnalysis1}.
-
-
 \newpage
 
 \bibliographystyle{alphaurl} 

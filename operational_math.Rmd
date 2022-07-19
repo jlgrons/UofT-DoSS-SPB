@@ -71,7 +71,7 @@ Topics:
 
 - Finish metric spaces: equivalent metrics, left- and right- continuity, lim sup and lim inf
 
-- Start topology: basic definitions, dense subsets 
+- Start topology: basic definitions
 
 <!--Slides: [fillable](Math/module5/slides.pdf)--><!--, [filled](Math/module5/slides_filled.pdf)-->
 <!--
