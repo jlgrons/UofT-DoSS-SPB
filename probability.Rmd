@@ -37,7 +37,7 @@ Material will be added here as the course progresses.
 
 ### Module 1: Basics of Probability
 
-- Slides: [Module 1](Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf); [Module 1 Annotated](Probability/Slides/module_1_annotated.pdf) 
+- Slides: [Module 1](Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf); [Module 1 Annotated](Probability/Slides/Module_1_annotated.pdf) 
 
 - Problem Set Solutions: [Module 1 Solution](Probability/Solutions/Module_1_Solutions.pdf) 
 
@@ -48,7 +48,7 @@ Material will be added here as the course progresses.
 
 ### Module 2: Random Variables
 
-- Slides: [Module 2](Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module 2 Annotated](Probability/Slides/module_2_annotated.pdf) 
+- Slides: [Module 2](Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module 2 Annotated](Probability/Slides/Module_2_annotated.pdf) 
 
 - Problem Set Solutions: [Module 2 Solution](Probability/Solutions/Module_2_Solutions.pdf) 
 
@@ -75,16 +75,45 @@ Material will be added here as the course progresses.
 
 <!-- ### Module 5: Expectation -->
 
+<br>
+
+### Module 5: Expectation
+
+- Slides: [Module 5](Probability/Slides/Summer_Bootcamp_Module_5_with_effects.pdf)
+
+- Problem Set Solutions: To appear 
+
 <!-- ### Module 6: Inequalities -->
+
+<br>
+
+### Module 6: Inequalities
 
 <!-- ### Module 7: Stochastic Convergence -->
 
+
+<br>
+
+### Module 7: Stochastic Convergence
+
 <!-- ### Module 8: Limit Theorems -->
+
+<br>
+
+### Module 8: Limit Theorems
 
 <!-- ### Module 9: Markov Chain -->
 
+<br>
+
+### Module 9: Markov Chain
+
+
 <!-- ### Module 10: Stochastic Processes -->
 
+<br>
+
+### Module 10: Stochastic Processes
 
 
 
