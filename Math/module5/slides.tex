@@ -73,7 +73,7 @@
 \title[]{Module 5: Topology \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 19, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -144,7 +144,7 @@ Discussed continuous functions:
  \vspace{0.5em}
 	\begin{itemize}
 	\setlength\itemsep{0.7em}
-	\item Showed that these three definitions of continuous are equivalent metric spaces: \\
+	\item Showed that these three definitions of continuous are equivalent in metric spaces: \\
 	\vspace{0.5em}
 	
 	$f:X \to Y$ is \emph{continuous} where $(X,d_X)$ and $(Y,d_Y)$ are metric spaces $\Leftrightarrow$
@@ -211,7 +211,7 @@ Can you think of an example that we've seen of a metric that isn't equivalent to
 
 
 \begin{frame}{Right and left continuous}
-Recall: $f\colon \R \to \R$ is continuous if at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
+Recall: $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
 
 \vspace{1em}
 
@@ -220,7 +220,7 @@ Recall: $f\colon \R \to \R$ is continuous if at $x_0\in \R$ if for all $\epsilon
     \item $f$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$.
     \item $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta$.
 \end{itemize}
-We say that $f$ is left continuous if is left continuous at all points in the domain, and similar for right continuous.
+We say that $f$ is left continuous if it is left continuous at all points in the domain, and similar for right continuous.
 \end{definition}
 
 
@@ -255,8 +255,8 @@ Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bou
 
 \begin{theorem}[Monotone convergence theorem]
 \begin{itemize}
-\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$ and that it is bounded above. Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
-\item[(ii)] $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded below. Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
+\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$, and that it is bounded (above). Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\item[(ii)] Suppose $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded (below). Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
 \end{itemize}
 \end{theorem}
 
@@ -293,7 +293,7 @@ Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
 \end{itemize}
 \end{exampleblock}
 \begin{proof}
-The first part is true by Lemma 3.45. The second the follows by the Monotone Convergence Theorem.
+The first part is true by the previous Lemma. The second follows by the Monotone Convergence Theorem.
 \end{proof}
 
 \end{frame}
@@ -315,6 +315,7 @@ Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\i
 \end{frame}
 
 \begin{frame}
+\vspace{2em}
 We can extend this easily to a sequence of functions $f_n \colon X \to \R$ as follows:
 \vspace{0.5em}
 
@@ -332,7 +333,7 @@ There also exists a set theoretic version in terms of unions and intersections w
 \begin{frame}
 \begin{itemize}
 \item Let $X$ be a set. If $X$ is not a metric space, can we still have open and closed sets?
-\item One can think of a topology on $X$ as a specification what subsets of $X$ are open
+\item One can think of a topology on $X$ as a specification of what subsets of $X$ are open
 \end{itemize}
 
 \vspace{0.5em}
@@ -395,22 +396,26 @@ Let $(X,\cT)$ be a topological space and let $A\subseteq X$ be any subset.
 \end{frame}
 
 \begin{frame}
+\small
 \begin{itemize}
     \item The \emph{interior} of $A$ is $\interior A := \{a \in A \colon \exists U \in  \cT \text{ s.t. } U\subseteq A \text{ and } a\in U\} $.
     \item The \emph{closure} of $A$ is $\overline{A} := \{x \in X \colon \forall U \in \cT \text{ with } x \in U, U\cap A \neq \emptyset\}$.
     \item The \emph{boundary} of $A$ is $\partial A:= \{x \in X \colon \forall U\in \cT \text{ with } x\in U, \, U \cap A \neq \emptyset \text{ and } U \cap A^c \neq \emptyset \}$.
 \end{itemize}
+\normalsize
 
-\vspace{1em}
+\vspace{0.5em}
 
 \begin{example}
 Let $X=\{a,b,c\}$ and $\cT = \{\emptyset ,\{a\}, \{b\},\{a,b\}, X\}$. Then 
 \begin{itemize}
+	\setlength\itemsep{0.5em}
     \item $ \interior{\{ a\} } =$
     \item $\interior{ \{c\}} =$
     \item $\overline{\{a\}}=$
     \item $\overline{\{c\}} =$
 \end{itemize}
+\vspace{2em}
 \end{example}
 \end{frame}
 
