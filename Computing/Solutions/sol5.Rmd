@@ -13,7 +13,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The $\mathrm{ABO}$-gene or $\mathrm{ABO}$-locus is on chromosome 9. It has 3 alleles (antigens) $(A, B, O$) and it determines 4 blood type $(A, B, A B, O)$.
 
-![](abo.png){width=30% }
 
 We have a large random sample obtained from Berlin (Bernstein 1925, Sham's book page 44):
 
@@ -81,14 +80,14 @@ In each iteration $k$, firstly, the \textbf{E-step} computes the expected value 
 \begin{equation}
 Q_k (p,q) = E[h_k (p,q) | n_{\text{obs}}, p^{(k)}, q^{(k)}]
 \end{equation}
-and $h_k (p,q) \sim 2 n_{AA} \log p^{(k)} + n_{AO} \log(2p(1-p^{(k)}-q^{(k)})) + 2 n_{BB} \log q^{(k)} + n_{BO} \log (2p(1-p^{(k)}-q^{(k)})) + n_{AB} \log(2p^{(k)}q^{(k)}) + 2 n_O \log(1-p^{(k)}-q^{(k)})$
+and $h_k (p,q) \sim 2 n_{AA} \log p^{(k)} + n_{AO} \log(2p^{(k)} (1-p^{(k)}-q^{(k)})) + 2 n_{BB} \log q^{(k)} + n_{BO} \log (2p^{(k)}(1-p^{(k)}-q^{(k)})) + n_{AB} \log(2p^{(k)}q^{(k)}) + 2 n_O \log(1-p^{(k)}-q^{(k)})$
 
 Since the log-likelihood is linear w.r.t. the missing data, therefore, when taking the expectation for each component, the missing data can be imputed in this case. For example, since $E[2 n_{AA} \log p^{(k)} | n_{\text{obs}}, p^{(k)}, q^{(k)}] = 2 \log p^{(k)} E[n_{AA}| n_{\text{obs}}, p^{(k)}, q^{(k)}]$, and under the HWE assumption, 
 $$E[n_{AA} | n_{\text{obs}}, p^{(k)}, q^{(k)}] = \frac{\text{freq}(A A)}{\text{freq}(A A)+\text{freq}(A O)} n_{A} =\frac{p^{(k)} p^{(k)}}{p^{(k)} p^{(k)}+2 p^{(k)}\left(1-p^{(k)}-q^{(k)}\right)} n_{A} := n^{(k)}_{AA}$$
 
 By the similar calculation, we can get the imputed data $n_{AA}^{(k)}, n_{AO}^{(k)}, n_{BB}^{(k)}, n_{BO}^{(k)}$ for each iteration. 
 
-Then the \textbf{M-step} computes the MLE based on the likelihood in equation (3). To be specific, 
+Then the \textbf{M-step} computes the MLE based on the likelihood in equation (4). To be specific, 
 $$\frac{\partial Q_k (p,q)}{\partial p} = \frac{2 n_{A  A}^{(k)}+\ n_{A  O}^{(k)}+n_{A B}}{p }-\frac{n_{A O}^{(k)}+ n_{B  O}^{(k)}+n_{O}}{1-p-q} = 0$$
 $$\frac{\partial Q_{k}(p,q)}{\partial q}=\frac{2 n_{B  B}^{(k)}+ n_{B  O}^{(k)}+n_{A B}}{q}-\frac{n_{A O}^{(k)}+ n_{B  O}^{(k)}+n_{O}}{1-p-q} = 0$$
 Thus, the updated values of parameters are 
