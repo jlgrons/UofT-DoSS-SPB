@@ -90,6 +90,16 @@ Estimation
 
 <br>
 
+### Module 6: Statistical inference (III)
+Hypothesis testing
+
+- Slides: [pdf](Computing/Slides/mod6.pdf) 
+
+- Exercises: [pdf](Computing/Exercises/ex6.pdf)
+
+<!-- - Solutions: [pdf](Computing/Solutions/sol6.pdf), [Rmd](Computing/Solutions/sol6.Rmd) -->
+
+
 <!-- #### Module 6: Hypothesis testing -->
 
 <!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod6.pdf"target="_blank">Slides</a> -->
