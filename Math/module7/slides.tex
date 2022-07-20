@@ -108,6 +108,156 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Linear combinations}
+\begin{definition}
+A linear combination of vectors $\bv_{1},...,\bv_{n}$ of vectors in $V$ is a vector of the form 
+$$
+\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
+$$
+ where $\alpha_{1},...,\alpha_{m} \in \F$.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Span}
+\begin{definition}
+The set of all linear combinations of a list of vectors
+$v_{1},...,v_{m}$ in $V$ is called the \textbf{span} of $v_{1},...,v_{m}$,
+denoted span$\{\bv_{1},...,\bv_{n}\}$. In other words, 
+$$
+\text{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
+$$
+\end{definition}
+The span of the empty list is defined to be $\{\zerovec\}$.
+
+\vspace{1em}
+We say a vector space is \emph{finite dimensional} if it can be spanned by a finite list of vectors; otherwise it is \emph{infinite dimensional}.
+
+\end{frame}
+
+
+\begin{frame}{Linear independence}
+\begin{definition}
+A list of vectors $\bv_1, \ldots, \bv_n \in \F^n$ is said to be \emph{linearly independent} if 
+$$ 0 = \alpha_i \bv_i + \ldots + \alpha_n \bv_n, $$
+where the $\alpha_i$, $i=1,\ldots,n$ are scalars, admits only the solution $\alpha_1 = \cdots = \alpha_n = 0$.
+\end{definition}
+
+\vspace{1em} Otherwise we say the vectors are \emph{linearly dependent}.
+
+\end{frame}
+
+
+\begin{frame}{Basis}
+\begin{definition}
+A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
+$$
+\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k
+$$
+\end{definition}
+
+In undergrad, you likely thought about this as: the equation $\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n$, where the $\alpha_i$ are unknown, has a unique solution.
+\end{frame}
+
+\begin{frame}
+
+
+\begin{exampleblock}{Claim}
+All bases of a vector space $V$ have the same length.
+\end{exampleblock}
+
+Proof.
+
+\vspace{4cm}
+
+\begin{definition}
+The \emph{dimension} of a vector space $V$, denoted $\text{dim} V$, is the length of any basis of $V$.
+\end{definition}
+
+
+\end{frame}
+
+\begin{frame}{Bases}
+Example of bases: \\
+For $\R^n$: $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ \\
+For $\mathbb{P}^n: \; 1, x, x^2, \ldots, x^n$
+
+\begin{definition}
+The linear combination $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$ is called trivial if $\alpha_k = 0$ for every $k$.
+\end{definition}
+
+\begin{block}{proposition}
+ A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and complete (generating).
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Linear transformations}
+\begin{definition}
+A \textbf{transformation} $T$ from domain $X$ to codomain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
+\end{definition}
+
+\begin{definition}
+A transformation from a vector space $U$ to a vector space $V$ is \textbf{linear} if
+\begin{equation*}
+    T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
+\end{equation*}
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Examples}
+
+\begin{itemize}
+\item Differentiation
+\item Integration
+\item Rotation of vectors
+\item Reflection of vectors
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Linear transformations}
+\begin{definition}
+Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
+\begin{itemize}
+\item \emph{Kernel} or \emph{Null space}: 
+$$\text{Ker} T = \{\bu \in U : T\bu = 0 \}$$
+\item \emph{Range} 
+$$\text{Range} T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$$
+\end{itemize}
+The dimensions of these spaces are often called the following:
+\begin{itemize}
+\item \emph{Nullity}
+$$\text{Nullity}(T) = \text{dim}(\text{Ker}(T))$$
+\item \emph{Rank}
+$$\text{Rank}(T) = \text{dim}(\text{Range}(T))$$
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Linear transformations}
+\begin{exampleblock}{Rank Theorem}
+For a matrix $A$ or equivalently a linear transformation $A: \F^n \to \F^m$:
+\begin{equation*}
+\text{Rank } A = \text{Rank }  A^T 
+\end{equation*}
+\end{exampleblock}
+
+\begin{exampleblock}{Rank Nullity Theorem}
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\text{Rank} T + \text{Nullity}  T = \text{dim } U.
+\end{equation*}
+\end{exampleblock}
+
+\end{frame}
+
 
 
 

@@ -16,6 +16,7 @@
 \usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{enumerate items}[circle]
+\usepackage{accents}
 
 
 \newcommand*{\logofont}{\fontfamily{phv}\selectfont}
@@ -31,6 +32,26 @@
 }
 
 
+
+\beamertemplatenavigationsymbolsempty
+
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+% block
+% example block
+% alert block
+
 % lin alg
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
@@ -40,24 +61,24 @@
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
-\newcommand{\R}{{\mathds{R}}}
-\newcommand{\C}{{\mathds{C}}}
-\newcommand{\F}{{\mathds{F}}}
-\newcommand{\Z}{{\mathds{Z}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+\newcommand{\interior}{\accentset{\circ}}
 
 
 
-\beamertemplatenavigationsymbolsempty
-
-% block
-% example block
-% alert block
-
-
-\title[]{Module 6: Linear Algebra I \\ {\large Operational math bootcamp}\\ \includegraphics[width=7cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 6: End of Topology, Start of Linear Algebra \\ {\large Operational math bootcamp}\\ \includegraphics[width=7cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 20, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -100,11 +121,250 @@
 
 \begin{frame}{Outline}
     \begin{itemize}
-    	\item Vector spaces and subspaces
-	\item Linear combinations and bases
-	\item Linear transformations
+      \setlength\itemsep{1em}
+    	\item Finish topology
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Dense subsets
+	\item Compactness
+	\item Continuity
+	\end{itemize}
+	\item Start linear algebra
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Vector spaces and subspaces
+	\end{itemize}
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Last time}
+
+\begin{definition}[Topology]
+\footnotesize
+Let $\cT\subseteq \cP(X)$. We call $\cT$ a \emph{topology} on $X$ if the following holds:
+\begin{itemize}
+    \item[(i)] $\emptyset, X \in \cT$
+    \item[(ii)] Let $A$ be an arbitrary index set. If $U_\alpha \in \cT$ for $\alpha\in A$, then $\bigcup_{\alpha \in A} U_\alpha \in \cT$ ($\cT$ is closed under taking arbitrary unions)
+    \item[(iii)] Let $n \in \N$. If $U_1, \ldots, U_n \in \cT$, then $\bigcap_{i=1}^n U_i \in \cT$ ($\cT$ is closed under taking finite intersections)
+\end{itemize}
+If $U\in \cT$, we call $U$ \emph{open}. We call $U\subseteq X$ \emph{closed}, if $U^c\in \cT$. We call $(X,\cT)$ a \emph{topological space}.
+\end{definition}
+
+\begin{definition}
+\footnotesize
+Let $(X,\cT)$ be a topological space and let $A\subseteq X$ be any subset.
+\begin{itemize}
+    \item The \emph{interior} of $A$ is $\interior A := \{a \in A \colon \exists U \in  \cT \text{ s.t. } U\subseteq A \text{ and } a\in U\} $.
+    \item The \emph{closure} of $A$ is $\overline{A} := \{x \in X \colon \forall U \in \cT \text{ with } x \in U, U\cap A \neq \emptyset\}$.
+    \item The \emph{boundary} of $A$ is $\partial A:= \{x \in X \colon \forall U\in \cT \text{ with } x\in U, \, U \cap A \neq \emptyset \text{ and } U \cap A^c \neq \emptyset \}$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{Density}
+\begin{definition}
+Let $(X,\cT)$ be a topological space. A subset $A\subseteq X$ is called \emph{dense} if $\overline{A} = X$.
+\end{definition}
+
+\vspace{1em}
+
+Using the definition of closure, we see that $A\subseteq X$ is dense if and only if for all non-empty $U\in \cT$, $U\cap A \neq \emptyset$.
+
+\vspace{1em}
+
+\begin{example}
+\begin{itemize}
+    \item The rationals $\Q$ are dense in the reals $\R$. 
+    \item The only dense subset in $(X,\cP(X))$ is $X$ itself.
+    \item Any non-empty subset is dense in $(X,\{\emptyset,X\})$.
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}{Separability}
+\begin{definition}
+A topological space $(X,\cT)$ is \emph{separable} if it contains a countable dense subset.
+\end{definition}
+
+\vspace{1em}
+
+\begin{example}
+\vspace{2cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Hausdorff space}
+\begin{definition}
+A topological space $(X,\cT)$ is called \emph{Hausdorff} if for all $x\neq y\in X$ there exist open sets $U_x,U_y$ with $x\in U_x$ and $y\in U_y$ such that $U_x \cap U_y = \emptyset$.
+\end{definition}
+
+So in a Hausdorff space, we can separate any two elements using open sets.
+\end{frame}
+
+
+\begin{frame}
+
+\begin{example}
+Let $(X,d)$ be a metric space. Then $(X,\cT_d)$ is Hausdorff, where $\cT_d$ is the topology induced by the metric $d$.
+\vspace{4cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+Let $X$ be an infinite set and $\cT = \{U\subseteq X \colon U^c \text{ is finite} \}\cup \emptyset$. Then  $(X,\cT)$ is not Hausdorff. 
+\vspace{4cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Compactness}
+\begin{definition}
+Let $(X,\cT)$ be a topological space and $K\subseteq X$. 
+
+\vspace{0.5em}
+
+A collection $\{U_i\}_{i\in I} $ of open sets is called \emph{open cover} of $K$ if $K\subseteq \cup_{i\in I} U_i$. 
+
+\vspace{0.5em}
+
+The set $K$ is called \emph{compact} if for all open covers $\{U_i\}_{i\in I}$ there exists a finite subcover, meaning there exists an $n\in \N$ and $\{U_1,\ldots,U_n\}\subseteq \{U_i\}_{i\in I}$ such that $K\subseteq \cup_{i=1}^n U_i$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{example}
+Let $S\subseteq X$ where $(X,\cT)$ is a topological space. If $S$ is finite, then it is compact. 
+\vspace{4cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+$(0,1)$ is not compact. 
+\vspace{5cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(X,\cT)$ be a topological space and take a non-empty subset $K\subseteq X$. The following holds:
+\begin{enumerate}
+    \item If $X$ is compact and $K$ is closed, then $K$ is compact (i.e. closed subsets of compact sets are compact).
+    \item If $(X,\cT)$ is Hausdorff, then $K$ being compact implies that $K$ is closed.
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+(1) If $X$ is compact and $K \subseteq X$ is closed, then $K$ is compact
+\vspace{6cm}
+
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+(2) If $(X,\cT)$ is Hausdorff, then $K \subseteq X$ compact $\Leftrightarrow$ $K$ is closed.
+\vspace{6cm}
+
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{5cm}
+
+\end{block}
+\vspace{1cm}
+\end{frame}
+
+\begin{frame}{Compactness on $\R^n$}
+\begin{theorem}[Heine-Borel Theorem]
+Let $K\subseteq \R^n$. Then $K$ is compact with respect to the topology induced by the Euclidean distance if and only if it is closed and bounded.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+Just as we had a sequential characterization of the closure of a set in metric spaces, we similarly have a sequential characterization of compactness. 
+
+\begin{theorem}
+Let $(X,d)$ be a metric space. Then $K\subset X$ is compact with respect to the metric induced by $d$ if and only if every sequence in $K$ admits a subsequence converging to some point in $K$.
+\end{theorem}
+
+\vspace{1em}
+
+A corollary of this statement together with Heine-Borel is the Bolzano-Weierstrass theorem.
+
+\begin{corollary}[Bolzano-Weierstrass]
+Any bounded sequence in $\R^n$ has a convergent subsequence.
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}{Continuity on a topological space}
+\begin{definition}
+Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous} if for all $U\in \cT_Y$, $f^{-1}(U)\in \cT_X$, i.e. the pre-image of open sets is open. 
+\end{definition}
+
+We can also specify continuity at a point $x_0\in X$.
+
+\begin{definition}
+Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous at $x_0\in X$} if for all $U\in \cT_Y$ with $f(x_0)\in U$, $f^{-1}(U)\in \cT_X$, i.e. the preimage of open sets containing $f(x_0)$ is open (and contains $x_0$).
+\end{definition}
+
+
+\end{frame}
+
+
+\begin{frame}
+\vspace{1em}
+\begin{exampleblock}{Proposition}
+Let $(X,\cT_X)$ and $(Y, \cT_Y)$ be topological spaces. Suppose $K\subset X$ is compact and let $f\colon K \to Y$ be continuous. Then $f(K)$ is compact. 
+\end{exampleblock}
+
+\vspace{1em}
+
+Recall from the set theory section: \\
+If $f:X \to Y$:
+\begin{enumerate}
+\item $A \subseteq B \subseteq Y$ $\Rightarrow$ $f^{-1}(A) \subseteq f^{-1}(B)$ and  $A \subseteq B \subseteq X$ $\Rightarrow$ $f(A) \subseteq f(B)$
+\item $f^\inv(\cup_{i \in I}A_i) = \cup_{i \in I}f^\inv(A_i)$, where $A_i \subseteq Y \, \forall i \in I$
+\item $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $A_i \subseteq X \, \forall i \in I$
+\item $A \subseteq X$ $\Rightarrow$  $A \subseteq f^{-1}(f(A))$
+\item $B \subseteq Y$ $\Rightarrow$   $f(f^{-1}(B)) \subseteq B$
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Proof.}
+\vspace{6cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+\section{Linear Algebra}
 
 \begin{frame}
 \begin{definition}
@@ -134,6 +394,53 @@ We call $V$ a \textbf{vector space} if the following hold: \\
 
 \end{frame}
 
+\begin{frame}
+Elements of the vector space are called vectors.
+
+Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
+
+\vspace{1em}
+
+\begin{example}
+The following are vector spaces:
+\begin{itemize}
+\item $\R^n$
+\item $\C^n$
+\item $C(\R;\R)$, continuous functions from $\R$ to $\R$
+\item $M_{n \times m}$, matrices of size $n \times m$
+\item $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, $0 \bv= \zerovec$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, we have $-\bv = (-1) \times \bv$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
 
 \begin{frame}
 
@@ -156,178 +463,32 @@ implies $\alpha \bu \in U$
 
 \begin{frame}
 \begin{proof}
-$\Rightarrow$ If $U$ is a subspace of $V$, then $U$ satisfies these 3 properties by the definition of a vector space. \\
-$\Leftarrow$ Suppose $U$ satisfies the given 3 conditions. \\
-Then for any $\bv \in U$, there must exist $-\bv \in U$ by property 3, since $-\bv = (-1) \times \bv$ (exercise). Property 1 assures property C. Properties 2 and 3, and the fact that $U \subset V$, assure the remaining properties hold. 
+($\Rightarrow$)
+
+\vspace{1cm}
+
+($\Leftarrow$)
+
+\vspace{3cm}
 \end{proof}
 \end{frame}
-
-\begin{frame}{Linear combinations}
-\begin{definition}
-A linear combination of vectors $\bv_{1},...,\bv_{n}$ of vectors in $V$ is a vector of the form 
-$$
-\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
-$$
- where $\alpha_{1},...,\alpha_{m} \in \F$.
-\end{definition}
-\end{frame}
-
-\begin{frame}{Span}
-\begin{definition}
-The set of all linear combinations of a list of vectors
-$v_{1},...,v_{m}$ in $V$ is called the \textbf{span} of $v_{1},...,v_{m}$,
-denoted span$\{\bv_{1},...,\bv_{n}\}$. In other words, 
-$$
-\text{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
-$$
-\end{definition}
-The span of the empty list is defined to be $\{\zerovec\}$.
-
-\vspace{1em}
-We say a vector space is \emph{finite dimensional} if it can be spanned by a finite list of vectors; otherwise it is \emph{infinite dimensional}.
-
-\end{frame}
-
-
-\begin{frame}{Linear independence}
-\begin{definition}
-A list of vectors $\bv_1, \ldots, \bv_n \in \F^n$ is said to be \emph{linearly independent} if 
-$$ 0 = \alpha_i \bv_i + \ldots + \alpha_n \bv_n, $$
-where the $\alpha_i$, $i=1,\ldots,n$ are scalars, admits only the solution $\alpha_1 = \cdots = \alpha_n = 0$.
-\end{definition}
-
-\vspace{1em} Otherwise we say the vectors are \emph{linearly dependent}.
-
-\end{frame}
-
-
-\begin{frame}{Basis}
-\begin{definition}
-A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
-$$
-\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k
-$$
-\end{definition}
-
-In undergrad, you likely thought about this as: the equation $\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n$, where the $\alpha_i$ are unknown, has a unique solution.
-\end{frame}
-
-\begin{frame}
-
-
-\begin{exampleblock}{Claim}
-All bases of a vector space $V$ have the same length.
-\end{exampleblock}
-
-Proof.
-
-\vspace{4cm}
-
-\begin{definition}
-The \emph{dimension} of a vector space $V$, denoted $\text{dim} V$, is the length of any basis of $V$.
-\end{definition}
-
-
-\end{frame}
-
-\begin{frame}{Bases}
-Example of bases: \\
-For $\R^n$: $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ \\
-For $\mathbb{P}^n: \; 1, x, x^2, \ldots, x^n$
-
-\begin{definition}
-The linear combination $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$ is called trivial if $\alpha_k = 0$ for every $k$.
-\end{definition}
-
-\begin{block}{proposition}
- A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and complete (generating).
-\end{block}
-
-\end{frame}
-
-
-\begin{frame}{Linear transformations}
-\begin{definition}
-A \textbf{transformation} $T$ from domain $X$ to codomain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
-\end{definition}
-
-\begin{definition}
-A transformation from a vector space $U$ to a vector space $V$ is \textbf{linear} if
-\begin{equation*}
-    T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
-\end{equation*}
-\end{definition}
-
-\end{frame}
-
-
-\begin{frame}{Examples}
-
-\begin{itemize}
-\item Differentiation
-\item Integration
-\item Rotation of vectors
-\item Reflection of vectors
-\end{itemize}
-
-
-\end{frame}
-
-
-\begin{frame}{Linear transformations}
-\begin{definition}
-Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
-\begin{itemize}
-\item \emph{Kernel} or \emph{Null space}: 
-$$\text{Ker} T = \{\bu \in U : T\bu = 0 \}$$
-\item \emph{Range} 
-$$\text{Range} T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$$
-\end{itemize}
-The dimensions of these spaces are often called the following:
-\begin{itemize}
-\item \emph{Nullity}
-$$\text{Nullity}(T) = \text{dim}(\text{Ker}(T))$$
-\item \emph{Rank}
-$$\text{Rank}(T) = \text{dim}(\text{Range}(T))$$
-\end{itemize}
-\end{definition}
-
-\end{frame}
-
-
-\begin{frame}{Linear transformations}
-\begin{exampleblock}{Rank Theorem}
-For a matrix $A$ or equivalently a linear transformation $A: \F^n \to \F^m$:
-\begin{equation*}
-\text{Rank } A = \text{Rank }  A^T 
-\end{equation*}
-\end{exampleblock}
-
-\begin{exampleblock}{Rank Nullity Theorem}
-Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
-\begin{equation*}
-\text{Rank} T + \text{Nullity}  T = \text{dim } U.
-\end{equation*}
-\end{exampleblock}
-
-\end{frame}
-
 
 
 \begin{frame}{References}
 
 Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
 Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
-%U of T login:  \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}
+
+\vspace{1em}
+
+
+Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 
 \vspace{1em}
 
 
 \indent Treil S. \textit{Linear Algebra Done Wrong}. 2017. Available from: \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{https://www.math.brown.edu/streil/papers/LADW/LADW.html}
 \end{frame}
-
-
-
 
 
 
