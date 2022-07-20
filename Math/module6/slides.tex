@@ -387,7 +387,7 @@ We call $V$ a \textbf{vector space} if the following hold: \\
 
 \begin{enumerate}
 \setlength\itemsep{0.1em}
-    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \beta \bv$.
+    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \alpha \bv$.
     \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
 \end{enumerate}
 \end{definition}
@@ -454,8 +454,8 @@ A subset $U$ of $V$ is a subspace of $V$ if
 and only if $U$ satisfies the following three conditions:
 \begin{enumerate}
 \item  $\zerovec \in U$
-\item Closed under addition: $u,w\in U$ implies $\bu+\bv \in U$
-\item Closed under scalar multiplication: $\alpha \in\F$ and $u\in U$
+\item Closed under addition: $\bu, \bv \in U$ implies $\bu+\bv \in U$
+\item Closed under scalar multiplication: $\alpha \in\F$ and $\bu\in U$
 implies $\alpha \bu \in U$
 \end{enumerate}
 \end{exampleblock}

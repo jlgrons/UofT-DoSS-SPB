@@ -872,7 +872,11 @@ Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalen
     \item Let $f: X \to Y$, $X, y \subseteq \R$ be defined by the map $x \mapsto \sin(x)$. For what choices of $X$ and $Y$ is $f$ injective, surjective, bijective, or neither?
     \item Show that for sets $A,B \subseteq X$ and $f: X \to Y$, $f(A \cap B) \subseteq f(A) \cap f(B)$.
     \item Let $f: X \to Y$ and $B \subseteq Y$. Prove that $f(f^{-1}(B)) \subseteq B$, with equality iff $f$ is surjective.
-    \item Prove that $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $f:X \to Y$, $A_i \subseteq Y \, \forall i \in I$.
+    \item Prove that :
+    \begin{enumerate}
+        \item $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $f:X \to Y$, $A_i \subseteq X \, \forall i \in I$
+        \item $f^\inv(\cup_{i \in I}B_i) = \cup_{i \in I}f^\inv(B_i)$, where $f:X \to Y$, $B_i \subseteq Y \, \forall i \in I$
+    \end{enumerate}
     \item Show that $\N$ and $\Z$ have the same cardinality.
     \item Show that $|(0,1)| =|(1,\infty)|$.
 \end{enumerate}
@@ -1553,10 +1557,215 @@ Conversely, assume $x\not \in \overline{A}$. Then there exists an open set $U$ w
 
 Similarly, one can show $\interior A =\bigcup \{U: U \text{ is open and } U \subseteq A \}$. Hence, we see that the interior of $A$ is the largest open set contained in $A$ and the closure is the smallest closed set that contains $A$.
 
+Another important concept in topology (and thus also in metric spaces) is density. 
+
+\begin{definition}
+Let $(X,\cT)$ be a topological space. A subset $A\subseteq X$ is called \emph{dense} if $\overline{A} = X$.
+\end{definition}
+
+Using the definition of closure, we see that $A\subseteq X$ is dense if and only if for all non-empty $U\in \cT$, $U\cap A \neq \emptyset$.
+
+\begin{example}
+\textcolor{white}{Skip}
+\begin{itemize}
+    \item The rationals $\Q$ are dense in the reals $\R$. 
+    \item The only dense subset in $(X,\cP(X))$ is $X$ itself.
+    \item Any non-empty subset is dense in $(X,\{\emptyset,X\})$.
+\end{itemize}
+\end{example}
+
+The concept of a dense subset allows us in a way to look at that set instead of the whole space. In the metric space setting, this means that elements in $X$ can be approximated arbitrarily well with elements from the dense subset.
+
+\begin{definition}
+A topological space $(X,\cT)$ is \emph{separable} if it contains a countable dense subset.
+\end{definition}
+
+As stated in the previous example, $\Q$ is dense in $\R$, and since $\Q$ is countable, $\R$ is separable. We could extend this example to $\R^n$. However, if we look at all bounded real-valued sequences with the metric induced by the supremum norm, this space fails to be separable. 
+
+\begin{example}
+Define $\ell_\infty=\{ (x_n)_{n\in \N} \, : x_n \in \R , \; \sup_{n\in \N} \vert x_n \vert <\infty \}$, the space of bounded real valued sequences. We can endow $\ell_\infty$ with a metric induced by the supremum norm, namely $d((x_n)_{n\in \N}, (y_n)_{n\in \N}) = \sup_{n\in \N} \vert x_n-y_n\vert$. 
+Then $\ell_\infty$ is not separable with respect to the topology induced by this metric. 
+
+To see this, for each $M\subseteq \N$ define 
+\begin{equation*}
+    e^M_n = \begin{cases} 1 \; \text{ if } n \in M,\\
+    0 \; \text{ otherwise},
+    \end{cases}
+\end{equation*}
+for $n \in \N$.  \\
+Then if $M_1, M_2\subseteq \N$ are non-empty with $M_1\neq M_2$, $d((e^{M_1}_n)_{n\in \N},(e^{M_2}_n)_{n\in \N}) = 1$. Thus the open balls $B_{1/3}((e^{M_1}_n)_{n \in \N})$, $B_{1/3}((e^{M_2}_n)_{n \in \N})$ are disjoint for all non-empty $M_1, M_2\subseteq \N$ with $M_1\neq M_2$ (check using contradiction and triangle inequality).
+
+Now suppose towards contradiction that there exists $A \subseteq \ell^\infty$ is dense and countable.  Then by density, for all non-empty open sets $U\subseteq \ell_\infty$, $U\cap A \neq \emptyset$.  In particular for all $M \subseteq \N$, $B_{1/3}((e^{M}_n)_{n \in \N})\cap A \neq \emptyset$. 
+
+However, there are uncountably many such $M$ (see the cardinality of $\cP(\N)$ in the set theory section), but only countably many elements in $A$. Since the balls are disjoint, this is a contradiction. 
+\end{example}
+
+
+\subsection{Compactness}
+
+We will start off by giving the definition of an important separation axiom. 
+
+\begin{definition}
+A topological space $(X,\cT)$ is called \emph{Hausdorff} if for all $x\neq y\in X$ there exist open sets $U_x,U_y$ with $x\in U_x$ and $y\in U_y$ such that $U_x \cap U_y = \emptyset$.
+\end{definition}
+
+So in a Hausdorff space, we can separate any two elements using open sets.
+
+\begin{example}
+Let $(X,d)$ be a metric space. Then $(X,\cT_d)$ is Hausdorff, where $\cT_d$ is the topology induced by the metric $d$.
+\end{example}
+\begin{proof}
+If $x\neq y \in X$, then choose $\epsilon:= d(x,y)>0$. Then $U_x=B_{\epsilon/2}(x)$ and $U_y=B_{\epsilon/2}(y)$ are disjoint. (If this is not clear, prove using contradiction.)
+\end{proof}
+
+\begin{example}
+Let $X$ be an infinite set and $\cT = \{U\subseteq X \colon U^c \text{ is finite} \}\cup \emptyset$. Then  $(X,\cT)$ is not Hausdorff.
+\end{example}
+\begin{proof}
+Suppose in order to derive a contradiction that it is Hausdorff and take $x\neq y \in X$. Then there exist open sets $U_x,U_y$ with $x\in U_x$ and $y\in U_y$ such that $U_x \cap U_y = \emptyset$.
+
+Then $X = \emptyset^c = (U_x \cap U_y)^c = U_x^c \cap U_y^c$. But since $U_x$ and $U_y$ are open and nonempty, $U_x^c$ and $U_y^c$ are both finite. The union of two finite sets is again finite, so this gives us that $X$ is finite, which is a contradiction.
+\end{proof}
+
+
+\begin{definition}[Compact]
+Let $(X,\cT)$ be a topological space and $K\subseteq X$. A collection $\{U_i\}_{i\in I} $ of open sets is called \emph{open cover} of $K$ if $K\subseteq \cup_{i\in I} U_i$. The set $K$ is called \emph{compact} if for all open covers $\{U_i\}_{i\in I}$ there exists a finite subcover, meaning there exists an $n\in \N$ and $\{U_1,\ldots,U_n\}\subseteq \{U_i\}_{i\in I}$ such that $K\subseteq \cup_{i=1}^n U_i$.
+\end{definition}
+
+\begin{example}
+Let $S\subseteq X$ where $(X,\cT)$ is a topological space. If $S$ is finite, then it is compact. 
+\end{example}
+\begin{proof}
+Since S is finite, we can write $S = \{ x_1, \ldots, x_n\}$. For any open cover $\mathcal{U} = \{ U_i \}_{i\in I}$, for $j=1,\ldots,n$ there exists $U_j \in \mathcal{U}$ such that $x_j \in U_j$. Thus $S \subseteq \cup_{j=1}^n U_j$, so $S$ is compact.
+\end{proof}
+
+\begin{example}
+$(0,1)$ is not compact.
+\end{example}
+\begin{proof}
+The set $\{U_n\}_{n \in N}$ where $U_n = \left(\frac{1}{n},1\right)$ is an open cover for $(0,1)$ since $(0,1) \subseteq \cup_{n=1}^\infty \left(\frac{1}{n},1\right)$. Suppose in order to derive a contradiction that there exists a finite subcover, i.e. there exists $N \in \N$ such that $(0,1) \subseteq \cup_{j=1}^N \left(\frac{1}{n_j},1\right)$. Since $\left(\frac{1}{n},1\right) \subseteq \left(\frac{1}{m},1\right)$ for $m \geq n$ (the sets are nested), this means $(0,1) \subseteq  \left(\frac{1}{n_N},1\right)$. But clearly there exists an $x \in (0,1)$ such that $0 < x < \frac{1}{n_N}$ for any finite $n_N$. Contradiction. Therefore $(0,1)$ is not compact.
+\end{proof}
+
+\begin{proposition}[{\cite[Proposition 3.3.6]{tastetopology}}] Let $(X,\cT)$ be a topological space and take a non-empty subset $K\subseteq X$. The following holds:
+\begin{enumerate}
+    \item If $X$ is compact and $K$ is closed, then $K$ is compact (i.e. closed subsets of compact sets are compact).
+    \item If $(X,\cT)$ is Hausdorff, then $K$ being compact implies that $K$ is closed.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+1. We need to show that any open cover of $K$ has a finite subcover. Let $\{U_i\}_{i\in I}$ be an open cover of $K$. Then, since $K^c$ is open, $\{U_i\}_{i\in I} \cup {K^c}$ is an open cover of $X$. Since $X$ is compact there exists a finite subcover. There are two possibilities,  the finite subcover is either of the form $\{U_1, \ldots, U_n, K^c\}$ or $\{U_1, \ldots, U_n\}$. In either case, $\{U_1, \ldots, U_n\}$ is a finite subcover for $K$ since $K \subseteq X$. Hence, $K$ is compact. 
+    
+2. We will show that $K^c$ is open. We do this by showing that there exist open sets $\{U_i\}_{i \in I} \subseteq \cT$ such that $K^c = \cup_{i \in I}  U_i$. 
+
+For each $x\in K^c$, we construct an open set in $K^c$ that contains $x$.
+
+Let $x\in K^c$. Since $X$ is Hausdorff, for all $y\in K$ there exist disjoint open sets $U_{x,y}$ and $U_y$ with $x\in U_{x,y}$ and  $y\in U_y$. Since $K$ is compact and $\{U_y\}_{y\in K}$ is an open cover of $K$, there exist $y_1,\ldots, y_n$ such that $K\subseteq \cup_{i=1}^n U_{y_i}$.
+
+Then $\tilde U_x := \cap_{i=1}^n U_{x,y_i}$ is an open set that contains $x$ by definition, and it is a subset of $K^c$ since each set in the intersection is disjoint from a set that forms the open cover for $K$.
+
+Since each $\tilde U_x \subseteq K^c$, $\cup_{x \in K^c} \tilde U_x \subseteq K^c$. Since by construction for any $x \in K^c$ there exists a $\tilde U_x$ such that $x \in \tilde U_x$, $K^c \subseteq \cup_{x \in K^c} \tilde U_x$. Thus $K^c = \cup_{x \in K^c} \tilde U_x$, so $K^c$ is open, and thus $K$ is closed.
+% We would like to take the intersection over the $U_{x,y}$ for $y \in K$ to obtain an open set containing $x$ and contained in $K^c$, but since the intersection is arbitrary we cannot guarantee that the resulting set is open (note that the union would not work since we want to guarantee that the resulting set is still contained in $K^c$). However, since $K$ is compact and $\{U_y\}_{y\in K}$ is an open cover of $K$ there exist $y_1,\ldots, y_n$ such that $K\subseteq \cup_{i=1}^n U_{y_i}$. Thus $\tilde U_x = \cap_{i=1}^n U_{x,y_i}$ is open and $x\in \tilde U_x$ with $\tilde U_x \subseteq K^c$. 
+% This construction works for any $x\in K^c$. Thus for every $x \in K^c$, there exists a $U_x$ with $x\in \tilde U_x$. Also every $U_x$ 
+% In particular, we have $K^c = \cup_{x\in K^c} \tilde U_x$. Thus, $K^c$ is open. 
+\end{proof}
+
+In undergraduate math classes you may have seen an equivalent definition for compactness on $\R^n$. This is a nice feature of Euclidean space.
+
+\begin{theorem}[Heine-Borel Theorem]
+Let $K\subseteq \R^n$. Then $K$ is compact with respect to the topology induced by the Euclidean distance if and only if it is closed and bounded.
+\end{theorem}
+
+The proof is omitted. See \cite[Corollary 2.5.12]{tastetopology}.
+
+Just as we had a sequential characterization of the closure of a set in metric spaces, we similarly have a sequential characterization of compactness. 
+
+\begin{theorem}
+Let $(X,d)$ be a metric space. Then $K\subset X$ is compact with respect to the metric induced by $d$ if and only if every sequence in $K$ admits a subsequence converging to some point in $K$.
+\end{theorem}
+
+Again the proof is omitted. See \cite[Theorem 2.5.10]{tastetopology}. A corollary of this statement together with Heine-Borel is the Bolzano-Weierstrass theorem.
+
+\begin{corollary}[Bolzano-Weierstrass]
+Any bounded sequence in $\R^n$ has a convergent subsequence.
+\end{corollary}
+
+\subsection{Continuity}
+
+Lastly, we will discuss continuity in this general setting. 
+
+\begin{definition}
+Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous} if for all $U\in \cT_Y$, $f^{-1}(U)\in \cT_X$, i.e. the preimage of open sets is open. 
+\end{definition}
+
+We can also specify continuity at a point $x_0\in X$.
+
+\begin{definition}
+Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous at $x_0\in X$} if for all $U\in \cT_Y$ with $f(x_0)\in U$, $f^{-1}(U)\in \cT_X$, i.e. the preimage of open sets containing $f(x_0)$ is open (and contains $x_0$).
+\end{definition}
+
+The next proposition is, in a certain sense, a generalization of the extreme value theorem to topological spaces.
+
+\begin{proposition}
+Let $(X,\cT_X)$ and $(Y, \cT_Y)$ be topological spaces. Suppose $K\subset X$ is compact and let $f\colon K \to Y$ be continuous. Then $f(K)$ is compact. 
+\end{proposition}
+
+\begin{proof}
+Let $\{U_i\}_{i\in I}$ be an open cover of $f(K)$, i.e. $f(K) \subseteq \bigcup_{i\in I} U_i$. Then $f^{-1}(f(K)) \subseteq f^{-1}(\bigcup_{i\in I} U_i)$. 
+
+By Exercise 9 in \cref{subsec:ex_set_theory}, we have $f^{-1}(\bigcup_{i\in I} U_i) = \bigcup_{i\in I}f^{-1} (U_i)$ and by \cref{prop:set_subset_preim_im}, we have $K\subseteq f^{-1}(f(K))$. Hence, we obtain $K \subseteq \bigcup_{i\in I}f^{-1} (U_i)$. 
+
+Since $f$ is continuous, each $f^{-1} (U_i)$ is open and thus $\{f^{-1} (U_i)\}_{i\in I}$ is an open cover of $K$. Since $K$ is compact, there exist $f^{-1}(U_1),\ldots, f^{-1}(U_n)$ such that $K \subseteq \bigcup_{i=1}^n f^{-1}(U_i)$. 
+
+Then $f(K) \subseteq f(\bigcup_{i=1}^n f^{-1}(U_i)) = \bigcup_{i=1}^n f(f^{-1}(U_i)) \subseteq \bigcup_{i=1}^n U_i$, where we use that images preserve set inclusions (check!), and Exercises 8 and 9 in \cref{subsec:ex_set_theory}. Thus, $\{U_1,\ldots, U_n\}$ is a finite subcover for $f(K)$ and $f(K)$ is compact. 
+\end{proof}
+
+As you can see, a lot of results from introductory real analysis or calculus have extensions to a more general topological setting. However, topology is a large field with many powerful tools that we do not have time to cover. The final result in this section is an important result in topology. 
+
+\begin{definition}
+A topological space $(X,\cT)$ is \emph{normal} if the following hold:
+\begin{itemize}
+    \item[(i)] For all $x\in X$, $\{x\}$ is closed.
+    \item[(ii)] For all (non-empty) disjoint closed sets $F_1,F_2\subseteq X$ there exist disjoint open sets $U_1, U_2$ such that $F_1\subseteq U_1$ and $F_2\subseteq U_2$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+\textcolor{white}{Skip}
+\begin{itemize}
+    \item Any metric space $(X,d)$ is normal.
+    \item Let $(X,\cT)$ be Hausdorff and compact. Then $X$ is normal.
+    \item If $(X,\cT)$ is normal, then it is Hausdorff. 
+\end{itemize}
+\end{example}
+
+\begin{theorem}[Urysohn's Lemma]
+Let $(X,\cT)$ be normal and $F_1,F_2\subseteq X$ be closed with $F_1\cap F_2 = \emptyset$. Then there exists a continuous function $f\colon X \to [0,1]$ such that $f(F_1) = \{0\}$ and $f(F_2) = \{1\}$. (Here the topology on $[0,1]$ is the relative topology inherited from the usual metric topology on $\R$.)
+\end{theorem}
+
+Proof omitted. See \cite[Theorem 4.1.2]{tastetopology}.
+
+\subsection{Exercises}
+%Some theorems with open, closed sets as exercises (closure of union contains union of closures and equal in finite case closure of intersection is subset of intersection of closures, but might not be equal in any setting! counter example $A=[0,1), B=(1,0]$ then $\overline{A} \cap \overline{B} = \{1\}$, but $\overline{A\cap B}= \emptyset $) You can also do Chapter 3 Exercise 7 in \cite{tastetopology} if you want.
+\begin{enumerate}
+    \item Let $(X, \cT)$ be a topological space. Prove that $A\subseteq X$ is closed if and only if $\overline{A} =A$.
+    \item Let $(X,\cT)$ be a topological space and $\{A_i\}_{i\in I}$ be a collection of subsets of $X$. Show that 
+    \begin{equation*}
+        \bigcup_{i\in I}\overline{A_i} \subseteq \overline{\bigcup_{i\in I}A_i}.
+    \end{equation*}
+    Show that if the collection is finite, the two sets are equal. 
+    \item Let $(X,\cT)$ be a topological space and $\{A_i\}_{i\in I}$ be a collection of subsets of $X$. Prove that 
+    \begin{equation*}
+        \overline{\bigcap_{i\in I}A_i} \subseteq \bigcap_{i\in I}\overline{A_i}.
+    \end{equation*}
+    Find a counterexample that shows that equality is not necessarily the case.
+    \item Let $(X,\cT)$ be a topological space and $A\subseteq X$ be dense. Show that if $A\subseteq B\subseteq X$, then $B$ is dense as well. 
+    \item Let $(X,\cT)$ be a Hausdorff topological space. Show that the singleton $\{x\}$ is closed for all $x\in X$. Hint: Show that the complement is open. 
+    \item Let $(X,\cT_X)$, $(Y,\cT_Y)$ and $(Z,\cT_Z)$ be topological spaces and let $f\colon X\to Y$, $g\colon Y \to Z$ be continuous. Show that $g\circ f \colon X \to Z$ is continuous as well. 
+    \item Let $(X, d)$ be a metric space and $K \subset X$ compact. Show that for all $\epsilon>0$ there exists $\{x_1,x_2,\ldots, x_n\}\subseteq K$  such that for all $y\in K$ we have $d(y,x_i)<\epsilon$ for some $i=1,\ldots,n$.
+\end{enumerate}
 
 \subsection{References}
 The content in this section comes mostly from \cite{tastetopology}, with additional examples inspired by \cite{marcoux2019}.
-
 
 
 \newpage
