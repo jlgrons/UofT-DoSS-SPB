@@ -97,7 +97,7 @@ Hypothesis testing
 
 - Exercises: [pdf](Computing/Exercises/ex6.pdf)
 
-<!-- - Solutions: [pdf](Computing/Solutions/sol6.pdf), [Rmd](Computing/Solutions/sol6.Rmd) -->
+- Solutions: [pdf](Computing/Solutions/sol6.pdf), [Rmd](Computing/Solutions/sol6.Rmd)
 
 
 <!-- #### Module 6: Hypothesis testing -->
