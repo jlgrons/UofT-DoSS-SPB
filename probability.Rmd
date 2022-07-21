@@ -79,9 +79,10 @@ Material will be added here as the course progresses.
 
 ### Module 5: Expectation
 
-- Slides: [Module 5](Probability/Slides/Summer_Bootcamp_Module_5_with_effects.pdf)
+- Slides: [Module 5](Probability/Slides/Summer_Bootcamp_Module_5_with_effects.pdf); [Module 5 Annotated](Probability/Slides/Module_5_annotated.pdf) 
 
-- Problem Set Solutions: To appear 
+- Problem Set Solutions: [Module 5 Solution](Probability/Solutions/Module_5_Solutions.pdf) 
+
 
 <!-- ### Module 6: Inequalities -->
 
