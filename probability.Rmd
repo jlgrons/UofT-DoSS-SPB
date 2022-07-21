@@ -90,6 +90,11 @@ Material will be added here as the course progresses.
 
 ### Module 6: Inequalities
 
+- Slides: [Module 6](Probability/Slides/Summer_Bootcamp_Module_6_with_effects.pdf)
+
+- Problem Set Solutions: To appear
+
+
 <!-- ### Module 7: Stochastic Convergence -->
 
 
