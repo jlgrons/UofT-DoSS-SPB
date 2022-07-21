@@ -72,16 +72,17 @@
 %\DeclareMathOperator{\dim}{dim}
 \DeclareMathOperator{\range}{range}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
 \DeclareMathOperator{\nullity}{nullity}
 
 
 \begin{document}
 \begin{center}
-\Large{Exercises for Module 7: Linear Algebra II}
+\Large{Exercises for Module 7: Linear Algebra I}
 \end{center}
 
 
-1.  
+1.  Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$ and $\bw\in V$. Prove that if $\bv_{1}+w,...,\bv_{m}+w$ is linearly dependent, then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
 
 \vspace{11cm} % delete this
 
@@ -91,7 +92,9 @@
 
 
 
-2. 
+2. Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
+in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},w$ is linearly independent if and only if 
+$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
 
 \vspace{11cm} % delete this
 
@@ -100,17 +103,12 @@
 % \end{proof}  
 
 
-3. 
+3. Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
+\begin{enumerate}
+    \item[(i)] Show that $T$ is linear.
+    \item[(ii)] Find the null space and range of $T$.
+\end{enumerate}
 
-\vspace{12cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-
-4.
 \vspace{11cm} % delete this
 
 % \begin{proof}  
@@ -119,9 +117,11 @@
 
 
 
-5. 
-
-\vspace{12cm} % delete this
+4. Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
+\begin{equation*}
+    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
+\end{equation*}
+\vspace{11cm} % delete this
 
 % \begin{proof}  
 % ADD your content 
@@ -129,7 +129,25 @@
 
 
 
-6.
+5. Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find bases of $\mathbb{P}_4(\R)$ and $\mathbb{P}_3(\R)$ such that the matrix representation of $\mathcal{M}(D)$ with respect to these basis is given by 
+    \begin{equation*}
+    \mathcal{M}(D) = \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0
+     \end{pmatrix}.
+    \end{equation*}
+
+\vspace{10cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+
+6. Show that matrix multiplication of square matrices is not commutative, i.e find matrices $A,B \in M_{2}$ such that $AB\neq BA$.
 \vspace{11cm} % delete this
 
 % \begin{proof}  

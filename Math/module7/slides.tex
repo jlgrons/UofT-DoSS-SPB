@@ -50,6 +50,11 @@
 \newcommand{\inv}{{-1}}
 
 
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
 \beamertemplatenavigationsymbolsempty
 
 % block
@@ -57,10 +62,10 @@
 % alert block
 
 
-\title[]{Module 7: Linear Algebra II \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 7: Linear Algebra I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 21, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -102,9 +107,21 @@
 }
 
 \begin{frame}{Outline}
+Last time:
     \begin{itemize}
-      \setlength\itemsep{1em}
-    	\item 
+      \setlength\itemsep{0.5em}
+    	\item Vector space
+	\item Subspace
+    \end{itemize}
+    
+\vspace{1em}
+
+Today:
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item Linear independence and bases
+	\item Linear maps, null space, range, inverses
+	\item Matrices as linear maps
     \end{itemize}
 \end{frame}
 
@@ -121,7 +138,7 @@ $$
 \begin{frame}{Span}
 \begin{definition}
 The set of all linear combinations of a list of vectors
-$v_{1},...,v_{m}$ in $V$ is called the \textbf{span} of $v_{1},...,v_{m}$,
+$\bv_{1},...,\bv_{m}$ in $V$ is called the \textbf{span} of $\bv_{1},...,\bv_{m}$,
 denoted span$\{\bv_{1},...,\bv_{n}\}$. In other words, 
 $$
 \text{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
@@ -129,136 +146,470 @@ $$
 \end{definition}
 The span of the empty list is defined to be $\{\zerovec\}$.
 
-\vspace{1em}
-We say a vector space is \emph{finite dimensional} if it can be spanned by a finite list of vectors; otherwise it is \emph{infinite dimensional}.
+
 
 \end{frame}
-
-
-\begin{frame}{Linear independence}
-\begin{definition}
-A list of vectors $\bv_1, \ldots, \bv_n \in \F^n$ is said to be \emph{linearly independent} if 
-$$ 0 = \alpha_i \bv_i + \ldots + \alpha_n \bv_n, $$
-where the $\alpha_i$, $i=1,\ldots,n$ are scalars, admits only the solution $\alpha_1 = \cdots = \alpha_n = 0$.
-\end{definition}
-
-\vspace{1em} Otherwise we say the vectors are \emph{linearly dependent}.
-
-\end{frame}
-
 
 \begin{frame}{Basis}
 \begin{definition}
 A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
 $$
-\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k
+\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k.
 $$
 \end{definition}
+\begin{example}
+\begin{itemize}
+    \item For $\F^n$, $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ is a basis
+    \item The monomials $ 1, x, x^2, \ldots, x^n$ form a basis for $\mathbb{P}_n$.
+\end{itemize}
+\end{example}
+\end{frame}
 
-In undergrad, you likely thought about this as: the equation $\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n$, where the $\alpha_i$ are unknown, has a unique solution.
+
+\begin{frame}{Linear independence}
+\begin{definition}
+A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{linearly independent} if $$\sum_{i=1}^n \alpha_i\bv_i = \zerovec$$ implies $\alpha_i=0$ for all $i=1,\ldots,n$. 
+\vspace{0.5em} 
+
+Otherwise, we call the system \emph{linearly dependent}.
+\end{definition}
+
+\vspace{1em} 
+
+Linear combinations  $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$  such that  $\alpha_k = 0$ for every $k$ are called trivial.
+
+\end{frame}
+
+\begin{frame}{Spanning set}
+\begin{definition}
+ A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{spanning}  if any vector in $V$ can be written as a linear combination of $\bv_1,\ldots,\bv_n$. In other words,
+\begin{equation*}
+    V = \mathrm{span}\{\bv_1,\ldots,\bv_n\}.
+\end{equation*}
+\end{definition}
+
+Such a system is also often called generating or complete. The next proposition relates spanning and linearly independent to a basis. 
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and spanning.
+ \end{exampleblock}
+\begin{block}{Proof.}
+($\Rightarrow$)
+\vspace{4cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+($\Leftarrow$)
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ Let $\bv_1,\ldots, \bv_n\in V$ be spanning. Then $\bv_1,\ldots, \bv_n$ contains a basis.
+ \end{exampleblock}
+ 
+ \vspace{1em}
+ 
+\begin{block}{Sketch of proof.}
+\vspace{3cm}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+An $\F$-vector space $V$ is called \emph{finite dimensional} if there exists a finite list of vectors that span it, i.e. there exist $n\in \N$ and $\bv_1,\ldots, \bv_n\in V$ such that $V= \mathrm{span}\{\bv_1,\ldots,\bv_n\}$. Otherwise, we call $V$ \emph{infinite dimensional}.
+\end{definition}
+
+\begin{example}
+\begin{itemize}
+    \item $\F^n$, $M_{m\times n}$, $\mathbb{P}_n$ are examples of finite dimensional vector spaces
+    \item The $\F$-vector space $\mathbb{P} = \{ \sum_{i=1}^n \alpha_i x^i  \; \colon \; n\in \N, \alpha_i \in \F, i=1,\ldots,n\}$ is infinite dimensional. 
+\end{itemize}
+\vspace{2.5cm}
+\end{example}
 \end{frame}
 
 \begin{frame}
+\begin{corollary}
+Every finite dimensional vector space has a basis.
+\end{corollary}
 
+This follows from the fact that every spanning set for a vector space contains a basis.
 
-\begin{exampleblock}{Claim}
-All bases of a vector space $V$ have the same length.
-\end{exampleblock}
+\vspace{1em}
 
-Proof.
+This can also be extended to infinite dimensional vector spaces, i.e. when we do not assume that there exists a finite spanning set. However, this relies on the Axiom of Choice and is beyond the scope of this course.
+\end{frame}
 
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+ \end{exampleblock}
+\begin{block}{Proof.}
 \vspace{4cm}
-
-\begin{definition}
-The \emph{dimension} of a vector space $V$, denoted $\text{dim} V$, is the length of any basis of $V$.
-\end{definition}
-
-
-\end{frame}
-
-\begin{frame}{Bases}
-Example of bases: \\
-For $\R^n$: $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ \\
-For $\mathbb{P}^n: \; 1, x, x^2, \ldots, x^n$
-
-\begin{definition}
-The linear combination $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$ is called trivial if $\alpha_k = 0$ for every $k$.
-\end{definition}
-
-\begin{block}{proposition}
- A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and complete (generating).
 \end{block}
-
 \end{frame}
 
 
-\begin{frame}{Linear transformations}
-\begin{definition}
-A \textbf{transformation} $T$ from domain $X$ to codomain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
-\end{definition}
+
+\begin{frame}{Dimension}
+\begin{exampleblock}{Proposition}
+Let $\bv_1,\ldots, \bv_n$ and $\bu_1,\ldots, \bu_m$ be a basis for $V$. Then $m=n$.
+ \end{exampleblock}
+
+The proof is omitted,. It relies on the fact that the number of elements in linearly independent systems are always less than or equal to the number of elements in spanning systems. 
 
 \begin{definition}
-A transformation from a vector space $U$ to a vector space $V$ is \textbf{linear} if
+Let $V$ be a finite dimensional $\F$-vector space. The number of elements in a basis of $V$ is called the \emph{dimension} of $V$ and is denoted $\mathrm{dim}(V)$.
+\end{definition}
+
+By the previous definition, the notion of dimension is well-defined. 
+\end{frame}
+
+\begin{frame}{Dimension}
+\begin{example}
+\begin{itemize}
+      \setlength\itemsep{0.7em}
+    \item $\dim(\F^n) = $
+    \item $\dim(\mathbb{P}_n)= $
+    \item $\dim \{ \zerovec \} = $ 
+\end{itemize}
+\vspace{2em}
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}{Linear Maps}
+\begin{definition}
+A map from a vector space $U$ to a vector space $V$ is \textbf{linear} if
 \begin{equation*}
     T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
 \end{equation*}
 \end{definition}
 
+\vspace{1em}
+
+Notation: $\mathcal{L}(U,V)$ is the set of all linear maps from $\F$-vector space $U$ to $\F$-vector space $V$
+
 \end{frame}
 
 
-\begin{frame}{Examples}
+\begin{frame}
+\begin{exampleblock}{Example}
 
 \begin{itemize}
+\setlength\itemsep{3em}
+\item Zero map
+\item Identity map
 \item Differentiation
-\item Integration
-\item Rotation of vectors
-\item Reflection of vectors
 \end{itemize}
+\vspace{6em}
+\end{exampleblock}
+\end{frame}
 
+
+\begin{frame}
+\begin{theorem}
+Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
+\end{theorem}
+
+Proof in book
+
+\begin{theorem}
+Let $S,T \in \mathcal{L}(U,V)$ and $\alpha \in \F$. $\mathcal{L}(U,V)$ is a vector space with addition defined as the sum $S+T$ and multiplication as the product $\alpha T$.
+\end{theorem}
+
+The proof follows from properties of linear maps and vector spaces. Note that the additive identity is the zero map.
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+Let $T \in \cL(U,V)$. Then $T(\zerovec) = \zerovec$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
 
 \end{frame}
 
 
-\begin{frame}{Linear transformations}
+\begin{frame}{Null space and range}
 \begin{definition}
 Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
 \begin{itemize}
-\item \emph{Kernel} or \emph{Null space}: 
-$$\text{Ker} T = \{\bu \in U : T\bu = 0 \}$$
-\item \emph{Range} 
-$$\text{Range} T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$$
+\item \emph{Kernel or null space}: $\nullspace T = \{\bu \in U : T\bu = 0 \}$
+\item \emph{Range}: $\range \, T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$
 \end{itemize}
+
+\vspace{1em}
+
 The dimensions of these spaces are often called the following:
 \begin{itemize}
-\item \emph{Nullity}
-$$\text{Nullity}(T) = \text{dim}(\text{Ker}(T))$$
-\item \emph{Rank}
-$$\text{Rank}(T) = \text{dim}(\text{Range}(T))$$
+\item \emph{Nullity}: $\nullity(T) = \dim(\nullspace(T))$
+\item \emph{Rank}: $\rank(T) = \dim(\range(T))$
 \end{itemize}
 \end{definition}
 
+
 \end{frame}
 
 
-\begin{frame}{Linear transformations}
-\begin{exampleblock}{Rank Theorem}
-For a matrix $A$ or equivalently a linear transformation $A: \F^n \to \F^m$:
-\begin{equation*}
-\text{Rank } A = \text{Rank }  A^T 
-\end{equation*}
-\end{exampleblock}
 
-\begin{exampleblock}{Rank Nullity Theorem}
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $T: U \to V$. The null space of T is a subspace of $U$ and the range of T is a subspace of $V$.
+\end{exampleblock}
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{example}
+Zero map from a vector space $U$ to a vector space $V$:
+\begin{itemize}
+    \item The null space is 
+    \item The range is 
+\end{itemize}
+\vspace{1em}
+
+Differentiation map from $\mathbb{P}(\R)$ to $\mathbb{P}(\R)$:
+\begin{itemize}
+    \item The null space is 
+    \item The range is 
+\end{itemize}
+\vspace{1em}
+\end{example}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$ and $T$ is \emph{surjective} if $\forall \bu \in U, \, \exists \bv \in V$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+\vspace{3em}
+
+\begin{theorem}
+$T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\begin{proof}
+($\Rightarrow$) 
+
+\vspace{3cm}
+
+($\Leftarrow$) 
+
+
+\vspace{2cm}
+
+\end{proof}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{theorem}[Rank Nullity Theorem]
 Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
 \begin{equation*}
-\text{Rank} T + \text{Nullity}  T = \text{dim } U.
+\rank T + \nullity  T = \dim U.
 \end{equation*}
-\end{exampleblock}
+\end{theorem}
+\begin{block}{Proof.}
+\vspace{4cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+
+\vspace{5.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Product of linear maps]
+Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
+\end{definition}
+
+\begin{definition}
+A linear map $T: U \to V$ is \emph{invertible} if there exists a linear map $S: V \to U$ such that $ST$ is the identity map on $U$ and $TS$ is the identity map on $V$. Such a map $S$ is called the \emph{inverse} of $T$. 
+\end{definition}
+
+If $T$ is invertible, we denote the inverse by $T^\inv$. This is justified by the fact that the inverse is unique:
 
 \end{frame}
 
 
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Any invertible linear map has a unique inverse.
+\end{exampleblock}
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}
+A linear map is invertible if and only if it is injective and surjective.
+\end{theorem}
+
+See proof in the book.
+
+\begin{definition}
+An invertible linear map is called an \emph{isomorphism}. If there exists an isomorphism from one vector space to another, we say that the vector spaces are \emph{isomorphic}.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) 
+
+\vspace{4cm}
+
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+($\Leftarrow$) 
+\vspace{4cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Linear maps and matrices}
+\begin{example}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{example}
+
+Next we will see that we can use matrices to represent linear maps between finite dimensional vector spaces. 
+
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}\label{def:matrix_rep}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m
+\end{equation*}
+i.e. the $k$th column of $A$ is the scalars needed to write $T \bu_k$ as a linear combination of the basis of $V$:
+\begin{equation*}
+    T \bu_k = \sum_{i=1}^m A_{ik} \bv_i 
+\end{equation*}
+\end{definition}
+
+Note that since a linear map $T\in \mathcal{L}(U,V)$ is uniquely determined by its image on a basis of $U$, we see that once we pick basis of $U$ and $V$ its matrix representation is uniquely determined. 
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{example}
+Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathbb{P}_3(\R)$ and $\mathbb{P}_4(\R)$.
+
+Standard basis: $1, x, x^2, x^3, (x^4)$ \\
+$T(u_1) $ \\
+$T(u_2)  $ \\ 
+$T(u_3) $ \\ 
+$T(u_4) $ \\
+$T(u_5) $
+\vspace{1em}
+
+The matrix is:
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis
+\item  If $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$
+%\item  after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
+\begin{align*}
+    \mathcal{M}(D)\boldsymbol{\alpha} = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix} \begin{pmatrix} 7\\ 0\\ -5\\12\\1
+     \end{pmatrix} = \begin{pmatrix} 0 \\ -10\\ 36\\4
+     \end{pmatrix}.
+\end{align*}
+Thus, translating back into the monomial basis of $\mathbb{P}_3(\R)$ gives $D(p) = -10x + 36x^2 +4x^3$.
+\end{example}
+
+\end{frame}
+
+\begin{frame}{Other points}
+\begin{itemize}
+\item Looking at matrices as representations of linear maps gives us an intuitive explanation for why we do matrix multiplication the way we do! In fact, we want matrix multiplication to represent composition of linear maps
+\item We can use matrices to solve linear systems.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Next time}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item Determinants
+	\item Eigenvalues and eigenvectors
+	\item Inner product spaces
+    \end{itemize}
+\end{frame}
 
 
 
