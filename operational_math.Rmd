@@ -88,19 +88,19 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 - Exercises: [pdf](Math/module7/exercises.pdf), [LaTeX](Math/module7/exercises.tex)<!--, [solutions](Math/module7/exercise_solutions.pdf) -->
 
-<!--
+
 <br>
 
 ### Module 8: Linear algebra II
 
-Slides: [fillable](Math/module8/slides.pdf)--><!--, [filled](Math/module8/slides_filled.pdf)-->
-<!--
-Exercises: [pdf](Math/module8/exercises.pdf), [LaTeX](Math/module8/exercises.tex) --><!--, [solutions](Math/module8/exercise_solutions.pdf) -->
+- Slides: [fillable](Math/module8/slides.pdf)<!--, [filled](Math/module8/slides_filled.pdf)-->
+
+- Exercises: [pdf](Math/module8/exercises.pdf), [LaTeX](Math/module8/exercises.tex) <!--, [solutions](Math/module8/exercise_solutions.pdf) -->
 
 
 <!--
 <br>
-### Module 9: Differentiation and integration
+### Module 9: Linear algebra III
 
 Slides: [fillable](Math/module9/slides.pdf)--><!--, [filled](Math/module9/slides_filled.pdf)-->
 <!--
@@ -109,7 +109,7 @@ Exercises: [pdf](Math/module9/exercises.pdf), [LaTeX](Math/module9/exercises.tex
 <!--
 <br>
 
-### Module 10: Multivariable calculus
+### Module 10: Differentiation and integration
 
 Slides: [fillable](Math/module10/slides.pdf)--><!--, [filled](Math/module10/slides_filled.pdf)-->
 <!--

@@ -53,8 +53,13 @@
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
 \newcommand{\bw}{{\mathbf{w}}}
-\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
 \newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
@@ -77,11 +82,40 @@
 
 \begin{document}
 \begin{center}
-\Large{Exercises for Module 8: Linear Algebra II|}
+\Large{Exercises for Module 8: Linear Algebra II}
 \end{center}
 
 
-1.  
+1.  A square matrix is called \emph{nilpotent} if $\exists k \in \N$ such that $A^k = 0$. Show that for a nilpotent matrix $A$, $|A| = 0$.
+
+\vspace{7cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+
+2. A real square matrix $Q$ is called \emph{orthogonal} if $Q^T Q = I$. Prove that if $Q$ is orthogonal, then $|Q| = \pm 1$.
+
+\vspace{7cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+3. An $n \times n$ matrix is called \emph{antisymmetric} if $A^T = -A$. Prove that if $A$ is antisymmetric and $n$ is odd, then $|A|=0$. 
+
+\vspace{7cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+
+4. Let $V$ be an inner product space, $U$ a vector space and $S\colon U \to V$, $S\colon U \to V$ be linear maps . Show that $\innerprod{S\bu,\bv}= \innerprod{T\bu, \bv}$ for all $\bu \in U$ and $\bv \in V$ implies $S=T$.
 
 \vspace{11cm} % delete this
 
@@ -91,17 +125,7 @@
 
 
 
-2. 
-
-\vspace{11cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-3. 
-
+5. Let $V$ be an inner product space and $\bx_1,\ldots, \bx_n$ be an orthonormal basis and $\by \in V$. Then, $\bx$ has a unique representation $\by =\sum_{i=1}^n \alpha_i \bx_i$. Show that $\alpha_i = \innerprod{\by,\bx_i}$ for all $i= 1,\ldots, n$.
 \vspace{12cm} % delete this
 
 % \begin{proof}  
@@ -110,7 +134,7 @@
 
 
 
-4.
+6. Let $V$ be an inner product space and $U\subseteq V$ a subset. Show that $U^\perp$ is a subspace of $V$.
 \vspace{11cm} % delete this
 
 % \begin{proof}  
@@ -118,25 +142,17 @@
 % \end{proof}  
 
 
-
-5. 
-
-\vspace{12cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
+7. Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \mathcal{L}(V,W)$. Show that the following holds
+\begin{enumerate}
+    \item $(S+\alpha T)^* = S^* + \overline{\alpha}T^*$ for all $\alpha\in \F$
+    \item $(S^*)^* = S$
+    \item $(RS)^* = S^*R^*$
+    \item $I^* = I$, where $I \colon U \to U$ is the identity operator on $U$
+\end{enumerate}
 
 
-6.
-\vspace{11cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
+\newpage
+\textcolor{white}{extra page}
 
 
 \end{document}
