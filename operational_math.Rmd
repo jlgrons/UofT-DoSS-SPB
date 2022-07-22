@@ -77,21 +77,21 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 - Slides: [fillable](Math/module6/slides.pdf), [filled](Math/module6/slides_filled.pdf)
 
-- Exercises: [pdf](Math/module6/exercises.pdf), [LaTeX](Math/module6/exercises.tex)<!--, [solutions](Math/module5/exercise_solutions.pdf) -->
+- Exercises: [pdf](Math/module6/exercises.pdf), [LaTeX](Math/module6/exercises.tex), [solutions](Math/module6/exercise_solutions.pdf) 
 
 
 <br>
 
 ### Module 7: Linear algebra I
 
-- Slides: [fillable](Math/module7/slides.pdf)<!--, [filled](Math/module7/slides_filled.pdf)-->
+- Slides: [fillable](Math/module7/slides.pdf), [filled](Math/module7/slides_filled.pdf)
 
 - Exercises: [pdf](Math/module7/exercises.pdf), [LaTeX](Math/module7/exercises.tex)<!--, [solutions](Math/module7/exercise_solutions.pdf) -->
 
 <!--
 <br>
 
-### Module 8: Linear algebra III
+### Module 8: Linear algebra II
 
 Slides: [fillable](Math/module8/slides.pdf)--><!--, [filled](Math/module8/slides_filled.pdf)-->
 <!--

@@ -1745,7 +1745,6 @@ Let $(X,\cT)$ be normal and $F_1,F_2\subseteq X$ be closed with $F_1\cap F_2 = \
 Proof omitted. See \cite[Theorem 4.1.2]{tastetopology}.
 
 \subsection{Exercises}
-%Some theorems with open, closed sets as exercises (closure of union contains union of closures and equal in finite case closure of intersection is subset of intersection of closures, but might not be equal in any setting! counter example $A=[0,1), B=(1,0]$ then $\overline{A} \cap \overline{B} = \{1\}$, but $\overline{A\cap B}= \emptyset $) You can also do Chapter 3 Exercise 7 in \cite{tastetopology} if you want.
 \begin{enumerate}
     \item Let $(X, \cT)$ be a topological space. Prove that $A\subseteq X$ is closed if and only if $\overline{A} =A$.
     \item Let $(X,\cT)$ be a topological space and $\{A_i\}_{i\in I}$ be a collection of subsets of $X$. Show that 
@@ -1766,6 +1765,571 @@ Proof omitted. See \cite[Theorem 4.1.2]{tastetopology}.
 
 \subsection{References}
 The content in this section comes mostly from \cite{tastetopology}, with additional examples inspired by \cite{marcoux2019}.
+
+\section{Linear Algebra}
+
+\subsection{Vector spaces and subspaces}
+Let $V$ be a set and let $\mathbb{F}$ be a field.
+
+\begin{definition}
+\label{def:vec_space}
+We call $V$ a \emph{vector space} if the following hold: \\
+Addition:
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A)] \textit{Commutativity in addition:} $\bu + \bv = \bv + \bu$ for all $\bu, \bv \in V$
+    \item[(B)] \textit{Associativity in addition:} $\bu + (\bv + \bw) = (\bu + \bv) + \bw$ for all $\bu, \bv, \bw \in V$
+    \item[(C)] \textit{Existence of a neutral element, addition:} There exists a vector $\zerovec$ such that for any $\bv \in V$, $\zerovec + \bv = \bv$
+    \item[(D)] \textit{Additive inverse:} For every $\bv \in V$, there exists another vector, which we denote $-\bv$, such that $\bv + (-\bv) = \zerovec$.
+\end{enumerate}
+
+Multiplication by a scalar:
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(E)] \textit{Existence of a neutral element, multiplication:} For any $\bv \in V$, $1\times \bv = \bv$
+    \item[(F)] \textit{Associativity in multiplication:} Let $\alpha, \beta \in \mathbb{F}$. For any $\bv \in V$, $(\alpha \beta) \bv = \alpha (\beta \bv)$ 
+\end{enumerate}
+
+Associativity:
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \alpha \bv$.
+    \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
+\end{enumerate}
+\end{definition}
+
+Elements of a vector space are called vectors. Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
+
+\begin{example}
+Examples of vector spaces are: 
+\begin{itemize}
+    \item $\R^n$ as a $\R$-vector space and $\mathbb{C}^n$ as a $\C$-vector space,
+    \item $C(\R;\R)$, continuous functions from $\R$ to $\R$,
+    \item $M_{m \times n}$ (matrices of size $m \times n$ with entries in $\F$) as an $\F$-vector space,
+    \item $\mathbb{P}_n$ (polynomials of degree $n$ and coefficients in $\F$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$) as an $\F$-vector space.
+\end{itemize}  
+\end{example}
+
+
+\begin{proposition}
+\label{lem:neg_vec}
+Let $\bv \in V$, where $V$ is a vector space.
+\begin{enumerate}
+    \item[(i)] $0 \bv= \zerovec$.
+    \item[(ii] $-\bv = (-1) \times \bv$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Using the distributive property:
+\begin{align*}
+    0 \bv = (0+0) \bv = 0 \bv + 0\bv
+\end{align*}
+Add the additive inverse of $0 \bv$ to both sides. we have $\zerovec =  0 \bv$.
+
+(ii) Our goal is to show that $(-1) \times \bv$ is the additive inverse of $\bv$.
+We show this as follows:
+\begin{align*}
+    \bv + (-1) \times \bv = \bv \times (1 + (-1)) = \bv \times 0 = \zerovec.
+\end{align*}
+\end{proof}
+
+\begin{definition}
+A subset $U$ of $V$ is called a \emph{subspace} of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
+\end{definition}
+
+
+\begin{proposition}\label{prop: characterization of subspace}
+A subset $U$ of $V$ is a subspace of $V$ if
+and only if $U$ satisfies the following three conditions:
+\begin{enumerate}
+\item  $\zerovec \in U$
+\item Closed under addition: $\bu,\bv\in U$ implies $\bu+\bv \in U$
+\item Closed under scalar multiplication: $\alpha \in\F$ and $\bu\in U$
+implies $\alpha \bu \in U$
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+$\Rightarrow$ If $U$ is a subspace of $V$, then $U$ satisfies these 3 properties by \cref{def:vec_space}.
+
+$\Leftarrow$ Suppose $U$ satisfies the given 3 conditions. Then for any $\bv \in U$, there must exist $-\bv \in U$ by property 3, since $-\bv = (-1) \times \bv$ by \cref{lem:neg_vec} (property D). Property 1 assures property C. Properties 2 and 3, and the fact that $U \subseteq V$, assure the remaining properties hold. 
+\end{proof}
+
+\begin{proposition}
+ Let $V$ be a vector space and let $U_1, U_2 \subseteq V$ be subspaces. Then $U_1 \cap U_2$ is also a subspace of $V$. 
+\end{proposition}
+
+\begin{proof}
+We use the characterization in \cref{prop: characterization of subspace}. First, since $\zerovec \in U_1$ and $\zerovec\in U_2$, we have $\zerovec\in U_1 \cap U_2$. Second, for $\bu, \bv \in U_1\cap U_2$, since in particular $\bu,\bv \in U_1$ and $\bu,\bv \in U_2$ and $U_1, U_2$ are subspaces, $\bu+\bv\in U_1$ and $\bu+\bv\in U_2$. Thus, $\bu+\bv \in U_1 \cap U_2$. Similarly, one shows $\alpha \bu \in U_1\cap U_2$ for $\alpha \in \F$.
+\end{proof}
+
+On the contrary the union of two subspaces is not a subspace in general (see exercise). However, the next definition introduces the smallest subspace containing the union.
+
+\begin{definition}
+Suppose $U_{1},...,U_{m}$ are subsets of $V$. The sum
+of $U_{1},...,U_{m}$, denoted $U_{1}+...+U_{m}$, is the set of all
+possible sums of elements of $U_{1},...,U_{m}.$ More precisely,
+\[
+U_{1}+...+U_{m}=\{\bu_{1}+...+\bu_{m}:\bu_{1}\in U_{1},...,\bu_{m}\in U_{m}\}
+\]
+\end{definition}
+
+
+\begin{proposition}
+Suppose $U_{1},...,U_{m}$ are subspaces of $V$. Then
+$U_{1}+...+U_{m}$ is the smallest subspace of $V$ containing $U_{1},...,U_{m}$.
+\end{proposition}
+
+This follows, since on the one hand clearly $U_1 + \ldots + U_m$ clearly contains $\cup_{i=1}^m U_i$ (to see that $\bu_i \in U_i$ is in the sum just set all the other summands $\zerovec$). On the other hand any vector space that contains the union needs to contain all sums of the above form otherwise we do not have a vector space. 
+
+
+\subsection{Linear (in)dependence and bases}
+For the following let $V$ be a fixed $\F$-vector space.
+
+\begin{definition}
+A linear combination of vectors $\bv_{1},...,\bv_{n}$  in $V$ is a vector of the form 
+$$
+\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
+$$
+ where $\alpha_{1},...,\alpha_{m} \in \F$.
+\end{definition}
+
+\begin{definition}
+The set of all linear combinations of a list of vectors
+$\bv_{1},...,\bv_{m}$ in $V$ is called the \emph{span} of $\bv_{1},...,\bv_{m}$,
+denoted $\mathrm{span}\{\bv_{1},...,\bv_{n}\}$. In other words, 
+$$
+\mathrm{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
+$$
+\end{definition}
+The span of the empty list is defined to be $\{\zerovec\}$.
+
+\begin{definition}
+A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
+$$
+\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k.
+$$
+\end{definition}
+
+In undergrad, you likely thought about this as: the equation $\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n$, where the $\alpha_i$ are unknown, has a unique solution.
+
+\begin{example}
+\textcolor{white}{Skip}
+\begin{itemize}
+    \item For $\F^n$, $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ is a basis
+    \item The monomials $ 1, x, x^2, \ldots, x^n$ form a basis for $\mathbb{P}_n$.
+\end{itemize}
+\end{example}
+
+A basis can be characterized by two important properties.
+
+\begin{definition}
+A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{linearly independent} if $\sum_{i=1}^n \alpha_i\bv_i = \zerovec$ implies $\alpha_i=0$ for all $i=1,\ldots,n$. Otherwise, we call the system \emph{linearly dependent}.
+\end{definition}
+
+Linear combinations  $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$  such that  $\alpha_k = 0$ for every $k$ are called trivial.
+
+\begin{definition}
+ A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{spanning}  if any vector in $V$ can be written as a linear combination of $\bv_1,\ldots,\bv_n$. In other words,
+\begin{equation*}
+    V = \mathrm{span}\{\bv_1,\ldots,\bv_n\}.
+\end{equation*}
+\end{definition}
+
+Such a system is also often called generating or complete. The next proposition relates spanning and linearly independent to a basis. 
+
+\begin{proposition}
+\label{prop:lin_indep_span_basis}
+ A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and spanning.
+\end{proposition}
+
+\begin{proof}
+Suppose that $\bv_1, \ldots \bv_n \in V$ is a basis. Then, by definition every vector admits a unique representation as a linear combination of $\bv_1, \ldots \bv_n$. In particular, $\bv_1, \ldots \bv_n$ is spanning. Also, since the linear combinations are unique and setting all coefficients 0 is one linear combination that adds up to $\zerovec$, we see that it is the only one. Hence, $\bv_1, \ldots \bv_n$ is linearly independent.
+
+Conversely, suppose $\bv_1, \ldots \bv_n$ is linearly independent and spanning and let $\bv\in V$. Then, since the system is spanning there exist coefficients $\alpha_1,\ldots, \alpha_n\in \F$ such that $\sum_{i=1}^n \alpha_i \bv_i = \bv$. We need to show it is unique. Suppose there exist $\beta_1,\ldots, \beta_n \in \F$ such that $\sum_{i=1}^n \beta_i \bv_i = \bv$. Then
+\begin{equation*}
+    \zerovec = \bv - \bv = \sum_{i=1}^n (\alpha_i - \beta_i) \bv_i.
+\end{equation*}
+By linear independence this linear combination is trivial, meaning $\alpha_i -\beta_i = 0$ for all $i=1,\ldots,n$ or equivalently $\alpha_i =\beta_i$. Thus, the linear combination is unique and $\bv_1, \ldots \bv_n$ forms a basis. 
+\end{proof}
+
+The next proposition shows that a basis can be thought of as a optimal spanning set in some sense. 
+
+\begin{proposition}\label{prop:span_cont_basis}
+ Let $\bv_1,\ldots, \bv_n\in V$ be spanning. Then $\bv_1,\ldots, \bv_n$ contains a basis.
+\end{proposition}
+
+\begin{proof}
+Since $\bv_1,\ldots, \bv_n$ is spanning, if the system is also linearly independent, we are done by \cref{prop:lin_indep_span_basis}. Suppose $\bv_1,\ldots, \bv_n$ is linearly dependent. Then, there exists coefficients $\alpha_1,\ldots,\alpha_n\in \F$ with some $\alpha_i\neq 0)$ such that $\sum_{i=1}^n \alpha_i \bv_i = \zerovec$. Rearranging leads to $\bv_i = \frac{1}{\alpha_i} \sum_{j=1,j\neq i}^n \alpha_j \bv_j$. Thus, $\bv_i \in \mathrm{span}\{\bv_j \colon j=1,\ldots,n \text{ and } j\neq i\}$ and the latter system of vectors is still spanning. To see this take $\bv \in V$. Then since the original system is spanning there exist coefficients such that $\bv = \sum_{k= 1}^n \beta_k \bv_k$. Hence we obtain 
+$$\bv = \sum_{k= 1}^n \beta_k \bv_k = \beta_i \bv_i + \sum_{k = 1, k\neq i}^n \beta_k \bv_k = \sum_{k = 1, k\neq i}^n \left(\beta_k +\frac{\alpha_k}{\alpha_i} \right)\bv_k.$$ 
+We can continue this procedure until we arrive at a linearly independent spanning set. 
+\end{proof}
+
+Next we will describe finite-dimensional vector spaces and show that any such vector space has a basis.
+
+\begin{definition}
+An $\F$-vector space $V$ is called \emph{finite dimensional} if there exists a finite list of vectors that span it, i.e. there exist $n\in \N$ and $\bv_1,\ldots, \bv_n\in V$ such that $V= \mathrm{span}\{\bv_1,\ldots,\bv_n\}$. Otherwise, we call $V$ \emph{infinite dimensional}.
+\end{definition}
+
+\begin{example}
+\textcolor{white}{skip}
+\begin{itemize}
+    \item $\F^n$, $M_{m\times n}$, $\mathbb{P}_n$ are examples of finite dimensional vector spaces
+    \item The $\F$-vector space $\mathbb{P} = \{ \sum_{i=1}^n \alpha_i x^i  \; \colon \; n\in \N, \alpha_i \in \F, i=1,\ldots,n\}$ is infinite dimensional. Why? Suppose it was finite dimensional. Then there exists a finitely many polynomials $p_1,\ldots, p_n$ which span $\mathbb{P}$. Let $N$ be the maximum degree of the polynomials $p_1,\ldots, p_n$. Then $x^{N+1} \not\in \mathrm{span}\{p_1,\ldots,p_n\}$ - contradiction.
+\end{itemize}
+\end{example}
+
+Using \cref{prop:span_cont_basis} we immediately obtain the following result.
+
+\begin{corollary}
+Every finite dimensional vector space has a basis.
+\end{corollary}
+
+This can also be extended to infinite dimensional vector spaces, i.e. when we do not assume that there exists a finite spanning set. However, this relies on the Axiom of Choice and is beyond the scope of this course.
+
+\begin{proposition}
+\label{prop:extendlisttobasis}
+Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+\end{proposition}
+\begin{proof}
+If $\bu_1, \ldots, \bu_m$ is a linearly independent list in a vector space $U$, we can extend it to span $V$ by adding in the basis of $V$, $\bv_1, \ldots, \bv_n$. Then $\bu_1, \ldots, \bu_m,\bv_1, \ldots, \bv_n$ spans $V$ and by \cref{prop:span_cont_basis} it can be reduced to a basis for $V$, which will contain all the $\bu$'s since they are linearly independent.
+\end{proof}
+
+Lastly, we introduce the dimension of a vector space.
+
+\begin{proposition}
+Let $\bv_1,\ldots, \bv_n$ and $\bu_1,\ldots, \bu_m$ be a basis for $V$. Then $m=n$.
+\end{proposition}
+
+The proof is omitted, see \cite[Chapter 2, Proposition 2.35]{linalgright}. It relies on the fact that the number of elements in linearly independent systems are always less than or equal to the number of elements in spanning systems. 
+
+\begin{definition}
+Let $V$ be a finite dimensional $\F$-vector space. The number of elements in a basis of $V$ is called the \emph{dimension} of $V$ and is denoted $\mathrm{dim}(V)$.
+\end{definition}
+
+By the previous definition, the notion of dimension is well-defined. 
+
+\begin{example}
+\textcolor{white}{skip}
+\begin{itemize}
+    \item $\dim(\F^n) = n$
+    \item $\dim(\mathbb{P}_n)= n+1$
+    \item $\dim \{ \zerovec \} = 0$ (the only linearly independent set in $\{ \zerovec \}$ is the empty set)
+\end{itemize}
+\end{example}
+
+%\item Consider $M_n(\R) = \{ A = (A_{ij}) \colon A_{ij} \in \R\}$, the $\R$-vector space of $n\times n$ square matrices with real entries. Define $V_1 = \{ A \in M_n(\R) \colon A = A^t\}$, where $A^t = (A_{ji})$ for $A = (a_{ij})$ denotes the transpose of the matrix, and $V_2 = \{ A \in M_n(\R) \colon A = -A^t\}$. Show that $V_1, V_2$ are vector subspaces of $M_n(\R)$ and determine their dimension. 
+
+
+\subsection{Linear maps}
+Throughout we assume that $U$, $V$, and $W$ are $\F$-vector spaces.
+% \begin{definition}
+% A \emph{map} $T$ from domain $X$ to co-domain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
+% \end{definition}
+
+\begin{definition}
+A map from a vector space $U$ to a vector space $V$ is \emph{linear} if
+\begin{equation*}
+    T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
+\end{equation*}
+\end{definition}
+
+Let's denote the set of all linear maps from vector space $U$ to vector space $V$ by $\mathcal{L}(U,V)$.
+
+\begin{example}[Zero map]
+The map that maps everything to zero, i.e. $0:U \to V$ such that $0 \bv = \zerovec$, is linear. 
+\end{example}
+
+\begin{example}[Identity map]
+The map $I: V \to V$ such that $I \bv = \bv$ for every $\bv \in V$ is called the identity map. 
+\end{example}
+
+\begin{example}[Differentiation is a linear map]
+\label{ex:diff_map}
+Let $D \in \mathcal{L}(\mathbb{P}(\R),\mathbb{P}(\R))$, (i.e. $D$ is a linear map from the polynomials on $\R$ to  the polynomials on $\R$), defined as $Dp = p'$. The fact that such a map is linear follows from basic facts about derivatives, i.e. $\frac{d}{dx} (\alpha f(x) + \beta g(x)) = \alpha f'(x) + \beta g'(x)$.
+
+\end{example}
+
+Other examples: integration, rotation of vectors, reflection of vectors.
+
+\begin{theorem}[{\cite[Theorem 3.5]{linalgright}}]
+\label{thm:unique_map}
+Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
+\end{theorem}
+
+The proof can be found in the book.
+
+\begin{theorem}
+Let $S,T \in \mathcal{L}(U,V)$ and $\alpha \in \F$. $\mathcal{L}(U,V)$ is a vector space with addition defined as the sum $S+T$ and multiplication as the product $\alpha T$.
+\end{theorem}
+
+The proof follows from properties of linear maps and vector spaces. Note that the additive identity is the zero map.
+
+
+\begin{lemma}
+\label{lemm:map_0}
+Let $T \in \cL(U,V)$. Then $T(\zerovec) = \zerovec$.
+\end{lemma}
+\begin{proof}
+By linearity, $T(\zerovec) = T(\zerovec+\zerovec) = T(\zerovec) + T(\zerovec)$. Add $-T(\zerovec)$ to both sides to obtain the result.
+\end{proof}
+
+\begin{definition}
+Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
+\begin{itemize}
+\item \emph{Kernel or null space}: $\nullspace T = \{\bu \in U : T\bu = 0 \}$
+\item \emph{Range}: $\range \, T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$
+\end{itemize}
+The dimensions of these spaces are often called the following:
+\begin{itemize}
+\item \emph{Nullity}: $\nullity(T) = \dim(\nullspace(T))$
+\item \emph{Rank}: $\rank(T) = \dim(\range(T))$
+\end{itemize}
+\end{definition}
+
+
+\begin{proposition}
+Let $T: U \to V$. The null space of T is a subspace of $U$ and the range of T is a subspace of $V$.
+\end{proposition}
+\begin{proof}
+First, the null space. By \cref{lemm:map_0}, $T(\zerovec) = \zerovec$, so $\zerovec$ is in the null space. Next, show it is closed under addition. Let $\bu,\bv \in \nullspace T$. Then $T(\bu + \bv) = T(\bu) + T(\bv) = \zerovec+\zerovec = \zerovec$. Finally, it is closed under scalar multiplication since if $\bv \in \nullspace T$ and $\alpha \in \F$, then $T(\alpha \bv) = \alpha \zerovec = \zerovec$.
+
+Second, the range. Again by \cref{lemm:map_0}, there exists an element that maps to 0 (namely 0 itself), so $0 \in \range T$. Next, suppose $\bv_1,\bv_2 \in \range T$. Then $\exists \bu_1, \bu_2 \in U$ such that $T(\bu_1) = \bv_1$ and $T(\bu_2) = \bv_2$. Then $T(\bu_1 + \bu_2) = T(\bu_1) + T(\bu_2) = \bv_1 + \bv_2$ so $\bv_1 + \bv_2 \in \range T$. Finally, let $\bv \in \range T$ and $\alpha \in \F$. Then $\exists \bu \in U$ such that $T(\bu) = \bv$ and $T(\alpha \bu) = \alpha \bv$ so $\alpha \bv \in \range T$. 
+\end{proof}
+
+\begin{example}
+Zero map from a vector space $U$ to a vector space $V$:
+\begin{itemize}
+    \item The null space is $U$.
+    \item The range is $\{\zerovec\}$.
+\end{itemize}
+Differentiation map from $\mathbb{P}(\R)$ to $\mathbb{P}(\R)$:
+\begin{itemize}
+    \item The null space is the set of all constant functions.
+    \item The range is all of $\mathbb{P}(\R)$.
+\end{itemize}
+\end{example}
+
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$ and $T$ is \emph{surjective} if $\forall \bu \in U, \, \exists \bv \in V$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+\begin{theorem}
+$T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) Suppose $T$ is injective. By \cref{lemm:map_0}, we know that $\zerovec$ is in the null space of $T$, i.e. $T(\zerovec) = \zerovec$. Suppose in order to derive a contradiction that $\exists \bv \neq \zerovec \in \nullspace T$. Then $T(\bv) = \zerovec = T(\zerovec)$, and by injectivity, $\bv = 0$ Therefore $\nullspace T = \{\zerovec\}$. 
+
+($\Leftarrow$) Suppose $\nullspace T = 0$. Let $T\bu = T\bv$; we want to show $\bv = \bu$. $T\bu = T\bv$ implies $T (\bu - \bv) = \zerovec$, which implies $\bu - \bv \in \nullspace T$. But $\nullspace T = \{\zerovec\}$, so then $\bu - \bv = \zerovec$, which gives $\bu=\bv$.
+\end{proof}
+
+\begin{theorem}[Rank Nullity Theorem]
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\rank T + \nullity  T = \dim U.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $\bu_1, \ldots, \bu_m$ be a basis for $\nullspace T$. We can extend it to a basis for $U$ by \cref{prop:extendlisttobasis}. Suppose we add $\bw_1, \ldots, \bw_n$ to achieve the basis. Then $\nullity T = \dim \nullspace T = m$ and $\dim U = m+n$. We need to show that $\rank T = \dim \range T = n$.
+
+We show that $T\bw_1, \ldots, T\bw_n$ is a basis for $\range T$. Let $\bu \in U$. Then $\exists, \alpha_i, \beta_j \in \F$, $i=1,\dots,m$, $j=1,\dots,n$ such that
+\begin{equation*}
+    \bu = \alpha_1 \bu_1 + \cdots + \alpha_m \bu_m + \beta_ 1\bw_1 + \cdots + \beta_n \bw_n .
+\end{equation*}
+Apply $T$:
+\begin{align*}
+    T\bu & = \alpha_1 T \bu_1 + \cdots + \alpha_m T\bu_m + \beta_ 1 T\bw_1 + \cdots + \beta_n T\bw_n \\
+    & =  \beta_ 1 T\bw_1 + \cdots + \beta_n T\bw_n  \qquad \text{(since the $\bu$ are in $\nullspace T$)}
+\end{align*}
+Thus $T\bw_1, \ldots, T\bw_n$ spans $\range T$, so $\range T$ is finite-dimensional. Also, $T\bw_1, \ldots, T\bw_n$ are linearly independent:
+
+To show this, let $c_1,\ldots, c_n \in \F$. Then
+\begin{align*}
+    0 &= c_ 1 T\bw_1 + \cdots + c_n T\bw_n \\
+    &= T(c_1 \bw_1 + \cdots + c_n \bw_n), 
+\end{align*}
+i.e. $c_1 \bw_1 + \cdots + c_n \bw_n \in \nullspace T$, so since $\bu_1, \ldots, \bu_m$ is a basis for $\nullspace T$, there exist $d_1,\ldots, d_n \in \F$ such that
+\begin{align*}
+    c_1 \bw_1 + \cdots + c_n \bw_n = d_1 \bu_1 + \cdots + d_m \bu_m.
+\end{align*}
+Since $\bu_1, \ldots, \bu_m,\bw_1, \ldots, \bw_n$ is a basis for $U$ it is linearly independent, and so $c_1 = \cdots = c_n = d_1 = \cdots =d_m = 0$. Since all the $c$'s are zero, $T\bw_1, \ldots, T\bw_n$ is linearly independent, and thus a basis for $\range T$. Thus $\rank T = \dim \range T = n$ as required. 
+\end{proof}
+
+
+\begin{definition}[Product of linear maps]
+Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
+\end{definition}
+
+\begin{definition}
+A linear map $T: U \to V$ is \emph{invertible} if there exists a linear map $S: V \to U$ such that $ST$ is the identity map on $U$ and $TS$ is the identity map on $V$. Such a map $S$ is called the \emph{inverse} of $T$. 
+\end{definition}
+
+If $T$ is invertible, we denote the inverse by $T^\inv$. This is justified by the fact that the inverse is unique:
+
+\begin{proposition}
+Any invertible linear map has a unique inverse.
+\end{proposition}
+\begin{proof}
+Let $T:U \to V$ be invertible. Suppose it has two inverses, i.e. there exists $S_1, S_2$, both mapping from $V$ to $U$, such that $S_1 T$, $S_2 T$ are identity maps on $U$ and $T S_1$ and $T S_2$ are identity maps on $V$. Then
+\begin{equation*}
+    S_1 = S_1 T S_2 = S_2,
+\end{equation*}
+so $S_1$ and $S_2$ are the same.
+\end{proof}
+
+\begin{theorem}[{\cite[Theorem 3.56]{linalgright}}]
+\label{thm:invertiblesurjectiveinjective}
+A linear map is invertible if and only if it is injective and surjective.
+\end{theorem}
+
+See proof in the book, \cite[p.81]{linalgright}.
+
+\begin{definition}
+An invertible linear map is called an \emph{isomorphism}. If there exists an isomorphism from one vector space to another, we say that the vector spaces are \emph{isomorphic}.
+\end{definition}
+
+\begin{theorem}
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) Let $U$ and $V$ be finite-dimensional isomorphic vector spaces. Then there exists an invertible map $T: U \to V$. By \cref{thm:invertiblesurjectiveinjective}, $T$ is both injective and surjective, so $\nullspace T = \{ \zerovec \}$ and $\range T = V$. Then by the rank nullity theorem, 
+\begin{align*}
+    & \dim \range T + \dim \nullspace T = \dim U 
+     \implies &\dim V + \dim \{ \zerovec \} = \dim U
+    & \implies &\dim V = \dim U
+\end{align*}
+
+($\Leftarrow$) Let $U$ and $V$ be finite-dimensional vector spaces with the same dimension, with bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_n$, respectively. Define the map $T:U \to V$ using \cref{thm:unique_map}:
+$$ T(c_1 \bu_1 + \cdots + c_n \bu_n) =  c_1 \bv_1 + \cdots + c_n \bv_n,$$
+where $c_i \in \F$, $i=1,\ldots,n$. Since the $\bv$ span $V$, the map is surjective, and since they are linearly independent, we have $\null T = \{ \zerovec \}$. Thus $T$ is both surjective and injective, and therefore an isomorphism by \cref{thm:invertiblesurjectiveinjective}.
+\end{proof}
+
+\begin{definition}
+A linear map from a vector space to itself is called an \emph{operator}.
+\end{definition}
+
+
+\subsection{Linear maps and matrices}
+\begin{example}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{example}
+
+Next we will see that we can use matrices to represent linear maps between finite dimensional vector spaces. 
+
+\begin{definition}\label{def:matrix_rep}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m
+\end{equation*}
+i.e. the $k$th column of $A$ is the scalars needed to write $T \bu_k$ as a linear combination of the basis of $V$:
+\begin{equation*}
+    T \bu_k = \sum_{i=1}^m A_{ik} \bv_i 
+\end{equation*}
+\end{definition}
+
+Note that since a linear map $T\in \mathcal{L}(U,V)$ is uniquely determined by its image on a basis of $U$, we see that once we pick basis of $U$ and $V$ its matrix representation is uniquely determined. 
+
+\begin{example}
+Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathbb{P}_3(\R)$ and $\mathbb{P}_4(\R)$.
+
+Standard basis: $1, x, x^2, x^3, (x^4)$ \\
+$T(u_1) = (1)' = 0$ \\
+$T(u_2) = (x)' = 1$ \\ 
+$T(u_3) = (x^2)' = 2 x$ \\ 
+$T(u_4) = (x^3)' = 3 x^2$ \\
+$T(u_5) = (x^4)' = 4 x^3$
+
+The matrix is:
+\begin{equation*}
+    \mathcal{M}(D) = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix}
+\end{equation*}
+\end{example}
+
+Now observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis. In particular, if $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$. Hence, after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$. 
+
+\begin{example}
+If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
+\begin{align*}
+    \mathcal{M}(D)\boldsymbol{\alpha} = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix} \begin{pmatrix} 7\\ 0\\ -5\\12\\1
+     \end{pmatrix} = \begin{pmatrix} 0 \\ -10\\ 36\\4
+     \end{pmatrix}.
+\end{align*}
+Thus, translating back into the monomial basis of $\mathbb{P}_3(\R)$ gives $D(p) = -10x + 36x^2 +4x^3$.
+\end{example}
+
+Looking at matrices as representations of linear maps gives us an intuitive explanation for why we do matrix multiplication the way we do! In fact, we want matrix multiplication to represent composition of linear maps. 
+Let $T: U \to V$ and $S:V \to W$, where $T, S$ are linear maps and $U,V,W$ are vector spaces with bases $\bu_1, \ldots, \bu_n$, $\bv_1, \ldots, \bv_m$, and $\bw_1, \ldots, \bw_p$. If we want to have 
+\begin{equation*}
+    \mathcal{M}(ST) := \mathcal{M}(S) \mathcal{M}(T),
+\end{equation*}
+how would we need to define matrix multiplication? \\
+Let $A = \mathcal{M}(S)$ and $B = \mathcal{M}(T)$. Then using \cref{def:matrix_rep}
+\begin{align*}
+    (ST)\bu_k = S(T(\bu_k)) = S\left(\sum_{i=1}^m B_{ik}\bv_i\right) = \sum_{i=1}^m B_{ik} S(\bv_i)= \sum_{i=1}^m B_{ik} \sum_{j=1}^p A_{ji} \bw_j =\sum_{j=1}^p (\sum_{i=1}^m A_{ji} B_{ik}) \bw_j.
+\end{align*}
+Thus the $jk$ entry of $\mathcal{ST}$ is given by $\sum_{i=1}^m A_{ji} B_{ik}$, leading to an $m\times p$ matrix. This recovers the matrix multiplication learned in undergrad!\\
+Similarly, we also see that $\mathcal{M}(S+T) = \mathcal{M}(S) + \mathcal{M}(T)$ when $S,T \in \mathcal{L}(U,V)$ and $\mathcal{M}(\alpha T) = \alpha \mathcal{M}(T)$ for $\alpha \in \F$.
+
+Another useful application of matrices is solving systems of linear equations. If we have a system of $m$ linear equations with $n$ unknowns $x_1,\ldots, x_n$ and coeffcients in $\F$, we can write this the following way:
+\begin{align*}
+    A_{11} x_1 + A_{12}x_2 + \ldots + A_{1n}x_n &= b_1,\\
+     A_{21} x_1 + A_{22}x_2 + \ldots + A_{2n}x_n &= b_2,\\
+     \vdots& \\
+      A_{m1} x_1 + A_{m2}x_2 + \ldots + A_{mn}x_n &= b_m.
+\end{align*}
+Alternatively, we can represent this using matrix vector multiplication, leading to $A\bold{x} = \bold{b}$, where $A$ is the $m\times n$ matrix with entries $A_{ij}$, $\bold{x}$ is the vector with entries $x_i$, and $\bold{b}$ is the vector with entries $b_i$. Such systems can then be solved by performing appropriate row operations on the matrix $A$. However, details of this are omitted and if in need of a refresher we recommend \cite[Chapter 2]{linalgwrong}.
+
+
+\subsection{Exercises}
+
+\begin{enumerate}
+    \item Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$
+or $v=0$.
+\item Show that $-(-\bv)=\bv$ for $\bv\in V$.
+\item Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
+\item Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
+multiplication, but $U$ is not a subspace of $\mathbb{R}$.
+ \item Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$
+and $\bw\in V$. Prove that if $\bv_{1}+w,...,\bv_{m}+w$ is linearly dependent,
+then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
+\item Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
+in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},w$ is linearly independent if and only if 
+$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
+\item Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
+\begin{enumerate}
+    \item[(i)] Show that $T$ is linear.
+    \item[(ii)] Find the null space and range of $T$.
+\end{enumerate}
+\item \cite[3.B Exercise 22]{linalgright} Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
+\begin{equation*}
+    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
+\end{equation*}
+    \item Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find bases of $\mathbb{P}_4(\R)$ and $\mathbb{P}_3(\R)$ such that the matrix representation of $\mathcal{M}(D)$ with respect to these basis is given by 
+    \begin{equation*}
+    \mathcal{M}(D) = \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0
+     \end{pmatrix}.
+    \end{equation*}
+     \item Show that matrix multiplication of square matrices is not commutative, i.e find matrices $A,B \in M_{2}$ such that $AB\neq BA$.
+\end{enumerate}
+
+
+\subsection{References}
+The content follows \cite{linalgright}, with additional topics from \cite{linalgwrong}.
 
 
 \newpage
