@@ -1883,6 +1883,16 @@ $U_{1}+...+U_{m}$ is the smallest subspace of $V$ containing $U_{1},...,U_{m}$.
 
 This follows, since on the one hand clearly $U_1 + \ldots + U_m$ clearly contains $\cup_{i=1}^m U_i$ (to see that $\bu_i \in U_i$ is in the sum just set all the other summands $\zerovec$). On the other hand any vector space that contains the union needs to contain all sums of the above form otherwise we do not have a vector space. 
 
+\subsubsection{Exercises}
+\begin{enumerate}
+    \item Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$
+or $v=0$.
+\item Show that $-(-\bv)=\bv$ for $\bv\in V$.
+\item Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
+\item Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
+multiplication, but $U$ is not a subspace of $\mathbb{R}$.
+\end{enumerate}
+
 
 \subsection{Linear (in)dependence and bases}
 For the following let $V$ be a fixed $\F$-vector space.
@@ -2019,10 +2029,21 @@ By the previous definition, the notion of dimension is well-defined.
 \end{itemize}
 \end{example}
 
+\subsubsection{Exercises}
+\begin{enumerate}
+    %\item From Harvard: Suppose $v_{1},v_{2},v_{3},v_{4}$ (a) spans $V$ and (b) is linearly independent. Prove that the list  \[v_{1}-v_{2},v_{2}-v_{3},v_{3}-v_{4},v_{4}\] also (a) spans $V$ and (b) is linearly independent. 
+ \item Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$
+and $\bw\in V$. Prove that if $\bv_{1}+w,...,\bv_{m}+w$ is linearly dependent,
+then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
+\item Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
+in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},w$ is linearly independent if and only if 
+$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
 %\item Consider $M_n(\R) = \{ A = (A_{ij}) \colon A_{ij} \in \R\}$, the $\R$-vector space of $n\times n$ square matrices with real entries. Define $V_1 = \{ A \in M_n(\R) \colon A = A^t\}$, where $A^t = (A_{ji})$ for $A = (a_{ij})$ denotes the transpose of the matrix, and $V_2 = \{ A \in M_n(\R) \colon A = -A^t\}$. Show that $V_1, V_2$ are vector subspaces of $M_n(\R)$ and determine their dimension. 
+\end{enumerate}
 
 
 \subsection{Linear maps}
+\label{sec:lin_maps}
 Throughout we assume that $U$, $V$, and $W$ are $\F$-vector spaces.
 % \begin{definition}
 % A \emph{map} $T$ from domain $X$ to co-domain $Y$ is a rule that assigns an output $y = T(x) \in Y$ to each input $x \in X$
@@ -2124,6 +2145,13 @@ $T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
 ($\Leftarrow$) Suppose $\nullspace T = 0$. Let $T\bu = T\bv$; we want to show $\bv = \bu$. $T\bu = T\bv$ implies $T (\bu - \bv) = \zerovec$, which implies $\bu - \bv \in \nullspace T$. But $\nullspace T = \{\zerovec\}$, so then $\bu - \bv = \zerovec$, which gives $\bu=\bv$.
 \end{proof}
 
+% \begin{theorem}[Rank Theorem]
+% For a matrix $A$ or equivalently a linear transformation $A: \F^n \to \F^m$:
+% \begin{equation*}
+% \rank A = \rank A^T 
+% \end{equation*}
+% \end{theorem}
+
 \begin{theorem}[Rank Nullity Theorem]
 Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
 \begin{equation*}
@@ -2156,6 +2184,7 @@ i.e. $c_1 \bw_1 + \cdots + c_n \bw_n \in \nullspace T$, so since $\bu_1, \ldots,
 Since $\bu_1, \ldots, \bu_m,\bw_1, \ldots, \bw_n$ is a basis for $U$ it is linearly independent, and so $c_1 = \cdots = c_n = d_1 = \cdots =d_m = 0$. Since all the $c$'s are zero, $T\bw_1, \ldots, T\bw_n$ is linearly independent, and thus a basis for $\range T$. Thus $\rank T = \dim \range T = n$ as required. 
 \end{proof}
 
+% \subsubsection{Isomorphisms}
 
 \begin{definition}[Product of linear maps]
 Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
@@ -2209,6 +2238,20 @@ where $c_i \in \F$, $i=1,\ldots,n$. Since the $\bv$ span $V$, the map is surject
 A linear map from a vector space to itself is called an \emph{operator}.
 \end{definition}
 
+\subsubsection{Exercises}
+
+\begin{enumerate}
+\item Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
+\begin{enumerate}
+    \item[(i)] Show that $T$ is linear.
+    \item[(ii)] Find the null space and range of $T$.
+\end{enumerate}
+\item \cite[3.B Exercise 22]{linalgright} Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
+\begin{equation*}
+    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
+\end{equation*}
+
+\end{enumerate}
 
 \subsection{Linear maps and matrices}
 \begin{example}
@@ -2290,31 +2333,9 @@ Another useful application of matrices is solving systems of linear equations. I
 \end{align*}
 Alternatively, we can represent this using matrix vector multiplication, leading to $A\bold{x} = \bold{b}$, where $A$ is the $m\times n$ matrix with entries $A_{ij}$, $\bold{x}$ is the vector with entries $x_i$, and $\bold{b}$ is the vector with entries $b_i$. Such systems can then be solved by performing appropriate row operations on the matrix $A$. However, details of this are omitted and if in need of a refresher we recommend \cite[Chapter 2]{linalgwrong}.
 
-
-\subsection{Exercises}
+\subsubsection{Exercises}
 
 \begin{enumerate}
-    \item Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$
-or $v=0$.
-\item Show that $-(-\bv)=\bv$ for $\bv\in V$.
-\item Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
-\item Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
-multiplication, but $U$ is not a subspace of $\mathbb{R}$.
- \item Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$
-and $\bw\in V$. Prove that if $\bv_{1}+w,...,\bv_{m}+w$ is linearly dependent,
-then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
-\item Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
-in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},w$ is linearly independent if and only if 
-$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
-\item Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
-\begin{enumerate}
-    \item[(i)] Show that $T$ is linear.
-    \item[(ii)] Find the null space and range of $T$.
-\end{enumerate}
-\item \cite[3.B Exercise 22]{linalgright} Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
-\begin{equation*}
-    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
-\end{equation*}
     \item Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find bases of $\mathbb{P}_4(\R)$ and $\mathbb{P}_3(\R)$ such that the matrix representation of $\mathcal{M}(D)$ with respect to these basis is given by 
     \begin{equation*}
     \mathcal{M}(D) = \begin{pmatrix}
@@ -2327,9 +2348,407 @@ $$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
      \item Show that matrix multiplication of square matrices is not commutative, i.e find matrices $A,B \in M_{2}$ such that $AB\neq BA$.
 \end{enumerate}
 
+\subsection{Determinants}
+The determinant is a function of the entries of a square matrix. The determinant has many applications, including in computing the eigenvalues of a matrix. We review how to compute it and a few of its properties. 
+
+The determinant of a $2 \times 2$ matrix is 
+$$\left| \begin{matrix} a & b \\ c & d \end{matrix} \right| = ad-bc.$$
+
+There is also a trick for finding the determinant of a $3 \times 3$ matrix:
+$$\left| \begin{matrix} a & b &c \\ d & e & f \\ g & h &i \end{matrix} \right| = aei + bfg + cdh - gec -hfa -idb.$$
+You get this by adding the three downward diagonals and subtracting the three upward diagonals from the following:
+$$ \left| \begin{matrix} a & b &c \\ d & e & f \\ g & h &i \end{matrix} \right| \begin{matrix} a & b \\ d & e\\g & h  \end{matrix} $$
+
+For other $n \times n$ matrices, one can compute the determinant using cofactor expansion.
+
+\begin{definition}[Cofactor expansion]
+Let $A = \{ a_{j,k}\}_{j,k=1}^n$ be a $n\times n$ matrix. Let $M_{j,k}$ denote the determinant of the $(n-1) \times (n-1)$ matrix obtained by removing the $j^\text{th}$ row and the $k^\text{th}$ column of $A$. For each row $j=1,\ldots,n$
+\begin{equation*}
+    |A| = \sum_{k=1}^n a_{j,k} (-1)^{j+k} M_{j,k}.
+\end{equation*}
+Similarly, for each column $k=1,\ldots,n$
+\begin{equation*}
+    |A| = \sum_{j=1}^n a_{j,k} (-1)^{j+k} M_{j,k}.
+\end{equation*}
+The numbers $C_{j,k}=(-1)^{j+k} M_{j,k}$ are called \emph{cofactors}.
+\end{definition}
+Repeating the co-factor expansion $n-1$ times would allow us to compute the determinant of a $n \times n$ matrix by hand. However, it is not an efficient way to do so \cite[p.92]{linalgwrong}. Nevertheless, it can be useful in proving properties of the determinant, as well as finding the inverse of a matrix.
+
+We recall that one can easily compute the determinant of matrices of certain forms:
+
+\begin{proposition}
+The determinant of a diagonal matrix or triangular matrix is the product of the entries on the diagonal.
+\end{proposition}
+\begin{proof}
+One can see this using the cofactor expansion. Take the cofactor expansion across a row or column $i$ with only one entry (in the diagonal). Note that in the diagonal, $j+k$ will always be even. One obtains the entry $a_{i,i}$ times $M_{i,i}$. Repeating this to reduce $M_{i,i}$ will give the product of the entries on the diagonal.
+\end{proof}
+
+Recall that from \cref{sec:lin_maps}, a matrix $A$ is invertible if and only if the linear map represented by the matrix is an isomorphism. We have a representation for this inverse.
+
+\begin{theorem}
+Let $A$ be an $n \times n$ invertible matrix and let $C=\{C_{j,k}\}_{j,k=1}^n$ be its cofactor matrix. Then
+\begin{equation*}
+    A^\inv = \frac{1}{|A|} C^T
+\end{equation*}
+\end{theorem}
+To prove this, show that $A C^T = |A| I$ using the cofactor expansion of $A$.
+
+This can be useful in solving linear systems. If we have the linear system $A\bx = \mathbf{b}$, we know that if $A$ is invertible, the solution is given by $\bx = A^\inv \mathbf{b}$. The above Theorem gives us Cramer's rule for the solution to a linear system:
+\begin{corollary}
+Suppose $A$ is an $n \times n$ invertible matrix. The linear system $A\bx = \mathbf{b}$ has a unique solution given by
+\begin{equation*}
+    x_i = \frac{|A_i|}{|A|}, \quad i, \ldots, n,
+\end{equation*}
+where $A_i$ is the matrix obtained by replacing the $i^\text{th}$ column of $A$ with $\mathbf{b}$.
+\end{corollary}
+
+Here are a few more properties of determinants, stated here without proof.
+
+\begin{proposition}
+\label{prop:A_invertible}
+$|A| \neq 0$ if and only if $A$ is invertible.
+\end{proposition}
+
+\begin{proposition}[Properties of the determinant]
+Let $A$ be an $n \times n$ real matrix.
+\begin{enumerate}
+    \item If A has a zero column, then $|A| = 0$.
+\item If A has two equal columns, then $|A| = 0$.
+\item If one column of A is a multiple of another, then $|A| = 0$.
+\item $|AB| = |A| |B|$
+\item $|\alpha A| = \alpha^n |A|$ for $\alpha \in \F$
+\item $|A^T| = |A|$
+\end{enumerate}
+\end{proposition}
+
+Note that for the last item we need the following definition:
+
+\begin{definition}
+The \emph{transpose} of an $m \times n$ matrix A is the $n \times m$ matrix, denoted $A^T$, defined entry-wise as $\{A^T_{j,k}\} = \{A_{k,j}\}$ for $j=1,\ldots,m$ and $k=1,\ldots n$ (i.e. the rows of $A$ are the columns of $A^T$ and the columns of $A$ are the rows of $A^T$)
+\end{definition}
+
+
+\subsection{Exercises}
+The following are from \cite[p.85]{linalgwrong}:
+\begin{enumerate}
+    \item A square matrix is called \emph{nilpotent} if $\exists k \in \N$ such that $A^k = 0$. Show that for a nilpotent matrix $A$, $|A| = 0$.
+    \item A real square matrix $Q$ is called \emph{orthogonal} if $Q^T Q = I$. Prove that if $Q$ is orthogonal, then $|Q| = \pm 1$.
+    \item An $n \times n$ matrix is called \emph{antisymmetric} if $A^T = -A$. Prove that if $A$ is antisymmetric and $n$ is odd, then $|A|=0$. 
+\end{enumerate}
+
+\subsection{Inner product spaces}
+
+Recall that for a complex number $z = a + ib$, we define the following:
+\begin{itemize}
+\item Real part: $Re(z) = a$,
+\item Imaginary part: $Im(z) = b$,
+\item Complex conjugate: $\overline{z}= a -ib$, 
+\item Modulus: $|z| = \sqrt{Re(z)^2 + Im(z)^2} = \sqrt{a^2 + b^2}$
+\end{itemize}
+
+
+In the metric space section, we saw the definition of a norm. Now we will introduce inner products, which can be viewed as a special case of a norm. 
+\begin{definition}\label{def:inn_prod}
+Let $V$ be an $\F$-vector space. A function $\innerprod{\cdot,\cdot} \colon V \times V \to \F$ is called \emph{inner product} on $V$ if the following holds:
+\begin{enumerate}
+    \item (Conjugate) symmetry: $\innerprod{\bx,\by} = \overline{\innerprod{\by,\bx}}$ for all $\bx,\by\in V$, where $\overline{a}$ denotes the complex conjugate for $a\in \C$
+    \item Linearity in the first argument: $\innerprod{\alpha \bx + \beta \by, \bz} = \alpha \innerprod{\bx,\bz} + \beta \innerprod{\by,\bz}$ for all $\bx,\by,\bz\in V$ and $\alpha, \beta \in \F$
+    \item Positive definiteness: $\innerprod{\bx,\bx} \geq 0$ and $\innerprod{\bx,\bx} = 0$ if and only if $\bx = \zerovec$ 
+\end{enumerate}
+A vector space equipped with an inner product is called an \emph{inner product space}.
+\end{definition}
+
+
+If $V$ is an $\R$-vector space, property 1 in \cref{def:inn_prod} precisely means that the function is symmetric, i.e. $\innerprod{\bx,\by} = \innerprod{\by,\bx}$ for all $\bx,\by\in V$. Similarly, combining symmetry with property 2 we obtain that $\innerprod{\cdot,\cdot}$ is also linear in the second argument. \\
+In the case $\F = \C$, property 2 together with conjugate symmetry leads to $\innerprod{\cdot,\cdot}$ being conjugate linear in the second argument, meaning $\innerprod{\bx,\alpha \by +\beta \bz} = \overline{\alpha} \innerprod{\bx,\by} + \overline{\beta} \innerprod{\bx,\bz}$ for all $\bx,\by,\bz\in V$ and $\alpha, \beta \in \C$.\\
+Also note that conjugate symmetry guarantees that $\innerprod{\bx,\bx} \in \R$ for either choice of $\F$. Hence, property 3 merely forces positivity. 
+
+
+Note that in the following proofs we will often use the complex conjugate so that the proofs hold for both choices of $\F$. If one is only interested in the real case, this might add some notational clutter, however, the proofs are still valid since $r = \overline{r}$ for all $r\in \R$.
+
+\begin{example}
+\textcolor{white}{skip}
+\begin{itemize}
+    \item Standard inner product on $\R^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_iy_i$ for $\bx,\by\in \R^n$
+    \item Standard inner product on $\C^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_i\overline{y}_i$ for $\bx,\by\in \C^n$
+    \item On the space of polynomials $\mathbb{P}_n(\R)$: $\innerprod{\boldsymbol{p},\boldsymbol{q}} = \int_{-1}^1 p(x) {q}(x) \mathrm{d}x$ for $\boldsymbol{p},\boldsymbol{q}\in \mathbb{P}_n(\R)$
+\end{itemize}
+\end{example}
+
+\begin{proposition}\label{prop:zerovec_by_innerprod}
+Let $V$ be an inner product space. Then $\bx = \zerovec$ if and only if $\innerprod{\bx,\by } = 0$ for all $\by \in V$.
+\end{proposition}
+
+\begin{proof}
+Suppose $\bx = \zerovec$, then by linearity in the first argument and since $0 \bx = \bx$, we obtain $\innerprod{\bx,\by } = 0 \innerprod{\bx,\by } = 0$ for all $\by \in V$.
+
+Conversely, suppose $\innerprod{\bx,\by } = 0$ for all $\by \in V$. Then, in particular, this holds for $\by = \bx$ leading to $\innerprod{\bx,\bx} = 0$. Hence, $\bx = \zerovec$ by positive definiteness. 
+\end{proof}
+
+An important result regarding inner products is the Cauchy-Schwarz inequality. 
+
+\begin{proposition}[Cauchy-Schwarz Inequality]
+Let $V$ be an inner product space. Then 
+\begin{align*}
+    \vert \innerprod{\bx,\by}\vert \leq \sqrt{\innerprod{\bx,\bx}}\sqrt{\innerprod{\by,\by}}
+\end{align*}
+for all $\bx,\by\in V$.
+\end{proposition}
+
+\begin{proof}
+Let $t\in \F$. Then using linearity and (conjugate) linearity
+\begin{align*}
+    0 \leq \innerprod{\bx-t\by,\bx-t\by} = \innerprod{\bx,\bx} - t\innerprod{\by,\bx} - \overline{t}\innerprod{\bx,\by}+ \vert t\vert^2 \innerprod{\by,\by}.
+\end{align*}
+This holds for all $t\in \F$. Setting $t =\innerprod{\bx,\by}/\innerprod{\by,\by}$ leads to 
+\begin{align*}
+    0 \leq   \innerprod{\bx,\bx} - 2 \frac{\vert\innerprod{\bx,\by}\vert^2}{\innerprod{\by,\by}}+ \frac{\vert\innerprod{\bx,\by}\vert^2}{\innerprod{\by,\by}^2}\innerprod{\by,\by} = \innerprod{\bx,\bx} -  \frac{\vert\innerprod{\bx,\by}\vert^2}{\innerprod{\by,\by}},
+\end{align*}
+where we used (conjugate) symmetry. Hence,
+\begin{align*}
+    \vert \innerprod{\bx,\by}\vert^2 \leq \innerprod{\bx,\bx}\innerprod{\by,\by}
+\end{align*}
+and taking the square root leads the result. 
+\end{proof}
+
+As alluded to before an inner product can be used to define a norm.
+
+\begin{proposition}
+Let $V$ be an inner product space. Then $\innerprod{\cdot,\cdot}$ induces a norm on $V$ via $\Vert \bx\Vert =\sqrt{\innerprod{\bx,\bx}} $ for all $\bx \in V$.
+\end{proposition}
+
+\begin{proof}
+By property 3 in \cref{def:inn_prod}, $\Vert \bx\Vert\geq 0$ for all $\bx\in V$ and $\Vert \bx \Vert = 0$ if and only if $\bx = 0$. 
+
+By linearity and conjugate symmetry we obtain for $\alpha \in \F$ and $\bx \in V$: 
+\begin{equation*}
+    \Vert \alpha \bx \Vert = \sqrt{\innerprod{\alpha \bx, \alpha \bx}} = \sqrt{\alpha \overline{\alpha} \innerprod{\bx,\bx}} = \sqrt{\vert \alpha\vert^2 \innerprod{\bx,\bx}} = \vert \alpha \vert \Vert \bx \Vert.
+\end{equation*}
+
+Lastly, linearity in the first argument and (conjugate) linearity and the Cauchy-Schwarz inequality will give the triangle inequality. For $\bx,\by \in V$ we observe 
+\begin{align*}
+    \Vert \bx+\by \Vert^2 &= \innerprod{\bx,\bx} +\innerprod{\by,\bx} +\innerprod{\bx,\by}+ \innerprod{\by,\by}\\
+    & = \Vert \bx \Vert^2 + 2\mathrm{Re}(\innerprod{\bx,\by}) +  \Vert \by \Vert^2 \\
+    &\leq \Vert\bx\Vert^2+ 2\vert(\innerprod{\bx,\by})\vert + \Vert \by\Vert^2\\
+    & \leq \Vert\bx\Vert^2+ 2\Vert \bx\Vert \Vert\by\Vert + \Vert \by\Vert^2 = (\Vert \bx \Vert + \Vert \by \Vert)^2,
+\end{align*}
+where $\mathrm{Re}(z) = \frac{z+ \overline{z}}{2}$ denotes the real part of a complex number $z\in \C$ and we used $\mathrm{Re}(z) \leq \vert z\vert$ for all $z\in \C$. Taking the square root of the above inequality leads to the desired result.
+\end{proof}
+
+Note:
+With this identification the Cauchy-Schwarz inequality can be restated as: $ \vert \innerprod{\bx,\by}\vert \leq \Vert \bx \Vert \Vert \by \Vert$ for all $\bx, \by\in V$.
+
+
+\begin{example}
+The norm introduced by the standard inner product on $\R^n$ is the Euclidean distance. 
+\end{example}
+
+\subsubsection{Adjoints, unitaries and orthogonal matrices}
+
+\begin{definition}
+Let $U,V$ be inner product spaces and $S\colon U \to V$ be a linear map. The \emph{adjoint} $S^*$ of $S$ is the linear map $S^*\colon V \to U$ defined such that 
+\begin{align*}
+    \innerprod{S\bu,\bv}_V = \innerprod{\bu,S^*\bv}_U \qquad \text{ for all } \bu\in U, \bv\in V.
+\end{align*}
+\end{definition}
+
+If it is clear from context, we sometimes omit the subscripts for the inner products. The next proposition shows that the definition makes sense, i.e. this uniquely defines a linear operator.
+
+\begin{proposition}
+Let $U,V$ be inner product spaces and $S\colon U \to V$ be a linear map. Then $S^*$ is unique and linear. 
+\end{proposition}
+
+\begin{proof}
+First, we show uniqueness. Suppose there exists $T\colon V \to U$ such that $\innerprod{S\bu,\bv}_V = \innerprod{\bu,T\bv}_U$ for all $\bu\in U, \bv\in V$. Then, $\innerprod{\bu,T\bv}_U = \innerprod{\bu, S^*\bv}$ for all $\bu\in U, \bv\in V$. Then using (conjugate) symmetry and Exercise 1, we see that $S^*= T$.
+
+To see linearity take $\alpha\in \F$ and $\bv,\bw \in V$. Then, by the definition of adjoint and using  conjugate linearity in the second argument we obtain 
+\begin{align*}
+    \innerprod{\bu, S^*(\alpha\bv+\bw)}_U &= \innerprod{S\bu,\alpha\bv+\bw}_V =\overline{\alpha}\innerprod{S\bu,\bv}_V + \innerprod{S\bu,\bw}_V\\
+   &=\innerprod{\bu,\alpha S^*\bv}_U + \innerprod{\bu,S^*\bw}_U\\ &= \innerprod{\bu,\alpha S^*\bv+ S^*\bw}_U
+\end{align*}
+for all $\bu \in U$. Hence, $0 = \innerprod{\bu, S^*(\alpha\bv+\bw)- \alpha S^*\bv+ S^*\bw}$ for all $\bu\in U$ and so by (conjugate) symmetry and \cref{prop:zerovec_by_innerprod} we obtain $S^*(\alpha\bv+\bw) = \alpha S^*\bv+ S^*\bw$. 
+\end{proof}
+
+\begin{example}
+Define $S \colon \R^3 \to \R^2$ by $S\bx = (2x_1+x_3,-x_2)$. Then, for all $\by= (y_1,y_2) \in \R^2$ the defining equation for the adjoint operator leads to
+\begin{align*}
+    \innerprod{S\bx, \by}_{\R^2} &= \innerprod{(2x_1+x_3,-x_2), (y_1,y_2)} \\
+    &= 2x_1y_1 +x_3y_1-x_2y_2\\
+    &= \innerprod{(x_1,x_2,x_3),(2y_1,-y_2,y_1)}_{\R^3}\\
+    &= \innerprod{\bx,S^*\by}_{\R^3}.
+\end{align*}
+Hence, $S^*\by = (2y_1,-y_2,y_1)$.
+\end{example}
+
+Next we will record some properties of the adjoint.
+
+\begin{proposition}
+Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \mathcal{L}(V,W)$. Then, the following holds
+\begin{enumerate}
+    \item $(S+\alpha T)^* = S^* + \overline{\alpha}T^*$ for all $\alpha\in \F$
+    \item $(S^*)^* = S$
+    \item $(RS)^* = S^*R^*$
+    \item $I^* = I$, where $I \colon U \to U$ is the identity operator on $U$
+\end{enumerate}
+\end{proposition}
+
+The proof of this is an exercise. 
+
+The adjoint of a linear map also always exists, which we will handle by constructing the adjoint of a matrix. Then, since any linear map between abstract finite-dimensional vector spaces can be represented as a matrix (after a choice of basis), we obtain a matrix representation for the adjoint.  In \cite{linalgright} a slightly different and arguably  more abstract proof is presented. 
+
+\begin{proposition}
+Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
+
+In particular if $\F = \R$, the adjoint of the matrix is given by its transpose,denoted $A^T$, and if $\F = \C$, it is given by its conjugate transpose, denoted $A^*$.
+\end{proposition}
+
+\begin{proof}
+Let $\bx\in \F^n$ and $\by \in \F^m$. Then
+\begin{align*}
+    \innerprod{A\bx, \by} &= \sum_{j=1}^m \left(\sum_{i=1}^n A_{ji} x_i\right) \overline{y_j} \\
+    &=\sum_{i=1}^n x_i \left( \overline{\sum_{j=1}^m \overline{A_{ji}} y_j}\right)\\
+    &=\innerprod{\bx, A^* \by}.
+\end{align*}
+\end{proof}
+
+Using the adjoint we can identify the matrices that preserve the inner product (and hence also the norm induced by the inner product).
+
+\begin{definition}
+A matrix $O\in M_n(\R)$ is called \emph{orthogonal} if its inverse is given by its transpose, i.e. $O^T O = O O^T = I$. A matrix $U\in M_n(\C)$ is called \emph{unitary} if the inverse is given by the conjugate transpose, i.e. $U^* U = U U^* = I$.
+\end{definition}
+
+\begin{example}
+\textcolor{white}{skip}
+\begin{itemize}
+    \item Let $\varphi \in [0,2\pi]$. Then 
+    \begin{equation*}
+        \begin{pmatrix}
+            \cos(\varphi) & -\sin(\varphi) \\
+            \sin(\varphi) & \cos(\varphi)
+        \end{pmatrix}
+    \end{equation*}
+    is an orthogonal matrix. What does it describe geometrically?
+    \item The following is a unitary matrix:
+        \begin{equation*}
+        \begin{pmatrix}
+            0 & -i \\
+            i & 0
+        \end{pmatrix}
+    \end{equation*}
+\end{itemize}
+\end{example}
+
+By the definition we immediately see that for $U \in M_n(\C)$ unitary we have
+\begin{equation*}
+    \innerprod{U\bx, U\by} = \innerprod{\bx, U^*U\by} = \innerprod{\bx,\by}
+\end{equation*}
+for all $\bx,\by \in \C^n$ and similarly for orthogonal matrices. This essentially gives the equivalent characterization.
+
+\begin{proposition}
+A matrix $U\in M_n(\C)$ ($O\in M_n(\R)$) is unitary ($O$ is orthogonal) if and only if $U$ ($O$) is an isometry with respect to the norm induced by the inner product, i.e. $\Vert U\bx \Vert = \Vert \bx \Vert$ for all $\bx \in \C^n$ ($\Vert O\bx \Vert = \Vert \bx \Vert$ for all $\bx \in \R^n$)
+\end{proposition}
+
+Another important class of matrices related to the adjoint are self-adjoint matrices.
+
+\begin{definition}
+Let $A\in M_n(\F)$. We call $A$ \emph{self-adjoint} if $A^* = A$. In the case $\F = \R$, such an $A$ is called \emph{symmetric} and if $\F = \C$, such an $A$ is called \emph{Hermitian}.
+\end{definition}
+
+
+Lastly, we mention that the square matrices can be equipped with an inner product. 
+
+\begin{definition}
+The \emph{trace} is the linear function $\Tr \colon M_n{\F} \to \F$ given by $\Tr(A) = \sum_{i=1}^n A_{ii}$.
+\end{definition}
+
+The trace is especially nice due to its cyclic property $\Tr(AB) = \Tr(BA)$ for all $A,B\in M_n(\F)$. The proof of this is an exercise. Note that this also shows that the trace is independent of the choice of basis, since any change of basis transformation can be expressed using an invertible matrix $U$, i.e. $UAU^\inv$.
+
+\begin{proposition}
+The following defines an inner product on $M_n(\F)$:
+\begin{align*}
+    \innerprod{A,B} = \Tr(B^*A)
+\end{align*}
+for $A,B\in M_n(\F)$. This is often called \emph{Hilbert-Schmidt inner product}.
+\end{proposition}
+
+The proof that this actually defines an inner product is an exercise. 
+
+\subsubsection{Orthogonality and Gram-Schmidt}
+In the following $V$ is always an inner product space. 
+
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+Orthonormal bases are particularly nice, since the coefficients of an arbitrary vector in the basis expansion with respect to this ONB are given by inner products (see Exercises). Note that being orthonormal already implies being linearly independent.
+
+\begin{proposition}
+Let $\bx_1,\ldots, \bx_k\in V$ be orthonormal. Then, the system of vectors is linearly independent.
+\end{proposition}
+
+\begin{proof}
+Suppose $\sum_{i=1}^k \alpha_i \bx_i = \zerovec$. Then, $\Vert \sum_{i=1}^k \alpha_i \bx_i\Vert^2 = 0$. In particular,
+\begin{align*}
+    0 &= \Vert \sum_{i=1}^k \alpha_i \bx_i\Vert^2 = \innerprod{\sum_{i=1}^k \alpha_i \bx_i, \sum_{j=1}^k \alpha_j \bx_j} = \sum_{i,j=1}^k\innerprod{\alpha_i \bx_i, \alpha_j \bx_j} \\
+    &= \sum_{i=1}^n \vert \alpha_i \vert^2 \Vert \bx_i \Vert^2 + \sum_{i,j=1, i\neq j}^n \alpha_i \overline{\alpha_j} \innerprod{\bx_i,\bx_j} =\sum_{i=1}^n \vert \alpha_i\vert^2,
+\end{align*}
+which shows that $\alpha_i = 0$ for all $i=1,\ldots, n$ and thus, the system is linearly independent. 
+\end{proof}
+
+Given two vectors we can decompose one into orthogonal parts with respect to the other. 
+
+\begin{proposition}[Orthogonal Decomposition,{\cite[6.14, p.171]{linalgright}}]
+Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
+\end{proposition}
+
+\begin{proof}
+Set $c = \frac{\innerprod{\bx,\by}}{\Vert \by \Vert^2} $ and $\bz = \bx - c\by$.
+\end{proof}
+
+Given a basis we can obtain an ONB from it using the Gram-Schmidt algorithm by reiterating the orthogonal decomposition from above.
+
+\begin{proposition}[Gram-Schmidt Algorithm, {\cite[6.31, p.183]{linalgright}}]
+Let $\bx_1,\ldots, \bx_n \in V$ be a system of linearly independent vectors. Define $\by_1 = \bx_1/\Vert \bx_1 \Vert$. For $i = 2,\ldots,n$ define $\by_j$ inductively by
+\begin{align*}
+    \by_i = \frac{\bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k}{\Vert \bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k\Vert}.
+\end{align*}
+Then the $\by_1, \ldots, \by_n$ are orthonormal and 
+\begin{align*}
+    \mathrm{span}\{\bx_1,\ldots,\bx_n\} = \mathrm{span}\{\by_1,\ldots,\by_n\}.
+\end{align*}
+\end{proposition}
+
+The proof is omitted but can be found in the book.
+
+\begin{definition}
+Let $U\subseteq V$ be a non-empty subset. The \emph{orthogonal complement} $U^\perp$ of $U$ is given by
+\begin{align*}
+    U^\perp = \{ \bx \in V \colon \innerprod{\bx,\bu} = 0 \text{ for all } \bu \in U\}.
+\end{align*}
+\end{definition}
+
+In the exercises you will show that the orthogonal complement is a subspace. 
+
+\subsubsection{Exercises}
+
+\begin{enumerate}
+    \item Let $V$ be an inner product space, $U$ a vector space and $S\colon U \to V$, $S\colon U \to V$ be linear maps . Show that $\innerprod{S\bu,\bv}= \innerprod{T\bu, \bv}$ for all $\bu \in U$ and $\bv \in V$ implies $S=T$.
+    \item Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \mathcal{L}(V,W)$. Show that the following holds
+\begin{enumerate}
+    \item $(S+\alpha T)^* = S^* + \overline{\alpha}T^*$ for all $\alpha\in \F$
+    \item $(S^*)^* = S$
+    \item $(RS)^* = S^*R^*$
+    \item $I^* = I$, where $I \colon U \to U$ is the identity operator on $U$
+\end{enumerate}
+    \item Let $A,B \in M_n(\F)$. Show that $\Tr(AB) = \Tr(BA)$.
+    \item Show that $\innerprod{A,B} = \Tr(B^*A)$ for $A,B \in M_n(\F)$ defines an inner product on $M_n(\F)$.
+    \item Let $V$ be an inner product space and $\bx_1,\ldots, \bx_n$ be an orthonormal basis and $\by \in V$. Then, $\bx$ has a unique representation $\by =\sum_{i=1}^n \alpha_i \bx_i$. Show that $\alpha_i = \innerprod{\by,\bx_i}$ for all $i= 1,\ldots, n$.
+    \item Let $V$ be an inner product space and $U\subseteq V$ a subset. Show that $U^\perp$ is a subspace of $V$.
+\end{enumerate}
 
 \subsection{References}
-The content follows \cite{linalgright}, with additional topics from \cite{linalgwrong}.
+This section is based on the books \cite{linalgright} and \cite{linalgwrong}. \cite{linalgright} is the main source for sections 1, 2, and 3, while \cite{linalgwrong} is used for sections 4 and 6. Section 5 draws from both books.
+
 
 
 \newpage
