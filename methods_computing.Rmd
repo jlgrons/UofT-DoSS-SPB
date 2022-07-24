@@ -99,26 +99,28 @@ Hypothesis testing
 
 - Solutions: [pdf](Computing/Solutions/sol6.pdf)
 
+<br>
 
-<!-- #### Module 6: Hypothesis testing -->
+### Module 7: Simulations 
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod6.pdf"target="_blank">Slides</a> -->
+- Slides: [pdf](Computing/Slides/mod7.pdf) 
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex6.pdf" target="_blank">Exercise 6</a> -->
+- Exercises: [pdf](Computing/Exercises/ex7.pdf)
 
+<!-- - Solutions: [pdf](Computing/Solutions/sol7.pdf), [Rmd](Computing/Solutions/sol7.Rmd) -->
 
-<!-- <br> -->
+<br>
 
-<!-- ### Simulations  -->
+### Module 8: Bootstrap
 
-<!-- #### Module 7: Monte Carlo simulations -->
+<br>
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod7.pdf"target="_blank">Slides</a> -->
+### Module 9: Linear regression
 
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Exercises/ex7.pdf" target="_blank">Exercise 7</a> -->
+<br>
 
+### Module 10: Generalized linear regression
 
-<!-- <br> -->
 
 <!-- ### Bootstrap -->
 
