@@ -53,8 +53,17 @@
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
 \newcommand{\bw}{{\mathbf{w}}}
-\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
 \newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
@@ -69,19 +78,18 @@
 \newcommand{\cT}{\mathcal{T}}
 \newcommand{\inv}{{-1}}
 
-%\DeclareMathOperator{\dim}{dim}
-\DeclareMathOperator{\range}{range}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\nullity}{nullity}
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
 
 
 \begin{document}
 \begin{center}
-\Large{Exercises for Module 9: Differentiation and Integration}
+\Large{Exercises for Module 9: Linear Algebra III}
 \end{center}
 
 
-1.  
+1.  Let $A,B \in M_n(\F)$ be similar matrices. Show that their characteristic polynomials coincide.
 
 \vspace{11cm} % delete this
 
@@ -91,7 +99,7 @@
 
 
 
-2. 
+2. Show that $A\in M_n(\C)$ is invertible if and only if $0 \not \in \sigma(A)$.
 
 \vspace{11cm} % delete this
 
@@ -100,7 +108,7 @@
 % \end{proof}  
 
 
-3. 
+3. Suppose $N$ is a nilpotent matrix. Show that $\sigma(N) = \{0\}$.
 
 \vspace{12cm} % delete this
 
@@ -110,7 +118,7 @@
 
 
 
-4.
+4. Let $A\in M_n(\C)$ be an invertible matrix. Show that $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^\inv$ is an eigenvalue of $A^\inv$.
 \vspace{11cm} % delete this
 
 % \begin{proof}  
@@ -119,7 +127,7 @@
 
 
 
-5. 
+5. Suppose $A\in M_n(\C)$ is Hermitian. Show that all the eigenvalues of $A$ are real. Hint: Note that if $\bx$ is a normalized eigenvector of $A$ with eigenvalue $\lambda$, then $\innerprod{A\bx,\bx} = \lambda$.
 
 \vspace{12cm} % delete this
 
@@ -129,7 +137,7 @@
 
 
 
-6.
+6. Let $A\in M_n(\R)$. Show that the eigenvalues of $A^TA$ are non-negative.
 \vspace{11cm} % delete this
 
 % \begin{proof}  

@@ -33,8 +33,12 @@
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
 \newcommand{\bw}{{\mathbf{w}}}
-\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
 \newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
@@ -49,6 +53,16 @@
 \newcommand{\cT}{\mathcal{T}}
 \newcommand{\inv}{{-1}}
 
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
+
+
+%\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
 
 \beamertemplatenavigationsymbolsempty
 
@@ -57,10 +71,10 @@
 % alert block
 
 
-\title[]{Module 9: Differentiation and Integration \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 9: Linear Algebra III \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{\today}
+\date{July 25, 2022}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -102,17 +116,341 @@
 }
 
 \begin{frame}{Outline}
+Spectral theory and matrix decompositions:
+\vspace{0.5em}
     \begin{itemize}
-      \setlength\itemsep{1em}
-    	\item 
+      \setlength\itemsep{0.5em}
+    	\item Eigenvalues and eigenvectors
+	\item Algebraic and geometric multiplicity of eigenvalues
+	\item Jordan canonical form
+	\item Singular value decomposition
+	\item $LU$ and $QR$ decompositions
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Recall: connection between matrices and linear maps}
+\begin{block}{Multiplication by a matrix defines a linear map}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{block}
+
+\vspace{1em}
+
+\begin{block}{Given a bases for $U$ and $V$, $T: U \to V$ can be written as a matrix}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m.
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Eigenvalues}
+\begin{definition}
+Given an operator $A \colon V \to V$ and $\alpha \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+$$A \bv = \lambda \bv.$$
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $T$ and denote it by $\sigma(T)$.
+\end{definition}
+
+\vspace{1em}
+
+Motivation in terms of linear maps: Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly ``nice'' way: such that $T$ acts only by scaling, i.e. $T\bv_i = \lambda_i \bv_i$ where $\lambda_i \in \F$ for $i = 1, \ldots, n$.
+\end{frame}
+
+\begin{frame}{Finding eigenvalues}
+
+\begin{itemize}
+\item Rewrite $A \bv = \lambda \bv$ as  %$(A - \lambda I) \bv= 0$. 
+\item Thus, if $\lambda$ is an eigenvalue, we can find the corresponding eigenvectors by finding the null space of $A - \lambda I$.
+\item The subspace $\nullspace (A - \lambda I)$ is called the \emph{eigenspace}
+\item To find the eigenvalues of $A$, one must find the scalars $\lambda$ such that $\nullspace (A - \lambda I)$ contains non-trivial vectors (i.e. not $\zerovec$)
+\item Recall: We saw that $T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
+\item Thus $\lambda$ is an eigenvector if and only if $A - \lambda I$ is not invertible.
+\item Recall: $|A| \neq 0$ if and only if $A$ is invertible.
+\item Thus $\lambda$ is an eigenvector if and only if %$|A - \lambda I|=0$.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+The following are equivalent
+\begin{enumerate}
+    \item $\lambda\in \F$ is an eigenvalue of $A$,
+    \item $(A-\lambda I)\bv = 0$ has a non-trivial solution,
+    \item $|A-\lambda I|= 0$.
+\end{enumerate}
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Characteristic polynomial}
+\begin{definition}
+If $A$ is an $n\times n$ matrix, $p_A(\lambda) = |A-\lambda I|$ is a polynomial of degree $n$ called the \emph{characteristic polynomial} of $A$.
+\end{definition}
+
+To find the eigenvectors of $A$, one needs to find the roots of the characteristic polynomial.
+\end{frame}
+
+
+\begin{frame}{Example}
+Find the eigenvalues of
+$$ \begin{bmatrix} 4 & -2 \\ 5 & -3 \end{bmatrix}.$$
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}{Multiplicity}
+\begin{definition}
+The multiplicity of the root $\lambda$ in the characteristic polynomial is called the \emph{algebraic multiplicity} of the eigenvalue $\lambda$. The dimension of the eigenspace $\nullspace (A - \lambda I)$ is called the \emph{geometric multiplicity} of the eigenvalue $\lambda$.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Similar matrices]
+Square matrices $A$ and $B$ are called \emph{similar} if there exists an invertible matrix $S$ such that
+$$A = SBS^\inv.$$
+\end{definition}
+
+\vspace{1em}
+
+Similar matrices have the same characteristic polynomials and hence the same eigenvalues (see exercise).
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Suppose $A$ is a square matrix with distinct eigenvalues $\lambda_1, \ldots, \lambda_n$. Let $\bv_1, \ldots, \bv_n$ be eigenvectors corresponding to these eigenvalues. Then $\bv_1, \ldots, \bv_n$ are linearly independent.
+\end{theorem}
+\begin{block}{Proof}
+\vspace{3cm}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{6cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{corollary}
+If a $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. That is there exists an invertible matrix $S\in M_n(\C)$ such that $A = SDS^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Let $A:V\to V$ be an operator with $n$ eigenvalues. $A$ is diagonalizable if and only if for each eigenvalue $\lambda$, the geometric multiplicity of $\lambda$ and the algebraic multiplicity of $\lambda$ are the same.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Example: a diagonalizable matrix}
+$$ \begin{bmatrix} 1 & 2 \\ 8 & 1\end{bmatrix} \; \text{is diagonalizable.}$$.
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}{Example continued}
+
+\end{frame}
+
+
+\begin{frame}{Example: a matrix that is not diagonalizable}
+$$ \begin{bmatrix} 1 & 1 \\ 0 & 1\end{bmatrix} \; \text{is \emph{not} diagonalizable.}$$.
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Let $A\in M_n(\R)$ be a symmetric matrix. Then, there exists an orthogonal matrix $O\in M_n(\R)$ such that $A=ODO^T$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+\vspace{1em}
+
+We can also state this for $M_n(\C)$: \\
+Let $A\in M_n(\C)$ be a Hermitian matrix. Then, there exists a unitary matrix $U\in M_n(\C)$ such that $A = UDU^*$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{frame}
+
+
+\begin{frame}{Block matrices}
+\begin{definition}
+A block matrix is a matrix that can be broken into sections called blocks, which are smaller matrices.
+\end{definition}
+
+\begin{example}
+$$ \begin{bmatrix} 2 & 1 & 0 & 1  \\ 0 & 2 &1 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} \qquad \qquad \qquad \qquad$$
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+A square matrix is called \emph{block diagonal} if it can be written as a block matrix where the main-diagonal blocks are all square matrices and the off-diagonal blocks are all zero.
+\end{definition}
+
+\begin{example}
+The matrix
+$$ \begin{bmatrix} 2 & 1 & 0 & 0  \\ 0 & 2 &0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} $$
+is block diagonal.
+\end{example}
 \end{frame}
 
 
 
+\begin{frame}
+\begin{definition}
+A vector $\bv$ is called a \emph{generalized eigenvector} of $A$ corresponding to an eigenvalue $\lambda$ if there exists $k \geq 1$ such that 
+$$ (A - \lambda I)^k \bv = 0.$$
+\end{definition}
+The set of generalized eigenvectors of an eigenvalue $\lambda$ (plus $\zerovec$) is called the \emph{generalized eigenspace} of $\lambda$.
 
+\vspace{1em}
+
+\begin{exampleblock}{Proposition}
+The algebraic multiplicity of an eigenvalue $\lambda$ is the same as the dimension of the corresponding generalized eigenspace.
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}[Jordan decomposition theorem]
+For any operator $A$ there exists a basis such that $A$ is block diagonal with blocks that have eigenvalues on the diagonal and 1s on the upper off-diagonal. In other words, $A$ can be written in the form
+$$ A = \begin{bmatrix} J_1 & 0 & \ldots & 0\\ 0 & J_2 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \ldots & J_k \end{bmatrix} $$
+where the blocks $J_i$ on the main diagonal are Jordan block of the form 
+$$\begin{bmatrix} \lambda  \end{bmatrix}, \begin{bmatrix} \lambda & 1  \\ 0 &\lambda \end{bmatrix}, \begin{bmatrix} \lambda & 1 & 0 \\ 0 &\lambda & 1 \\ 0 & 0 & \lambda \end{bmatrix}, \text{ etc.}$$
+This form is called \emph{Jordan canonical form}.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+Connection to algebraic and geometric multiplicity:
+\begin{itemize}
+    \item The algebraic multiplicity of an eigenvalue $\lambda$ is the number of times $\lambda$ appears on the diagonal.
+    \item The geometric multiplicity of $\lambda$ is the number of Jordan blocks associated with $\lambda$.
+\end{itemize}
+\vspace{1em}
+
+Why is Jordan form useful?
+
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}{Singular value decomposition}
+\begin{itemize}
+\item $A^T A$ is symmetric
+\item therefore it is orthogonally diagonalizable and has real eigenvalues 
+\item In fact, the eigenvalues are non-negative (exercise)
+\end{itemize}
+
+
+\begin{definition}
+Let $A$ be an $m \times n$ matrix.  Let $\lambda_1, \ldots, \lambda_n$ be the eigenvalues of $A^T A$. Then the \emph{singular values} of $A$ are defined as
+\begin{equation*}
+    \sigma_1 = \sqrt{\lambda_1}, \ldots, \sigma_n = \sqrt{\lambda_n}.
+\end{equation*}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}[Singular value decomposition]
+If $A$ is an $m \times n$ matrix of rank $k$, then we can write
+$$ A = U \Sigma V^T$$
+where $\Sigma$ is an $m \times n$ matrix of the form
+$$ \begin{bmatrix} D_{k \times k} & 0_{k \times (n - k)} \\ 0_{(m -k) \times k} & 0_{(m -k) \times (n-k)} \end{bmatrix},$$
+$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_n$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times n$ and $n \times n$, respectively).
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+Uses of SVD:
+
+\vspace{3cm}
+
+Differences between JCF and SVD:
+
+\vspace{3cm}
+
+\end{frame}
+
+\begin{frame}{$LU$-decomposition}
+\begin{definition}
+The $LU$-decomposition of a square matrix $A$ is the factorization of $A$ into a lower triangular matrix $L$ and an upper triangular matrix $U$ as follows:
+\begin{equation*}
+    A = LU.
+\end{equation*}
+\end{definition}
+
+Why is this useful? Consider the linear system $A \bx = \mathbf{b}$
+\vspace{3cm}
+\end{frame}
+
+\begin{frame}{Recall: orthonormal basis}
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+\vspace{1em}
+
+Starting from a set of linearly independent vectors, we can construct another set of vectors which are orthonormal and span the same space using the \textbf{\textcolor{deptoran}{Gram-Schmidt Algorithm}}.
+\end{frame}
+
+
+
+\begin{frame}{$QR$-decomposition}
+\begin{definition}[$QR$-decomposition]
+The $QR$-decomposition of an $m \times n$ matrix $A$ with linearly independent column vectors is the factorization of $A$ as follows:
+\begin{equation*}
+    A = QR,
+\end{equation*}
+where $Q$ is an $m \times n$ matrix with orthonormal column vectors and $R$ is an $n\times n$ invertible upper triangular matrix.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+One obtains the factorization by applying the Gram-Schmidt algorithm to the columns of $A$. Let $\bu_1, \ldots, \bu_n$ be the column vectors of $A$. Let $\mathbf{q}_1, \ldots, \mathbf{q}_n$ be the orthonormal vectors obtained by applying Gram Schmidt. Then one can write:
+\begin{align*}
+    \bu_1 &= \innerprod{\bu_1,\mathbf{q}_1}\mathbf{q}_1 + \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2+ \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    \bu_2 &= \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2 + \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    & \vdots \\
+    \bu_n &=  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n
+\end{align*}
+
+Thus the orthonormal vectors obtained using Gram-Schmidt form the columns of $Q$, while $R$ is the terms needed to go between the columns of $A$ and thsoe of $Q$, i.e.
+$$ R = \begin{bmatrix}
+\innerprod{\bu_1,\mathbf{q}_1} & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+0 & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+\vdots &\vdots & \ddots & \vdots \\
+0 & 0 & \ldots & \innerprod{\bu_n,\mathbf{q}_n} 
+\end{bmatrix}.$$
+\end{frame}
+
+\begin{frame}
+Why use $QR$-decomposition? 
+
+\vspace{3cm}
+
+\end{frame}
 
 \begin{frame}{References}
+
+Howard Anton and Chris Rorres. Elementary Linear Algebra. 11th ed. Wiley, 2014
+
+\vspace{1em}
 
 Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
 Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
