@@ -2745,8 +2745,272 @@ In the exercises you will show that the orthogonal complement is a subspace.
     \item Let $V$ be an inner product space and $U\subseteq V$ a subset. Show that $U^\perp$ is a subspace of $V$.
 \end{enumerate}
 
+\subsection{Spectral theory}
+
+Note: here we will assume $\F = \C$, so that we are working on an algebraically closed field.
+
+
+Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly ``nice'' way. For example, if there exists a basis $\{\bv_1, \ldots, \bv_n\}$ of $V$ such that $T\bv_i = \lambda_i \bv_i$ where $\lambda_i \in \F$ for $i = 1, \ldots, n$, then $T$ acts on this basis merely by scaling the basis vectors. If we look at the matrix of $T$ with respect to this basis, $T$ is a diagonal matrix with $\lambda_i$ in the diagonal. 
+
+In what follows, we will frame our discussion in terms of matrices. Given a choice of basis, it could be applied more broadly to linear maps.
+
+\begin{definition}
+Given an operator $A \colon V \to V$ and $\alpha \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+$$A \bv = \lambda \bv.$$
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $T$ and denote it by $\sigma(T)$.
+\end{definition}
+
+Note that $A \bv = \lambda \bv$ can be rewritten as $(A - \lambda I) \bv= 0$. Thus, if $\lambda$ is an eigenvalue, we can find the corresponding eigenvectors by finding the null space of $A - \lambda I$. The subspace $\nullspace (A - \lambda I)$ is called the \emph{eigenspace}.
+
+To find the eigenvalues of $A$, one must find the scalars $\lambda$ such that $\nullspace (A - \lambda I)$ has a non-trivial solution. By \cref{sec:lin_maps}, this means that $\lambda$ is an eigenvector if and only if $A - \lambda I$ is not invertible. By \cref{prop:A_invertible}, this means we need $|A - \lambda I| = 0$.
+
+\begin{theorem}
+The following are equivalent
+\begin{enumerate}
+    \item $\lambda\in \F$ is an eigenvalue of $A$,
+    \item $(A-\lambda I)\bv = 0$ has a non-trivial solution,
+    \item $|A-\lambda I|= 0$.
+\end{enumerate}
+\end{theorem}
+
+If $A$ is an $n \times n$ matrix, $|A - \lambda I|$ is a polynomial of degree $n$. 
+\begin{definition}
+If $A$ is an $n\times n$ matrix, $p_A(\lambda) = |A-\lambda I|$ is a polynomial of degree $n$ called the \emph{characteristic polynomial} of $A$.
+\end{definition}
+
+To find the eigenvectors of $A$, one needs to find the roots of the characteristic polynomial.
+
+\begin{example}
+The eigenvalues of 
+$$ \begin{bmatrix} 4 & -2 \\ 5 & -3 \end{bmatrix}$$
+are $-1$ and 2.
+The eigenvalues of 
+$$ \begin{bmatrix} -1-2i & 2i+2 &-2i-2\\ i-1 & 2-i &2i-2\\ 2i &-2i & 3i \end{bmatrix}$$
+are 1,$-i$, and $i$.
+\end{example}
+
+Since the characteristic polynomial associated with an $n \times n$ matrix $A$ is always of degree $n$, $A$ will always have $n$ eigenvalues. However, some of them may be repeated, so $A$ may not have $n$ distinct eigenvalues. 
+Recall that if $\lambda$ is a root of $p(z)$, then $z - \lambda$ divides $p(z)$. We say that $\lambda$ has \emph{multiplicity} $k$ if $k$ is the largest positive integer such that $(z - \lambda)^k$ divides $p(z)$. 
+
+\begin{definition}
+The multiplicity of the root $\lambda$ in the characteristic polynomial is called the \emph{algebraic multiplicity} of the eigenvalue $\lambda$. The dimension of the eigenspace $\nullspace (A - \lambda I)$ is called the \emph{geometric multiplicity} of the eigenvalue $\lambda$.
+\end{definition}
+
+
+\begin{definition}[Similar matrices]
+Square matrices $A$ and $B$ are called \emph{similar} if there exists an invertible matrix $S$ such that
+$$A = SBS^\inv.$$
+\end{definition}
+
+Similar matrices have the same characteristic polynomials and hence the same eigenvalues (see exercise).
+
+\begin{theorem}
+Suppose $A$ is a square matrix with distinct eigenvalues $\lambda_1, \ldots, \lambda_n$. Let $\bv_1, \ldots, \bv_n$ be eigenvectors corresponding to these eigenvalues. Then $\bv_1, \ldots, \bv_n$ are linearly independent.
+\end{theorem}
+
+Similar matrices have the same characteristic polynomials and hence the same eigenvalues (see exercise).
+
+\begin{proof}
+We prove this using induction on $k$. The base case, $k=1$, is trivial since any non-zero vector is linearly independent. 
+Suppose that the statement holds for some $k \geq 1$, i.e. the eigenvectors $\bv_1, \ldots, \bv_k$ corresponding to distinct eigenvectors $\lambda_1, \ldots, \lambda_k$ are linearly independent and suppose $\lambda_{k+1}$ is a distinct eigenvalue with eigenvector $\bv_{k+1}$. We will show that any linear combination $\sum_{i=1}^{k+1} \alpha_i \bv_i = \zerovec$ is trivial.
+
+Let $\sum_{i=1}^{k+1} \alpha_i \bv_i = \zerovec$. Then, applying $A-\lambda_{k+1} I$ leads to 
+\begin{align*}
+    \zerovec = \sum_{i=1}^{k+1} \alpha_i (A-\lambda_{k+1} I)\bv_i = \sum_{i=1}^{k} \alpha_i (\lambda_i-\lambda_{k+1})\bv_i  + \alpha_{k+1} (\lambda_{k+1}-\lambda_{k+1})\bv_{k+1} = \sum_{i=1}^{k} \alpha_i (\lambda_i-\lambda_{k+1})\bv_i.
+\end{align*}
+Since by hypothesis $\bv_1, \ldots, \bv_k$ are linearly independent, this implies $\alpha_i (\lambda_i-\lambda_{k+1}) = 0$ for all $i=1,\ldots, k$. Since the eigenvalues are distinct, $\lambda_i-\lambda_{k+1} \neq 0$ and thus $\alpha_i = 0$ for all $i = 1\ldots, k$. Hence, we have $\zerovec = \sum_{i=1}^{k+1} \alpha_i \bv_i = \alpha_{k+1} \bv_{k+1}$. By definition of eigenvector $\bv_{k+1} \neq \zerovec$ and thus $\alpha_{k+1} = 0$, which shows the desired linear independence.
+
+\end{proof}
+
+
+Hence, if all the eigenvalues are distinct, there exists a basis of eigenvectors. This gives the next result. 
+
+\begin{corollary}
+If a $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. That is there exists an invertible matrix $S\in M_n(\C)$ such that $A = SDS^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+\end{corollary}
+
+If we think about this in terms of linear maps, this is saying that if $T:V \to V$ is an operator with $n$ distinct eigenvalues, then there exists a basis for $V$ such that the matrix of $T$ is diagonal, i.e. $T$ acts only by scaling the basis vectors.
+
+\begin{theorem}
+Let $A:V\to V$ be an operator with $n$ eigenvalues. $A$ is diagonalizable if and only if for each eigenvalue $\lambda$, the geometric multiplicity of $\lambda$ and the algebraic multiplicity of $\lambda$ are the same.
+\end{theorem}
+
+\begin{example}
+Consider the matrices 
+\begin{align*}
+    A = \begin{pmatrix}
+        1&1&0 \\ 0 &2 &0 \\ 1 & -1 & 2
+    \end{pmatrix}, \qquad 
+    B = \begin{pmatrix}
+        1&1&0 \\ 0 &2 &0 \\ 1 & 0 & 2
+    \end{pmatrix}.
+\end{align*}
+Both matrices have eigenvalues 1 and 2, where the latter has algebraic multiplicity 2. However, the geometric multiplicty of the eigenvalue 2 is 2 for $A$, but only 1 for $B$. Hence, $A$ is diagonalizable, but $B$ is not. 
+\end{example}
+
+
+\begin{theorem}
+\label{thm:symmetric_orthogonallydiag}
+Let $A\in M_n(\R)$ be a symmetric matrix. Then, there exists an orthogonal matrix $O\in M_n(\R)$ such that $A=ODO^T$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+We can also state this for $M_n(\C)$:
+\begin{theorem}
+Let $A\in M_n(\C)$ be a Hermitian matrix. Then, there exists a unitary matrix $U\in M_n(\C)$ such that $A = UDU^*$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+
+The proof is omitted, see \cite[Chapter 6, Theorem 2.2]{linalgwrong}. The fact that the eigenvalues are real is an exercise. Note that in the previous theorem, the orthogonality of the eigenvectors is special. In general, even if a matrix is diagonalizable, there might not exists a orthogonal eigenbasis. The next theorem states a characterization of matrices that exhibit an orthogonal eigenbasis. 
+
+\begin{theorem}
+A matrix $A$ is diagonalizable by a unitary matrix if and only if $AA^*= A^*A$. We call such a matrix \textbf{normal}.
+\end{theorem}
+
+Proof omitted, see \cite[Chapter 6, Theorem 2.4]{linalgwrong}.
+
+\subsubsection{Jordan canonical form}
+
+\begin{definition}
+A block matrix is a matrix that can be broken into sections called blocks, which are smaller matrices.
+\end{definition}
+
+\begin{example}
+$$ \begin{bmatrix} 2 & 1 & 0 & 1  \\ 0 & 2 &1 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} = \begin{bmatrix} A & B \\ C & D \end{bmatrix}$$
+where $$ A= \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}, \quad B= \begin{bmatrix} 0 & 1 \\ 1 & 1 \end{bmatrix}, \quad C= \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} , \quad D= \begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}$$
+\end{example}
+
+In the above example, $A$ and $B$ are blocks on the main diagonal, while $B$ and $C$ are off-diagonal blocks. $C$ has a special form as it is a zero block.
+
+\begin{definition}
+A square matrix is called \emph{block diagonal} if it can be written as a block matrix where the main-diagonal blocks are all square matrices and the off-diagonal blocks are all zero.
+\end{definition}
+
+\begin{example}
+The matrix
+$$ \begin{bmatrix} 2 & 1 & 0 & 0  \\ 0 & 2 &0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} $$
+is block diagonal.
+\end{example}
+
+\begin{definition}
+A vector $\bv$ is called a \emph{generalized eigenvector} of $A$ corresponding to an eigenvalue $\lambda$ if there exists $k \geq 1$ such that 
+$$ (A - \lambda I)^k \bv = 0.$$
+\end{definition}
+
+The set of generalized eigenvectors of an eigenvalue $\lambda$ (plus $\zerovec$) is called the \emph{generalized eigenspace} of $\lambda$.
+
+\begin{proposition}
+The algebraic multiplicity of an eigenvalue $\lambda$ is the same as the dimension of the corresponding generalized eigenspace.
+\end{proposition}
+
+\begin{theorem}[Jordan decomposition theorem]
+For any operator $A$ there exists a basis such that $A$ is block diagonal with blocks that have eigenvalues on the diagonal and 1s on the upper off-diagonal. In other words, $A$ can be written in the form
+$$ A = \begin{bmatrix} J_1 & 0 & \ldots & 0\\ 0 & J_2 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \ldots & J_k \end{bmatrix} $$
+where the blocks $J_i$ on the main diagonal are Jordan block of the form 
+$$\begin{bmatrix} \lambda  \end{bmatrix}, \begin{bmatrix} \lambda & 1  \\ 0 &\lambda \end{bmatrix}, \begin{bmatrix} \lambda & 1 & 0 \\ 0 &\lambda & 1 \\ 0 & 0 & \lambda \end{bmatrix}, \text{ etc.}$$
+This form is called \emph{Jordan canonical form}.
+\end{theorem}
+
+Connection to algebraic and geometric multiplicity:
+\begin{itemize}
+    \item The algebraic multiplicity of an eigenvalue $\lambda$ is the number of times $\lambda$ appears on the diagonal.
+    \item The geometric multiplicity of $\lambda$ is the number of Jordan blocks associated with $\lambda$.
+\end{itemize}
+
+Jordan form is useful because, while not ever square matrix is diagonalizable, every square matrix can be written in JCF. 
+In addition, the Jordan form is useful when taking a matrix exponential. The matrix exponential if a matrix $A$ is
+$$ e^A = \sum_{k=0}^\infty \frac{1}{k!}A^k.$$
+We note that the Jordan form of a matrix is equal to $D + N$ where $D$ is a diagonal matrix and $N$ is a nilpotent matrix. Since $e^{D+N}=e^De^N$, JCF gives a useful way to calculate the matrix exponential of $A$. One often needs to do this to find the solution of systems of linear differential equations.
+
+
+\subsubsection{Singular value decomposition}
+Note that $A^T A$ is symmetric, so it is orthogonally diagonalizable and has real eigenvalues by \cref{thm:symmetric_orthogonallydiag}. In fact the eigenvalues are non-negative, which is part of the exercises. This justifies the following definition.
+
+\begin{definition}
+Let $A$ be an $m \times n$ matrix.  Let $\lambda_1, \ldots, \lambda_n$ be the eigenvalues of $A^T A$. Then the \emph{singular values} of $A$ are defined as
+\begin{equation*}
+    \sigma_1 = \sqrt{\lambda_1}, \ldots, \sigma_n = \sqrt{\lambda_n}.
+\end{equation*}
+\end{definition}
+
+\begin{theorem}
+If $A$ is an $m \times n$ matrix of rank $k$, then we can write
+$$ A = U \Sigma V^T$$
+where $\Sigma$ is an $m \times n$ matrix of the form
+$$ \begin{bmatrix} D_{k \times k} & 0_{k \times (n - k)} \\ 0_{(m -k) \times k} & 0_{(m -k) \times (n-k)} \end{bmatrix},$$
+$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_n$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times n$ and $n \times n$, respectively).
+\end{theorem}
+
+In contrast to the diagonalization discussed at the beginning, both Jordan canonical form and singular value decomposition can be applied to arbitrary square matrices (note that SVD can also be applied to rectangular matrices). However, they achieve different things. On the one hand, for a matrix $A\in M_n(\C)$, the JCF says that there exists an invertible matrix $U\in M_n(\C)$ such that $U^\inv A U$ has block diagonal form with the eigenvalues in the diagonal. One can think of the invertible matrix $U$ describing a preferred basis in which $A$ has block diagonal form. However, this basis is not necessarily orthonormal and since $A$ only has block diagonal form and is not necessarily diagonal, the action of $A $ on this basis is not only given by scaling. On the other hand, the SVD of $A$ leads to $A = U\Sigma V^* $, where $U,V$ are orthogonal and $\Sigma$ is a diagonal matrix. Since $U,V$ are orthogonal, we can think of them as encoding orthonormal bases and since $\Sigma$ is diagonal, it only acts by scaling. Hence, $A$ is written in a way that maps one orthonormal basis to another orthonormal basis with additional stretching factors given by the singular values of $A$ encoded in $\Sigma$.  However, the caveat here is that we change the basis going from $V^*$ to $U$.
+
+Jordan canonical form and singular value decomposition each have some nice applications. For example, the former can be useful to solve linear systems of differential equations, since it can be used to determine the matrix exponential function. The latter has some uses in statistics, as for example it can be used to motivate principal component analysis. 
+
+
+\subsubsection{Exercises}
+\begin{enumerate}
+    \item Let $A,B \in M_n(\F)$ be similar matrices. Show that their characteristic polynomials coincide.
+    \item Show that $A\in M_n(\C)$ is invertible if and only if $0 \not \in \sigma(A)$.
+    \item Suppose $N$ is a nilpotent matrix. Show that $\sigma(N) = \{0\}$.
+    \item Let $A\in M_n(\C)$ be an invertible matrix. Show that $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^\inv$ is an eigenvalue of $A^\inv$.
+    \item Suppose $A\in M_n(\C)$ is Hermitian. Show that all the eigenvalues of $A$ are real. Hint: Note that if $\bx$ is a normalized eigenvector of $A$ with eigenvalue $\lambda$, then $\innerprod{A\bx,\bx} = \lambda$.
+    \item Let $A\in M_n(\R)$. Show that the eigenvalues of $A^TA$ are non-negative.
+\end{enumerate}
+
+
+
+\subsection{Other matrix decompositions}
+We briefly discuss two other matrix decompositions which have applications in numerical methods.
+
+First, $LU$-decomposition is used to solve linear systems of the form $A \bx = \mathbf{b}$. 
+\begin{definition}[$LU$-decomposition]
+The $LU$-decomposition of a square matrix $A$ is the factorization of $A$ into a lower triangular matrix $L$ and an upper triangular matrix $U$ as follows:
+\begin{equation*}
+    A = LU.
+\end{equation*}
+\end{definition}
+
+For $A$ to have an $LU$-decomposition, $A$ must be reducible to row echelon form.
+
+This is done to make solving linear systems numerically more efficient. If one can write $A = LU$, then one can solve $A \bx = \mathbf{b}$ as follows:
+First solve $L \by = \mathbf{b}$ for an unknown $\by$. Then solve $U \bx = \by$ for $\bx$. This means that rather than solve one linear system, $A \bx = \mathbf{b}$, we now solve two, $L \by = \mathbf{b}$ and $U \bx = \by$, but the latter problems are much easier to solve. If one has to solve repeated linear problems of the form $A\bx=\mathbf{b}_1$, $A\bx=\mathbf{b}_2$, etc, then there is increased efficiency in first factoring $A$ into $LU$ and then solving the problems.  
+
+Next, we discuss $QR$-decomposition.
+
+\begin{definition}[$QR$-decomposition]
+The $QR$-decomposition of an $m \times n$ matrix $A$ with linearly independent column vectors is the factorization of $A$ as follows:
+\begin{equation*}
+    A = QR,
+\end{equation*}
+where $Q$ is an $m \times n$ matrix with orthonormal column vectors and $R$ is an $n\times n$ invertible upper triangular matrix.
+\end{definition}
+
+One obtains the factorization by applying the Gram-Schmidt algorithm to the columns of $A$. Let $\bu_1, \ldots, \bu_n$ be the column vectors of $A$. Let $\mathbf{q}_1, \ldots, \mathbf{q}_n$ be the orthonormal vectors obtained by applying Gram Schmidt. Then one can write:
+\begin{align*}
+    \bu_1 &= \innerprod{\bu_1,\mathbf{q}_1}\mathbf{q}_1 + \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2+ \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    \bu_2 &= \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2 + \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    & \vdots \\
+    \bu_n &=  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n
+\end{align*}
+
+Thus the orthonormal vectors obtained using Gram-Schmidt form the columns of $Q$, while $R$ is the terms needed to go between the columns of $A$ and thsoe of $Q$, i.e.
+$$ R = \begin{bmatrix}
+\innerprod{\bu_1,\mathbf{q}_1} & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+0 & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+\vdots &\vdots & \ddots & \vdots \\
+0 & 0 & \ldots & \innerprod{\bu_n,\mathbf{q}_n} 
+\end{bmatrix}$$
+
+Why use $QR$-decomposition? As mentioned before, orthogonal matrices have nice numerical properties, since they can be easily inverted and create less error. As with the LU decomposition, we can write the linear problem $A \bx =\mathbf{b}$ as two problems, $R \bx = \by$, which can be solved easily, and $Q \by = \mathbf{b}$, which has solution $\by = Q^T \mathbf{b}$ since $Q$ is orthogonal.
+
+\subsubsection{Exercises}
+
+\begin{enumerate}
+    \item Show that an $Q\in M_n(\R)$ is orthogonal if and only if its columns are orthonormal.
+\end{enumerate}
+
+
 \subsection{References}
-This section is based on the books \cite{linalgright} and \cite{linalgwrong}. \cite{linalgright} is the main source for sections 1, 2, and 3, while \cite{linalgwrong} is used for sections 4 and 6. Section 5 draws from both books.
+This section is based on the books \cite{linalgright} and \cite{linalgwrong}. \cite{linalgright} is the main source for sections 1, 2, and 3, while \cite{linalgwrong} is used for sections 4 and 5. \cite{ElementaryRealAnalysis}, which is focused more on applications than the two main texts, was used for the content on matrix decompositions. 
+
 
 
 
