@@ -107,7 +107,7 @@ Hypothesis testing
 
 - Exercises: [pdf](Computing/Exercises/ex7.pdf)
 
-<!-- - Solutions: [pdf](Computing/Solutions/sol7.pdf), [Rmd](Computing/Solutions/sol7.Rmd) -->
+- Solutions: [pdf](Computing/Solutions/sol7.pdf), [Rmd](Computing/Solutions/sol7.Rmd)
 
 <br>
 
