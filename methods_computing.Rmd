@@ -113,6 +113,10 @@ Hypothesis testing
 
 ### Module 8: Bootstrap
 
+- Slides: [pdf](Computing/Slides/mod8.pdf) 
+
+- Exercises: [pdf](Computing/Exercises/ex8.pdf)
+
 <br>
 
 ### Module 9: Linear regression
