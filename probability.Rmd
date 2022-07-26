@@ -102,7 +102,9 @@ Material will be added here as the course progresses.
 
 ### Module 7: Stochastic Convergence
 
-- Slides: [Module 7](Probability/Slides/Summer_Bootcamp_Module_7_with_effects.pdf)
+- Slides: [Module 7](Probability/Slides/Summer_Bootcamp_Module_7_with_effects.pdf); [Module 7 Annotated](Probability/Slides/Module_7_annotated.pdf) 
+
+- Problem Set Solutions: [Module 7 Solution](Probability/Solutions/Module_7_Solutions.pdf) 
 
 - Problem Set Solutions: To appear
 
