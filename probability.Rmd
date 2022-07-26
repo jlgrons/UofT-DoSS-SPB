@@ -106,13 +106,13 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 7 Solution](Probability/Solutions/Module_7_Solutions.pdf) 
 
-- Problem Set Solutions: To appear
-
 <!-- ### Module 8: Limit Theorems -->
 
 <br>
 
 ### Module 8: Limit Theorems
+
+- Slides: [Module 8](Probability/Slides/Summer_Bootcamp_Module_8_with_effects.pdf)
 
 <!-- ### Module 9: Markov Chain -->
 
