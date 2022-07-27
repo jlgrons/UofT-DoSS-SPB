@@ -77,11 +77,17 @@
 
 \begin{document}
 \begin{center}
-\Large{Exercises for Module 10: Multivariable Calculus}
+\Large{Exercises for Module 10: Differentiation and Integration}
 \end{center}
 
 
-1.  
+1.  Show that 
+    \begin{equation*}
+        f(x) = \begin{cases} e^{-\frac{1}{x}} & \text{if } x > 0 \\
+        0 & \text{if } x \leq 0
+        \end{cases}
+    \end{equation*}
+    is smooth.
 
 \vspace{11cm} % delete this
 
@@ -91,7 +97,7 @@
 
 
 
-2. 
+2. Let $f \in \mathcal{R}([a,b])$ and suppose $|f| \leq M$ for some $M > 0$. Show that $|\int_a^b f(x) dx| \leq M(b-a)$.
 
 \vspace{11cm} % delete this
 
@@ -100,9 +106,14 @@
 % \end{proof}  
 
 
-3. 
+3. Prove the Higher-Order Leibniz product rule, i.e. for $f,g \in C^r([a,b])$ we have 
+    \begin{align*}
+        (fg)^{(r)}(x) = \sum_{k=0}^r \binom{r}{k} f^{(k)}(x) g^{(r-k)}(x).
+    \end{align*}
+    You can use properties of the binomial coefficient.
 
-\vspace{12cm} % delete this
+
+\vspace{21cm} % delete this
 
 % \begin{proof}  
 % ADD your content 
@@ -110,32 +121,16 @@
 
 
 
-4.
+4. (Challenge Problem) Consider the space of continuous functions on the unit interval, $C([0,1])$. Prove that there exists a unique $f\in C([0,1])$ such that for all $x\in [0,1]$
+    \begin{align*}
+        f(x) = x + \int_0^x sf(s) \mathrm{d}s.
+    \end{align*}
+    Hint: You can use that $C([0,1])$ is a complete metric space with respect to the supremums metric $d_\infty (f,g) = \sup_{x\in [0,1]} \vert f(x) -g(x)\vert$ for $f,g \in C([0,1])$.
 \vspace{11cm} % delete this
 
 % \begin{proof}  
 % ADD your content 
 % \end{proof}  
-
-
-
-5. 
-
-\vspace{12cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-
-6.
-\vspace{11cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
 
 
 
