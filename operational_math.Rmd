@@ -107,14 +107,14 @@ You may download the [lecture notes](Math/lecture_notes/math_notes.pdf), which w
 
 - Exercises: [pdf](Math/module9/exercises.pdf), [LaTeX](Math/module9/exercises.tex), [solutions](Math/module9/exercise_solutions.pdf)
 
-<!--
+
 <br>
 
 ### Module 10: Differentiation and integration
 
-Slides: [fillable](Math/module10/slides.pdf)--><!--, [filled](Math/module10/slides_filled.pdf)-->
-<!--
-Exercises: [pdf](Math/module10/exercises.pdf), [LaTeX](Math/module10/exercises.tex) --><!--, [solutions](Math/module10/exercise_solutions.pdf) -->
+- Slides: [fillable](Math/module10/slides.pdf)<!--, [filled](Math/module10/slides_filled.pdf)-->
+
+- Exercises: [pdf](Math/module10/exercises.pdf), [LaTeX](Math/module10/exercises.tex) <!--, [solutions](Math/module10/exercise_solutions.pdf) -->
 
 
 

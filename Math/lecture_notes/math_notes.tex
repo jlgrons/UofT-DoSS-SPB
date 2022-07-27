@@ -61,24 +61,22 @@
 These lecture notes were prepared for the Mathematics course at the inaugural Department of Statistical Sciences Graduate Student Bootcamp at the University of Toronto. The course teaches an overview of necessary mathematics prerequisites to incoming statistics graduate students, with an emphasis on proofs.
 
 
-These lectures are based on the following books or lecture notes:
+These lectures are based on the following books:
 
 1. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-1-4614-4265-3}{{\emph{An Introduction to Mathematical Structures and Proofs}}} by Larry J. Gerstein \\
 2. \href{https://bookstore.ams.org/amstext-26/}{{\emph{The Tools of Mathematical Reasoning}}} by Tamara J. Lakins \\
 3. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/0-387-28387-0}{\emph{A Taste of Topology}} by Volker Runde \\
 4. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{\emph{Real Mathematical Analysis}} by Charles C. Pugh \\
 5. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{{\emph{Linear Algebra Done Right}}} by Sheldon Axler \\
-6. \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{{\emph{Linear Algebra Done Wrong}}} by Sergei Treil \\
-7. \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{\emph{Lecture notes in Mathematics for Economics and Statistics}} by Piotr Zwiernik \\
-8. \href{http://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}{{\emph{Real Analysis Lecture Notes}}} by Laurent Marcoux
+6. \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{{\emph{Linear Algebra Done Wrong}}} by Sergei Treil 
 
-Chapter 1 of Gerstein (2012) and the first three chapters of Lakins (2016) are used as references for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. Some additional topics come from Pugh (2015). The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective.
+Chapter 1 of Gerstein (2012) and the first three chapters of Lakins (2016) are used as references for the proof technique section. Runde (2005) is the main text for the sections on set theory, metric spaces, and topology, which follow chapters 1, 2, and 3 of his book, respectively. Some additional topics come from Pugh (2015). The linear algebra content comes mostly from Axler (2015), with Treil (2017) used in some sections for an alternate perspective, particularly for the content on determinants and spectral theory. The content on differentiation and integration is based on Chapter 3 of Pugh (2015). A few other texts and lecture notes are used at certain points, and are cited in the references section corresponding to that chapter.
 
-Most of the material in these notes belongs to these texts. All of these texts are available online to University of Toronto users (some to everyone).
+Most of the material in these notes belongs to these texts. Many of these texts are available online to University of Toronto users (some to everyone).
 
 I would like to acknowledge the assistance of Jesse Gronsbell, Stanislav Volgushev, Piotr Zwiernik, and Robert Zimmerman in developing the list of topics for the course. 
 
-Please notify me of any typos or corrections at emma.kroell@mail.utoronto.ca .
+Please notify me of any typos or corrections at emma.kroell@mail.utoronto.ca.
 
 
 \newpage
@@ -1883,16 +1881,6 @@ $U_{1}+...+U_{m}$ is the smallest subspace of $V$ containing $U_{1},...,U_{m}$.
 
 This follows, since on the one hand clearly $U_1 + \ldots + U_m$ clearly contains $\cup_{i=1}^m U_i$ (to see that $\bu_i \in U_i$ is in the sum just set all the other summands $\zerovec$). On the other hand any vector space that contains the union needs to contain all sums of the above form otherwise we do not have a vector space. 
 
-\subsubsection{Exercises}
-\begin{enumerate}
-    \item Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$
-or $v=0$.
-\item Show that $-(-\bv)=\bv$ for $\bv\in V$.
-\item Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
-\item Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
-multiplication, but $U$ is not a subspace of $\mathbb{R}$.
-\end{enumerate}
-
 
 \subsection{Linear (in)dependence and bases}
 For the following let $V$ be a fixed $\F$-vector space.
@@ -2029,16 +2017,7 @@ By the previous definition, the notion of dimension is well-defined.
 \end{itemize}
 \end{example}
 
-\subsubsection{Exercises}
-\begin{enumerate}
- \item Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$
-and $\bw\in V$. Prove that if $\bv_{1}+\bw,...,\bv_{m}+\bw$ is linearly dependent,
-then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
-\item Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
-in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},\bw$ is linearly independent if and only if 
-$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
 %\item Consider $M_n(\R) = \{ A = (A_{ij}) \colon A_{ij} \in \R\}$, the $\R$-vector space of $n\times n$ square matrices with real entries. Define $V_1 = \{ A \in M_n(\R) \colon A = A^t\}$, where $A^t = (A_{ji})$ for $A = (a_{ij})$ denotes the transpose of the matrix, and $V_2 = \{ A \in M_n(\R) \colon A = -A^t\}$. Show that $V_1, V_2$ are vector subspaces of $M_n(\R)$ and determine their dimension. 
-\end{enumerate}
 
 
 \subsection{Linear maps}
@@ -2237,20 +2216,6 @@ where $c_i \in \F$, $i=1,\ldots,n$. Since the $\bv$ span $V$, the map is surject
 A linear map from a vector space to itself is called an \emph{operator}.
 \end{definition}
 
-\subsubsection{Exercises}
-
-\begin{enumerate}
-\item Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
-\begin{enumerate}
-    \item[(i)] Show that $T$ is linear.
-    \item[(ii)] Find the null space and range of $T$.
-\end{enumerate}
-\item \cite[3.B Exercise 22]{linalgright} Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
-\begin{equation*}
-    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
-\end{equation*}
-
-\end{enumerate}
 
 \subsection{Linear maps and matrices}
 \begin{example}
@@ -2332,20 +2297,6 @@ Another useful application of matrices is solving systems of linear equations. I
 \end{align*}
 Alternatively, we can represent this using matrix vector multiplication, leading to $A\bold{x} = \bold{b}$, where $A$ is the $m\times n$ matrix with entries $A_{ij}$, $\bold{x}$ is the vector with entries $x_i$, and $\bold{b}$ is the vector with entries $b_i$. Such systems can then be solved by performing appropriate row operations on the matrix $A$. However, details of this are omitted and if in need of a refresher we recommend \cite[Chapter 2]{linalgwrong}.
 
-\subsubsection{Exercises}
-
-\begin{enumerate}
-    \item Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find bases of $\mathbb{P}_4(\R)$ and $\mathbb{P}_3(\R)$ such that the matrix representation of $\mathcal{M}(D)$ with respect to these basis is given by 
-    \begin{equation*}
-    \mathcal{M}(D) = \begin{pmatrix}
-    1 & 0 & 0 & 0 & 0 \\
-    0 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 1 & 0 & 0 \\
-    0 & 0 & 0 & 1 & 0
-     \end{pmatrix}.
-    \end{equation*}
-     \item Show that matrix multiplication of square matrices is not commutative, i.e find matrices $A,B \in M_{2}$ such that $AB\neq BA$.
-\end{enumerate}
 
 \subsection{Determinants}
 The determinant is a function of the entries of a square matrix. The determinant has many applications, including in computing the eigenvalues of a matrix. We review how to compute it and a few of its properties. 
@@ -2427,13 +2378,6 @@ The \emph{transpose} of an $m \times n$ matrix A is the $n \times m$ matrix, den
 \end{definition}
 
 
-\subsection{Exercises}
-The following are from \cite[p.85]{linalgwrong}:
-\begin{enumerate}
-    \item A square matrix is called \emph{nilpotent} if $\exists k \in \N$ such that $A^k = 0$. Show that for a nilpotent matrix $A$, $|A| = 0$.
-    \item A real square matrix $Q$ is called \emph{orthogonal} if $Q^T Q = I$. Prove that if $Q$ is orthogonal, then $|Q| = \pm 1$.
-    \item An $n \times n$ matrix is called \emph{antisymmetric} if $A^T = -A$. Prove that if $A$ is antisymmetric and $n$ is odd, then $|A|=0$. 
-\end{enumerate}
 
 \subsection{Inner product spaces}
 
@@ -2728,22 +2672,6 @@ Let $U\subseteq V$ be a non-empty subset. The \emph{orthogonal complement} $U^\p
 
 In the exercises you will show that the orthogonal complement is a subspace. 
 
-\subsubsection{Exercises}
-
-\begin{enumerate}
-    \item Let $V$ be an inner product space, $U$ a vector space and $S\colon U \to V$, $S\colon U \to V$ be linear maps . Show that $\innerprod{S\bu,\bv}= \innerprod{T\bu, \bv}$ for all $\bu \in U$ and $\bv \in V$ implies $S=T$.
-    \item Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \mathcal{L}(V,W)$. Show that the following holds
-\begin{enumerate}
-    \item $(S+\alpha T)^* = S^* + \overline{\alpha}T^*$ for all $\alpha\in \F$
-    \item $(S^*)^* = S$
-    \item $(RS)^* = S^*R^*$
-    \item $I^* = I$, where $I \colon U \to U$ is the identity operator on $U$
-\end{enumerate}
-    \item Let $A,B \in M_n(\F)$. Show that $\Tr(AB) = \Tr(BA)$.
-    \item Show that $\innerprod{A,B} = \Tr(B^*A)$ for $A,B \in M_n(\F)$ defines an inner product on $M_n(\F)$.
-    \item Let $V$ be an inner product space and $\bx_1,\ldots, \bx_n$ be an orthonormal basis and $\by \in V$. Then, $\bx$ has a unique representation $\by =\sum_{i=1}^n \alpha_i \bx_i$. Show that $\alpha_i = \innerprod{\by,\bx_i}$ for all $i= 1,\ldots, n$.
-    \item Let $V$ be an inner product space and $U\subseteq V$ a subset. Show that $U^\perp$ is a subspace of $V$.
-\end{enumerate}
 
 \subsection{Spectral theory}
 
@@ -2945,17 +2873,6 @@ In contrast to the diagonalization discussed at the beginning, both Jordan canon
 Jordan canonical form and singular value decomposition each have some nice applications. For example, the former can be useful to solve linear systems of differential equations, since it can be used to determine the matrix exponential function. The latter has some uses in statistics, as for example it can be used to motivate principal component analysis. 
 
 
-\subsubsection{Exercises}
-\begin{enumerate}
-    \item Let $A,B \in M_n(\F)$ be similar matrices. Show that their characteristic polynomials coincide.
-    \item Show that $A\in M_n(\C)$ is invertible if and only if $0 \not \in \sigma(A)$.
-    \item Suppose $N$ is a nilpotent matrix. Show that $\sigma(N) = \{0\}$.
-    \item Let $A\in M_n(\C)$ be an invertible matrix. Show that $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^\inv$ is an eigenvalue of $A^\inv$.
-    \item Suppose $A\in M_n(\C)$ is Hermitian. Show that all the eigenvalues of $A$ are real. Hint: Note that if $\bx$ is a normalized eigenvector of $A$ with eigenvalue $\lambda$, then $\innerprod{A\bx,\bx} = \lambda$.
-    \item Let $A\in M_n(\R)$. Show that the eigenvalues of $A^TA$ are non-negative.
-\end{enumerate}
-
-
 
 \subsection{Other matrix decompositions}
 We briefly discuss two other matrix decompositions which have applications in numerical methods.
@@ -3001,10 +2918,64 @@ $$ R = \begin{bmatrix}
 
 Why use $QR$-decomposition? As mentioned before, orthogonal matrices have nice numerical properties, since they can be easily inverted and create less error. As with the LU decomposition, we can write the linear problem $A \bx =\mathbf{b}$ as two problems, $R \bx = \by$, which can be solved easily, and $Q \by = \mathbf{b}$, which has solution $\by = Q^T \mathbf{b}$ since $Q$ is orthogonal.
 
-\subsubsection{Exercises}
+\subsection{Exercises}
 
 \begin{enumerate}
-    \item Show that an $Q\in M_n(\R)$ is orthogonal if and only if its columns are orthonormal.
+\item Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$
+or $v=0$.
+\item Show that $-(-\bv)=\bv$ for $\bv\in V$.
+\item Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
+\item Give an example of a nonempty subset $U$ of $\mathbb{R}^{2}$ such that $U$ is closed under scalar
+multiplication, but $U$ is not a subspace of $\mathbb{R}$.
+ \item Suppose $\bv_{1},...,\bv_{m}$ is linearly independent in $V$
+and $\bw\in V$. Prove that if $\bv_{1}+\bw,...,\bv_{m}+\bw$ is linearly dependent,
+then $\bw\in\text{span}(\bv_{1},...,\bv_{m})$. 
+\item Suppose that $\bv_{1},...,\bv_{m}$ is linearly independent
+in $V$ and $\bw\in V$. Show that $\bv_{1},...,\bv_{m},\bw$ is linearly independent if and only if 
+$$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
+\item Let $T \in \cL(\mathbb{P}(\R),\mathbb{P}(\R))$ be the map $T (p(x))= x^2 p(x)$ (multiplication by $x^2$). 
+\begin{enumerate}
+    \item[(i)] Show that $T$ is linear.
+    \item[(ii)] Find the null space and range of $T$.
+\end{enumerate}
+\item \cite[3.B Exercise 22]{linalgright} Let U and V be finite-dimensional vector spaces and $S \in \mathcal{L}(V,W)$ and $T \in \mathcal{L}(U,V)$. Show that 
+\begin{equation*}
+    \dim \nullspace ST \leq \dim \nullspace S + \dim \nullspace T
+\end{equation*}
+    \item Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find bases of $\mathbb{P}_4(\R)$ and $\mathbb{P}_3(\R)$ such that the matrix representation of $\mathcal{M}(D)$ with respect to these basis is given by 
+    \begin{equation*}
+    \mathcal{M}(D) = \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0
+     \end{pmatrix}.
+    \end{equation*}
+     \item Prove the following \cite[p.85]{linalgwrong}:
+\begin{enumerate}
+    \item A square matrix is called \emph{nilpotent} if $\exists k \in \N$ such that $A^k = 0$. Show that for a nilpotent matrix $A$, $|A| = 0$.
+    \item A real square matrix $Q$ is called \emph{orthogonal} if $Q^T Q = I$. Prove that if $Q$ is orthogonal, then $|Q| = \pm 1$.
+    \item An $n \times n$ matrix is called \emph{antisymmetric} if $A^T = -A$. Prove that if $A$ is antisymmetric and $n$ is odd, then $|A|=0$. 
+\end{enumerate}
+         \item Let $V$ be an inner product space, $U$ a vector space and $S\colon U \to V$, $S\colon U \to V$ be linear maps . Show that $\innerprod{S\bu,\bv}= \innerprod{T\bu, \bv}$ for all $\bu \in U$ and $\bv \in V$ implies $S=T$.
+    \item Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \mathcal{L}(V,W)$. Show that the following holds
+\begin{enumerate}
+    \item $(S+\alpha T)^* = S^* + \overline{\alpha}T^*$ for all $\alpha\in \F$
+    \item $(S^*)^* = S$
+    \item $(RS)^* = S^*R^*$
+    \item $I^* = I$, where $I \colon U \to U$ is the identity operator on $U$
+\end{enumerate}
+    \item Let $A,B \in M_n(\F)$. Show that $\Tr(AB) = \Tr(BA)$.
+    \item Show that $\innerprod{A,B} = \Tr(B^*A)$ for $A,B \in M_n(\F)$ defines an inner product on $M_n(\F)$.
+    \item Let $V$ be an inner product space and $\bx_1,\ldots, \bx_n$ be an orthonormal basis and $\by \in V$. Then, $\bx$ has a unique representation $\by =\sum_{i=1}^n \alpha_i \bx_i$. Show that $\alpha_i = \innerprod{\by,\bx_i}$ for all $i= 1,\ldots, n$.
+    \item Let $V$ be an inner product space and $U\subseteq V$ a subset. Show that $U^\perp$ is a subspace of $V$.
+       \item Let $A,B \in M_n(\F)$ be similar matrices. Show that their characteristic polynomials coincide.
+    \item Show that $A\in M_n(\C)$ is invertible if and only if $0 \not \in \sigma(A)$.
+    \item Suppose $N$ is a nilpotent matrix. Show that $\sigma(N) = \{0\}$.
+    \item Let $A\in M_n(\C)$ be an invertible matrix. Show that $\lambda$ is an eigenvalue of $A$ if and only if $\lambda^\inv$ is an eigenvalue of $A^\inv$.
+    \item Suppose $A\in M_n(\C)$ is Hermitian. Show that all the eigenvalues of $A$ are real. Hint: Note that if $\bx$ is a normalized eigenvector of $A$ with eigenvalue $\lambda$, then $\innerprod{A\bx,\bx} = \lambda$.
+    \item Let $A\in M_n(\R)$. Show that the eigenvalues of $A^TA$ are non-negative.
+\item Show that an $Q\in M_n(\R)$ is orthogonal if and only if its columns are orthonormal.
 \end{enumerate}
 
 
