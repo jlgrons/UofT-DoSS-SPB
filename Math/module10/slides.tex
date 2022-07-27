@@ -157,7 +157,7 @@ The following are key rules for differentiation:
     \item If $f$ is differentiable at $x$, then it is continuous at $x$.
     \item The derivative of a constant function is zero.
     \item If $f$ and $g$ are differentiable at $x$, then so is $f+g$ with $(f+g)'(x) = f'(x) + g'(x)$.
-    \item Product rule: If $f$ and $g$ are differentiable at $x$, then so is $f+g$ with $$(fg)'(x) = f'(x) g(x) + f(x) g'(x).$$
+    \item Product rule: If $f$ and $g$ are differentiable at $x$, then so is $fg$ with $$(fg)'(x) = f'(x) g(x) + f(x) g'(x).$$
     \item Quotient rule: If $f$ and $g$ are differentiable at $x$ and $g(x) \neq 0$, then so is $f/g$ with $$(f/g)'(x) = \frac{f'(x) g(x) - f(x) g'(x)}{g^2(x)}.$$
     \item Chain rule: If $f$ is differentiable at $x$ and $g$ is differentiable at $f(x)$, then so is $g \circ f$ with $$(g \circ f)'(x)= g'(f(x))f'(x).$$
 \end{enumerate}
@@ -275,7 +275,7 @@ Since differentiability implies continuity, we have $C^\infty \subset \cdots \su
 
 \begin{frame}{Riemann integration}
 \begin{definition}[Riemann sum]
-Let $f\colon [a,b] \to \R$ be a function. We call a set of points $P=\{x_0, \ldots, x)n\}\subseteq [a,b]$ a \emph{partition} of $[a,b]$ if the following holds
+Let $f\colon [a,b] \to \R$ be a function. We call a set of points $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ a \emph{partition} of $[a,b]$ if the following holds
 \begin{equation*}
     a = x_0 \leq x_1\leq \ldots \leq x_{n-1} \leq x_n = b.
 \end{equation*}
@@ -289,7 +289,7 @@ $$ |P| = \max_{i=1,\ldots,n} ( x_i - x_{i-1} ).$$
 
 \begin{frame}
 \begin{block}{Definition continued (Riemann sum)}
-Given a partition $P=\{x_0, \ldots, x)n\}\subseteq [a,b]$ of $[a,b]$ and a set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots, n$, we define the \emph{Riemann sum} $R(f,P,T)$ corresponding to $f,P,T$ as 
+Given a partition $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ of $[a,b]$ and a set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots, n$, we define the \emph{Riemann sum} $R(f,P,T)$ corresponding to $f,P,T$ as 
 \begin{equation*}
     R(f,P,T) = \sum_{i=1}^n f(t_i) (x_i-x_{i-1}) := \sum_{i=1}^n f(t_i) \Delta x_i,
 \end{equation*}
