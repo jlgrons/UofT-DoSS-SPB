@@ -1,0 +1,105 @@
+---
+title: "Module 9: Linear regression"
+author: "Siyue Yang"
+date: "06/22/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Linear regression in R
+
+```{r}
+library(tidyverse) #ggplot2, dplyr, etc.
+library(reshape2) #need this for melt()
+library(knitr) #need this for kable
+library(MASS) #contains dataset
+```
+
+Load the birthwt data. This data contains 189 observations, 9 predictors, and an outcome, birthweight, available both as a continuous measure and a binary indicator for low birth weight.
+
+```{r}
+data(birthwt)
+head(birthwt)
+```
+
+1. Plot a scatterplot of birthweight (bwt) and mother's weight (lwt).
+2. Use OLS to fit the regression of birthweight on mother's weight.
+3. Extract the following: estimated coefficients, standard errors, variance-covariance matrix, and confidence intervals.
+4. Plot the regression line and interpret the intercept and slope
+5. Does the interpretation of the intercept make sense? How might we change this?
+6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Write out the regression function we may be interested in.
+7. Use OLS to calculate the coefficient estimates in this model.
+8. Interpret all the coefficient estimates.
+9. Print the results in Rmarkdown using kable().
+
+**Solution**
+
+1. 
+```{r}
+ggplot(birthwt, aes(x = lwt, y = bwt)) + 
+  geom_point() +
+  labs(x = "Mother's weight (pounds)", y = "Birthweight (grams)")
+```
+
+2. 
+```{r}
+fit <- lm(bwt ~ lwt, data = birthwt)
+summary(fit)
+```
+
+3. 
+```{r}
+# Estimated coefficients.
+coefficients(fit)
+
+# Standard errors. 
+summary(fit)$coeff[, 2]
+
+# Variance-covariance matrix. 
+vcov(fit)
+
+# Confidence intervals. 
+confint(fit)
+```
+
+4. 
+```{r}
+ggplot(birthwt, aes(x = lwt, y = bwt)) +
+  geom_point(color = "grey") +
+  stat_smooth(method = "lm", col = "red", se = FALSE)
+```
+
+5. 
+```{r}
+birthwt <- birthwt %>% mutate(lwt_star = lwt - mean(lwt)) 
+
+fit.new <- lm(bwt ~ lwt_star, data = birthwt)
+summary(fit.new)
+```
+
+7. 
+```{r}
+fit2 <- lm(bwt ~ as.factor(race) + age + smoke, data = birthwt)
+summary(fit2)
+```
+
+8. 
+
+- The estimated mean birthweight among infants born to mothers who are non-smokers are zero years old (weird!), and white is $3281.7$ grams.
+- The estimated mean birthweight among infants with black mothers is $444.07$ grams lower than the mean birthweight among infants with white mothers, holding all other variables constant
+- The estimated mean birthweight among infants with mothers in the "other" race category is $444.86$ grams lower than the mean birthweight among infants with white mothers, holding all other variables constant
+- The estimated change in mean birthweight corresponding to a one year change in mother's age is $2.134$ grams, holding all other variables constant
+- The estimated mean birthweight among infants with mothers that smoke is $426.09$ grams lower than the mean birthweight among infants with mothers that do not smoke, holding all other variables constant.
+
+9. 
+```{r}
+table <- data.frame(summary(fit2)$coef)
+row.names(table) <- c("Intercept","White","Black","Mother's age", "Smoker")
+
+knitr::kable(table,digits=3,align=rep('c', 2),
+  col.names = c("estimate","standard error","test statistic","p-value"))
+```
+

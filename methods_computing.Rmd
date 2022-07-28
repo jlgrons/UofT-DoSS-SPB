@@ -119,10 +119,13 @@ Hypothesis testing
 
 - Solution: [pdf](Computing/Exercises/sol8.pdf), [Rmd](Computing/Solutions/sol8.Rmd)
 
-
 <br>
 
 ### Module 9: Linear regression
+
+- Slides: [pdf](Computing/Slides/mod9.pdf) 
+
+- Exercises: [pdf](Computing/Exercises/ex9.pdf)
 
 <br>
 
