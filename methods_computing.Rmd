@@ -137,17 +137,5 @@ Hypothesis testing
 
 - Exercises: [pdf](Computing/Exercises/ex10.pdf)
 
-<!-- ### Bootstrap -->
-
-<!-- - <a href="https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/Slides/mod8.pdf"target="_blank">Slides</a> -->
-
-
-<!-- <br> -->
-
-<!-- ### Regression -->
-
-<!-- <br> -->
-
-
-
+- Solution: [pdf](Computing/Solutions/sol10.pdf), [Rmd](Computing/Solutions/sol10.Rmd)
 
