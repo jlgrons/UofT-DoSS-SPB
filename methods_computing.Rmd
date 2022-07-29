@@ -133,6 +133,9 @@ Hypothesis testing
 
 ### Module 10: Generalized linear regression
 
+- Slides: [pdf](Computing/Slides/mod10.pdf) 
+
+- Exercises: [pdf](Computing/Exercises/ex10.pdf)
 
 <!-- ### Bootstrap -->
 
