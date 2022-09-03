@@ -1,1 +1,1 @@
-# UofT-DoSS-Bootcamp
+# UofT DoSS Summer Prep Bootcamp (DoSS SPB)
