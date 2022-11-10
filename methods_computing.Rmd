@@ -32,7 +32,7 @@ Material will be added here as the course progresses.
 
 <br>
 
-### Module 1: Basic programming in R
+### Module 1: Basic R programming
 
 - Slides: [pdf](Computing/Slides/mod1.pdf) 
 
@@ -42,7 +42,7 @@ Material will be added here as the course progresses.
 
 <br>
 
-### Module 2: Reporting, data Wrangling and graphing (I)
+### Module 2: Data wrangling (I)
 
 LaTeX, Markdown, tidyverse
 
@@ -54,7 +54,7 @@ LaTeX, Markdown, tidyverse
 
 <br>
 
-### Module 3: Reporting, data Wrangling and graphing (II)
+### Module 3:Data wrangling (II)
 
 ggplot2
 
@@ -131,7 +131,7 @@ Hypothesis testing
 
 <br>
 
-### Module 10: Generalized linear regression
+### Module 10: Generalized linear models
 
 - Slides: [pdf](Computing/Slides/mod10.pdf) 
 

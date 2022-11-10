@@ -14,7 +14,7 @@
 
 <title>Methods and Computing</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -145,11 +145,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -365,8 +369,8 @@ syllabus</a></p>
 <h2>Lectures</h2>
 <p>Material will be added here as the course progresses.</p>
 <p><br></p>
-<div id="module-1-basic-programming-in-r" class="section level3">
-<h3>Module 1: Basic programming in R</h3>
+<div id="module-1-basic-r-programming" class="section level3">
+<h3>Module 1: Basic R programming</h3>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod1.pdf">pdf</a></p></li>
 <li><p>Exercises: <a href="Computing/Exercises/ex1.pdf">pdf</a>, <a
@@ -376,9 +380,8 @@ href="Computing/Solutions/sol1.Rmd">Rmd</a></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="module-2-reporting-data-wrangling-and-graphing-i"
-class="section level3">
-<h3>Module 2: Reporting, data Wrangling and graphing (I)</h3>
+<div id="module-2-data-wrangling-i" class="section level3">
+<h3>Module 2: Data wrangling (I)</h3>
 <p>LaTeX, Markdown, tidyverse</p>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod2.pdf">pdf</a></p></li>
@@ -389,9 +392,8 @@ href="Computing/Solutions/sol2.Rmd">Rmd</a></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="module-3-reporting-data-wrangling-and-graphing-ii"
-class="section level3">
-<h3>Module 3: Reporting, data Wrangling and graphing (II)</h3>
+<div id="module-3data-wrangling-ii" class="section level3">
+<h3>Module 3:Data wrangling (II)</h3>
 <p>ggplot2</p>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod3.pdf">pdf</a></p></li>
@@ -466,9 +468,8 @@ href="Computing/Solutions/sol9.Rmd">Rmd</a></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="module-10-generalized-linear-regression"
-class="section level3">
-<h3>Module 10: Generalized linear regression</h3>
+<div id="module-10-generalized-linear-models" class="section level3">
+<h3>Module 10: Generalized linear models</h3>
 <ul>
 <li><p>Slides: <a href="Computing/Slides/mod10.pdf">pdf</a></p></li>
 <li><p>Exercises: <a
