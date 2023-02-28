@@ -48,7 +48,7 @@
 \vspace{0.5em}
 \large Department of Statistical Sciences, University of Toronto}
 \author{Emma Kroell}
-\date{Last updated: \today}
+\date{Last updated: July 29, 2022}
 
 \begin{document}
 
@@ -2868,7 +2868,7 @@ If $A$ is an $m \times n$ matrix of rank $k$, then we can write
 $$ A = U \Sigma V^T$$
 where $\Sigma$ is an $m \times n$ matrix of the form
 $$ \begin{bmatrix} D_{k \times k} & 0_{k \times (n - k)} \\ 0_{(m -k) \times k} & 0_{(m -k) \times (n-k)} \end{bmatrix},$$
-$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_n$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times n$ and $n \times n$, respectively).
+$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_k$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times m$ and $n \times n$, respectively).
 \end{theorem}
 
 In contrast to the diagonalization discussed at the beginning, both Jordan canonical form and singular value decomposition can be applied to arbitrary square matrices (note that SVD can also be applied to rectangular matrices). However, they achieve different things. On the one hand, for a matrix $A\in M_n(\C)$, the JCF says that there exists an invertible matrix $U\in M_n(\C)$ such that $U^\inv A U$ has block diagonal form with the eigenvalues in the diagonal. One can think of the invertible matrix $U$ describing a preferred basis in which $A$ has block diagonal form. However, this basis is not necessarily orthonormal and since $A$ only has block diagonal form and is not necessarily diagonal, the action of $A $ on this basis is not only given by scaling. On the other hand, the SVD of $A$ leads to $A = U\Sigma V^* $, where $U,V$ are orthogonal and $\Sigma$ is a diagonal matrix. Since $U,V$ are orthogonal, we can think of them as encoding orthonormal bases and since $\Sigma$ is diagonal, it only acts by scaling. Hence, $A$ is written in a way that maps one orthonormal basis to another orthonormal basis with additional stretching factors given by the singular values of $A$ encoded in $\Sigma$.  However, the caveat here is that we change the basis going from $V^*$ to $U$.
