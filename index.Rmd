@@ -1,7 +1,7 @@
 ---
-title: "My Website"
+title: "DoSS Summer Prep Bootcamp"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  Website for the Department of Statistical Sciences' Graduate Summer Prep Bootcamp (SPB)
 site: distill::distill_website
 ---
 
@@ -16,3 +16,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+
+# Overview
+
+Welcome to the course website for the Summer Prep Bootcamp (SPB) offered by the [Department of Statistical Sciences](https://www.statistics.utoronto.ca) (DoSS) at the University of Toronto!  All information related to the bootcamp will be posted on this website.
+
+The purpose of DoSS SPB is to get incoming graduate students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester.  
+
+
+
+### Acknowledgements
+
+The following people contributed to the design of the course materials and website: Prof. Jesse Gronsbell (2022), Robert Zimmerman (2022), Siyue Yang (2022), Emma Kroell (2022), and Shiki Liu (2022).  
+
+Profs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong, Linbo Wang, Stanislav Volgushev, Piotr Zwiernik, Nathan Taback, and Arvind Gupta provided invaluable feedback regarding course content.  
+
+DoSS SPB is made possible through the support of Katy Wang, Christine Bulguryemez, and Angela Fleury - thank you!   
+
+Lastly, DoSS SPB is inspired by the preparatory course for incoming PhD students offered by the Department of Biostatistics at Harvard University. We thank alum instructor, Prof. Ryan Sun of MD Anderson Cancer Center, for kindly sharing course materials.    
