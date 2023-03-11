@@ -1,29 +1,14 @@
-name: DoSSspbwebsite
-output_dir: '.'
+name: "DoSSspbwebsite"
+title: "DoSS SPB"
+description: |
+  Website for the Department of Statistical Sciences' Graduate Summer Prep Bootcamp
+output_dir: "docs"
 navbar:
-  title: DoSS SPB
-  left:
-    - text: Schedule
-      href: schedule.html
-    - text: Operational Math
-      href: operational_math.html
-    - text: Methods and Computing
-      href: methods_computing.html
-    - text: Probability
-      href: probability.html
-    # - text: Course Documents
-      # menu:
-      #   - text: Methods and Computing
-      #     href: methods_computing.html
-      #   - text: Probability
-      #     href: probability.html
-      #   - text: Operational Math
-      #     href: operational_math.html
-#    - text: Resources
-#      href: resources.html
-    # - text: Announcements
-    #   href: announcements.html
-output:
-  html_document:
-    lib_dir: site_libs
-    self_contained: no
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
+exclude: ["Computing", "Math", "Probability"]
+
