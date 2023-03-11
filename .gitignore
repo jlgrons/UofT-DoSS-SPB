@@ -4,6 +4,7 @@
 .DS_Store
 .Rhistory
 .Renviron
+.Rdata
 
 
 ## LaTeX

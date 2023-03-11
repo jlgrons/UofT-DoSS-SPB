@@ -5,18 +5,6 @@ description: |
 site: distill::distill_website
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
-```
-
-
 # Overview
 
 Welcome to the course website for the Summer Prep Bootcamp (SPB) offered by the [Department of Statistical Sciences](https://www.statistics.utoronto.ca) (DoSS) at the University of Toronto!  All information related to the bootcamp will be posted on this website.
