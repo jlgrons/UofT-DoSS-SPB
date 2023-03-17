@@ -1,0 +1,7 @@
+---
+title: "DoSS Summer Prep Bootcamp"
+description: "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"
+site: distill::distill_website
+---
+
+

@@ -15,6 +15,15 @@ navbar:
       href: math2023.html
     - text: "Probability"
       href: probability2023.html
+  right:
+    - text: "Past courses"
+      menu:
+      - text: "Computing"
+        href: computing2022.html
+      - text: "Math"
+        href: math2022.html
+      - text: "Probability"
+        href: probability2022.html
 output: distill::distill_article
 exclude: ["Computing", "Math", "Probability"]
 
