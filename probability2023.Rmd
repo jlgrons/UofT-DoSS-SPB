@@ -10,7 +10,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Probability/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+[Click here to download the syllabus](Probability/2022/Syllabus/Bootcamp_Probability_Syllabus.pdf)
 
 
 ## Lectures
@@ -20,62 +20,62 @@ Material will be added here as the course progresses.
 
 ### Module 1: Basics of Probability
 
-- Slides: [Module 1](Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf); [Module 1 Annotated](Probability/Slides/Module_1_annotated.pdf) 
+- Slides: [Module 1](Probability/2022/Slides/Summer_Bootcamp_Module_1_with_effects.pdf); [Module 1 Annotated](Probability/2022/Slides/Module_1_annotated.pdf) 
 
-- Problem Set Solutions: [Module 1 Solution](Probability/Solutions/Module_1_Solutions.pdf) 
+- Problem Set Solutions: [Module 1 Solution](Probability/2022/Solutions/Module_1_Solutions.pdf) 
 
 ### Module 2: Random Variables
 
-- Slides: [Module 2](Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module 2 Annotated](Probability/Slides/Module_2_annotated.pdf) 
+- Slides: [Module 2](Probability/2022/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module 2 Annotated](Probability/2022/Slides/Module_2_annotated.pdf) 
 
-- Problem Set Solutions: [Module 2 Solution](Probability/Solutions/Module_2_Solutions.pdf) 
+- Problem Set Solutions: [Module 2 Solution](Probability/2022/Solutions/Module_2_Solutions.pdf) 
 
 ### Module 3: Common Random Variables
 
-- Slides: [Module 3](Probability/Slides/Summer_Bootcamp_Module_3_with_effects.pdf); [Module 3 Annotated](Probability/Slides/Module_3_annotated.pdf) 
+- Slides: [Module 3](Probability/2022/Slides/Summer_Bootcamp_Module_3_with_effects.pdf); [Module 3 Annotated](Probability/2022/Slides/Module_3_annotated.pdf) 
 
-- Problem Set Solutions: [Module 3 Solution](Probability/Solutions/Module_3_Solutions.pdf) 
+- Problem Set Solutions: [Module 3 Solution](Probability/2022/Solutions/Module_3_Solutions.pdf) 
 
 ### Module 4: Distribution
 
-- Slides: [Module 4](Probability/Slides/Summer_Bootcamp_Module_4_with_effects.pdf); [Module 4 Annotated](Probability/Slides/Module_4_annotated.pdf) 
+- Slides: [Module 4](Probability/2022/Slides/Summer_Bootcamp_Module_4_with_effects.pdf); [Module 4 Annotated](Probability/2022/Slides/Module_4_annotated.pdf) 
 
-- Problem Set Solutions: [Module 4 Solution](Probability/Solutions/Module_4_Solutions.pdf) 
+- Problem Set Solutions: [Module 4 Solution](Probability/2022/Solutions/Module_4_Solutions.pdf) 
 
 ### Module 5: Expectation
 
-- Slides: [Module 5](Probability/Slides/Summer_Bootcamp_Module_5_with_effects.pdf); [Module 5 Annotated](Probability/Slides/Module_5_annotated.pdf) 
+- Slides: [Module 5](Probability/2022/Slides/Summer_Bootcamp_Module_5_with_effects.pdf); [Module 5 Annotated](Probability/2022/Slides/Module_5_annotated.pdf) 
 
-- Problem Set Solutions: [Module 5 Solution](Probability/Solutions/Module_5_Solutions.pdf) 
+- Problem Set Solutions: [Module 5 Solution](Probability/2022/Solutions/Module_5_Solutions.pdf) 
 
 ### Module 6: Inequalities
 
-- Slides: [Module 6](Probability/Slides/Summer_Bootcamp_Module_6_with_effects.pdf); [Module 6 Annotated](Probability/Slides/Module_6_annotated.pdf) 
+- Slides: [Module 6](Probability/2022/Slides/Summer_Bootcamp_Module_6_with_effects.pdf); [Module 6 Annotated](Probability/2022/Slides/Module_6_annotated.pdf) 
 
-- Problem Set Solutions: [Module 6 Solution](Probability/Solutions/Module_6_Solutions.pdf) 
+- Problem Set Solutions: [Module 6 Solution](Probability/2022/Solutions/Module_6_Solutions.pdf) 
 
 ### Module 7: Stochastic Convergence
 
-- Slides: [Module 7](Probability/Slides/Summer_Bootcamp_Module_7_with_effects.pdf); [Module 7 Annotated](Probability/Slides/Module_7_annotated.pdf) 
+- Slides: [Module 7](Probability/2022/Slides/Summer_Bootcamp_Module_7_with_effects.pdf); [Module 7 Annotated](Probability/2022/Slides/Module_7_annotated.pdf) 
 
-- Problem Set Solutions: [Module 7 Solution](Probability/Solutions/Module_7_Solutions.pdf) 
+- Problem Set Solutions: [Module 7 Solution](Probability/2022/Solutions/Module_7_Solutions.pdf) 
 
 ### Module 8: Limit Theorems
 
-- Slides: [Module 8](Probability/Slides/Summer_Bootcamp_Module_8_with_effects.pdf); [Module 8 Annotated](Probability/Slides/Module_8_annotated.pdf) 
+- Slides: [Module 8](Probability/2022/Slides/Summer_Bootcamp_Module_8_with_effects.pdf); [Module 8 Annotated](Probability/2022/Slides/Module_8_annotated.pdf) 
 
-- Problem Set Solutions: [Module 8 Solution](Probability/Solutions/Module_8_Solutions.pdf) 
+- Problem Set Solutions: [Module 8 Solution](Probability/2022/Solutions/Module_8_Solutions.pdf) 
 
 ### Module 9: Markov Chain
 
-- Slides: [Module 9](Probability/Slides/Summer_Bootcamp_Module_9_with_effects.pdf); [Module 9 Annotated](Probability/Slides/Module_9_annotated.pdf) 
+- Slides: [Module 9](Probability/2022/Slides/Summer_Bootcamp_Module_9_with_effects.pdf); [Module 9 Annotated](Probability/2022/Slides/Module_9_annotated.pdf) 
 
-- Problem Set Solutions: [Module 9 Solution](Probability/Solutions/Module_9_Solutions.pdf) 
+- Problem Set Solutions: [Module 9 Solution](Probability/2022/Solutions/Module_9_Solutions.pdf) 
 
 ### Module 10: Stochastic Processes
 
-- Slides: [Module 10](Probability/Slides/Summer_Bootcamp_Module_10_with_effects.pdf); [Module 10 Annotated](Probability/Slides/Module_10_annotated.pdf) 
+- Slides: [Module 10](Probability/2022/Slides/Summer_Bootcamp_Module_10_with_effects.pdf); [Module 10 Annotated](Probability/2022/Slides/Module_10_annotated.pdf) 
 
-- Problem Set Solutions: [Module 10 Solution](Probability/Solutions/Module_10_Solutions.pdf) 
+- Problem Set Solutions: [Module 10 Solution](Probability/2022/Solutions/Module_10_Solutions.pdf) 
 
 
