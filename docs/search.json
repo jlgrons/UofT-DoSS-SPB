@@ -1,12 +1,43 @@
 {
   "articles": [
     {
+      "path": "computing2023.html",
+      "title": "DoSS Summer Prep Bootcamp",
+      "description": "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)",
+      "author": [],
+      "contents": "\nThis is an R Markdown document. Markdown is a simple formatting\nsyntax for authoring HTML, PDF, and MS Word documents. For more details\non using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be\ngenerated that includes both content as well as the output of any\nembedded R code chunks within the document. You can embed an R code\nchunk like this:\n\n\nsummary(cars)\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\nIncluding Plots\nYou can also embed plots, for example:\n\n\n\nNote that the echo = FALSE parameter was added to the\ncode chunk to prevent printing of the R code that generated the\nplot.\n\n\n\n",
+      "last_modified": "2023-03-17T16:28:27-04:00"
+    },
+    {
       "path": "index.html",
       "title": "DoSS Summer Prep Bootcamp",
       "description": "Website for the Department of Statistical Sciences' Graduate Summer Prep Bootcamp (SPB)\n",
       "author": [],
       "contents": "\nOverview\nWelcome to the course website for the Summer Prep Bootcamp (SPB)\noffered by the Department\nof Statistical Sciences (DoSS) at the University of Toronto! All\ninformation related to the bootcamp will be posted on this website.\nThe purpose of DoSS SPB is to get incoming graduate students up to\nspeed on foundational mathematical, statistical, and computing concepts\nin a low pressure environment to prepare for coursework in the upcoming\nsemester.\nAcknowledgements\nThe following people contributed to the design of the course\nmaterials and website: Prof. Jesse Gronsbell (2022), Robert Zimmerman\n(2022), Siyue Yang (2022), Emma Kroell (2022), and Shiki Liu (2022).\nProfs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong,\nLinbo Wang, Stanislav Volgushev, Piotr Zwiernik, Nathan Taback, and\nArvind Gupta provided invaluable feedback regarding course content.\nDoSS SPB is made possible through the support of Katy Wang, Christine\nBulguryemez, and Angela Fleury - thank you!\nLastly, DoSS SPB is inspired by the preparatory course for incoming\nPhD students offered by the Department of Biostatistics at Harvard\nUniversity. We thank alum instructor, Prof. Ryan Sun of MD Anderson\nCancer Center, for kindly sharing course materials.\n\n\n\n",
-      "last_modified": "2023-03-11T13:44:22-05:00"
+      "last_modified": "2023-03-17T16:28:28-04:00"
+    },
+    {
+      "path": "math2023.html",
+      "title": "DoSS Summer Prep Bootcamp",
+      "description": "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)",
+      "author": [],
+      "contents": "\nThis is an R Markdown document. Markdown is a simple formatting\nsyntax for authoring HTML, PDF, and MS Word documents. For more details\non using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be\ngenerated that includes both content as well as the output of any\nembedded R code chunks within the document. You can embed an R code\nchunk like this:\n\n\nsummary(cars)\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\nIncluding Plots\nYou can also embed plots, for example:\n\n\n\nNote that the echo = FALSE parameter was added to the\ncode chunk to prevent printing of the R code that generated the\nplot.\n\n\n\n",
+      "last_modified": "2023-03-17T16:28:28-04:00"
+    },
+    {
+      "path": "probability2023.html",
+      "title": "DoSS Summer Prep Bootcamp",
+      "description": "Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2023-03-17T16:28:28-04:00"
+    },
+    {
+      "path": "schedule.html",
+      "title": "Schedule",
+      "author": [],
+      "contents": "\n\n Course Schedule\nBelow is our course schedule, which may change as the course\nprogresses.\nThe morning session will run from 10:00 am-12:00 pm and the afternoon\nsession will run from 1:30-3:30 pm (all times EDT/Toronto time).\nSome days will include a lunchtime guest speaker from DoSS or the\nuniversity from 12:15-1:15 pm. A list of guest speakers is given\nbelow.\nAll sessions will use the following zoom meeting:\nhttps://utoronto.zoom.us/j/88309575061 (Meeting ID: 883\n0957 5061)\nClass schedule\n\n\nDate\n\n\nTime\n\n\nCourse\n\n\nInstructor\n\n\nMon July 11\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nMon July 11\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nTues July 12\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nTues July 12\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nWed July 13\n\n\nMorning\n\n\nOperational Math\n\n\nEmma\n\n\nWed July 13\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nThurs July 14\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nThurs July 14\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nFri July 15\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nFri July 15\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nMon July 18\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nMon July 18\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nTues July 19\n\n\nMorning\n\n\nOperational Math\n\n\nEmma\n\n\nTues July 19\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nWed July 20\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nWed July 20\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nThurs July 21\n\n\nMorning\n\n\nProbability\n\n\nShiki\n\n\nThurs July 21\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nFri July 22\n\n\nMorning\n\n\nProbability\n\n\nShiki\n\n\nFri July 22\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nMon July 25\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nMon July 25\n\n\nAfternoon\n\n\nOperational Math\n\n\nEmma\n\n\nTues July 26\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nTues July 26\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nWed July 27\n\n\nMorning\n\n\nOperational Math\n\n\nEmma\n\n\nWed July 27\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nThurs July 28\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nThurs July 28\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\nFri July 29\n\n\nMorning\n\n\nMethods & Computing\n\n\nSiyue\n\n\nFri July 29\n\n\nAfternoon\n\n\nProbability\n\n\nShiki\n\n\n\n\n\n\n\n\n\n\n\nGuest speaker schedule\n\n\nDate\n\n\nGuest\n\n\nTuesday Jul 12\n\n\nLiam Welsh (SGSU)\n\n\nWednesday July 13\n\n\nNancy Reid\n\n\nThursday July 14\n\n\nDinuka Gunaratne (Graduate Professional Development)\n\n\nFriday July 15\n\n\nChad Jankowski (Mental Health Support)\n\n\nMonday July 18\n\n\nPiotr Zwiernik\n\n\nTuesday July 19\n\n\nPaloma Bertossi (Housing)\n\n\nWednesday July 20\n\n\nKaty Wang\n\n\nThursday July 21\n\n\nMeredith Franklin\n\n\nFriday July 22\n\n\nBoris Babic\n\n\nThursday July 28\n\n\nJeffrey Rosenthal\n\n\nFriday July 29\n\n\nStanislav Volgushev\n\n\n\n\n\n\n\n\n\n",
+      "last_modified": "2023-03-17T16:28:30-04:00"
     }
   ],
   "collections": []
