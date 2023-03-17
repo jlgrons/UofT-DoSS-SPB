@@ -1,0 +1,477 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\usepackage{accents}
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+\newcommand{\interior}{\accentset{\circ}}
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
+\title[]{Module 5: Topology \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{July 19, 2022}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Last time}
+Finished our discussion of open and closed sets:
+\vspace{0.5em}
+	\begin{itemize}
+	\setlength\itemsep{0.7em}
+	\item Introduced a cluster points of a set: \\
+	$x \in X$ is a \emph{cluster point} of $A$ if for every $\epsilon >0$, $B_\epsilon(x)$ contains \textbf{infinitely} many points in $A$.
+	\item Sequence characterization of a closed set: \\
+	A set $F \subseteq X$, where $(X, d)$ is a metric space, is closed if and only if every sequence in $F$ which converges in $X$ converges to a point in $F$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Last time}
+Discussed sequences, which includes Cauchy sequences and subsequences:
+\vspace{0.5em}
+	\begin{itemize}
+	   \setlength\itemsep{0.6em}
+	\item Convergent sequence: $x_n \to x$ $\Leftrightarrow$ $\forall \epsilon > 0 \; \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x) < \epsilon \text{ for all } n \geq n_\epsilon$
+	\item Cauchy sequence:  $ \forall \epsilon>0 \; \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon$
+	\item Proved that a convergent sequence is Cauchy
+	\item Discussed complete metric spaces, where all Cauchy sequences converge (like $\R$ with the usual metric, absolute value)
+	\item Proved that a sequence converges to $x$ if and only if all subsequences converge to $x$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Last time}
+Discussed continuous functions:
+ \vspace{0.5em}
+	\begin{itemize}
+	\setlength\itemsep{0.7em}
+	\item Showed that these three definitions of continuous are equivalent in metric spaces: \\
+	\vspace{0.5em}
+	
+	$f:X \to Y$ is \emph{continuous} where $(X,d_X)$ and $(Y,d_Y)$ are metric spaces $\Leftrightarrow$
+	\begin{itemize}
+	\setlength\itemsep{0.4em}
+		\item  if for every $x_0 \in X$, for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+		\item   if for every $x_0 \in X$, for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+		\item if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
+	\end{itemize}
+	\item Briefly discussed other types of continuity (uniform, Lipschitz) and the Contraction Mapping Theorem
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline for today}
+    \begin{itemize}
+      \setlength\itemsep{1em}
+    	\item Finish metric spaces
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Equivalent metrics
+	\item A few extra topics on $\R$, including lim sup and lim inf
+	\end{itemize}
+	\item Start topology
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Basic definitions
+	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Equivalent metrics}
+\begin{definition}[Equivalent metrics]
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{equivalent} if the identity maps from $(X,d_1)$ to $(X,d_2)$ and from $(X,d_2)$ to $(X,d_1)$ are continuous. 
+\end{definition}
+
+\vspace{1em}
+
+\begin{exampleblock}{Proposition}
+Two metrics $d_1$, $d_2$ on a set $X$ are equivalent if and only if they have the same open sets or the same closed sets.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+Two metrics $d_1$ and $d_2$ on a set $X$ are \emph{strongly equivalent} if for every $x,y\in X$, there exists constants $\alpha>0$ and $\beta>0$ such
+\begin{equation*}
+    \alpha d_1(x,y) \leq d_2(x,y) \leq \beta d_1(x,y).
+\end{equation*}
+\end{definition}
+
+If two metrics are strongly equivalent then they are equivalent. The proof of this is one of the exercises. 
+\end{frame}
+
+\begin{frame}
+\begin{example}
+We show that the Euclidean distance (induced by 2-norm) and the metric induced by the $\infty$-norm are equivalent on $\R^n$. 
+\vspace{5cm}
+\end{example}
+Can you think of an example that we've seen of a metric that isn't equivalent to the Euclidean metric?
+\end{frame}
+
+
+\begin{frame}{Right and left continuous}
+Recall: $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
+
+\vspace{1em}
+
+\begin{definition} Let $f\colon \R \to \R$.
+\begin{itemize}
+    \item $f$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$.
+    \item $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta$.
+\end{itemize}
+We say that $f$ is left continuous if it is left continuous at all points in the domain, and similar for right continuous.
+\end{definition}
+
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
+\end{exampleblock}
+\begin{proof}
+\vspace{5cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Bounded sequences and monotone convergence}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bounded} if there exists an $M > 0$ such that $\vert x_n\vert<M$ for all $n\in \N$.
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{theorem}[Monotone convergence theorem]
+\begin{itemize}
+\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$, and that it is bounded (above). Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\item[(ii)] Suppose $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded (below). Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
+\end{itemize}
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+Convention: $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
+
+\begin{lemma}
+If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
+\end{lemma}
+The proof of this follows from the definition of greatest lower and least upper bound. 
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We define the \emph{limit superior} of $(x_n)_{n\in \N}$ as 
+$$\limsup_{n\to \infty} x_n: = \lim_{n\to \infty} \sup_{k\geq n} x_k.$$ 
+Similarly we define  the \emph{limit inferior} of $(x_n)_{n\in \N}$ as 
+$$\liminf_{n\to \infty} x_n: = \lim_{n\to \infty} \inf_{k\geq n} x_k.$$
+\end{definition}
+\vspace{1em}
+If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. 
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
+\begin{itemize} 
+\item The sequence of suprema, $s_n = \sup_{k\geq n} x_k$, is decreasing and the sequence of infima, $i_n = \inf_{k\geq n} x_k$, is increasing.
+\item The limit superior and the limit inferior of a bounded sequence always exist and are finite.
+\end{itemize}
+\end{exampleblock}
+\begin{proof}
+The first part is true by the previous Lemma. The second follows by the Monotone Convergence Theorem.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
+\end{theorem}
+\begin{block}{Proof.}
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{6.5cm}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\vspace{2em}
+We can extend this easily to a sequence of functions $f_n \colon X \to \R$ as follows:
+\vspace{0.5em}
+
+Define $f = \limsup_{n\to \infty } f_n$ to be the function defined pointwise by $f(x) = \limsup_{n\to \infty } (f_n (x)) $ and similar for the limit inferior. 
+
+\vspace{1em}
+
+There also exists a set theoretic version in terms of unions and intersections which you will encounter in probability.
+
+\end{frame}
+
+
+\section{Topology}
+
+\begin{frame}
+\begin{itemize}
+\item Let $X$ be a set. If $X$ is not a metric space, can we still have open and closed sets?
+\item One can think of a topology on $X$ as a specification of what subsets of $X$ are open
+\end{itemize}
+
+\vspace{0.5em}
+
+\begin{definition}
+Let $\cT\subseteq \cP(X)$. We call $\cT$ a \emph{topology} on $X$ if the following holds:
+\begin{itemize}
+    \item[(i)] $\emptyset, X \in \cT$
+    \item[(ii)] Let $A$ be an arbitrary index set. If $U_\alpha \in \cT$ for $\alpha\in A$, then $\bigcup_{\alpha \in A} U_\alpha \in \cT$ ($\cT$ is closed under taking arbitrary unions)
+    \item[(iii)] Let $n \in \N$. If $U_1, \ldots, U_n \in \cT$, then $\bigcap_{i=1}^n U_i \in \cT$ ($\cT$ is closed under taking finite intersections)
+\end{itemize}
+If $U\in \cT$, we call $U$ \emph{open}. We call $U\subseteq X$ \emph{closed}, if $U^c\in \cT$. We call $(X,\cT)$ a \emph{topological space}.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+For a set $X$, the following $\cT \subseteq \cP(X)$ are examples of topologies on $X$.
+\vspace{0.4em}
+\begin{itemize}
+\setlength\itemsep{0.3em}
+    \item Trivial topology: $\cT = \{\emptyset, X\}$,
+    \item Discrete topology: $\cT=\cP(X)$,
+    \item Let $X$ be an infinite set. Then, $\cT = \{U \subseteq X \;\colon\; U^c \; \text{is finite}\}\cup \emptyset$ defines a topology on $X$.
+    \item Topology induced by a metric: i.e. if $d$ is a metric on $X$ we can define 
+    $$\cT_d = \{U \subseteq X \; \vert \; \forall x \in U \; \exists \epsilon>0 \text{ such that } B_\epsilon(x) \subseteq U \}.$$
+\end{itemize}
+\vspace{0.4em}
+    The discrete topology is also induced by a metric, can you guess which one?
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+Given a topological space $(X,\cT)$ and a subset $Y\subseteq X$, we can restrict the topology on $X$ to $Y$ which leads to the next definition. 
+
+\vspace{1em}
+
+\begin{definition}[Relative topology]
+Given a topological space $(X,\cT)$ and an arbitrary non-empty subset $Y \subseteq X$, we define the relative topology on $Y$ as follows
+\begin{equation*}
+    \cT\vert_Y = \{U\cap Y \; \colon\; U \in \cT\}.
+\end{equation*}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+Let $(X,\cT)$ be a topological space and let $A\subseteq X$ be any subset.
+\begin{itemize}
+    \item The \emph{interior} of $A$ is $\interior A := \{a \in A \colon \exists U \in  \cT \text{ s.t. } U\subseteq A \text{ and } a\in U\} $.
+    \item The \emph{closure} of $A$ is $\overline{A} := \{x \in X \colon \forall U \in \cT \text{ with } x \in U, U\cap A \neq \emptyset\}$.
+    \item The \emph{boundary} of $A$ is $\partial A:= \{x \in X \colon \forall U\in \cT \text{ with } x\in U, \, U \cap A \neq \emptyset \text{ and } U \cap A^c \neq \emptyset \}$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\small
+\begin{itemize}
+    \item The \emph{interior} of $A$ is $\interior A := \{a \in A \colon \exists U \in  \cT \text{ s.t. } U\subseteq A \text{ and } a\in U\} $.
+    \item The \emph{closure} of $A$ is $\overline{A} := \{x \in X \colon \forall U \in \cT \text{ with } x \in U, U\cap A \neq \emptyset\}$.
+    \item The \emph{boundary} of $A$ is $\partial A:= \{x \in X \colon \forall U\in \cT \text{ with } x\in U, \, U \cap A \neq \emptyset \text{ and } U \cap A^c \neq \emptyset \}$.
+\end{itemize}
+\normalsize
+
+\vspace{0.5em}
+
+\begin{example}
+Let $X=\{a,b,c\}$ and $\cT = \{\emptyset ,\{a\}, \{b\},\{a,b\}, X\}$. Then 
+\begin{itemize}
+	\setlength\itemsep{0.5em}
+    \item $ \interior{\{ a\} } =$
+    \item $\interior{ \{c\}} =$
+    \item $\overline{\{a\}}=$
+    \item $\overline{\{c\}} =$
+\end{itemize}
+\vspace{2em}
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ Let $(X,\cT)$ be a topological space and $A\subseteq X$. Then,
+ \begin{equation*}
+     \overline{A} = \bigcap \{F \colon F \text{ is closed and } A \subseteq F\}.
+ \end{equation*}
+\end{exampleblock}
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{4.5cm}
+\end{block}
+Similarly, one can show $\interior A =\bigcup \{U: U \text{ is open and } U \subseteq A \}$. Hence, we see that the interior of $A$ is the largest open set contained in $A$ and the closure is the smallest closed set that contains $A$.
+
+\end{frame}
+
+\begin{frame}{Next time}
+    \begin{itemize}
+      \setlength\itemsep{1em}
+    	\item Finish topology
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Dense subsets
+	\item Compactness
+	\item Continuity
+	\end{itemize}
+	\item Start linear algebra
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Vector spaces and subspaces
+	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{References}
+
+Ji\v{r}í Lebl (2022). \textit{Basic Analysis I}. Vol. 1. Introduction to Real Analysis.  \href{ https://www.jirka.org/ra/realanal.pdf}{https://www.jirka.org/ra/realanal.pdf} 
+
+\vspace{1em}
+
+
+Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+
+
+\end{frame}
+
+
+
+
+\end{document}

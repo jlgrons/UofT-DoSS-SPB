@@ -22,5 +22,4 @@ navbar:
         href: courses2022.html
 output: distill::distill_article
 theme: dept_theme.css
-exclude: ["Schedule", "Computing", "Math", "Probability"]
 

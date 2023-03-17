@@ -1,0 +1,41 @@
+---
+title: 'Exercise 4: Statistical inference (I)'
+author: "Siyue Yang"
+date: "05/10/2022"
+output: pdf_document
+---
+
+# Part 1: Probability distributions
+
+\begin{enumerate}
+\item A contestant on a game show needs to answer 10 questions correctly to win the jackpot. However, if they get 4 incorrect answers, they are kicked off the show. Suppose one contestant consistently has a 80\% chance of correctly responding to any question. 
+
+\begin{enumerate}
+\item What is the probability distribution?
+\item What is the probability that she will correctly answer 10 questions before 4 incorrect responses? 
+\item Write out the R code to calculate (b).
+\end{enumerate}
+
+
+\item A small town’s police department issues 5 speeding tickets per month on average. 
+
+\begin{enumerate}
+\item Using a Poisson random variable, what is the likelihood that the police department issues 3 or fewer tickets in one month? 
+\item What is the probability that 10 days or fewer elapse between two tickets being issued?
+\item Write out the R code to calculate (a), (b).
+\end{enumerate}
+
+\end{enumerate}
+
+# Part 2: Statistical inference
+
+\begin{enumerate}
+\item (AoS 6.6.2) Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta}=\max \left\{X_{1}, \ldots, X_{n}\right\}$. Find the bias, se and MSE of this estimator.
+
+\item (AoS 6.6.3) Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta}=2 \bar{X}_{n}$. Find the bias, se and MSE of this estimator.
+
+\item Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0,1)$. Let $Y_{n}=\bar{X}_{n}^{2}$. Find the limiting distribution of $Y_{n}$. (Hint: CLT)
+
+\end{enumerate}
+
+
