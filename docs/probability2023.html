@@ -87,29 +87,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>DoSS SPB: DoSS Summer Prep Bootcamp</title>
+  <title>DoSS SPB: Probability</title>
 
-  <meta property="description" itemprop="description" content="Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"/>
+  <meta property="description" itemprop="description" content="Instructor:"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="DoSS SPB: DoSS Summer Prep Bootcamp"/>
+  <meta property="og:title" content="DoSS SPB: Probability"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"/>
+  <meta property="og:description" content="Instructor:"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DoSS SPB"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="DoSS SPB: DoSS Summer Prep Bootcamp"/>
-  <meta property="twitter:description" content="Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"/>
+  <meta property="twitter:title" content="DoSS SPB: Probability"/>
+  <meta property="twitter:description" content="Instructor:"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["DoSS Summer Prep Bootcamp"]},{"type":"character","attributes":{},"value":["Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Probability"]},{"type":"character","attributes":{},"value":["Instructor: "]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2036,6 +2036,315 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </script>
 
+  <style type="text/css">
+  /* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+  /* This must remain at the top of this file.                 */
+
+
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --body-size:       1.06rem;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     #000000;
+    --header-color:    rgba(0, 0, 0, 0.8);
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    sans-serif;
+    --mono-font:       monospace;
+    --body-font:       sans-serif;
+    --navbar-font:     sans-serif;  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+  d-byline {
+    --heading-size:    0.6rem;
+    --heading-color:   rgba(0, 0, 0, 0.5);
+    --body-size:       0.8rem;
+    --body-color:      rgba(0, 0, 0, 0.8);
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+  .d-contents {
+    --heading-size:    18px;
+    --contents-size:   13px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       18px;
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  .distill-site-footer {
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  /*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */
+  </style>
+  <style type="text/css">
+  /* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+  /* This must remain at the top of this file.                 */
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans');
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --body-size:       1.06rem;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     #002A5C;
+    --header-color:    #002A5C;
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    "Merriweather", sans-serif;
+    --mono-font:       monospace;
+    --body-font:       "Open Sans", sans-serif;
+    --navbar-font:     "Merriweather", sans-serif;  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+  d-byline {
+    --heading-size:    0.6rem;
+    --heading-color:   rgba(0, 0, 0, 0.5);
+    --body-size:       0.8rem;
+    --body-color:      rgba(0, 0, 0, 0.8);
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+  .d-contents {
+    --heading-size:    18px;
+    --contents-size:   13px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       18px;
+    --text-color:       #FFFFFF;
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #002A5C;
+  }
+
+  .distill-site-footer {
+    --text-color:       #FFFFFF;
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #002A5C;
+  }
+
+  /*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */</style>
+  <style type="text/css">
+  /* base style */
+
+  /* FONT FAMILIES */
+
+  :root {
+    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body,
+  .posts-list .post-preview p,
+  .posts-list .description p {
+    font-family: var(--body-font), var(--body-default);
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .posts-list .post-preview h2,
+  .posts-list .description h2 {
+    font-family: var(--heading-font), var(--heading-default);
+  }
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: var(--mono-font), var(--mono-default);
+  }
+
+
+  /*-- TITLE --*/
+  d-title h1,
+  .posts-list > h1 {
+    color: var(--title-color, black);
+  }
+
+  d-title h1 {
+    font-size: var(--title-size, 50px);
+  }
+
+  /*-- HEADERS --*/
+  d-article h1,
+  d-article h2,
+  d-article h3,
+  d-article h4,
+  d-article h5,
+  d-article h6 {
+    color: var(--header-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- BODY --*/
+  d-article > p,  /* only text inside of <p> tags */
+  d-article > ul, /* lists */
+  d-article > ol {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+    font-size: var(--body-size, 1.06rem);
+  }
+
+
+  /*-- CODE --*/
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-size: var(--code-size, 14px);
+  }
+
+  /*-- ASIDE --*/
+  d-article aside {
+    font-size: var(--aside-size, 12px);
+    color: var(--aside-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- FIGURE CAPTIONS --*/
+  figure .caption,
+  figure figcaption,
+  .figure .caption {
+    font-size: var(--fig-cap-size, 13px);
+    color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- METADATA --*/
+  d-byline h3 {
+    font-size: var(--heading-size, 0.6rem);
+    color: var(--heading-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-byline {
+    font-size: var(--body-size, 0.8rem);
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  d-byline a,
+  d-article d-byline a {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- TABLE OF CONTENTS --*/
+  .d-contents nav h3 {
+    font-size: var(--heading-size, 18px);
+  }
+
+  .d-contents nav a {
+    font-size: var(--contents-size, 13px);
+  }
+
+  /*-- APPENDIX --*/
+  d-appendix h3 {
+    font-size: var(--heading-size, 15px);
+    color: var(--heading-color, rgba(0, 0, 0, 0.65));
+  }
+
+  d-appendix {
+    font-size: var(--text-size, 0.8em);
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-appendix d-footnote-list a.footnote-backlink {
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  .distill-site-header .title {
+    font-size: var(--title-size, 18px);
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .distill-site-header a,
+  .nav-dropdown .nav-dropbtn {
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    font-size: var(--text-size, 15px);
+  }
+
+  .distill-site-header a:hover,
+  .nav-dropdown:hover .nav-dropbtn {
+    color: var(--hover-color, white);
+  }
+
+  .distill-site-header {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer a:hover {
+    color: var(--hover-color, white);
+  }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
@@ -2057,7 +2366,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"DoSS Summer Prep Bootcamp","description":"Instructor: [Miaoshiqi (Shiki) Liu](https://shiqi.writingspace.cc)","authors":[]}
+{"title":"Probability","description":"Instructor:","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2080,9 +2389,7 @@ Past courses
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="computing2022.html">Computing</a>
-<a href="math2022.html">Math</a>
-<a href="probability2022.html">Probability</a>
+<a href="courses2022.html">Summer 2022</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2094,15 +2401,159 @@ Past courses
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>DoSS Summer Prep Bootcamp</h1>
+<h1>Probability</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>Instructor: <a href="https://shiqi.writingspace.cc">Miaoshiqi (Shiki)
-Liu</a></p>
+<p>Instructor:</p>
 </div>
 
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#syllabus" id="toc-syllabus">Syllabus</a></li>
+<li><a href="#lectures" id="toc-lectures">Lectures</a>
+<ul>
+<li><a href="#module-1-basics-of-probability"
+id="toc-module-1-basics-of-probability">Module 1: Basics of
+Probability</a></li>
+<li><a href="#module-2-random-variables"
+id="toc-module-2-random-variables">Module 2: Random Variables</a></li>
+<li><a href="#module-3-common-random-variables"
+id="toc-module-3-common-random-variables">Module 3: Common Random
+Variables</a></li>
+<li><a href="#module-4-distribution"
+id="toc-module-4-distribution">Module 4: Distribution</a></li>
+<li><a href="#module-5-expectation" id="toc-module-5-expectation">Module
+5: Expectation</a></li>
+<li><a href="#module-6-inequalities"
+id="toc-module-6-inequalities">Module 6: Inequalities</a></li>
+<li><a href="#module-7-stochastic-convergence"
+id="toc-module-7-stochastic-convergence">Module 7: Stochastic
+Convergence</a></li>
+<li><a href="#module-8-limit-theorems"
+id="toc-module-8-limit-theorems">Module 8: Limit Theorems</a></li>
+<li><a href="#module-9-markov-chain"
+id="toc-module-9-markov-chain">Module 9: Markov Chain</a></li>
+<li><a href="#module-10-stochastic-processes"
+id="toc-module-10-stochastic-processes">Module 10: Stochastic
+Processes</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h2 id="syllabus">Syllabus</h2>
+<p><a
+href="Probability/Syllabus/Bootcamp_Probability_Syllabus.pdf">Click here
+to download the syllabus</a></p>
+<h2 id="lectures">Lectures</h2>
+<p>Material will be added here as the course progresses.</p>
+<h3 id="module-1-basics-of-probability">Module 1: Basics of
+Probability</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_1_with_effects.pdf">Module
+1</a>; <a href="Probability/Slides/Module_1_annotated.pdf">Module 1
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_1_Solutions.pdf">Module 1
+Solution</a></p></li>
+</ul>
+<h3 id="module-2-random-variables">Module 2: Random Variables</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_2_with_effects.pdf">Module
+2</a>; <a href="Probability/Slides/Module_2_annotated.pdf">Module 2
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_2_Solutions.pdf">Module 2
+Solution</a></p></li>
+</ul>
+<h3 id="module-3-common-random-variables">Module 3: Common Random
+Variables</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_3_with_effects.pdf">Module
+3</a>; <a href="Probability/Slides/Module_3_annotated.pdf">Module 3
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_3_Solutions.pdf">Module 3
+Solution</a></p></li>
+</ul>
+<h3 id="module-4-distribution">Module 4: Distribution</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_4_with_effects.pdf">Module
+4</a>; <a href="Probability/Slides/Module_4_annotated.pdf">Module 4
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_4_Solutions.pdf">Module 4
+Solution</a></p></li>
+</ul>
+<h3 id="module-5-expectation">Module 5: Expectation</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_5_with_effects.pdf">Module
+5</a>; <a href="Probability/Slides/Module_5_annotated.pdf">Module 5
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_5_Solutions.pdf">Module 5
+Solution</a></p></li>
+</ul>
+<h3 id="module-6-inequalities">Module 6: Inequalities</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_6_with_effects.pdf">Module
+6</a>; <a href="Probability/Slides/Module_6_annotated.pdf">Module 6
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_6_Solutions.pdf">Module 6
+Solution</a></p></li>
+</ul>
+<h3 id="module-7-stochastic-convergence">Module 7: Stochastic
+Convergence</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_7_with_effects.pdf">Module
+7</a>; <a href="Probability/Slides/Module_7_annotated.pdf">Module 7
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_7_Solutions.pdf">Module 7
+Solution</a></p></li>
+</ul>
+<h3 id="module-8-limit-theorems">Module 8: Limit Theorems</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_8_with_effects.pdf">Module
+8</a>; <a href="Probability/Slides/Module_8_annotated.pdf">Module 8
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_8_Solutions.pdf">Module 8
+Solution</a></p></li>
+</ul>
+<h3 id="module-9-markov-chain">Module 9: Markov Chain</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_9_with_effects.pdf">Module
+9</a>; <a href="Probability/Slides/Module_9_annotated.pdf">Module 9
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_9_Solutions.pdf">Module 9
+Solution</a></p></li>
+</ul>
+<h3 id="module-10-stochastic-processes">Module 10: Stochastic
+Processes</h3>
+<ul>
+<li><p>Slides: <a
+href="Probability/Slides/Summer_Bootcamp_Module_10_with_effects.pdf">Module
+10</a>; <a href="Probability/Slides/Module_10_annotated.pdf">Module 10
+Annotated</a></p></li>
+<li><p>Problem Set Solutions: <a
+href="Probability/Solutions/Module_10_Solutions.pdf">Module 10
+Solution</a></p></li>
+</ul>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
@@ -2119,7 +2570,20 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>© Department of Statistical Sciences, University of Toronto</p>
+<p>This website is licensed under a <a
+href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License</a>.</p>
+<p>This webpage was made using the <a
+href="https://rstudio.github.io/distill/">distill R package</a> and <a
+href="https://www.rstudio.com">RStudio</a>. GitHub Repo for this
+website: <a
+href="https://github.com/jlgrons/UofT-DoSS-SPB">https://github.com/jlgrons/UofT-DoSS-SPB</a></p>
+</div>
 <!--/radix_placeholder_navigation_after_body-->
+
 
 </body>
 

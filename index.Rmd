@@ -21,4 +21,10 @@ Profs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong, Linbo Wang
 
 DoSS SPB is made possible through the support of Katy Wang, Christine Bulguryemez, and Angela Fleury - thank you!   
 
-Lastly, DoSS SPB is inspired by the preparatory course for incoming PhD students offered by the Department of Biostatistics at Harvard University. We thank alum instructor, Prof. Ryan Sun of MD Anderson Cancer Center, for kindly sharing course materials.    
+Lastly, DoSS SPB is inspired by the preparatory course for incoming PhD students offered by the Department of Biostatistics at Harvard University. We thank alum instructor, Prof. Ryan Sun of MD Anderson Cancer Center, for kindly sharing course materials.   
+
+<center>
+<div class "layout-chunk">
+<img align="center" src="dept_logo.png" width="500" alt="Logo of the Department of Statistical Sciences at the University of Toronto">
+</div>
+</center>

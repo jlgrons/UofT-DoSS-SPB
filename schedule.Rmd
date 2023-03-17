@@ -1,16 +1,17 @@
 ---
 title: "Schedule"
 description: 
-site: distill::distill_website
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 knitr::opts_chunk$set(warning = F, message = F)
 ```
-<br>
 
-# <span class="glyphicon glyphicon-calendar" aria-hidden="false"></span> Course Schedule
 Below is our course schedule, which may change as the course progresses. 
 
 The morning session will run from 10:00 am-12:00 pm and the afternoon session will run from 1:30-3:30 pm (all times EDT/Toronto time).  
@@ -19,7 +20,6 @@ Some days will include a lunchtime guest speaker from DoSS or the university fro
 
 All sessions will use the following zoom meeting:
 
-https://utoronto.zoom.us/j/88309575061 (Meeting ID: 883 0957 5061)
 
 ## Class schedule
 
@@ -27,7 +27,7 @@ https://utoronto.zoom.us/j/88309575061 (Meeting ID: 883 0957 5061)
 library(tidyverse)
 library(kableExtra)
 options(knitr.kable.NA = '')
-my_backgrounds <- colorRampPalette(c("white", "gray"))(5)
+my_backgrounds <- colorRampPalette(c("white", "#002A5C"))(5)
 k <- 9
 row_nums <-sort(c(seq(1,31,4), seq(2,31,4)))
 jsc270courseschedule <- read_csv("schedule.csv")
@@ -36,12 +36,10 @@ knitr::kable(jsc270courseschedule[1:31,]) %>%
   row_spec(row_nums ,background = my_backgrounds[2]) 
 ```
 
-<br>
-
 ## Guest speaker schedule
 
 ```{r, echo=FALSE}
-my_backgrounds <- colorRampPalette(c("white", "gray"))(5)
+my_backgrounds <- colorRampPalette(c("white", "#002A5C"))(5)
 row_nums <-c(1,2,3,4,10,11)
 jsc270courseschedule <- read_csv("guest_speaker_schedule.csv")
 knitr::kable(jsc270courseschedule[1:12,]) %>%  

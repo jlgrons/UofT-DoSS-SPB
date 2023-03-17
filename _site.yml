@@ -18,12 +18,9 @@ navbar:
   right:
     - text: "Past courses"
       menu:
-      - text: "Computing"
-        href: computing2022.html
-      - text: "Math"
-        href: math2022.html
-      - text: "Probability"
-        href: probability2022.html
+      - text: "Summer 2022"
+        href: courses2022.html
 output: distill::distill_article
+theme: dept_theme.css
 exclude: ["Computing", "Math", "Probability"]
 
