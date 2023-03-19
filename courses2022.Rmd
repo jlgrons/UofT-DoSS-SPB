@@ -8,8 +8,10 @@ output:
 
 ---
 
+The first DoSS Summer Prep Bootcamp was held from July 11 to July 29 2022. 
+
 ## Methods and Computing
-Instructor: Instructor: [Siyue Yang](https://siyueyang.github.io)
+Instructor: [Siyue Yang](https://siyueyang.github.io)
 
 ### Syllabus
 
