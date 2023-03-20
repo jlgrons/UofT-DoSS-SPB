@@ -7,6 +7,9 @@ output:
     toc_depth: 2
 ---
 
+The 2023 DoSS Summer Bootcamp will be held in July 2023. More details coming soon!
+
+<!--
 Below is our course schedule, which may change as the course progresses. 
 
 The morning session will run from 10:00 am-12:00 pm and the afternoon session will run from 1:30-3:30 pm (all times EDT/Toronto time).  
@@ -41,3 +44,4 @@ knitr::kable(jsc270courseschedule[1:12,]) %>%
   kable_styling(full_width = T, position = "float_left")   %>%   
   row_spec(row_nums ,background = my_backgrounds[2]) 
 ```
+-->

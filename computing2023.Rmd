@@ -9,13 +9,17 @@ output:
 ---
 
 ## Syllabus
+Coming soon!
 
+<!-- 
 [Click here to download the syllabus](Computing/2022/syllabus_computing.pdf)
+-->
 
-
+<!-- 
 ## Lectures
+-->
 
-
+<!-- 
 ### Module 1: Basic R programming
 
 - Slides: [pdf](Computing/2022/Slides/mod1.pdf) 
@@ -23,7 +27,9 @@ output:
 - Exercises: [pdf](Computing/2022/Exercises/ex1.pdf), [Rmd](Computing/2022/Exercises/ex1.Rmd)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol1.pdf), [Rmd](Computing/2022/Solutions/sol1.Rmd)
+-->
 
+<!-- 
 ### Module 2: Data wrangling (I)
 
 LaTeX, Markdown, tidyverse
@@ -33,7 +39,9 @@ LaTeX, Markdown, tidyverse
 - Exercises: [pdf](Computing/2022/Exercises/ex2.pdf), [Rmd](Computing/2022/Exercises/ex2.Rmd)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol2.pdf), [Rmd](Computing/2022/Solutions/sol2.Rmd)
+-->
 
+<!-- 
 ### Module 3:Data wrangling (II)
 
 ggplot2
@@ -43,8 +51,9 @@ ggplot2
 - Exercises: [pdf](Computing/2022/Exercises/ex3.pdf), [Rmd](Computing/2022/Exercises/ex3.Rmd)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol3.pdf), [Rmd](Computing/2022/Solutions/sol3.Rmd)
+-->
 
-
+<!-- 
 ### Module 4: Statistical inference (I)
 
 Probability distributions
@@ -54,7 +63,9 @@ Probability distributions
 - Exercises: [pdf](Computing/2022/Exercises/ex4.pdf), [Rmd](Computing/2022/Exercises/ex4.Rmd)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol4.pdf), [Rmd](Computing/2022/Solutions/sol4.Rmd)
+-->
 
+<!-- 
 ### Module 5: Statistical inference (II)
 
 Estimation
@@ -64,7 +75,9 @@ Estimation
 - Exercises: [pdf](Computing/2022/Exercises/ex5.pdf)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol5.pdf), [Rmd](Computing/2022/Solutions/sol5.Rmd)
+-->
 
+<!-- 
 ### Module 6: Statistical inference (III)
 Hypothesis testing
 
@@ -73,8 +86,9 @@ Hypothesis testing
 - Exercises: [pdf](Computing/2022/Exercises/ex6.pdf)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
+-->
 
-
+<!-- 
 ### Module 7: Simulations 
 
 - Slides: [pdf](Computing/2022/Slides/mod7.pdf) 
@@ -82,7 +96,9 @@ Hypothesis testing
 - Exercises: [pdf](Computing/2022/Exercises/ex7.pdf)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol7.pdf), [Rmd](Computing/2022/Solutions/sol7.Rmd)
+-->
 
+<!-- 
 ### Module 8: Bootstrap
 
 - Slides: [pdf](Computing/2022/Slides/mod8.pdf) 
@@ -90,7 +106,9 @@ Hypothesis testing
 - Exercises: [pdf](Computing/2022/Exercises/ex8.pdf)
 
 - Solution: [pdf](Computing/2022/Solutions/sol8.pdf), [Rmd](Computing/2022/Solutions/sol8.Rmd)
+-->
 
+<!-- 
 ### Module 9: Linear regression
 
 - Slides: [pdf](Computing/2022/Slides/mod9.pdf) 
@@ -98,7 +116,9 @@ Hypothesis testing
 - Exercises: [pdf](Computing/2022/Exercises/ex9.pdf)
 
 - Solution: [pdf](Computing/2022/Solutions/sol9.pdf), [Rmd](Computing/2022/Solutions/sol9.Rmd)
+-->
 
+<!-- 
 ### Module 10: Generalized linear models
 
 - Slides: [pdf](Computing/2022/Slides/mod10.pdf) 
@@ -106,3 +126,4 @@ Hypothesis testing
 - Exercises: [pdf](Computing/2022/Exercises/ex10.pdf)
 
 - Solution: [pdf](Computing/2022/Solutions/sol10.pdf), [Rmd](Computing/2022/Solutions/sol10.Rmd)
+-->
