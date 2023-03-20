@@ -1,0 +1,120 @@
+---
+title: "Solution 8: Resampling methods"
+author: "Siyue Yang"
+date: "06/22/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Part 1: Applying bootstrap 
+
+The following code generates $\left(X_{i}, Y_{i}\right)$ pairs.
+
+```{r}
+library(MASS)
+generate_pairs <- function(n) {
+  # Generate n pairs of financial returns.
+  muX <- 2
+  muY <- -1
+  CovMx <- matrix(c(1, -.25, -.25, 2), nrow = 2)
+  data <- mvrnorm(n = 100, mu = c(muX,muY), Sigma = CovMx)
+  return(data.frame('X' = data[, 1], 
+                    'Y' = data[, 2]))
+}
+```
+
+```{r}
+fin_pairs <- generate_pairs(100) # Generate 100 (X,Y) pairs.
+head(fin_pairs)
+```
+
+We are interested in 
+$$
+\hat{\alpha}=\frac{\hat{\sigma}_{Y}^{2}-\hat{\sigma}_{X Y}}{\hat{\sigma}_{X}^{2}+\hat{\sigma}_{Y}^{2}-2 \hat{\sigma}_{X Y}} 
+$$
+
+```{r}
+Sigmahat <- cov(fin_pairs) 
+Sigmahat
+sigma2hatXX <- Sigmahat[1,1]
+sigma2hatYY <- Sigmahat[2,2]
+sigmahatXY <- Sigmahat[1,2]
+```
+
+The $\hat{\alpha}$ is
+
+```{r}
+alphahat <- (sigma2hatYY - sigmahatXY)/(sigma2hatXX + sigma2hatYY -2*sigmahatXY)
+alphahat
+```
+
+While the true value of alpha is
+
+```{r}
+sigma2XX <- 1
+sigma2YY <- 2
+sigmaXY <- -0.25
+alpha_true <-(sigma2YY - sigmaXY)/(sigma2XX + sigma2YY -2*sigmaXY)
+alpha_true
+```
+
+
+Now, again, we're going to resample with replacement from our data, and compute our statistic $\hat{\alpha}$ on each resample. The hope is that these resampled versions of the statistic will resemble the distribution of the statistic evaluated on the original data.
+
+1. Create a function to compute alphahat from a given data set.
+
+2. Resample the data $B=200$ times, evaluating $\hat{\alpha}$ on each resample. Then, we'll use those resampled values to estimate the variance.
+
+3. Create the confidence interval at the estimate. 
+
+**Solution**
+
+```{r}
+compute_alphahat <- function(data) {
+  # We're assuming that data is a data frame with two columns.
+  Sigmahat <- cov( data )
+  # Extract the variance and covariance estimates from the sample covariance
+  sigma2hatXX <- Sigmahat[1,1]
+  sigma2hatYY <- Sigmahat[2,2]
+  sigmahatXY <- Sigmahat[1,2]
+  # plug these into the definition of alpha.
+  alphahat <- (sigma2hatYY - sigmahatXY)/(sigma2hatXX + sigma2hatYY -2*sigmahatXY)
+  return(alphahat)
+}
+
+alphahat <- compute_alphahat(fin_pairs)
+```
+
+```{r}
+B <- 200
+
+replicates <- rep(NA, B)
+
+# number of observations in our data set.
+n <- nrow( fin_pairs ) 
+
+for( i in 1:B ) {
+  # To resample the data, we will sample indices, and then grab those rows.
+  resample_indices <- sample(1:n, n, replace=TRUE )
+  resampled_data <- fin_pairs[resample_indices, ]
+  replicates[i] <- compute_alphahat(resampled_data)
+}
+
+hist(replicates)
+abline(v=alphahat, col='red', lwd=2) # alpha of true data.
+abline(v=0.64, col='blue', lwd=2) # True alpha
+```
+
+```{r}
+# Estimate the variance of alphahat from our bootstrap replicates.
+sd_alphahat <- sd(replicates) # estimate of the std dev of alphahat
+CI <- c(alphahat - 1.96*sd_alphahat, alphahat + 1.96*sd_alphahat)
+CI
+```
+
+# Part 2: SLURM (Cluster computing)
+
+- Harvard's Biostatistics Preparatory Course materials SLURM job submitting [[link](https://isabelfulcher.github.io/methodsprep/slides/Lecture_8/O2_cluster_overview.pdf)]
