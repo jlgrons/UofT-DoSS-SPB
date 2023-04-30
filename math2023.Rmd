@@ -9,10 +9,8 @@ output:
 ---
 
 ## Syllabus
-Coming soon!
-<!--
-[Click here to download the syllabus](Math/2022/syllabus/syllabus_operational_math.pdf)
--->
+[Click here to download the syllabus](Math/2023/syllabus/syllabus_operational_math.pdf)
+
 
 <!--
 ## Lectures
