@@ -1,6 +1,6 @@
 ---
 title: "Methods and Computing"
-description: "Instructor: "
+description: "Instructor: Yuan Tian ([Email](mailto:yuant.tian@mail.utoronto.ca)); Jianhui Gao ([Email](mailto:jianhui.gao@mail.utoronto.ca))"
 output:
   distill::distill_article:
     toc: true
