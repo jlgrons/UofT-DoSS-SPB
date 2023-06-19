@@ -9,11 +9,9 @@ output:
 ---
 
 ## Syllabus
-Coming soon!
 
-<!-- 
-[Click here to download the syllabus](Computing/2022/syllabus_computing.pdf)
--->
+[Click here to download the syllabus](Computing/2023/syllabus_computing.pdf)
+
 
 <!-- 
 ## Lectures
