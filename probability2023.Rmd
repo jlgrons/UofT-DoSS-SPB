@@ -1,6 +1,6 @@
 ---
 title: "Probability"
-description: "Instructor: "
+description: "Instructor: Ichiro Hashimoto, PhD student (1st Year)"
 output:
   distill::distill_article:
     toc: true
@@ -10,10 +10,9 @@ output:
 
 
 ## Syllabus
-Coming soon!
-<!--
-[Click here to download the syllabus](Probability/2022/Syllabus/Bootcamp_Probability_Syllabus.pdf)
--->
+
+[Click here to download the syllabus](Probability/2023/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+
 
 <!--
 ## Lectures
