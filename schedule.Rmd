@@ -9,9 +9,9 @@ output:
 
 Below is our course schedule, which may change as the course progresses. 
 
-The morning session I will run from 9:00 am-10:30 am pm and the morning session II will run from 11:00 am -12:30 pm (all times EDT/Toronto time).  
+The morning session I will run from 9:00 am--10:30 am and the morning session II will run from 11:00 am--12:30 pm (all times EDT/Toronto time).  
 
-All sessions will use the following zoom meeting:
+Zoom meeting information will be provided to all registered participants.
 
 ![](Schedule/Calendar.png)
 
