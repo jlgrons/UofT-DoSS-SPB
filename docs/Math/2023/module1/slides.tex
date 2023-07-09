@@ -58,7 +58,7 @@
 \title[]{Module 1: Proofs \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 11, 2022}
+\date{July 10, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -394,12 +394,10 @@ We say that an integer $n$ is {\bf even} if there exists another integer $j$ suc
 We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such that $n=2j+1$.
 \end{alertblock}
 
-\begin{proof}
-%Let $n, m \in \Z$, with $n$ even. By definition, there $\exists$ $j \in \Z$ such that $n = 2j$. Then 
-%$$ n m  =  (2 j) m = 2 (j m)$$
-%Therefore $n m$ is even by definition. 
-\vspace{4em}
-\end{proof}
+\textit{Proof.}
+
+\vspace{6em}
+
 
 \end{frame}
 
@@ -413,9 +411,9 @@ Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder
 \begin{example}
 Let $a,b,c \in \Z$ with $a \neq 0$. Prove that if $a | b$ and $b | c$, then $a | c$.
 \end{example}
-\begin{proof}
-\vspace{4em}
-\end{proof}
+\textit{Proof.}
+\vspace{6em}
+
 \end{frame}
 
 
@@ -470,15 +468,9 @@ How would you approach this proof?
 If an integer squared is even, then the integer is itself even.
 \end{exampleblock}
 
-\vspace{1em}
+\textit{Proof.}
+\vspace{9em}
 
-\begin{proof}
-%We prove the contrapositive. Let $n$ be odd. Then there exists $k \in \Z$ such that $n = 2k + 1$. We compute
-%$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1.$$
-%Thus $n^2$ is odd.
-
-\vspace{6em}
-\end{proof}
 
 \end{frame}
 
@@ -488,12 +480,8 @@ If an integer squared is even, then the integer is itself even.
 The sum of a rational number and an irrational number is irrational.
 \end{exampleblock}
 
-\begin{proof}
-%Let $q \in \mathbb{Q}$ and $r \in \mathbb{R} \setminus \mathbb{Q}$.
-%Suppose in order to derive a contradiction that their sum is rational, i.e. $ r + q = s$ where $s \in \mathbb{Q}$.
-%But then $r = s - q \in \mathbb{Q}$. Contradiction.
-\vspace{5em}
-\end{proof}
+\textit{Proof.}
+\vspace{9em}
 \end{frame}
 
 
@@ -538,14 +526,8 @@ $n! > 2^n$ if $n \geq 4$ ($n \in \N$).
 \end{exampleblock}
 
 
-\begin{proof}
-%We prove this by induction on $n$. \\
-%{\it Base case:} Let $n = 4$. Then $n! = 4! = 24 > 16 = 2^4$. \\
-%{\it Inductive hypothesis:} Suppose for some $k \geq 4$, $k! > 2^k$. \\
-%Then
-%$$(k+1)! = (k+1) k! > (k+1) 2^k > 2 (2^k) = 2^{k+1}.$$
-\vspace{7em}
-\end{proof}
+\textit{Proof.}
+\vspace{12em}
 \end{frame}
 
 
@@ -555,22 +537,18 @@ $n! > 2^n$ if $n \geq 4$ ($n \in \N$).
 Every integer $n \geq 2$ can be written as the product of primes.
 \end{exampleblock}
 
-\begin{proof}
-We prove this by strong induction on $n$. \\
+\textit{Proof.} We prove this by strong induction on $n$. \\
+\vspace{1em}
+
 {\it Base case:} \\ %$n = 2$ is prime. \\
+\vspace{2.5em}
 
 {\it Inductive hypothesis:} \\  %Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
-\vspace{1em}
+\vspace{2.5em}
 
 {\it Inductive step:} \\
 \vspace{4em}
-%We must show that we can write $k+1$ as a product of primes. \\
-%First, if $k+1$ is prime then we are done.  \\
-%
-%Otherwise, if $k+1$ is not prime, by definition it can be written as a product of some integers $a$, $b$ such that $1 < a,b < k+1$. 
-%By the induction hypothesis, $a$ and $b$ can both be written as products of primes, so we are done.
 
-\end{proof}
 
 \end{frame}
 

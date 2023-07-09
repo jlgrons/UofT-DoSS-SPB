@@ -12,24 +12,23 @@ output:
 [Click here to download the syllabus](Math/2023/syllabus/syllabus_operational_math.pdf)
 
 
-<!--
 ## Lectures
 
 Material will be added here as the course progresses. I will add slides and exercises before the lecture. After the lecture, I will add the annotated slides and update the lecture notes. 
--->
+
 
 <!-- Note: I will comment these in as the course progresses. Before each lecture students will have access to the slides with blanks as well as the exercises (either a pdf or a tex file they can fill in). After each lecture I will add the filled-in slides (I will hand-write during the lecture) and update the lecture notes -->
 
-<!--
-You may download the [lecture notes](Math/2022/lecture_notes/math_notes.pdf), which will be updated after each lecture.
--->
 
-<!-- 
+You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), which will be updated after each lecture.
+
+
+
 ### Module 1: Introduction to proofs
 
-- Slides: [fillable](Math/2022/module1/slides.pdf),  [filled](Math/2022/module1/slides_filled.pdf)
+- Slides: [fillable](Math/2023/module1/slides.pdf)<!--,  [filled](Math/2022/module1/slides_filled.pdf) -->
 
-- Exercises: [pdf](Math/2022/module1/exercises.pdf), [LaTeX template](Math/2022/module1/exercises.tex), [solutions](Math/2022/module1/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2023/module1/exercises.pdf), [LaTeX template](Math/2023/module1/exercises.tex) <!--, [solutions](Math/2022/module1/exercise_solutions.pdf)
 -->
 
 <!-- 
