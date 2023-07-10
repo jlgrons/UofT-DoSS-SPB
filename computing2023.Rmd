@@ -13,18 +13,18 @@ output:
 [Click here to download the syllabus](Computing/2023/syllabus_computing.pdf)
 
 
-<!-- 
-## Lectures
--->
 
-<!-- 
+## Lectures
+
+
+
 ### Module 1: Basic R programming
 
-- Slides: [pdf](Computing/2022/Slides/mod1.pdf) 
+- Slides: [pdf](Computing/2023/Slides/mod1.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex1.pdf), [Rmd](Computing/2022/Exercises/ex1.Rmd)
-
-- Solutions: [pdf](Computing/2022/Solutions/sol1.pdf), [Rmd](Computing/2022/Solutions/sol1.Rmd)
+- Exercises: [pdf](Computing/2023/Exercises/ex1.pdf), [Rmd](Computing/2022/Exercises/ex1.Rmd)
+<!-- 
+- Solutions: [pdf](Computing/2023/Solutions/sol1.pdf), [Rmd](Computing/2022/Solutions/sol1.Rmd)
 -->
 
 <!-- 
