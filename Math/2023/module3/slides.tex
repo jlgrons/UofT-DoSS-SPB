@@ -122,12 +122,78 @@
 \begin{frame}{Outline}
     \begin{itemize}
       \setlength\itemsep{1em}
-    	\item Finish cardinality section
+    	\item More on set theory
+	\item Cardinality of sets
 	\item Metrics and norms
 	\item Open and closed sets
 %	\item sequences
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Recall}
+\begin{definition}[Image and pre-image]
+Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. 
+\begin{itemize}
+\item The \emph{image} of $f$ is the set $f(A) := \{f(x): x \in A \}$.
+\item The \emph{pre-image} of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$.
+\end{itemize}
+\end{definition}
+
+
+\begin{definition}[Surjective, injective and bijective]
+Let $f:X \to Y$, where $X$ and $Y$ are sets. Then
+\begin{itemize}
+    \item $f$ is \emph{injective} if $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$
+    \item $f$ is \emph{surjective} if for every $y \in Y$, there exists an $x \in X$ such that $y = f(x)$
+    \item $f$ is \emph{bijective} if it is both injective and bijective
+\end{itemize}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\begin{proposition}
+Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
+\end{proposition}
+\begin{proof}
+
+\vspace{4cm}
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}{Cardinality}
+Intuitively, the \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. For sets with only a finite number of elements, this intuition is correct. We call a set with finitely many elements finite. 
+
+\vspace{1em}
+
+We say that the empty set has cardinality 0 and is finite.
+
+
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{proposition}
+ If $X$ is finite set of cardinality $n$, then the cardinality of $\cP(X)$ is $2^n$.
+\end{proposition}
+
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+
+\begin{proof}
+continued
+\vspace{6cm}
+\end{proof}
+\end{frame}
+
 
 \begin{frame}
 \begin{definition}
