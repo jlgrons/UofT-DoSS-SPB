@@ -27,15 +27,15 @@ output:
 - Solutions: [pdf](Computing/2023/Solutions/sol1.pdf), [Rmd](Computing/2022/Solutions/sol1.Rmd)
 
 
-<!-- 
+
 ### Module 2: Data wrangling (I)
 
-LaTeX, Markdown, tidyverse
+LaTeX, tidyverse
 
-- Slides: [pdf](Computing/2022/Slides/mod2.pdf) 
+- Slides: [pdf](Computing/2023/Slides/mod2.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex2.pdf), [Rmd](Computing/2022/Exercises/ex2.Rmd)
-
+- Exercises: [pdf](Computing/2023/Exercises/ex2.pdf), [Rmd](Computing/2023/Exercises/ex2.Rmd)
+<!-- 
 - Solutions: [pdf](Computing/2022/Solutions/sol2.pdf), [Rmd](Computing/2022/Solutions/sol2.Rmd)
 -->
 
