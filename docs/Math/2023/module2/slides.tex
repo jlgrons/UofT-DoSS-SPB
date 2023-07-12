@@ -59,7 +59,7 @@
 \title[]{Module 2: Set Theory \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 13, 2022}
+\date{July 12, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -102,10 +102,10 @@
 
 \begin{frame}{Outline}
     \begin{itemize}
+    \setlength \itemsep{1em}
     	\item Review of basic set theory
 	\item Ordered Sets
         \item Functions
-        \item Cardinality
     \end{itemize}
 \end{frame}
 
@@ -137,6 +137,8 @@ Let $S, T$ be sets.
 $\mathbb{N} \subseteq \mathbb{N}_0 \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}$
 \end{example}
 
+\vspace{1em}
+
 \begin{example}  Let $a, b \in \R$ such that $a < b$. \\
 Open interval: $(a,b) := \{x \in \R : a < x < b \}$  ($a,b$ may be $- \infty$ or $+ \infty$)\\
 Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
@@ -151,9 +153,8 @@ We can also define half-open intervals.
 Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
 Show that $B \subseteq A$. 
 \end{example}
-\begin{proof}
-\vspace{3cm}
-\end{proof}
+\textit{Proof.}
+\vspace{7em}
 \end{frame}
 
 \begin{frame}{Difference of sets}
@@ -163,10 +164,14 @@ Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and 
 The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
 \end{definition}
 
-\vspace{2em}
+\vspace{1em}
 
 \begin{example}
-Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then $X^c = \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
+Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then 
+
+\vspace{0.5em}
+$X^c=$% \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
+\vspace{3em}
 \end{example}
 
 \end{frame}
@@ -211,9 +216,8 @@ Let $\{S_\alpha\}_{\alpha \in A}$ be an arbitrary collection of sets. Then
     \left( \bigcup_{\alpha \in A} S_\alpha \right)^c = \bigcap_{\alpha \in A}  S_\alpha^c \quad \text{and} \quad \left( \bigcap_{\alpha \in A} S_\alpha \right)^c = \bigcup_{\alpha \in A}  S_\alpha^c
 \end{equation*}
 \end{theorem}
-\begin{proof}
-\vspace{3cm}
-\end{proof}
+\textit{Proof.}
+\vspace{8em}
 
 \end{frame}
 
@@ -223,12 +227,12 @@ Since a set is itself a mathematical object, a set can itself contain sets.
 The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
 \end{definition}
 
-\vspace{2em}
+\vspace{1em}
 
 \begin{example}
 Let $S = \{a,b,c\}$.  \\
 Then $\cP(S) = $ 
-\vspace{1em}
+\vspace{5em}
 \end{example}
 \end{frame}
 
@@ -251,10 +255,12 @@ This can also be extended inductively to a finite family of sets.
 \begin{definition}
 A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
 \begin{enumerate}
+\setlength\itemsep{1em}
 \item reflexivity: 
 \item transitivity: 
 \item anti-symmetry: 
 \end{enumerate}
+\vspace{1em}
 The pair $(X, \leq)$ is called a \emph{partially ordered set}.
 
 \vspace{1em}
@@ -270,7 +276,7 @@ The real numbers with the usual ordering, $(\R, \leq)$ are totally ordered.
 \end{example}
 
 \begin{example}
-The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subseteq)$ is partially ordered set. 
+The power set of a set $X$ with the ordering given by $\subseteq$, $(\cP(X), \subseteq)$ is a partially ordered set. 
 \end{example}
 \end{frame}
 
@@ -310,8 +316,31 @@ Can you think of a chain that is a subset of $(C([0,1],\R)$?
 A non-empty partially ordered set $(X,\leq)$ is \emph{well-ordered} if every non-empty subset $A \subseteq X$ has a mimimum element.
 \end{definition}
 
+\vspace{2em}
+
+Example: 
+\vspace{0.5em}
+
+$(\N, \leq)$ is... 
+\vspace{1em}
+
+$(\R,\leq)$ is...
+\end{frame}
+
+
+
+\begin{frame}
 \begin{definition}%Marcoux Definition 2.12
-Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $s\leq x$. Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. 
+
+ \vspace{1em}
+
+Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $s\leq x$.\\
+ Similarly, $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. 
+ 
+ \vspace{1em}
+ 
+ If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
 \end{definition}
 
 \end{frame}
@@ -321,18 +350,34 @@ Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is a
 We can also ask if there exists a least upper bound or a greatest lower bound. 
 
 \begin{definition}%Marcoux Definition 2.12
-Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. We call $x\in X$ \emph{least upper bound} or \emph{supremum}, denoted $x= \sup S$, if $x$ is an upper bound and for any other upper bound $y\in X$ of $S$ we have $x\leq y$. Likewise $x\in X$ is the \emph{greatest lower bound} or \emph{infimum} for $S$, denoted $x= \inf S$, if it is a lower bound and for any other lower bound $y\in X$, $y\leq x$.
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. 
+
+\vspace{1em}
+
+We call $x\in X$ \emph{least upper bound} or \emph{supremum}, denoted $x= \sup S$, if $x$ is an upper bound and for any other upper bound $y\in X$ of $S$ we have $x\leq y$. 
+
+\vspace{1em}
+
+Likewise, $x\in X$ is the \emph{greatest lower bound} or \emph{infimum} for $S$, denoted $x= \inf S$, if it is a lower bound and for any other lower bound $y\in X$, $y\leq x$.
 \end{definition}
+
+\vspace{1em}
+Note that the supremum and infimum of a bounded set do not necessarily need to exist. However, if they do exists they are unique, which justifies the article \emph{the} (exercise). Nevertheless, the reals have a remarkable property, which we will take as an axiom.
+
 \end{frame}
 
 \begin{frame}
-Note that the supremum and infimum of a bounded set do not necessarily need to exist. However, if they do exists they are unique, which justifies the article \emph{the} (exercise). Nevertheless, the reals have a remarkable property, which we will take as an axiom.
+
 
 \begin{alertblock}{Completeness Axiom}
 Let $S\subseteq \R$ be bounded above. Then there exists $r\in \R$ such that $r= \sup S$, i.e. $S$ has a least upper bound. 
 \end{alertblock}
 
+\vspace{1em}
+
 By setting $S^\prime = -S:= \{ -s \; \colon \; s\in S\}$ and noting $\inf S = - \sup S^\prime$, we obtain a similar statement for infima if $S$ is bounded below. As mentioned above, this property is fairly special, for example it fails for the rationals.
+
+\vspace{1em}
 
 \begin{example}
 Let $S= \{q \in \Q \; \colon \; x^2 < 7 \}$. Then $S$ is bounded above in $\Q$, but there exists no least upper bound in $\Q$.
@@ -349,18 +394,18 @@ There is a nice alternative characterization for suprema in the real numbers.
  Let $S\subseteq \R$ be bounded above. Then $r= \sup S$ if and only if $r$ is an upper bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r-\epsilon <s$. 
 \end{proposition}
 
-\begin{proof}
+\textit{Proof.}
 ($\Rightarrow$) 
 \vspace{3cm}
-\end{proof}
+
 \end{frame}
 
 \begin{frame}
 
-\begin{proof}
+\textit{Proof.}
 ($\Leftarrow$) 
 \vspace{3cm}
-\end{proof}
+
 
 Using the same trick, we may obtain a similar result for infima.
 
@@ -402,9 +447,13 @@ Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$.
 
 \vspace{1em}
 
-Helpful way to think about it for proofs: \\
-If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$. \\
-If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
+Helpful way to think about it for proofs:
+
+\vspace{0.5em}
+\textbf{Image:} If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$.
+
+\vspace{0.5em}
+\textbf{Pre-image:} If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
 
 
 \end{frame}
@@ -428,51 +477,6 @@ $f$ is bijective if \\
 $f$ is neither surjective nor injective if
 \end{example}
 \end{frame}
-
-
-\begin{frame}
-\begin{proposition}
-Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
-\end{proposition}
-\begin{proof}
-
-\vspace{4cm}
-\end{proof}
-
-\end{frame}
-
-
-\begin{frame}{Cardinality}
-Intuitively, the \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. For sets with only a finite number of elements, this intuition is correct. We call a set with finitely many elements finite. 
-
-\vspace{1em}
-
-We say that the empty set has cardinality 0 and is finite.
-
-
-
-\end{frame}
-
-
-\begin{frame}
-
-\begin{proposition}
- If $X$ is finite set of cardinality $n$, then the cardinality of $\cP(X)$ is $2^n$.
-\end{proposition}
-
-\begin{proof}
-\vspace{4cm}
-\end{proof}
-\end{frame}
-
-\begin{frame}
-
-\begin{proof}
-continued
-\vspace{6cm}
-\end{proof}
-\end{frame}
-
 
 
 \begin{frame}{References}
