@@ -167,8 +167,11 @@ The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
 \vspace{1em}
 
 \begin{example}
-Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then $X^c$%= \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
-\vspace{4em}
+Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then 
+
+\vspace{0.5em}
+$X^c=$% \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
+\vspace{3em}
 \end{example}
 
 \end{frame}
@@ -273,7 +276,7 @@ The real numbers with the usual ordering, $(\R, \leq)$ are totally ordered.
 \end{example}
 
 \begin{example}
-The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subseteq)$ is partially ordered set. 
+The power set of a set $X$ with the ordering given by $\subseteq$, $(\cP(X), \subseteq)$ is a partially ordered set. 
 \end{example}
 \end{frame}
 
@@ -328,9 +331,12 @@ $(\R,\leq)$ is...
 
 \begin{frame}
 \begin{definition}%Marcoux Definition 2.12
-Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. \\
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. 
+
+ \vspace{1em}
+
 Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $s\leq x$.\\
- Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. 
+ Similarly, $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. 
  
  \vspace{1em}
  
@@ -441,9 +447,13 @@ Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$.
 
 \vspace{1em}
 
-Helpful way to think about it for proofs: \\
-If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$. \\
-If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
+Helpful way to think about it for proofs:
+
+\vspace{0.5em}
+\textbf{Image:} If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$.
+
+\vspace{0.5em}
+\textbf{Pre-image:} If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
 
 
 \end{frame}
