@@ -37,12 +37,11 @@
 % Patch to accommodate \begin{theorem} (without an optional argument)
 \AtBeginDocument{\xpatchcmd{\cref@thmnoarg}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
 
-
 % \usepackage[natbib=true, style=vancouver]{biblatex}
- %\usepackage[backend= biber, style=alphabetic]{biblatex}
- \usepackage{natbib}
- \setcitestyle{square}
-%\bibliography{references.bib}
+\usepackage[backend= biber, style=alphabetic]{biblatex}
+ %\usepackage{natbib}
+ %\setcitestyle{square}
+\bibliography{references.bib}
 
 \title{Mathematics Bootcamp Lecture Notes \\
 \vspace{0.5em}
@@ -490,9 +489,408 @@ The Principle of Strong Mathematical Induction and the Principle of Mathematical
 Most of this content may be found in Chapter 1 of \cite{proofs}, though many of the examples are my own. \cite{toolsreasoning} is also a great resource. In particular, the content on induction comes from there. Unfortunately the latter text is not freely available online or at U of T. 
 
 
+\section{Set theory}
+
+\subsection{Basics}
+
+For our purposes, we define a \emph{set} to be a collection of mathematical objects. If $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$. The set of no elements is called empty set and is denoted by $\emptyset$.
+
+\begin{definition}[Subsets, Union, Intersection]
+Let $S, T$ be sets. 
+\begin{itemize}
+    \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
+    \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ or $T$.
+    \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
+    \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+$\mathbb{N} \subseteq \mathbb{N}_0 \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}$
+\end{example}
+
+\begin{example}  Let $a, b \in \R$ such that $a < b$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$  ($a,b$ may be $- \infty$ or $+ \infty$)\\
+Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
+We can also define half-open intervals.  
+\end{example}
+
+\begin{example}
+Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
+Show that $B \subseteq A$. 
+\end{example}
+\begin{proof}
+Let $x \in B$. Then $6 |x$, i.e. $\exists j \in \Z$ such that $x = 6j$. Therefore $x = 3 (2j)$, so $3|x$. Thus $x \in A$.
+\end{proof}
+
+\begin{definition}
+Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
+
+The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
+\end{definition}
+
+We extend the definition of union and intersection to an arbitrary family of sets as follows:
+
+\begin{definition}
+Let $S_\alpha$, $\alpha \in A$, be a family of sets. $A$ is called the \emph{index set}. We define
+\begin{equation*}
+    \bigcup_{\alpha \in A} S_\alpha := \{ x: \exists \alpha \text{ such that } x \in S_\alpha \},
+\end{equation*}
+\begin{equation*}
+    \bigcap_{\alpha \in A} S_\alpha := \{ x: x \in S_\alpha \text{ for all } \alpha \in A \}.
+\end{equation*}
+\end{definition}
+
+\begin{example}
+$$\bigcup_{n=1}^\infty [-n,n] = \R$$
+$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = \{0 \}$$
+\end{example}
+
+\begin{theorem}[De Morgan's Laws]
+Let $\{S_\alpha\}_{\alpha \in A}$ be an arbitrary collection of sets. Then 
+\begin{equation*}
+    \left( \bigcup_{\alpha \in A} S_\alpha \right)^c = \bigcap_{\alpha \in A}  S_\alpha^c \quad \text{and} \quad \left( \bigcap_{\alpha \in A} S_\alpha \right)^c = \bigcup_{\alpha \in A}  S_\alpha^c
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+For the first part: Let $x \in \left( \bigcup_{\alpha \in A} S_\alpha \right)^c$. This is true if and only if $x \notin \left( \bigcup_{\alpha \in A} S_\alpha \right)$, or in other words $x \in S_\alpha^c$ for all $\alpha \in A$. This is true if and only if $x \in \bigcap_{\alpha \in A} S_\alpha^c$, which gives the result. \\
+The second part is similar and is left as an exercise. 
+\end{proof}
+
+Since a set is itself a mathematical object, a set can itself contain sets.
+\begin{definition}
+The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
+\end{definition}
+
+\begin{example}
+Let $S = \{a,b,c\}$. Then $\cP(S) = \{ \emptyset, \{a\}, \{b\}, \{c\}, \{a,b\},\{b,c\}, \{a,c\}, S \}$. 
+\end{example}
+
+Another way of building a new set from two old ones is the Cartesian product of two sets.
+
+\begin{definition}\label{def:cartes_prod}
+Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the set of tuples with elements from $S,T$, i.e 
+\begin{equation*}
+    S\times T = \{ (s,t) \; \colon \; s \in S \; \text{ and } \; t \in T\}.
+\end{equation*}
+\end{definition}
+
+This can also be extended inductively to a finite family of sets. 
+
+\subsection{Ordered sets}\label{sec:ordered_sets}
+
+\begin{definition}
+A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. We say that $x \leq y$ if $(x,y)\in \R$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
+\begin{enumerate}
+\item Reflexivity: $x \leq x$ for all $x \in X$
+\item Transitivity: for $x,y,z \in X$, $x \leq y$ and $y \leq z$ implies $x \leq z$
+\item Anti-symmetry: for $x,y \in X$, $x \leq y$ and $y \leq x$ implies $x = y$
+\end{enumerate}
+The pair $(X, \leq)$ is called a \emph{partially ordered set}.
+
+A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is a subset with the property $x \leq y$ or $y \leq x$ for any $x,y \in C$.
+\end{definition}
+
+
+\begin{example}
+The real numbers with the usual ordering, $(\R, \leq)$, are totally ordered. 
+\end{example}
+
+\begin{example}
+The power set of a set $X$ with the ordering given by subsets, $(\cP(X), \subseteq)$ is partially ordered set. 
+\end{example}
+
+\begin{example}
+Let $X = \{a,b,c,d\}$. What is $\cP(X)$? Find a chain in $\cP(X)$.
+
+$\cP(X) = \{\emptyset,\{a\},\{b\},\{c\},\{d\},\{a,b\},\{b,c\},\{c,d\},\{b,d\},\{a,c\},\{a,d\}, \{a,b,c\},\{b,c,d\},\{a,b,d\},\{a,c,d\},X\}$
+
+An example of a chain $C \subseteq \cP(X)$ is $C = \{\emptyset,\{b\},\{b,c\}, \{a,b,c\},X\}$
+\end{example}
+
+\begin{example}
+Consider the set $C([0,1],\R):= \{f:[0,1] \to \R : f \text{ is continuous}\}$.
+
+For two functions $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. Can you think of a chain that is a subset of $(C([0,1],\R)$?
+\end{example}
+
+\begin{definition}
+A non-empty partially ordered set $(X,\leq)$ is \emph{well-ordered} if every non-empty subset $A \subseteq X$ has a mimimum element.
+\end{definition}
+
+Recall that we already saw that $\N$ is well-ordered, as we used it to prove the principle of mathematical induction. $\R$ with the usual order does not have this property.
+
+Having a partially ordered set allows us to talk about upper and lower bounds. 
+
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $x\leq s$. Similarly $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
+\end{definition}
+
+We can also ask if there exists a least upper bound or a greatest lower bound. 
+
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. We call $x\in X$ \emph{least upper bound} or \emph{supremum}, denoted $x= \sup S$, if $x$ is an upper bound and for any other upper bound $y\in X$ of $S$ we have $x\leq y$. Likewise $x\in X$ is the \emph{greatest lower bound} or \emph{infimum} for $S$, denoted $x= \inf S$, if it is a lower bound and for any other lower bound $y\in X$, $y\leq x$.
+\end{definition}
+
+Note that the supremum and infimum of a bounded set do not necessarily need to exist. However, if they do exists they are unique, which justifies the article \emph{the} (see Exercise 4). Nevertheless, the reals have a remarkable property, which we will take as an axiom.
+
+\begin{axiom}\label{ax: completeness}[Completeness Axiom]
+Let $S\subseteq \R$ be bounded above. Then there exists $r\in \R$ such that $r= \sup S$, i.e. $S$ has a least upper bound. 
+\end{axiom}
+
+By setting $S^\prime = -S:= \{ -s \; \colon \; s\in S\}$ and noting $\inf S = - \sup S^\prime$, we obtain a similar statement for infima if $S$ is bounded below. As mentioned above, this property is fairly special, for example it fails for the rationals.
+
+\begin{example}
+Let $S= \{q \in \Q \; \colon \; x^2 < 7 \}$. Then $S$ is bounded above in $\Q$, but there exists no least upper bound in $\Q$.
+\end{example}
+
+There is a nice alternative characterization for suprema in the real numbers. 
+
+\begin{proposition}
+ Let $S\subseteq \R$ be bounded above. Then $r= \sup S$ if and only if $r$ is an upper bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r-\epsilon <s$. 
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) We will prove the forward direction ($\implies$) by contrapositive. Suppose $r$ is either not an upper bound or there exists an $\epsilon>0$ such that for all $s\in S$, $r-\epsilon \geq s$. In the first case, $r$ is not the supremum by definition. In the second case, $r-\varepsilon$ is an upper bound which is smaller than $r$. Thus $r\neq \sup S$. 
+
+($\Leftarrow$) For the backward direction we will proceed by contradiction. Suppose $r$ is an upper bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r-\epsilon <s$, but $r\neq \sup S$. Then $\sup S < r$ or equivalently $r-\sup S>0$. Then by assumption there exists an $s\in S$ such that $\sup S = r-(r-\sup S)<s$, which contradicts the definition of supremum.
+\end{proof}
+
+Using the same trick, we may obtain a similar result for infima.
+
+\begin{proposition}
+ Let $S\subseteq \R$ be bounded below. Then $r= \inf S$ if and only if $r$ is a lower bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r+\epsilon >s$. 
+\end{proposition}
+
+\begin{example}
+Consider $S = \{1/n \; \colon \; n\in \N\}$. Then $\sup S = 1$ and $\inf S = 0$.
+\end{example}
+
+
+\subsection{Functions}
+
+One way to define a function is as follows :
+\begin{definition}[{\cite[Definition 1.1.14]{tastetopology}}]
+A function $f$ from a set $X$ to a set $Y$ is a subset of $X \times Y$ with the properties:
+\begin{enumerate}
+    \item For every $x \in X$, there exists a $y \in Y$ such that $(x,y) \in f$
+    \item If $(x,y) \in f$ and $(x,z) \in f$, then $y = z$.
+\end{enumerate}
+$X$ is called the \emph{domain} of $f$.
+\end{definition}
+How does this connect to other descriptions of functions you may have seen? Instead of writing $f \subseteq X \times Y$, we often write $f: X \to Y, \; x \mapsto y$, where $(x,y) \in f$.
+
+\begin{example}
+For a set $X$, the identity function is:
+$$ 1_X: X \to X, \quad x \mapsto x $$
+\end{example}
+
+\begin{definition}[Image and pre-image]
+Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. The image of $f$ is the set $f(A) := \{f(x): x \in A \}$ and the pre-image of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$
+\end{definition}
+
+The following re-statements of the above may be helpful way to think about it for proofs: \\
+If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$. \\
+If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
+
+
+\begin{definition}[Surjective, injective and bijective]
+Let $f:X \to Y$, where $X$ and $Y$ are sets. Then
+\begin{itemize}
+    \item $f$ is \emph{injective} if $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$
+    \item $f$ is \emph{surjective} if for every $y \in Y$, there exists an $x \in X$ such that $y = f(x)$
+    \item $f$ is \emph{bijective} if it is both injective and bijective
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Let $f:X \to Y$, $ x \mapsto x^2$. \\
+If $X = \R$ and $Y= [0,\infty)$: $f$ is surjective. \\
+If $X = [0,\infty)$ and $Y = \R$: $f$ is injective. \\
+If $X = Y = [0,\infty)$: $f$ is bijective. \\
+If $X=Y=\R$, then $f$ is neither surjective nor injective.
+\end{example}
+
+\begin{proposition}
+\label{prop:set_subset_preim_im}
+Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality if $f$ is injective. 
+\end{proposition}
+\begin{proof}
+First we show $A \subseteq f^{-1}(f(A))$.
+Let $x \in A$. Let $B = f(A)$, $B \subseteq Y$. By definition, $f(x) \in B$. So then again by definition, $x \in f^{-1}(B)$. Thus $x \in f^{-1}(f(A))$.
+
+Next, suppose $f$ is injective. We have already shown that $A \subseteq f^{-1}(f(A))$, so it remains to show that  $f^{-1}(f(A)) \subseteq  A$. Let $x \in f^{-1}(f(A))$. Then $f(x) \in f(A)$ by the definition of the pre-image. This means that there exists a $\tilde x \in A$ such that $f(x) = f(\tilde x)$. Since $f$ is injective, we have $x = \tilde x$, and hence $x \in A$.
+\end{proof}
+% could make this an iff
+
+\subsection{Cardinality}
+
+Intuitively, the \emph{cardinality} of a set $A$, denoted $|A|$, is the number of elements in the set. For sets with only a finite number of elements, this intuition is correct. We call a set with finitely many elements finite. 
+
+We say that the empty set has cardinality 0 and is finite.
+
+\begin{proposition}
+ If $X$ is finite set of cardinality $n$, then the cardinality of $\cP(X)$ is $2^n$.
+\end{proposition}
+\begin{proof}
+We proceed by induction. First, suppose $n=0$. Then $X = \emptyset$, and $\cP(X) = \{ \emptyset \}$ which has cardinality $1 = 2^0$.
+
+Next, suppose that the claim holds for some $n \in \N_0$. Let $X$ have $n+1$ elements. Let's call them $\{x_1, \ldots, x_n, x_{n+1}\}$. Then we can split $X$ up into subsets $A=\{x_1, \ldots, x_n\}$ and $B=\{ x_{n_1}\}$. By the inductive hypothesis, $\cP(A)$ has cardinality $2^n$. Any subset of $X$ must either be a subset of $A$ or contain $x_{n+1}$. How many subsets are there for the latter form? Let's count them out. Each subset will be formed by taking elements from $A$ and combining them with $x_{n+1}$. We start with no elements from $A$ and count up to all of them:
+\begin{align*}
+& 1 + \binom{n}{1} + \binom{n}{2} + \ldots + \binom{n}{n-1}  + \binom{n}{n} \\
+=& \sum_{k=0}^n \binom{n}{k} \\
+=& 2^n
+\end{align*}
+Therefore the total number of elements in $\cP(X)$ is the number of subsets of $A$ ($2^n$) plus the number of mixed subsets ($2^n$), i.e. the cardinality of $\cP(X)$ is $2^n+ 2^n = 2^{n+1}.$
+
+Thus the claim holds by induction. 
+\end{proof}
+
+Note: you do not need to prove this by induction. It can also be proved combinatorially (exercise).
+
+\begin{definition}
+Two sets $A$ and $B$ have same cardinality, $|A| = |B|$, if there exists bijection $f:A \to B$.
+\end{definition}
+
+\begin{example}
+Which is bigger, $\N$ or $\N_0$? \\
+Intuitively, it seems that $\N_0$ should be bigger, since it includes exactly one more element than $\N$, namely 0. However, clearly the function $f:\N_0 \to \N$ defined by $n \mapsto n+1$ is a bijection. Therefore $\N_0$ and $\N$ have the same cardinality! One way to think about this is that $\N_0$ and $\N$ are the ``same size'' of infinity. 
+\end{example}
+
+It may sometimes be difficult to find such a bijection. However you can also use the following definition and theorem to instead show that two sets have the same cardinality by finding two injective functions between them.
+
+\begin{definition}
+We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
+\end{definition}
+
+\begin{theorem}[Cantor-Schr\"{o}der-Bernstein]
+Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
+\end{theorem}
+Proof is omitted. See \cite[Theorem 1.2.7]{tastetopology}
+
+\begin{example}
+\label{ex:nbyn}
+$|\N| = |\N \times \N|$
+\end{example}
+\begin{proof}
+First, we show $|\N| \leq|\N \times \N|$. The function $f: \N \to \N \times \N$ defined by $n \mapsto (n,1)$ is an injection, thus $|\N| \leq|\N \times \N|$. 
+
+Next, we show $|\N \times \N| \leq |\N|$. We define the function $g: \N \times \N \to \N$  by $(n,m) \mapsto 2^n 3^m$. Why is this an injection? Assume we have $n_1,n_2,m_1,m_2$ such that $2^{n_1}3^{m_1} = 2^{n_2}3^{m_2}$. We need to show $n_1 = n_2$ and $m_1 = m_2$.  By the Fundamental Theorem of Arithmetic, every natural number greater than 1 has a unique prime factorization, so therefore the result must hold.
+\end{proof}
+
+
+\begin{definition}
+Let $A$ be a set. 
+\begin{enumerate}
+\item $A$ is \emph{finite} if there exists an $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
+\item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
+\item $A$ is \emph{countable} if it is finite or countably infinite
+\item $A$ is \emph{uncountable} otherwise
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+The rational numbers are countable, and in fact $|\Q| = |\N|$. \\
+Let's look at $\Q^+ := \{ x \in \Q : x > 0\}$. The fact that the rationals are countable relies on this famous way of listing the rational numbers:
+\begin{equation*}
+\scalebox{1.2}{$
+ \begin{array}{cccccc}
+ 1 & \frac{1}{2} & \frac{1}{3} & \frac{1}{4} &\frac{1}{5} &\ldots \\[0.5em]
+ 2 & \textcolor{red}{\frac{2}{2}} & \frac{2}{3} &\textcolor{red}{\frac{2}{4}} &\frac{2}{5} & \ldots \\[0.5em]
+ 3 & \frac{3}{2} & \textcolor{red}{\frac{3}{3}} &\frac{3}{4} &\frac{3}{5} &\ldots \\[0.5em]
+ 4 & \textcolor{red}{\frac{4}{2}} & \frac{4}{3} & \textcolor{red}{\frac{4}{4}} &\frac{4}{5} &\ldots \\[0.5em]
+ \vdots & \vdots & \vdots & \vdots &\vdots & \ddots 
+\end{array}  $} 
+\end{equation*}
+This is a map from $\N$ to $\Q^+$. As long as we skip any fraction that is already in our list as we go along, it is injective.  Since we can find an injection from $\Q^+$ to $\N \times \N$ (take $q/p \mapsto (q,p)$), and $|\N| = |\N \times \N|$ by \cref{ex:nbyn}, we have that $|\Q^+| = |\N|$. 
+
+We can extend this to $\Q$. To do so, let $f\colon \N \to \Q^+$ be a bijection (which exists by the previous part). Then we can define another bijection $g\colon \N \to \Q$ by setting $g(1) = 0$ and 
+\begin{equation*}
+    g(n) =\begin{cases}
+    f(n) & \text{ if } n \text{ is even,} \\
+    -f(n) & \text{ if }  n \text{ is odd},
+    \end{cases}
+\end{equation*}
+for $n>1$.
+\end{example}
+
+Next we show that $\N$ is ``smaller'' than $(0,1)$.
+\begin{theorem}
+The cardinality of $\N$ is smaller than that of $(0,1)$.
+\end{theorem}
+\begin{proof}
+First, we show that there is an injective map from $\N$ to $(0, 1)$. The map $n \to \frac{1}{n}$ fulfils this. 
+
+Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fact that every number $r \in (0,1)$ has a binary expansion of the form $r=0.\sigma_1\sigma_2\sigma_3\ldots$ where $\sigma_i \in \{0, 1\}$, $i \in \N$.
+
+Now we suppose in order to derive a contradiction that there does exist a surjective map $f$ from $\N$ to (0, 1)., i.e. for $n \in \N$ we have $f(n) = 0.\sigma_1(n)\sigma_2(n)\sigma_3(n)\ldots$. This means we can list out the binary expansions, for example like
+\begin{align*}
+f(1)= & 0.\textcolor{red}{0}0000000\ldots \\
+f(2)=& 0.1\textcolor{red}{1}11111111\ldots\\
+f(3)=& 0.01\textcolor{red}{0}1010101\ldots  \\
+f(4)= & 0.101\textcolor{red}{0}101010\ldots  \\
+& 
+\end{align*}
+
+We will construct a number $\tilde r \in (0,1)$ that is not in the image of $f$. Define $\tilde r = 0.\tilde\sigma_1 \tilde\sigma_2 \ldots$, where we define the $n$th entry of $\tilde r$ to be the the opposite of the  $n$th entry of the $n$th item in our list:
+\begin{equation*}
+    \tilde\sigma_n = \begin{cases} 1 & \text{if } \sigma_n(n) = 0, \\
+    0 & \text{if }  \sigma_n(n) = 1.
+    \end{cases}
+\end{equation*}
+Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary expansion for all $n\in \N$. Hence, $\tilde r\not\in f(\N)$, which is a contradiction to $f$ being surjective. This technique is often referred to as Cantor's diagonal argument. 
+\end{proof}
+
+\begin{proposition}
+(0,1) and $\R$ have the same cardinality. 
+\end{proposition}
+\begin{proof}
+The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
+\end{proof}
+
+We have shown that there are different sizes of infinity, as the cardinality of $\N$ is infinite but still smaller than that of $\R$ or $(0,1)$. In fact, we have
+$$ |\N| = |\N_0| = |\Z| = |\Q| < | \R|.$$
+Because of this, there are special symbols for these two cardinalities: The cardinality of $\N$ is denoted $\aleph_0$, while the cardinality of $\R$ is denoted $\mathfrak{c}$. 
+
+\subsection{Exercises}
+\label{subsec:ex_set_theory}
+\begin{enumerate}
+	\item Let $A = \{x\in \R : x <100\}$, $B = \{x\in \Z : |x| \geq 20\}$, and $C = \{y \in \N : y \text{ is prime}\}$ ($A,B,C \subseteq \R$). Find $A \cap B$, $B^c \cap C$, $B \cup C$, and $(A \cup B )^c$.
+    \item Is $\R \times \R$ with the ordering $(x_1,y_1) \preceq (x_2,y_2)$ if $x_1 \leq x_2$ a partially ordered set? 
+     \item \cite[Exercise 1.3.1]{tastetopology} Let $S$ be a non-empty set. A relation $R$ on $S$ is called an equivalence relation if it is
+    \begin{enumerate}
+        \item[(i)] Reflexive: $(x,x) \in R$ for all $x \in S$
+        \item[(ii)] Symmetric: if $(x,y) \in R$  then $(y,x) \in R$ for all $x,y \in S$
+        \item[(iii)] Transitive: if $(x,y), (y,z) \in R$ then $(x,z) \in R$ for all $x,y,z \in S$
+    \end{enumerate}
+Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalence relation $R$) is defined to consist of those $y \in S$ for which $(x,y) \in R$. Show that two equivalence classes are either disjoint or identical.
+    \item Let $(X, \leq)$ be a partially ordered set and $S\subseteq X$ be bounded. Show that the infimum and supremum of $S$ are unique (if they exist).
+    \item Let $S,T \subseteq \R$ and suppose both are bounded above. Define $S+T = \{s + t \; \colon \; s\in S,t\in T\}$. Show that $S+T$ is bounded above and $\sup(S+T) = \sup S + \sup T$. 
+    \item Let $f: X \to Y$, $X, y \subseteq \R$ be defined by the map $x \mapsto \sin(x)$. For what choices of $X$ and $Y$ is $f$ injective, surjective, bijective, or neither?
+    \item Show that for sets $A,B \subseteq X$ and $f: X \to Y$, $f(A \cap B) \subseteq f(A) \cap f(B)$.
+    \item Let $f: X \to Y$ and $B \subseteq Y$. Prove that $f(f^{-1}(B)) \subseteq B$, with equality iff $f$ is surjective.
+    \item Prove that :
+    \begin{enumerate}
+        \item $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $f:X \to Y$, $A_i \subseteq X \, \forall i \in I$
+        \item $f^\inv(\cup_{i \in I}B_i) = \cup_{i \in I}f^\inv(B_i)$, where $f:X \to Y$, $B_i \subseteq Y \, \forall i \in I$
+    \end{enumerate}
+    \item Show that $\N$ and $\Z$ have the same cardinality.
+    \item Show that $|(0,1)| =|(1,\infty)|$.
+\end{enumerate}
+
+%https://math.stackexchange.com/questions/359693/overview-of-basic-results-about-images-and-preimages
+
+\subsection{References}
+The content in this section mostly follows \cite{tastetopology}, but is supplemented by \cite{marcoux2019} (ordered sets) and \cite{piotr} (introductory set theory).
+
+
 \newpage
 
-\bibliographystyle{alphaurl} 
-\bibliography{references}
+\printbibliography
+
+%\bibliographystyle{alphaurl} 
+%\bibliography{references}
 
 \end{document}
