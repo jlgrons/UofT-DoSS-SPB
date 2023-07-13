@@ -61,10 +61,10 @@
 % alert block
 
 
-\title[]{Module 3: Metric Spaces and Sequences I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 3: Set theory and metrics \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 14, 2022}
+\date{July 13,  2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -125,8 +125,6 @@
     	\item More on set theory
 	\item Cardinality of sets
 	\item Metrics and norms
-	\item Open and closed sets
-%	\item sequences
     \end{itemize}
 \end{frame}
 
@@ -138,6 +136,8 @@ Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$.
 \item The \emph{pre-image} of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$.
 \end{itemize}
 \end{definition}
+
+\vspace{1em}
 
 
 \begin{definition}[Surjective, injective and bijective]
@@ -155,10 +155,10 @@ Let $f:X \to Y$, where $X$ and $Y$ are sets. Then
 \begin{proposition}
 Let $f: X \to Y$ and $A \subseteq X$. Prove that $A \subseteq f^{-1}(f(A))$, with equality iff $f$ is injective. 
 \end{proposition}
-\begin{proof}
+\textit{Proof.}
 
-\vspace{4cm}
-\end{proof}
+\vspace{4.5cm}
+
 
 \end{frame}
 
@@ -181,17 +181,14 @@ We say that the empty set has cardinality 0 and is finite.
  If $X$ is finite set of cardinality $n$, then the cardinality of $\cP(X)$ is $2^n$.
 \end{proposition}
 
-\begin{proof}
+\textit{Proof.}
 \vspace{4cm}
-\end{proof}
+
 \end{frame}
 
 \begin{frame}
 
-\begin{proof}
-continued
-\vspace{6cm}
-\end{proof}
+
 \end{frame}
 
 
@@ -212,28 +209,33 @@ Which is bigger, $\N$ or $\N_0$? \\
 We say that the cardinality of a set $A$ is less than the cardinality of a set $B$, denoted $|A| \leq |B|$ if there exists an injection $f:A \to B$.
 \end{definition}
 
-\vspace{1cm}
+\vspace{1em}
 
 \begin{alertblock}{Theorem (Cantor-Bernstein)}
 Let $A$, $B$, be sets. If $|A| \leq |B|$ and $|B| \leq |A|$, then $|A| = |B|$.
 \end{alertblock}
 
+\vspace{1em}
+
+
+\begin{example}
+$|\N| = |\N \times \N|$
+\end{example}
+
 \end{frame}
 
 
 \begin{frame}
-\begin{example}
-$|\N| = |\N \times \N|$
-\end{example}
-\begin{proof}
-\vspace{5cm}
-\end{proof}
+Proof that $|\N| = |\N \times \N|$:
+\vspace{6cm}
 \end{frame}
 
 \begin{frame}
 \begin{definition}
 Let $A$ be a set. 
+\vspace{0.25em}
 \begin{enumerate}
+\setlength\itemsep{0.5em}
 \item $A$ is \emph{finite} if there exists an $n \in \N$ and a bijection $f:\{1,\ldots,n\} \to A$
 \item $A$ is \emph{countably infinite} if there exists a bijection $f:\N\to A$
 \item $A$ is \emph{countable} if it is finite or countably infinite
@@ -247,28 +249,26 @@ Let $A$ be a set.
 The rational numbers are countable, and in fact $|\Q| = |\N|$.
 \end{example}
 
-\begin{proof}
+\vspace{0.5em}
+
+\textit{Proof.}
 First we show $|\N| \leq |\Q^+|$.
 \vspace{4.5cm}
-\end{proof}
+
 \end{frame}
 
 \begin{frame}
-\begin{proof}
 Next, we show that $|\Q^+| \leq |\N \times \N|$.
 
-\vspace{5cm}
+\vspace{5.5cm}
 
-Since we already proved $|\N| = |\N \times \N|$, this means $|\N| = |\Q^+|$.
-\end{proof}
 
 \end{frame}
 
 \begin{frame}
-\begin{proof}
-We can extend this to $\Q$ as follows:.
-\vspace{5cm}
-\end{proof}
+We can extend this to $\Q$ as follows:
+\vspace{5.5cm}
+
 
 \end{frame}
 
@@ -279,7 +279,7 @@ The cardinality of $\N$ is smaller than that of $(0,1)$.
 \begin{proof}
 First, we show that there is an injective map from $\N$ to $(0, 1)$.
 
-\vspace{2em} 
+\vspace{3em} 
 
 Next, we show that there is no surjective map from $\N$ to (0, 1). We use the fact that every number $r \in (0,1)$ has a binary expansion of the form $r=0.\sigma_1\sigma_2\sigma_3\ldots$ where $\sigma_i \in \{0, 1\}$, $i \in \N$.
 \end{proof}
@@ -318,7 +318,7 @@ Then $\tilde r$ differs from $f(n)$ at least in the $n$th digit of its binary ex
 (0,1) and $\R$ have the same cardinality. 
 \end{exampleblock}
 \begin{proof}
-\vspace{1cm}
+\vspace{1.5cm}
 %The map $f:\R \to (0,1)$ defined by $x \mapsto \frac{1}{\pi} \left( \arctan(x) + \frac{\pi}{2} \right)$ is a bijection.
 \end{proof}
 
@@ -335,7 +335,7 @@ Because of this, there are special symbols for these two cardinalities: The card
 A \emph{metric} on a set $X$ is a function $d:X \times X \to \R$ that satisfies:
 \vspace{0.5em}
 \begin{enumerate}
- \setlength\itemsep{0.5em}
+ \setlength\itemsep{1em}
     \item[(a)] Positive definiteness: 
     \item[(b)] Symmetry: 
     \item[(c)] Triangle inequality: 
@@ -347,7 +347,7 @@ A set together with a metric is called a metric space.
 
 \begin{frame}
 \begin{exampleblock}{Example ($\R^n$ with the Euclidean distance)}
-\vspace{3.5cm}
+\vspace{4cm}
 \end{exampleblock}
 \end{frame}
 
@@ -408,12 +408,12 @@ Let $(X,d)$ be a metric space. We define the \emph{open ball} centred at a point
 \end{equation*}
 \end{definition}
 
-\vspace{1cm}
+\vspace{1em}
 
 \begin{example}
 In $\R$ with the usual norm (absolute value), open balls are symmetric open intervals, \\
 i.e. 
-\vspace{1em}
+\vspace{3em}
 \end{example}
 \end{frame}
 
@@ -469,90 +469,12 @@ i.e.
 \end{frame}
 
 
-\begin{frame}
-\begin{definition}[Open and closed sets]
-Let $(X,d)$ be a metric space. 
-\begin{itemize}
-    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
-    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
-\end{itemize}
-\end{definition}
 
-\vspace{1.5cm}
-
-\begin{proposition}
-Let $(X,d)$ be a metric space. 
- \begin{enumerate}
-     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
-     \item If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
- \end{enumerate}
-\end{proposition}
-
-\end{frame}
-
-
-\begin{frame}
-\begin{proof}
-(1) Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
-
-\vspace{3cm}
-
-(2) If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
-
-\vspace{2.5cm}
-
-\end{proof}
-\end{frame}
-
-
-\begin{frame}
-Using DeMorgan, we immediately have the following corollary:
-\begin{corollary}
-Let $(X,d)$ be a metric space. 
- \begin{enumerate}
-     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
-     \item If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
- \end{enumerate}
-\end{corollary}
-
-\end{frame}
-
-
-\begin{frame}
-\begin{definition}[Interior and closure]
-Let $A\subseteq X$ where $(X,d)$ is a metric space. 
-\begin{itemize}
-\setlength\itemsep{1em}
-    \item The \emph{closure} of $A$ is $\overline A :=$
-    \item The \emph{interior} of $A$ is  $\interior A :=$
-    \item The \emph{boundary} of $A$ is $\partial A :=$
-\end{itemize}
-\vspace{2em}
-\end{definition}
-
-\vspace{0.5em}
-
-\begin{example}
-Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then
-
-\vspace{1cm}
-\end{example}
-\end{frame}
-
-
-\begin{frame}
-\begin{proposition}
- Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
-\end{proposition}
-\begin{proof}
-\vspace{5cm}
-\end{proof}
-\end{frame}
 
 
 \begin{frame}{References}
 
-Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 
 \vspace{1em}
 

@@ -110,6 +110,7 @@
 \begin{frame}{Outline}
     \begin{itemize}
       \setlength\itemsep{1em}
+      	\item Open and closed sets
     	\item Sequences
 	\begin{itemize}
 	\item Cauchy sequences
@@ -121,6 +122,86 @@
 	\end{itemize}
 	\item Equivalence of metrics
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{definition}[Open and closed sets]
+Let $(X,d)$ be a metric space. 
+\begin{itemize}
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
+    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
+\end{itemize}
+\end{definition}
+
+\vspace{1.5cm}
+
+\begin{proposition}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+     \item If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+ \end{enumerate}
+\end{proposition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{proof}
+(1) Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+
+\vspace{3cm}
+
+(2) If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+
+\vspace{2.5cm}
+
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+Using DeMorgan, we immediately have the following corollary:
+\begin{corollary}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
+     \item If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
+ \end{enumerate}
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Interior and closure]
+Let $A\subseteq X$ where $(X,d)$ is a metric space. 
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item The \emph{closure} of $A$ is $\overline A :=$
+    \item The \emph{interior} of $A$ is  $\interior A :=$
+    \item The \emph{boundary} of $A$ is $\partial A :=$
+\end{itemize}
+\vspace{2em}
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{example}
+Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then
+
+\vspace{1cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{proposition}
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
+\end{proposition}
+\begin{proof}
+\vspace{5cm}
+\end{proof}
 \end{frame}
 
 
