@@ -1,12 +1,12 @@
 ---
 title: 'Exercise 3: Graphing'
-author: "Siyue Yang"
-date: "05/10/2022"
+author: 
+date: \today
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = FALSE)
 ```
 
 ```{r}
