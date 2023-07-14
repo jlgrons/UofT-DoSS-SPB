@@ -35,8 +35,7 @@ You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), wh
 
 - Slides: [fillable](Math/2023/module2/slides.pdf), [filled](Math/2023/module2/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module2/exercises.pdf), [LaTeX template](Math/2023/module2/exercises.tex)<!--, [solutions](Math/2023/module2/exercise_solutions.pdf)
--->
+- Exercises: [pdf](Math/2023/module2/exercises.pdf), [LaTeX template](Math/2023/module2/exercises.tex), [solutions](Math/2023/module2/exercise_solutions.pdf)
 
 
 ### Module 3: Set theory II and metric spaces I
