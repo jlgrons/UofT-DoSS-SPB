@@ -53,17 +53,16 @@ ggplot2
 
 - Solutions: [pdf](Computing/2022/Solutions/sol3.pdf), [Rmd](Computing/2022/Solutions/sol3.Rmd)
 
-<!-- 
+ 
 ### Module 4: Statistical inference (I)
 
 Probability distributions
 
-- Slides: [pdf](Computing/2022/Slides/mod4.pdf) 
+- Slides: [pdf](Computing/2023/Slides/mod4.pdf) 
 
 - Exercises: [pdf](Computing/2022/Exercises/ex4.pdf), [Rmd](Computing/2022/Exercises/ex4.Rmd)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol4.pdf), [Rmd](Computing/2022/Solutions/sol4.Rmd)
--->
 
 <!-- 
 ### Module 5: Statistical inference (II)
