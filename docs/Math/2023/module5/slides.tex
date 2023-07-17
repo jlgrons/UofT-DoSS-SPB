@@ -139,41 +139,67 @@ Discussed sequences, which includes Cauchy sequences and subsequences:
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Last time}
-Discussed continuous functions:
- \vspace{0.5em}
-	\begin{itemize}
-	\setlength\itemsep{0.7em}
-	\item Showed that these three definitions of continuous are equivalent in metric spaces: \\
-	\vspace{0.5em}
-	
-	$f:X \to Y$ is \emph{continuous} where $(X,d_X)$ and $(Y,d_Y)$ are metric spaces $\Leftrightarrow$
-	\begin{itemize}
-	\setlength\itemsep{0.4em}
-		\item  if for every $x_0 \in X$, for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
-		\item   if for every $x_0 \in X$, for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
-		\item if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
-	\end{itemize}
-	\item Briefly discussed other types of continuity (uniform, Lipschitz) and the Contraction Mapping Theorem
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Outline for today}
     \begin{itemize}
       \setlength\itemsep{1em}
-    	\item Finish metric spaces
-	\begin{itemize}
-	\setlength\itemsep{0.3em}
-	\item Equivalent metrics
-	\item A few extra topics on $\R$, including lim sup and lim inf
-	\end{itemize}
-	\item Start topology
-	\begin{itemize}
-	\setlength\itemsep{0.3em}
-	\item Basic definitions
-	\end{itemize}
+    	\item 
     \end{itemize}
 \end{frame}
+
+
+\begin{frame}{Continuity}
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. $f$ is \emph{continuous} at $x_0$ if for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+
+\vspace{1em}
+
+We say that $f$ is continuous if it is continuous at every point in $X$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+\label{thm:cont_equiv}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous at $x_0$
+    \item[(ii)] for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+    \item[(iii)] for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
+\end{enumerate}
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+\small
+(i) $f$ is continuous at $x_0$ \\
+(ii) for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$\\
+(iii) for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
+
+\normalsize
+\vspace{0.5em}
+\textit{Proof}.
+(i) $\Rightarrow$ (ii) 
+\vspace{5cm}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+(ii) $\Rightarrow$ (iii)
+
+\vspace{1.75cm}
+(iii) $\Rightarrow$ (i)
+
+\vspace{4.75cm}
+
+\end{frame}
+
 
 \begin{frame}
 \begin{exampleblock}{Corollary}
