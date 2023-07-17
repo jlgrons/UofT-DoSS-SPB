@@ -70,10 +70,10 @@
 
 
 
-\title[]{Module 5: Topology \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 5: Metric spaces III \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 19, 2022}
+\date{July 18, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -173,6 +173,101 @@ Discussed continuous functions:
 	\item Basic definitions
 	\end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Corollary}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous
+    \item[(ii)] if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
+    \item[(iii)] if $F \subseteq Y$ is closed, then $f^\inv(F)$ is closed
+\end{enumerate}
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+We need the following results about sets and functions: \\
+Let $X$ and $Y$ be sets and $f:X \to Y$. Let $A,B \subseteq Y$. Then 
+\begin{enumerate}
+\item $A \subseteq B$ $\implies$ $f^\inv(A) \subseteq f^\inv(B)$
+\item $f^\inv(Y \setminus A) = X \setminus f^\inv(A)$
+\end{enumerate}
+
+\begin{proof}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$.
+
+(i) $\Rightarrow$ (ii): 
+
+\vspace{3cm}
+
+
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Proof continued}
+(ii) $\Rightarrow$ (i)
+
+\vspace{3cm}
+(ii) $\Rightarrow$ (iii)
+
+\vspace{1cm}
+(iii) $\Rightarrow$ (ii) 
+\vspace{0.5cm}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+\begin{itemize}
+    \item $f$ is \emph{uniformly continuous} if for all $\epsilon>0$, there exists $\delta > 0$ such that for every $x_1,x_2\in X$ with $d_X(x_1,x_2) < \delta$, we have  $d_Y(f(x_1),f(x_2))) < \epsilon$ 
+    \item $f$ is \emph{Lipschitz continuous} if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $d_Y(f(x_1),f(x_2))) \leq K d_X(x_1,x_2)$
+\end{itemize}
+\end{definition}
+
+\begin{exampleblock}{Proposition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+$$f \text{ is Lipschitz continuous } \Rightarrow \text{ f is uniformly continuous } \Rightarrow \text{ f is continuous}$$
+\end{exampleblock}
+Proof is one of your exercises.
+\end{frame}
+
+
+\begin{frame}{Contraction Mapping Theorem}
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. We say that $x^* \in X$ is a \emph{fixed point} of $f$ if $f(x^*) = x^*$.
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. $f$ is a \emph{contraction} if there exists a constant $k \in [0,1)$ such that for all $x,y \in X$, $d(f(x),f(y))) \leq k d(x,y)$.
+\end{definition}
+
+Observe that a function is a contraction if and only if it is Lipschitz continuous with constant $K < 1$.
+
+
+
+\begin{theorem}[Contraction Mapping Theorem]
+Suppose that $f : X \to X$ is a contraction and the metric space $X$ is complete. Then $f$ has a unique fixed point $x^*$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+
+\begin{example}
+Let $f:\left[-\frac{1}{3},\frac{1}{3}\right] \to \left[-\frac{1}{3},\frac{1}{3}\right]$ be defined by the mapping $x \mapsto x^2$. Assume we use the standard Euclidean metric, $d(x,y) = |x-y|$. $f$ has a unique fixed point because
+
+\vspace{3cm}
+\end{example}
+
 \end{frame}
 
 
