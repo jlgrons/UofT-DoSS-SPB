@@ -47,7 +47,7 @@
 \vspace{0.5em}
 \large Department of Statistical Sciences, University of Toronto}
 \author{Emma Kroell}
-\date{Last updated: July 9, 2023}
+\date{Last updated: \today}
 
 \begin{document}
 
@@ -884,6 +884,419 @@ Given $x \in S$, the equivalence class of $x$ (with respect to a given equivalen
 
 \subsection{References}
 The content in this section mostly follows \cite{tastetopology}, but is supplemented by \cite{marcoux2019} (ordered sets) and \cite{piotr} (introductory set theory).
+
+\section{Metric spaces and sequences}
+
+\subsection{Metric spaces}
+\begin{definition}
+A \emph{metric} on a set $X$ is a function $d:X \times X \to \R$ that satisfies:
+\begin{enumerate}
+    \item[(a)] Positive definiteness: $d(x,y) \geq 0$ for $x,y \in X$ and $d(x,y) = 0 \Leftrightarrow x = y$
+    \item[(b)] Symmetry: for $x,y \in X$, $d(x,y)= d(y,x)$
+    \item[(c)] Triangle inequality: for $x,y,z \in X, d(x,z) \leq d(x,y) + d(y,z)$
+\end{enumerate}
+A set together with a metric is called a metric space.
+\end{definition}
+
+\begin{example}
+$\R^n$ with the Euclidean distance 
+\begin{equation*}
+    d(x,y) = \sqrt{\sum_{j=1}^n (x_j - y_j)^2} \quad \text{for } x,y \in \R^n
+\end{equation*}
+is a metric space.
+\end{example}
+
+Many metric spaces we know are in fact normed spaces, which have more structure than metric spaces. We will briefly discuss normed spaces. This assumes some knowledge of vector spaces, which we will discuss in a further section. In particular, we denote a field by $\F$. For now, we can think of this as $\R$ or $\C$.
+
+\begin{definition}
+A \emph{norm} on an $\F$-vector space $E$ is a function $\|\cdot\|:E \to \R$ that satisfies:
+\begin{enumerate}
+    \item[(a)] Positive definiteness: $\|x\| \geq 0$ for $x \in E$ and $||x|| = 0 \Leftrightarrow x = 0$
+    \item[(b)] Homogeneity: for $x \in E$ and $\alpha \in \F$, $||\alpha x || = |\alpha| ||x||$
+    \item[(c)] Triangle inequality: for $x,y \in E, ||x+y|| \leq ||x|| + ||y||$
+\end{enumerate}
+A vector space with a norm is called a normed space. A normed space is a metric space using the metric $d(x,y) = \| x-y \|$.
+\end{definition}
+
+\begin{example}
+\label{p-norm} 
+The $p$-norm is defined for $p \geq 1$ for a vector $x = (x_1, \ldots, x_n) \in \R^n$ as
+\begin{equation*}
+    ||x||_p = \left( \sum_{i=1}^n |x_i|^p \right)^{1/p}.
+\end{equation*}
+The infinity norm is the limit of the $p$-norm as $p \to \infty$, defined as
+\begin{equation*}
+    ||x||_\infty = \max_{i=1,\ldots, n} |x_i|.
+\end{equation*}
+
+If we look at the space of continuous functions $C([0,1];\R)$, the $p$-norm is 
+\begin{equation*}
+    ||f||_p = \left( \int_0^1 |f(x)|^p dx \right)^{1/p}
+\end{equation*}
+and the $\infty-$norm (or sup norm) is 
+\begin{equation*}
+    ||f||_\infty = \max_{x \in [0,1]} |f(x)|.
+\end{equation*}
+\end{example}
+
+\begin{definition}
+A subset $A$ of a metric space $(X,d)$ is \emph{bounded} if there exists $M>0$ such that $d(x,y) < M$ for all $x,y \in A$. 
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. We define the \emph{open ball} centred at a point $x_0 \in X$ of radius $r > 0$ as
+\begin{equation*}
+    B_r(x_0) := \{x \in X : d(x,x_0) < r_0 \}.
+\end{equation*}
+\end{definition}
+
+\begin{example}
+In $\R$ with the usual norm (absolute value), open balls are symmetric open intervals, i.e. $B_r(x_0) = (x_0-r,x_0+r)$.
+\end{example}
+
+\begin{example}
+Consider $\R^2$ with the taxicab or Manhattan metric (1-norm) $d(x,y) = \sum_{i=1}^2 |x_i - y_i|$, the usual Euclidean distance (2-norm) $d(x,y) = \sqrt{\sum_{j=1}^2 (x_j - y_j)^2}$, and the $\infty$-norm $d(x,y) = \max_{j=1,2} |x_j - y_j|$. The open ball $B_r(0)$ in these three metric spaces is shown in \cref{fig:open_ball}.
+\begin{figure}[h]
+    \centering
+    \subfloat[1-norm (taxicab metric)]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted, thick, color=red] (3,0)--(0,3);
+    \draw[densely dotted, thick, color=red] (-3,0)--(0,-3);
+    \draw[densely dotted, thick, color=red] (-3,0)--(0,3);
+    \draw[densely dotted, thick, color=red] (3,0)--(0,-3);
+    \end{tikzpicture}}
+    \subfloat[2-norm (Euclidean metric)]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted,thick, color = red] (0,0) circle [radius=3];
+    \end{tikzpicture}}
+    \subfloat[$\infty$-norm]{\begin{tikzpicture}[scale=0.5]
+    \draw[help lines, color=gray!30, dashed] (-4.9,-4.9) grid (4.9,4.9);
+    \draw[->,ultra thick] (-5,0)--(5,0) node[right]{$x_1$};
+    \draw[->,ultra thick] (0,-5)--(0,5) node[above]{$x_2$};
+    \node at (0,3) [circle,fill,inner sep=1.5pt]{};
+    \node at (3,0) [circle,fill,inner sep=1.5pt]{};
+    \node at (3.95,-0.5) {$(r,0)$};
+    \node at (1,3.5) {$(0,r)$};
+    
+    \draw[densely dotted, thick, color=red] (3,-3) --(3,3);
+    \draw[densely dotted, thick, color=red] (3,3) --(-3,3);
+    \draw[densely dotted, thick, color=red] (-3,-3) --(-3,3);
+    \draw[densely dotted, thick, color=red] (3,-3) --(-3,-3);
+    \end{tikzpicture}}
+    \caption{$B_r(0)$ for different metrics}
+    \label{fig:open_ball}
+\end{figure}
+
+\end{example}
+
+\begin{definition}[Open and closed sets]
+Let $(X,d)$ be a metric space. 
+\begin{itemize}
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
+    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
+\end{itemize}
+\end{definition}
+
+We note that $\emptyset$ and $X$ are both open and closed! 
+
+\vspace{1em}
+
+\begin{proposition}
+\label{prop:open_sets}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item[(i)] Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+     \item[(ii)] If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+ \end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) Since $A_1$ is open, for each $x \in A_1$, there exists an $\epsilon_1 > 0$ such that $B_{\epsilon_1}(x) \subseteq  A_1$. Since $A_2$ is open, for each $x \in A_2$, there exists an $\epsilon_2 > 0$ such that $B_{\epsilon_2}(x) \subseteq A_2$. Let $x \in A_1 \cap A_2$. Choose $\epsilon = \min\{\epsilon_1,\epsilon_2\}$. Then  $B_{\epsilon}(x) \subseteq A_1 \cap A_2$ as required. 
+
+(ii) Let $x\in \cup_{i\in I} A_i$. Then there exists $i \in I$ such that $x \in A_i$, and since $A_i$ is open there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq  A_i$. Since $A_i \subseteq \cup_{i\in I} A_i$, we are done.
+\end{proof}
+
+\textbf{Remark:}
+These properties of open sets are used to define a topology in a more general setting. In particular, we specify a topology by specifying which sets are open.
+
+Using DeMorgan, we immediately have the following corollary:
+\begin{corollary}
+\label{cor:closed_sets}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item[(i)] Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
+     \item[(ii)]  If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
+ \end{enumerate}
+\end{corollary}
+
+\begin{definition}[Interior and closure]
+Let $A\subseteq X$ where $(X,d)$ is a metric space. 
+\begin{itemize}
+    \item The \emph{closure} of $A$ is  $\overline A :=\{x \in X: \forall \epsilon > 0 \; B_\epsilon(x) \cap A \neq \emptyset \}$
+    \item The \emph{interior} of $A$ is  $\interior A :=\{x \in X: \exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A \}$
+    \item The \emph{boundary} of $A$ is $\partial A := \{ x \in X: \forall \epsilon > 0, \, B_\epsilon(x) \cap A \neq \emptyset \text{ and }  B_\epsilon(x) \cap A^c \neq \emptyset\}$
+\end{itemize}
+\end{definition}
+The closure of a set is the smallest closed set that contains it while the interior of a set is the largest open set contained by it. 
+
+
+
+\begin{example}
+Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then $\overline X = [a,b]$, $\interior X = (a,b)$ and $\partial X = \{a,b\}$.
+\end{example}
+
+\begin{proposition}
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
+\end{proposition}
+\begin{proof}
+First, we show $\interior A\subseteq A \setminus \partial A$. Let $x \in \interior A$. Then by definition $\exists \epsilon > 0 \text{ s.t. } B_\epsilon(x) \subseteq A$. Clearly $x \in A$ and also $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c = \emptyset$. Thus by definition, $x \notin \partial A$. Thus $x \in A \setminus \partial A$.
+
+Next, we show $A \setminus \partial A \subseteq \interior A$. Let $x \in A \setminus \partial A$. Then $x \in A$ and $x \notin \partial A$. The latter means that $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A = \emptyset$ or  $B_\epsilon(x) \cap A^c = \emptyset$. Since $x \in A$, $x \in B_\epsilon(x) \cap A$ for any $\epsilon > 0$, so the former cannot be true. Therefore $\exists \epsilon > 0$ such that $B_\epsilon(x) \cap A^c = \emptyset$, i.e. $B_\epsilon(x) \subseteq A$. Thus $x \in \interior A$.
+\end{proof}
+
+
+\begin{proposition}
+ Let $(X,d)$ be a metric space and $A\subseteq X$. $\overline A$ is closed and $\interior A$ is open.
+\end{proposition}
+\begin{proof}
+Clearly, $\interior A$ is open by definition. We show $\overline A$ is closed by showing $(\overline A)^c$ is open. Let $x \in (\overline A)^c$. We need to show there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq (\overline A)^c$. We have that $x \notin \overline A$ so by the definition of $\overline A$, this means there exists an $\tilde \epsilon  > 0$ such that $B_{\tilde\epsilon}(x) \cap A = \emptyset$. Then any $y \in B_{\tilde\epsilon}(x)$ is in $(\overline A)^c$ by definition. Thus $B_{\tilde\epsilon}(x)  \subseteq (\overline A)^c$ and therefore $(\overline A)^c$ is open.
+\end{proof}
+
+In fact, we can show that the interior of $A$ is the largest open set contained in $A$ and the closure is the smallest closed set that contains $A$, i.e., that $\interior A =\bigcup \{U: U \text{ is open and } U \subseteq A \}$ and $\overline{A} = \bigcap \{F \colon F \text{ is closed and } A \subseteq F\}$.
+
+\subsection{Sequences}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. A \emph{sequence} is an ordered list of points $x_n$, $n\in\N$, in $X$, denoted $(x_n)_{n \in \N}$. We say that a sequence $(x_n)_{n \in \N}$ \emph{converges} to a point $x \in X$ if 
+\begin{equation*}
+    \forall \epsilon > 0 \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x) < \epsilon \text{ for all } n \geq n_\epsilon .
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+\label{prop:closure_limit}
+Let $(X, d)$ be a metric space, and let $A \subseteq X$. Then $\overline A$ is equal to the set of points in $X$ which are limits of a sequence in $A$.
+\end{proposition}
+
+\begin{proof}
+Let $x \in \overline A$. Then by definition, for every $\epsilon > 0$, $B_\epsilon(x) \cap A \neq \emptyset$. In particular this is true for $\epsilon = 1/n$. Thus, for any $n \in N$, we can choose an $x_n \in A$ such that $x_n \in B_{1/n}(x)$, which means $d(x,x_n) < \frac{1}{n}$ by the definition of an open ball. Since $1/n$ decreases monotonically to zero, we must have $x_n \to x$.
+
+Let $x \in X$ be the limit of a sequence $(x_n)_{n \in \N} \in A$. Then for $\epsilon > 0$, $\exists \, n_\epsilon \in \N$ such that $d(x_n,x) < \epsilon$ for all $n \geq n_\epsilon$. This means $x_n \in B_\epsilon(x)$, and since $x_n \in A$, $B_\epsilon(x) \cap A \neq \emptyset$. Thus $x \in \overline A$.
+\end{proof}
+
+Combining this result with the fact that $A \subseteq X$ is closed if and only if $A = \overline A$ (exercise), gives the following useful way to characterize closed sets. 
+
+\begin{corollary}
+\label{cor:closed_converge}
+A set $F \subseteq X$, where $(X, d)$ is a metric space, is closed if and only if every sequence in $F$ which converges in $X$ converges to a point in $F$.
+\end{corollary}
+
+We also define a concept related to the closure of a set: a cluster or accumulation point.
+
+\begin{definition}
+Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point} of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains infinitely many points in $A$.
+\end{definition}
+
+
+\begin{proposition}
+\label{prop:cluster_seq}
+ $x \in X$ is a cluster point of $A \subseteq X$ where $(X,d)$ is a metric space if and only if there exists a sequence of points $x_n \in A$, $n \in \N$, such that $x_n \to x$.
+\end{proposition}
+
+\begin{proof}
+($\Leftarrow$) Suppose there exists a sequence $(x_n)_{n \in N}$ in $A$ such that $x_n \to x$. Then for every $\epsilon >0$, by the definition of a convergent sequence, $B_\epsilon(x)$ contains infinitely many elements of the sequence $x_n$ (in particular, $\exists n_0 \in \N$ such that $x_n \in B_\epsilon(x)$ for all $n \geq n_0$). Since each $x_n \in A$, $x$ is a cluster point of $A$.
+
+($\Rightarrow$) Suppose $x$ is a cluster point of $A$. Then for any $\epsilon > 0$, $\exists x_\epsilon \in A$ such that $x_\epsilon \in B_\epsilon(x)$. In particular, take $\epsilon = 1/n$. Then $\exists x_n \in A$ such that $x_n\in B_{1/n}(x)$. By construction, such $x_n$ form a sequence in $A$ that converges to $x$. 
+
+\end{proof}
+
+Combining \cref{prop:closure_limit} and \cref{prop:cluster_seq} gives the following: 
+
+\begin{corollary}
+For $A \subseteq X$, $(X,d)$ a metric space, we have $\overline{A} = A \cup \{x \in X : x \text{ is a cluster point of }A \}$.
+\end{corollary}
+
+\subsubsection{Cauchy sequences}
+
+\begin{definition}[Cauchy sequence]
+Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is called a \emph{Cauchy sequence} if
+\begin{equation*}
+    \forall \epsilon >0  \; \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon .
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+\label{prop:converge_means_Cauchy}
+Let $(X, d)$ be a metric space, and let $(x_n)_{n\in\N}$ be a convergent sequence in $X$. Then  $(x_n)_{n\in\N}$ is Cauchy.
+\end{proposition}
+
+\begin{proof}
+Let $\epsilon > 0$ be arbitrary. Let $(x_n)_{n\in\N}$ be a convergent sequence in a metric space $(X,d)$. Then there exists $n_\epsilon \in \N$ such that $d(x_n,x) < \frac{\epsilon}{2}$ for all $n \geq n_\epsilon$. Then for $n,m \geq n_\epsilon$, using the triangle inequality we have
+\begin{equation*}
+    d(x_n,x_m) \leq  d(x_n,x) +  d(x,x_m) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon .
+\end{equation*}
+Thus $(x_n)_{n\in\N}$ is Cauchy.
+\end{proof}
+
+\begin{definition}
+A metric space where every Cauchy sequence converges (to a point in the space) is called \emph{complete}.
+\end{definition}
+
+In addition, a normed space that is complete with respect to the metric induced by the norm is called a \emph{Banach space}. $\R^n$ with the Euclidean distance is complete (and is, in fact, a Banach space). 
+%Note that this form of completeness is slightly weaker than the completeness mentioned in \cref{ax: completeness}, however, we will not go in to detail. 
+
+\begin{proposition}[{\cite[Proposition 2.4.5]{tastetopology}}]
+\label{prop:closed_subset_complete}
+Let $(X, d)$ be a metric space, and let $Y\subseteq X$.
+\begin{enumerate}
+    \item[(i)] If $X$ is complete and if $Y$ is closed in $X$, then $Y$ is complete.
+    \item[(ii)] If $Y$ is complete, then it is closed in $X$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Let $X$ be a complete metric space and $Y$ be a closed subset of $X$. Let $(x_n)_{n\in\N}$ be a Cauchy sequence in $Y$. Since $Y \subseteq X$, $(x_n)_{n\in\N}$ is also a Cauchy sequence in $X$. Therefore $(x_n)_{n\in\N}$ converges to an $x \in X$ since $X$ is complete. But since $Y$ is closed, by \cref{prop:closure_limit}, we must have $x \in Y$. Therefore $Y$ is complete.
+
+(ii) Let $(X, d)$ be a metric space and let $Y\subseteq X$ be complete. Let $(y_n)_{n\in\N}$ be a sequence in $Y$ that converges to some point $y \in X$.  By \cref{prop:converge_means_Cauchy},  $(y_n)_{n\in\N}$ is Cauchy in $X$ and therefore also in $Y$. Since $Y$ is complete, $(y_n)_{n\in\N}$ converges to a point $y' \in Y$. Since sequences in metric spaces converge to unique points (see exercises), $y=y'$. Thus $Y$ is closed by \cref{cor:closed_converge}.
+\end{proof}
+
+\subsubsection{Subsequences}
+
+\begin{definition}
+Let $(x_n)_{n \in \N}$ be a sequence in a metric space $(X,d)$. Let $(n_k)_{k \in \N}$ be a sequence of natural numbers with $n_1 < n_2 < \cdots$. The sequence $(x_{n_k})_{k \in \N}$ is called a \emph{subsequence} of $(x_n)_{n \in \N}$. If $(x_{n_k})_{k \in \N}$ converges to $x \in X$, we call $x$ a \emph{subsequential limit}.
+\end{definition}
+
+\begin{example}
+The sequence $\left((-1)^n\right)_{n \in \N}$ diverges but the subsequences $\left((-1)^{2n}\right)_{n \in \N}$ and $\left((-1)^{2n-1}\right)_{n\in \N}$ converge to subsequential limits 1 and $-1$, respectively.
+\end{example}
+
+\begin{proposition}
+A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ if and only if every subsequence of $(x_n)_{n \in \N}$  also converges to $x$.
+\end{proposition}
+\begin{proof}
+($\Leftarrow$) If every subsequence of $(x_n)_{n \in \N}$ converges to $x \in X$, then  $(x_n)_{n \in \N}$ must converge to it as well, since a sequence is a subsequence of itself. 
+
+($\Rightarrow$) Suppose $(x_n)_{n \in \N}$ converges to $x \in X$ and let $(x_{n_k})_{k \in \N}$ be an arbitrary subsequence of $(x_n)_{n \in \N}$. Let $\epsilon > 0$ be arbitrary. There exists $n_\epsilon \in \N$ such that $d(x_n,x) < \epsilon$ for all $n \geq n_\epsilon$. Choose $k_\epsilon$ such that $n_{k_\epsilon} \geq n_\epsilon$, which must exist since $(n_k)_{k\in\N}$ is strictly increasing. Then for all $k \geq k_\epsilon$, $d(x_{n_k},x) < \epsilon$. Thus $(x_{n_k})_{k \in \N}$ converges to $x$.
+\end{proof}
+
+
+\subsection{Continuity}
+
+\begin{definition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. $f$ is \emph{continuous} at $x_0$ if for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+We say that $f$ is \emph{continuous} if it is continuous at every point in $X$.
+\end{definition}
+
+\begin{theorem}[{\cite[Theorem 2.3.7.]{tastetopology}}]
+\label{thm:cont_equiv}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous at $x_0$
+    \item[(ii)] for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
+    \item[(iii)] for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^\inv (B_\epsilon(f(x_0)))$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $\Rightarrow$ (ii) We prove the contrapositive. Assume
+\begin{equation}
+\label{star1} 
+\exists \epsilon_0 \text{ such that } \forall \delta > 0 \text{ there exists an } x_\delta \in X \text{ with } d_X(x_\delta,x_0) < \delta \text{ and } d_Y(f(x_\delta),f(x_0))) \geq \epsilon_0
+\tag{$\star$}
+\end{equation}
+We need to find a sequence in $X$ that converges to  $x_0$ but the sequence of images does not converge. Let's construct such a sequence. 
+
+Let $\delta=\frac{1}{n}$ in \eqref{star1} for $n \in \N$. Then we can pick a sequence $x_n := x_{1/n}$ given by \eqref{star1} which converges to $x_0$. However, for each $n \in \N$, we have $d_Y(f(x_n),f(x_0))) \geq \epsilon_0$, so we cannot have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+
+(ii) $\Rightarrow$ (iii) Follows from the definitions of the pre-image and open balls. 
+
+(iii) $\Rightarrow$ (i) Let $(x_n)_{n\in\N}$ be a sequence in $X$ that converges to $x_0$. Let $\epsilon > 0$. Then by (iii), there exists $\delta > 0$ such that $B_\delta(x_0) \subseteq f^\inv (B_\epsilon(f(x_0)))$, i.e. if $x$ is such that $d_X(x,x_0) < \delta$, then $x$ is such that  $d_Y(f(x),f(x_0)) < \epsilon$. By the definition of convergence, there exists an $N \in \N$ such that $d(x_n,x_0)< \delta$ for all $n \geq N$. Then by (iii), $d(f(x_n),f(x_0))< \epsilon$ for all $n \geq N$. Thus $\lim_{n\to\infty}f(x_n)=f(x_0)$.
+\end{proof}
+
+\begin{corollary}
+\label{cor:open_closed}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. The following are equivalent:
+\begin{enumerate}
+    \item[(i)] $f$ is continuous
+    \item[(ii)] if $U \subseteq Y$ is open, then $f^\inv(U)$ is open
+    \item[(iii)] if $F \subseteq Y$ is closed, then $f^\inv(F)$ is closed
+\end{enumerate}
+\end{corollary}
+
+\textit{Note: the following proof uses the following results, which you may wish to prove as an exercise using techniques from the set theory section if they are not clear to you: Let $X$ and $Y$ be sets and $f:X \to Y$. Let $A,B \subseteq Y$. Then 
+\begin{enumerate}
+\item $A \subseteq B$ $\implies$ $f^\inv(A) \subseteq f^\inv(B)$
+\item $f^\inv(Y \setminus A) = X \setminus f^\inv(A)$
+\end{enumerate}}
+
+\begin{proof}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$.
+
+(i) $\Rightarrow$ (ii): Suppose $f$ is continuous (on every point in $X$) and let $U \subseteq Y$ be open. Let $x \in f^\inv(U)$, then $f(x) \in U$, and since $U$ is open, there exists $\epsilon_0 > 0$ such that $B_{\epsilon_0}(f(x)) \subseteq U$. By \cref{thm:cont_equiv}(iii), there exists a $\delta_0 > 0$ such that $B_{\delta_0}(x) \subseteq f^\inv (B_{\epsilon_0}(f(x)))$. Since $B_{\epsilon_0}(f(x))) \subseteq U$, $f^\inv (B_{\epsilon_0}(f(x))) \subseteq f^\inv(U)$. Thus for each $x \in f^\inv(U)$, there exists $\delta_0$ such that $B_{\delta_0}(x) \subseteq f^\inv (B_{\epsilon_0}(f(x))) \subseteq f^\inv(U)$, so $f^\inv(U)$ is open.
+
+(ii) $\Rightarrow$ (i): We want to prove that $f$ is continuous at every $x \in X$ using the definition from \cref{thm:cont_equiv}(iii), i.e. we must show that for $x \in X$, for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x) \subseteq f^\inv (B_\epsilon(f(x)))$. 
+
+Let $x\in X$ and let $\epsilon > 0$ be arbitrary. Since $B_\epsilon(f(x))$ is an open set, by (ii), $f^\inv(B_\epsilon(f(x)))$ is also open. Since $x \in f^\inv(B_\epsilon(f(x)))$, there exists a $\delta > 0$ such that $B_\delta(x) \subseteq f^\inv(B_\epsilon(f(x)))$ by the definition of a set being open, so we are done.
+
+(ii) $\Rightarrow$ (iii): Let $F \subseteq Y$ be closed. Then $Y \setminus F$ is open, so by (ii), $f^\inv(Y \setminus F)$ is open as well. Since $f^\inv(Y \setminus F) = X\setminus f^\inv(F)$, $f^\inv(F)$ is closed.
+
+(iii) $\Rightarrow$ (ii) follows from the above, exchanging ``open'' and ``closed''.
+\end{proof}
+
+
+\begin{definition}
+\label{def:Lip_unif}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+\begin{itemize}
+    \item $f$ is \emph{uniformly continuous} if for all $\epsilon>0$, there exists $\delta > 0$ such that for every $x_1,x_2\in X$ with $d_X(x_1,x_2) < \delta$, we have  $d_Y(f(x_1),f(x_2))) < \epsilon$ 
+    \item $f$ is \emph{Lipschitz continuous} if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $d_Y(f(x_1),f(x_2))) \leq K d_X(x_1,x_2)$
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. 
+$$f \text{ is Lipschitz continuous } \Rightarrow \text{ f is uniformly continuous } \Rightarrow \text{ f is continuous}$$
+\end{proposition}
+
+The proof is left as an exercise. 
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. We say that $x^* \in X$ is a \emph{fixed point} of $f$ if $f(x^*) = x^*$.
+\end{definition}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $f:X \to X$. $f$ is a \emph{contraction} if there exists a constant $k \in [0,1)$ such that for all $x,y \in X$, $d(f(x),f(y))) \leq k d(x,y)$.
+\end{definition}
+
+Observe that a function is a contraction if and only if it is Lipschitz continuous with constant $K < 1$.
+
+\begin{theorem}
+Suppose that $f : X \to X$ is a contraction and the metric space $X$ is complete. Then $f$ has a unique fixed point $x^*$.
+\end{theorem}
+
+We omit the proof here; see \cite[p.240]{realanalysis} for the proof as well as more details on how to find the fixed point.
+
+\begin{example}
+Let $f:\left[-\frac{1}{3},\frac{1}{3}\right] \to \left[-\frac{1}{3},\frac{1}{3}\right]$ be defined by the mapping $x \mapsto x^2$. Assume we use the standard Euclidean metric, $d(x,y) = |x-y|$. $f$ has a unique fixed point because $\left[-\frac{1}{3},\frac{1}{3}\right]$ is a complete metric space (see \cref{prop:closed_subset_complete}) and $f$ is a contraction with Lipschitz constant 2/3.
+
+To see that it is a contraction, let $x,y \in \left[-\frac{1}{3},\frac{1}{3}\right]$. Then
+\begin{equation*}
+   |x^2 - y^2| = |x+y| |x-y| \leq \frac{2}{3} |x-y|. 
+\end{equation*}
+\end{example}
 
 
 \newpage
