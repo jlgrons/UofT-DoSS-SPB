@@ -115,9 +115,8 @@
 	\begin{itemize}
 	\item Cauchy sequences
 	\item subsequences
+	\end{itemize}    
 	\end{itemize}
-	\item Continuous functions
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -367,61 +366,6 @@ A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ i
 
 
 \end{frame}
-
-
-\begin{frame}{Continuity}
-\begin{definition}
-Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. $f$ is \emph{continuous} at $x_0$ if for every sequence $(x_n)_{n\in\N}$ in $X$ that converges to $x_0$, we have $\lim_{n\to\infty}f(x_n)=f(x_0)$.
-
-\vspace{1em}
-
-We say that $f$ is continuous if it is continuous at every point in $X$.
-\end{definition}
-\end{frame}
-
-
-\begin{frame}
-\begin{theorem}
-\label{thm:cont_equiv}
-Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $x_0 \in X$, and let $f:X\to Y$. The following are equivalent:
-\begin{enumerate}
-    \item[(i)] $f$ is continuous at $x_0$
-    \item[(ii)] for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$
-    \item[(iii)] for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
-\end{enumerate}
-\end{theorem}
-\end{frame}
-
-
-\begin{frame}
-\small
-(i) $f$ is continuous at $x_0$ \\
-(ii) for all $\epsilon>0$, there exists $\delta > 0$ such that $d_Y(f(x),f(x_0))) < \epsilon$ for all $x \in X$ with $d_X(x,x_0) < \delta$\\
-(iii) for each $\epsilon>0$, there is $\delta > 0$ such that $B_\delta(x_0) \subseteq f^{-1} (B_\epsilon(f(x_0)))$
-
-\normalsize
-\vspace{0.5em}
-\textit{Proof}.
-(i) $\Rightarrow$ (ii) 
-\vspace{5cm}
-
-
-
-\end{frame}
-
-
-\begin{frame}
-
-
-(ii) $\Rightarrow$ (iii)
-
-\vspace{1.75cm}
-(iii) $\Rightarrow$ (i)
-
-\vspace{4.75cm}
-
-\end{frame}
-
 
 \begin{frame}{References}
  
