@@ -54,7 +54,7 @@ You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), wh
 -->
 
 <!-- 
-### Module 5: Metric spaces III and Topology I
+### Module 5: Metric spaces III
 
 - Slides: [fillable](Math/2023/module5/slides.pdf), [filled](Math/2023/module5/slides_filled.pdf)
 
@@ -62,7 +62,7 @@ You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), wh
 -->
 
 <!-- 
-### Module 6: Topology II and intro to linear algebra
+### Module 6: Metric spaces IV
 
 - Slides: [fillable](Math/2023/module6/slides.pdf), [filled](Math/2023/module6/slides_filled.pdf)
 
