@@ -65,7 +65,7 @@
 \title[]{Module 7: Linear Algebra I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 21, 2022}
+\date{July 21, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -107,23 +107,128 @@
 }
 
 \begin{frame}{Outline}
-Last time:
-    \begin{itemize}
-      \setlength\itemsep{0.5em}
-    	\item Vector space
-	\item Subspace
-    \end{itemize}
-    
-\vspace{1em}
+
 
 Today:
     \begin{itemize}
       \setlength\itemsep{0.5em}
+         \item Vector space
+	\item Subspace
     	\item Linear independence and bases
 	\item Linear maps, null space, range, inverses
 	\item Matrices as linear maps
     \end{itemize}
 \end{frame}
+
+\section{Linear Algebra}
+
+\begin{frame}
+\begin{definition}
+We call $V$ a \textbf{vector space} if the following hold: \\
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A)] \textit{Commutativity in addition:} $\bu + \bv = \bv + \bu$ for all $\bu, \bv \in V$
+    \item[(B)] \textit{Associativity in addition:} $\bu + (\bv + \bw) = (\bu + \bv) + \bw$ for all $\bu, \bv, \bw \in V$
+    \item[(C)] \textit{Existence of a neutral element, addition:} There exists a vector $\zerovec$ such that for any $\bv \in V$, $\zerovec + \bv = \bv$
+    \item[(D)] \textit{Additive inverse:} For every $\bv \in V$, there exists another vector, which we denote $-\bv$, such that $\bv + (-\bv) = \zerovec$.
+\end{enumerate}
+
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(E)] \textit{Existence of a neutral element, multiplication:} For any $\bv \in V$, $1\times \bv = \bv$
+    \item[(F)] \textit{Associativity in multiplication:} Let $\alpha, \beta \in \mathbb{F}$. For any $\bv \in V$, $(\alpha \beta) \bv = \alpha (\beta \bv)$ 
+\end{enumerate}
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \alpha \bv$.
+    \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
+\end{enumerate}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+Elements of the vector space are called vectors.
+
+Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
+
+\vspace{1em}
+
+\begin{example}
+The following are vector spaces:
+\begin{itemize}
+\item $\R^n$
+\item $\C^n$
+\item $C(\R;\R)$, continuous functions from $\R$ to $\R$
+\item $M_{n \times m}$, matrices of size $n \times m$
+\item $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, $0 \bv= \zerovec$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, we have $-\bv = (-1) \times \bv$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+A subset $U$ of $V$ is called a \textbf{subspace} of of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
+\end{definition}
+
+
+\begin{exampleblock}{Proposition}
+A subset $U$ of $V$ is a subspace of $V$ if
+and only if $U$ satisfies the following three conditions:
+\begin{enumerate}
+\item  $\zerovec \in U$
+\item Closed under addition: $\bu, \bv \in U$ implies $\bu+\bv \in U$
+\item Closed under scalar multiplication: $\alpha \in\F$ and $\bu\in U$
+implies $\alpha \bu \in U$
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{proof}
+($\Rightarrow$)
+
+\vspace{1cm}
+
+($\Leftarrow$)
+
+\vspace{3cm}
+\end{proof}
+\end{frame}
+
 
 \begin{frame}{Linear combinations}
 \begin{definition}
