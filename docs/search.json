@@ -5,8 +5,13 @@
       "title": "Methods and Computing",
       "description": "Instructor: Yuan Tian ([Email](mailto:yuant.tian@mail.utoronto.ca)); Jianhui Gao ([Email](mailto:jianhui.gao@mail.utoronto.ca))",
       "author": [],
+<<<<<<< Updated upstream
       "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Basic R programming\nModule 2: Data wrangling (I)\nModule 3: Data wrangling (II)\nModule 4: Statistical inference (I)\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basic R programming\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 2: Data wrangling (I)\nLaTeX, tidyverse\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 3: Data wrangling (II)\nR style guide\n- Full Guide\nggplot2\nTutorial: pdf, Rmd\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 4: Statistical inference (I)\nProbability distributions\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\n\n\n\n",
       "last_modified": "2023-07-17T18:20:43-04:00"
+=======
+      "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Basic R programming\nModule 2: Data wrangling (I)\nModule 3: Data wrangling (II)\nModule 4: Statistical inference (I)\nModule 5: Statistical inference (II)\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basic R programming\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 2: Data wrangling (I)\nLaTeX, tidyverse\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 3: Data wrangling (II)\nR style guide\n- Full Guide\nggplot2\nTutorial: pdf, Rmd\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 4: Statistical inference (I)\nProbability distributions\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 5: Statistical inference (II)\nEstimation\nSlides: pdf\nExercises: pdf\nSolutions: pdf, Rmd\n\n\n\n",
+      "last_modified": "2023-07-18T16:23:39-04:00"
+>>>>>>> Stashed changes
     },
     {
       "path": "courses2022.html",

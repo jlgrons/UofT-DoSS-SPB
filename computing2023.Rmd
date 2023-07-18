@@ -64,17 +64,17 @@ Probability distributions
 
 - Solutions: [pdf](Computing/2022/Solutions/sol4.pdf), [Rmd](Computing/2022/Solutions/sol4.Rmd)
 
-<!-- 
+
 ### Module 5: Statistical inference (II)
 
 Estimation
 
-- Slides: [pdf](Computing/2022/Slides/mod5.pdf) 
+- Slides: [pdf](Computing/2023/Slides/mod5.pdf) 
 
 - Exercises: [pdf](Computing/2022/Exercises/ex5.pdf)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol5.pdf), [Rmd](Computing/2022/Solutions/sol5.Rmd)
--->
+
 
 <!-- 
 ### Module 6: Statistical inference (III)
