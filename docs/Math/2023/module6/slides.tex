@@ -364,6 +364,124 @@ If $f:X \to Y$:
 \end{block}
 \end{frame}
 
+\begin{frame}{Right and left continuous}
+Recall: $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
+
+\vspace{1em}
+
+\begin{definition} Let $f\colon \R \to \R$.
+\begin{itemize}
+    \item $f$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$.
+    \item $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta$.
+\end{itemize}
+We say that $f$ is left continuous if it is left continuous at all points in the domain, and similar for right continuous.
+\end{definition}
+
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
+\end{exampleblock}
+\begin{proof}
+\vspace{5cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Bounded sequences and monotone convergence}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bounded} if there exists an $M > 0$ such that $\vert x_n\vert<M$ for all $n\in \N$.
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{theorem}[Monotone convergence theorem]
+\begin{itemize}
+\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$, and that it is bounded (above). Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\item[(ii)] Suppose $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded (below). Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
+\end{itemize}
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+Convention: $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
+
+\begin{lemma}
+If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
+\end{lemma}
+The proof of this follows from the definition of greatest lower and least upper bound. 
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We define the \emph{limit superior} of $(x_n)_{n\in \N}$ as 
+$$\limsup_{n\to \infty} x_n: = \lim_{n\to \infty} \sup_{k\geq n} x_k.$$ 
+Similarly we define  the \emph{limit inferior} of $(x_n)_{n\in \N}$ as 
+$$\liminf_{n\to \infty} x_n: = \lim_{n\to \infty} \inf_{k\geq n} x_k.$$
+\end{definition}
+\vspace{1em}
+If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. 
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
+\begin{itemize} 
+\item The sequence of suprema, $s_n = \sup_{k\geq n} x_k$, is decreasing and the sequence of infima, $i_n = \inf_{k\geq n} x_k$, is increasing.
+\item The limit superior and the limit inferior of a bounded sequence always exist and are finite.
+\end{itemize}
+\end{exampleblock}
+\begin{proof}
+The first part is true by the previous Lemma. The second follows by the Monotone Convergence Theorem.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
+\end{theorem}
+\begin{block}{Proof.}
+\vspace{4.5cm}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\vspace{6.5cm}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\vspace{2em}
+We can extend this easily to a sequence of functions $f_n \colon X \to \R$ as follows:
+\vspace{0.5em}
+
+Define $f = \limsup_{n\to \infty } f_n$ to be the function defined pointwise by $f(x) = \limsup_{n\to \infty } (f_n (x)) $ and similar for the limit inferior. 
+
+\vspace{1em}
+
+There also exists a set theoretic version in terms of unions and intersections which you will encounter in probability.
+
+\end{frame}
+
+
 \section{Linear Algebra}
 
 \begin{frame}
