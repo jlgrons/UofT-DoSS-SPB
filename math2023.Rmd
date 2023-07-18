@@ -56,7 +56,7 @@ You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), wh
 
 ### Module 5: Metric spaces III
 
-- Slides: [fillable](Math/2023/module5/slides.pdf)<!-- , [filled](Math/2023/module5/slides_filled.pdf)-->
+- Slides: [fillable](Math/2023/module5/slides.pdf), [filled](Math/2023/module5/slides_filled.pdf)
 
 - Exercises: [pdf](Math/2023/module5/exercises.pdf), [LaTeX](Math/2023/module5/exercises.tex)<!-- , [solutions](Math/2023/module5/exercise_solutions.pdf) -->
 
