@@ -75,10 +75,10 @@
 
 
 
-\title[]{Module 6: End of Topology, Start of Linear Algebra \\ {\large Operational math bootcamp}\\ \includegraphics[width=7cm]{dept_logo.png}\vspace{-1em}}
+\title[]{Module 6: Metric Spaces IV \\ {\large Operational math bootcamp}\\ \includegraphics[width=7cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 20, 2022}
+\date{July 20, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -122,105 +122,65 @@
 \begin{frame}{Outline}
     \begin{itemize}
       \setlength\itemsep{1em}
-    	\item Finish topology
+    	\item Compactness
+	\item Extra properties of $\R$
 	\begin{itemize}
 	\setlength\itemsep{0.3em}
-	\item Dense subsets
-	\item Compactness
-	\item Continuity
+	\item Right- and left- continuity
+	\item Lim sup and lim inf
 	\end{itemize}
-	\item Start linear algebra
-	\begin{itemize}
-	\setlength\itemsep{0.3em}
-	\item Vector spaces and subspaces
-	\end{itemize}
+%	\item Start linear algebra
+%	\begin{itemize}
+%	\setlength\itemsep{0.3em}
+%	\item Vector spaces and subspaces
+%	\end{itemize}
     \end{itemize}
 \end{frame}
 
+
+
 \begin{frame}{Last time}
-
-\begin{definition}[Topology]
-\footnotesize
-Let $\cT\subseteq \cP(X)$. We call $\cT$ a \emph{topology} on $X$ if the following holds:
-\begin{itemize}
-    \item[(i)] $\emptyset, X \in \cT$
-    \item[(ii)] Let $A$ be an arbitrary index set. If $U_\alpha \in \cT$ for $\alpha\in A$, then $\bigcup_{\alpha \in A} U_\alpha \in \cT$ ($\cT$ is closed under taking arbitrary unions)
-    \item[(iii)] Let $n \in \N$. If $U_1, \ldots, U_n \in \cT$, then $\bigcap_{i=1}^n U_i \in \cT$ ($\cT$ is closed under taking finite intersections)
-\end{itemize}
-If $U\in \cT$, we call $U$ \emph{open}. We call $U\subseteq X$ \emph{closed}, if $U^c\in \cT$. We call $(X,\cT)$ a \emph{topological space}.
+\begin{definition}
+Let $(X,d)$ be a metric space. A subset $A\subseteq X$ is called \emph{dense} if $\overline{A} = X$.
 \end{definition}
+
+\vspace{0.5em}
 
 \begin{definition}
-\footnotesize
-Let $(X,\cT)$ be a topological space and let $A\subseteq X$ be any subset.
-\begin{itemize}
-    \item The \emph{interior} of $A$ is $\interior A := \{a \in A \colon \exists U \in  \cT \text{ s.t. } U\subseteq A \text{ and } a\in U\} $.
-    \item The \emph{closure} of $A$ is $\overline{A} := \{x \in X \colon \forall U \in \cT \text{ with } x \in U, U\cap A \neq \emptyset\}$.
-    \item The \emph{boundary} of $A$ is $\partial A:= \{x \in X \colon \forall U\in \cT \text{ with } x\in U, \, U \cap A \neq \emptyset \text{ and } U \cap A^c \neq \emptyset \}$.
-\end{itemize}
-\end{definition}
-\end{frame}
-
-
-\begin{frame}{Density}
-\begin{definition}
-Let $(X,\cT)$ be a topological space. A subset $A\subseteq X$ is called \emph{dense} if $\overline{A} = X$.
+A metric space $(X,d)$ is \emph{separable} if it contains a countable dense subset.
 \end{definition}
 
-\vspace{1em}
-
-Using the definition of closure, we see that $A\subseteq X$ is dense if and only if for all non-empty $U\in \cT$, $U\cap A \neq \emptyset$.
-
-\vspace{1em}
+\vspace{0.5em}
 
 \begin{example}
-\begin{itemize}
-    \item The rationals $\Q$ are dense in the reals $\R$. 
-    \item The only dense subset in $(X,\cP(X))$ is $X$ itself.
-    \item Any non-empty subset is dense in $(X,\{\emptyset,X\})$.
-\end{itemize}
+$\R$ is separable because $\Q$ is dense in $\R$
 \end{example}
+
 
 \end{frame}
 
-
-\begin{frame}{Separability}
-\begin{definition}
-A topological space $(X,\cT)$ is \emph{separable} if it contains a countable dense subset.
-\end{definition}
-
-\vspace{1em}
-
+\begin{frame}
 \begin{example}
-\vspace{2cm}
+Define $\ell_\infty=\{ (x_n)_{n\in \N} \, : x_n \in \R , \; \sup_{n\in \N} \vert x_n \vert <\infty \}$, the space of bounded real valued sequences. Endow $\ell_\infty$ with a metric induced by the supremum norm, namely $d((x_n)_{n\in \N}, (y_n)_{n\in \N}) = \sup_{n\in \N} \vert x_n-y_n\vert$. 
+Then $\ell_\infty$ is \textbf{not separable} with respect to the topology induced by this metric. 
 \end{example}
-\end{frame}
 
+\vspace{0.5em}
+Note: this proof relies on content from the cardinality section. Specifically, Cantor's theorem gives us that $|A| < |\cP(A)|$ for any set $A$.
 
-\begin{frame}{Hausdorff space}
-\begin{definition}
-A topological space $(X,\cT)$ is called \emph{Hausdorff} if for all $x\neq y\in X$ there exist open sets $U_x,U_y$ with $x\in U_x$ and $y\in U_y$ such that $U_x \cap U_y = \emptyset$.
-\end{definition}
+\vspace{0.5em}
+\textit{Proof}.
+\vspace{2.5cm}
 
-So in a Hausdorff space, we can separate any two elements using open sets.
 \end{frame}
 
 
 \begin{frame}
+\textit{Proof continued}.
+\vspace{7cm}
 
-\begin{example}
-Let $(X,d)$ be a metric space. Then $(X,\cT_d)$ is Hausdorff, where $\cT_d$ is the topology induced by the metric $d$.
-\vspace{4cm}
-\end{example}
 \end{frame}
 
-
-\begin{frame}
-\begin{example}
-Let $X$ be an infinite set and $\cT = \{U\subseteq X \colon U^c \text{ is finite} \}\cup \emptyset$. Then  $(X,\cT)$ is not Hausdorff. 
-\vspace{4cm}
-\end{example}
-\end{frame}
 
 
 \begin{frame}{Compactness}
@@ -311,21 +271,6 @@ A corollary of this statement together with Heine-Borel is the Bolzano-Weierstra
 \begin{corollary}[Bolzano-Weierstrass]
 Any bounded sequence in $\R^n$ has a convergent subsequence.
 \end{corollary}
-
-\end{frame}
-
-
-\begin{frame}{Continuity on a topological space}
-\begin{definition}
-Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous} if for all $U\in \cT_Y$, $f^{-1}(U)\in \cT_X$, i.e. the pre-image of open sets is open. 
-\end{definition}
-
-We can also specify continuity at a point $x_0\in X$.
-
-\begin{definition}
-Let $(X,\cT_X)$ and $(Y,\cT_Y)$ be topological spaces. A map $f\colon X \to Y$ is called \emph{continuous at $x_0\in X$} if for all $U\in \cT_Y$ with $f(x_0)\in U$, $f^{-1}(U)\in \cT_X$, i.e. the preimage of open sets containing $f(x_0)$ is open (and contains $x_0$).
-\end{definition}
-
 
 \end{frame}
 
@@ -482,130 +427,15 @@ There also exists a set theoretic version in terms of unions and intersections w
 \end{frame}
 
 
-\section{Linear Algebra}
-
-\begin{frame}
-\begin{definition}
-We call $V$ a \textbf{vector space} if the following hold: \\
-
-\begin{enumerate}
-\setlength\itemsep{0.1em}
-    \item[(A)] \textit{Commutativity in addition:} $\bu + \bv = \bv + \bu$ for all $\bu, \bv \in V$
-    \item[(B)] \textit{Associativity in addition:} $\bu + (\bv + \bw) = (\bu + \bv) + \bw$ for all $\bu, \bv, \bw \in V$
-    \item[(C)] \textit{Existence of a neutral element, addition:} There exists a vector $\zerovec$ such that for any $\bv \in V$, $\zerovec + \bv = \bv$
-    \item[(D)] \textit{Additive inverse:} For every $\bv \in V$, there exists another vector, which we denote $-\bv$, such that $\bv + (-\bv) = \zerovec$.
-\end{enumerate}
-
-
-\begin{enumerate}
-\setlength\itemsep{0.1em}
-    \item[(E)] \textit{Existence of a neutral element, multiplication:} For any $\bv \in V$, $1\times \bv = \bv$
-    \item[(F)] \textit{Associativity in multiplication:} Let $\alpha, \beta \in \mathbb{F}$. For any $\bv \in V$, $(\alpha \beta) \bv = \alpha (\beta \bv)$ 
-\end{enumerate}
-
-\begin{enumerate}
-\setlength\itemsep{0.1em}
-    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \alpha \bv$.
-    \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
-\end{enumerate}
-\end{definition}
-
-\end{frame}
-
-\begin{frame}
-Elements of the vector space are called vectors.
-
-Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
-
-\vspace{1em}
-
-\begin{example}
-The following are vector spaces:
-\begin{itemize}
-\item $\R^n$
-\item $\C^n$
-\item $C(\R;\R)$, continuous functions from $\R$ to $\R$
-\item $M_{n \times m}$, matrices of size $n \times m$
-\item $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
-\end{itemize}
-\end{example}
-
-\end{frame}
-
-
-\begin{frame}
-\begin{alertblock}{Lemma}
-For every $\bv \in V$, $0 \bv= \zerovec$.
-\end{alertblock}
-
-\vspace{0.5em}
-
-\begin{proof}
-\vspace{3cm}
-\end{proof}
-
-\end{frame}
-
-\begin{frame}
-\begin{alertblock}{Lemma}
-For every $\bv \in V$, we have $-\bv = (-1) \times \bv$.
-\end{alertblock}
-
-\vspace{0.5em}
-
-\begin{proof}
-\vspace{3cm}
-\end{proof}
-
-\end{frame}
-
-
-\begin{frame}
-
-\begin{definition}
-A subset $U$ of $V$ is called a \textbf{subspace} of of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
-\end{definition}
-
-
-\begin{exampleblock}{Proposition}
-A subset $U$ of $V$ is a subspace of $V$ if
-and only if $U$ satisfies the following three conditions:
-\begin{enumerate}
-\item  $\zerovec \in U$
-\item Closed under addition: $\bu, \bv \in U$ implies $\bu+\bv \in U$
-\item Closed under scalar multiplication: $\alpha \in\F$ and $\bu\in U$
-implies $\alpha \bu \in U$
-\end{enumerate}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}
-\begin{proof}
-($\Rightarrow$)
-
-\vspace{1cm}
-
-($\Leftarrow$)
-
-\vspace{3cm}
-\end{proof}
-\end{frame}
 
 
 \begin{frame}{References}
 
-Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
-Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
-
-\vspace{1em}
 
 
 Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
 
-\vspace{1em}
 
-
-\indent Treil S. \textit{Linear Algebra Done Wrong}. 2017. Available from: \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{https://www.math.brown.edu/streil/papers/LADW/LADW.html}
 \end{frame}
 
 

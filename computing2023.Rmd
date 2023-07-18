@@ -56,7 +56,7 @@ ggplot2
  
 ### Module 4: Statistical inference (I)
 
-Probability distributions
+Bias, Consistency, and MSE
 
 - Slides: [pdf](Computing/2023/Slides/mod4.pdf) 
 
@@ -67,7 +67,7 @@ Probability distributions
 
 ### Module 5: Statistical inference (II)
 
-Estimation
+MLE, Numerical Methods
 
 - Slides: [pdf](Computing/2023/Slides/mod5.pdf) 
 
