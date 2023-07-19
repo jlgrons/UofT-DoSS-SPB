@@ -76,16 +76,16 @@ MLE, Numerical Methods
 - Solutions: [pdf](Computing/2022/Solutions/sol5.pdf), [Rmd](Computing/2022/Solutions/sol5.Rmd)
 
 
-<!-- 
-### Module 6: Statistical inference (III)
-Hypothesis testing
 
-- Slides: [pdf](Computing/2022/Slides/mod6.pdf) 
+### Module 6: Statistical inference (III)
+Wald, Score, and Likelihood Ratio Test
+
+- Slides: [pdf](Computing/2023/Slides/mod6.pdf) 
 
 - Exercises: [pdf](Computing/2022/Exercises/ex6.pdf)
 
 - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
--->
+
 
 <!-- 
 ### Module 7: Simulations 
