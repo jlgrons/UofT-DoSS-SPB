@@ -126,7 +126,7 @@
 	\item Extra properties of $\R$
 	\begin{itemize}
 	\setlength\itemsep{0.3em}
-	\item Right- and left- continuity
+	\item Right- and left-continuity
 	\item Lim sup and lim inf
 	\end{itemize}
 %	\item Start linear algebra
@@ -185,7 +185,7 @@ Note: this proof relies on content from the cardinality section. Specifically, C
 
 \begin{frame}{Compactness}
 \begin{definition}
-Let $(X,\cT)$ be a topological space and $K\subseteq X$. 
+Let $(X,d)$ be a metric space and $K\subseteq X$. 
 
 \vspace{0.5em}
 
@@ -201,85 +201,97 @@ The set $K$ is called \emph{compact} if for all open covers $\{U_i\}_{i\in I}$ t
 \begin{frame}
 
 \begin{example}
-Let $S\subseteq X$ where $(X,\cT)$ is a topological space. If $S$ is finite, then it is compact. 
-\vspace{4cm}
+Let $S\subseteq X$ where $(X,d)$ is a metric space. If $S$ is finite, then it is compact. 
 \end{example}
+\textit{Proof.}
+\vspace{4cm}
 \end{frame}
 
 
 \begin{frame}
 \begin{example}
 $(0,1)$ is not compact. 
-\vspace{5cm}
 \end{example}
+\textit{Proof.}
+\vspace{4cm}
 \end{frame}
 
 
 \begin{frame}
 \begin{exampleblock}{Proposition}
-Let $(X,\cT)$ be a topological space and take a non-empty subset $K\subseteq X$. The following holds:
+Let $(X,d)$ be a metric space and take a non-empty subset $K\subseteq X$. The following holds:
 \begin{enumerate}
     \item If $X$ is compact and $K$ is closed, then $K$ is compact (i.e. closed subsets of compact sets are compact).
-    \item If $(X,\cT)$ is Hausdorff, then $K$ being compact implies that $K$ is closed.
+    \item If $K$ is compact, then $K$ is closed.
 \end{enumerate}
 \end{exampleblock}
 \end{frame}
 
 
 \begin{frame}
-\begin{proof}
+\textit{Proof.}
 (1) If $X$ is compact and $K \subseteq X$ is closed, then $K$ is compact
 \vspace{6cm}
 
-\end{proof}
 \end{frame}
 
 
 \begin{frame}
-\begin{proof}
-(2) If $(X,\cT)$ is Hausdorff, then $K \subseteq X$ compact $\Leftrightarrow$ $K$ is closed.
+
+(2) $K \subseteq X$ compact $\Rightarrow$ $K$ is closed.
 \vspace{6cm}
 
-\end{proof}
+
 \end{frame}
 
 \begin{frame}
-\begin{block}{Proof continued}
-\vspace{5cm}
 
-\end{block}
-\vspace{1cm}
+\end{frame}
+
+
+
+\begin{frame}
+
+Arbitrary compact metric spaces have some nice properties in general as the next proposition shows.
+
+\begin{exampleblock}{Proposition}
+    A compact metric space $(X,d)$ is complete and separable.
+\end{exampleblock}
+
+\vspace{2em}
+
+Also, just as we had a sequential characterization of the closure of a set in metric spaces, we similarly have a sequential characterization of compactness. 
+
+\begin{theorem}
+Let $(X,d)$ be a metric space. Then $K\subset X$ is compact with respect to the metric induced by $d$ if and only if every sequence in $K$ admits a subsequence converging to some point in $K$.
+\end{theorem}
+
+
+
 \end{frame}
 
 \begin{frame}{Compactness on $\R^n$}
 \begin{theorem}[Heine-Borel Theorem]
 Let $K\subseteq \R^n$. Then $K$ is compact with respect to the topology induced by the Euclidean distance if and only if it is closed and bounded.
 \end{theorem}
-\end{frame}
-
-\begin{frame}
-Just as we had a sequential characterization of the closure of a set in metric spaces, we similarly have a sequential characterization of compactness. 
-
-\begin{theorem}
-Let $(X,d)$ be a metric space. Then $K\subset X$ is compact with respect to the metric induced by $d$ if and only if every sequence in $K$ admits a subsequence converging to some point in $K$.
-\end{theorem}
 
 \vspace{1em}
 
-A corollary of this statement together with Heine-Borel is the Bolzano-Weierstrass theorem.
+A corollary of the last two theorems is the Bolzano-Weierstrass theorem.
 
 \begin{corollary}[Bolzano-Weierstrass]
 Any bounded sequence in $\R^n$ has a convergent subsequence.
 \end{corollary}
-
 \end{frame}
 
 
 \begin{frame}
 \vspace{1em}
 \begin{exampleblock}{Proposition}
-Let $(X,\cT_X)$ and $(Y, \cT_Y)$ be topological spaces. Suppose $K\subset X$ is compact and let $f\colon K \to Y$ be continuous. Then $f(K)$ is compact. 
+Let $(X,d_X)$ and $(Y, d_Y)$ be topological spaces. Suppose $K\subset X$ is compact and let $f\colon K \to Y$ be continuous. Then $f(K)$ is compact. 
 \end{exampleblock}
+
+Note: this is a generalization of the Extreme Value Theorem to metric spaces.
 
 \vspace{1em}
 
@@ -296,18 +308,16 @@ If $f:X \to Y$:
 \end{frame}
 
 \begin{frame}
-
-\begin{block}{Proof.}
-\vspace{6cm}
-\end{block}
+\textit{Proof.}
+\vspace{7cm}
 \end{frame}
-
 
 \begin{frame}
-\begin{block}{Proof continued}
-\vspace{4.5cm}
-\end{block}
+
 \end{frame}
+
+\section{Extra properties of $\R$}
+
 
 \begin{frame}{Right and left continuous}
 Recall: $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
@@ -332,16 +342,15 @@ We say that $f$ is left continuous if it is left continuous at all points in the
 \begin{exampleblock}{Proposition}
  A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
 \end{exampleblock}
-\begin{proof}
+\textit{Proof}.
 \vspace{5cm}
-\end{proof}
 \end{frame}
 
 
 \begin{frame}
-\begin{block}{Proof continued}
-\vspace{4.5cm}
-\end{block}
+
+\vspace{7cm}
+
 \end{frame}
 
 
@@ -365,9 +374,13 @@ Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bou
 \begin{frame}
 Convention: $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
 
+\vspace{0.5em}
+
 \begin{lemma}
 If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
 \end{lemma}
+
+\vspace{0.5em}
 The proof of this follows from the definition of greatest lower and least upper bound. 
 
 \end{frame}
@@ -391,26 +404,24 @@ Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
 \item The limit superior and the limit inferior of a bounded sequence always exist and are finite.
 \end{itemize}
 \end{exampleblock}
-\begin{proof}
-The first part is true by the previous Lemma. The second follows by the Monotone Convergence Theorem.
-\end{proof}
-
+\textit{Proof}.
+\vspace{2.5cm}
 \end{frame}
 
 \begin{frame}
 \begin{theorem}
 Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
 \end{theorem}
-\begin{block}{Proof.}
-\vspace{4.5cm}
-\end{block}
+\textit{Proof}.
+\vspace{3cm}
 \end{frame}
 
+\begin{frame}
+
+\end{frame}
 
 \begin{frame}
-\begin{block}{Proof continued}
-\vspace{6.5cm}
-\end{block}
+
 \end{frame}
 
 \begin{frame}

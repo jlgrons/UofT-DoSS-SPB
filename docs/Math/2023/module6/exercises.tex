@@ -77,68 +77,50 @@
 
 \begin{document}
 \begin{center}
-\Large{Exercises for Module 6: Topology  and Linear Algebra}
+\Large{Exercises for Module 6: Metric Spaces IV}
 \end{center}
 
-
-4. Let $(x_n)_{n\in N}$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
-
-\vspace{11cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-1.  Let $(X,\cT)$ be a topological space and $A\subseteq X$ be dense. Show that if $A\subseteq B\subseteq X$, then $B$ is dense as well. 
-
-\vspace{11cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
+1. Let $X$ be a set and define $d\colon X \times X \to [0,\infty)$ by 
+    \begin{align*}
+        d(x,y) = \begin{cases}
+            0, & \; x=y, \\
+            1, & \; x\neq y.
+        \end{cases}
+    \end{align*}
+    Show that $S\subseteq X$ is compact if and only if $S$ is finite.
+    
+    \vspace{10.5cm} % delete this
 
 
-
-2. Let $(X,\cT)$ be a Hausdorff topological space. Show that the singleton $\{x\}$ is closed for all $x\in X$. Hint: Show that the complement is open. 
+2. Let $(X, d)$ be a metric space and $K \subset X$ compact. Show that for all $\epsilon>0$ there exists $\{x_1,x_2,\ldots, x_n\}\subseteq K$  such that for all $y\in K$ we have $d(y,x_i)<\epsilon$ for some $i=1,\ldots,n$.
 
 \vspace{11cm} % delete this
 
+
+3. Define the sequence $(a_n)_{n\in \N}$ by $a_1 =2$ and 
+    \begin{equation*}
+        a_{k+1} = \frac{a_k+5}{3}, \qquad k\geq 1.
+    \end{equation*}
+    Determine if the limit $\lim_{n\to \infty} a_n$ exists and, if so, calculate it.
+
+\vspace{21cm} % delete this
+
+
+4.   Let $(x_n)_{n\in \N}, (y_n)_{n\in \N}$ be bounded sequences in $\R$. Show that 
+    \begin{align*}
+        \limsup_{n\to \infty} (x_n + y_n) \leq \limsup_{n\to \infty} x_n + \limsup_{n\to \infty} y_n 
+    \end{align*}
+    and give an example where the inequality is strict. 
+
+\vspace{10.5cm} % delete this
+
 % \begin{proof}  
 % ADD your content 
 % \end{proof}  
-
-
-3. Let $(X,\cT_X)$, $(Y,\cT_Y)$ and $(Z,\cT_Z)$ be topological spaces and let $f\colon X\to Y$, $g\colon Y \to Z$ be continuous. Show that $g\circ f \colon X \to Z$ is continuous as well. 
-
-\vspace{12cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-
-4. Let $(X, d)$ be a metric space and $K \subset X$ compact. Show that for all $\epsilon>0$ there exists $\{x_1,x_2,\ldots, x_n\}\subseteq K$  such that for all $y\in K$ we have $d(y,x_i)<\epsilon$ for some $i=1,\ldots,n$.
+5. Let $(x_n)_{n\in N}$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
 
 \vspace{11cm} % delete this
 
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-
-5. Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$ or $\bv=0$.
-
-\vspace{12cm} % delete this
-
-% \begin{proof}  
-% ADD your content 
-% \end{proof}  
-
-6.  Prove the following:  Let $V$ be a vector space and let $U_1, U_2 \subseteq V$ be subspaces. Then $U_1 \cap U_2$ is also a subspace of $V$. 
-
-\vspace{12cm} % delete this
 
 % \begin{proof}  
 % ADD your content 
@@ -146,8 +128,32 @@
 
 
 
-7. Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
-\vspace{11cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+%5. Suppose that $\alpha\in\F, \bv\in V$, and $\alpha \bv=\zerovec$. Prove that $a=0$ or $\bv=0$.
+
+%\vspace{12cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+%6.  Prove the following:  Let $V$ be a vector space and let $U_1, U_2 \subseteq V$ be subspaces. Then $U_1 \cap U_2$ is also a subspace of $V$. 
+
+%\vspace{12cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+
+%7. Let $U_1$ and $U_2$ be subspaces of a vector space $V$. Prove that $U_1 \cup U_2$ is a subspace of $V$ if and only if $U_1 \subseteq U_2$ or $U_2 \subseteq U_1$.
+%\vspace{11cm} % delete this
 
 % \begin{proof}  
 % ADD your content 
