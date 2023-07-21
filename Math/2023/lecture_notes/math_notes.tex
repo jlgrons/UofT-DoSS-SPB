@@ -1081,7 +1081,13 @@ Next, we show $A \setminus \partial A \subseteq \interior A$. Let $x \in A \setm
 Clearly, $\interior A$ is open by definition. We show $\overline A$ is closed by showing $(\overline A)^c$ is open. Let $x \in (\overline A)^c$. We need to show there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq (\overline A)^c$. We have that $x \notin \overline A$ so by the definition of $\overline A$, this means there exists an $\tilde \epsilon  > 0$ such that $B_{\tilde\epsilon}(x) \cap A = \emptyset$. Then any $y \in B_{\tilde\epsilon}(x)$ is in $(\overline A)^c$ by definition. Thus $B_{\tilde\epsilon}(x)  \subseteq (\overline A)^c$ and therefore $(\overline A)^c$ is open.
 \end{proof}
 
-In fact, we can show that the interior of $A$ is the largest open set contained in $A$ and the closure is the smallest closed set that contains $A$, i.e., that $\interior A =\bigcup \{U: U \text{ is open and } U \subseteq A \}$ and $\overline{A} = \bigcap \{F \colon F \text{ is closed and } A \subseteq F\}$.
+\begin{remark}
+In fact, we can show that the interior of $A$ is the largest open set contained in $A$ and the closure is the smallest closed set that contains $A$, i.e., that 
+\begin{align*}
+\interior A &=\bigcup \{U: U \text{ is open and } U \subseteq A \} \, , \\\overline{A} &= \bigcap \{F \colon F \text{ is closed and } A \subseteq F\} \, .
+\end{align*}
+This result is proved in \cref{prop:closed}.
+\end{remark}
 
 \subsection{Sequences}
 
@@ -3200,6 +3206,7 @@ Let $X=\{a,b,c\}$ and $\cT = \{\emptyset ,\{a\}, \{b\},\{a,b\}, X\}$. Then the f
 Note that even though we do not necessarily have a characterization of closures in terms of limits of sequences as in metric spaces for arbitrary topological spaces, there exists an alternative characterization that still holds in this general setting (and thus in particular also for metric spaces).
 
 \begin{proposition}[Proposition 3.1.18 in \cite{tastetopology}]
+\label{prop:closed}
  Let $(X,\cT)$ be a topological space and $A\subseteq X$. Then,
  \begin{equation*}
      \overline{A} = \bigcap \{F \colon F \text{ is closed and } A \subseteq F\}.
