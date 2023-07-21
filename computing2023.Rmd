@@ -88,7 +88,7 @@ Wald, Score, and Likelihood Ratio Test
 
 
 
-### Module 7: Simulations 
+### Module 7: Linear regression 
 
 - Slides: [pdf](Computing/2023/Slides/mod7.pdf) 
 
