@@ -62,6 +62,21 @@
 % alert block
 
 
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
+
 \title[]{Module 7: Linear Algebra I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
@@ -112,15 +127,13 @@
 Today:
     \begin{itemize}
       \setlength\itemsep{0.5em}
-         \item Vector space
-	\item Subspace
+         \item Vector spaces and subspaces
     	\item Linear independence and bases
-	\item Linear maps, null space, range, inverses
-	\item Matrices as linear maps
+	\item Linear maps, null space, range
     \end{itemize}
 \end{frame}
 
-\section{Linear Algebra}
+\section{Vector spaces \& subspaces}
 
 \begin{frame}
 \begin{definition}
@@ -218,16 +231,18 @@ implies $\alpha \bu \in U$
 \end{frame}
 
 \begin{frame}
-\begin{proof}
+\textit{Proof}.
 ($\Rightarrow$)
 
-\vspace{1cm}
+\vspace{3cm}
 
 ($\Leftarrow$)
 
 \vspace{3cm}
-\end{proof}
+
 \end{frame}
+
+\section{Linear (in)dependence and bases}
 
 
 \begin{frame}{Linear combinations}
@@ -302,18 +317,17 @@ Such a system is also often called generating or complete. The next proposition 
 \begin{exampleblock}{Proposition}
  A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and spanning.
  \end{exampleblock}
-\begin{block}{Proof.}
+\textit{Proof.}
 ($\Rightarrow$)
 \vspace{4cm}
-\end{block}
+
 \end{frame}
 
 
 \begin{frame}
-\begin{block}{Proof continued}
 ($\Leftarrow$)
-\vspace{4.5cm}
-\end{block}
+\vspace{6.5cm}
+
 \end{frame}
 
 
@@ -324,9 +338,9 @@ Such a system is also often called generating or complete. The next proposition 
  
  \vspace{1em}
  
-\begin{block}{Sketch of proof.}
-\vspace{3cm}
-\end{block}
+\textit{Sketch of proof.}
+\vspace{4cm}
+
 \end{frame}
 
 
@@ -341,8 +355,8 @@ An $\F$-vector space $V$ is called \emph{finite dimensional} if there exists a f
     \item $\F^n$, $M_{m\times n}$, $\mathbb{P}_n$ are examples of finite dimensional vector spaces
     \item The $\F$-vector space $\mathbb{P} = \{ \sum_{i=1}^n \alpha_i x^i  \; \colon \; n\in \N, \alpha_i \in \F, i=1,\ldots,n\}$ is infinite dimensional. 
 \end{itemize}
-\vspace{2.5cm}
 \end{example}
+\vspace{2.5cm}
 \end{frame}
 
 \begin{frame}
@@ -361,9 +375,9 @@ This can also be extended to infinite dimensional vector spaces, i.e. when we do
 \begin{exampleblock}{Proposition}
 Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
  \end{exampleblock}
-\begin{block}{Proof.}
+\textit{Proof.}
 \vspace{4cm}
-\end{block}
+
 \end{frame}
 
 
@@ -394,6 +408,7 @@ By the previous definition, the notion of dimension is well-defined.
 \end{example}
 \end{frame}
 
+\section{Linear maps}
 
 
 \begin{frame}{Linear Maps}
@@ -415,12 +430,12 @@ Notation: $\mathcal{L}(U,V)$ is the set of all linear maps from $\F$-vector spac
 \begin{exampleblock}{Example}
 
 \begin{itemize}
-\setlength\itemsep{3em}
+\setlength\itemsep{4em}
 \item Zero map
 \item Identity map
 \item Differentiation
 \end{itemize}
-\vspace{6em}
+\vspace{5em}
 \end{exampleblock}
 \end{frame}
 
@@ -430,7 +445,8 @@ Notation: $\mathcal{L}(U,V)$ is the set of all linear maps from $\F$-vector spac
 Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
 \end{theorem}
 
-Proof in book
+Proof in book.
+\vspace{1em}
 
 \begin{theorem}
 Let $S,T \in \mathcal{L}(U,V)$ and $\alpha \in \F$. $\mathcal{L}(U,V)$ is a vector space with addition defined as the sum $S+T$ and multiplication as the product $\alpha T$.
@@ -446,9 +462,8 @@ Let $T \in \cL(U,V)$. Then $T(\zerovec) = \zerovec$.
 
 \vspace{0.5em}
 
-\begin{proof}
+\textit{Proof.}
 \vspace{3cm}
-\end{proof}
 
 \end{frame}
 
@@ -479,10 +494,8 @@ The dimensions of these spaces are often called the following:
 \begin{exampleblock}{Proposition}
 Let $T: U \to V$. The null space of T is a subspace of $U$ and the range of T is a subspace of $V$.
 \end{exampleblock}
-\begin{proof}
-\vspace{4cm}
-\end{proof}
-
+\textit{Proof.}
+\vspace{5cm}
 
 \end{frame}
 
@@ -494,17 +507,19 @@ Let $T: U \to V$. The null space of T is a subspace of $U$ and the range of T is
 \begin{example}
 Zero map from a vector space $U$ to a vector space $V$:
 \begin{itemize}
+\setlength\itemsep{1em}
     \item The null space is 
     \item The range is 
 \end{itemize}
-\vspace{1em}
+\vspace{2em}
 
 Differentiation map from $\mathbb{P}(\R)$ to $\mathbb{P}(\R)$:
 \begin{itemize}
+\setlength\itemsep{1em}
     \item The null space is 
     \item The range is 
 \end{itemize}
-\vspace{1em}
+\vspace{2em}
 \end{example}
 
 \end{frame}
@@ -525,17 +540,15 @@ $T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
 \end{frame}
 
 \begin{frame}
-\begin{proof}
+\textit{Proof}.
 ($\Rightarrow$) 
 
-\vspace{3cm}
+\vspace{3.5cm}
 
 ($\Leftarrow$) 
 
 
-\vspace{2cm}
-
-\end{proof}
+\vspace{3cm}
 
 
 \end{frame}
@@ -550,171 +563,16 @@ Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensi
 \rank T + \nullity  T = \dim U.
 \end{equation*}
 \end{theorem}
-\begin{block}{Proof.}
-\vspace{4cm}
-\end{block}
-\end{frame}
+\vspace{3em}
 
-
-\begin{frame}
-\begin{block}{Proof continued}
-
-\vspace{5.5cm}
-\end{block}
-\end{frame}
-
-
-\begin{frame}
-\begin{definition}[Product of linear maps]
-Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
-\end{definition}
-
-\begin{definition}
-A linear map $T: U \to V$ is \emph{invertible} if there exists a linear map $S: V \to U$ such that $ST$ is the identity map on $U$ and $TS$ is the identity map on $V$. Such a map $S$ is called the \emph{inverse} of $T$. 
-\end{definition}
-
-If $T$ is invertible, we denote the inverse by $T^\inv$. This is justified by the fact that the inverse is unique:
+Proof in the lecture notes (pg. 35).
+\vspace{3em}
 
 \end{frame}
 
 
 
 
-\begin{frame}
-\begin{exampleblock}{Proposition}
-Any invertible linear map has a unique inverse.
-\end{exampleblock}
-\begin{proof}
-\vspace{4cm}
-\end{proof}
-
-
-\end{frame}
-
-\begin{frame}
-
-\begin{theorem}
-A linear map is invertible if and only if it is injective and surjective.
-\end{theorem}
-
-See proof in the book.
-
-\begin{definition}
-An invertible linear map is called an \emph{isomorphism}. If there exists an isomorphism from one vector space to another, we say that the vector spaces are \emph{isomorphic}.
-\end{definition}
-\end{frame}
-
-\begin{frame}
-\begin{theorem}
-Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
-\end{theorem}
-\begin{proof}
-($\Rightarrow$) 
-
-\vspace{4cm}
-
-\end{proof}
-
-\end{frame}
-
-\begin{frame}
-\begin{block}{Proof continued}
-($\Leftarrow$) 
-\vspace{4cm}
-\end{block}
-\end{frame}
-
-
-\begin{frame}{Linear maps and matrices}
-\begin{example}
-Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
-\end{example}
-
-Next we will see that we can use matrices to represent linear maps between finite dimensional vector spaces. 
-
-
-\end{frame}
-
-
-
-\begin{frame}
-\begin{definition}\label{def:matrix_rep}
-Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
-\begin{equation*}
-    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m
-\end{equation*}
-i.e. the $k$th column of $A$ is the scalars needed to write $T \bu_k$ as a linear combination of the basis of $V$:
-\begin{equation*}
-    T \bu_k = \sum_{i=1}^m A_{ik} \bv_i 
-\end{equation*}
-\end{definition}
-
-Note that since a linear map $T\in \mathcal{L}(U,V)$ is uniquely determined by its image on a basis of $U$, we see that once we pick basis of $U$ and $V$ its matrix representation is uniquely determined. 
-
-\end{frame}
-
-
-
-
-\begin{frame}
-\begin{example}
-Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathbb{P}_3(\R)$ and $\mathbb{P}_4(\R)$.
-
-Standard basis: $1, x, x^2, x^3, (x^4)$ \\
-$T(u_1) $ \\
-$T(u_2)  $ \\ 
-$T(u_3) $ \\ 
-$T(u_4) $ \\
-$T(u_5) $
-\vspace{1em}
-
-The matrix is:
-\vspace{2cm}
-\end{example}
-
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
-\item Observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis
-\item  If $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$
-%\item  after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{example}
-If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
-\begin{align*}
-    \mathcal{M}(D)\boldsymbol{\alpha} = \begin{pmatrix}
-    0 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 2 & 0 & 0 \\
-    0 & 0 & 0 & 3 & 0 \\
-    0 & 0 & 0 & 0 & 4
-     \end{pmatrix} \begin{pmatrix} 7\\ 0\\ -5\\12\\1
-     \end{pmatrix} = \begin{pmatrix} 0 \\ -10\\ 36\\4
-     \end{pmatrix}.
-\end{align*}
-Thus, translating back into the monomial basis of $\mathbb{P}_3(\R)$ gives $D(p) = -10x + 36x^2 +4x^3$.
-\end{example}
-
-\end{frame}
-
-\begin{frame}{Other points}
-\begin{itemize}
-\item Looking at matrices as representations of linear maps gives us an intuitive explanation for why we do matrix multiplication the way we do! In fact, we want matrix multiplication to represent composition of linear maps
-\item We can use matrices to solve linear systems.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Next time}
-    \begin{itemize}
-      \setlength\itemsep{0.5em}
-    	\item Determinants
-	\item Eigenvalues and eigenvectors
-	\item Inner product spaces
-    \end{itemize}
-\end{frame}
 
 
 

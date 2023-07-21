@@ -81,7 +81,7 @@
 \title[]{Module 8: Linear Algebra II \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 22, 2022}
+\date{July 25, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -126,9 +126,9 @@
 Last time:
     \begin{itemize}
       \setlength\itemsep{0.5em}
+      \item Vector spaces and subspaces
     	\item Linear independence and bases
-	\item Linear maps, null space, range, inverses
-	\item Matrices as linear maps
+	\item Linear maps, null space, range
     \end{itemize}
     
 \vspace{1.5em}
@@ -136,9 +136,152 @@ Last time:
 Today:
     \begin{itemize}
       \setlength\itemsep{0.5em}
+      \item Inverses of linear maps
+      	\item Matrices as linear maps
     	\item Determinants
 	\item Inner product spaces
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{definition}[Product of linear maps]
+Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
+\end{definition}
+
+\begin{definition}
+A linear map $T: U \to V$ is \emph{invertible} if there exists a linear map $S: V \to U$ such that $ST$ is the identity map on $U$ and $TS$ is the identity map on $V$. Such a map $S$ is called the \emph{inverse} of $T$. 
+\end{definition}
+
+If $T$ is invertible, we denote the inverse by $T^\inv$. This is justified by the fact that the inverse is unique:
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Any invertible linear map has a unique inverse.
+\end{exampleblock}
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}
+A linear map is invertible if and only if it is injective and surjective.
+\end{theorem}
+
+See proof in the book.
+
+\begin{definition}
+An invertible linear map is called an \emph{isomorphism}. If there exists an isomorphism from one vector space to another, we say that the vector spaces are \emph{isomorphic}.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) 
+
+\vspace{4cm}
+
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+($\Leftarrow$) 
+\vspace{4cm}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Linear maps and matrices}
+\begin{example}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{example}
+
+Next we will see that we can use matrices to represent linear maps between finite dimensional vector spaces. 
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}\label{def:matrix_rep}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m
+\end{equation*}
+i.e. the $k$th column of $A$ is the scalars needed to write $T \bu_k$ as a linear combination of the basis of $V$:
+\begin{equation*}
+    T \bu_k = \sum_{i=1}^m A_{ik} \bv_i 
+\end{equation*}
+\end{definition}
+
+Note that since a linear map $T\in \mathcal{L}(U,V)$ is uniquely determined by its image on a basis of $U$, we see that once we pick basis of $U$ and $V$ its matrix representation is uniquely determined. 
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{example}
+Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathbb{P}_3(\R)$ and $\mathbb{P}_4(\R)$.
+
+Standard basis: $1, x, x^2, x^3, (x^4)$ \\
+$T(u_1) $ \\
+$T(u_2)  $ \\ 
+$T(u_3) $ \\ 
+$T(u_4) $ \\
+$T(u_5) $
+\vspace{1em}
+
+The matrix is:
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis
+\item  If $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$
+%\item  after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
+\begin{align*}
+    \mathcal{M}(D)\boldsymbol{\alpha} = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix} \begin{pmatrix} 7\\ 0\\ -5\\12\\1
+     \end{pmatrix} = \begin{pmatrix} 0 \\ -10\\ 36\\4
+     \end{pmatrix}.
+\end{align*}
+Thus, translating back into the monomial basis of $\mathbb{P}_3(\R)$ gives $D(p) = -10x + 36x^2 +4x^3$.
+\end{example}
+
+\end{frame}
+
+\begin{frame}{Other points}
+\begin{itemize}
+\item Looking at matrices as representations of linear maps gives us an intuitive explanation for why we do matrix multiplication the way we do! In fact, we want matrix multiplication to represent composition of linear maps
+\item We can use matrices to solve linear systems.
+\end{itemize}
 \end{frame}
 
 \section{Determinants}
@@ -429,57 +572,6 @@ Let $A\in M_n(\F)$. We call $A$ \emph{self-adjoint} if $A^* = A$. In the case $\
 \end{definition}
 \end{frame}
 
-
-\begin{frame}{Orthogonality and Gram-Schmidt}
-\begin{definition}
-Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
-\end{definition}
-
-\end{frame}
-
-\begin{frame}
-\begin{exampleblock}{Proposition}
-Let $\bx_1,\ldots, \bx_k\in V$ be orthonormal. Then the system of vectors is linearly independent.
-\end{exampleblock}
-
-\begin{proof}
-\vspace{4cm}
-\end{proof}
-\end{frame}
-
-
-\begin{frame}
-\begin{exampleblock}{Proposition (Orthogonal Decomposition)}
-Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
-\end{exampleblock}
-
-Given a basis we can obtain an ONB from it using the Gram-Schmidt algorithm by reiterating the orthogonal decomposition from above.
-\end{frame}
-
-\begin{frame}
-\begin{exampleblock}{Proposition (Gram-Schmidt Algorithm)}
-Let $\bx_1,\ldots, \bx_n \in V$ be a system of linearly independent vectors. Define $\by_1 = \bx_1/\Vert \bx_1 \Vert$. For $i = 2,\ldots,n$ define $\by_j$ inductively by
-\begin{align*}
-    \by_i = \frac{\bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k}{\Vert \bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k\Vert}.
-\end{align*}
-Then the $\by_1, \ldots, \by_n$ are orthonormal and 
-\begin{align*}
-    \mathrm{span}\{\bx_1,\ldots,\bx_n\} = \mathrm{span}\{\by_1,\ldots,\by_n\}.
-\end{align*}
-\end{exampleblock}
-
-The proof is omitted but can be found in the book.
-\end{frame}
-
-
-
-\begin{frame}{Next time}
-    \begin{itemize}
-      \setlength\itemsep{0.5em}
-	\item Eigenvalues and eigenvectors
-	\item Matrix decompositions
-    \end{itemize}
-\end{frame}
 
 
 

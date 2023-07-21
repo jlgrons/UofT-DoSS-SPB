@@ -74,7 +74,7 @@
 \title[]{Module 9: Linear Algebra III \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
 \author[]{Emma Kroell}
 \institute[]{University of Toronto}
-\date{July 25, 2022}
+\date{July 26, 2023}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -127,6 +127,49 @@ Spectral theory and matrix decompositions:
 	\item $LU$ and $QR$ decompositions
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Orthogonality and Gram-Schmidt}
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $\bx_1,\ldots, \bx_k\in V$ be orthonormal. Then the system of vectors is linearly independent.
+\end{exampleblock}
+
+\begin{proof}
+\vspace{4cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition (Orthogonal Decomposition)}
+Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
+\end{exampleblock}
+
+Given a basis we can obtain an ONB from it using the Gram-Schmidt algorithm by reiterating the orthogonal decomposition from above.
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition (Gram-Schmidt Algorithm)}
+Let $\bx_1,\ldots, \bx_n \in V$ be a system of linearly independent vectors. Define $\by_1 = \bx_1/\Vert \bx_1 \Vert$. For $i = 2,\ldots,n$ define $\by_j$ inductively by
+\begin{align*}
+    \by_i = \frac{\bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k}{\Vert \bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k\Vert}.
+\end{align*}
+Then the $\by_1, \ldots, \by_n$ are orthonormal and 
+\begin{align*}
+    \mathrm{span}\{\bx_1,\ldots,\bx_n\} = \mathrm{span}\{\by_1,\ldots,\by_n\}.
+\end{align*}
+\end{exampleblock}
+
+The proof is omitted but can be found in the book.
+\end{frame}
+
+
 
 \begin{frame}{Recall: connection between matrices and linear maps}
 \begin{block}{Multiplication by a matrix defines a linear map}
