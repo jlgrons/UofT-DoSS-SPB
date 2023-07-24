@@ -116,6 +116,9 @@
 }
 
 \begin{frame}{Outline}
+
+Adjoints, unitaries and orthogonal matrices
+
 Spectral theory and matrix decompositions:
 \vspace{0.5em}
     \begin{itemize}
@@ -126,6 +129,62 @@ Spectral theory and matrix decompositions:
 	\item Singular value decomposition
 	\item $LU$ and $QR$ decompositions
     \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
+
+\vspace{1em}
+In particular, if $\F = \R$, the adjoint of the matrix is given by its transpose,denoted $A^T$, and if $\F = \C$, it is given by its conjugate transpose, denoted $A^*$.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{proof}
+\vspace{6cm}
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+A matrix $O\in M_n(\R)$ is called \emph{orthogonal} if its inverse is given by its transpose, i.e. $O^T O = O O^T = I$. 
+
+\vspace{0.5em}
+A matrix $U\in M_n(\C)$ is called \emph{unitary} if the inverse is given by the conjugate transpose, i.e. $U^* U = U U^* = I$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+\begin{itemize}
+    \item Let $\varphi \in [0,2\pi]$. Then 
+    \begin{equation*}
+        \begin{pmatrix}
+            \cos(\varphi) & -\sin(\varphi) \\
+            \sin(\varphi) & \cos(\varphi)
+        \end{pmatrix}
+    \end{equation*}
+    is an orthogonal matrix. What does it describe geometrically?
+    \item The following is a unitary matrix:
+        \begin{equation*}
+        \begin{pmatrix}
+            0 & -i \\
+            i & 0
+        \end{pmatrix}
+    \end{equation*}
+\end{itemize}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+Let $A\in M_n(\F)$. We call $A$ \emph{self-adjoint} if $A^* = A$. In the case $\F = \R$, such an $A$ is called \emph{symmetric} and if $\F = \C$, such an $A$ is called \emph{Hermitian}.
+\end{definition}
 \end{frame}
 
 \begin{frame}{Orthogonality and Gram-Schmidt}

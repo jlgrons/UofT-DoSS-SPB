@@ -2431,10 +2431,10 @@ Let $U,V,W$ be inner product spaces and $S,T \in \mathcal{L}(U,V)$ and $R\in \ma
 
 The proof of this is an exercise. 
 
-The adjoint of a linear map also always exists, which we will handle by constructing the adjoint of a matrix. Then, since any linear map between abstract finite-dimensional vector spaces can be represented as a matrix (after a choice of basis), we obtain a matrix representation for the adjoint.  In \cite{linalgright} a slightly different and arguably  more abstract proof is presented. 
+The adjoint of a linear map also always exists, which we will handle by constructing the adjoint of a matrix. Then, since any linear map between abstract finite-dimensional vector spaces can be represented as a matrix (after a choice of basis), we obtain a matrix representation for the adjoint.  %In \cite{linalgright} a slightly different and arguably  more abstract proof is presented. 
 
 \begin{proposition}
-Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
+Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to \F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
 
 In particular if $\F = \R$, the adjoint of the matrix is given by its transpose, denoted $A^T$, and if $\F = \C$, it is given by its conjugate transpose, denoted $A^*$.
 \end{proposition}
@@ -2508,7 +2508,7 @@ The following defines an inner product on $M_n(\F)$:
 for $A,B\in M_n(\F)$. This is often called \emph{Hilbert-Schmidt inner product}.
 \end{proposition}
 
-The proof that this actually defines an inner product is an exercise. 
+The proof that this actually defines an inner product is left as an exercise. 
 
 \subsubsection{Orthogonality and Gram-Schmidt}
 In the following $V$ is always an inner product space. 
