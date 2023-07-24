@@ -104,9 +104,8 @@ Wald, Score, and Likelihood Ratio Test
 
 - Exercises: [pdf](Computing/2023/Exercises/ex8.pdf)
 
-<!-- 
-- Solution: [pdf](Computing/2022/Solutions/sol8.pdf), [Rmd](Computing/2022/Solutions/sol8.Rmd)
--->
+- Solution: [pdf](Computing/2023/Solutions/sol8.pdf), [Rmd](Computing/2023/Solutions/sol8.Rmd)
+
 
 <!-- 
 ### Module 9: Linear regression
