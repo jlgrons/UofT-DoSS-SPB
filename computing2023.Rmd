@@ -98,7 +98,7 @@ Wald, Score, and Likelihood Ratio Test
 
 
 
-### Module 8: Bootstrap
+### Module 8: Generalized linear models
 
 - Slides: [pdf](Computing/2023/Slides/mod8.pdf) 
 
