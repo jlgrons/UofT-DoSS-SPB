@@ -5,15 +5,15 @@
       "title": "Methods and Computing",
       "description": "Instructor: Yuan Tian ([Email](mailto:yuant.tian@mail.utoronto.ca)); Jianhui Gao ([Email](mailto:jianhui.gao@mail.utoronto.ca))",
       "author": [],
-      "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Basic R programming\nModule 2: Data wrangling (I)\nModule 3: Data wrangling (II)\nModule 4: Statistical inference (I)\nModule 5: Statistical inference (II)\nModule 6: Statistical inference (III)\nModule 7: Linear regression\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basic R programming\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 2: Data wrangling (I)\nLaTeX, tidyverse\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 3: Data wrangling (II)\nR style guide\n- Full Guide\nggplot2\nTutorial: pdf, Rmd\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 4: Statistical inference (I)\nBias, Consistency, and MSE\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 5: Statistical inference (II)\nMLE, Numerical Methods\nSlides: pdf\nExercises: pdf\nSolutions: pdf, Rmd\nModule 6: Statistical inference (III)\nWald, Score, and Likelihood Ratio Test\nSlides: pdf\nExercises: pdf\nSolutions: pdf\nModule 7: Linear regression\nSlides: pdf\nExercises: pdf\n\n\n\n",
-      "last_modified": "2023-07-21T08:19:33-04:00"
+      "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Basic R programming\nModule 2: Data wrangling (I)\nModule 3: Data wrangling (II)\nModule 4: Statistical inference (I)\nModule 5: Statistical inference (II)\nModule 6: Statistical inference (III)\nModule 7: Linear regression\nModule 8: Bootstrap\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basic R programming\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 2: Data wrangling (I)\nLaTeX, tidyverse\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 3: Data wrangling (II)\nR style guide\n- Full Guide\nggplot2\nTutorial: pdf, Rmd\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 4: Statistical inference (I)\nBias, Consistency, and MSE\nSlides: pdf\nExercises: pdf, Rmd\nSolutions: pdf, Rmd\nModule 5: Statistical inference (II)\nMLE, Numerical Methods\nSlides: pdf\nExercises: pdf\nSolutions: pdf, Rmd\nModule 6: Statistical inference (III)\nWald, Score, and Likelihood Ratio Test\nSlides: pdf\nExercises: pdf\nSolutions: pdf\nModule 7: Linear regression\nSlides: pdf\nExercises: pdf\nSolutions: pdf, Rmd\nModule 8: Bootstrap\nSlides: pdf\nExercises: pdf\n\n\n\n",
+      "last_modified": "2023-07-23T20:43:43-04:00"
     },
     {
       "path": "courses2022.html",
       "title": "Summer Prep Bootcamp 2022",
       "author": [],
       "contents": "\n\nContents\nMethods and Computing\nSyllabus\nLectures\n\nOperational Math\nSyllabus\nLectures\n\nProbability\nSyllabus\nLectures\n\n\nThe first DoSS Summer Prep Bootcamp was held from July 11 to July 29 2022.\nMethods and Computing\nInstructor: Siyue Yang\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basic R programming\nSlides: pdf\nExercises: pdf, Rmd\nModule 2: Data wrangling (I)\nLaTeX, Markdown, tidyverse\nSlides: pdf\nExercises: pdf, Rmd\nModule 3:Data wrangling (II)\nggplot2\nSlides: pdf\nExercises: pdf, Rmd\nModule 4: Statistical inference (I)\nProbability distributions\nSlides: pdf\nExercises: pdf, Rmd\nModule 5: Statistical inference (II)\nEstimation\nSlides: pdf\nExercises: pdf\nModule 6: Statistical inference (III)\nHypothesis testing\nSlides: pdf\nExercises: pdf\nModule 7: Simulations\nSlides: pdf\nExercises: pdf\nModule 8: Bootstrap\nSlides: pdf\nExercises: pdf\nModule 9: Linear regression\nSlides: pdf\nExercises: pdf\nModule 10: Generalized linear models\nSlides: pdf\nExercises: pdf\nOperational Math\nInstructor: Emma Kroell\nSyllabus\nClick here to download the syllabus\nLectures\nYou may download the lecture notes, which will be updated after each lecture.\nModule 1: Introduction to proofs\nSlides: fillable, filled\nExercises: pdf, LaTeX template\nModule 2: Set theory\nSlides: fillable, filled\nExercises: pdf, LaTeX template\nModule 3: Set theory II and metric spaces I\nSlides: fillable, filled\nExercises: pdf, LaTeX template\nModule 4: Metric spaces II\nSlides: fillable, filled\nExercises: pdf, LaTeX template\nModule 5: Metric spaces III and Topology I\nSlides: fillable, filled\nExercises: pdf, LaTeX\nModule 6: Topology II and intro to linear algebra\nSlides: fillable, filled\nExercises: pdf, LaTeX\nModule 7: Linear algebra I\nSlides: fillable, filled\nExercises: pdf, LaTeX\nModule 8: Linear algebra II\nSlides: fillable, filled\nExercises: pdf, LaTeX\nModule 9: Linear algebra III\nSlides: fillable, filled\nExercises: pdf, LaTeX\nModule 10: Differentiation and integration\nSlides: fillable, filled\nExercises: pdf, LaTeX\nProbability\nInstructor: Miaoshiqi (Shiki) Liu\nSyllabus\nClick here to download the syllabus\nLectures\nModule 1: Basics of Probability\nSlides: Module 1; Module 1 Annotated\nModule 2: Random Variables\nSlides: Module 2; Module 2 Annotated\nModule 3: Common Random Variables\nSlides: Module 3; Module 3 Annotated\nModule 4: Distribution\nSlides: Module 4; Module 4 Annotated\nModule 5: Expectation\nSlides: Module 5; Module 5 Annotated\nModule 6: Inequalities\nSlides: Module 6; Module 6 Annotated\nModule 7: Stochastic Convergence\nSlides: Module 7; Module 7 Annotated\nModule 8: Limit Theorems\nSlides: Module 8; Module 8 Annotated\nModule 9: Markov Chain\nSlides: Module 9; Module 9 Annotated\nModule 10: Stochastic Processes\nSlides: Module 10; Module 10 Annotated\n\n\n\n",
-      "last_modified": "2023-07-17T10:22:41-04:00"
+      "last_modified": "2023-07-23T20:39:28-04:00"
     },
     {
       "path": "index.html",
@@ -21,7 +21,7 @@
       "description": "Website for the Department of Statistical Sciences' Graduate Summer Prep Bootcamp (SPB)\n",
       "author": [],
       "contents": "\nOverview\nWelcome to the course website for the Summer Prep Bootcamp (SPB) offered by the Department of Statistical Sciences (DoSS) at the University of Toronto! All information related to the bootcamp will be posted on this website.\nThe purpose of DoSS SPB is to get incoming graduate students up to speed on foundational mathematical, statistical, and computing concepts in a low pressure environment to prepare for coursework in the upcoming semester.\nAcknowledgements\nThe following people contributed to the design of the course materials and website: Prof. Jesse Gronsbell (2022), Robert Zimmerman (2022), Siyue Yang (2022), Emma Kroell (2022), and Shiki Liu (2022).\nProfs. Lei Sun, Radu Craiu, Monica Alexander, Nancy Reid, Dehan Kong, Linbo Wang, Stanislav Volgushev, Piotr Zwiernik, Nathan Taback, and Arvind Gupta provided invaluable feedback regarding course content.\nDoSS SPB is made possible through the support of Katy Wang, Christine Bulguryemez, and Angela Fleury - thank you!\nLastly, DoSS SPB is inspired by the preparatory course for incoming PhD students offered by the Department of Biostatistics at Harvard University. We thank alum instructor, Prof. Ryan Sun of MD Anderson Cancer Center, for kindly sharing course materials.\n\n\n\n\n\n\n\n",
-      "last_modified": "2023-07-17T10:22:41-04:00"
+      "last_modified": "2023-07-23T20:39:28-04:00"
     },
     {
       "path": "math2023.html",
@@ -29,7 +29,7 @@
       "description": "Instructor: [Emma Kroell](https://www.emmakroell.ca)",
       "author": [],
       "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Introduction to\nproofs\nModule 2: Set theory I\nModule 3: Set theory\nII and metric spaces I\nModule 4: Metric spaces II\nModule 5: Metric spaces III\nModule 6: Metric spaces IV\nModule 7: Linear algebra I\n\n\nSyllabus\nClick here\nto download the syllabus\nLectures\nMaterial will be added here as the course progresses. I will add\nslides and exercises before the lecture. After the lecture, I will add\nthe annotated slides and update the lecture notes.\n\nYou may download the lecture notes, which\nwill be updated after each lecture.\nModule 1: Introduction to\nproofs\nSlides: fillable, filled\nExercises: pdf, LaTeX template, solutions\nModule 2: Set theory I\nSlides: fillable, filled\nExercises: pdf, LaTeX template, solutions\nModule 3: Set theory\nII and metric spaces I\nSlides: fillable, filled\nExercises: pdf, LaTeX template , solutions\nModule 4: Metric spaces II\nSlides: fillable, filled\nExercises: pdf, LaTeX template, solutions\nModule 5: Metric spaces III\nSlides: fillable, filled\nExercises: pdf, LaTeX, solutions\nModule 6: Metric spaces IV\nSlides: fillable , filled\nExercises: pdf, LaTeX, solutions\nModule 7: Linear algebra I\nSlides: fillable, filled\nExercises: pdf, LaTeX\n\n\n\n",
-      "last_modified": "2023-07-21T14:41:27-04:00"
+      "last_modified": "2023-07-23T20:39:28-04:00"
     },
     {
       "path": "probability2023.html",
@@ -37,14 +37,14 @@
       "description": "Instructor: Ichiro Hashimoto, PhD student (1st Year) ([Email](mailto:ichiro.hashimoto@mail.utoronto.ca))",
       "author": [],
       "contents": "\n\nContents\nSyllabus\nModule 1: Basics of Probability\nModule 2: Random Variables\nModule 3: Common Random Variables\nModule 4: Distribution\nModule 5: Expectation\nModule 6: Inequalities\nModule 7: Stochastic Convergence\n\n\nSyllabus\nClick here to download the syllabus\n\nModule 1: Basics of Probability\nSlides: Module 1;\nModule 1 Annotated\nProblem Set Solutions: Module 1 Solution\nModule 2: Random Variables\nSlides: Module 2;\nModule 2 Annotated\nProblem Set Solutions: Module 2 Solution\nModule 3: Common Random Variables\nSlides: Module 3;\nModule 3 Annotated\nProblem Set Solutions: Module 3 Solution\nModule 4: Distribution\nSlides: Module 4;\nModule 4 Annotated\nProblem Set Solutions: Module 4 Solution\nModule 5: Expectation\nSlides: Module 5; Module 5 Annotated\nProblem Set Solutions: Module 5 Solution\nModule 6: Inequalities\nSlides: Module 6;\nModule 6 Annotated\nModule 7: Stochastic Convergence\nSlides: Module 7;\n\n\n\n\n",
-      "last_modified": "2023-07-21T08:19:33-04:00"
+      "last_modified": "2023-07-23T20:39:28-04:00"
     },
     {
       "path": "schedule.html",
       "title": "Schedule",
       "author": [],
       "contents": "\nBelow is our course schedule, which may change as the course progresses.\nThe morning session I will run from 9:00 am–10:30 am and the morning session II will run from 11:00 am–12:30 pm (all times EDT/Toronto time).\nZoom meeting information will be provided to all registered participants.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-      "last_modified": "2023-07-17T10:22:41-04:00"
+      "last_modified": "2023-07-23T20:39:28-04:00"
     }
   ],
   "collections": []

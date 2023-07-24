@@ -94,17 +94,17 @@ Wald, Score, and Likelihood Ratio Test
 
 - Exercises: [pdf](Computing/2023/Exercises/ex7.pdf)
 
-<!-- 
-- Solutions: [pdf](Computing/2022/Solutions/sol7.pdf), [Rmd](Computing/2022/Solutions/sol7.Rmd)
--->
+- Solutions: [pdf](Computing/2023/Solutions/sol7.pdf), [Rmd](Computing/2023/Solutions/sol7.Rmd)
 
-<!-- 
+
+
 ### Module 8: Bootstrap
 
-- Slides: [pdf](Computing/2022/Slides/mod8.pdf) 
+- Slides: [pdf](Computing/2023/Slides/mod8.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex8.pdf)
+- Exercises: [pdf](Computing/2023/Exercises/ex8.pdf)
 
+<!-- 
 - Solution: [pdf](Computing/2022/Solutions/sol8.pdf), [Rmd](Computing/2022/Solutions/sol8.Rmd)
 -->
 
