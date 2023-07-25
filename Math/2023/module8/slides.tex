@@ -143,6 +143,26 @@ Today:
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Recall}
+\begin{theorem}
+Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
+\end{theorem}
+
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$, if and only if $\nullspace T = \{ \zerovec \}$. $T$ is \emph{surjective} if $\forall \bv \in V, \, \exists \bu \in U$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+
+
+\begin{theorem}[Rank Nullity Theorem]
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\rank T + \nullity  T = \dim U.
+\end{equation*}
+\end{theorem}
+\end{frame}
+
 \begin{frame}
 \begin{definition}[Product of linear maps]
 Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
