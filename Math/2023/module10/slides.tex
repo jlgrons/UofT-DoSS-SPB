@@ -33,8 +33,12 @@
 \newcommand{\bu}{{\mathbf{u}}}
 \newcommand{\bv}{{\mathbf{v}}}
 \newcommand{\bw}{{\mathbf{w}}}
-\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
 \newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
 
 % other useful stuff
 \newcommand{\Id}{{\mathds{1}}}
@@ -134,6 +138,174 @@
     \end{itemize}
     \end{itemize}
 \end{frame}
+
+
+\begin{frame}{Block matrices}
+\begin{definition}
+A block matrix is a matrix that can be broken into sections called blocks, which are smaller matrices.
+\end{definition}
+
+\begin{example}
+$$ \begin{bmatrix} 2 & 1 & 0 & 1  \\ 0 & 2 &1 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} \qquad \qquad \qquad \qquad$$
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+A square matrix is called \emph{block diagonal} if it can be written as a block matrix where the main-diagonal blocks are all square matrices and the off-diagonal blocks are all zero.
+\end{definition}
+
+\begin{example}
+The matrix
+$$ \begin{bmatrix} 2 & 1 & 0 & 0  \\ 0 & 2 &0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} $$
+is block diagonal.
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+A vector $\bv$ is called a \emph{generalized eigenvector} of $A$ corresponding to an eigenvalue $\lambda$ if there exists $k \geq 1$ such that 
+$$ (A - \lambda I)^k \bv = 0.$$
+\end{definition}
+The set of generalized eigenvectors of an eigenvalue $\lambda$ (plus $\zerovec$) is called the \emph{generalized eigenspace} of $\lambda$.
+
+\vspace{1em}
+
+\begin{exampleblock}{Proposition}
+The algebraic multiplicity of an eigenvalue $\lambda$ is the same as the dimension of the corresponding generalized eigenspace.
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}[Jordan decomposition theorem]
+For any operator $A$ there exists a basis such that $A$ is block diagonal with blocks that have eigenvalues on the diagonal and 1s on the upper off-diagonal. In other words, $A$ can be written in the form
+$$ A = \begin{bmatrix} J_1 & 0 & \ldots & 0\\ 0 & J_2 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \ldots & J_k \end{bmatrix} $$
+where the blocks $J_i$ on the main diagonal are Jordan block of the form 
+$$\begin{bmatrix} \lambda  \end{bmatrix}, \begin{bmatrix} \lambda & 1  \\ 0 &\lambda \end{bmatrix}, \begin{bmatrix} \lambda & 1 & 0 \\ 0 &\lambda & 1 \\ 0 & 0 & \lambda \end{bmatrix}, \text{ etc.}$$
+This form is called \emph{Jordan canonical form}.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+Connection to algebraic and geometric multiplicity:
+\begin{itemize}
+    \item The algebraic multiplicity of an eigenvalue $\lambda$ is the number of times $\lambda$ appears on the diagonal.
+    \item The geometric multiplicity of $\lambda$ is the number of Jordan blocks associated with $\lambda$.
+\end{itemize}
+\vspace{1em}
+
+Why is Jordan form useful?
+
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}{Singular value decomposition}
+\begin{itemize}
+\item $A^T A$ is symmetric
+\item therefore it is orthogonally diagonalizable and has real eigenvalues 
+\item In fact, the eigenvalues are non-negative (exercise)
+\end{itemize}
+
+
+\begin{definition}
+Let $A$ be an $m \times n$ matrix.  Let $\lambda_1, \ldots, \lambda_n$ be the eigenvalues of $A^T A$. Then the \emph{singular values} of $A$ are defined as
+\begin{equation*}
+    \sigma_1 = \sqrt{\lambda_1}, \ldots, \sigma_n = \sqrt{\lambda_n}.
+\end{equation*}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}[Singular value decomposition]
+If $A$ is an $m \times n$ matrix of rank $k$, then we can write
+$$ A = U \Sigma V^T$$
+where $\Sigma$ is an $m \times n$ matrix of the form
+$$ \begin{bmatrix} D_{k \times k} & 0_{k \times (n - k)} \\ 0_{(m -k) \times k} & 0_{(m -k) \times (n-k)} \end{bmatrix},$$
+$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_k$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times m$ and $n \times n$, respectively).
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+Uses of SVD:
+
+\vspace{3cm}
+
+Differences between JCF and SVD:
+
+\vspace{3cm}
+
+\end{frame}
+
+\begin{frame}{$LU$-decomposition}
+\begin{definition}
+The $LU$-decomposition of a square matrix $A$ is the factorization of $A$ into a lower triangular matrix $L$ and an upper triangular matrix $U$ as follows:
+\begin{equation*}
+    A = LU.
+\end{equation*}
+\end{definition}
+
+Why is this useful? Consider the linear system $A \bx = \mathbf{b}$
+\vspace{3cm}
+\end{frame}
+
+\begin{frame}{Recall: orthonormal basis}
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+\vspace{1em}
+
+Starting from a set of linearly independent vectors, we can construct another set of vectors which are orthonormal and span the same space using the \textbf{\textcolor{deptoran}{Gram-Schmidt Algorithm}}.
+\end{frame}
+
+
+
+\begin{frame}{$QR$-decomposition}
+\begin{definition}[$QR$-decomposition]
+The $QR$-decomposition of an $m \times n$ matrix $A$ with linearly independent column vectors is the factorization of $A$ as follows:
+\begin{equation*}
+    A = QR,
+\end{equation*}
+where $Q$ is an $m \times n$ matrix with orthonormal column vectors and $R$ is an $n\times n$ invertible upper triangular matrix.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+One obtains the factorization by applying the Gram-Schmidt algorithm to the columns of $A$. Let $\bu_1, \ldots, \bu_n$ be the column vectors of $A$. Let $\mathbf{q}_1, \ldots, \mathbf{q}_n$ be the orthonormal vectors obtained by applying Gram Schmidt. Then one can write:
+\begin{align*}
+    \bu_1 &= \innerprod{\bu_1,\mathbf{q}_1}\mathbf{q}_1 + \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2+ \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    \bu_2 &= \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2 + \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    & \vdots \\
+    \bu_n &=  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n
+\end{align*}
+
+Thus the orthonormal vectors obtained using Gram-Schmidt form the columns of $Q$, while $R$ is the terms needed to go between the columns of $A$ and thsoe of $Q$, i.e.
+$$ R = \begin{bmatrix}
+\innerprod{\bu_1,\mathbf{q}_1} & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+0 & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+\vdots &\vdots & \ddots & \vdots \\
+0 & 0 & \ldots & \innerprod{\bu_n,\mathbf{q}_n} 
+\end{bmatrix}.$$
+\end{frame}
+
+\begin{frame}
+Why use $QR$-decomposition? 
+
+\vspace{3cm}
+
+\end{frame}
+
 
 
 \section{Differentiation}

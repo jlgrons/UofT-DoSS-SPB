@@ -2495,7 +2495,7 @@ Let $A\in M_n(\F)$. We call $A$ \emph{self-adjoint} if $A^* = A$. In the case $\
 Lastly, we mention that the square matrices can be equipped with an inner product. 
 
 \begin{definition}
-The \emph{trace} is the linear function $\Tr \colon M_n{\F} \to \F$ given by $\Tr(A) = \sum_{i=1}^n A_{ii}$.
+The \emph{trace} is the linear function $\Tr \colon M_n(\F) \to \F$ given by $\Tr(A) = \sum_{i=1}^n A_{ii}$.
 \end{definition}
 
 The trace is especially nice due to its cyclic property $\Tr(AB) = \Tr(BA)$ for all $A,B\in M_n(\F)$. The proof of this is an exercise. Note that this also shows that the trace is independent of the choice of basis, since any change of basis transformation can be expressed using an invertible matrix $U$, i.e. $UAU^\inv$.
@@ -2584,7 +2584,7 @@ We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We ca
 
 Note that $A \bv = \lambda \bv$ can be rewritten as $(A - \lambda I) \bv= 0$. Thus, if $\lambda$ is an eigenvalue, we can find the corresponding eigenvectors by finding the null space of $A - \lambda I$. The subspace $\nullspace (A - \lambda I)$ is called the \emph{eigenspace}.
 
-To find the eigenvalues of $A$, one must find the scalars $\lambda$ such that $\nullspace (A - \lambda I)$ has a non-trivial solution. By \cref{sec:lin_maps}, this means that $\lambda$ is an eigenvector if and only if $A - \lambda I$ is not invertible. By \cref{prop:A_invertible}, this means we need $|A - \lambda I| = 0$.
+To find the eigenvalues of $A$, one must find the scalars $\lambda$ such that $\nullspace (A - \lambda I)$ has a non-trivial solution. By \cref{sec:lin_maps}, this means that $\lambda$ is an eigenvalue if and only if $A - \lambda I$ is not invertible. By \cref{prop:A_invertible}, this means we need $|A - \lambda I| = 0$.
 
 \begin{theorem}
 The following are equivalent
