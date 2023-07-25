@@ -2152,7 +2152,7 @@ The matrix is:
 \end{equation*}
 \end{example}
 
-Now observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis. In particular, if $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$. Hence, after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$. 
+Now observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis. In particular, if $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$. Hence, after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to \F^m$. 
 
 \begin{example}
 If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
@@ -2241,7 +2241,7 @@ This can be useful in solving linear systems. If we have the linear system $A\bx
 \begin{corollary}
 Suppose $A$ is an $n \times n$ invertible matrix. The linear system $A\bx = \mathbf{b}$ has a unique solution given by
 \begin{equation*}
-    x_i = \frac{|A_i|}{|A|}, \quad i, \ldots, n,
+    x_i = \frac{|A_i|}{|A|}, \quad i = 1, \ldots, n,
 \end{equation*}
 where $A_i$ is the matrix obtained by replacing the $i^\text{th}$ column of $A$ with $\mathbf{b}$.
 \end{corollary}
