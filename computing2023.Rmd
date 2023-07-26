@@ -107,15 +107,16 @@ Wald, Score, and Likelihood Ratio Test
 - Solution: [pdf](Computing/2023/Solutions/sol8.pdf), [Rmd](Computing/2023/Solutions/sol8.Rmd)
 
 
-<!-- 
-### Module 9: Linear regression
 
-- Slides: [pdf](Computing/2022/Slides/mod9.pdf) 
+### Module 9: Parallel Computing in R
 
-- Exercises: [pdf](Computing/2022/Exercises/ex9.pdf)
 
-- Solution: [pdf](Computing/2022/Solutions/sol9.pdf), [Rmd](Computing/2022/Solutions/sol9.Rmd)
--->
+- Slides: [pdf](Computing/2023/Slides/mod9.pdf) 
+
+- Exercises: [pdf](Computing/2022/Exercises/ex7.pdf)
+
+- Solution: [pdf](Computing/2022/Solutions/sol7.pdf), [Rmd](Computing/2022/Solutions/sol9.Rmd)
+
 
 <!-- 
 ### Module 10: Generalized linear models
