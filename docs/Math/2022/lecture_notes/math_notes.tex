@@ -2505,7 +2505,7 @@ Let $U,V$ be inner product spaces and $S\colon U \to V$ be a linear map. Then $S
 \end{proposition}
 
 \begin{proof}
-First, we show uniqueness. Suppose there exists $T\colon V \to U$ such that $\innerprod{S\bu,\bv}_V = \innerprod{\bu,T\bv}_U$ for all $\bu\in U, \bv\in V$. Then, $\innerprod{\bu,T\bv}_U = \innerprod{\bu, S^*\bv}$ for all $\bu\in U, \bv\in V$. Then using (conjugate) symmetry and Exercise 1, we see that $S^*= T$.
+First, we show uniqueness. Suppose there exists $T\colon V \to U$ such that $\innerprod{S\bu,\bv}_V = \innerprod{\bu,T\bv}_U$ for all $\bu\in U, \bv\in V$. Then, $\innerprod{\bu,T\bv}_U = \innerprod{\bu, S^*\bv}$ for all $\bu\in U, \bv\in V$. Then using (conjugate) symmetry and Exercise 11, we see that $S^*= T$.
 
 To see linearity take $\alpha\in \F$ and $\bv,\bw \in V$. Then, by the definition of adjoint and using  conjugate linearity in the second argument we obtain 
 \begin{align*}
@@ -2543,7 +2543,7 @@ The proof of this is an exercise.
 The adjoint of a linear map also always exists, which we will handle by constructing the adjoint of a matrix. Then, since any linear map between abstract finite-dimensional vector spaces can be represented as a matrix (after a choice of basis), we obtain a matrix representation for the adjoint.  In \cite{linalgright} a slightly different and arguably  more abstract proof is presented. 
 
 \begin{proposition}
-Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
+Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to \F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
 
 In particular if $\F = \R$, the adjoint of the matrix is given by its transpose, denoted $A^T$, and if $\F = \C$, it is given by its conjugate transpose, denoted $A^*$.
 \end{proposition}
@@ -2644,7 +2644,7 @@ which shows that $\alpha_i = 0$ for all $i=1,\ldots, n$ and thus, the system is 
 Given two vectors we can decompose one into orthogonal parts with respect to the other. 
 
 \begin{proposition}[Orthogonal Decomposition,{\cite[6.14, p.171]{linalgright}}]
-Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
+Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in \F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
 \end{proposition}
 
 \begin{proof}
@@ -2686,9 +2686,9 @@ Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would l
 In what follows, we will frame our discussion in terms of matrices. Given a choice of basis, it could be applied more broadly to linear maps.
 
 \begin{definition}
-Given an operator $A \colon V \to V$ and $\alpha \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+Given an operator $A \colon V \to V$ and $\lambda \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
 $$A \bv = \lambda \bv.$$
-We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $T$ and denote it by $\sigma(T)$.
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $A$ and denote it by $\sigma(T)$.
 \end{definition}
 
 Note that $A \bv = \lambda \bv$ can be rewritten as $(A - \lambda I) \bv= 0$. Thus, if $\lambda$ is an eigenvalue, we can find the corresponding eigenvectors by finding the null space of $A - \lambda I$. The subspace $\nullspace (A - \lambda I)$ is called the \emph{eigenspace}.
