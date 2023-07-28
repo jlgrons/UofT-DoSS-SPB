@@ -99,7 +99,7 @@ Instructor: [Emma Kroell](https://www.emmakroell.ca)
 
 ### Lectures
 
-You may download the [lecture notes](Math/2022/lecture_notes/math_notes.pdf), which will be updated after each lecture.
+You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), which will be updated after each lecture.
 
 
 #### Module 1: Introduction to proofs

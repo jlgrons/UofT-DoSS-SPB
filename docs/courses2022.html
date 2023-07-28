@@ -50,17 +50,16 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
+code span.cf { color: #007ba5; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -74,9 +73,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
+code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
+code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -785,7 +784,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1027,6 +1025,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
   }
 
   .figure .caption {
@@ -1858,21 +1860,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
-          $(this).html(fn.shadowRoot.querySelector("sup"))
-          $(this).id = fn.id
-          fn.remove()
-        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1884,31 +1874,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
-
-      // fix footnotes in tables (#411)
-      // replacing broken distill.pub feature
-      $('table d-footnote').each(function() {
-        // we replace internal showAtNode methode which is triggered when hovering a footnote
-        this.hoverBox.showAtNode = function(node) {
-          // ported from https://github.com/distillpub/template/pull/105/files
-          calcOffset = function(elem) {
-              let x = elem.offsetLeft;
-              let y = elem.offsetTop;
-              // Traverse upwards until an `absolute` element is found or `elem`
-              // becomes null.
-              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
-                  x += elem.offsetLeft;
-                  y += elem.offsetTop;
-              }
-
-              return { left: x, top: y };
-          }
-          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-          const bbox = node.getBoundingClientRect();
-          const offset = calcOffset(node);
-          this.show([offset.left + bbox.width, offset.top + bbox.height]);
-        }
-      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2008,8 +1973,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
-      // ignore leaflet img layers (#106)
-      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2032,7 +1995,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
 
@@ -2380,7 +2343,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2447,12 +2410,14 @@ Past courses
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#methods-and-computing" id="toc-methods-and-computing">Methods and Computing</a>
+<li><a href="#methods-and-computing"
+id="toc-methods-and-computing">Methods and Computing</a>
 <ul>
 <li><a href="#syllabus" id="toc-syllabus">Syllabus</a></li>
 <li><a href="#lectures" id="toc-lectures">Lectures</a></li>
 </ul></li>
-<li><a href="#operational-math" id="toc-operational-math">Operational Math</a>
+<li><a href="#operational-math" id="toc-operational-math">Operational
+Math</a>
 <ul>
 <li><a href="#syllabus-1" id="toc-syllabus-1">Syllabus</a></li>
 <li><a href="#lectures-1" id="toc-lectures-1">Lectures</a></li>
@@ -2465,169 +2430,252 @@ Past courses
 </ul>
 </nav>
 </div>
-<p>The first DoSS Summer Prep Bootcamp was held from July 11 to July 29 2022.</p>
+<p>The first DoSS Summer Prep Bootcamp was held from July 11 to July 29
+2022.</p>
 <h2 id="methods-and-computing">Methods and Computing</h2>
 <p>Instructor: <a href="https://siyueyang.github.io">Siyue Yang</a></p>
 <h3 id="syllabus">Syllabus</h3>
-<p><a href="Computing/2022/syllabus_computing.pdf">Click here to download the syllabus</a></p>
+<p><a href="Computing/2022/syllabus_computing.pdf">Click here to
+download the syllabus</a></p>
 <h3 id="lectures">Lectures</h3>
 <h4 id="module-1-basic-r-programming">Module 1: Basic R programming</h4>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod1.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex1.pdf">pdf</a>, <a href="Computing/2022/Exercises/ex1.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/2022/Exercises/ex1.pdf">pdf</a>, <a
+href="Computing/2022/Exercises/ex1.Rmd">Rmd</a></p></li>
 </ul>
 <h4 id="module-2-data-wrangling-i">Module 2: Data wrangling (I)</h4>
 <p>LaTeX, Markdown, tidyverse</p>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod2.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex2.pdf">pdf</a>, <a href="Computing/2022/Exercises/ex2.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/2022/Exercises/ex2.pdf">pdf</a>, <a
+href="Computing/2022/Exercises/ex2.Rmd">Rmd</a></p></li>
 </ul>
 <h4 id="module-3data-wrangling-ii">Module 3:Data wrangling (II)</h4>
 <p>ggplot2</p>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod3.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex3.pdf">pdf</a>, <a href="Computing/2022/Exercises/ex3.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/2022/Exercises/ex3.pdf">pdf</a>, <a
+href="Computing/2022/Exercises/ex3.Rmd">Rmd</a></p></li>
 </ul>
-<h4 id="module-4-statistical-inference-i">Module 4: Statistical inference (I)</h4>
+<h4 id="module-4-statistical-inference-i">Module 4: Statistical
+inference (I)</h4>
 <p>Probability distributions</p>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod4.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex4.pdf">pdf</a>, <a href="Computing/2022/Exercises/ex4.Rmd">Rmd</a></p></li>
+<li><p>Exercises: <a href="Computing/2022/Exercises/ex4.pdf">pdf</a>, <a
+href="Computing/2022/Exercises/ex4.Rmd">Rmd</a></p></li>
 </ul>
-<h4 id="module-5-statistical-inference-ii">Module 5: Statistical inference (II)</h4>
+<h4 id="module-5-statistical-inference-ii">Module 5: Statistical
+inference (II)</h4>
 <p>Estimation</p>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod5.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex5.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex5.pdf">pdf</a></p></li>
 </ul>
-<h4 id="module-6-statistical-inference-iii">Module 6: Statistical inference (III)</h4>
+<h4 id="module-6-statistical-inference-iii">Module 6: Statistical
+inference (III)</h4>
 <p>Hypothesis testing</p>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod6.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex6.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex6.pdf">pdf</a></p></li>
 </ul>
 <h4 id="module-7-simulations">Module 7: Simulations</h4>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod7.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex7.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex7.pdf">pdf</a></p></li>
 </ul>
 <h4 id="module-8-bootstrap">Module 8: Bootstrap</h4>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod8.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex8.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex8.pdf">pdf</a></p></li>
 </ul>
 <h4 id="module-9-linear-regression">Module 9: Linear regression</h4>
 <ul>
 <li><p>Slides: <a href="Computing/2022/Slides/mod9.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex9.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex9.pdf">pdf</a></p></li>
 </ul>
-<h4 id="module-10-generalized-linear-models">Module 10: Generalized linear models</h4>
+<h4 id="module-10-generalized-linear-models">Module 10: Generalized
+linear models</h4>
 <ul>
-<li><p>Slides: <a href="Computing/2022/Slides/mod10.pdf">pdf</a></p></li>
-<li><p>Exercises: <a href="Computing/2022/Exercises/ex10.pdf">pdf</a></p></li>
+<li><p>Slides: <a
+href="Computing/2022/Slides/mod10.pdf">pdf</a></p></li>
+<li><p>Exercises: <a
+href="Computing/2022/Exercises/ex10.pdf">pdf</a></p></li>
 </ul>
 <h2 id="operational-math">Operational Math</h2>
 <p>Instructor: <a href="https://www.emmakroell.ca">Emma Kroell</a></p>
 <h3 id="syllabus-1">Syllabus</h3>
-<p><a href="Math/2022/syllabus/syllabus_operational_math.pdf">Click here to download the syllabus</a></p>
+<p><a href="Math/2022/syllabus/syllabus_operational_math.pdf">Click here
+to download the syllabus</a></p>
 <h3 id="lectures-1">Lectures</h3>
-<p>You may download the <a href="Math/2022/lecture_notes/math_notes.pdf">lecture notes</a>, which will be updated after each lecture.</p>
-<h4 id="module-1-introduction-to-proofs">Module 1: Introduction to proofs</h4>
+<p>You may download the <a
+href="Math/2023/lecture_notes/math_notes.pdf">lecture notes</a>, which
+will be updated after each lecture.</p>
+<h4 id="module-1-introduction-to-proofs">Module 1: Introduction to
+proofs</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module1/slides.pdf">fillable</a>, <a href="Math/2022/module1/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module1/exercises.pdf">pdf</a>, <a href="Math/2022/module1/exercises.tex">LaTeX template</a></p></li>
+<li><p>Slides: <a href="Math/2022/module1/slides.pdf">fillable</a>, <a
+href="Math/2022/module1/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module1/exercises.pdf">pdf</a>, <a
+href="Math/2022/module1/exercises.tex">LaTeX template</a></p></li>
 </ul>
 <h4 id="module-2-set-theory">Module 2: Set theory</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module2/slides.pdf">fillable</a>, <a href="Math/2022/module2/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module2/exercises.pdf">pdf</a>, <a href="Math/2022/module2/exercises.tex">LaTeX template</a></p></li>
+<li><p>Slides: <a href="Math/2022/module2/slides.pdf">fillable</a>, <a
+href="Math/2022/module2/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module2/exercises.pdf">pdf</a>, <a
+href="Math/2022/module2/exercises.tex">LaTeX template</a></p></li>
 </ul>
-<h4 id="module-3-set-theory-ii-and-metric-spaces-i">Module 3: Set theory II and metric spaces I</h4>
+<h4 id="module-3-set-theory-ii-and-metric-spaces-i">Module 3: Set theory
+II and metric spaces I</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module3/slides.pdf">fillable</a>, <a href="Math/2022/module3/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module3/exercises.pdf">pdf</a>, <a href="Math/2022/module3/exercises.tex">LaTeX template</a></p></li>
+<li><p>Slides: <a href="Math/2022/module3/slides.pdf">fillable</a>, <a
+href="Math/2022/module3/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module3/exercises.pdf">pdf</a>, <a
+href="Math/2022/module3/exercises.tex">LaTeX template</a></p></li>
 </ul>
 <h4 id="module-4-metric-spaces-ii">Module 4: Metric spaces II</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module4/slides.pdf">fillable</a>, <a href="Math/2022/module4/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module4/exercises.pdf">pdf</a>, <a href="Math/2022/module4/exercises.tex">LaTeX template</a></p></li>
+<li><p>Slides: <a href="Math/2022/module4/slides.pdf">fillable</a>, <a
+href="Math/2022/module4/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module4/exercises.pdf">pdf</a>, <a
+href="Math/2022/module4/exercises.tex">LaTeX template</a></p></li>
 </ul>
-<h4 id="module-5-metric-spaces-iii-and-topology-i">Module 5: Metric spaces III and Topology I</h4>
+<h4 id="module-5-metric-spaces-iii-and-topology-i">Module 5: Metric
+spaces III and Topology I</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module5/slides.pdf">fillable</a>, <a href="Math/2022/module5/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module5/exercises.pdf">pdf</a>, <a href="Math/2022/module5/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module5/slides.pdf">fillable</a>, <a
+href="Math/2022/module5/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module5/exercises.pdf">pdf</a>, <a
+href="Math/2022/module5/exercises.tex">LaTeX</a></p></li>
 </ul>
-<h4 id="module-6-topology-ii-and-intro-to-linear-algebra">Module 6: Topology II and intro to linear algebra</h4>
+<h4 id="module-6-topology-ii-and-intro-to-linear-algebra">Module 6:
+Topology II and intro to linear algebra</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module6/slides.pdf">fillable</a>, <a href="Math/2022/module6/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module6/exercises.pdf">pdf</a>, <a href="Math/2022/module6/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module6/slides.pdf">fillable</a>, <a
+href="Math/2022/module6/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module6/exercises.pdf">pdf</a>, <a
+href="Math/2022/module6/exercises.tex">LaTeX</a></p></li>
 </ul>
 <h4 id="module-7-linear-algebra-i">Module 7: Linear algebra I</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module7/slides.pdf">fillable</a>, <a href="Math/2022/module7/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module7/exercises.pdf">pdf</a>, <a href="Math/2022/module7/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module7/slides.pdf">fillable</a>, <a
+href="Math/2022/module7/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module7/exercises.pdf">pdf</a>, <a
+href="Math/2022/module7/exercises.tex">LaTeX</a></p></li>
 </ul>
 <h4 id="module-8-linear-algebra-ii">Module 8: Linear algebra II</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module8/slides.pdf">fillable</a>, <a href="Math/2022/module8/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module8/exercises.pdf">pdf</a>, <a href="Math/2022/module8/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module8/slides.pdf">fillable</a>, <a
+href="Math/2022/module8/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module8/exercises.pdf">pdf</a>, <a
+href="Math/2022/module8/exercises.tex">LaTeX</a></p></li>
 </ul>
 <h4 id="module-9-linear-algebra-iii">Module 9: Linear algebra III</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module9/slides.pdf">fillable</a>, <a href="Math/2022/module9/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module9/exercises.pdf">pdf</a>, <a href="Math/2022/module9/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module9/slides.pdf">fillable</a>, <a
+href="Math/2022/module9/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module9/exercises.pdf">pdf</a>, <a
+href="Math/2022/module9/exercises.tex">LaTeX</a></p></li>
 </ul>
-<h4 id="module-10-differentiation-and-integration">Module 10: Differentiation and integration</h4>
+<h4 id="module-10-differentiation-and-integration">Module 10:
+Differentiation and integration</h4>
 <ul>
-<li><p>Slides: <a href="Math/2022/module10/slides.pdf">fillable</a>, <a href="Math/2022/module10/slides_filled.pdf">filled</a></p></li>
-<li><p>Exercises: <a href="Math/2022/module10/exercises.pdf">pdf</a>, <a href="Math/2022/module10/exercises.tex">LaTeX</a></p></li>
+<li><p>Slides: <a href="Math/2022/module10/slides.pdf">fillable</a>, <a
+href="Math/2022/module10/slides_filled.pdf">filled</a></p></li>
+<li><p>Exercises: <a href="Math/2022/module10/exercises.pdf">pdf</a>, <a
+href="Math/2022/module10/exercises.tex">LaTeX</a></p></li>
 </ul>
 <h2 id="probability">Probability</h2>
-<p>Instructor: <a href="https://shiqi.writingspace.cc">Miaoshiqi (Shiki) Liu</a></p>
+<p>Instructor: <a href="https://shiqi.writingspace.cc">Miaoshiqi (Shiki)
+Liu</a></p>
 <h3 id="syllabus-2">Syllabus</h3>
-<p><a href="Probability/2022/Syllabus/Bootcamp_Probability_Syllabus.pdf">Click here to download the syllabus</a></p>
+<p><a
+href="Probability/2022/Syllabus/Bootcamp_Probability_Syllabus.pdf">Click
+here to download the syllabus</a></p>
 <h3 id="lectures-2">Lectures</h3>
-<h4 id="module-1-basics-of-probability">Module 1: Basics of Probability</h4>
+<h4 id="module-1-basics-of-probability">Module 1: Basics of
+Probability</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_1_with_effects.pdf">Module 1</a>; <a href="Probability/2022/Slides/Module_1_annotated.pdf">Module 1 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_1_with_effects.pdf">Module
+1</a>; <a href="Probability/2022/Slides/Module_1_annotated.pdf">Module 1
+Annotated</a></li>
 </ul>
 <h4 id="module-2-random-variables">Module 2: Random Variables</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_2_with_effects.pdf">Module 2</a>; <a href="Probability/2022/Slides/Module_2_annotated.pdf">Module 2 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_2_with_effects.pdf">Module
+2</a>; <a href="Probability/2022/Slides/Module_2_annotated.pdf">Module 2
+Annotated</a></li>
 </ul>
-<h4 id="module-3-common-random-variables">Module 3: Common Random Variables</h4>
+<h4 id="module-3-common-random-variables">Module 3: Common Random
+Variables</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_3_with_effects.pdf">Module 3</a>; <a href="Probability/2022/Slides/Module_3_annotated.pdf">Module 3 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_3_with_effects.pdf">Module
+3</a>; <a href="Probability/2022/Slides/Module_3_annotated.pdf">Module 3
+Annotated</a></li>
 </ul>
 <h4 id="module-4-distribution">Module 4: Distribution</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_4_with_effects.pdf">Module 4</a>; <a href="Probability/2022/Slides/Module_4_annotated.pdf">Module 4 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_4_with_effects.pdf">Module
+4</a>; <a href="Probability/2022/Slides/Module_4_annotated.pdf">Module 4
+Annotated</a></li>
 </ul>
 <h4 id="module-5-expectation">Module 5: Expectation</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_5_with_effects.pdf">Module 5</a>; <a href="Probability/2022/Slides/Module_5_annotated.pdf">Module 5 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_5_with_effects.pdf">Module
+5</a>; <a href="Probability/2022/Slides/Module_5_annotated.pdf">Module 5
+Annotated</a></li>
 </ul>
 <h4 id="module-6-inequalities">Module 6: Inequalities</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_6_with_effects.pdf">Module 6</a>; <a href="Probability/2022/Slides/Module_6_annotated.pdf">Module 6 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_6_with_effects.pdf">Module
+6</a>; <a href="Probability/2022/Slides/Module_6_annotated.pdf">Module 6
+Annotated</a></li>
 </ul>
-<h4 id="module-7-stochastic-convergence">Module 7: Stochastic Convergence</h4>
+<h4 id="module-7-stochastic-convergence">Module 7: Stochastic
+Convergence</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_7_with_effects.pdf">Module 7</a>; <a href="Probability/2022/Slides/Module_7_annotated.pdf">Module 7 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_7_with_effects.pdf">Module
+7</a>; <a href="Probability/2022/Slides/Module_7_annotated.pdf">Module 7
+Annotated</a></li>
 </ul>
 <h4 id="module-8-limit-theorems">Module 8: Limit Theorems</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_8_with_effects.pdf">Module 8</a>; <a href="Probability/2022/Slides/Module_8_annotated.pdf">Module 8 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_8_with_effects.pdf">Module
+8</a>; <a href="Probability/2022/Slides/Module_8_annotated.pdf">Module 8
+Annotated</a></li>
 </ul>
 <h4 id="module-9-markov-chain">Module 9: Markov Chain</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_9_with_effects.pdf">Module 9</a>; <a href="Probability/2022/Slides/Module_9_annotated.pdf">Module 9 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_9_with_effects.pdf">Module
+9</a>; <a href="Probability/2022/Slides/Module_9_annotated.pdf">Module 9
+Annotated</a></li>
 </ul>
-<h4 id="module-10-stochastic-processes">Module 10: Stochastic Processes</h4>
+<h4 id="module-10-stochastic-processes">Module 10: Stochastic
+Processes</h4>
 <ul>
-<li>Slides: <a href="Probability/2022/Slides/Summer_Bootcamp_Module_10_with_effects.pdf">Module 10</a>; <a href="Probability/2022/Slides/Module_10_annotated.pdf">Module 10 Annotated</a></li>
+<li>Slides: <a
+href="Probability/2022/Slides/Summer_Bootcamp_Module_10_with_effects.pdf">Module
+10</a>; <a href="Probability/2022/Slides/Module_10_annotated.pdf">Module
+10 Annotated</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
