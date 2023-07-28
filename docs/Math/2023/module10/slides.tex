@@ -53,6 +53,12 @@
 \newcommand{\cT}{\mathcal{T}}
 \newcommand{\inv}{{-1}}
 
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
+
 
 \beamertemplatenavigationsymbolsempty
 
@@ -119,9 +125,25 @@
 \end{frame}
 }
 
+\begin{frame}{Last time}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item Eigenvalues and eigenvectors
+	\item Algebraic and geometric multiplicity of eigenvalues
+	\item Matrix diagonalization
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Outline}
     \begin{itemize}
-      \setlength\itemsep{0.75em}
+      \setlength\itemsep{0.5em}
+          \item Matrix decompositions
+	\begin{itemize}
+      \setlength\itemsep{0.25em}
+	\item Jordan canonical form
+	\item Singular value decomposition
+	\item QR
+    \end{itemize}
     	\item Differentiation on $\R$
 	\begin{itemize}
       \setlength\itemsep{0.25em}
@@ -137,6 +159,27 @@
 	\item Drawbacks of Riemann integration
     \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Recall}
+
+\begin{definition}
+Given an operator $A \colon V \to V$ and $\lambda \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+$$A \bv = \lambda \bv.$$
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $A$ and denote it by $\sigma(A)$.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Recall}
+\begin{itemize}
+\setlength\itemsep{0.5em}
+	\item The multiplicity of the root $\lambda$ in the characteristic polynomial is called the \emph{algebraic multiplicity} of the eigenvalue $\lambda$
+	\item The dimension of the eigenspace $\nullspace (A - \lambda I)$ is called the \emph{geometric multiplicity} of the eigenvalue $\lambda$.
+	\item An $n \times n$ matrix $A$ is \textbf{diagonalizable} if there exists an invertible matrix $S\in M_n(\C)$ such that $A = SDS^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+	\item If $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. 
+	\item $A$ is diagonalizable if and only if for each eigenvalue $\lambda$, the geometric multiplicity of $\lambda$ and the algebraic multiplicity of $\lambda$ are the same.
+\end{itemize}
+
 \end{frame}
 
 
@@ -211,12 +254,17 @@ Why is Jordan form useful?
 
 
 \begin{frame}{Singular value decomposition}
-\begin{itemize}
-\item $A^T A$ is symmetric
-\item therefore it is orthogonally diagonalizable and has real eigenvalues 
-\item In fact, the eigenvalues are non-negative (exercise)
-\end{itemize}
 
+\begin{theorem}
+Let $A\in M_n(\R)$ be a symmetric matrix. Then, there exists an orthogonal matrix $O\in M_n(\R)$ such that $A=ODO^T$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+\vspace{1em}
+
+
+Note: $A^T A$ is symmetric
+
+\vspace{1em}
 
 \begin{definition}
 Let $A$ be an $m \times n$ matrix.  Let $\lambda_1, \ldots, \lambda_n$ be the eigenvalues of $A^T A$. Then the \emph{singular values} of $A$ are defined as
@@ -337,21 +385,6 @@ The following are key rules for differentiation:
 \end{frame}
 
 \begin{frame}
-\begin{alertblock}{Lemma}
-If $f:(a,b) \to \R$ is differentiable on $(a,b)$ and achieves a (local) maximum or (local) minimum at $c \in (a,b)$, then $f'(c) = 0$.
-\end{alertblock}
-\begin{block}{Proof}
-\vspace{3cm}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\begin{block}{Proof continued}
-\vspace{6cm}
-\end{block}
-\end{frame}
-
-\begin{frame}
 Next we recall a theorem we proved in greater generality when we discussed compactness in the topology section:
 \begin{theorem}[Extreme value theorem]
 If $f:[a,b] \to \R$ is continuous, then $f$ attains a maximum and a minimum, i.e. there exists $c,d \in [a,b]$ such that
@@ -366,21 +399,31 @@ $$f(b) - f(a) = f'(c)(b-a) .$$
 \end{theorem}
 \end{frame}
 
+
 \begin{frame}
-\begin{proof}
-\vspace{6cm}
-\end{proof}
+\begin{alertblock}{Lemma}
+If $f:(a,b) \to \R$ is differentiable on $(a,b)$ and achieves a (local) maximum or (local) minimum at $c \in (a,b)$, then $f'(c) = 0$.
+\end{alertblock}
+
+\vspace{1em}
+\textit{Proof}.
+\vspace{3cm}
 \end{frame}
 
 
+
 \begin{frame}
-\begin{corollary}
-If $f:(a,b) \to \R$ is differentiable and has a bounded derivative (i.e. $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$), then $f$ is Lipschitz.
-\end{corollary}
-\begin{proof}
-\vspace{4cm}
-\end{proof}
+
 \end{frame}
+
+
+%\begin{frame}
+%\begin{corollary}
+%If $f:(a,b) \to \R$ is differentiable and has a bounded derivative (i.e. $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$), then $f$ is Lipschitz.
+%\end{corollary}
+%
+%\end{frame}
+
 
 
 
@@ -413,7 +456,7 @@ We define higher-order derivatives inductively as $f^{(r)}(x) = (f^{(r-1)})'(x)$
 \vspace{1em}
 
 \begin{definition}
-If $f^{(r)}$ exists for all $r \in \N$ and for all $x \in (a,b)$, then we say $f$ is infinitely differentiable or \emph{smooth}. We denote this $f \in C^\infty$.
+If $f^{(r)}$ exists for all $r \in \N$ and for all $x \in (a,b)$, then we say $f$ is infinitely differentiable or \emph{smooth}. We denote this $f \in C^\infty((a,b))$.
 \end{definition}
 \end{frame}
 
@@ -436,7 +479,7 @@ Since differentiability implies continuity, we have $C^\infty \subset \cdots \su
 \begin{itemize}
 \item The function $f(x) = |x|$ is $C^0$ but not $C^1$. 
 \item The function $f(x) = x|x|$ is $C^1$ but not $C^2$.
-\item $f(x) = e^x$ and $f(x) = x$ are smooth functions, i.e. in $C^\infty$.
+\item $f(x) = e^x$ and $f(x) = x$ are smooth functions, i.e., in $C^\infty$.
 \end{itemize}
 \end{example}
 \vspace{4cm}
@@ -503,17 +546,11 @@ Riemann integration is linear, i.e. if $f,g \in \mathcal{R}([a,b])$ and $c \in \
 
 
 \begin{frame}
-\begin{block}{Proof}
+\textit{Sketch of proof}
 \vspace{6cm}
-\end{block}
 \end{frame}
 
 
-\begin{frame}
-\begin{block}{Proof continued}
-\vspace{6cm}
-\end{block}
-\end{frame}
 
 \begin{frame}
 \begin{exampleblock}{Proposition (Rules for integration on $[a,b]$)}
