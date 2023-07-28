@@ -84,15 +84,11 @@ Material will be added here as the course progresses.
 - Slides: [Module 9](Probability/2023/Slides/Module_9.pdf); 
 [Module 9 Annotated](Probability/2023/Slides/Module_9_annotated.pdf) 
 
-<!--
 - Problem Set Solutions: [Module 9 Solution](Probability/2023/Solutions/Module_9_Solutions.pdf) 
--->
 
 
 ### Module 10: Limit Theorems continued
 
 - Slides: [Module 10](Probability/2023/Slides/Module_10.pdf); 
-<!--
 [Module 10 Annotated](Probability/2023/Slides/Module_10_annotated.pdf) 
--->
 
