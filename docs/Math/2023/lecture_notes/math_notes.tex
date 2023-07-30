@@ -1491,6 +1491,51 @@ Then $f(K) \subseteq f(\bigcup_{i=1}^n f^{-1}(U_i)) = \bigcup_{i=1}^n f(f^{-1}(U
 
 Note: this is a generalization of the Extreme Value Theorem to metric spaces.
 
+
+\subsection{Exercises}
+\label{exercises:metric_spaces}
+\begin{enumerate}
+    \item Show that the infinity norm $||x||_\infty$, $x \in \R^n$, defined in \cref{p-norm} is a norm.
+    \item Let $(X,d)$ be any metric space, and define $\tilde d: X \times X \to \R$ by 
+    \begin{equation*}
+        \tilde d(x,y) = \frac{d(x,y)}{1+d(x,y)}, \quad x,y \in X .
+    \end{equation*}
+    Show that $\tilde d$ is a metric on $X$.
+    \item Let $X$ be a set and define $d\colon X \times X \to \R$ by $d(x,x) = 0$ and $d(x,y)=1$ for $x\neq y \in X$. Prove that $d$ is a metric on $X$. What do open balls look like for different radii $r>0$? What does an arbitrary open set look like?
+    \item Following up on \cref{prop:open_sets} and \cref{cor:closed_sets}: Show that the infinite intersection of open sets may not be open and that the infinite union of closed sets may not be closed.
+    \item Find the closure, interior, and boundary of the following sets using Euclidean distance:
+    \begin{enumerate}
+        \item[(i)] $\{(x,y)\in \R^2 : y < x^2 \} \subseteq \R^2$
+        \item[(ii)]  $[0,1)\times[0,1) \subseteq \R^2$
+        \item[(iii)] $\{0 \} \cup  \{1/n \colon n \in \N\} \subseteq \R$ 
+    \end{enumerate}
+    \item Prove the following: Let $(x_n)_{n\in\N}$ be a sequence in a metric space $(X,d)$ that converges to a point $x \in X$. Then $x$ is unique.
+    \item Let $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$ be sequences in $\R$ such that $x_n \to x$ and and $y_n \to y$, with $\alpha, x,y, \in \R$. 
+    \begin{enumerate}
+        \item[(i)] Show that $\alpha \, x_n \to \alpha \, x$.
+        \item[(i)] Show that $x_n + y_n \to x + y$.
+    \end{enumerate}
+    \item Let $(x_n)$, $(y_n)$ be two convergent sequences in $\R$ such that $x_n \leq y_n$ for all $n \in \N$. Show that $\lim_{n\to \infty} x_n \leq \lim_{n\to \infty} y_n$.
+    \item Show that discrete metric spaces (i.e. those with the metric from exercise 3) are complete. 
+    \item Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. Prove that
+$$f \text{ is Lipschitz continuous } \Rightarrow f \text{ is uniformly continuous } \Rightarrow f \text{ is continuous}.$$
+Provide examples to show that the other directions do not hold.
+    \item Show that the function $f(x) = \frac{1}{2} \left(x + \frac{5}{x} \right)$ has a unique fixed point on a subset of $(0,\infty)$. What is it? (Hint: you will have to restrict the interval in such a way that $f$ is a contraction.)
+    \item Prove the following: If two metrics are strongly equivalent then they are equivalent.
+    \item Define a real-valued sequence $(a_n)_{n\in \N}$ by $a_1 =2$ and 
+    \begin{equation*}
+        a_{k+1} = \frac{a_k+5}{3}, \qquad k\geq 1.
+    \end{equation*}
+    Determine if the limit $\lim_{n\to \infty} a_n$ exists and if so calculate it.
+\end{enumerate}
+
+\subsection{References}
+The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points and contractions comes from there. 
+
+\section{Differentiation and integration}
+
+In this chapter we work only on the real numbers, $\R$. First we cover some topics related to the previous section which are applicable only on $\R$.
+
 \subsection{Extra properties of \texorpdfstring{$\R$}{R}}
 
 Using the definition of continuity in terms of $\epsilon$-balls and equipping $\R$ with the metric induced by the absolute value, i.e. $d(x,y) = \vert x- y\vert$ for $x,y\in \R$, we obtain the usual $\epsilon-\delta$ definition of continuity. Hence, a function $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$. Since $\R$ is also totally ordered we can also talk about left and right continuity, by separating $B_\epsilon(x) = (x-\epsilon, x+ \epsilon) = (x-\epsilon, x] \cup [x, x+\epsilon)$.
@@ -1612,51 +1657,263 @@ $$x-\epsilon< i_{N_2} \leq x_k  \qquad \text{ for all } k\geq N_2.$$ Hence, by s
 
 Note that we only talked about limit superior and limit inferior for real sequences. However, we can extend this easily to a sequence of functions $f_n \colon X \to \R$ by setting $f = \limsup_{n\to \infty } f_n$ to be the function defined pointwise by $f(x) = \limsup_{n\to \infty } (f_n (x)) $ and similar for the limit inferior. There also exists a set theoretic version in terms of unions and intersections which you will encounter in probability.
 
-\subsection{Exercises}
-\label{exercises:metric_spaces}
+\subsection{Differentiation}
+
+Recall the definition of the derivative:
+\begin{definition}
+A function $f:(a,b) \to \R$ is \emph{differentiable} at $x\in (a,b)$ if
+\begin{equation*}
+    L := \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\end{equation*}
+exists. $L$ is the \emph{derivative} of $f$ at $x$, denoted $L= f'(x)$. If $f$ is differentiable at every $x \in (a,b)$, we say $f$ is \emph{differentiable}.
+\end{definition}
+
+\begin{proposition}
+The following are key rules for differentiation:
 \begin{enumerate}
-    \item Show that the infinity norm $||x||_\infty$, $x \in \R^n$, defined in \cref{p-norm} is a norm.
-    \item Let $(X,d)$ be any metric space, and define $\tilde d: X \times X \to \R$ by 
-    \begin{equation*}
-        \tilde d(x,y) = \frac{d(x,y)}{1+d(x,y)}, \quad x,y \in X .
-    \end{equation*}
-    Show that $\tilde d$ is a metric on $X$.
-    \item Let $X$ be a set and define $d\colon X \times X \to \R$ by $d(x,x) = 0$ and $d(x,y)=1$ for $x\neq y \in X$. Prove that $d$ is a metric on $X$. What do open balls look like for different radii $r>0$? What does an arbitrary open set look like?
-    \item Following up on \cref{prop:open_sets} and \cref{cor:closed_sets}: Show that the infinite intersection of open sets may not be open and that the infinite union of closed sets may not be closed.
-    \item Find the closure, interior, and boundary of the following sets using Euclidean distance:
-    \begin{enumerate}
-        \item[(i)] $\{(x,y)\in \R^2 : y < x^2 \} \subseteq \R^2$
-        \item[(ii)]  $[0,1)\times[0,1) \subseteq \R^2$
-        \item[(iii)] $\{0 \} \cup  \{1/n \colon n \in \N\} \subseteq \R$ 
-    \end{enumerate}
-    \item Prove the following: Let $(x_n)_{n\in\N}$ be a sequence in a metric space $(X,d)$ that converges to a point $x \in X$. Then $x$ is unique.
-    \item Let $(x_n)_{n \in \N}$ and $(y_n)_{n \in \N}$ be sequences in $\R$ such that $x_n \to x$ and and $y_n \to y$, with $\alpha, x,y, \in \R$. 
-    \begin{enumerate}
-        \item[(i)] Show that $\alpha \, x_n \to \alpha \, x$.
-        \item[(i)] Show that $x_n + y_n \to x + y$.
-    \end{enumerate}
-    \item Let $(x_n)$, $(y_n)$ be two convergent sequences in $\R$ such that $x_n \leq y_n$ for all $n \in \N$. Show that $\lim_{n\to \infty} x_n \leq \lim_{n\to \infty} y_n$.
-    \item Show that discrete metric spaces (i.e. those with the metric from exercise 3) are complete. 
-    \item Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and let $f:X\to Y$. Prove that
-$$f \text{ is Lipschitz continuous } \Rightarrow f \text{ is uniformly continuous } \Rightarrow f \text{ is continuous}.$$
-Provide examples to show that the other directions do not hold.
-    \item Show that the function $f(x) = \frac{1}{2} \left(x + \frac{5}{x} \right)$ has a unique fixed point on a subset of $(0,\infty)$. What is it? (Hint: you will have to restrict the interval in such a way that $f$ is a contraction.)
-    \item Prove the following: If two metrics are strongly equivalent then they are equivalent.
-    \item Define a real-valued sequence $(a_n)_{n\in \N}$ by $a_1 =2$ and 
-    \begin{equation*}
-        a_{k+1} = \frac{a_k+5}{3}, \qquad k\geq 1.
-    \end{equation*}
-    Determine if the limit $\lim_{n\to \infty} a_n$ exists and if so calculate it.
-    \item Let $(x_n)_{n\in \N}, (y_n)_{n\in \N}$ be bounded sequences in $\R$. Show that 
+    \item If $f$ is differentiable at $x$, then it is continuous at $x$.
+    \item The derivative of a constant function is zero.
+    \item If $f$ and $g$ are differentiable at $x$, then so is $f+g$ with $(f+g)'(x) = f'(x) + g'(x)$.
+    \item Product rule: If $f$ and $g$ are differentiable at $x$, then so is $fg$ with $$(fg)'(x) = f'(x) g(x) + f(x) g'(x).$$
+    \item Quotient rule: If $f$ and $g$ are differentiable at $x$ and $g(x) \neq 0$, then so is $f/g$ with $$(f/g)'(x) = \frac{f'(x) g(x) - f(x) g'(x)}{g^2(x)}.$$
+    \item Chain rule: If $f$ is differentiable at $x$ and $g$ is differentiable at $f(x)$, then so is $g \circ f$ with $$(g \circ f)'(x)= g'(f(x))f'(x).$$
+\end{enumerate}
+\end{proposition}
+
+The proof of these statements follow from the definition of the derivative. See \cite[p.150]{realanalysis} for the details.
+
+\begin{lemma}
+\label{lemma:max_min}
+If $f:(a,b) \to \R$ is differentiable on $(a,b)$ and achieves a (local) maximum or (local) minimum at $c \in (a,b)$, then $f'(c) = 0$.
+\end{lemma}
+\begin{proof}
+We prove the case where $c$ is a minimum (the maximum is similar). By definition,
+\begin{equation*}
+    f'(c) := \lim_{h \to 0} \frac{f(c+h) - f(x)}{h}.
+\end{equation*}
+Since $c$ is a (local) minimum, there exists a neighbourhood $B_r(c)$, $r > 0$, of $c$ such $f(x) \geq f(c)$ for all $x$ in this neighbourhood. Thus when $h \in (0, r)$, $\frac{f(c+h) - f(x)}{h} \geq 0$ and when $h \in (-r,0)$, $\frac{f(c+h) - f(x)}{h} \leq 0$. Since $f'(c)$ is the limit of both positive an negative sequences, it must be zero.
+\end{proof}
+
+Next we recall a theorem we proved in greater generality when we discussed compactness in the topology section:
+\begin{theorem}[Extreme value theorem]
+If $f:[a,b] \to \R$ is continuous, then $f$ attains a maximum and a minimum, i.e. there exists $c,d \in [a,b]$ such that
+$$ f(c) \leq f(x) \leq f(d) \quad \forall x \in [a,b] .$$
+\end{theorem}
+
+This theorem is used to prove the following important result:
+
+\begin{theorem}[Mean value theorem]
+If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $c \in (a,b)$ such that 
+$$f(b) - f(a) = f'(c)(b-a) .$$
+\end{theorem}
+\begin{proof}
+Let $$ g(x) = f(x) - \frac{f(b) - f(a)}{b-a} (x-a).$$
+This function is continuous on $[a,b]$ and differentiable on $(a,b)$. We observe that $g(a) = f(a) = g(b)$. By the Extreme Value Theorem, $g$ must have a maximum or minimum on $[a,b]$; since $g(a)=g(b)$, we can assume these occur on $(a,b)$. Let $c$ be either a max or a min. Then $c \in (a,b)$ and $g'(c) = 0$ by \cref{lemma:max_min}. Thus
+$$ 0 = g'(c) = f'(c) - \frac{f(b) - f(a)}{b-a},$$
+and therefore $f(b) - f(a)= f'(c)(b-a)$.
+\end{proof}
+
+\begin{corollary}
+If $f:(a,b) \to \R$ is differentiable and has a bounded derivative (i.e. $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$), then $f$ is Lipschitz.
+\end{corollary}
+
+Recall that by \cref{def:Lip_unif}, $f:(a,b) \to \R$ is Lipschitz continuous if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $|f(x_1)-f(x_2)) | \leq K |x_1 -x_2|$.
+
+\begin{proof}
+Let $f:(a,b) \to \R$ be differentiable and assume $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$. Then by the Mean Value Theorem,
+for $x_1, x_2 \in (a,b)$, 
+$$|f(x_1) - f(x_2)| = |f'(c) (b-a)| = |f'(c)| |b-a| \leq M |b-a|$$
+where $c \in (a,b)$. Thus $f$ is Lipschitz.
+\end{proof}
+
+\begin{theorem}[l'H\^{o}pital's rule]
+If $f,g$ are differentiable on $(a,b)$, where $a,b$ may be $\pm \infty$, and $\lim_{x \to b} f(x) = 0 = \lim_{x \to b} g(x)$, or both limits equal $\pm \infty$, then 
+$$ \lim_{x \to b} \frac{f'(x)}{g'(x)} = L$$
+implies
+$$ \lim_{x \to b} \frac{f(x)}{g(x)} = L$$
+\end{theorem}
+
+\begin{example}
+$$ \lim_{x\to 0} \frac{5^x - 2^x}{x^2-x} = \ln 2 - \ln 5$$
+$$ \lim_{x\to -\infty} x e^x = \lim_{x\to -\infty} \frac{x}{e^{-x}} = 0$$
+\end{example}
+
+\begin{definition}
+We define higher-order derivatives inductively as $f^{(r)}(x) = (f^{(r-1)})'(x)$. If $f^{(r)}$ exists (at $x$), we say that $f$ is $r^\text{th}$-order differentiable (at $x$). 
+\end{definition}
+
+\begin{definition}
+If $f^{(r)}$ exists for all $r \in \N$ and for all $x \in (a,b)$, then we say $f$ is infinitely differentiable or \emph{smooth}. We denote this $f \in C^\infty$.
+\end{definition}
+
+\begin{definition}[Smoothness classes]
+If $f$ is differentiable and its derivative $f'(x)$ is continuous, we say that $f$ is \emph{continuously differentiable}, and that $f \in C^1$. If $f^{(r)}$ exists and is continuous, we say that $f \in C^r$. If $f$ is continuous, we say $f \in C^0$.
+\end{definition}
+Since differentiability implies continuity, we have $C^\infty \subset \cdots \subset C^2 \subset C^1 \subset C^0$.
+
+\begin{example}
+The function $f(x) = |x|$ is $C^0$ but not $C^1$. The function $f(x) = x|x|$ is $C^1$ but not $C^2$. $f(x) = e^x$ and $f(x) = x$ are smooth functions, i.e. in $C^\infty$.
+\end{example}
+
+\begin{definition}[Taylor polynomial]
+The $r^\text{th}$-order Taylor polynomial of an $r^\text{th}$-order differentiable function $f$ at $a$ is 
+\begin{equation*}
+    P(x) = \sum_{k=0}^r \frac{f^{(k)}(a)}{k!} x^k.
+\end{equation*}
+\end{definition}
+
+We observe that $P^{(k)}(0) = f^{(k)}(a)$ for $k=0,1,\ldots,r$.
+
+\begin{theorem}
+Let $f:(a,b) \to \R$ be $r^\text{th}$-order differentiable at $a$. 
+Then $P$ approximates $f$ to order $r$ at $a$ because the Taylor remainder,
+$$ R(x) = f(a+x) - P(x), $$
+grows such that
+$$ \lim_{x \to 0} \frac{R(x)}{x^r} = 0. $$
+This is denoted $R(x) = o(x^r)$. 
+
+Furthermore, the Taylor polynomial is the only polynomial of degree smaller than or equal to $r$ with this property, so it is in a certain sense the ``best approximation'' to $f$.
+
+If $f$ is $(r+1)^\text{st}$-order differentiable at $(a,b)$, then there exists $c \in (x,x+h)$ such that
+$$ R(x) = \frac{f^{(r+1)}(c)}{(r+1)!}x^{r+1} .$$
+\end{theorem}
+
+Proof omitted; see \cite[p.160-161]{realanalysis}. The main tool used in the proof is the Mean Value Theorem.
+
+\subsection{Integration}
+
+The theory integration on $\R$ is mostly first introduced with the theory of Riemann integration. We will recall the main definitions here and review its connection with differentiation in the fundamental theorem of calculus. Lastly, we will end by discussing some drawbacks of Riemann integration.
+
+\begin{definition}
+Let $f\colon [a,b] \to \R$ be a function. We call a set of points $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ a \emph{partition} of $[a,b]$ if the following holds
+\begin{equation*}
+    a = x_0 \leq x_1\leq \ldots \leq x_{n-1} \leq x_n = b.
+\end{equation*}
+We call the largest sub-interval of the partition $P$ the \emph{mesh} of $P$, denoted $|P|$, i.e.
+$$ |P| = \max_{i=1,\ldots,n} ( x_i - x_{i-1} ).$$
+
+Given a partition $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ of $[a,b]$ and a set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots, n$ we define the \emph{Riemann sum} $R(f,P,T)$ corresponding to $f,P,T$ as 
+\begin{equation*}
+    R(f,P,T) = \sum_{i=1}^n f(t_i) (x_i-x_{i-1}) := \sum_{i=1}^n f(t_i) \Delta x_i,
+\end{equation*}
+where we used $ \Delta x_i = x_i-x_{i-1}$. 
+\end{definition}
+
+The idea is to define the Riemann integral as the ``limit'' of the Riemann sums over all partition such that their mesh is becoming arbitrarily small. What we mean by that is made precise in the next definition.
+
+\begin{definition}
+A function $f\colon [a,b] \to \R$ is called \emph{Riemann integrable} if there exists $I\in \R$ such that for all $\epsilon>0$, there exists a $\delta>0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(f,P,T) - I \vert < \epsilon$. We say that $I$ is the Riemann integral of $f$, denoted $I = \int_a^b f(x) \mathrm{d}x$.
+\end{definition}
+
+
+Note that if $f$ is Riemann integrable, then $I$ is unique. This can be verified using similar techniques to the uniqueness of limits in metric spaces. Furthermore, the definition immediately gives rise to some nice properties of the Riemann integral. In the following, let $\mathcal{R}([a,b])$ denote the set of functions that are Riemann integrable on $[a,b]$.
+
+\begin{theorem}
+Riemann integration is linear, i.e. if $f,g \in \mathcal{R}([a,b])$ and $c \in \R$, then $f+ cg \in \mathcal{R}([a,b])$.
+\end{theorem}
+
+\begin{proof}
+Suppose $f$ and $g$ are Riemann integrable on $[a,b]$ and $c \in \R$.
+By the definition of Riemann sums, 
+$$ R(f+cg,P,T) = R(f,P,T) + cR(g,P,T). $$
+
+Let $\epsilon > 0$.
+
+Since $f$ is Riemann integrable on $[a,b]$, there exists and $I_1 \in \R$ and a $\delta_1 > 0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta_1$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(f,P,T) - I_1 \vert < \epsilon/2$.
+
+Since $g$ is Riemann integrable on $[a,b]$, there exists and $I_2 \in \R$ and a $\delta_2 > 0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta_2$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(g,P,T) - I_2 \vert < \epsilon/(2|c|)$.
+
+To show $f+cg$ is Riemann integrable on $[a,b]$, choose $\delta = \min \{ \delta_1, \delta_2 \}$. Then for any partition with $|P| < \delta$,
+\begin{align*}
+    |R(f+cg,P,T) - I_1 - cI_2| &= |R(f,P,T) + c R(g,P,T) - I_1 - cI_2| \\
+    &\leq |R(f,P,T) I_1| + |c| |R(g,P,T) - I_2| \\
+    &< \frac{\epsilon}{2} + |c| \frac{\epsilon}{2|c|} = \epsilon .
+\end{align*}
+Thus $f+cg$ is Riemann integrable.
+\end{proof}
+
+
+\begin{proposition}
+The following are key rules for integration on $[a,b]$:
+\begin{enumerate}
+    \item The constant function $f(x) = c$ is integrable and its integral is $c(b-a)$.
+    \item If f is Riemann integrable, then it is bounded.
+    \item If $f,g \in \mathcal{R}([a,b])$ and $f(x) \leq g(x)$ for all $x \in [a,b]$, then
+    $$ \int_a^b f(x) dx \leq  \int_a^b g(x) dx.$$
+    \item If $f \in \mathcal{R}([a,b])$ and $g:[c,d] \to [a,b]$ is a continuously differentiable bijection with $g'>0$, then 
+     $$ \int_a^b f(y) dy =  \int_c^d f(g(x)) g'(x) dx.$$
+     \item If $f,g : [a,b] \to \R$ are differentiable and $f',g' \in \mathcal{R}([a,b])$, then 
+     $$ \int_a^b f(x) g'(x) dx =  f(b) g(b) - f(a) g(a) - \int_a^b f'(x) g(x) dx.$$
+\end{enumerate}
+\end{proposition}
+
+
+\begin{theorem}[Fundamental Theorem of Calculus] \textcolor{white}{skip} \\
+\textbf{\emph{First part:}}\\
+If $f:[a,b] \to \R$ is Riemann integrable then its indefinite integral
+$$ F(x) = \int_a^x f(t) dt$$
+is a continuous function of $x$. In addition, the derivative of $F$ exists and $F'(x) = f(x)$ at all $x \in [a,b]$ where $f$ is continuous.
+
+\textbf{\emph{Second part:}}\\
+Let $f:[a,b]\to \R$ and let $F$ be a continuous function on $[a,b]$ with antiderivative $f$ on $(a,b)$, i.e. $F'(x) = f(x)$. Then if $F$ is Riemann integrable on $[a,b]$
+$$ \int_a^b f(x) dx = F(b) - F(a).$$
+\end{theorem}
+
+We will end by discussing some drawbacks of the Riemann integral. To do so we first introduce a nice alternative characterization of Riemann integrability. In particular, instead of looking at all the Riemann sums, we can restrict our attention to two special forms, where we specify where to evaluate our function. 
+
+\begin{definition}\label{def:lowerupper_sum}
+Given a function $f\colon [a,b] \to \R$ and a partition $P = \{x_0,\ldots, x_n\}$ of $[a,b]$, we define the \emph{lower} and \emph{upper sum} of $f$ via \begin{align*}
+    L(f,P) = \sum_{i=1}^n m_i \Delta x_i, \qquad U(f,P) =\sum_{i=1}^n M_i \Delta x_i,
+\end{align*}
+where $m_i = \inf \{f(t) \colon t\in [x_{i-1}, x_i]\}$ and $M_i = \sup \{f(t) \colon t\in [x_{i-1}, x_i]\}$. We define the \emph{lower} and \emph{upper integral} of $f$ to be
+\begin{align*}
+    \underline{I} = \sup_P L(f,P), \qquad \overline{I} = \inf_P U(f,P).
+\end{align*}
+\end{definition}
+Note that since $f$ is defined on a compact set, it will be bounded and hence the lower and upper integral exist and are finite. One can think of the lower and upper integral as lower and upper bounds for the Riemann integral. The next theorem makes this more precise. 
+
+\begin{theorem}
+Let $f\colon [a,b] \to \R$ be a function. Then $f$ is Riemann integrable if and only if $\underline{I} = \overline{I}$ and we have $\underline{I} = \overline{I} = I$.
+\end{theorem}
+
+The proof is omitted, see \cite[Theorem 20, p.167]{realanalysis}. We can now discuss some disadvantages of Riemann integrability. Consider the following function
+\begin{equation*}
+    f \colon [0,1] \to \R \colon x\mapsto \begin{cases} 0 &\text{ if } x\in \Q,\\
+    1 &\text{ otherwise}.
+    \end{cases}
+\end{equation*}
+If we think of the Riemann integral intuitively as the area underneath the graph of the function and since this function is arguably fairly nice, we would expect this function to be Riemann integrable with Riemann integral 1 (since we already know that there are only countably many rationals but uncountably many irrationals in $[0,1]$). However, this function is not Riemann integrable at all! To see this let $P=\{x_0,\ldots, x_n\}$ be a partition of $[0,1]$. Then since any interval $[x_{i}, x_{i-1}]$ contains a rational and an irrational number, we obtain $m_i=0$ and $M_i=1$ for all $i=1,\ldots, n$, where $m_i,M_i$ are defined in \cref{def:lowerupper_sum} as the infimum respectively supremum over the function on the interval $[x_{i}, x_{i-1}]$. Thus we see that for any partition $P$, $L(f,P) = 0$ and $U(f,P) =\sum_{i=1}^n x_{i} - x_{i-1} = 1-0 = 1$, showing that $\underline{I} = 0 \neq 1 = \overline{I}$. Hence, by the previous theorem $f$ is not Riemann integrable. A theory of integration which overcomes these hurdles is Lebesgue integration.
+
+\subsection{Exercises}
+\begin{enumerate}
+ \item Let $(x_n)_{n\in \N}, (y_n)_{n\in \N}$ be bounded sequences in $\R$. Show that 
     \begin{align*}
         \limsup_{n\to \infty} (x_n + y_n) \leq \limsup_{n\to \infty} x_n + \limsup_{n\to \infty} y_n 
     \end{align*}
     and give an example where the inequality is strict. 
     \item Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
+    \item Show that 
+    \begin{equation*}
+        f(x) = \begin{cases} e^{-\frac{1}{x}} & \text{if } x > 0 \\
+        0 & \text{if } x \leq 0
+        \end{cases}
+    \end{equation*}
+    is smooth.
+    \item Prove the Higher-Order Leibniz product rule, i.e. for $f,g \in C^r([a,b])$ we have 
+    \begin{align*}
+        (fg)^{(r)}(x) = \sum_{k=0}^r \binom{r}{k} f^{(k)}(x) g^{(r-k)}(x).
+    \end{align*}
+    You can use properties of the binomial coefficient.
+    \item Let $f \in \mathcal{R}([a,b])$ and suppose $|f| \leq M$ for some $M > 0$. Show that $|\int_a^b f(x) dx| \leq M(b-a)$.
+    \item (Challenge Problem) Consider the space of continuous functions on the unit interval, $C([0,1])$. Prove that there exists a unique $f\in C([0,1])$ such that for all $x\in [0,1]$
+    \begin{align*}
+        f(x) = x + \int_0^x sf(s) \mathrm{d}s.
+    \end{align*}
+    Hint: You can use that $C([0,1])$ is a complete metric space with respect to the supremums metric $d_\infty (f,g) = \sup_{x\in [0,1]} \vert f(x) -g(x)\vert$ for $f,g \in C([0,1])$.
 \end{enumerate}
 
 \subsection{References}
-The content in this section comes mostly from \cite{tastetopology}. \cite{realanalysis} is used to supplement, and in particular the content on accumulation points and contractions comes from there. For lim sup and lim inf, see \cite{BasicAnalysis1}.
+The content on integration and differentation is based on Chapter 3 of \cite{realanalysis}. For lim sup and lim inf, see \cite{BasicAnalysis1}.
 
 \section{Linear Algebra}
 
@@ -2876,261 +3133,7 @@ $$\bw\notin\text{span}\{\bv_{1},...,\bv_{m}\}$$
 \subsection{References}
 This section is based on the books \cite{linalgright} and \cite{linalgwrong}. \cite{linalgright} is the main source for sections 1, 2, and 3, while \cite{linalgwrong} is used for sections 4 and 5. \cite{ElementaryRealAnalysis}, which is focused more on applications than the two main texts, was used for the content on matrix decompositions. 
 
-\section{Differentiation and integration}
 
-In this chapter we work only on the real numbers, $\R$.
-
-\subsection{Differentiation}
-
-Recall the definition of the derivative:
-\begin{definition}
-A function $f:(a,b) \to \R$ is \emph{differentiable} at $x\in (a,b)$ if
-\begin{equation*}
-    L := \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
-\end{equation*}
-exists. $L$ is the \emph{derivative} of $f$ at $x$, denoted $L= f'(x)$. If $f$ is differentiable at every $x \in (a,b)$, we say $f$ is \emph{differentiable}.
-\end{definition}
-
-\begin{proposition}
-The following are key rules for differentiation:
-\begin{enumerate}
-    \item If $f$ is differentiable at $x$, then it is continuous at $x$.
-    \item The derivative of a constant function is zero.
-    \item If $f$ and $g$ are differentiable at $x$, then so is $f+g$ with $(f+g)'(x) = f'(x) + g'(x)$.
-    \item Product rule: If $f$ and $g$ are differentiable at $x$, then so is $fg$ with $$(fg)'(x) = f'(x) g(x) + f(x) g'(x).$$
-    \item Quotient rule: If $f$ and $g$ are differentiable at $x$ and $g(x) \neq 0$, then so is $f/g$ with $$(f/g)'(x) = \frac{f'(x) g(x) - f(x) g'(x)}{g^2(x)}.$$
-    \item Chain rule: If $f$ is differentiable at $x$ and $g$ is differentiable at $f(x)$, then so is $g \circ f$ with $$(g \circ f)'(x)= g'(f(x))f'(x).$$
-\end{enumerate}
-\end{proposition}
-
-The proof of these statements follow from the definition of the derivative. See \cite[p.150]{realanalysis} for the details.
-
-\begin{lemma}
-\label{lemma:max_min}
-If $f:(a,b) \to \R$ is differentiable on $(a,b)$ and achieves a (local) maximum or (local) minimum at $c \in (a,b)$, then $f'(c) = 0$.
-\end{lemma}
-\begin{proof}
-We prove the case where $c$ is a minimum (the maximum is similar). By definition,
-\begin{equation*}
-    f'(c) := \lim_{h \to 0} \frac{f(c+h) - f(x)}{h}.
-\end{equation*}
-Since $c$ is a (local) minimum, there exists a neighbourhood $B_r(c)$, $r > 0$, of $c$ such $f(x) \geq f(c)$ for all $x$ in this neighbourhood. Thus when $h \in (0, r)$, $\frac{f(c+h) - f(x)}{h} \geq 0$ and when $h \in (-r,0)$, $\frac{f(c+h) - f(x)}{h} \leq 0$. Since $f'(c)$ is the limit of both positive an negative sequences, it must be zero.
-\end{proof}
-
-Next we recall a theorem we proved in greater generality when we discussed compactness in the topology section:
-\begin{theorem}[Extreme value theorem]
-If $f:[a,b] \to \R$ is continuous, then $f$ attains a maximum and a minimum, i.e. there exists $c,d \in [a,b]$ such that
-$$ f(c) \leq f(x) \leq f(d) \quad \forall x \in [a,b] .$$
-\end{theorem}
-
-This theorem is used to prove the following important result:
-
-\begin{theorem}[Mean value theorem]
-If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $c \in (a,b)$ such that 
-$$f(b) - f(a) = f'(c)(b-a) .$$
-\end{theorem}
-\begin{proof}
-Let $$ g(x) = f(x) - \frac{f(b) - f(a)}{b-a} (x-a).$$
-This function is continuous on $[a,b]$ and differentiable on $(a,b)$. We observe that $g(a) = f(a) = g(b)$. By the Extreme Value Theorem, $g$ must have a maximum or minimum on $[a,b]$; since $g(a)=g(b)$, we can assume these occur on $(a,b)$. Let $c$ be either a max or a min. Then $c \in (a,b)$ and $g'(c) = 0$ by \cref{lemma:max_min}. Thus
-$$ 0 = g'(c) = f'(c) - \frac{f(b) - f(a)}{b-a},$$
-and therefore $f(b) - f(a)= f'(c)(b-a)$.
-\end{proof}
-
-\begin{corollary}
-If $f:(a,b) \to \R$ is differentiable and has a bounded derivative (i.e. $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$), then $f$ is Lipschitz.
-\end{corollary}
-
-Recall that by \cref{def:Lip_unif}, $f:(a,b) \to \R$ is Lipschitz continuous if there exists a $K > 0$ such that for every $x_1,x_2\in X$ we have  $|f(x_1)-f(x_2)) | \leq K |x_1 -x_2|$.
-
-\begin{proof}
-Let $f:(a,b) \to \R$ be differentiable and assume $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$. Then by the Mean Value Theorem,
-for $x_1, x_2 \in (a,b)$, 
-$$|f(x_1) - f(x_2)| = |f'(c) (b-a)| = |f'(c)| |b-a| \leq M |b-a|$$
-where $c \in (a,b)$. Thus $f$ is Lipschitz.
-\end{proof}
-
-\begin{theorem}[l'H\^{o}pital's rule]
-If $f,g$ are differentiable on $(a,b)$, where $a,b$ may be $\pm \infty$, and $\lim_{x \to b} f(x) = 0 = \lim_{x \to b} g(x)$, or both limits equal $\pm \infty$, then 
-$$ \lim_{x \to b} \frac{f'(x)}{g'(x)} = L$$
-implies
-$$ \lim_{x \to b} \frac{f(x)}{g(x)} = L$$
-\end{theorem}
-
-\begin{example}
-$$ \lim_{x\to 0} \frac{5^x - 2^x}{x^2-x} = \ln 2 - \ln 5$$
-$$ \lim_{x\to -\infty} x e^x = \lim_{x\to -\infty} \frac{x}{e^{-x}} = 0$$
-\end{example}
-
-\begin{definition}
-We define higher-order derivatives inductively as $f^{(r)}(x) = (f^{(r-1)})'(x)$. If $f^{(r)}$ exists (at $x$), we say that $f$ is $r^\text{th}$-order differentiable (at $x$). 
-\end{definition}
-
-\begin{definition}
-If $f^{(r)}$ exists for all $r \in \N$ and for all $x \in (a,b)$, then we say $f$ is infinitely differentiable or \emph{smooth}. We denote this $f \in C^\infty$.
-\end{definition}
-
-\begin{definition}[Smoothness classes]
-If $f$ is differentiable and its derivative $f'(x)$ is continuous, we say that $f$ is \emph{continuously differentiable}, and that $f \in C^1$. If $f^{(r)}$ exists and is continuous, we say that $f \in C^r$. If $f$ is continuous, we say $f \in C^0$.
-\end{definition}
-Since differentiability implies continuity, we have $C^\infty \subset \cdots \subset C^2 \subset C^1 \subset C^0$.
-
-\begin{example}
-The function $f(x) = |x|$ is $C^0$ but not $C^1$. The function $f(x) = x|x|$ is $C^1$ but not $C^2$. $f(x) = e^x$ and $f(x) = x$ are smooth functions, i.e. in $C^\infty$.
-\end{example}
-
-\begin{definition}[Taylor polynomial]
-The $r^\text{th}$-order Taylor polynomial of an $r^\text{th}$-order differentiable function $f$ at $a$ is 
-\begin{equation*}
-    P(x) = \sum_{k=0}^r \frac{f^{(k)}(a)}{k!} x^k.
-\end{equation*}
-\end{definition}
-
-We observe that $P^{(k)}(0) = f^{(k)}(a)$ for $k=0,1,\ldots,r$.
-
-\begin{theorem}
-Let $f:(a,b) \to \R$ be $r^\text{th}$-order differentiable at $a$. 
-Then $P$ approximates $f$ to order $r$ at $a$ because the Taylor remainder,
-$$ R(x) = f(a+x) - P(x), $$
-grows such that
-$$ \lim_{x \to 0} \frac{R(x)}{x^r} = 0. $$
-This is denoted $R(x) = o(x^r)$. 
-
-Furthermore, the Taylor polynomial is the only polynomial of degree smaller than or equal to $r$ with this property, so it is in a certain sense the ``best approximation'' to $f$.
-
-If $f$ is $(r+1)^\text{st}$-order differentiable at $(a,b)$, then there exists $c \in (x,x+h)$ such that
-$$ R(x) = \frac{f^{(r+1)}(c)}{(r+1)!}x^{r+1} .$$
-\end{theorem}
-
-Proof omitted; see \cite[p.160-161]{realanalysis}. The main tool used in the proof is the Mean Value Theorem.
-
-\subsection{Integration}
-
-The theory integration on $\R$ is mostly first introduced with the theory of Riemann integration. We will recall the main definitions here and review its connection with differentiation in the fundamental theorem of calculus. Lastly, we will end by discussing some drawbacks of Riemann integration.
-
-\begin{definition}
-Let $f\colon [a,b] \to \R$ be a function. We call a set of points $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ a \emph{partition} of $[a,b]$ if the following holds
-\begin{equation*}
-    a = x_0 \leq x_1\leq \ldots \leq x_{n-1} \leq x_n = b.
-\end{equation*}
-We call the largest sub-interval of the partition $P$ the \emph{mesh} of $P$, denoted $|P|$, i.e.
-$$ |P| = \max_{i=1,\ldots,n} ( x_i - x_{i-1} ).$$
-
-Given a partition $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ of $[a,b]$ and a set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots, n$ we define the \emph{Riemann sum} $R(f,P,T)$ corresponding to $f,P,T$ as 
-\begin{equation*}
-    R(f,P,T) = \sum_{i=1}^n f(t_i) (x_i-x_{i-1}) := \sum_{i=1}^n f(t_i) \Delta x_i,
-\end{equation*}
-where we used $ \Delta x_i = x_i-x_{i-1}$. 
-\end{definition}
-
-The idea is to define the Riemann integral as the ``limit'' of the Riemann sums over all partition such that their mesh is becoming arbitrarily small. What we mean by that is made precise in the next definition.
-
-\begin{definition}
-A function $f\colon [a,b] \to \R$ is called \emph{Riemann integrable} if there exists $I\in \R$ such that for all $\epsilon>0$, there exists a $\delta>0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(f,P,T) - I \vert < \epsilon$. We say that $I$ is the Riemann integral of $f$, denoted $I = \int_a^b f(x) \mathrm{d}x$.
-\end{definition}
-
-
-Note that if $f$ is Riemann integrable, then $I$ is unique. This can be verified using similar techniques to the uniqueness of limits in metric spaces. Furthermore, the definition immediately gives rise to some nice properties of the Riemann integral. In the following, let $\mathcal{R}([a,b])$ denote the set of functions that are Riemann integrable on $[a,b]$.
-
-\begin{theorem}
-Riemann integration is linear, i.e. if $f,g \in \mathcal{R}([a,b])$ and $c \in \R$, then $f+ cg \in \mathcal{R}([a,b])$.
-\end{theorem}
-
-\begin{proof}
-Suppose $f$ and $g$ are Riemann integrable on $[a,b]$ and $c \in \R$.
-By the definition of Riemann sums, 
-$$ R(f+cg,P,T) = R(f,P,T) + cR(g,P,T). $$
-
-Let $\epsilon > 0$.
-
-Since $f$ is Riemann integrable on $[a,b]$, there exists and $I_1 \in \R$ and a $\delta_1 > 0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta_1$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(f,P,T) - I_1 \vert < \epsilon/2$.
-
-Since $g$ is Riemann integrable on $[a,b]$, there exists and $I_2 \in \R$ and a $\delta_2 > 0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta_2$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(g,P,T) - I_2 \vert < \epsilon/(2|c|)$.
-
-To show $f+cg$ is Riemann integrable on $[a,b]$, choose $\delta = \min \{ \delta_1, \delta_2 \}$. Then for any partition with $|P| < \delta$,
-\begin{align*}
-    |R(f+cg,P,T) - I_1 - cI_2| &= |R(f,P,T) + c R(g,P,T) - I_1 - cI_2| \\
-    &\leq |R(f,P,T) I_1| + |c| |R(g,P,T) - I_2| \\
-    &< \frac{\epsilon}{2} + |c| \frac{\epsilon}{2|c|} = \epsilon .
-\end{align*}
-Thus $f+cg$ is Riemann integrable.
-\end{proof}
-
-
-\begin{proposition}
-The following are key rules for integration on $[a,b]$:
-\begin{enumerate}
-    \item The constant function $f(x) = c$ is integrable and its integral is $c(b-a)$.
-    \item If f is Riemann integrable, then it is bounded.
-    \item If $f,g \in \mathcal{R}([a,b])$ and $f(x) \leq g(x)$ for all $x \in [a,b]$, then
-    $$ \int_a^b f(x) dx \leq  \int_a^b g(x) dx.$$
-    \item If $f \in \mathcal{R}([a,b])$ and $g:[c,d] \to [a,b]$ is a continuously differentiable bijection with $g'>0$, then 
-     $$ \int_a^b f(y) dy =  \int_c^d f(g(x)) g'(x) dx.$$
-     \item If $f,g : [a,b] \to \R$ are differentiable and $f',g' \in \mathcal{R}([a,b])$, then 
-     $$ \int_a^b f(x) g'(x) dx =  f(b) g(b) - f(a) g(a) - \int_a^b f'(x) g(x) dx.$$
-\end{enumerate}
-\end{proposition}
-
-
-\begin{theorem}[Fundamental Theorem of Calculus] \textcolor{white}{skip} \\
-\textbf{\emph{First part:}}\\
-If $f:[a,b] \to \R$ is Riemann integrable then its indefinite integral
-$$ F(x) = \int_a^x f(t) dt$$
-is a continuous function of $x$. In addition, the derivative of $F$ exists and $F'(x) = f(x)$ at all $x \in [a,b]$ where $f$ is continuous.
-
-\textbf{\emph{Second part:}}\\
-Let $f:[a,b]\to \R$ and let $F$ be a continuous function on $[a,b]$ with antiderivative $f$ on $(a,b)$, i.e. $F'(x) = f(x)$. Then if $F$ is Riemann integrable on $[a,b]$
-$$ \int_a^b f(x) dx = F(b) - F(a).$$
-\end{theorem}
-
-We will end by discussing some drawbacks of the Riemann integral. To do so we first introduce a nice alternative characterization of Riemann integrability. In particular, instead of looking at all the Riemann sums, we can restrict our attention to two special forms, where we specify where to evaluate our function. 
-
-\begin{definition}\label{def:lowerupper_sum}
-Given a function $f\colon [a,b] \to \R$ and a partition $P = \{x_0,\ldots, x_n\}$ of $[a,b]$, we define the \emph{lower} and \emph{upper sum} of $f$ via \begin{align*}
-    L(f,P) = \sum_{i=1}^n m_i \Delta x_i, \qquad U(f,P) =\sum_{i=1}^n M_i \Delta x_i,
-\end{align*}
-where $m_i = \inf \{f(t) \colon t\in [x_{i-1}, x_i]\}$ and $M_i = \sup \{f(t) \colon t\in [x_{i-1}, x_i]\}$. We define the \emph{lower} and \emph{upper integral} of $f$ to be
-\begin{align*}
-    \underline{I} = \sup_P L(f,P), \qquad \overline{I} = \inf_P U(f,P).
-\end{align*}
-\end{definition}
-Note that since $f$ is defined on a compact set, it will be bounded and hence the lower and upper integral exist and are finite. One can think of the lower and upper integral as lower and upper bounds for the Riemann integral. The next theorem makes this more precise. 
-
-\begin{theorem}
-Let $f\colon [a,b] \to \R$ be a function. Then $f$ is Riemann integrable if and only if $\underline{I} = \overline{I}$ and we have $\underline{I} = \overline{I} = I$.
-\end{theorem}
-
-The proof is omitted, see \cite[Theorem 20, p.167]{realanalysis}. We can now discuss some disadvantages of Riemann integrability. Consider the following function
-\begin{equation*}
-    f \colon [0,1] \to \R \colon x\mapsto \begin{cases} 0 &\text{ if } x\in \Q,\\
-    1 &\text{ otherwise}.
-    \end{cases}
-\end{equation*}
-If we think of the Riemann integral intuitively as the area underneath the graph of the function and since this function is arguably fairly nice, we would expect this function to be Riemann integrable with Riemann integral 1 (since we already know that there are only countably many rationals but uncountably many irrationals in $[0,1]$). However, this function is not Riemann integrable at all! To see this let $P=\{x_0,\ldots, x_n\}$ be a partition of $[0,1]$. Then since any interval $[x_{i}, x_{i-1}]$ contains a rational and an irrational number, we obtain $m_i=0$ and $M_i=1$ for all $i=1,\ldots, n$, where $m_i,M_i$ are defined in \cref{def:lowerupper_sum} as the infimum respectively supremum over the function on the interval $[x_{i}, x_{i-1}]$. Thus we see that for any partition $P$, $L(f,P) = 0$ and $U(f,P) =\sum_{i=1}^n x_{i} - x_{i-1} = 1-0 = 1$, showing that $\underline{I} = 0 \neq 1 = \overline{I}$. Hence, by the previous theorem $f$ is not Riemann integrable. A theory of integration which overcomes these hurdles is Lebesgue integration.
-
-\subsection{Exercises}
-\begin{enumerate}
-    \item Show that 
-    \begin{equation*}
-        f(x) = \begin{cases} e^{-\frac{1}{x}} & \text{if } x > 0 \\
-        0 & \text{if } x \leq 0
-        \end{cases}
-    \end{equation*}
-    is smooth.
-    \item Prove the Higher-Order Leibniz product rule, i.e. for $f,g \in C^r([a,b])$ we have 
-    \begin{align*}
-        (fg)^{(r)}(x) = \sum_{k=0}^r \binom{r}{k} f^{(k)}(x) g^{(r-k)}(x).
-    \end{align*}
-    You can use properties of the binomial coefficient.
-    \item Let $f \in \mathcal{R}([a,b])$ and suppose $|f| \leq M$ for some $M > 0$. Show that $|\int_a^b f(x) dx| \leq M(b-a)$.
-    \item (Challenge Problem) Consider the space of continuous functions on the unit interval, $C([0,1])$. Prove that there exists a unique $f\in C([0,1])$ such that for all $x\in [0,1]$
-    \begin{align*}
-        f(x) = x + \int_0^x sf(s) \mathrm{d}s.
-    \end{align*}
-    Hint: You can use that $C([0,1])$ is a complete metric space with respect to the supremums metric $d_\infty (f,g) = \sup_{x\in [0,1]} \vert f(x) -g(x)\vert$ for $f,g \in C([0,1])$.
-\end{enumerate}
-
-\subsection{References}
-The content in this section is based on Chapter 3 of \cite{realanalysis}.
 
 
 
