@@ -1,6 +1,6 @@
 ---
 title: "Methods and Computing"
-description: "Instructor: Yagi Shi ([Email](mailto:yaqi.shi@mail.utoronto.ca))"
+description: "Instructor: Yaqi Shi ([Email](mailto:yaqi.shi@mail.utoronto.ca))"
 output:
   distill::distill_article:
     toc: true
