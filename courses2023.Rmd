@@ -8,7 +8,7 @@ output:
 
 ---
 
-The first DoSS Summer Prep Bootcamp was held from July 11 to July 29 2023. 
+The DoSS Summer Prep Bootcamp 2023 was held from July 10 to July 28 2023. 
 
 ## Methods and Computing
 Instructor: [Yuan Tian]([Email](mailto:yuant.tian@mail.utoronto.ca));[Jianhui Gao]([Email](mailto:jianhui.gao@mail.utoronto.ca))"
