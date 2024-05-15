@@ -1,0 +1,571 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\cP}{\mathcal{P}}
+
+
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\title[]{Module 1: Proofs \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{July 10, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+      \setlength\itemsep{1em}
+    	\item Logic
+        \item Review of Proof Techniques
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Propositional logic}{}
+{\bf Propositions} are statements that could be true or false. They have a corresponding {\bf truth value}. \\
+
+\vspace{1em}
+
+ex. ``$n$ is odd'' and ``$n$ is divisible by 2'' are propositions . Let's call them $P$ and $Q$. \\
+
+Whether they are true or not depends on what $n$ is. \\
+
+\vspace{1em}
+
+We can  negate statements: $\neg P$ is the statement ``$n$ is not odd''
+
+\vspace{1em}
+ We can combine statements: 
+ \begin{itemize}
+ \item $P \wedge Q$ is the statement:
+ \item $P \vee Q$ is the statement: \\
+ We always assume the inclusive or unless specifically stated otherwise.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Examples}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+          \begin{tabular}{|c|c|}
+\hline
+    Symbol & Meaning  \\
+    \hline
+     capital letters & propositions  \\
+     $\implies$ & implies \\
+     $\wedge$ & and \\
+     $\vee$ & inclusive or \\
+     $\neg$ & not \\
+     \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+          \begin{itemize}
+          \setlength\itemsep{1em}
+              \item If it's not raining, I won't bring my umbrella.
+              \item I'm a banana or Toronto is in Canada.
+              \item If I pass this exam, I'll be both happy and surprised.
+          \end{itemize}
+      \end{columns}
+\end{frame}
+
+\begin{frame}{Truth values}
+
+\begin{exampleblock}{Example}
+If it is snowing, then it is cold out. \\
+It is snowing. \\
+Therefore, it is cold out.  
+\end{exampleblock}
+
+Write this using propositional logic: \\
+
+\vspace{4em}
+
+\vspace{1em}
+How do we know if this statement is true or not?
+\end{frame}
+
+
+
+\begin{frame}{Truth table}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+If it is snowing, then it is cold out. 
+
+\vspace{2em}
+
+\textcolor{deptoran}{When is this true or false?}
+
+\end{center}
+
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T &  \\ \hline
+     T & F &  \\ \hline
+     F & T & \\ \hline
+     F & F &  \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Logical equivalence}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+        \begin{center}
+        $\neg P \vee Q$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c | c | c | c|}
+\hline
+     $P$& $Q$ & $\neg P$ & $\neg P \vee Q$  \\ \hline
+     T& T &  &  \\ \hline
+     T & F &  &  \\ \hline
+     F & T &   & \\ \hline
+     F & F & & \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\vspace{2em}
+\centering
+What is $\neg (P \implies Q)$?
+\end{frame}
+
+\begin{frame}{Quantifiers}
+
+
+\textbf{For all}
+
+\vspace{1em}
+
+``for all'', $\forall$, is also called the universal quantifier.  
+
+\vspace{1em}
+
+If $P(x)$ is some property that applies to $x$ from some domain, then $\forall x P(x)$ means that the property $P$ holds for every $x$ in the domain. 
+
+\vspace{1em}
+
+
+``Every real number has a non-negative square.'' We write this as 
+
+\vspace{2em}
+
+How do we prove a for all statement? 
+\end{frame}
+
+\begin{frame}{Quantifiers}
+\textbf{There exists}
+
+``there exists'', $\exists$, is also called the existential quantifier. 
+
+
+If $P(x)$ is some property that applies to $x$ from some domain, then $\exists x P(x)$ means that the property $P$ holds for some $x$ in the domain. 
+
+\vspace{1em}
+
+4 has a square root in the reals. We write this as
+
+\vspace{2em}
+
+How do we prove a there exists statement?
+
+\vspace{2em}
+
+There is also a special way of writing when there exists a unique element: $\exists!$ .
+
+For example, we write the statement ``there exists a unique positive integer square root of 64'' as
+
+\vspace{2em}
+\end{frame}
+
+\begin{frame}{Combining quantifiers}
+
+Often we will need to prove statements where we combine quantifiers.
+
+Here are some examples:
+\vspace{1em}
+
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Statement & Logical expression \\
+     \hline
+     Every non-zero rational number has a multiplicative inverse &  \textcolor{white}{$\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$} \\
+          & \\
+     Each integer has a unique additive inverse &  \textcolor{white}{$\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$} \\
+          & \\
+     $f:\R \to \R$ is continuous at $x_0\in\R$ \ &  \textcolor{white}{$\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$}
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}{Quantifier order \& negation}
+
+The order of quantifiers is important! Changing the order changes the meaning. Consider the following example. Which are true? Which are false?
+
+\begin{center}
+
+$\forall x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\forall x \in \R \, \exists y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \forall y \in \R$  $x + y = 2$ \\
+$\exists x \in \R \, \exists y \in \R$ $x + y = 2$ 
+\end{center}
+\vspace{1em}
+
+
+Negating quantifiers:
+
+
+\begin{center}
+    $\neg \forall x P(x)$ = $\exists x (\neg P(x))$ \\
+$\neg \exists x P(x)$ = $\forall x (\neg P(x))$
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+
+The negations of the statements above are: \\
+ (Note that we use De Morgan's laws, which are in your exercises: \\
+ $\neg (P \wedge Q) = \neg P \vee \neg Q$ and $\neg (P \vee Q) = \neg P \wedge \neg Q$.)
+
+\vspace{1em}
+
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+     Logical expression & Negation \\
+     \hline
+     $\forall q \in \Q \setminus \{0\}, \, \exists s \in \Q$ such that $qs=1$ & \textcolor{white}{$\exists q \in \Q \setminus \{0\}$ such that  $\forall s \in \Q, \, qs \neq 1$ space space space space space space space space space space}\\
+     $\forall x \in \Z \, , \exists ! y \in \Z$ such that $x+y = 0$ & \textcolor{white}{$\exists x \in \Z$ such  that $(\forall y \in \Z, x+y \neq 0)$ $\vee$ $(\exists y_1, y_2 \in \Z$ such that $y_1 \neq y_2 \wedge x+y_1 = 0 \wedge x+y_2 = 0$  )} \\
+     $\forall \epsilon >0 \; \exists \delta > 0$ such that whenever $|x - x_0| < \delta$, $|f(x)-f(x_0)| < \epsilon$ & \textcolor{white}{$\exists \epsilon >0$ such that $\forall \delta > 0$,  $|x - x_0| < \delta$ and  $|f(x)-f(x_0)| \geq \epsilon$}
+\end{tabular}
+
+\vspace{1em}
+
+What do these mean in English?
+\end{frame}
+
+
+\begin{frame}{Types of proof}
+\begin{itemize}
+	\item Direct
+	\item Contradiction
+	\item Contrapositive
+	\item Induction
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Direct Proof}
+
+{\bf Approach:} Use the definition and known results. \\
+\vspace{1em}
+
+\large{\bf Example}
+
+\begin{exampleblock}{Claim}
+The product of an even number with another integer is even.
+\end{exampleblock}
+
+\vspace{1em}
+Approach: use the definition of even.
+
+
+%We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$.
+
+
+\end{frame}
+
+
+\begin{frame}{Direct Proof}
+
+\begin{exampleblock}{Claim}
+The product of an even number with another integer is even.
+\end{exampleblock}
+
+
+\begin{alertblock}{Definition}
+We say that an integer $n$ is {\bf even} if there exists another integer $j$ such that $n=2j$. \\
+We say that an integer $n$ is {\bf odd} if there exists another integer $j$ such that $n=2j+1$.
+\end{alertblock}
+
+\textit{Proof.}
+
+\vspace{6em}
+
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Definition}
+Let $a,b \in \Z$. We say that ``a divides b'', written $a | b$, if the remainder is zero when $b$ is divided by $a$, i.e. $\exists j \in \Z$ such that $b = a j$.
+\end{alertblock}
+
+% https://hsm.stackexchange.com/questions/5656/who-invented-the-divisibility-symbol-and-why-is-it-backwards
+
+\begin{example}
+Let $a,b,c \in \Z$ with $a \neq 0$. Prove that if $a | b$ and $b | c$, then $a | c$.
+\end{example}
+\textit{Proof.}
+\vspace{6em}
+
+\end{frame}
+
+
+
+\begin{frame}{}
+\begin{exampleblock}{Claim}
+If an integer squared is even, then the integer is itself even.
+\end{exampleblock}
+
+\vspace{1em}
+
+How would you approach this proof?
+
+\end{frame}
+
+
+
+\begin{frame}{Proof by contrapositive}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{center}
+        $P \implies Q$ \\
+        \vspace{1.5em}
+\begin{tabular}{|c|c| c|}
+\hline
+     $P$& $Q$ &  $P \implies Q$ \\ \hline
+     T& T & T \\ \hline
+     T & F & F \\ \hline
+     F & T & T \\ \hline
+     F & F & T \\ \hline
+\end{tabular}
+\end{center}
+        \column{.5\textwidth}
+        \begin{center}
+        $\neg Q \implies \neg P$ \\
+        \vspace{1.5em}
+        \begin{tabular}{|c | c | c |  c | c |}
+\hline
+     $P$& $Q$ & $\neg P$ &  $\neg Q$ & $\neg Q \implies \neg P$ \\ \hline
+     T& T & F & F &  \\ \hline
+     T & F & F &  T & \\ \hline
+     F & T &  T  & F & \\ \hline
+     F & F & T & T &  \\ \hline
+\end{tabular}
+\end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Proof by contrapositive}
+\begin{exampleblock}{Claim}
+If an integer squared is even, then the integer is itself even.
+\end{exampleblock}
+
+\textit{Proof.}
+\vspace{9em}
+
+
+\end{frame}
+
+
+\begin{frame}{Proof by contradiction}
+\begin{exampleblock}{Claim}
+The sum of a rational number and an irrational number is irrational.
+\end{exampleblock}
+
+\textit{Proof.}
+\vspace{9em}
+\end{frame}
+
+
+
+\begin{frame}{Summary}
+
+{\bf In sum, to prove $P \implies Q$:} \\
+
+\vspace{1em}
+
+
+\begin{tabular}{r l}
+     Direct proof:  & assume $P$, prove $Q$ \\
+     Proof by contrapositive:  & assume $\neg Q$, prove $\neg P$ \\ 
+     Proof by contradiction: & assume $P \wedge \neg Q$ and derive something that is impossible \\ 
+\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}{Induction}
+
+\begin{block}{Well-ordering principle for $\mathbb{N}$}
+Every nonempty set of natural numbers has a least element.
+\end{block}
+
+\begin{block}{Principle of mathematical induction}
+Let $n_0$ be a non-negative integer. Suppose $P$ is a property such that 
+\begin{enumerate}
+\item(base case) $P(n_0)$ is true 
+\item (induction step) For every integer $k \geq n_0$, if $P(k)$ is true, then $P(k+1)$ is true.
+\end{enumerate}
+Then $P(n)$ is true for every integer $n \geq n_0$
+\end{block}
+
+Note: Principle of strong mathematical induction: For every integer $k \geq n_0$, if $P(n)$ is true for every $n = n_0, \ldots, k$, then $P(k+1)$ is true.
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Claim}
+$n! > 2^n$ if $n \geq 4$ ($n \in \N$).
+\end{exampleblock}
+
+
+\textit{Proof.}
+\vspace{12em}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Claim}
+Every integer $n \geq 2$ can be written as the product of primes.
+\end{exampleblock}
+
+\textit{Proof.} We prove this by strong induction on $n$. \\
+\vspace{1em}
+
+{\it Base case:} \\ %$n = 2$ is prime. \\
+\vspace{2.5em}
+
+{\it Inductive hypothesis:} \\  %Suppose for some $k \geq 2$ that one can write every integer $n$ such that $2 \leq n \leq k$ as a product of primes. \\
+\vspace{2.5em}
+
+{\it Inductive step:} \\
+\vspace{4em}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{References}
+Gerstein, Larry J. (2012). \textit{Introduction to Mathematical Structures and Proofs}. Undergraduate Texts in Mathematics. url: \href{https://link.springer.com/book/10.1007/978-1-4614-4265-3}{https://link.springer.com/book/10.1007/978-1-4614-4265-3}
+
+%U of T log-in: \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/ 978-1-4614-4265-3l}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/ 978-1-4614-4265-3l}
+
+\vspace{1em}
+
+Lakins, Tamara J. (2016). \textit{The Tools of Mathematical Reasoning}. Pure and Applied Undergraduate Texts. 
+
+
+\end{frame}
+
+
+
+\end{document}

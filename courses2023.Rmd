@@ -1,0 +1,215 @@
+---
+title: "Summer Prep Bootcamp 2023"
+description: 
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+
+---
+
+The first DoSS Summer Prep Bootcamp was held from July 11 to July 29 2023. 
+
+## Methods and Computing
+Instructor: [Yuan Tian]([Email](mailto:yuant.tian@mail.utoronto.ca));[Jianhui Gao]([Email](mailto:jianhui.gao@mail.utoronto.ca))"
+
+### Syllabus
+
+[Click here to download the syllabus](Computing/2023/syllabus_computing.pdf)
+
+### Lectures
+
+#### Module 1: Basic R programming
+
+- Slides: [pdf](Computing/2023/Slides/mod1.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex1.pdf), [Rmd](Computing/2023/Exercises/ex1.Rmd)
+
+#### Module 2: Data wrangling (I)
+
+LaTeX, Markdown, tidyverse
+
+- Slides: [pdf](Computing/2023/Slides/mod2.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex2.pdf), [Rmd](Computing/2023/Exercises/ex2.Rmd)
+
+#### Module 3:Data wrangling (II)
+
+ggplot2
+
+- Slides: [pdf](Computing/2023/Slides/mod3.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex3.pdf), [Rmd](Computing/2023/Exercises/ex3.Rmd)
+
+#### Module 4: Statistical inference (I)
+
+Probability distributions
+
+- Slides: [pdf](Computing/2023/Slides/mod4.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex4.pdf), [Rmd](Computing/2023/Exercises/ex4.Rmd)
+
+#### Module 5: Statistical inference (II)
+
+Estimation
+
+- Slides: [pdf](Computing/2023/Slides/mod5.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex5.pdf)
+
+#### Module 6: Statistical inference (III)
+Hypothesis testing
+
+- Slides: [pdf](Computing/2023/Slides/mod6.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex6.pdf)
+
+#### Module 7: Simulations 
+
+- Slides: [pdf](Computing/2023/Slides/mod7.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex7.pdf)
+
+#### Module 8: Bootstrap
+
+- Slides: [pdf](Computing/2023/Slides/mod8.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex8.pdf)
+
+#### Module 9: Linear regression
+
+- Slides: [pdf](Computing/2023/Slides/mod9.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex9.pdf)
+
+#### Module 10: Generalized linear models
+
+- Slides: [pdf](Computing/2023/Slides/mod10.pdf) 
+
+- Exercises: [pdf](Computing/2023/Exercises/ex10.pdf)
+
+
+## Operational Math
+Instructor: [Emma Kroell](https://www.emmakroell.ca)
+
+### Syllabus
+
+[Click here to download the syllabus](Math/2023/syllabus/syllabus_operational_math.pdf)
+
+
+### Lectures
+
+You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), which will be updated after each lecture.
+
+
+#### Module 1: Introduction to proofs
+
+- Slides: [fillable](Math/2023/module1/slides.pdf),  [filled](Math/2023/module1/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module1/exercises.pdf), [LaTeX template](Math/2023/module1/exercises.tex)
+
+#### Module 2: Set theory
+
+- Slides: [fillable](Math/2023/module2/slides.pdf), [filled](Math/2023/module2/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module2/exercises.pdf), [LaTeX template](Math/2023/module2/exercises.tex)
+
+#### Module 3: Set theory II and metric spaces I
+
+- Slides: [fillable](Math/2023/module3/slides.pdf), [filled](Math/2023/module3/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module3/exercises.pdf), [LaTeX template](Math/2023/module3/exercises.tex)
+
+#### Module 4: Metric spaces II
+
+- Slides: [fillable](Math/2023/module4/slides.pdf), [filled](Math/2023/module4/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module4/exercises.pdf), [LaTeX template](Math/2023/module4/exercises.tex)
+
+#### Module 5: Metric spaces III and Topology I
+
+- Slides: [fillable](Math/2023/module5/slides.pdf), [filled](Math/2023/module5/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module5/exercises.pdf), [LaTeX](Math/2023/module5/exercises.tex)
+
+#### Module 6: Topology II and intro to linear algebra
+
+- Slides: [fillable](Math/2023/module6/slides.pdf), [filled](Math/2023/module6/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module6/exercises.pdf), [LaTeX](Math/2023/module6/exercises.tex)
+
+#### Module 7: Linear algebra I
+
+- Slides: [fillable](Math/2023/module7/slides.pdf), [filled](Math/2023/module7/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module7/exercises.pdf), [LaTeX](Math/2023/module7/exercises.tex)
+
+#### Module 8: Linear algebra II
+
+- Slides: [fillable](Math/2023/module8/slides.pdf), [filled](Math/2023/module8/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module8/exercises.pdf), [LaTeX](Math/2023/module8/exercises.tex)
+
+#### Module 9: Linear algebra III
+
+- Slides: [fillable](Math/2023/module9/slides.pdf), [filled](Math/2023/module9/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module9/exercises.pdf), [LaTeX](Math/2023/module9/exercises.tex)
+
+#### Module 10: Differentiation and integration
+
+- Slides: [fillable](Math/2023/module10/slides.pdf), [filled](Math/2023/module10/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2023/module10/exercises.pdf), [LaTeX](Math/2023/module10/exercises.tex)
+
+
+## Probability
+Instructor: [Ichiro Hashimoto]([Email](mailto:ichiro.hashimoto@mail.utoronto.ca))
+
+### Syllabus
+
+[Click here to download the syllabus](Probability/2023/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+
+### Lectures
+
+
+#### Module 1: Basics of Probability
+
+- Slides: [Module 1](Probability/2023/Slides/Summer_Bootcamp_Module_1_with_effects.pdf); [Module 1 Annotated](Probability/2023/Slides/Module_1_annotated.pdf) 
+
+#### Module 2: Random Variables
+
+- Slides: [Module 2](Probability/2023/Slides/Summer_Bootcamp_Module_2_with_effects.pdf); [Module 2 Annotated](Probability/2023/Slides/Module_2_annotated.pdf) 
+
+#### Module 3: Common Random Variables
+
+- Slides: [Module 3](Probability/2023/Slides/Summer_Bootcamp_Module_3_with_effects.pdf); [Module 3 Annotated](Probability/2023/Slides/Module_3_annotated.pdf) 
+
+#### Module 4: Distribution
+
+- Slides: [Module 4](Probability/2023/Slides/Summer_Bootcamp_Module_4_with_effects.pdf); [Module 4 Annotated](Probability/2023/Slides/Module_4_annotated.pdf) 
+
+#### Module 5: Expectation
+
+- Slides: [Module 5](Probability/2023/Slides/Summer_Bootcamp_Module_5_with_effects.pdf); [Module 5 Annotated](Probability/2023/Slides/Module_5_annotated.pdf) 
+
+#### Module 6: Inequalities
+
+- Slides: [Module 6](Probability/2023/Slides/Summer_Bootcamp_Module_6_with_effects.pdf); [Module 6 Annotated](Probability/2023/Slides/Module_6_annotated.pdf) 
+
+#### Module 7: Stochastic Convergence
+
+- Slides: [Module 7](Probability/2023/Slides/Summer_Bootcamp_Module_7_with_effects.pdf); [Module 7 Annotated](Probability/2023/Slides/Module_7_annotated.pdf) 
+
+#### Module 8: Limit Theorems
+
+- Slides: [Module 8](Probability/2023/Slides/Summer_Bootcamp_Module_8_with_effects.pdf); [Module 8 Annotated](Probability/2023/Slides/Module_8_annotated.pdf) 
+
+#### Module 9: Markov Chain
+
+- Slides: [Module 9](Probability/2023/Slides/Summer_Bootcamp_Module_9_with_effects.pdf); [Module 9 Annotated](Probability/2023/Slides/Module_9_annotated.pdf) 
+
+#### Module 10: Stochastic Processes
+
+- Slides: [Module 10](Probability/2023/Slides/Summer_Bootcamp_Module_10_with_effects.pdf); [Module 10 Annotated](Probability/2023/Slides/Module_10_annotated.pdf) 
+

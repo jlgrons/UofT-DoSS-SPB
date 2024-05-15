@@ -1,0 +1,527 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
+\title[]{Module 8: Linear Algebra II \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{July 25, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+Last time:
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+      \item Vector spaces and subspaces
+    	\item Linear independence and bases
+	\item Linear maps, null space, range
+    \end{itemize}
+    
+\vspace{1em}
+
+Today:
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+      \item Inverses of linear maps
+      	\item Matrices as linear maps
+    	\item Determinants
+	\item Inner product spaces
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Recall}
+\begin{theorem}
+Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
+\end{theorem}
+
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$, if and only if $\nullspace T = \{ \zerovec \}$. $T$ is \emph{surjective} if $\forall \bv \in V, \, \exists \bu \in U$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+
+
+\begin{theorem}[Rank Nullity Theorem]
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\rank T + \nullity  T = \dim U.
+\end{equation*}
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\begin{definition}[Product of linear maps]
+Let $S \in \cL(U,V)$ and $T \in \cL(V,W)$. We define the product $ST \in \cL(U,W)$ for $\bu\in U$ as $ST(\bu) = S(T(\bu))$.
+\end{definition}
+
+\vspace{1em}
+
+\begin{definition}
+A linear map $T: U \to V$ is \emph{invertible} if there exists a linear map $S: V \to U$ such that $ST$ is the identity map on $U$ and $TS$ is the identity map on $V$. Such a map $S$ is called the \emph{inverse} of $T$. 
+\end{definition}
+
+\vspace{1em}
+
+If $T$ is invertible, we denote the inverse by $T^\inv$. This is justified by the fact that the inverse is unique, as the next proposition shows.
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Any invertible linear map has a unique inverse.
+\end{exampleblock}
+\textit{Proof}.
+\vspace{3.5cm}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}
+A linear map is invertible if and only if it is injective and surjective.
+\end{theorem}
+
+See proof in the book.
+
+\vspace{2em}
+
+\begin{definition}
+An invertible linear map is called an \emph{isomorphism}. If there exists an isomorphism from one vector space to another, we say that the vector spaces are \emph{isomorphic}.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{theorem}
+\textit{Proof}.
+($\Rightarrow$) 
+
+\vspace{4cm}
+\end{frame}
+
+\begin{frame}
+($\Leftarrow$) 
+\vspace{6cm}
+\end{frame}
+
+
+
+\begin{frame}{Linear maps and matrices}
+\begin{example}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{example}
+
+Next we will see that we can use matrices to represent linear maps between finite dimensional vector spaces. 
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}\label{def:matrix_rep}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m
+\end{equation*}
+i.e. the $k$th column of $A$ is the scalars needed to write $T \bu_k$ as a linear combination of the basis of $V$:
+\begin{equation*}
+    T \bu_k = \sum_{i=1}^m A_{ik} \bv_i 
+\end{equation*}
+\end{definition}
+
+Note that since a linear map $T\in \mathcal{L}(U,V)$ is uniquely determined by its image on a basis of $U$, we see that once we pick basis of $U$ and $V$ its matrix representation is uniquely determined. 
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{example}
+Let $D \in \mathcal{L}(\mathbb{P}_4(\R),\mathbb{P}_3(\R))$ be the differentiation map, $Dp = p'$. Find the matrix of $D$ with respect to the standard bases of $\mathbb{P}_3(\R)$ and $\mathbb{P}_4(\R)$.
+
+Standard basis: $1, x, x^2, x^3, (x^4)$ 
+\vspace{1em}
+
+$T(u_1) $ \\
+$T(u_2)  $ \\ 
+$T(u_3) $ \\ 
+$T(u_4) $ \\
+$T(u_5) $
+\vspace{1em}
+
+The matrix is:
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Observe that if we choose bases $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ for $U,V$ and represent $T\in \mathcal{L}(U,V)$ as a matrix $\mathcal{M}(T)$, then the corresponding map can be obtained by just working with the coordinates of vectors in $U,V$ with respect to the chosen basis
+\item  If $\bu = \sum_{i=1}^n \alpha_i \bu_i$, then the coordinates of $T(\bu)$ with respect to $\bv_1, \ldots, \bv_m$ can be obtained by the matrix vector multiplication $\mathcal{M}(T)\boldsymbol{\alpha}$, where $\boldsymbol{\alpha}$ is the $n\times 1$ matrix with entries $\alpha_i$
+%\item  after a choice of basis $T\in \mathcal{L}(U,V)$ is in a 1-1 correspondence with maps $T_{\mathcal{M}(T)} \colon \F^n \to F^m$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+If we want to find the derivative of $p= x^4 +12x^3 -5x^2 +7$ with respect to the standard monomial basis of $\mathbb{P}_4(\R)$, we use $\mathcal{M}(D)$ from the previous example to obtain
+\begin{align*}
+    \mathcal{M}(D)\boldsymbol{\alpha} = \begin{pmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 0 & 4
+     \end{pmatrix} \begin{pmatrix} 7\\ 0\\ -5\\12\\1
+     \end{pmatrix} = \begin{pmatrix} 0 \\ -10\\ 36\\4
+     \end{pmatrix}.
+\end{align*}
+Thus, translating back into the monomial basis of $\mathbb{P}_3(\R)$ gives $D(p) = -10x + 36x^2 +4x^3$.
+\end{example}
+
+\end{frame}
+
+\begin{frame}{Other points}
+\begin{itemize}
+\item Looking at matrices as representations of linear maps gives us an intuitive explanation for why we do matrix multiplication the way we do! In fact, we want matrix multiplication to represent composition of linear maps
+\item We can use matrices to solve linear systems.
+\end{itemize}
+\end{frame}
+
+\section{Determinants}
+
+\begin{frame}{Determinant}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item The determinant is a function from $M_{n \times n} \to \F$, i.e. it is a function from the entries of a square matrix to a real or complex number.
+	\item Notation: $det(A) = |A|$
+	\item The determinant has applications in solving linear systems, computing eigenvalues, etc
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Example: $2\times 2$ matrix}
+The determinant of a $2 \times 2$ matrix is 
+$$\left| \begin{matrix} a & b \\ c & d \end{matrix} \right| = $$
+\end{frame}
+
+
+\begin{frame}{Example: $3\times 3$ matrix}
+There is a \textbf{\textcolor{deptoran}{trick}} for finding the determinant of a 3 by 3 matrix:
+$$\left| \begin{matrix} a & b &c \\ d & e & f \\ g & h &i \end{matrix} \right| \qquad \qquad  \qquad \qquad \qquad \qquad \qquad \qquad$$
+\vspace{1cm}
+
+$|A| = $
+\end{frame}
+
+\begin{frame}{Cofactor expansion}
+For other $n \times n$ matrices, one can compute the determinant using \textbf{\textcolor{deptoran}{cofactor expansion}}.
+
+\begin{definition}[Cofactor expansion]
+Let $A = \{ a_{j,k}\}_{j,k=1}^n$ be a $n\times n$ matrix. Let $M_{j,k}$ denote the determinant of the $(n-1) \times (n-1)$ matrix obtained by removing the $j^\text{th}$ row and the $k^\text{th}$ column of $A$. For each row $j=1,\ldots,n$
+\begin{equation*}
+    |A| = \sum_{k=1}^n a_{j,k} (-1)^{j+k} M_{j,k}.
+\end{equation*}
+Similarly, for each column $k=1,\ldots,n$
+\begin{equation*}
+    |A| = \sum_{j=1}^n a_{j,k} (-1)^{j+k} M_{j,k}.
+\end{equation*}
+The numbers $C_{j,k}=(-1)^{j+k} M_{j,k}$ are called \emph{cofactors}.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+The determinant of a diagonal matrix or triangular matrix is the product of the entries on the diagonal.
+\end{exampleblock}
+\textit{Sketch of proof}.
+\vspace{4cm}
+
+
+\end{frame}
+
+
+\begin{frame}{Inverse of a matrix}
+\begin{theorem}
+Let $A$ be an $n \times n$ invertible matrix and let $C=\{C_{j,k}\}_{j,k=1}^n$ be its cofactor matrix. Then
+\begin{equation*}
+    A^\inv = \frac{1}{|A|} C^T
+\end{equation*}
+\end{theorem}
+
+\vspace{1em}
+
+Note: The matrix $A$ is invertible if and only if the linear map represented by the matrix is an isomorphism.
+\end{frame}
+
+\begin{frame}{Cramer's rule}
+\begin{corollary}
+Suppose $A$ is an $n \times n$ invertible matrix. The linear system $A\bx = \mathbf{b}$ has a unique solution given by
+\begin{equation*}
+    x_i = \frac{|A_i|}{|A|}, \quad i = 1, \ldots, n,
+\end{equation*}
+where $A_i$ is the matrix obtained by replacing the $i^\text{th}$ column of $A$ with $\mathbf{b}$.
+\end{corollary}
+\end{frame}
+
+\begin{frame}{Transpose of a matrix}
+\begin{definition}
+The \emph{transpose} of an $m \times n$ matrix A is the $n \times m$ matrix, denoted $A^T$, defined entry-wise as $\{A^T_{j,k}\} = \{A_{k,j}\}$ for $j=1,\ldots,m$ and $k=1,\ldots n$ (i.e. the rows of $A$ are the columns of $A^T$ and the columns of $A$ are the rows of $A^T$)
+\end{definition}
+\vspace{1cm}
+\end{frame}
+
+
+
+\begin{frame}{Properties of the determinant}
+\begin{exampleblock}{Proposition}
+$|A| \neq 0$ if and only if $A$ is invertible
+\end{exampleblock}
+
+\begin{exampleblock}{Proposition}
+Let $A$ be an $n \times n$ real matrix.
+\begin{enumerate}
+    \item If A has a zero column, then $|A| = 0$.
+\item If A has two equal columns, then $|A| = 0$.
+\item If one column of A is a multiple of another, then $|A| = 0$.
+\item $|AB| = |A| |B|$
+\item $|\alpha A| = \alpha^n |A|$ for $\alpha \in \F$
+\item $|A^T| = |A|$
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\section{Inner product spaces}
+
+
+\begin{frame}{Complex numbers}
+Recall that for a complex number $z = a + ib$, we define the following:
+\vspace{0.5em}
+\begin{itemize}
+      \setlength\itemsep{0.5em}
+\item Real part: $Re(z) = a$,
+\item Imaginary part: $Im(z) = b$,
+\item Complex conjugate: $\overline{z}= a -ib$, 
+\item Modulus: $|z| = \sqrt{Re(z)^2 + Im(z)^2} = \sqrt{a^2 + b^2}$
+\end{itemize}
+
+\vspace{1em}
+
+We have $|z|^2 = z \overline{z}$ and $Re(z) = \frac{z + \overline{z}}{2}$.
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+Let $V$ be an $\F$-vector space. A function $\innerprod{\cdot,\cdot} \colon V \times V \to \F$ is called \emph{inner product} on $V$ if the following holds:
+\begin{enumerate}
+\setlength\itemsep{0.5em}
+    \item (Conjugate) symmetry: $\innerprod{\bx,\by} = \overline{\innerprod{\by,\bx}}$ for all $\bx,\by\in V$, where $\overline{a}$ denotes the complex conjugate for $a\in \C$
+    \item Linearity in the first argument: $\innerprod{\alpha \bx + \beta \by, \bz} = \alpha \innerprod{\bx,\bz} + \beta \innerprod{\by,\bz}$ for all $\bx,\by,\bz\in V$ and $\alpha, \beta \in \F$
+    \item Positive definiteness: $\innerprod{\bx,\bx} \geq 0$ and $\innerprod{\bx,\bx} = 0$ if and only if $\bx = \zerovec$ 
+\end{enumerate}
+\vspace{1em}
+A vector space equipped with an inner product is called an \emph{inner product space}.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+\begin{itemize}
+      \setlength\itemsep{1.5em}
+    \item Standard inner product on $\R^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_iy_i$ for $\bx,\by\in \R^n$
+    \item Standard inner product on $\C^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_i\overline{y}_i$ for $\bx,\by\in \C^n$
+    \item On the space of polynomials $\mathbb{P}_n(\R)$: $\innerprod{\boldsymbol{p},\boldsymbol{q}} = \int_{-1}^1 p(x) {q}(x) \mathrm{d}x$ for $\boldsymbol{p},\boldsymbol{q}\in \mathbb{P}_n(\R)$
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $V$ be an inner product space. Then $\bx = \zerovec$ if and only if $\innerprod{\bx,\by } = 0$ for all $\by \in V$.
+\end{exampleblock}
+
+\textit{Proof}.
+\vspace{4.5cm}
+
+\end{frame}
+
+
+\begin{frame}{Cauchy-Schwarz Inequality}
+\begin{exampleblock}{Proposition}
+Let $V$ be an inner product space. Then 
+\begin{align*}
+    \vert \innerprod{\bx,\by}\vert \leq \sqrt{\innerprod{\bx,\bx}}\sqrt{\innerprod{\by,\by}}
+\end{align*}
+for all $\bx,\by\in V$.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\textit{Proof}.
+\vspace{6.5cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $V$ be an inner product space. Then $\innerprod{\cdot,\cdot}$ induces a norm on $V$ via $\Vert \bx\Vert =\sqrt{\innerprod{\bx,\bx}} $ for all $\bx \in V$.
+\end{exampleblock}
+\textit{Proof}.
+\vspace{4cm}
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+\begin{frame}
+Note:
+With this identification the Cauchy-Schwarz inequality can be restated as: $ \vert \innerprod{\bx,\by}\vert \leq \Vert \bx \Vert \Vert \by \Vert$ for all $\bx, \by\in V$.
+
+\vspace{2em}
+
+\begin{exampleblock}{Example}
+The norm introduced by the standard inner product on $\R^n$ is the Euclidean distance. 
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{References}
+
+Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
+Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
+%U of T login:  \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}
+
+\vspace{1em}
+
+
+\indent Treil S. \textit{Linear Algebra Done Wrong}. 2017. Available from: \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{https://www.math.brown.edu/streil/papers/LADW/LADW.html}
+\end{frame}
+
+
+
+
+\end{document}

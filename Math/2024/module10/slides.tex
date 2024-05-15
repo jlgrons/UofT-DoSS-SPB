@@ -1,0 +1,645 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
+
+
+\beamertemplatenavigationsymbolsempty
+
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
+% block
+% example block
+% alert block
+
+
+\title[]{Module 10: Differentiation and Integration \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{July 28, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Last time}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item Eigenvalues and eigenvectors
+	\item Algebraic and geometric multiplicity of eigenvalues
+	\item Matrix diagonalization
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+          \item Matrix decompositions
+	\begin{itemize}
+      \setlength\itemsep{0.25em}
+	\item Jordan canonical form
+	\item Singular value decomposition
+	\item QR
+    \end{itemize}
+    	\item Differentiation on $\R$
+	\begin{itemize}
+      \setlength\itemsep{0.25em}
+	\item Mean value theorem
+	\item l'H\^{o}pital's rule
+	\item Smoothness classes
+    \end{itemize}
+	\item Integration on $\R$
+	\begin{itemize}
+      \setlength\itemsep{0.25em}
+	\item Riemann sums and Riemann integral
+	\item Integration rules
+	\item Drawbacks of Riemann integration
+    \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Recall}
+
+\begin{definition}
+Given an operator $A \colon V \to V$ and $\lambda \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+$$A \bv = \lambda \bv.$$
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $A$ and denote it by $\sigma(A)$.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Recall}
+\begin{itemize}
+\setlength\itemsep{0.5em}
+	\item The multiplicity of the root $\lambda$ in the characteristic polynomial is called the \emph{algebraic multiplicity} of the eigenvalue $\lambda$
+	\item The dimension of the eigenspace $\nullspace (A - \lambda I)$ is called the \emph{geometric multiplicity} of the eigenvalue $\lambda$.
+	\item An $n \times n$ matrix $A$ is \textbf{diagonalizable} if there exists an invertible matrix $S\in M_n(\C)$ such that $A = SDS^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+	\item If $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. 
+	\item $A$ is diagonalizable if and only if for each eigenvalue $\lambda$, the geometric multiplicity of $\lambda$ and the algebraic multiplicity of $\lambda$ are the same.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Block matrices}
+\begin{definition}
+A block matrix is a matrix that can be broken into sections called blocks, which are smaller matrices.
+\end{definition}
+
+\begin{example}
+$$ \begin{bmatrix} 2 & 1 & 0 & 1  \\ 0 & 2 &1 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} \qquad \qquad \qquad \qquad$$
+\vspace{2cm}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+A square matrix is called \emph{block diagonal} if it can be written as a block matrix where the main-diagonal blocks are all square matrices and the off-diagonal blocks are all zero.
+\end{definition}
+
+\begin{example}
+The matrix
+$$ \begin{bmatrix} 2 & 1 & 0 & 0  \\ 0 & 2 &0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 1 \end{bmatrix} $$
+is block diagonal.
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+A vector $\bv$ is called a \emph{generalized eigenvector} of $A$ corresponding to an eigenvalue $\lambda$ if there exists $k \geq 1$ such that 
+$$ (A - \lambda I)^k \bv = 0.$$
+\end{definition}
+The set of generalized eigenvectors of an eigenvalue $\lambda$ (plus $\zerovec$) is called the \emph{generalized eigenspace} of $\lambda$.
+
+\vspace{1em}
+
+\begin{exampleblock}{Proposition}
+The algebraic multiplicity of an eigenvalue $\lambda$ is the same as the dimension of the corresponding generalized eigenspace.
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}[Jordan decomposition theorem]
+For any operator $A$ there exists a basis such that $A$ is block diagonal with blocks that have eigenvalues on the diagonal and 1s on the upper off-diagonal. In other words, $A$ can be written in the form
+$$ A = \begin{bmatrix} J_1 & 0 & \ldots & 0\\ 0 & J_2 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \ldots & J_k \end{bmatrix} $$
+where the blocks $J_i$ on the main diagonal are Jordan block of the form 
+$$\begin{bmatrix} \lambda  \end{bmatrix}, \begin{bmatrix} \lambda & 1  \\ 0 &\lambda \end{bmatrix}, \begin{bmatrix} \lambda & 1 & 0 \\ 0 &\lambda & 1 \\ 0 & 0 & \lambda \end{bmatrix}, \text{ etc.}$$
+This form is called \emph{Jordan canonical form}.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+Connection to algebraic and geometric multiplicity:
+\begin{itemize}
+    \item The algebraic multiplicity of an eigenvalue $\lambda$ is the number of times $\lambda$ appears on the diagonal.
+    \item The geometric multiplicity of $\lambda$ is the number of Jordan blocks associated with $\lambda$.
+\end{itemize}
+\vspace{1em}
+
+Why is Jordan form useful?
+
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}{Singular value decomposition}
+
+\begin{theorem}
+Let $A\in M_n(\R)$ be a symmetric matrix. Then, there exists an orthogonal matrix $O\in M_n(\R)$ such that $A=ODO^T$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+\end{theorem}
+
+\vspace{1em}
+
+
+Note: $A^T A$ is symmetric
+
+\vspace{1em}
+
+\begin{definition}
+Let $A$ be an $m \times n$ matrix.  Let $\lambda_1, \ldots, \lambda_n$ be the eigenvalues of $A^T A$. Then the \emph{singular values} of $A$ are defined as
+\begin{equation*}
+    \sigma_1 = \sqrt{\lambda_1}, \ldots, \sigma_n = \sqrt{\lambda_n}.
+\end{equation*}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}[Singular value decomposition]
+If $A$ is an $m \times n$ matrix of rank $k$, then we can write
+$$ A = U \Sigma V^T$$
+where $\Sigma$ is an $m \times n$ matrix of the form
+$$ \begin{bmatrix} D_{k \times k} & 0_{k \times (n - k)} \\ 0_{(m -k) \times k} & 0_{(m -k) \times (n-k)} \end{bmatrix},$$
+$D$ is a diagonal matrix with the singular values of $A$, $ \sigma_1, \ldots, \sigma_k$, on the diagonal and $U$ and $V$ are both orthogonal matrices (of size $m \times m$ and $n \times n$, respectively).
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+Uses of SVD:
+
+\vspace{3cm}
+
+Differences between JCF and SVD:
+
+\vspace{3cm}
+
+\end{frame}
+
+\begin{frame}{$LU$-decomposition}
+\begin{definition}
+The $LU$-decomposition of a square matrix $A$ is the factorization of $A$ into a lower triangular matrix $L$ and an upper triangular matrix $U$ as follows:
+\begin{equation*}
+    A = LU.
+\end{equation*}
+\end{definition}
+
+Why is this useful? Consider the linear system $A \bx = \mathbf{b}$
+\vspace{3cm}
+\end{frame}
+
+\begin{frame}{Recall: orthonormal basis}
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+\vspace{1em}
+
+Starting from a set of linearly independent vectors, we can construct another set of vectors which are orthonormal and span the same space using the \textbf{\textcolor{deptoran}{Gram-Schmidt Algorithm}}.
+\end{frame}
+
+
+
+\begin{frame}{$QR$-decomposition}
+\begin{definition}[$QR$-decomposition]
+The $QR$-decomposition of an $m \times n$ matrix $A$ with linearly independent column vectors is the factorization of $A$ as follows:
+\begin{equation*}
+    A = QR,
+\end{equation*}
+where $Q$ is an $m \times n$ matrix with orthonormal column vectors and $R$ is an $n\times n$ invertible upper triangular matrix.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+One obtains the factorization by applying the Gram-Schmidt algorithm to the columns of $A$. Let $\bu_1, \ldots, \bu_n$ be the column vectors of $A$. Let $\mathbf{q}_1, \ldots, \mathbf{q}_n$ be the orthonormal vectors obtained by applying Gram Schmidt. Then one can write:
+\begin{align*}
+    \bu_1 &= \innerprod{\bu_1,\mathbf{q}_1}\mathbf{q}_1 + \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2+ \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    \bu_2 &= \innerprod{\bu_2,\mathbf{q}_2}\mathbf{q}_2 + \ldots +  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n \\
+    & \vdots \\
+    \bu_n &=  \innerprod{\bu_n,\mathbf{q}_n} \mathbf{q}_n
+\end{align*}
+
+Thus the orthonormal vectors obtained using Gram-Schmidt form the columns of $Q$, while $R$ is the terms needed to go between the columns of $A$ and thsoe of $Q$, i.e.
+$$ R = \begin{bmatrix}
+\innerprod{\bu_1,\mathbf{q}_1} & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+0 & \innerprod{\bu_2,\mathbf{q}_2} & \ldots & \innerprod{\bu_n,\mathbf{q}_n} \\
+\vdots &\vdots & \ddots & \vdots \\
+0 & 0 & \ldots & \innerprod{\bu_n,\mathbf{q}_n} 
+\end{bmatrix}.$$
+\end{frame}
+
+\begin{frame}
+Why use $QR$-decomposition? 
+
+\vspace{3cm}
+
+\end{frame}
+
+
+
+\section{Differentiation}
+
+\begin{frame}{Derivative}
+Recall the definition of the derivative:
+\begin{definition}
+A function $f:(a,b) \to \R$ is \emph{differentiable} at $x\in (a,b)$ if
+\begin{equation*}
+    L := \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\end{equation*}
+exists. $L$ is the \emph{derivative} of $f$ at $x$, denoted $L= f'(x)$. If $f$ is differentiable at every $x \in (a,b)$, we say $f$ is \emph{differentiable}.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+The following are key rules for differentiation:
+\begin{enumerate}
+    \item If $f$ is differentiable at $x$, then it is continuous at $x$.
+    \item The derivative of a constant function is zero.
+    \item If $f$ and $g$ are differentiable at $x$, then so is $f+g$ with $(f+g)'(x) = f'(x) + g'(x)$.
+    \item Product rule: If $f$ and $g$ are differentiable at $x$, then so is $fg$ with $$(fg)'(x) = f'(x) g(x) + f(x) g'(x).$$
+    \item Quotient rule: If $f$ and $g$ are differentiable at $x$ and $g(x) \neq 0$, then so is $f/g$ with $$(f/g)'(x) = \frac{f'(x) g(x) - f(x) g'(x)}{g^2(x)}.$$
+    \item Chain rule: If $f$ is differentiable at $x$ and $g$ is differentiable at $f(x)$, then so is $g \circ f$ with $$(g \circ f)'(x)= g'(f(x))f'(x).$$
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+Next we recall a theorem we proved in greater generality when we discussed compactness in the topology section:
+\begin{theorem}[Extreme value theorem]
+If $f:[a,b] \to \R$ is continuous, then $f$ attains a maximum and a minimum, i.e. there exists $c,d \in [a,b]$ such that
+$$ f(c) \leq f(x) \leq f(d) \quad \forall x \in [a,b] .$$
+\end{theorem}
+
+This theorem is used to prove the following important result:
+
+\begin{theorem}[Mean value theorem]
+If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $c \in (a,b)$ such that 
+$$f(b) - f(a) = f'(c)(b-a) .$$
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+If $f:(a,b) \to \R$ is differentiable on $(a,b)$ and achieves a (local) maximum or (local) minimum at $c \in (a,b)$, then $f'(c) = 0$.
+\end{alertblock}
+
+\vspace{1em}
+\textit{Proof of Mean Value Theorem}:
+\vspace{3cm}
+\end{frame}
+
+
+
+\begin{frame}
+
+\end{frame}
+
+
+%\begin{frame}
+%\begin{corollary}
+%If $f:(a,b) \to \R$ is differentiable and has a bounded derivative (i.e. $|f'(x)| \leq M$ for some $M >0$ and for all $x \in (a,b)$), then $f$ is Lipschitz.
+%\end{corollary}
+%
+%\end{frame}
+
+
+
+
+\begin{frame}{l'H\^{o}pital's rule}
+\begin{theorem}[l'H\^{o}pital's rule]
+If $f,g$ are differentiable on $(a,b)$, where $a,b$ may be $\pm \infty$, and $\lim_{x \to b} f(x) = 0 = \lim_{x \to b} g(x)$, or both limits equal $\pm \infty$, then 
+$$ \lim_{x \to b} \frac{f'(x)}{g'(x)} = L$$
+implies
+$$ \lim_{x \to b} \frac{f(x)}{g(x)} = L$$
+\end{theorem}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{example}
+$$ \lim_{x\to 0} \frac{5^x - 2^x}{x^2-x} \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $$
+\vspace{2cm}
+$$ \lim_{x\to -\infty} x e^x \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $$
+\vspace{2cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Higher order derivatives}
+\begin{definition}
+We define higher-order derivatives inductively as $f^{(r)}(x) = (f^{(r-1)})'(x)$. If $f^{(r)}$ exists (at $x$), we say that $f$ is $r^\text{th}$-order differentiable (at $x$). 
+\end{definition}
+
+\vspace{1em}
+
+\begin{definition}
+If $f^{(r)}$ exists for all $r \in \N$ and for all $x \in (a,b)$, then we say $f$ is infinitely differentiable or \emph{smooth}. We denote this $f \in C^\infty((a,b))$.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Smoothness classes}
+\begin{definition}
+If $f$ is differentiable and its derivative $f'(x)$ is continuous, we say that $f$ is \emph{continuously differentiable}, and that $f \in C^1$. If $f^{(r)}$ exists and is continuous, we say that $f \in C^r$. If $f$ is continuous, we say $f \in C^0$.
+\end{definition}
+
+\vspace{1em}
+
+Since differentiability implies continuity, we have $C^\infty \subset \cdots \subset C^2 \subset C^1 \subset C^0$.
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{example}
+\begin{itemize}
+\item The function $f(x) = |x|$ is $C^0$ but not $C^1$. 
+\item The function $f(x) = x|x|$ is $C^1$ but not $C^2$.
+\item $f(x) = e^x$ and $f(x) = x$ are smooth functions, i.e., in $C^\infty$.
+\end{itemize}
+\end{example}
+\vspace{4cm}
+\end{frame}
+
+\section{Integration}
+
+
+\begin{frame}{Riemann integration}
+\begin{definition}[Riemann sum]
+Let $f\colon [a,b] \to \R$ be a function. We call a set of points $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ a \emph{partition} of $[a,b]$ if the following holds
+\begin{equation*}
+    a = x_0 \leq x_1\leq \ldots \leq x_{n-1} \leq x_n = b.
+\end{equation*}
+We call the largest sub-interval of the partition $P$ the \emph{mesh} of $P$, denoted $|P|$, i.e.
+$$ |P| = \max_{i=1,\ldots,n} ( x_i - x_{i-1} ).$$
+
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Definition continued (Riemann sum)}
+Given a partition $P=\{x_0, \ldots, x_n\}\subseteq [a,b]$ of $[a,b]$ and a set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots, n$, we define the \emph{Riemann sum} $R(f,P,T)$ corresponding to $f,P,T$ as 
+\begin{equation*}
+    R(f,P,T) = \sum_{i=1}^n f(t_i) (x_i-x_{i-1}) := \sum_{i=1}^n f(t_i) \Delta x_i,
+\end{equation*}
+where we used $ \Delta x_i = x_i-x_{i-1}$. 
+
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}
+The idea is to define the Riemann integral as the ``limit'' of the Riemann sums over all partition such that their mesh is becoming arbitrarily small:
+
+\vspace{1em}
+
+\begin{definition}[Riemann integrable]
+A function $f\colon [a,b] \to \R$ is called \emph{Riemann integrable} if there exists $I\in \R$ such that for all $\epsilon>0$, there exists a $\delta>0$ such that for any partition $P = \{x_0,\ldots,x_n \}$ of $[a,b]$ with $\vert P \vert <\delta$ and set of points $T=\{t_1,\ldots, t_n\}\subseteq [a,b]$ such that $t_i \in [x_{i-1},x_i]$ for $i=1,\ldots,n$ we have $\vert R(f,P,T) - I \vert < \epsilon$. 
+
+We say that $I$ is the Riemann integral of $f$, denoted $I = \int_a^b f(x) \mathrm{d}x$.
+\end{definition}
+\vspace{1em}
+
+If $f$ is Riemann integrable, then $I$ is unique.
+\end{frame}
+
+
+
+
+\begin{frame}
+Let $\mathcal{R}([a,b])$ denote the set of functions that are Riemann integrable on $[a,b]$.
+
+\vspace{2em}
+
+\begin{theorem}
+Riemann integration is linear, i.e. if $f,g \in \mathcal{R}([a,b])$ and $c \in \R$, then $f+ cg \in \mathcal{R}([a,b])$.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+\textit{Sketch of proof}
+\vspace{6cm}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition (Rules for integration on $[a,b]$)}
+\begin{enumerate}
+    \item The constant function $f(x) = c$ is integrable and its integral is $c(b-a)$.
+    \item If f is Riemann integrable, then it is bounded.
+    \item If $f,g \in \mathcal{R}([a,b])$ and $f(x) \leq g(x)$ for all $x \in [a,b]$, then
+    $$ \int_a^b f(x) dx \leq  \int_a^b g(x) dx.$$
+    \item If $f \in \mathcal{R}([a,b])$ and $g:[c,d] \to [a,b]$ is a continuously differentiable bijection with $g'>0$, then 
+     $$ \int_a^b f(y) dy =  \int_c^d f(g(x)) g'(x) dx.$$
+     \item If $f,g : [a,b] \to \R$ are differentiable and $f',g' \in \mathcal{R}([a,b])$, then 
+     $$ \int_a^b f(x) g'(x) dx =  f(b) g(b) - f(a) g(a) - \int_a^b f'(x) g(x) dx.$$
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}[Fundamental Theorem of Calculus]
+\textbf{\emph{First part:}}\\
+If $f:[a,b] \to \R$ is Riemann integrable then its indefinite integral
+$$ F(x) = \int_a^x f(t) dt$$
+is a continuous function of $x$. In addition, the derivative of $F$ exists and $F'(x) = f(x)$ at all $x \in [a,b]$ where $f$ is continuous.
+
+\vspace{1em}
+
+\textbf{\emph{Second part:}}\\
+Let $f:[a,b]\to \R$ and let $F$ be a continuous function on $[a,b]$ with antiderivative $f$ on $(a,b)$, i.e. $F'(x) = f(x)$. Then if $F$ is Riemann integrable on $[a,b]$,
+$$ \int_a^b f(x) dx = F(b) - F(a).$$
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Drawbacks of the Riemann integral}
+\begin{itemize}
+      \setlength\itemsep{1em}
+\item Riemann integration has many nice properies, but it also has some drawbacks
+\item To see this, we first introduce a nice alternative characterization of Riemann integrability
+\item  Instead of looking at all the Riemann sums, we can restrict our attention to two special forms of the sum
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Given a function $f\colon [a,b] \to \R$ and a partition $P = \{x_0,\ldots, x_n\}$ of $[a,b]$, we define the \emph{lower} and \emph{upper sum} of $f$ via \begin{align*}
+    L(f,P) = \sum_{i=1}^n m_i \Delta x_i, \qquad U(f,P) =\sum_{i=1}^n M_i \Delta x_i,
+\end{align*}
+where $m_i = \inf \{f(t) \colon t\in [x_{i-1}, x_i]\}$ and $M_i = \sup \{f(t) \colon t\in [x_{i-1}, x_i]\}$. We define the \emph{lower} and \emph{upper integral} of $f$ to be
+\begin{align*}
+    \underline{I} = \sup_P L(f,P), \qquad \overline{I} = \inf_P U(f,P).
+\end{align*}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+Since $f$ is defined on a compact set, it will be bounded and hence the lower and upper integral exist and are finite.
+\vspace{1em}
+
+One can think of the lower and upper integral as lower and upper bounds for the Riemann integral. 
+\vspace{2em}
+
+\begin{theorem}
+Let $f\colon [a,b] \to \R$ be a function. Then $f$ is Riemann integrable if and only if $\underline{I} = \overline{I}$ and we have $\underline{I} = \overline{I} = I$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{A function that is not Riemann integrable}
+\begin{equation*}
+    f \colon [0,1] \to \R \colon x\mapsto \begin{cases} 0 &\text{ if } x\in \Q,\\
+    1 &\text{ otherwise}.
+    \end{cases}
+\end{equation*}
+\vspace{1em}
+
+Is this function Riemann integrable? Should it be integrable?
+\vspace{3cm}
+\end{frame}
+
+
+\section{The End}
+
+
+\begin{frame}{References}
+
+Charles C. Pugh (2015). \textit{Real Mathematical Analysis}. Undergraduate Texts in Mathematics. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}
+
+\end{frame}
+
+
+
+
+\end{document}

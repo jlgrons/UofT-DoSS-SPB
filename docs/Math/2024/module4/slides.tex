@@ -1,0 +1,387 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\usepackage{tikz}
+\usepackage{accents}
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\inv}{{-1}}
+
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\cP}{\mathcal{P}}
+
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\title[]{Module 4: Metric Spaces II\\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Emma Kroell}
+\institute[]{University of Toronto}
+\date{July 17, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+      \setlength\itemsep{1em}
+      	\item Open and closed sets
+    	\item Sequences
+	\begin{itemize}
+	\item Cauchy sequences
+	\item subsequences
+	\end{itemize}    
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{definition}[Open and closed sets]
+Let $(X,d)$ be a metric space. 
+\begin{itemize}
+    \item A set $U \subseteq X$ is \emph{open} if for every $x \in U$ there exists $\epsilon>0$ such that $B_\epsilon(x) \subseteq U$.
+    \item A set $F \subseteq X$ is \emph{closed} if $F^c:= X\setminus F$ is open.
+\end{itemize}
+\end{definition}
+
+\vspace{0.5em}
+\textbf{Note:}
+
+
+\vspace{1.5em}
+
+\begin{proposition}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+     \item If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+ \end{enumerate}
+\end{proposition}
+
+\end{frame}
+
+
+\begin{frame}
+\textit{Proof}.
+(1) Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are open, then $A_1 \cap A_2$ is open.
+
+\vspace{4cm}
+
+(2) If $A_i \subseteq X$, $i \in I$ are open, then $\cup_{i\in I} A_i$ is open.
+
+\vspace{2cm}
+
+\end{frame}
+
+
+\begin{frame}
+Using DeMorgan, we immediately have the following corollary:
+\begin{corollary}
+Let $(X,d)$ be a metric space. 
+ \begin{enumerate}
+     \item Let $A_1,A_2\subseteq X$. If $A_1$ and $A_2$ are closed, then $A_1 \cup A_2$ is closed.
+     \item If $A_i \subseteq X$, $i \in I$ are closed, then $\cap_{i\in I} A_i$ is closed.
+ \end{enumerate}
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Interior and closure]
+Let $A\subseteq X$ where $(X,d)$ is a metric space. 
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item The \emph{closure} of $A$ is $\overline A :=$
+    \item The \emph{interior} of $A$ is  $\interior A :=$
+    \item The \emph{boundary} of $A$ is $\partial A :=$
+\end{itemize}
+\vspace{2.5em}
+\end{definition}
+
+\vspace{0.3em}
+
+\begin{example}
+Let $X = (a, b] \subseteq \R$ with the ordinary (Euclidean) metric. Then
+
+\vspace{1cm}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{proposition}
+ Let $A\subseteq X$ where $(X,d)$ is a metric space. Then $\interior A = A \setminus \partial A$.
+\end{proposition}
+\textit{Proof}.
+\vspace{5cm}
+
+\end{frame}
+
+\begin{frame}
+\begin{proposition}
+ Let $(X,d)$ be a metric space and $A\subseteq X$. $\overline A$ is closed and $\interior A$ is open.
+\end{proposition}
+\textit{Proof}.
+\vspace{9em}
+
+\begin{alertblock}{Remark}
+
+In fact, $\interior A =\bigcup \{U: U \text{ is open and } U \subseteq A \}$ and $\overline{A} = \bigcap \{F \colon F \text{ is closed and } A \subseteq F\}$.
+\end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}{Sequences}
+\begin{definition}[Sequence]
+Let $(X,d)$ be a metric space. A \emph{sequence} is an ordered list of points $x_n$, $n\in\N$, in $X$, denoted $(x_n)_{n \in \N}$. We say that a sequence $(x_n)_{n \in \N}$ \emph{converges} to a point $x \in X$ if 
+\vspace{1.5cm}
+%\begin{equation*}
+%    \forall \epsilon > 0 \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x) < \epsilon \text{ for all } n \geq n_\epsilon .
+%\end{equation*}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\textbf{Recall:} $\overline A=$
+\vspace{0.25em}
+
+\begin{exampleblock}{Proposition}
+Let $(X, d)$ be a metric space, and let $A \subseteq X$. Then $\overline A$ is equal to the set of points in $X$ which are limits of a sequence in $A$.
+\end{exampleblock}
+
+\textit{Proof}.
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}
+
+\vspace{3.25cm}
+
+\begin{alertblock}{Corollary}
+\label{cor:closed_converge}
+A set $F \subseteq X$, where $(X, d)$ is a metric space, is closed if and only if every sequence in $F$ which converges in $X$ converges to a point in $F$.
+\end{alertblock}
+\textbf{Remark:}
+\end{frame}
+
+
+\begin{frame}{Cluster points of a set}
+\begin{definition}
+Let $(X,d)$ be a metric space and $A \subseteq X$. A point $x \in X$ is a \emph{cluster point} of $A$ (also called accumulation point) if for every $\epsilon >0$, $B_\epsilon(x)$ contains infinitely many points in $A$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+
+\begin{exampleblock}{Proposition}
+ $x \in X$ is a cluster point of $A \subseteq X$ where $(X,d)$ is a metric space if and only if there exists a sequence of points $x_n \in A$, $n \in \N$, such that $x_n \to x$.
+\end{exampleblock}
+\textit{Proof}.
+\vspace{5cm}
+
+\end{frame}
+
+
+\begin{frame}
+Combining the previous result with the limit characterization of closure gives the following: 
+
+\begin{alertblock}{Corollary}
+For $A \subseteq X$, $(X,d)$ a metric space, we have $$\overline{A} = A \cup \{x \in X : x \text{ is a cluster point of }A \}.$$
+\end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}{Cauchy sequences}
+\begin{definition}[Cauchy sequence]
+Let $(X,d)$ be a metric space. A sequence denoted $(x_n)_{n \in \N} \in X$ is called a \emph{Cauchy sequence} if
+\vspace{1.5cm}
+%\begin{equation*}
+%    \forall \epsilon \, \exists \, n_\epsilon \in \N \text{ s.t. } d(x_n,x_m) < \epsilon \text{ for all } n,m \geq n_\epsilon .
+%\end{equation*}
+
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+\label{prop:converge_means_Cauchy}
+Let $(X, d)$ be a metric space, and let $(x_n)_{n\in\N}$ be a convergent sequence in $X$. Then  $(x_n)_{n\in\N}$ is Cauchy.
+\end{exampleblock}
+
+\textit{Proof}.
+\vspace{4.5cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+A metric space where every Cauchy sequence converges (to a point in the space) is called \emph{complete}.
+\end{definition}
+\vspace{1em}
+
+\textbf{Example:}
+
+\vspace{2em}
+
+\begin{exampleblock}{Proposition}
+Let $(X, d)$ be a metric space, and let $Y\subseteq X$.
+\begin{enumerate}
+    \item[(i)] If $X$ is complete and if $Y$ is closed in $X$, then $Y$ is complete.
+    \item[(ii)] If $Y$ is complete, then it is closed in $X$.
+\end{enumerate}
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\textit{Proof}.
+\vspace{7cm}
+\end{frame}
+
+
+\begin{frame}{Subsequences}
+\begin{definition}
+Let $(x_n)_{n \in \N}$ be a sequence in a metric space $(X,d)$. Let $(n_k)_{k \in \N}$ be a sequence of natural numbers with $n_1 < n_2 < \cdots$. The sequence $(x_{n_k})_{k \in \N}$ is called a \emph{subsequence} of $(x_n)_{n \in \N}$. If $(x_{n_k})_{k \in \N}$ converges to $x \in X$, we call $x$ a \emph{subsequential limit}.
+\end{definition}
+
+\vspace{0.5cm}
+
+\begin{example}
+$\left((-1)^n\right)_{n \in \N}$ 
+
+\vspace{2cm}
+
+%The sequence $\left((-1)^n\right)_{n \in \N}$ diverges but the subsequences $\left((-1)^{2n}\right)_{n \in \N}$ and $\left((-1)^{2n-1}\right)_{n\in \N}$ converge to subsequential limits 1 and $-1$, respectively.
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+A sequence $(x_n)_{n \in \N}$ in a metric space $(X,d)$ converges to $x \in X$ if and only if every subsequence of $(x_n)_{n \in \N}$  also converges to $x$.
+\end{exampleblock}
+\textit{Proof}.
+\vspace{3cm}
+
+\end{frame}
+
+
+\begin{frame}
+\textit{Proof continued}
+\vspace{7cm}
+
+
+\end{frame}
+
+\begin{frame}{References}
+ 
+Charles C. Pugh (2015). \textit{Real Mathematical Analysis}. Undergraduate Texts in Mathematics. \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-17771-7}
+
+\vspace{1em}
+
+Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+
+\vspace{1em}
+
+Zwiernik, Piotr (2022). \textit{Lecture notes in Mathematics for Economics and Statistics}. url: \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf} \\
+
+\end{frame}
+
+
+
+
+\end{document}
