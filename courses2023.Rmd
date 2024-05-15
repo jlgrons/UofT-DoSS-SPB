@@ -201,15 +201,15 @@ Instructor: [Ichiro Hashimoto]([Email](mailto:ichiro.hashimoto@mail.utoronto.ca)
 
 - Slides: [Module 7](Probability/2023/Slides/Summer_Bootcamp_Module_7_with_effects.pdf); [Module 7 Annotated](Probability/2023/Slides/Module_7_annotated.pdf) 
 
-#### Module 8: Limit Theorems
+#### Module 8: Stochastic Convergence continued
 
 - Slides: [Module 8](Probability/2023/Slides/Summer_Bootcamp_Module_8_with_effects.pdf); [Module 8 Annotated](Probability/2023/Slides/Module_8_annotated.pdf) 
 
-#### Module 9: Markov Chain
+#### Module 9: Limit Theorems
 
 - Slides: [Module 9](Probability/2023/Slides/Summer_Bootcamp_Module_9_with_effects.pdf); [Module 9 Annotated](Probability/2023/Slides/Module_9_annotated.pdf) 
 
-#### Module 10: Stochastic Processes
+#### Module 10: Limit Theorems continued
 
 - Slides: [Module 10](Probability/2023/Slides/Summer_Bootcamp_Module_10_with_effects.pdf); [Module 10 Annotated](Probability/2023/Slides/Module_10_annotated.pdf) 
 
