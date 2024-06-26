@@ -11,7 +11,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Probability/2023/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+[Click here to download the syllabus](Probability/2024/Syllabus/Bootcamp_Probability_Syllabus.pdf)
 
 
 <!--
