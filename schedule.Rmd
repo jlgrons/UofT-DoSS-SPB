@@ -7,13 +7,13 @@ output:
     toc_depth: 2
 ---
 
-Below is the course schedule from 2023, just for your reference. We will update this page after the registration is complete.
+Below is the course schedule for 2024 Summer Bootcamp. 
 
-The morning session I will run from 9:00 am--10:30 am and the morning session II will run from 11:00 am--12:30 pm (all times EDT/Toronto time).  
+The morning session will run from 11:00 am--1:00 pm and the night session will run from 9:00 pm--11: pm (all times EDT/Toronto time).  
 
 Zoom meeting information will be provided to all registered participants.
 
-![](Schedule/Calendar.png)
+![](Schedule/Bootcamp_Calendar_2024.png)
 
 <!-- # ```{r, echo=FALSE} -->
 <!-- # library(tidyverse) -->
