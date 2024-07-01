@@ -1,6 +1,6 @@
 ---
 title: "Methods and Computing"
-description: "Instructor: Yaqi Shi ([Email](mailto:yaqi.shi@mail.utoronto.ca))"
+description: "Instructor: Yaqi Shi, PhD student ([Email](mailto:yaqi.shi@mail.utoronto.ca))"
 output:
   distill::distill_article:
     toc: true
@@ -15,6 +15,8 @@ output:
 
 
 ## Lectures
+
+Lecture materials will be updated prior to the start of the lecture. There will be exercises for you to test your knowledge, and solutions will be provided after the lecture. If you have any questions, feel free to send me an email.
 
 
 
