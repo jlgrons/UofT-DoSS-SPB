@@ -36,15 +36,15 @@
       "description": "Instructor: Ichiro Hashimoto, PhD student (2nd Year) ([Email](mailto:ichiro.hashimoto@mail.utoronto.ca))",
       "author": [],
       "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Introduction to proofs\nModule 2: Set theory I\nModule 3: Set theory II and metric spaces I\nModule 4: Metric spaces II\nModule 5: Metric spaces III\nModule 6: Metric spaces IV\nModule 7: Linear algebra I\nModule 8: Linear algebra II\nModule 9: Linear algebra III\nModule 10: Differentiation and integration\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nMaterial will be added here as the course progresses. I will add slides and exercises before the lecture. After the lecture, I will add the annotated slides and update the lecture notes.\n\nYou may download the lecture notes, which will be updated after each lecture.\nModule 1: Introduction to proofs\nSlides: fillable,\nExercises: pdf, LaTeX template,\n\nModule 2: Set theory I\nSlides: fillable,\n\nExercises: pdf, LaTeX template,\n\nModule 3: Set theory II and metric spaces I\n\nModule 4: Metric spaces II\n\nModule 5: Metric spaces III\n\nModule 6: Metric spaces IV\n\nModule 7: Linear algebra I\n\nModule 8: Linear algebra II\n\nModule 9: Linear algebra III\n\nModule 10: Differentiation and integration\n\n\n\n\n",
-      "last_modified": "2024-07-07T11:05:16-04:00"
+      "last_modified": "2024-07-07T11:24:32-04:00"
     },
     {
       "path": "probability.html",
       "title": "Probability",
       "description": "Instructor: Ichiro Hashimoto, PhD student (2nd Year) ([Email](mailto:ichiro.hashimoto@mail.utoronto.ca))",
       "author": [],
-      "contents": "\n\nContents\nSyllabus\nModule 1: Basics of Probability\nModule 2: Random Variables\nModule 3: Common Random Variables\nModule 4: Distribution\nModule 5: Expectation\nModule 6: Inequalities\nModule 7: Stochastic Convergence\nModule 8: Stochastic Convergence continued\nModule 9: Limit Theorems\nModule 10: Limit Theorems continued\n\n\nSyllabus\nClick here to download the syllabus\n\nModule 1: Basics of Probability\n\nModule 2: Random Variables\n\nModule 3: Common Random Variables\n\nModule 4: Distribution\n\nModule 5: Expectation\n\nModule 6: Inequalities\n\nModule 7: Stochastic Convergence\n\nModule 8: Stochastic Convergence continued\n\nModule 9: Limit Theorems\n\nModule 10: Limit Theorems continued\n\n\n\n\n",
-      "last_modified": "2024-07-07T00:16:03-04:00"
+      "contents": "\n\nContents\nSyllabus\nLectures\nModule 1: Basics of Probability\nModule 2: Random Variables\nModule 3: Common Random Variables\nModule 4: Distribution\nModule 5: Expectation\nModule 6: Inequalities\nModule 7: Stochastic Convergence\nModule 8: Stochastic Convergence continued\nModule 9: Limit Theorems\nModule 10: Limit Theorems continued\n\n\nSyllabus\nClick here to download the syllabus\nLectures\nMaterial will be added here as the course progresses.\nModule 1: Basics of Probability\nSlides: Module 1;\n\nModule 2: Random Variables\nSlides: Module 2;\n\nModule 3: Common Random Variables\n\nModule 4: Distribution\n\nModule 5: Expectation\n\nModule 6: Inequalities\n\nModule 7: Stochastic Convergence\n\nModule 8: Stochastic Convergence continued\n\nModule 9: Limit Theorems\n\nModule 10: Limit Theorems continued\n\n\n\n\n",
+      "last_modified": "2024-07-07T11:24:16-04:00"
     },
     {
       "path": "schedule.html",

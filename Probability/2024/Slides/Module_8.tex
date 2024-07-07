@@ -1,0 +1,212 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+%\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usepackage{filecontents}
+
+
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+\newcommand{\notimplies}{\;\not\!\!\!\implies}
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+\definecolor{yamabuki}{RGB}{255,177,27}
+\definecolor{sakuranezumi}{RGB}{177,150,147}
+\definecolor{enji}{RGB}{159,53,58}
+\definecolor{torinoko}{RGB}{218, 201, 166}
+\definecolor{baikocha}{RGB}{137,145,107}
+\definecolor{ginnezumi}{RGB}{145,152,159}
+
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 8}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 25, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+
+\begin{filecontents*}{LOFT.txt}
+        n   an   a    
+        1   1    0   
+        2   0.5  0
+        5   0.2    0   
+        10   0.1    0   
+        20   0.05    0   
+        40   0.025    0   
+        50   0.02    0   
+        100   0.01    0   
+\end{filecontents*}
+
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+\begin{itemize}
+    \item Stochastic convergence
+    \begin{itemize}
+        \item Convergence in distribution
+        \item Convergence in probability
+        \item Convergence almost surely
+        \item Convergence in $L^p$
+        \item Relationship between convergences
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{itemize}
+    \item Relationship between convergences and counterexamples
+    \begin{itemize}
+        \item Monotonicity of $L^p$ Convergence
+        \item $L^p$ convergence implies Convergence in Probability
+        \item a.s. Convergence implies Convergence in Probability
+        \item Convergence in Probability implies Convergence in distribution
+     \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} A random variable $X \in L^p$ if $\|X\|_{L^p} = (E |X|^p)^{1/p} < \infty$.\\ 
+    \quad \qquad $X_n\to X$ in $L^p$ if $\lim_{n\to \infty}\|X_n - X\|_{L^p}=0$ \\
+    \begin{block}{Monotonicity of $L^p$ Convergence}
+    If $q>p>0$, $L^q$ convergence implies $L^p$ convergence 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} A random variable $X \in L^p$ if $\|X\|_{L^p} = (E |X|^p)^{1/p} < \infty$.\\ 
+    \quad \qquad $X_n\to X$ in $L^p$ if $\lim_{n\to \infty}\|X_n - X\|_{L^p}=0$ \\
+    \begin{block}{Monotonicity of $L^p$ Convergence}
+    If $q>p>0$, $L^q$ convergence implies $L^p$ convergence 
+    \end{block}
+    \textbf{Counterexample to the Converse: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{$L^p$ convergence implies Convergence in Probability}
+    If $X_n \to X$ in $L^p$, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{$L^p$ convergence implies Convergence in Probability}
+    If $X_n \to X$ in $L^p$, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Counterexample to the Converse: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{a.s. Convergence implies Convergence in Probability}
+    If $X_n \to X$ almost surely, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{a.s. Convergence implies Convergence in Probability}
+    If $X_n \to X$ almost surely, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Counterexample to the Converse: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in distribution if for any continuity point $x$ of $P(X\leq x)$, $\lim_{n\to \infty}P(X_n \leq x) = P(X\leq x)$ holds.\\
+    \begin{block}{Convergence in Probability implies Convergence in Distribution}
+    If $X_n \to X$ in probability, then $X_n \to X$ in distribution. 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in distribution if for any continuity point $x$ of $P(X\leq x)$, $\lim_{n\to \infty}P(X_n \leq x) = P(X\leq x)$ holds.\\
+    \begin{block}{Convergence in Probability implies Convergence in Distribution}
+    If $X_n \to X$ in probability, then $X_n \to X$ in distribution. 
+    \end{block}
+    \textbf{Counterexample to the Converse: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Relationship between convergences and counterexamples}
+    \textbf{Recall:} $X_n$ converges to $X$ in distribution if for any continuity point $x$ of $P(X\leq x)$, $\lim_{n\to \infty}P(X_n \leq x) = P(X\leq x)$ holds.\\
+    \begin{block}{Convergence in Probability implies Convergence in Distribution}
+    If $X_n \to X$ in probability, then $X_n \to X$ in distribution. 
+    \end{block}
+    \textbf{Special case when the Converse holds: }
+    \vspace{1.8in}
+\end{frame}
+
+\end{document}

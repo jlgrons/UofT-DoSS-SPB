@@ -1,0 +1,359 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+%\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usepackage{filecontents}
+
+
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+\newcommand{\notimplies}{\;\not\!\!\!\implies}
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+\definecolor{yamabuki}{RGB}{255,177,27}
+\definecolor{sakuranezumi}{RGB}{177,150,147}
+\definecolor{enji}{RGB}{159,53,58}
+\definecolor{torinoko}{RGB}{218, 201, 166}
+\definecolor{baikocha}{RGB}{137,145,107}
+\definecolor{ginnezumi}{RGB}{145,152,159}
+
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 9}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 27, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+
+\begin{filecontents*}{LOFT.txt}
+        n   an   a    
+        1   1    0   
+        2   0.5  0
+        5   0.2    0   
+        10   0.1    0   
+        20   0.05    0   
+        40   0.025    0   
+        50   0.02    0   
+        100   0.01    0   
+\end{filecontents*}
+
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+\begin{itemize}
+    \item Stochastic convergence
+    \begin{itemize}
+        \item Convergence in distribution
+        \item Convergence in probability
+        \item Convergence almost surely
+        \item Convergence in $L^p$
+        \item Relationship between convergences
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{itemize}
+    \item Convergence of functions of random variables
+    \begin{itemize}
+        \item Slutsky's theorem
+        \item Continuous mapping theorem
+    \end{itemize}
+    \item Laws of large numbers
+    \begin{itemize}
+        \item WLLN
+        \item SLLN
+        \item Glivenko-Cantelli theorem
+    \end{itemize}
+    \item Central limit theorem
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Convergence of functions of random variables}
+    \textbf{Recall: Stochastic convergence}
+    If $X_n \to X$, $Y_n \to Y$ in some sense, how is the limiting property of $f(X_n, Y_n)$?
+    \vspace{0.1in}
+    \uncover<2->{
+    \begin{block}{Convergence of functions of random variables (a.s.)}
+    Suppose the probability space is complete, if $X_n  \xrightarrow[]{a.s.} X, Y_n  \xrightarrow[]{a.s.} Y$, then for any real numbers $a, b$, \begin{itemize}
+        \item $aX_n + bY_n  \xrightarrow[]{a.s.} aX + bY$;
+        \item $X_n Y_n  \xrightarrow[]{a.s.} XY$.
+    \end{itemize}
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:}
+    \begin{itemize}
+        \item Still require all the random variables to be defined on the same probability space
+        
+    \end{itemize}}
+\vspace{0.2in}
+\end{frame}
+
+
+\begin{frame}{Convergence of functions of random variables}
+    \begin{block}{Convergence of functions of random variables (probability)}
+     Suppose the probability space is complete, if $X_n  \xrightarrow[]{P} X, Y_n  \xrightarrow[]{P} Y$, then for any real numbers $a, b$, \begin{itemize}
+        \item $aX_n + bY_n  \xrightarrow[]{P} aX + bY$;
+        \item $X_n Y_n  \xrightarrow[]{P} XY$.
+    \end{itemize}
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:}
+    \begin{itemize}
+        \item Still require all the random variables to be defined on the same probability space
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Convergence of functions of random variables}
+    \begin{block}{Convergence of functions of random variables ($L^p$)}
+     Suppose the probability space is complete, if $X_n  \xrightarrow[]{L^p} X, Y_n  \xrightarrow[]{L^p} Y$, then for any real numbers $a, b$, \begin{itemize}
+        \item $aX_n + bY_n  \xrightarrow[]{L^p} aX + bY$;
+    \end{itemize}
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:}
+    \begin{itemize}
+        \item Still require all the random variables to be defined on the same probability space
+        
+    \end{itemize}
+    \vspace{0.5in}
+\end{frame}
+
+
+
+\begin{frame}{Convergence of functions of random variables}
+\textbf{Remark}: Convergence in distribution is different.
+\vspace{0.1in}
+        \begin{block}{Slutsky's theorem}
+   If $X_n \xrightarrow[]{d} X$ and $Y_n \xrightarrow[]{P} c$ ($c$ is a constant), then
+\begin{itemize}
+    \item $X_{n}+Y_{n}\ {\xrightarrow {d}}\ X+c$;
+    \item $X_{n}Y_{n}\ {\xrightarrow {d}}\ cX$;
+    \item $X_{n}/Y_{n}\ {\xrightarrow {d}}\ X/c$, where $c \neq 0$.
+\end{itemize}
+    \end{block}
+    \vspace{0.1in}
+    \uncover<2->{
+    \textbf{Remark:}
+    \begin{itemize}
+        \item The theorem remains valid if we replace all the convergence in distribution with convergence in probability. 
+    \end{itemize}}
+\end{frame}
+
+
+
+\begin{frame}{Convergence of functions of random variables}
+\textbf{Remark}: The requirement that $Y_n \xrightarrow[]{P} c$ ($c$ is a constant) is necessary.\\
+\vspace{0.1in}
+\uncover<2->{
+        \textbf{Examples:}\\
+        $X_n \sim \mc{N}(0,1), Y_n = -Xn$, then
+        \begin{itemize}
+            \item $X_n \xrightarrow[]{d} Z \sim \mc{N}(0,1)$, $Y_n \xrightarrow[]{d} Z \sim \mc{N}(0,1)$;
+            \item $X_n + Y_n \xrightarrow[]{d} 0$;
+            \item $X_nY_n = -X_n^2 \xrightarrow[]{d} -\chi^2(1)$;
+            \item $X_n/Y_n = -1$.
+        \end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Convergence of functions of random variables}
+    \begin{block}{Continuous mapping theorem}
+    Let $X_n$, $X$ be random variables, if $g(\cdot): \mathbb{R} \to \mathbb{R}$ satisfies $\mathbb{P}(X \in D_g) = 0$, then
+    \begin{itemize}
+        \item $X_n  \xrightarrow[]{a.s.} X \quad \Rightarrow \quad g(X_n)  \xrightarrow[]{a.s.} g(X)$ ;
+        \item $X_n  \xrightarrow[]{P} X \quad \Rightarrow \quad g(X_n)  \xrightarrow[]{P} g(X)$ ;
+        \item $X_n  \xrightarrow[]{d} X \quad \Rightarrow \quad g(X_n)  \xrightarrow[]{d} g(X)$ ;
+    \end{itemize}
+    where $D_g$ is the set of discontinuity points of $g(\cdot)$. 
+    \end{block}
+    \vspace{0.1in}
+    \uncover<2->{
+    \textbf{Remark:}
+\begin{itemize}
+    \item If $g(\cdot)$ is continuous, then ...
+    \item If $X$ is a continuous random variable, and $D_g$ only include countably many points, then ... 
+\end{itemize}}
+\end{frame}
+
+\begin{frame}{Law of large numbers}
+    \begin{block}{Weak Law of Large Numbers (WLLN)}
+    If $X_1, X_2, \cdots, X_n$ are i.i.d. random variables, $\mu = \mathbb{E}(|X_i|) < \infty$, then
+    $$\bar{X} = \frac{\sum_{i = 1}^n X_i}{n} \quad \xrightarrow[]{P} \quad \mu.$$
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:}\\
+    A more easy-to-prove version is the $L^2$ weak law, where an additional assumption $Var(X_i) < \infty$ is required.\\
+    \vspace{0.1in}
+    \textbf{Sketch of the proof:}\\
+    \vspace{0.8in}
+\end{frame}
+
+\begin{frame}{Law of large numbers}
+\textbf{A generalization of the theorem: triangular array}
+\begin{block}{Triangular array}
+A triangular array of random variables is a collection $\{X_{n,k}\}_{1 \le k \le n}$. 
+\end{block}
+\begin{equation*}
+    \begin{aligned}
+    & X_{1,1} \\
+    & X_{2,1}, X_{2,2}\\
+    & X_{3,1}, X_{3,2}, X_{3,3}\\
+    & \quad \vdots \\
+    & X_{n, 1}, X_{n,2}, \cdots, X_{n,n}
+    \end{aligned}
+\end{equation*}
+\vspace{0.1in}
+\textbf{Remark:} We can consider the limiting property of the row sum $S_n$.
+\end{frame}
+
+\begin{frame}{Law of Large Numbers}
+     \begin{block}{$L^2$ weak law for triangular array}
+    Suppose $\{X_{n,k}\}$ is a triangular array, $n = 1, 2, \cdots, k =1, 2, \cdots, n$. Let $S_n = \sum_{k = 1}^n X_{n,k}$, $\mu_n = \mathbb{E}(S_n)$, if $\sigma_n^2/b_n^2 \to 0$, where $\sigma_n^2 = Var(S_n)$ and $b_n$ is a sequence of positive real numbers, then
+    $$ \frac{S_n - \mu_n}{b_n} \quad \xrightarrow[]{P} \quad 0.$$
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:}\\
+    The $L^2$ weak law for i.i.d. random variables is a special case of that for triangular array.
+    \vspace{0.7in}
+\end{frame}
+
+\begin{frame}{Law of large numbers}
+\textbf{Proof:}\\
+\vspace{1.5in}
+% actually very easy, markov inequality
+\uncover<2->{
+\textbf{Remark:}\\
+A more generalized version incorporates truncation, then the second-moment constraint is relieved.}
+\end{frame}
+
+
+\begin{frame}{Law of large numbers}
+    \begin{block}{Strong Law of Large Numbers (SLLN)}
+    Let $X_1, X_2, \cdots$ be an i.i.d. sequence satisfying $\mathbb{E}(X_i) = \mu$ and $\mathbb{E}(|X_i|) < \infty$, then 
+    $\bar{X} = \frac{\sum_{i = 1}^n X_i}{n} \quad \xrightarrow[]{a.s.} \quad \mu $.
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Remark:} The proof needs Borel-Cantelli lemma.
+    \vspace{0.1in}
+    \uncover<2->{
+    \begin{block}{Glivenko-Cantelli theorem}
+    Let $X_i, i = 1, \cdots,n$ i.i.d. with distribution function $F(\cdot)$, and let $F_n(x) = \frac{1}{n} \sum_{i=1}^n I(X_i \le x)$, then as $n \to \infty$,
+    $$
+    \sup_{x \in \mathbb{R}}|F(x) - F_n(x)| \quad \to \quad  0, \quad a.s.
+    $$
+    \end{block}}
+\end{frame}
+
+\begin{frame}{Law of large numbers}
+    \textbf{Proof:}\\
+    % https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture3.pdf  P60
+    \vspace{2.5in}
+\end{frame}
+
+\begin{frame}{Central Limit Theorem}
+\textbf{What is the limiting distribution of the sample mean?}\\
+\begin{block}{Classic CLT}
+Suppose $X_1, \cdots X_n$ is a sequence of i.i.d. random variables with $\mathbb{E}(X_i) = \mu$, $Var(X_i) = \sigma^2 < \infty$, then
+$$
+\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \quad \xrightarrow[]{d} \quad \mc{N}(0,1).
+$$
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\begin{itemize}
+    \item The proof involves characteristic function.
+    \item A more generalized CLT is referred to as ``Lindeberg CLT". 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Central Limit Theorem}
+\textbf{Example:}\\
+Suppose $X_i \sim Bernoulli(p)$, i.i.d.,  consider $Z_n = \frac{\sum_{i=1}^n {X_i} - np}{\sqrt{np(1-p)}}$, then by CLT, $Z_n \sim \mc{N}(0,1)$ asymptotically. 
+\vspace{1in}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Problem Set}
+    \textbf{Problem 1:}  Prove that on a complete probability space, if $X_n  \xrightarrow[]{a.s.} X, Y_n  \xrightarrow[]{a.s.} Y$, then $X_n + Y_n \xrightarrow[]{a.s.} X+Y$.\\
+    \vspace{0.1in}
+    
+     \textbf{Problem 2:} Prove that on a complete probability space, if $X_n  \xrightarrow[]{P} X, Y_n  \xrightarrow[]{P} Y$, then $X_n + Y_n \xrightarrow[]{P} X+Y$.
+    \vspace{0.1in}\\
+    
+    \textbf{Problem 3:} A bank teller serves customers standing in the queue one by one. Suppose that the service time $X_i$ for customer $i$ has mean $\mathbb{E}(X_i) = 2$ (minutes) and $Var(X_i) = 1$. We assume that service times for different bank customers are independent. Let $Y$ be the total time the bank teller spends serving 50 customers. Find $\mathbb{P}(90<Y<110)$.
+    \vspace{0.1in}\\
+   
+\end{frame}
+
+
+
+\end{document}

@@ -1,0 +1,498 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 3}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 14, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+ \begin{itemize}
+    	\item Independence of events % because we have not define random variables
+    	\begin{itemize}
+    	    \item Pairwise independence, mutual independence
+    	    \item Conditional independence 
+    	\end{itemize}
+        \item Random variables
+        \item Distribution functions
+        \item Density functions and mass functions
+        \item Independence of random variables
+        %\begin{itemize}
+         %   \item Convolutions
+        %\end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+    	\item Discrete probability
+    	\begin{itemize}
+    	    \item Classical probability
+    	    \item Combinatorics
+    	    \item Common discrete random variables
+    	\end{itemize}
+        \item Continuous probability
+        \begin{itemize}
+            \item Geometric probability
+            \item Common continuous random variables
+        \end{itemize}
+        \item Exponential family
+    \end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}{Discrete probability}
+\textbf{Example}:\\
+\begin{itemize}
+    \item Toss a fair coin, $P(H) = 1/2$ 
+    \item Roll a die, $P(\{1\}) = 1/6$
+\end{itemize}
+\uncover<2->{
+\begin{block}{Classical probability}
+Classical probability is a simple form of probability that has equal odds of something happening.
+\end{block}
+\vspace{0.1in}}
+\uncover<3->{
+\textbf{Remark:} \\
+For some event $A \in \mc{A}$, $\mathbb{P}(A)$ can be computed as the proportion:
+$$
+\mathbb{P}(A) = \dfrac{\#\{\text{outcomes that satisfies $A$}\}}{\#\{\text{all the possible outcomes}\}}
+$$}
+\end{frame}
+
+\begin{frame}{Discrete probability}
+\textbf{Converting the probability into counting problems}
+\vspace{0.1in}
+\begin{block}{Permutations}
+For balls numbered $1$ to $n$, choose $r$ of them without replacement and record the order, the number of all the possible arrangements is 
+$$
+P(n,r) = n(n-1)\cdots (n-r+1) = \frac{n!}{(n - r)!}
+$$
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:} \\
+Order matters.\\
+$(1, 2)$ and $(2, 1)$ are considered different.
+
+\end{frame}
+
+
+\begin{frame}{Discrete probability}
+\textbf{Converting the probability into counting problems}
+\vspace{0.1in}
+\begin{block}{Combinations}
+For balls numbered $1$ to $n$, choose $r$ of them without replacement regardless the order, the number of all the possible arrangements is 
+$$
+\binom{n}{r} = C^n_r = \frac{n!}{r!(n - r)!}
+$$
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:} \\
+Order does not matter.\\
+$(1, 2)$ and $(2, 1)$ are considered the same.
+\end{frame}
+
+
+
+
+\begin{frame}{Discrete probability}
+\textbf{Examples:}\\
+Forming committees: A school has 600 girls and 400 boys. A committee of 5 members is formed. What is the probability that it will contain exactly 4 girls?
+\vspace{0.1in}
+\uncover<2->{
+\begin{block}{Hypergeometric distribution}
+Randomly sample $n$ objects without replacement from a source which contains $a$ successes and $N-a$ failures, denote $X$ as the number of successes. Then
+$$
+\mathbb{P}(X = x) = \dfrac{\binom{a}{x}\binom{N-a}{n-x}}{\binom{N}{n}}.
+$$
+\end{block}}
+\end{frame}
+
+
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Bernoulli distribution}
+$\Omega = \{\text{failure, success}\}$, $X: \Omega \to \{0,1\}$, and
+$$
+\mathbb{P}(X = 1) = p, \quad \mathbb{P}(X = 0) = 1 - p.
+$$
+Write $X \sim Bernoulli(p)$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}\\
+\begin{itemize}
+    \item Toss a coin
+    \item Choose correct answer from A, B, C, D
+\end{itemize}}
+\end{frame}
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Binomial distribution}
+Consider $n$ independent Bernoulli trials with success probability $p \in (0,1)$, denote the number of successes as $X$. Then $X$ can take values in $\{0, 1, \cdots, n\}$, and
+$$
+\mathbb{P}(X = x) = \binom{n}{x}p^x (1-p)^{n-x}.
+$$
+Write $X \sim B(n,p)$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}\\
+\begin{itemize}
+    \item Toss a coin $100$ times
+    \item Choose correct answer from A, B, C, D for $20$ questions
+\end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Geometric distribution}
+Keep doing independent Bernoulli trials with success probability $p \in (0,1)$ until the first success happens. Denote the number of trials as $X$. Then $X$ can take values in $\{1, \cdots, \infty\}$, and
+$$
+\mathbb{P}(X = x) = p(1-p)^{x-1}
+$$
+Write $X \sim Geo(p)$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}\\
+\begin{itemize}
+    \item Toss a coin until the first head
+    \item Choose answers from A, B, C, D until the first correct answer is picked
+\end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Negative binomial distribution}
+Keep doing independent Bernoulli trials with success probability $p \in (0,1)$ until the first $r$ success happens. Denote the number of trials as $X$. Then $X$ can take values in $\{r, \cdots, \infty\}$, and
+$$
+\mathbb{P}(X = x) = \binom{x-1}{r-1}p^{r}(1-p)^{x-r}.
+$$
+Write $X \sim \text{Neg-bin}(r,p)$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}\\
+\begin{itemize}
+    \item Toss a coin until the first $10$ heads
+    \item Choose answers from A, B, C, D until the first $3$ correct answers are picked
+\end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Poisson distribution}
+Events occur in a fixed interval of time or space with a known constant mean rate $\lambda$ and independently of the time since the last event, then denote the number of events during the fixed interval as $X$, 
+$$
+\mathbb{P}(X = x) = \dfrac{\lambda^x}{x!}exp(-\lambda).
+$$
+Write $X \sim Poisson(\lambda)$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}\\
+\begin{itemize}
+    \item The number of patients arriving in an emergency room between 10 and 11 pm
+    \item The number of laser photons hitting a detector in a particular time interval
+\end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Discrete probability}
+\textbf{Common discrete random variables}
+\begin{block}{Multinomial distribution}
+For $n$ independent trials each of which leads to a success for exactly one of $k$ categories, with each category having a given fixed success probability $p_i, i =1, \cdots, k$, denote the number of successes of category $i$ as $X_i$, 
+$$
+\mathbb{P}(X_1 = x_1, \cdots, X_k = x_k) = \binom{n}{x_1 x_2 \cdots x_k}p_1^{x_1}\cdots p_k^{x_k}\quad \text{with } \sum_{i = 1}^k x_k = n, \sum_{i = 1}^k p_i = 1.
+$$
+Write $X \sim Multinomial(n, k, \{p_i\}_{i = 1}^k)$.
+\end{block}
+\uncover<2->{
+\textbf{Remark:}\\
+The multinomial distribution gives the probability of any particular combination of numbers of successes for the various categories. }
+\end{frame}
+
+\begin{comment}
+\begin{frame}{Discrete probability}
+    \begin{block}{Probability generating function}
+    For a discrete random variable $X$, define the probability generating function 
+    $$
+    G(z)=\mathbb{E}\left(z^{X}\right)=\sum_{x=0}^{\infty} p(x) z^{x}
+    $$
+    \end{block}
+    \uncover<2->{
+    \textbf{Examples:}\\
+    \begin{itemize}
+        \item $X \sim Bin(n,p)$, ${\displaystyle G(z)=\left[(1-p)+pz\right]^{n}.}$
+        \item $X \sim \text{Neg-bin(r,p)}$, $G(z)=\left({\frac  {p}{1-(1-p)z}}\right)^{r}.$
+        \item $X \sim Poisson(\lambda)$, ${\displaystyle G(z)=e^{\lambda (z-1)}.}$
+    \end{itemize}}
+\end{frame}
+\end{comment}
+
+
+\begin{frame}{Continuous probability}
+\textbf{Example}:\\
+\begin{itemize}
+    \item Throw a needle evenly on a circle, the probability that it will lie in the left half.
+    \item A bus arrives every 4 minutes, the probability of waiting for less than 1 minute. 
+\end{itemize}
+\begin{block}{Geometric probability}
+Geometric probability is a simple form of probability that has equal odds of something happening with infinite possible outcomes. 
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Remark:} \\
+For some event $A \in \mc{A}$, $\mathbb{P}(A)$ can be computed as the proportion:
+$$
+\mathbb{P}(A) = \dfrac{\{\text{magnitude of outcomes that satisfies $A$}\}}{\{\text{magnitude of all the possible outcomes}\}}
+$$}
+\end{frame}
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{(Continuous) Uniform distribution}
+$X$ takes values in a fixed interval $(a,b)$ evenly,
+\begin{equation}
+    \begin{aligned}
+    \mathbb{P}(X \le x) &=\frac{x - a}{b-a}, \quad a \le x \le b, \\
+    f(x) &=\frac{1}{b-a},  \quad a \le x \le b.
+    \end{aligned}
+\end{equation}
+
+Write $X \sim U(a,b)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\vspace{0.5in}
+\end{frame}
+
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{Normal distribution}
+Define random variable $X$ with the probability density function
+\begin{equation}
+    \begin{aligned}
+    f(x) = \frac{1}{\sqrt{2\pi}\sigma}exp(-\frac{(x - \mu)^2}{2\sigma^2})
+    \end{aligned}
+\end{equation}
+Write $X \sim N(\mu, \sigma^2)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+Most common distribution in nature
+\vspace{0.5in}
+\end{frame}
+
+
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{Exponential distribution}
+Define random variable $X$ with the probability density function
+\begin{equation}
+    \begin{aligned}
+    P(X \le x) &= 1 - \exp(-\lambda x), x \ge 0 \\
+    f(x) &= \lambda exp(-\lambda x), x \ge 0 \\
+    \end{aligned}
+\end{equation}
+Write $X \sim Exp(\lambda)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\vspace{0.5in}
+\end{frame}
+
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{Cauchy distribution}
+Define random variable $X$ with the probability density function
+\begin{equation}
+    \begin{aligned}
+    f\left(x ; x_{0}, \gamma\right)=\frac{1}{\pi \gamma\left[1+\left(\frac{x-x_{0}}{\gamma}\right)^{2}\right]}=\frac{1}{\pi \gamma}\left[\frac{\gamma^{2}}{\left(x-x_{0}\right)^{2}+\gamma^{2}}\right]
+    \end{aligned}
+\end{equation}
+Write $X \sim Cauchy(x_0, \gamma)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\vspace{0.5in}
+\end{frame}
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{Gamma distribution}
+Define random variable $X$ with the probability density function
+\begin{equation}
+    \begin{aligned}
+   {\displaystyle {\begin{aligned}f(x;\alpha ,\beta )&={\frac {x^{\alpha -1}e^{-\beta x}\beta ^{\alpha }}{\Gamma (\alpha )}}\quad {\text{ for }}x>0\quad \alpha ,\beta >0,\\[6pt]\end{aligned}}}
+    \end{aligned}
+\end{equation}
+Write $X \sim \Gamma(\alpha, \beta)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\vspace{0.5in}
+\end{frame}
+
+
+\begin{frame}{Continuous probability}
+\textbf{Common continuous random variables}
+\begin{block}{Beta distribution}
+Define random variable $X$ with the probability density function
+\begin{equation}
+    \begin{aligned}
+   {\displaystyle {\begin{aligned}f(x;\alpha ,\beta )&=\dfrac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1}\quad {\text{ for }}0 <x<1 \quad \alpha ,\beta >0,\\[6pt]\end{aligned}}}
+    \end{aligned}
+\end{equation}
+Write $X \sim Beta(\alpha, \beta)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+$B(\alpha, \beta) = \int_{0}^1 x^{\alpha - 1}(1-x)^{\beta - 1}\; dx$.
+\end{frame}
+
+
+
+% $\chi^2$ distribution, $F$ distribution and Student $t$ distribution will be introduced after we introduce convolutions based on the independence of random variables, also joint distribution.
+
+
+
+\begin{frame}{Exponential family}
+Consider a set of probability distributions whose pmf (discrete case) or pdf (continuous case) can be expressed in a certain form:
+\begin{block}{Exponential family}
+\begin{equation}
+    \begin{aligned}
+    {\displaystyle f_{X}(x\mid \theta )=h(x)\,\exp \!{\bigl [}\,\eta (\theta )\cdot T(x)-A(\theta )\,{\bigr ]}},
+    \end{aligned}
+\end{equation}
+where $T,h$ are known functions of $x$; $\eta, A$ are known functions of $\theta$; $\theta$ is the parameter. 
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Merits:}\\
+\begin{itemize}
+    \item Facilitate the computation of some properties
+    \item Bayesian statistics: conjugate prior
+    \item Regression: GLM
+\end{itemize}}
+\end{frame}
+
+\begin{frame}{Exponential family}
+\textbf{Common distributions in the exponential family:}\\
+\begin{itemize}
+    \item Bernoulli / Binomial 
+    \item Poisson
+    \item Negative Binomial
+    \item Multinomial
+    \item Exponential
+    \item Normal
+    \item Gamma
+    \item Beta
+\end{itemize}
+\vspace{0.1in}
+\end{frame}
+
+
+\begin{frame}{Exponential family}
+\textbf{Show that Bernoulli distribution belongs to the exponential family:}\\
+
+\vspace{2in}
+\end{frame}
+
+
+\begin{frame}{Problem Set}
+    \textbf{Problem 1:}  The Robarts library has recently added a new printer which turns out to be defective. The letter “U” has a $30\%$ chance of being printed out as “V”, and the letter “V” has a $10\%$ chance of being printed out as “U”. Each letter is printed out independently, and all other letters are always correctly printed.\\
+    The librarian uses “UNIVERSITY OF TORONTO” as a test phrase, and will make a complaint to the printer factory immediately after the third incorrectly printed test phrase, calculate the probability that there are fewer correctly printed phrases than incorrectly printed phrases when the complaint is made.
+\\
+    \vspace{0.1in}
+\end{frame}
+
+% when computing expectation and variance, can consider discrete uniform distribution
+
+\begin{frame}{Problem Set}
+    \textbf{Problem 2:} Compute the mode of Negative binomial distribution with parameter $r$ and $p$. \\
+    (Hint: consider ${\mathbb{P}(X = k+1)}/{\mathbb{P}(X = k)}$)\\
+    \vspace{0.1in}
+   \textbf{Problem 3:} Show that normal distribution belongs to the exponential family.
+
+\end{frame}
+
+
+\end{document}

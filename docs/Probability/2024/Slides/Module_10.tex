@@ -1,0 +1,186 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+
+%\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usepackage{filecontents}
+
+
+\pgfplotsset{compat=1.7}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+\newcommand{\notimplies}{\;\not\!\!\!\implies}
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+\definecolor{yamabuki}{RGB}{255,177,27}
+\definecolor{sakuranezumi}{RGB}{177,150,147}
+\definecolor{enji}{RGB}{159,53,58}
+\definecolor{torinoko}{RGB}{218, 201, 166}
+\definecolor{baikocha}{RGB}{137,145,107}
+\definecolor{ginnezumi}{RGB}{145,152,159}
+
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 10}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 28, 2023}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+
+\begin{filecontents*}{LOFT.txt}
+        n   an   a    
+        1   1    0   
+        2   0.5  0
+        5   0.2    0   
+        10   0.1    0   
+        20   0.05    0   
+        40   0.025    0   
+        50   0.02    0   
+        100   0.01    0   
+\end{filecontents*}
+
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+\begin{itemize}
+    \item Convergence of functions of random variables
+    \begin{itemize}
+        \item Slutsky's theorem
+        \item Continuous mapping theorem
+    \end{itemize}
+    \item Laws of large numbers
+    \begin{itemize}
+        \item WLLN
+        \item SLLN
+        \item Glivenko-Cantelli theorem
+    \end{itemize}
+    \item Central limit theorem
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{itemize}
+    \item Limit Theorems and Counterexamples
+        \begin{itemize}
+        \item Law of Large Numbers
+        \item Monotone Convergence Theorem
+        \item Dominated Convergence Theorem
+        \item More about CLT
+     \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \textbf{Recall:} For the law of large numbers to hold, the assumption $E|X|<\infty$ is crucial. \\ 
+    \begin{block}{Law of Large Numbers fail for infinite mean i.i.d. random variables}
+    If $X_1 X_2, \dots$ are i.i.d. to $X$ with $E|X_i| = \infty$, then for $S_n = X_1 + \cdots + X_n$, $P(\lim_{n\to \infty}S_n/n \in (-\infty, \infty))=0$.
+    \end{block}
+    \textbf{Proof: Omitted}
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \begin{block}{Monotone Convergence Theorem}
+    If $X_n \geq c$ and $X_n \nearrow X$, then $EX_n \nearrow EX$ 
+    \end{block}
+    \textbf{Usage: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \begin{block}{Monotone Convergence Theorem}
+    If $X_n \geq 0$ and $X_n \nearrow X$, then $EX_n \nearrow EX$ 
+    \end{block}
+    \textbf{Counterexample when $X_n$ is not lower bounded: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \begin{block}{Dominated Convergence Theorem}
+    If $X_n \to X$ a.s. and $|X_n| \leq Y$ a.s. for all $n$ and $Y$ is integrable, then $EX_n \to EX$ 
+    \end{block}
+    \textbf{Usage: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \begin{block}{Dominated Convergence Theorem}
+    If $X_n \to X$ a.s. and $|X_n| \leq Y$ a.s. for all $n$ and $Y$ is integrable, then $EX_n \to EX$ 
+    \end{block}
+    \textbf{Counterexample when $X_n$ is not dominated by an integrable random variable: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Limit Theorems and Counterexamples}
+    \begin{block}{More about CLT: Delta method}
+    Suppose $X_n$ are i.i.d. random variables with $EX_n=0, VAR(X_n) = \sigma^2 >0$. Let $g$ be a measurable function that is differentiable at $0$ with $g^\prime(0) \neq 0$. Then
+    \[
+    \sqrt{n}\left(g\left(\frac{\sum_{k=1}^nX_k}{n} - g(0) \right)\right) \to N(0, \sigma^2g^\prime(0)^2) \quad \text{weakly.}
+    \] 
+    \end{block}
+    \textbf{Proof under stronger assumption: } Here, we suppose $g$ is continuously differentiable on $\mathbb{R}$. If you are interested in a general proof refer to Robert Keener's \textit{Theoretical Statistics}.
+    \vspace{1.8in}
+\end{frame}
+
+
+\end{document}
