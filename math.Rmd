@@ -20,88 +20,85 @@ Material will be added here as the course progresses. I will add slides and exer
 <!-- Note: I will comment these in as the course progresses. Before each lecture students will have access to the slides with blanks as well as the exercises (either a pdf or a tex file they can fill in). After each lecture I will add the filled-in slides (I will hand-write during the lecture) and update the lecture notes -->
 
 
-You may download the [lecture notes](Math/2023/lecture_notes/math_notes.pdf), which will be updated after each lecture.
+You may download the [lecture notes](Math/2024/lecture_notes/math_notes.pdf), which will be updated after each lecture.
 
 
 
 ### Module 1: Introduction to proofs
 
-- Slides: [fillable](Math/2023/module1/slides.pdf),  
-<!--
-[filled](Math/2023/module1/slides_filled.pdf) 
--->
+- Slides: [fillable](Math/2024/module1/slides.pdf),  [filled](Math/2024/module1/slides_filled.pdf) 
 
-- Exercises: [pdf](Math/2023/module1/exercises.pdf), [LaTeX template](Math/2023/module1/exercises.tex),
-<!--[solutions](Math/2023/module1/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module1/exercises.pdf), [LaTeX template](Math/2024/module1/exercises.tex),
+<!--[solutions](Math/2024/module1/exercise_solutions.pdf)
 -->
 
 ### Module 2: Set theory I
 
-- Slides: [fillable](Math/2023/module2/slides.pdf), 
+- Slides: [fillable](Math/2024/module2/slides.pdf), 
 <!--
-[filled](Math/2023/module2/slides_filled.pdf)
+[filled](Math/2024/module2/slides_filled.pdf)
 -->
 
-- Exercises: [pdf](Math/2023/module2/exercises.pdf), [LaTeX template](Math/2023/module2/exercises.tex), 
+- Exercises: [pdf](Math/2024/module2/exercises.pdf), [LaTeX template](Math/2024/module2/exercises.tex), 
 <!--
-[solutions](Math/2023/module2/exercise_solutions.pdf)
+[solutions](Math/2024/module2/exercise_solutions.pdf)
 -->
 
 ### Module 3: Set theory II and metric spaces I
 <!--
-- Slides: [fillable](Math/2023/module3/slides.pdf), [filled](Math/2023/module3/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module3/slides.pdf), [filled](Math/2024/module3/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module3/exercises.pdf), [LaTeX template](Math/2023/module3/exercises.tex) , [solutions](Math/2023/module3/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module3/exercises.pdf), [LaTeX template](Math/2024/module3/exercises.tex) , [solutions](Math/2024/module3/exercise_solutions.pdf)
 -->
 
 
 ### Module 4: Metric spaces II
 <!--
-- Slides: [fillable](Math/2023/module4/slides.pdf), [filled](Math/2023/module4/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module4/slides.pdf), [filled](Math/2024/module4/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module4/exercises.pdf), [LaTeX template](Math/2023/module4/exercises.tex), [solutions](Math/2023/module4/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module4/exercises.pdf), [LaTeX template](Math/2024/module4/exercises.tex), [solutions](Math/2024/module4/exercise_solutions.pdf)
 -->
 
 ### Module 5: Metric spaces III
 <!--
-- Slides: [fillable](Math/2023/module5/slides.pdf), [filled](Math/2023/module5/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module5/slides.pdf), [filled](Math/2024/module5/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module5/exercises.pdf), [LaTeX](Math/2023/module5/exercises.tex), [solutions](Math/2023/module5/exercise_solutions.pdf) 
+- Exercises: [pdf](Math/2024/module5/exercises.pdf), [LaTeX](Math/2024/module5/exercises.tex), [solutions](Math/2024/module5/exercise_solutions.pdf) 
 -->
 
 ### Module 6: Metric spaces IV
 <!--
-- Slides: [fillable](Math/2023/module6/slides.pdf) , [filled](Math/2023/module6/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module6/slides.pdf) , [filled](Math/2024/module6/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module6/exercises.pdf), [LaTeX](Math/2023/module6/exercises.tex), [solutions](Math/2023/module6/exercise_solutions.pdf) 
+- Exercises: [pdf](Math/2024/module6/exercises.pdf), [LaTeX](Math/2024/module6/exercises.tex), [solutions](Math/2024/module6/exercise_solutions.pdf) 
 -->
  
 ### Module 7: Linear algebra I
 <!--
-- Slides: [fillable](Math/2023/module7/slides.pdf), [filled](Math/2023/module7/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module7/slides.pdf), [filled](Math/2024/module7/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module7/exercises.pdf), [LaTeX](Math/2023/module7/exercises.tex), [solutions](Math/2023/module7/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module7/exercises.pdf), [LaTeX](Math/2024/module7/exercises.tex), [solutions](Math/2024/module7/exercise_solutions.pdf)
 -->
 
 ### Module 8: Linear algebra II
 <!--
-- Slides: [fillable](Math/2023/module8/slides.pdf), [filled](Math/2023/module8/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module8/slides.pdf), [filled](Math/2024/module8/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module8/exercises.pdf), [LaTeX](Math/2023/module8/exercises.tex), [solutions](Math/2023/module8/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module8/exercises.pdf), [LaTeX](Math/2024/module8/exercises.tex), [solutions](Math/2024/module8/exercise_solutions.pdf)
 -->
 
 ### Module 9: Linear algebra III
 <!--
-- Slides: [fillable](Math/2023/module9/slides.pdf), [filled](Math/2023/module9/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module9/slides.pdf), [filled](Math/2024/module9/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module9/exercises.pdf), [LaTeX](Math/2023/module9/exercises.tex), [solutions](Math/2023/module9/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module9/exercises.pdf), [LaTeX](Math/2024/module9/exercises.tex), [solutions](Math/2024/module9/exercise_solutions.pdf)
 -->
  
 ### Module 10: Differentiation and integration
 <!--
-- Slides: [fillable](Math/2023/module10/slides.pdf), [filled](Math/2023/module10/slides_filled.pdf)
+- Slides: [fillable](Math/2024/module10/slides.pdf), [filled](Math/2024/module10/slides_filled.pdf)
 
-- Exercises: [pdf](Math/2023/module10/exercises.pdf), [LaTeX](Math/2023/module10/exercises.tex), [solutions](Math/2023/module10/exercise_solutions.pdf)
+- Exercises: [pdf](Math/2024/module10/exercises.pdf), [LaTeX](Math/2024/module10/exercises.tex), [solutions](Math/2024/module10/exercise_solutions.pdf)
 -->
 
 
