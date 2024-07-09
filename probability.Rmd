@@ -20,10 +20,9 @@ Material will be added here as the course progresses.
 
 
 ### Module 1: Basics of Probability
-- Slides: [Module 1](Probability/2024/Slides/Module_1.pdf); 
-<!--
-[Module 1 Annotated](Probability/2024/Slides/Module_1_annotated.pdf) 
+- Slides: [Module 1](Probability/2024/Slides/Module_1.pdf); [Module 1 Annotated](Probability/2024/Slides/Module_1_annotated.pdf) 
 
+<!--
 - Problem Set Solutions: [Module 1 Solution](Probability/2024/Solutions/Module_1_Solutions.pdf) 
 -->
 
