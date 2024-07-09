@@ -24,9 +24,9 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 - Slides: [pdf](Computing/2024/Slides/mod1.pdf) 
 
-<!--
 - Exercises: [pdf](Computing/2024/Exercises/ex1.pdf), [Rmd](Computing/2024/Exercises/ex1.Rmd)
 
+<!--
 - Solutions: [pdf](Computing/2024/Solutions/sol1.pdf), [Rmd](Computing/2024/Solutions/sol1.Rmd)
 -->
 
