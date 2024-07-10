@@ -1,7 +1,7 @@
 ---
 title: 'Solution 1: Basic programming in R'
-author: "Yuan Tian"
-date: "07/10/2023"
+author: "Yaqi Shi"
+date: "07/09/2024"
 output: pdf_document
 ---
 

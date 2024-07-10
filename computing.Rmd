@@ -26,19 +26,17 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 - Exercises: [pdf](Computing/2024/Exercises/ex1.pdf), [Rmd](Computing/2024/Exercises/ex1.Rmd)
 
-<!--
 - Solutions: [pdf](Computing/2024/Solutions/sol1.pdf), [Rmd](Computing/2024/Solutions/sol1.Rmd)
--->
 
 
 ### Module 2: Data wrangling (I)
-<!--
+
 LaTeX, tidyverse
 
-- Slides: [pdf](Computing/2023/Slides/mod2.pdf) 
+- Slides: [pdf](Computing/2024/Slides/mod2.pdf) 
 
-- Exercises: [pdf](Computing/2023/Exercises/ex2.pdf), [Rmd](Computing/2023/Exercises/ex2.Rmd)
-
+- Exercises: [pdf](Computing/2024/Exercises/ex2.pdf), [Rmd](Computing/2024/Exercises/ex2.Rmd)
+<!--
 - Solutions: [pdf](Computing/2023/Solutions/sol2.pdf), [Rmd](Computing/2023/Solutions/sol2.Rmd)
 -->
 

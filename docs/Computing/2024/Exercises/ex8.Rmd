@@ -1,7 +1,7 @@
 ---
 title: "Module 8: Generalized linear regression"
-author: "Yuan Tian"
-date: "07/23/2023"
+author: "Yaqi Shi"
+date: "07/23/2024"
 output: pdf_document
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 'Exercise 2: Reporting, Data Wrangling and Graphing'
-author: "Yuan Tian"
-date: "07/10/2023"
+author: "Yaqi Shi"
+date: "07/10/2024"
 output: pdf_document
 ---
 
