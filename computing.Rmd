@@ -35,7 +35,7 @@ LaTeX, tidyverse
 
 - Slides: [pdf](Computing/2024/Slides/mod2.pdf) 
 
-- Data:[txt](Computing/2024/Slides/mtcars.txt)
+- Data: [txt](Computing/2024/Slides/mtcars.txt)
 
 - Exercises: [pdf](Computing/2024/Exercises/ex2.pdf), [Rmd](Computing/2024/Exercises/ex2.Rmd)
 <!--
