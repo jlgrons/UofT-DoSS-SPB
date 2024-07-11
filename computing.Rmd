@@ -38,21 +38,23 @@ LaTeX, tidyverse
 - Data: [txt](Computing/2024/Slides/mtcars.txt)
 
 - Exercises: [pdf](Computing/2024/Exercises/ex2.pdf), [Rmd](Computing/2024/Exercises/ex2.Rmd)
-<!--
-- Solutions: [pdf](Computing/2023/Solutions/sol2.pdf), [Rmd](Computing/2023/Solutions/sol2.Rmd)
--->
+
+- Solutions: [pdf](Computing/2024/Solutions/sol2.pdf), [Rmd](Computing/2024/Solutions/sol2.Rmd)
+
 
 
 ### Module 3: Data wrangling (II)
-<!--
+
 R style guide
 - [Full Guide](https://style.tidyverse.org)
 
 ggplot2
 
-- Tutorial: [pdf](Computing/2023/Slides/ggplot2_tutorial.pdf), [Rmd](Computing/2023/Slides/ggplot2_tutorial.Rmd)
+- Slides: [pdf](Computing/2024/Slides/mod3.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex3.pdf), [Rmd](Computing/2022/Exercises/ex3.Rmd)
+- Exercises: [pdf](Computing/2024/Exercises/ex3.pdf), [Rmd](Computing/2024/Exercises/ex3.Rmd)
+
+<!--
 
 - Solutions: [pdf](Computing/2022/Solutions/sol3.pdf), [Rmd](Computing/2022/Solutions/sol3.Rmd)
 -->
