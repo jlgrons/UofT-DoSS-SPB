@@ -41,6 +41,8 @@ You may download the [lecture notes](Math/2024/lecture_notes/math_notes.pdf), wh
 [solutions](Math/2024/module2/exercise_solutions.pdf)
 -->
 
+- Recordings: [link](https://play.library.utoronto.ca/watch/13bed2e818ac992a0a4edc1becbddfbb)
+
 ### Module 3: Set theory II and metric spaces I
 - Slides: [fillable](Math/2024/module3/slides.pdf), <!--[filled](Math/2024/module3/slides_filled.pdf)-->
 
