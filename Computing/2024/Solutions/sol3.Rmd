@@ -25,7 +25,7 @@ The Bus Breakdown and Delay system collects information from school bus vendors 
 You can find data for years 2015 to 2017.
 
 ```{r}
-bus.delay <- read_csv("../Data/Bus_Breakdown_and_Delays.csv")
+bus.delay <- read_csv("Bus_Breakdown_and_Delays.csv")
 head(bus.delay)
 ```
 
