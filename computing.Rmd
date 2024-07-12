@@ -41,6 +41,8 @@ LaTeX, tidyverse
 
 - Solutions: [pdf](Computing/2024/Solutions/sol2.pdf), [Rmd](Computing/2024/Solutions/sol2.Rmd)
 
+- Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90)
+
 
 
 ### Module 3: Data wrangling (II)
@@ -54,10 +56,8 @@ ggplot2
 
 - Exercises: [pdf](Computing/2024/Exercises/ex3.pdf), [Rmd](Computing/2024/Exercises/ex3.Rmd)
 
-<!--
+- Solutions: [pdf](Computing/2024/Solutions/sol3.pdf), [Rmd](Computing/2024/Solutions/sol3.Rmd)
 
-- Solutions: [pdf](Computing/2022/Solutions/sol3.pdf), [Rmd](Computing/2022/Solutions/sol3.Rmd)
--->
  
 ### Module 4: Statistical inference (I)
 <!--
