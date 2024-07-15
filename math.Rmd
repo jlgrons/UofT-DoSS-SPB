@@ -37,9 +37,7 @@ You may download the [lecture notes](Math/2024/lecture_notes/math_notes.pdf), wh
 - Slides: [fillable](Math/2024/module2/slides.pdf), [filled](Math/2024/module2/slides_filled.pdf)
 
 - Exercises: [pdf](Math/2024/module2/exercises.pdf), [LaTeX template](Math/2024/module2/exercises.tex), 
-<!--
 [solutions](Math/2024/module2/exercise_solutions.pdf)
--->
 
 - Recordings: [link](https://play.library.utoronto.ca/watch/13bed2e818ac992a0a4edc1becbddfbb)
 
@@ -49,7 +47,7 @@ You may download the [lecture notes](Math/2024/lecture_notes/math_notes.pdf), wh
 - Exercises: [pdf](Math/2024/module3/exercises.pdf), [LaTeX template](Math/2024/module3/exercises.tex) , <!--[solutions](Math/2024/module3/exercise_solutions.pdf)
 -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90)
+- Recordings: [link](https://play.library.utoronto.ca/watch/9c1dc3bdcdb5b0983c0cbf305fafd720)
 
 ### Module 4: Metric spaces II
 
