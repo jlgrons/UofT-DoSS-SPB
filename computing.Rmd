@@ -58,15 +58,18 @@ ggplot2
 
 - Solutions: [pdf](Computing/2024/Solutions/sol3.pdf), [Rmd](Computing/2024/Solutions/sol3.Rmd)
 
+- Recording: [Link](https://play.library.utoronto.ca/watch/25639982c061c5bad7033589da27df40)
+
  
 ### Module 4: Statistical inference (I)
-<!--
+
 Bias, Consistency, and MSE
 
-- Slides: [pdf](Computing/2023/Slides/mod4.pdf) 
+- Slides: [pdf](Computing/2024/Slides/mod4.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex4.pdf), [Rmd](Computing/2022/Exercises/ex4.Rmd)
+- Exercises: [pdf](Computing/2024/Exercises/ex4.pdf), [Rmd](Computing/2024/Exercises/ex4.Rmd)
 
+<!--
 - Solutions: [pdf](Computing/2022/Solutions/sol4.pdf), [Rmd](Computing/2022/Solutions/sol4.Rmd)
 -->
 
