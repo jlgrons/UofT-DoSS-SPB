@@ -40,6 +40,8 @@ Material will be added here as the course progresses.
 - Problem Set Solutions: [Module 3 Solution](Probability/2024/Solutions/Module_3_Solutions.pdf) 
 -->
 
+- Recordings: [link](https://play.library.utoronto.ca/watch/2426b46beafb137d224e6d3840ae3882)
+
 ### Module 4: Distribution
 
 - Slides: [Module 4](Probability/2024/Slides/Module_4.pdf); <!--[Module 4 Annotated](Probability/2024/Slides/Module_4_annotated.pdf) 
