@@ -69,9 +69,8 @@ Bias, Consistency, and MSE
 
 - Exercises: [pdf](Computing/2024/Exercises/ex4.pdf), [Rmd](Computing/2024/Exercises/ex4.Rmd)
 
-<!--
-- Solutions: [pdf](Computing/2022/Solutions/sol4.pdf), [Rmd](Computing/2022/Solutions/sol4.Rmd)
--->
+- Solutions: [pdf](Computing/2024/Solutions/sol4.pdf), [Rmd](Computing/2024/Solutions/sol4.Rmd)
+
 
 ### Module 5: Statistical inference (II)
 <!--
