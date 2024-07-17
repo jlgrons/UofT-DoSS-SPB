@@ -48,6 +48,8 @@ Material will be added here as the course progresses.
 - Problem Set Solutions: [Module 4 Solution](Probability/2024/Solutions/Module_4_Solutions.pdf) 
 -->
 
+- Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3)
+
 ### Module 5: Expectation
 
 
