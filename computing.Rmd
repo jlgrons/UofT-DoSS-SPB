@@ -74,14 +74,18 @@ Bias, Consistency, and MSE
 - Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f)
 
 ### Module 5: Statistical inference (II)
-<!--
+
 MLE, Numerical Methods
 
-- Slides: [pdf](Computing/2023/Slides/mod5.pdf) 
+- Slides: [pdf](Computing/2024/Slides/mod5.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex5.pdf)
+- Exercises: [pdf](Computing/2024/Exercises/ex5.pdf)
+
+<!--
 
 - Solutions: [pdf](Computing/2022/Solutions/sol5.pdf), [Rmd](Computing/2022/Solutions/sol5.Rmd)
+
+- Recording：[Link]()
 -->
 
 
