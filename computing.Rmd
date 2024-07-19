@@ -81,22 +81,22 @@ MLE, Numerical Methods
 
 - Exercises: [pdf](Computing/2024/Exercises/ex5.pdf)
 
+- Solutions: [pdf](Computing/2024/Solutions/sol5.pdf)
 <!--
-
-- Solutions: [pdf](Computing/2022/Solutions/sol5.pdf), [Rmd](Computing/2022/Solutions/sol5.Rmd)
-
 - Recording：[Link]()
 -->
 
 
 ### Module 6: Statistical inference (III)
-<!--
+
 
 Wald, Score, and Likelihood Ratio Test
 
-- Slides: [pdf](Computing/2023/Slides/mod6.pdf) 
+- Slides: [pdf](Computing/2024/Slides/mod6.pdf) 
 
-- Exercises: [pdf](Computing/2022/Exercises/ex6.pdf)
+- Exercises: [pdf](Computing/2024/Exercises/ex6.pdf)
+
+<!--
 
 - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
 -->
