@@ -46,7 +46,7 @@
 \title[]{DoSS Summer Bootcamp Probability \\ Module 7}
 \author[]{Ichiro Hashimoto}
 \institute[]{University of Toronto}
-\date{July 24, 2023}
+\date{July 23, 2024}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -360,6 +360,43 @@ $X_n$ and $X$ need to be defined on the same probability space.
     \textbf{Proof:}\\
     \vspace{1in}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Stochastic convergence}
+    \textbf{Recall:} A random variable $X \in L^p$ if $\|X\|_{L^p} = (E |X|^p)^{1/p} < \infty$.\\ 
+    \quad \qquad $X_n\to X$ in $L^p$ if $\lim_{n\to \infty}\|X_n - X\|_{L^p}=0$ \\
+    \begin{block}{Monotonicity of $L^p$ Convergence}
+    If $q>p>0$, $L^q$ convergence implies $L^p$ convergence 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Stochastic convergence}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{$L^p$ convergence implies Convergence in Probability}
+    If $X_n \to X$ in $L^p$, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Stochastic convergence}
+    \textbf{Recall:} $X_n$ converges to $X$ in probability if for any $\epsilon>0$ $\lim_{n\to \infty}P(|X_n - X|>\epsilon)=0$.\\
+    \begin{block}{a.s. Convergence implies Convergence in Probability}
+    If $X_n \to X$ almost surely, then $X_n \to X$ in probability. 
+    \end{block}
+    \textbf{Proof: }
+    \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Stochastic convergence}
+    \textbf{Recall:} $X_n$ converges to $X$ in distribution if for any continuity point $x$ of $P(X\leq x)$, $\lim_{n\to \infty}P(X_n \leq x) = P(X\leq x)$ holds.\\
+    \begin{block}{Convergence in Probability implies Convergence in Distribution}
+    If $X_n \to X$ in probability, then $X_n \to X$ in distribution. 
+    \end{block}
+    \textbf{Proof: Omitted}
+    \vspace{1.8in}
 \end{frame}
 
 \begin{frame}{Stochastic convergence}
