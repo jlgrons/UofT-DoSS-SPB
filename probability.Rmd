@@ -67,6 +67,8 @@ Material will be added here as the course progresses.
 - Problem Set Solutions: [Module 6 Solution](Probability/2024/Solutions/Module_6_Solutions.pdf) 
 -->
 
+- Recordings: [link](https://play.library.utoronto.ca/watch/8b60b049e6569ac950ee840844ade3c9)
+
 ### Module 7: Stochastic Convergence
 
 
