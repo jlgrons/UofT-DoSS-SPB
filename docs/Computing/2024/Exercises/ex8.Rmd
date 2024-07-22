@@ -1,7 +1,7 @@
 ---
 title: "Module 8: Generalized linear regression"
 author: "Yaqi Shi"
-date: "07/23/2024"
+date: \today
 output: pdf_document
 ---
 
@@ -16,10 +16,6 @@ Suppose that 2500 pregnant women are enrolled in a study and the outcome is the 
 1. Formulate the problem of selecting the important predictors of preterm birth in a generalized linear model (GLM) framework. 
 2. Show the components of the GLM, including the link function and distribution (in exponential family form). 
 3. Describe (briefly) how estimation and inference could proceed via a frequentist approach.
-
-```{r, echo = FALSE}
-#Solution: https://www2.stat.duke.edu/courses/Fall03/sta216/midTREV.pdf
-```
 
 # Part 2: GLMs in R (Logistic regression)
 
@@ -40,9 +36,6 @@ data(shuttle)
 head(shuttle)
 ```
 
-```{r, echo = F}
-# https://rstudio-pubs-static.s3.amazonaws.com/190114_34bb01d14cd542e3a419b21b0fa03441.html
-```
 
 # Part 3: GLMs in R (Poisson regression)
 

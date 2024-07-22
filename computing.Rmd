@@ -111,12 +111,14 @@ Wald, Score, and Likelihood Ratio Test
 
 
 ### Module 8: Generalized linear models
+
+- Slides: [pdf](Computing/2024/Slides/mod8.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex8.pdf),  [Rmd](Computing/2024/Exercises/ex8.Rmd)
+
 <!--
-- Slides: [pdf](Computing/2023/Slides/mod8.pdf) 
 
-- Exercises: [pdf](Computing/2023/Exercises/ex8.pdf)
-
-- Solution: [pdf](Computing/2023/Solutions/sol8.pdf), [Rmd](Computing/2023/Solutions/sol8.Rmd)
+- Solution: [pdf](Computing/2024/Solutions/sol8.pdf), [Rmd](Computing/2024/Solutions/sol8.Rmd)
 -->
 
 
@@ -127,16 +129,17 @@ Wald, Score, and Likelihood Ratio Test
 
 - Exercises: [pdf](Computing/2022/Exercises/ex7.pdf)
 
+
 - Solution: [pdf](Computing/2022/Solutions/sol7.pdf), [Rmd](Computing/2022/Solutions/sol9.Rmd)
 -->
 
 
-### Module 10: Generalized linear models
-<!--
-- Slides: [pdf](Computing/2023/Slides/mod10.pdf) 
+### Module 10: Bootstrap
 
-- Exercises: [pdf](Computing/2023/Exercises/ex10.pdf)
--->
+- Slides: [pdf](Computing/2024/Slides/mod10.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex10.pdf),  [Rmd](Computing/2024/Exercises/ex10.Rmd)
+
 <!-- 
 - Solution: [pdf](Computing/2022/Solutions/sol10.pdf), [Rmd](Computing/2022/Solutions/sol10.Rmd)
 -->
