@@ -1,7 +1,7 @@
 ---
 title: "Module 7: Linear regression"
 author: "Yaqi Shi"
-date: "07/20/20234"
+date: \today
 output: pdf_document
 ---
 
