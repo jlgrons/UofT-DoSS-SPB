@@ -107,6 +107,7 @@ Wald, Score, and Likelihood Ratio Test
 
 - Solutions: [pdf](Computing/2024/Solutions/sol7.pdf), [Rmd](Computing/2024/Solutions/sol7.Rmd)
 
+- Recording: [Link](https://play.library.utoronto.ca/watch/c886222f7d08bc3b40f628338eba617d)
 
 
 ### Module 8: Generalized linear models
@@ -118,6 +119,8 @@ Wald, Score, and Likelihood Ratio Test
 <!--
 
 - Solution: [pdf](Computing/2024/Solutions/sol8.pdf), [Rmd](Computing/2024/Solutions/sol8.Rmd)
+
+- Recording: [Link]()
 -->
 
 
@@ -130,6 +133,8 @@ Wald, Score, and Likelihood Ratio Test
 
 
 - Solution: [pdf](Computing/2022/Solutions/sol7.pdf), [Rmd](Computing/2022/Solutions/sol9.Rmd)
+
+- Recording: [Link]()
 -->
 
 
@@ -141,4 +146,7 @@ Wald, Score, and Likelihood Ratio Test
 
 <!-- 
 - Solution: [pdf](Computing/2022/Solutions/sol10.pdf), [Rmd](Computing/2022/Solutions/sol10.Rmd)
+
+- Recording: [Link]()
+
 -->
