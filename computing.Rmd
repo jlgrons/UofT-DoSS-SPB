@@ -82,13 +82,11 @@ MLE, Numerical Methods
 - Exercises: [pdf](Computing/2024/Exercises/ex5.pdf)
 
 - Solutions: [pdf](Computing/2024/Solutions/sol5.pdf)
-<!--
-- Recording：[Link]()
--->
+
+- Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400)
 
 
 ### Module 6: Statistical inference (III)
-
 
 Wald, Score, and Likelihood Ratio Test
 
@@ -98,6 +96,8 @@ Wald, Score, and Likelihood Ratio Test
 
 - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
 
+- Recording：[Link](https://play.library.utoronto.ca/watch/47239f4d003313eddd2b843bff3a7760)
+
 
 ### Module 7: Linear regression 
 
@@ -105,9 +105,8 @@ Wald, Score, and Likelihood Ratio Test
 
 - Exercises: [pdf](Computing/2024/Exercises/ex7.pdf), [Rmd](Computing/2024/Exercises/ex7.Rmd)
 
-<!--
-- Solutions: [pdf](Computing/2023/Solutions/sol7.pdf), [Rmd](Computing/2023/Solutions/sol7.Rmd)
--->
+- Solutions: [pdf](Computing/2024/Solutions/sol7.pdf), [Rmd](Computing/2024/Solutions/sol7.Rmd)
+
 
 
 ### Module 8: Generalized linear models
