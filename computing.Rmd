@@ -143,9 +143,9 @@ Wald, Score, and Likelihood Ratio Test
 
 - Exercises: [pdf](Computing/2024/Exercises/ex10.pdf),  [Rmd](Computing/2024/Exercises/ex10.Rmd)
 
-<!-- 
+
 - Solution: [pdf](Computing/2024/Solutions/sol10.pdf), [Rmd](Computing/2024/Solutions/sol10.Rmd)
 
+<!--
 - Recording: [Link]()
-
 -->
