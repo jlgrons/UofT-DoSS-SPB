@@ -29,7 +29,6 @@ Material will be added here as the course progresses.
 ### Module 2: Random Variables
 - Slides: [Module 2](Probability/2024/Slides/Module_2.pdf); [Module 2 Annotated](Probability/2024/Slides/Module_2_annotated.pdf) 
 
-
 - Problem Set Solutions: [Module 2 Solution](Probability/2024/Solutions/Module_2_Solutions.pdf) 
 
 
@@ -59,7 +58,6 @@ Material will be added here as the course progresses.
 
 ### Module 6: Inequalities
 
-
 - Slides: [Module 6](Probability/2024/Slides/Module_6.pdf); 
 [Module 6 Annotated](Probability/2024/Slides/Module_6_annotated.pdf) 
 
@@ -72,22 +70,21 @@ Material will be added here as the course progresses.
 
 - Slides: [Module 7](Probability/2024/Slides/Module_7.pdf); 
 [Module 7 Annotated](Probability/2024/Slides/Module_7_annotated.pdf) 
+
 - Problem Set Solutions: [Module 7 Solution](Probability/2024/Solutions/Module_7_Solutions.pdf) 
 
-### Module 8: Limit Theorems
+- Recordings: [link](https://play.library.utoronto.ca/watch/f79a75a5efdd714a90bc56ab73dec9c1)
 
+### Module 8: Limit Theorems
 
 - Slides: [Module 8](Probability/2024/Slides/Module_8.pdf); 
 [Module 8 Annotated](Probability/2024/Slides/Module_8_annotated.pdf) 
 
-
-
 - Problem Set Solutions: [Module 8 Solution](Probability/2024/Solutions/Module_8_Solutions.pdf) 
+
+- Recordings: [link](https://play.library.utoronto.ca/watch/d371f1cee0cfd578b707639e03cb3a99)
 
 ### Module 9: Counterexamples
 
-
 - Slides: [Module 9](Probability/2024/Slides/Module_9.pdf); 
 [Module 9 Annotated](Probability/2024/Slides/Module_9_annotated.pdf)
-
-
