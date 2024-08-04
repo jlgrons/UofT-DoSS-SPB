@@ -1,6 +1,6 @@
 ---
 title: "Probability"
-description: "Instructor: Ichiro Hashimoto, PhD student (2nd Year) ([Email](mailto:ichiro.hashimoto@mail.utoronto.ca))"
+description: "Instructor: [Ichiro Hashimoto](https://ichiro-h.github.io/), PhD student (2nd Year)"
 output:
   distill::distill_article:
     toc: true
