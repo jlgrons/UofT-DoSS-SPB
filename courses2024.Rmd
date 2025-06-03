@@ -1,0 +1,327 @@
+---
+title: "Summer Prep Bootcamp 2024"
+description: 
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+
+---
+
+The DoSS Summer Prep Bootcamp 2024 was held from July 8 to July 26 2023. 
+
+## Methods and Computing
+Instructor: Yaqi Shi, PhD student ([Email](mailto:yaqi.shi@mail.utoronto.ca))
+
+### Syllabus
+
+[Click here to download the syllabus](Computing/2024/syllabus_computing.pdf)
+
+### Lectures
+
+#### Module 1: Basic R programming
+
+- Slides: [pdf](Computing/2024/Slides/mod1.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex1.pdf), [Rmd](Computing/2024/Exercises/ex1.Rmd)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol1.pdf), [Rmd](Computing/2024/Solutions/sol1.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/embed/2512caddaa6f822e94ba7afc1cecba9b) -->
+
+
+#### Module 2: Data wrangling (I)
+
+LaTeX, tidyverse
+
+- Slides: [pdf](Computing/2024/Slides/mod2.pdf) 
+
+- Data: [txt](Computing/2024/Slides/mtcars.txt)
+
+- Exercises: [pdf](Computing/2024/Exercises/ex2.pdf), [Rmd](Computing/2024/Exercises/ex2.Rmd)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol2.pdf), [Rmd](Computing/2024/Solutions/sol2.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90) -->
+
+
+
+#### Module 3: Data wrangling (II)
+
+R style guide
+- [Full Guide](https://style.tidyverse.org)
+
+ggplot2
+
+- Slides: [pdf](Computing/2024/Slides/mod3.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex3.pdf), [Rmd](Computing/2024/Exercises/ex3.Rmd)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol3.pdf), [Rmd](Computing/2024/Solutions/sol3.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/25639982c061c5bad7033589da27df40) -->
+
+ 
+#### Module 4: Statistical inference (I)
+
+Bias, Consistency, and MSE
+
+- Slides: [pdf](Computing/2024/Slides/mod4.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex4.pdf), [Rmd](Computing/2024/Exercises/ex4.Rmd)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol4.pdf), [Rmd](Computing/2024/Solutions/sol4.Rmd)
+ 
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f) -->
+
+#### Module 5: Statistical inference (II)
+
+MLE, Numerical Methods
+
+- Slides: [pdf](Computing/2024/Slides/mod5.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex5.pdf)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol5.pdf)
+
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400) -->
+
+
+#### Module 6: Statistical inference (III)
+
+Wald, Score, and Likelihood Ratio Test
+
+- Slides: [pdf](Computing/2024/Slides/mod6.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex6.pdf)
+
+- Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
+
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/47239f4d003313eddd2b843bff3a7760) -->
+
+
+#### Module 7: Linear regression 
+
+- Slides: [pdf](Computing/2024/Slides/mod7.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex7.pdf), [Rmd](Computing/2024/Exercises/ex7.Rmd)
+
+- Solutions: [pdf](Computing/2024/Solutions/sol7.pdf), [Rmd](Computing/2024/Solutions/sol7.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/c886222f7d08bc3b40f628338eba617d) -->
+
+
+#### Module 8: Generalized linear models
+
+- Slides: [pdf](Computing/2024/Slides/mod8.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex8.pdf),  [Rmd](Computing/2024/Exercises/ex8.Rmd)
+
+- Solution: [pdf](Computing/2024/Solutions/sol8.pdf), [Rmd](Computing/2024/Solutions/sol8.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/73637113a4d17d1cff9b83220a199050) -->
+
+
+
+#### Module 9: Parallel Computing in R
+
+
+- Slides: [pdf](Computing/2024/Slides/mod9.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex9.pdf)
+
+- Solution: [pdf](Computing/2024/Solutions/sol9.pdf), [Rmd](Computing/2024/Solutions/sol9.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/a09e6bad7e19ec53fde95e3395dc44c4) -->
+
+
+
+#### Module 10: Bootstrap
+
+- Slides: [pdf](Computing/2024/Slides/mod10.pdf) 
+
+- Exercises: [pdf](Computing/2024/Exercises/ex10.pdf),  [Rmd](Computing/2024/Exercises/ex10.Rmd)
+
+- Solution: [pdf](Computing/2024/Solutions/sol10.pdf), [Rmd](Computing/2024/Solutions/sol10.Rmd)
+
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/b34a2c5d17a5c70f0f1524a748b745b5) -->
+
+
+## Operational Math
+Instructor: [Ichiro Hashimoto](https://ichiro-h.github.io/), PhD student (2nd Year)
+
+### Syllabus
+
+[Click here to download the syllabus](Math/2024/syllabus/syllabus_operational_math.pdf)
+
+
+### Lectures
+
+You may download the [lecture notes](Math/2024/lecture_notes/math_notes.pdf), which will be updated after each lecture.
+
+
+#### Module 1: Introduction to proofs
+
+- Slides: [fillable](Math/2024/module1/slides.pdf),  [filled](Math/2024/module1/slides_filled.pdf) 
+
+- Exercises: [pdf](Math/2024/module1/exercises.pdf), [LaTeX template](Math/2024/module1/exercises.tex), [solutions](Math/2024/module1/exercise_solutions.pdf)
+
+<!-- - Recordings: No recording available -->
+
+#### Module 2: Set theory I
+
+- Slides: [fillable](Math/2024/module2/slides.pdf), [filled](Math/2024/module2/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module2/exercises.pdf), [LaTeX template](Math/2024/module2/exercises.tex), 
+[solutions](Math/2024/module2/exercise_solutions.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/13bed2e818ac992a0a4edc1becbddfbb) -->
+
+#### Module 3: Set theory II and metric spaces I
+- Slides: [fillable](Math/2024/module3/slides.pdf), [filled](Math/2024/module3/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module3/exercises.pdf), [LaTeX template](Math/2024/module3/exercises.tex) , [solutions](Math/2024/module3/exercise_solutions.pdf)
+
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/9c1dc3bdcdb5b0983c0cbf305fafd720) -->
+
+#### Module 4: Metric spaces II
+
+- Slides: [fillable](Math/2024/module4/slides.pdf), [filled](Math/2024/module4/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module4/exercises.pdf), [LaTeX template](Math/2024/module4/exercises.tex), [solutions](Math/2024/module4/exercise_solutions.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/21ee75e022e31a2e1d3862d4eeccb1f2) -->
+
+#### Module 5: Metric spaces III
+
+- Slides: [fillable](Math/2024/module5/slides.pdf), [filled](Math/2024/module5/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module5/exercises.pdf), [LaTeX](Math/2024/module5/exercises.tex), [solutions](Math/2024/module5/exercise_solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/9b004d8a2faa899be290765d2605515f) -->
+
+#### Module 6: Metric spaces IV
+
+- Slides: [fillable](Math/2024/module6/slides.pdf) , [filled](Math/2024/module6/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module6/exercises.pdf), [LaTeX](Math/2024/module6/exercises.tex), [solutions](Math/2024/module6/exercise_solutions.pdf) 
+ 
+<!-- Recordings: [link](https://play.library.utoronto.ca/watch/0987aa47cdf34cbee4f6677b2951a3bf) -->
+
+#### Module 7: Linear algebra I
+
+- Slides: [fillable](Math/2024/module7/slides.pdf), [filled](Math/2024/module7/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module7/exercises.pdf), [LaTeX](Math/2024/module7/exercises.tex), [solutions](Math/2024/module7/exercise_solutions.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/744f064f5d74b1be83e2a0392d382fce) -->
+
+#### Module 8: Linear algebra II
+
+- Slides: [fillable](Math/2024/module8/slides.pdf), [filled](Math/2024/module8/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module8/exercises.pdf), [LaTeX](Math/2024/module8/exercises.tex), [solutions](Math/2024/module8/exercise_solutions.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/9e0792643a089922dd45622fbce1e9b6) -->
+
+#### Module 9: Linear algebra III
+
+- Slides: [fillable](Math/2024/module9/slides.pdf), [filled](Math/2024/module9/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module9/exercises.pdf), [LaTeX](Math/2024/module9/exercises.tex), [solutions](Math/2024/module9/exercise_solutions.pdf)
+ 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/923255822fcdd588fd8424cd8dfb9132) -->
+
+#### Module 10: Differentiation and integration
+- Slides: [fillable](Math/2024/module10/slides.pdf),
+ [filled](Math/2024/module10/slides_filled.pdf)
+
+- Exercises: [pdf](Math/2024/module10/exercises.pdf), [LaTeX](Math/2024/module10/exercises.tex),
+ [solutions](Math/2024/module10/exercise_solutions.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2adfc198708dc8fb93f25c6041f2d30f) -->
+
+
+## Probability
+Instructor: [Ichiro Hashimoto](https://ichiro-h.github.io/), PhD student (2nd Year)
+
+### Syllabus
+
+[Click here to download the syllabus](Probability/2024/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+
+### Lectures
+
+
+#### Module 1: Basics of Probability
+- Slides: [Module 1](Probability/2024/Slides/Module_1.pdf); [Module 1 Annotated](Probability/2024/Slides/Module_1_annotated.pdf) 
+
+- Problem Set Solutions: [Module 1 Solution](Probability/2024/Solutions/Module_1_Solutions.pdf) 
+
+<!-- - Recordings: [Link](https://play.library.utoronto.ca/watch/c2f381308cec6d9e0fbc48fbfb548a27) -->
+
+#### Module 2: Random Variables
+- Slides: [Module 2](Probability/2024/Slides/Module_2.pdf); [Module 2 Annotated](Probability/2024/Slides/Module_2_annotated.pdf) 
+
+- Problem Set Solutions: [Module 2 Solution](Probability/2024/Solutions/Module_2_Solutions.pdf) 
+
+
+#### Module 3: Common Random Variables
+
+- Slides: [Module 3](Probability/2024/Slides/Module_3.pdf); [Module 3 Annotated](Probability/2024/Slides/Module_3_annotated.pdf) 
+
+- Problem Set Solutions: [Module 3 Solution](Probability/2024/Solutions/Module_3_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2426b46beafb137d224e6d3840ae3882) -->
+
+#### Module 4: Distribution
+
+- Slides: [Module 4](Probability/2024/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2024/Slides/Module_4_annotated.pdf) 
+
+- Problem Set Solutions: [Module 4 Solution](Probability/2024/Solutions/Module_4_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3) -->
+
+#### Module 5: Expectation
+
+- Slides: [Module 5](Probability/2024/Slides/Module_5.pdf); [Module 5 Annotated](Probability/2024/Slides/Module_5_annotated.pdf) 
+
+- Problem Set Solutions: [Module 5 Solution](Probability/2024/Solutions/Module_5_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/77c3ed5a60757a2304037a05a62b69b6) -->
+
+#### Module 6: Inequalities
+
+- Slides: [Module 6](Probability/2024/Slides/Module_6.pdf); 
+[Module 6 Annotated](Probability/2024/Slides/Module_6_annotated.pdf) 
+
+- Problem Set Solutions: [Module 6 Solution](Probability/2024/Solutions/Module_6_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/8b60b049e6569ac950ee840844ade3c9) -->
+
+#### Module 7: Stochastic Convergence
+
+
+- Slides: [Module 7](Probability/2024/Slides/Module_7.pdf); 
+[Module 7 Annotated](Probability/2024/Slides/Module_7_annotated.pdf) 
+
+- Problem Set Solutions: [Module 7 Solution](Probability/2024/Solutions/Module_7_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/f79a75a5efdd714a90bc56ab73dec9c1) -->
+
+#### Module 8: Limit Theorems
+
+- Slides: [Module 8](Probability/2024/Slides/Module_8.pdf); 
+[Module 8 Annotated](Probability/2024/Slides/Module_8_annotated.pdf) 
+
+- Problem Set Solutions: [Module 8 Solution](Probability/2024/Solutions/Module_8_Solutions.pdf) 
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d371f1cee0cfd578b707639e03cb3a99) -->
+
+#### Module 9: Counterexamples
+
+- Slides: [Module 9](Probability/2024/Slides/Module_9.pdf); 
+[Module 9 Annotated](Probability/2024/Slides/Module_9_annotated.pdf)
+
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/1d8c92286b9b783cb444bb2b7763fa90) -->
