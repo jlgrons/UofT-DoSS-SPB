@@ -10,7 +10,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Computing/2024/syllabus_computing.pdf)
+[Click here to download the syllabus](Computing/2025/syllabus_computing.pdf)
 
 
 
@@ -20,28 +20,28 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 ### Module 1: Basic R programming
 
-- Slides: [pdf](Computing/2024/Slides/mod1.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod1.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex1.pdf), [Rmd](Computing/2024/Exercises/ex1.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex1.pdf), [Rmd](Computing/2025/Exercises/ex1.Rmd) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol1.pdf), [Rmd](Computing/2024/Solutions/sol1.Rmd)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol1.pdf), [Rmd](Computing/2025/Solutions/sol1.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/embed/2512caddaa6f822e94ba7afc1cecba9b)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/embed/2512caddaa6f822e94ba7afc1cecba9b) -->
 
 
 ### Module 2: Data wrangling (I)
 
 LaTeX, tidyverse
 
-- Slides: [pdf](Computing/2024/Slides/mod2.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod2.pdf)  -->
 
-- Data: [txt](Computing/2024/Slides/mtcars.txt)
+<!-- - Data: [txt](Computing/2025/Slides/mtcars.txt) -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex2.pdf), [Rmd](Computing/2024/Exercises/ex2.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex2.pdf), [Rmd](Computing/2025/Exercises/ex2.Rmd) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol2.pdf), [Rmd](Computing/2024/Solutions/sol2.Rmd)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol2.pdf), [Rmd](Computing/2025/Solutions/sol2.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90) -->
 
 
 
@@ -52,95 +52,95 @@ R style guide
 
 ggplot2
 
-- Slides: [pdf](Computing/2024/Slides/mod3.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod3.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex3.pdf), [Rmd](Computing/2024/Exercises/ex3.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex3.pdf), [Rmd](Computing/2025/Exercises/ex3.Rmd) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol3.pdf), [Rmd](Computing/2024/Solutions/sol3.Rmd)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol3.pdf), [Rmd](Computing/2025/Solutions/sol3.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/25639982c061c5bad7033589da27df40)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/25639982c061c5bad7033589da27df40) -->
 
  
 ### Module 4: Statistical inference (I)
 
 Bias, Consistency, and MSE
 
-- Slides: [pdf](Computing/2024/Slides/mod4.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod4.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex4.pdf), [Rmd](Computing/2024/Exercises/ex4.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex4.pdf), [Rmd](Computing/2025/Exercises/ex4.Rmd) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol4.pdf), [Rmd](Computing/2024/Solutions/sol4.Rmd)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol4.pdf), [Rmd](Computing/2025/Solutions/sol4.Rmd) -->
  
-- Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f)
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f) -->
 
 ### Module 5: Statistical inference (II)
 
 MLE, Numerical Methods
 
-- Slides: [pdf](Computing/2024/Slides/mod5.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod5.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex5.pdf)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex5.pdf) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol5.pdf)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol5.pdf) -->
 
-- Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400)
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400) -->
 
 
 ### Module 6: Statistical inference (III)
 
 Wald, Score, and Likelihood Ratio Test
 
-- Slides: [pdf](Computing/2024/Slides/mod6.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod6.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex6.pdf)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex6.pdf) -->
 
-- Solutions: [pdf](Computing/2022/Solutions/sol6.pdf)
+<!-- - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf) -->
 
-- Recording：[Link](https://play.library.utoronto.ca/watch/47239f4d003313eddd2b843bff3a7760)
+<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/47239f4d003313eddd2b843bff3a7760) -->
 
 
 ### Module 7: Linear regression 
 
-- Slides: [pdf](Computing/2024/Slides/mod7.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod7.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex7.pdf), [Rmd](Computing/2024/Exercises/ex7.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex7.pdf), [Rmd](Computing/2025/Exercises/ex7.Rmd) -->
 
-- Solutions: [pdf](Computing/2024/Solutions/sol7.pdf), [Rmd](Computing/2024/Solutions/sol7.Rmd)
+<!-- - Solutions: [pdf](Computing/2025/Solutions/sol7.pdf), [Rmd](Computing/2025/Solutions/sol7.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/c886222f7d08bc3b40f628338eba617d)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/c886222f7d08bc3b40f628338eba617d) -->
 
 
 ### Module 8: Generalized linear models
 
-- Slides: [pdf](Computing/2024/Slides/mod8.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod8.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex8.pdf),  [Rmd](Computing/2024/Exercises/ex8.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex8.pdf),  [Rmd](Computing/2025/Exercises/ex8.Rmd) -->
 
-- Solution: [pdf](Computing/2024/Solutions/sol8.pdf), [Rmd](Computing/2024/Solutions/sol8.Rmd)
+<!-- - Solution: [pdf](Computing/2025/Solutions/sol8.pdf), [Rmd](Computing/2025/Solutions/sol8.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/73637113a4d17d1cff9b83220a199050)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/73637113a4d17d1cff9b83220a199050) -->
 
 
 
 ### Module 9: Parallel Computing in R
 
 
-- Slides: [pdf](Computing/2024/Slides/mod9.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod9.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex9.pdf)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex9.pdf) -->
 
-- Solution: [pdf](Computing/2024/Solutions/sol9.pdf), [Rmd](Computing/2024/Solutions/sol9.Rmd)
+<!-- - Solution: [pdf](Computing/2025/Solutions/sol9.pdf), [Rmd](Computing/2025/Solutions/sol9.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/a09e6bad7e19ec53fde95e3395dc44c4)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/a09e6bad7e19ec53fde95e3395dc44c4) -->
 
 
 
 ### Module 10: Bootstrap
 
-- Slides: [pdf](Computing/2024/Slides/mod10.pdf) 
+<!-- - Slides: [pdf](Computing/2025/Slides/mod10.pdf)  -->
 
-- Exercises: [pdf](Computing/2024/Exercises/ex10.pdf),  [Rmd](Computing/2024/Exercises/ex10.Rmd)
+<!-- - Exercises: [pdf](Computing/2025/Exercises/ex10.pdf),  [Rmd](Computing/2025/Exercises/ex10.Rmd) -->
 
-- Solution: [pdf](Computing/2024/Solutions/sol10.pdf), [Rmd](Computing/2024/Solutions/sol10.Rmd)
+<!-- - Solution: [pdf](Computing/2025/Solutions/sol10.pdf), [Rmd](Computing/2025/Solutions/sol10.Rmd) -->
 
-- Recording: [Link](https://play.library.utoronto.ca/watch/b34a2c5d17a5c70f0f1524a748b745b5)
+<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/b34a2c5d17a5c70f0f1524a748b745b5) -->

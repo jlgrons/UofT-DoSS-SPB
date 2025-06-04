@@ -1,0 +1,136 @@
+---
+title: "Solution 8: Generalized linear regression"
+author: "Yaqi Shi"
+date: \today
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Part 1: Generalized linear model 
+
+Suppose that 2500 pregnant women are enrolled in a study and the outcome is the occurrence of preterm birth. Possible predictors of preterm birth include age of the woman, smoking, socioeconomic status, body mass index, bleeding during pregnancy, serum level of dde, and several dietary factors. 
+
+1. Formulate the problem of selecting the important predictors of preterm birth in a generalized linear model (GLM) framework. 
+2. Show the components of the GLM, including the link function and distribution (in exponential family form). 
+3. Describe (briefly) how estimation and inference could proceed via a frequentist approach.
+
+**Solution**:
+$y_{i}=1$ if woman $i$ has preterm birth and $y_{i}=0$ otherwise $(i=1, \ldots, n)$
+$y_{i} \sim \operatorname{Bernoulli}\left(\pi_{i}\right)$
+Probability density function:
+$$
+\begin{aligned}
+f\left(y_{i} ; \pi_{i}\right) &=\pi_{i}^{y_{i}}\left(1-\pi_{i}\right)^{1-y_{i}} \\
+&=\exp \left\{y_{i} \log \pi_{i}+\left(1-y_{i}\right) \log \left(1-\pi_{i}\right)\right\} \\
+&=\exp \left\{y_{i} \log \left(\frac{\pi_{i}}{1-\pi_{i}}\right)+\log \left(1-\pi_{i}\right)\right\} \\
+&=\exp \left\{\frac{y_{i} \theta_{i}-b\left(\theta_{i}\right)}{a(\phi)}+c\left(y_{i}, \phi\right)\right\}
+\end{aligned}
+$$
+where
+$$
+\theta_{i}=\log \left(\frac{\pi_{i}}{1-\pi_{i}}\right), \quad b\left(\theta_{i}\right)=\log \left(1+e^{\theta_{i}}\right), \quad a(\phi)=\phi=1,
+$$
+and $c\left(y_{i}, \phi\right)=0$.
+
+Link function:
+Any mapping from $\Re \rightarrow[0,1]$. A convenient choice is the canonical link,
+$$
+\eta_{i}=\theta_{i}=\log \left(\frac{\pi_{i}}{1-\pi_{i}}\right),
+$$
+which is the logit. The probit and complementary $\log -\log$ are alternatives.
+Frequentist Estimation:
+Maximum likelihood estimates can be obtained for a given model, say
+$$
+\log \left(\frac{\pi_{i}}{1-\pi_{i}}\right)=\mathbf{x}_{i}^{\prime} \boldsymbol{\beta}
+$$
+
+(where $\mathbf{x}_{i}$ is a $p \times 1$ vector of predictors) by iterative weighted least squares
+
+Frequentist Inference:
+One can select the important predictors to be included in the model by stepwise selection, using the AIC or BIC criterion.
+
+Alternatively, one can just fit the model with all the predictors and then do inferences based on the MLEs and asymptotic standard errors. For example, for continuous predictors included as linear terms in the model, we can do a Wald test. Alternatively, we could do analysis of deviance (see notes for details) to test for significant differences in fit between the nested models with and without a particular predictor.
+
+
+# Part 2: GLMs in R (Logistic regression)
+
+Consider the space shuttle data in the MASS library. Consider modeling the use of the autolander as the outcome (variable name use). 
+
+1. Fit a logistic regression model with autolander (variable auto) use (labeled as "auto" 1) versus not (0) as predicted by wind sign (variable wind). 
+
+2. Give the estimated odds ratio for autolander use comparing head winds, labeled as "head" in the variable headwind (numerator) to tail winds (denominator).
+
+3. Give the estimated odds ratio for autolander use comparing head winds (numerator) to tail winds (denominator) adjusting for wind strength from the variable magn.
+
+4. If you fit a logistic regression model to a binary variable, for example use of the autolander, then fit a logistic regression model for one minus the outcome (not using the autolander) what happens to the coefficients?
+
+```{r}
+library(MASS)
+?shuttle
+data(shuttle)
+head(shuttle)
+```
+
+**Solution**
+
+1-2. 
+```{r}
+str(shuttle)
+
+fit1 <- glm(use ~ wind, family = binomial(link = logit), data = shuttle)
+summary(fit1)$coefficients 
+```
+
+```{r}
+shuttle$use.binary = as.integer(shuttle$use=="auto") 
+fit2 <- glm(use.binary ~ wind, family = binomial(link = logit), data = shuttle)
+summary(fit2)$coefficients
+```
+
+```{r}
+exp(summary(fit2)$coefficients[1, 1])/exp(sum(summary(fit2)$coefficients[ , 1]))
+```
+
+3. 
+```{r}
+fit3 <- glm(use.binary ~ wind + magn, family = binomial(link = logit), data = shuttle)
+summary(fit3)$coefficients
+
+exp(summary(fit3)$coefficients[1, 1])/exp(sum(summary(fit3)$coefficients[ 1:2, 1]))
+```
+
+4. 
+```{r}
+fit4 = glm(1 - use.binary ~ wind, family = binomial(link=logit), data = shuttle)
+summary(fit4)$coefficients
+
+summary(fit2)$coefficients
+```
+
+
+# Part 3: GLMs in R (Poisson regression)
+
+Consider the insect spray data InsectSprays. Fit a Poisson model using spray as a factor level. 
+
+1. Report the estimated relative rate comapring spray A (numerator) to spray B (denominator).
+
+2. Consider a Poisson glm with an offset, t. So, for example, a model of the form glm(count $\sim x+$ offset(t), family = poisson) where $x$ is a factor variable comparing a treatment (1) to a control (0) and $t$ is the natural log of a monitoring time. What is impact of the coefficient for $x$ if we fit the model glm(count $\sim x+$ offset(t2), family $=$ poisson) where $t 2<-\log (10)+t$ ? In other words, what happens to the coefficients if we change the units of the offset variable. (Note, adding log(10) on the log scale is multiplying by 10 on the original scale.)
+
+```{r}
+data("InsectSprays")
+head(InsectSprays)
+```
+
+**Solution**:
+```{r}
+df <- InsectSprays
+fit <- glm(count ~ spray  - 1, family='poisson', df)
+exp(fit$coef[1])/exp(fit$coef[2])
+```
+
+As the Poisson regression fits log of expectation by the linear regression, when all the regressor data is multiplied by an offset, then the log of expectation is shifted, so the intercept is changes and the slope coefficients remains intact. So, the answer is:
+The coefficient estimate is unchanged.
+
