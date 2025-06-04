@@ -1,0 +1,434 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 4}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 16, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+ \begin{itemize}
+    	\item Discrete probability
+    	\begin{itemize}
+    	    \item Classical probability
+    	    \item Combinatorics
+    	    \item Common discrete random variables
+    	\end{itemize}
+        \item Continuous probability
+        \begin{itemize}
+            \item Geometric probability
+            \item Common continuous random variables
+        \end{itemize}
+        \item Exponential family
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{itemize}
+    \item Joint and marginal distributions
+    \begin{itemize}
+        \item Joint cumulative distribution function
+        \item Independence of continuous random variables
+    \end{itemize}
+    \item Conditional distribution
+    \item Functions of random variables
+    \begin{itemize}
+        \item Convolutions
+        \item Change of variables
+        \item Order statistics
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Random vector}: joint behaviour of multivariate random variables\\
+\uncover<2->{
+\begin{block}{Joint cumulative distribution function}
+Consider a random vector ${\displaystyle (X_{1},X_{2},\dots ,X_{d})}$, the joint cumulative distribution function of ${\displaystyle (X_{1},X_{2},\dots ,X_{d})}$ is defined by:
+$$
+F_{X_1, X_2, \cdots, X_d}(x_1, x_2, \cdots, x_d) = \mathbb{P}[X_{1}\leq x_{1},X_{2}\leq x_{2},\dots ,X_{d}\leq x_{d}].
+$$
+\end{block}}
+\vspace{0.1in}
+\uncover<3->{
+\textbf{Remark:} \\
+For discrete random vector, it suffices to find the joint probability mass function
+$$
+{\displaystyle p_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n})=\mathrm {P} (X_{1}=x_{1}, X_2 = x_2, \cdots, X_{n}=x_{n})}, \quad x_i \in \mathbb{R}, 
+$$
+and 
+$$
+\mathbb{P}((X_1, \cdots, X_n) \in C) = \sum_{(x_1, \cdots, x_n) \in C}p_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n}).
+$$}
+\end{frame}
+
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Remark}: \\
+For continuous random vector, consider the joint probability density function.
+\begin{block}{Joint probability density function}
+$$
+{\displaystyle f_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n})={\frac {\partial ^{n}F_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n})}{\partial x_{1}\ldots \partial x_{n}}}}, \quad x_i \in \mathbb{R}.
+$$
+\end{block}
+Similarly, 
+$$
+\mathbb{P}((X_1, \cdots, X_n) \in C) = \int_{(x_1, \cdots, x_n) \in C} f_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n})\; d x_1 d x_2 \cdots d x_n.
+$$
+\end{frame}
+
+
+\begin{frame}{Joint and marginal distributions}
+Consider the special case of $C$ where $X_1, \cdots, X_{i-1}, X_{i+1}, \cdots, X_n$ are allowed to take any possible values:
+\begin{itemize}
+    \item Discrete case
+    $$
+    \mathbb{P}(X_i = x_i) = \mathbb{P}(X_i = x_i, X_j \in \mathbb{R}, j \neq i) = \sum_{x_j, j \neq i}p_{X_{1},\ldots ,X_{n}}(x_{1},\ldots ,x_{n}).
+    $$
+    \item Continuous case
+    \begin{equation*}
+        \begin{aligned}
+            \mathbb{P}(X_i \le x_i) &= \mathbb{P}(X_i \le x_i, X_j \in \mathbb{R}, j \neq i) \\
+         &= \int_{-\infty}^{x_i}\left(\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} f_{X_{1},\ldots ,X_{n}}(t_{1},\ldots ,t_{n})\; d t_1\cdots d t_{i-1} d t_{i+1}\cdots d t_n\right)\; d {t_i}  .
+        \end{aligned}
+    \end{equation*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Joint and marginal distributions}
+Taking the derivative regarding $x_i$, this gives us the marginal probability density function.
+\begin{block}{Marginal probability density function}
+$$
+    f_{X_i}(x_i) = \int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} f_{X_{1},\ldots ,X_{n}}(x_{1},\cdots, x_i, \cdots ,x_{n})\; d x_1\cdots d x_{i-1} d x_{i+1}\cdots d x_n.
+$$
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Remark}: \\
+Marginal probability mass function (density function) of $X_i$ is obtained by summing (integrating) the joint probability over all the other dimensions.}
+\end{frame}
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Example: Draws from an urn}\\
+Suppose each of two urns contains twice as many red balls as blue balls, and no others, and suppose one ball is randomly selected from each urn, with the two draws independent of each other. Let $A$ and $B$ be discrete random variables associated with the outcomes of the draw from the first urn and second urn respectively. $1$ represents a draw of red ball, while $0$ represents a draw of blue ball.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c c |c|}
+    \hline
+      & 1  &  0 & $\mathbb{P}(B)$ \\
+      \hline
+       1  & $\frac{4}{9}$ & $\frac{2}{9}$ & $\frac{2}{3}$\\
+       \hline
+       0 & $\frac{2}{9}$ & $\frac{1}{9}$ & $\frac{1}{3}$\\
+       \hline
+       $\mathbb{P}(A)$ & $\frac{2}{3}$ &  $\frac{1}{3}$ & 1\\
+       \hline
+    \end{tabular}
+    \caption{Joint and marginal pmf of draws from an urn}
+    \label{tab:my_label}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Examples: continuous case}\\
+Consider the joint probability density function
+\begin{equation*}
+    \begin{aligned}
+    f(x, y)= \begin{cases}k x & \text { for } 0<x<1,0<y<1 \\ 0 & \text { otherwise }\end{cases}
+    \end{aligned}
+\end{equation*}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\begin{itemize}
+    \item Find $k$.
+    \item Compute the marginal probability density function of $X$ and $Y$.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Integrate to find the value of $k$}\\
+\vspace{1in}
+\textbf{Marginal density}\\
+\vspace{1in}
+\end{frame}
+
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Recap: independence of random variables}\\
+ \begin{block}{Corollary of independence}
+     If $X_1, \cdots, X_n$ are random variables, then $X_1, X_2, \cdots, X_n$ are independent if 
+     $$
+        P(X_1 \le x_1, \cdots, X_n \le x_n) = \prod_{i = 1}^n P(X_i \le x_i)
+     $$
+ \end{block}
+ \vspace{0.1in}
+ \uncover<2->{
+ \textbf{Remark:}\\
+ Suppose $X_1, \cdots, X_n$ can only take values from $\{a_1, \cdots\}$, then $X_i$'s are independent if 
+ $$
+ P(\cap\{X_i = a_i\}) = \prod_{i = 1}^n P(X_i = a_i).
+ $$}
+\end{frame}
+
+
+\begin{frame}{Joint and marginal distributions}
+\textbf{Remark:}\\
+ This is equivalent to check whether the joint pmf is always the product of the corresponding marginal pmf. \\
+ \vspace{0.1in}
+ 
+Generalize this to the continuous version:
+\uncover<2->{
+\begin{block}{Independence of continuous random variables}
+ Suppose $X_1, \cdots, X_n$ are continuous random variables, then $X_i$'s are independent if 
+ $$
+ f_{(X_1, \cdots, X_n)}(x_1, x_2, \cdots, x_n) = \prod_{i = 1}^n f_{X_i}(x_i).
+ $$
+\end{block}}
+\end{frame}
+
+\begin{frame}{Conditional distribution}
+\textbf{Remark:}\\
+ Given joint and marginal distributions, consider the conditional behaviour: \\
+ \vspace{0.1in}
+ \uncover<2->{
+\begin{block}{Conditional distribution}
+For random variables $X$ and $Y$, the conditional distribution of $Y$ given $X = x$ is defined by
+\begin{itemize}
+    \item Discrete case
+    $$
+    p_{Y\mid X = x}(y) = \mathbb{P}(Y = y \mid X = x) = \frac{p_{X,Y}(x,y)}{p_X(x)}.
+    $$
+    \item Continuous case
+    $$
+    {\displaystyle f_{Y\mid X}(y\mid x)={\frac {f_{X,Y}(x,y)}{f_{X}(x)}}}.
+    $$
+\end{itemize}
+\end{block}}
+\end{frame}
+
+\begin{frame}{Conditional distribution}
+\textbf{Remark:}\\
+ Another look at independence: \\
+ \vspace{0.1in}
+ \begin{itemize}
+     \item Discrete case:\\
+     \quad $X$ and $Y$ are independent \\
+     $\Leftrightarrow$ $ p_{Y\mid X = x}(y) = p_Y(y), \quad \forall x,y$\\
+     $\Leftrightarrow$ $p_{X,Y}(x,y) = p_X(x)p_Y(y), \quad \forall x,y$.
+     \vspace{0.1in}
+     \item Continuous case:\\
+      \quad $X$ and $Y$ are independent \\
+     $\Leftrightarrow$ $ f_{Y\mid X}(y\mid x) = f_Y(y), \quad \forall x,y$\\
+     $\Leftrightarrow$ $f_{X,Y}(x,y) = f_X(x)f_Y(y), \quad \forall x,y$.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+    Suppose we know the joint distribution of $(X, Y)$, what is the distribution of $Z = X+ Y$?
+    \begin{itemize}
+        \item Discrete case
+        $$
+        \mathbb{P}(Z = z) = \sum_{x+y=z}\mathbb{P}(X = x, Y = y)
+        $$
+        \item Continuous case
+        $$
+        \mathbb{P}(Z \le z) = \int_{x+y \le z} f_{X,Y}(x,y) \; dx dy
+        $$
+    \end{itemize}
+    \vspace{0.1in}
+    \textbf{Remark:}\\
+This can be simplified in the independent case.
+\end{frame}
+
+
+
+\begin{frame}{Functions of random variables}
+    \begin{block}{Convolutions of independent random variables}
+    Suppose $X$ and $Y$ are independent, then for $Z = X+Y$, 
+    \begin{itemize}
+        \item Discrete case
+        $$
+        {\mathbb{P}(Z=z)=\sum _{k=-\infty }^{\infty }\mathbb{P}(X=k)\mathbb{P}(Y=z-k)}.
+        $$
+        \item Continuous case
+        $$
+        {\displaystyle f_{Z}(z)=\int \limits _{-\infty }^{\infty }f_{X}(x)~f_{Y}(z-x)~dx}
+        $$
+    \end{itemize}
+    \end{block}
+    \vspace{0.1in}
+    \textbf{Sketch of proof:}\\
+ \vspace{0.5in}
+\end{frame}
+
+
+\begin{frame}{Functions of random variables}
+Consider a function of random variable, and try to obtain the corresponding distribution function.
+    \begin{block}{Multivariate change-of-variables formula}
+    Suppose $\mathbf{X}$ is an $n$-dimensional random variable with joint density $f_{\mathbf{X}}(\mathbf{x})$. If $\mathbf{Y} = H(\mathbf{X})$, where $H$ is a bijective, differentiable function, then $\mathbf{Y}$ has density $g_\mathbf{Y}(\mathbf{y})$:
+    $$
+    {\displaystyle g(\mathbf {y} )=f{\Bigl (}H^{-1}(\mathbf {y} ){\Bigr )}\left|\det \left[\left.{\frac {dH^{-1}(\mathbf {z} )}{d\mathbf {z} }}\right|_{\mathbf {z} =\mathbf {y} }\right]\right|}
+    $$
+with the differential regarded as the Jacobian of $H(\cdot)$, evaluated at $\mathbf{y}$.
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Remark:}\\
+Bijective property is important. }
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+\textbf{Special case of 2-dimensional vectors}
+    \begin{block}{2-dimensional change-of-variables formula}
+    Suppose $\mathbf{X} = (X_1, X_2)$ with joint density $f_{X_1, X_2}(x_1, x_2)$. If $Y_1 = H_1(X_1, X_2)$, $Y_2 = H_2(X_1, X_2)$, where $H$ is a bijective, differentiable function, then $\mathbf{Y} = (Y_1, Y_2)$ has density $g_\mathbf{Y}(y_1, y_2)$:
+    $$
+    {\displaystyle g(y_{1},y_{2})=f_{X_{1},X_{2}}{\big (}H_{1}^{-1}(y_{1},y_{2}),H_{2}^{-1}(y_{1},y_{2}){\big )}\left\vert {\frac {\partial H_{1}^{-1}}{\partial y_{1}}}{\frac {\partial H_{2}^{-1}}{\partial y_{2}}}-{\frac {\partial H_{1}^{-1}}{\partial y_{2}}}{\frac {\partial H_{2}^{-1}}{\partial y_{1}}}\right\vert .}
+    $$
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:}\\
+\vspace{0.1in}
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+\textbf{Remark:}\\
+Every continuous bijective function from $\mathbb{R}$ to $\mathbb{R}$ is strictly monotonic. \\
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Special case of 1-dimensional random variable: generalize to monotonic functions}
+    \begin{block}{Univariate change-of-variables formula}
+    Let ${\displaystyle g:{\mathbb {R} }\rightarrow {\mathbb {R} }}$ be a monotonic function on the support of $f_X(x)$, then for $Y = g(X)$, the density is:
+    $$
+  {\displaystyle f_{Y}(y)=f_{X}{\big (}g^{-1}(y){\big )}\left|{\frac {d}{dy}}{\big (}g^{-1}(y){\big )}\right|.}
+    $$
+\end{block}}
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+\textbf{Proof of univariate change-of-variable formula:}
+\vspace{2.5in}
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+\textbf{Order statistics:}\\
+For random variables $X_1, X_2, \cdots, X_n$, the order statistics are $X_{(1)} \le X_{(2)} \le \cdots X_{(n)}$.\\
+
+\begin{block}{Cumulative distribution functions of order statistics}
+Consider the case where $X_i$'s are independent identically distributed (i.i.d.) samples with cumulative distribution ${\displaystyle F_{X}(x)}$, then the CDF of $X_{(r)}$ satisfies
+$$
+{\displaystyle F_{X_{(r)}}(x)=\sum _{j=r}^{n}{\binom {n}{j}}[F_{X}(x)]^{j}[1-F_{X}(x)]^{n-j}},
+$$
+the corresponding probability density function is
+$$
+{\displaystyle f_{X_{(r)}}(x)={\frac {n!}{(r-1)!(n-r)!}}f_{X}(x)[F_{X}(x)]^{r-1}[1-F_{X}(x)]^{n-r}.}
+$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Functions of random variables}
+\textbf{Special cases of $X_{(1)}$ and $X_{(n)}$:}\\
+$$
+{\displaystyle F_{X_{(n)}}(x)=\mathbb{P} (\max\{\,X_{1},\ldots ,X_{n}\,\}\leq x)=[F_{X}(x)]^{n}}, 
+$$
+$$
+{\displaystyle F_{X_{(1)}}(x)=\mathbb{P} (\min\{\,X_{1},\ldots ,X_{n}\,\}\leq x)=1-[1-F_{X}(x)]^{n}}.
+$$
+\vspace{0.1in}
+\textbf{Remark:}\\
+For continuous random variable, taking derivatives to obtain the probability density function. 
+\end{frame}
+
+
+\begin{frame}{Problem Set}
+    \textbf{Problem 1:}  Show that the probability density function of normal distribution $N(\mu, \sigma^2)$ integrates to $1$. \\
+    (Hint: consider two normal random variables $X, Y$)\\
+    \vspace{0.1in}
+     \textbf{Problem 2:} Prove that for $X$ with density function $f_X(x)$, the density function of $y = X^2$ is
+     $$
+     f_Y(y) = \dfrac{1}{2\sqrt{y}}(f_X(-\sqrt{y}) + f_X(\sqrt{y}) ), \quad y \ge 0.
+     $$
+     (Hint: start by considering the CDF)
+ \vspace{0.1in}
+\end{frame}
+
+% when computing expectation and variance, can consider discrete uniform distribution
+
+\begin{frame}{Problem Set}
+
+   \textbf{Problem 3:} Suppose $X_1, \cdots, X_n$ are i.i.d. sample following Uniform$[0,1]$ distribution, find the joint probability density function of $(X_{(1)}, X_{(n)})$.
+  \\
+  (Hint: start by considering the CDF)
+
+\end{frame}
+
+
+\end{document}

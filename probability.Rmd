@@ -1,6 +1,6 @@
 ---
 title: "Probability"
-description: "Instructor: [Ichiro Hashimoto](https://ichiro-h.github.io/), PhD student (2nd Year)"
+description: "Instructor: [Ichiro Hashimoto](https://ichiro-h.github.io/), PhD student (3rd Year)"
 output:
   distill::distill_article:
     toc: true
@@ -11,7 +11,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Probability/2024/Syllabus/Bootcamp_Probability_Syllabus.pdf)
+[Click here to download the syllabus](Probability/2025/Syllabus/Bootcamp_Probability_Syllabus.pdf)
 
 
 ## Lectures
@@ -20,73 +20,73 @@ Material will be added here as the course progresses.
 
 
 ### Module 1: Basics of Probability
-- Slides: [Module 1](Probability/2024/Slides/Module_1.pdf); [Module 1 Annotated](Probability/2024/Slides/Module_1_annotated.pdf) 
+<!-- - Slides: [Module 1](Probability/2025/Slides/Module_1.pdf); [Module 1 Annotated](Probability/2025/Slides/Module_1_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 1 Solution](Probability/2024/Solutions/Module_1_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 1 Solution](Probability/2025/Solutions/Module_1_Solutions.pdf)  -->
 
-- Recordings: [Link](https://play.library.utoronto.ca/watch/c2f381308cec6d9e0fbc48fbfb548a27)
+<!-- - Recordings: [Link](https://play.library.utoronto.ca/watch/c2f381308cec6d9e0fbc48fbfb548a27) -->
 
 ### Module 2: Random Variables
-- Slides: [Module 2](Probability/2024/Slides/Module_2.pdf); [Module 2 Annotated](Probability/2024/Slides/Module_2_annotated.pdf) 
+<!-- - Slides: [Module 2](Probability/2025/Slides/Module_2.pdf); [Module 2 Annotated](Probability/2025/Slides/Module_2_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 2 Solution](Probability/2024/Solutions/Module_2_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 2 Solution](Probability/2025/Solutions/Module_2_Solutions.pdf)  -->
 
 
 ### Module 3: Common Random Variables
 
-- Slides: [Module 3](Probability/2024/Slides/Module_3.pdf); [Module 3 Annotated](Probability/2024/Slides/Module_3_annotated.pdf) 
+<!-- - Slides: [Module 3](Probability/2025/Slides/Module_3.pdf); [Module 3 Annotated](Probability/2025/Slides/Module_3_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 3 Solution](Probability/2024/Solutions/Module_3_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 3 Solution](Probability/2025/Solutions/Module_3_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/2426b46beafb137d224e6d3840ae3882)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2426b46beafb137d224e6d3840ae3882) -->
 
 ### Module 4: Distribution
 
-- Slides: [Module 4](Probability/2024/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2024/Slides/Module_4_annotated.pdf) 
+<!-- - Slides: [Module 4](Probability/2025/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2025/Slides/Module_4_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 4 Solution](Probability/2024/Solutions/Module_4_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 4 Solution](Probability/2025/Solutions/Module_4_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3) -->
 
 ### Module 5: Expectation
 
-- Slides: [Module 5](Probability/2024/Slides/Module_5.pdf); [Module 5 Annotated](Probability/2024/Slides/Module_5_annotated.pdf) 
+<!-- - Slides: [Module 5](Probability/2025/Slides/Module_5.pdf); [Module 5 Annotated](Probability/2025/Slides/Module_5_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 5 Solution](Probability/2024/Solutions/Module_5_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 5 Solution](Probability/2025/Solutions/Module_5_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/77c3ed5a60757a2304037a05a62b69b6)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/77c3ed5a60757a2304037a05a62b69b6) -->
 
 ### Module 6: Inequalities
 
-- Slides: [Module 6](Probability/2024/Slides/Module_6.pdf); 
-[Module 6 Annotated](Probability/2024/Slides/Module_6_annotated.pdf) 
+<!-- - Slides: [Module 6](Probability/2025/Slides/Module_6.pdf);  -->
+<!-- [Module 6 Annotated](Probability/2025/Slides/Module_6_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 6 Solution](Probability/2024/Solutions/Module_6_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 6 Solution](Probability/2025/Solutions/Module_6_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/8b60b049e6569ac950ee840844ade3c9)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/8b60b049e6569ac950ee840844ade3c9) -->
 
 ### Module 7: Stochastic Convergence
 
 
-- Slides: [Module 7](Probability/2024/Slides/Module_7.pdf); 
-[Module 7 Annotated](Probability/2024/Slides/Module_7_annotated.pdf) 
+<!-- - Slides: [Module 7](Probability/2025/Slides/Module_7.pdf);  -->
+<!-- [Module 7 Annotated](Probability/2025/Slides/Module_7_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 7 Solution](Probability/2024/Solutions/Module_7_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 7 Solution](Probability/2025/Solutions/Module_7_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/f79a75a5efdd714a90bc56ab73dec9c1)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/f79a75a5efdd714a90bc56ab73dec9c1) -->
 
 ### Module 8: Limit Theorems
 
-- Slides: [Module 8](Probability/2024/Slides/Module_8.pdf); 
-[Module 8 Annotated](Probability/2024/Slides/Module_8_annotated.pdf) 
+<!-- - Slides: [Module 8](Probability/2025/Slides/Module_8.pdf);  -->
+<!-- [Module 8 Annotated](Probability/2025/Slides/Module_8_annotated.pdf)  -->
 
-- Problem Set Solutions: [Module 8 Solution](Probability/2024/Solutions/Module_8_Solutions.pdf) 
+<!-- - Problem Set Solutions: [Module 8 Solution](Probability/2025/Solutions/Module_8_Solutions.pdf)  -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/d371f1cee0cfd578b707639e03cb3a99)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d371f1cee0cfd578b707639e03cb3a99) -->
 
 ### Module 9: Counterexamples
 
-- Slides: [Module 9](Probability/2024/Slides/Module_9.pdf); 
-[Module 9 Annotated](Probability/2024/Slides/Module_9_annotated.pdf)
+<!-- - Slides: [Module 9](Probability/2025/Slides/Module_9.pdf);  -->
+<!-- [Module 9 Annotated](Probability/2025/Slides/Module_9_annotated.pdf) -->
 
-- Recordings: [link](https://play.library.utoronto.ca/watch/1d8c92286b9b783cb444bb2b7763fa90)
+<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/1d8c92286b9b783cb444bb2b7763fa90) -->

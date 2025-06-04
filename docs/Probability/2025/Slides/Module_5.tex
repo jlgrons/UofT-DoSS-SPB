@@ -1,0 +1,422 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize subitem}{$\triangleright$}
+
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{6,41,88} % official blue color for uoft
+
+\vspace{1in}
+\title[]{DoSS Summer Bootcamp Probability \\ Module 5}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 17, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!5!white}
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{logo_uoft.png}\vspace*{-.055\paperheight}\hspace*{.85\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \vspace{0.5in}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.5cm)
+        \includegraphics[width=4cm]{logo_uoft.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7cm)
+        \huge \color{uoftblue}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{\logofont Statistical Sciences}}
+    \end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Recap}
+Learnt in last module:\\
+\vspace{0.1in}
+\begin{itemize}
+    \item Joint and marginal distributions
+    \begin{itemize}
+        \item Joint cumulative distribution function
+        \item Independence of continuous random variables
+    \end{itemize}
+    \item Functions of random variables
+    \begin{itemize}
+        \item Convolutions
+        \item Change of variables
+        \item Order statistics
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{itemize}
+    \item Moments
+    \begin{itemize}
+        \item Expectation, Raw moments, central moments
+        \item Moment-generating functions
+    \end{itemize}
+    \item Change-of-variables using MGF
+    \begin{itemize}
+        \item Gamma distribution
+        \item Chi square distribution
+    \end{itemize}
+    \item Conditional expectation
+    \begin{itemize}
+        \item Law of total expectation
+        \item Law of total variance
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Moments}
+\textbf{Intuition}: How do the random variables behave on average?\\
+\uncover<2->{
+\begin{block}{Expectation}
+Consider a random vector $X$ and function $g(\cdot)$, the expectation of $g(X)$ is defined by $\mathbb{E}(g(X))$, where 
+\begin{itemize}
+    \item Discrete random vector
+    $$
+    \mathbb{E}(g(X)) = \sum_{x}g(x)p_X(x),
+    $$
+    \item Continuous random vector in $\mathbb{R}^n$
+    $$
+    \mathbb{E}(g(X)) = \int_{\mathbb{R}^n} g(x)\;dF(x) = \int_{\mathbb{R}^n} f_X(x)\;dx.
+    $$
+\end{itemize}
+\end{block}}
+\end{frame}
+
+\begin{frame}{Moments}
+    \textbf{Examples (random variable)}
+    \begin{itemize}
+        \item $X \sim $ Bernoulli($p$): $\mathbb{E}(X) = p\cdot 1 + (1-p)\cdot 0 = p$.
+        \item $X \sim \mathcal{N}(0, 1)$: 
+        $$
+        \mathbb{E}(X) = \int_{-\infty}^{\infty}x 
+        \frac{1}{\sqrt{2\pi}}exp(-\frac{x^2}{2})\; dx = 0.
+        $$
+    \end{itemize}
+    \vspace{0.1in}
+    \uncover<2->{
+     \textbf{Examples (random vector)}
+    \begin{itemize}
+        \item $X_i \sim $ Bernoulli($p_i$), $i = 1,2$: 
+        $$\mathbb{E}\left((X_1, X_2^2)^\top\right) = \left((\mathbb{E}(X_1), \mathbb{E}(X_2^2))^\top\right) = (p_1, p_2)^\top.$$
+    \end{itemize}}
+\end{frame}
+
+\begin{frame}{Moments}
+\textbf{Properties:} 
+\begin{itemize}
+    \item $\mathbb{E}(X+Y) = \mathbb{E}(X) + \mathbb{E}(Y)$;
+    \item $\mathbb{E}(aX + b) = a\mathbb{E}(X) + b$;
+    \item $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$, when $X, Y$ are independent.
+\end{itemize}
+\vspace{0.1in}
+\textbf{Proof of the first property:}
+\vspace{1.5in}
+\end{frame}
+
+
+\begin{frame}{Moments}
+\begin{block}{Raw moments}
+Consider a random variable $X$, the $k$-th (raw) moment of $X$ is defined by $\mathbb{E}(X^k)$, where 
+\begin{itemize}
+    \item Discrete random variable
+    $$
+    \mathbb{E}(X^k) = \sum_{x}x^k p_X(x),
+    $$
+    \item Continuous random variable
+    $$
+    \mathbb{E}(X^k) = \int_{-\infty}^\infty x^k \;dF(x) = \int_{-\infty}^\infty x^kf_X(x)\;dx.
+    $$
+\end{itemize}
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:} \\
+\vspace{0.5in}
+% the expectation we have just seen is the 1st raw moment
+\end{frame}
+
+\begin{frame}{Moments}
+\begin{block}{Central moments}
+Consider a random variable $X$, the $k$-th central moment of $X$ is defined by $\mathbb{E}((X - \mathbb{E}(X))^k)$.
+\end{block}
+\vspace{0.1in}
+\textbf{Remark:} \\
+\begin{itemize}
+    \item The first central moment is $0$
+    \item Variance is defined as the second central moment.
+\end{itemize}
+\begin{block}{Variance}
+The variance of a random variable $X$ is defined as
+$$
+Var(X) = \mathbb{E}((X - \mathbb{E}(X))^2) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2.
+$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Moments}
+\textbf{Another look at the moments:}
+\begin{block}{Moment generating function (1-dimensional)}
+    For a random variable $X$, the moment generating function (MGF) is defined as 
+    $$
+    M_{X}(t)=\mathbb{E} \left[e^{tX}\right] = 1+t\mathbb{E} (X)+{\frac {t^{2}\mathbb{E} (X^{2})}{2!}}+{\frac {t^{3}\mathbb{E} (X^{3})}{3!}}+\cdots +{\frac {t^{n}\mathbb{E}(X^{n})}{n!}}+\cdots
+    $$
+\end{block}
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Compute moments based on MGF:}
+\begin{block}{Moments from MGF}
+   $$
+    \mathbb{E}(X^k) = \dfrac{d^k}{dt^k}M_X(t)|_{t = 0}.
+   $$
+\end{block}}
+\end{frame}
+
+\begin{frame}{Moments}
+\textbf{Relationship between MGF and probability distribution:}\\
+    MGF uniquely defines the distribution of a random variable.\\
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Example:}
+    \begin{itemize}
+        \item $X \sim Bernoulli(p)$
+        $$
+        M_X(t) = \mathbb{E}(e^{tX}) = e^0 \cdot (1-p) + e^t\cdot p = pe^t + 1 - p. 
+        $$
+        \item Conversely, if we know that
+        $$
+         M_Y(t) =  \frac{1}{3}e^t + \frac{2}{3},
+        $$
+        it shows $Y \sim $ Bernoulli($p = \frac{1}{3}$).
+    \end{itemize}}
+\end{frame}
+
+
+\begin{frame}{Change-of-variables using MGF}
+\textbf{Intuition:} To get the distribution of a transformed random variable, it suffices to find its MGF first.\\
+\vspace{0.1in}
+
+     \textbf{Properties:}\\
+     \begin{itemize}
+         \item $Y = aX + b$, $M_Y(t) = \mathbb{E}(e^{t(aX + b)}) = e^{tb}M_X(at)$.
+         \item $X_1, \cdots, X_n$ independent, $Y = \sum_{i = 1}^n X_i$, then $M_{Y}(t) = \prod_{i=1}^n M_{X_i}(t)$. 
+     \end{itemize}
+     \vspace{0.1in}
+     \uncover<2->{
+\textbf{Remark:}\\
+MGF is a useful tool to find the distribution of some transformed random variables, especially when
+\begin{itemize}
+    \item The original random variable follows some special distribution, so that we already know / can compute the MGF.
+    \item The transformation on the original variables is linear, say $\sum_{i}a_i X_i$.
+\end{itemize}}
+\end{frame}
+
+\begin{frame}{Change-of-variables using MGF}
+    \textbf{Example: Gamma distribution}\\
+    \vspace{0.1in}
+    $X \sim \Gamma(\alpha, \beta)$, 
+    \begin{equation*}
+    \begin{aligned}
+   {\displaystyle {\begin{aligned}f(x;\alpha ,\beta )&={\frac {x^{\alpha -1}e^{-\beta x}\beta ^{\alpha }}{\Gamma (\alpha )}}\quad {\text{ for }}x>0\quad \alpha ,\beta >0.\\[6pt]\end{aligned}}}
+    \end{aligned}
+\end{equation*}
+Compute the MGF of $X \sim \Gamma(\alpha, \beta)$ (details omitted), 
+\begin{equation*}
+    M_X(t) = \left(1-{\frac {t}{\beta }}\right)^{-\alpha }{\text{ for }}t<\beta, \text{ does not exist for } t \ge \beta.
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Change-of-variables using MGF}
+    \textbf{Example: Gamma distribution}\\
+    \vspace{0.1in}
+    \textbf{Observation:}\\
+    The two parameters $\alpha, \beta$ play different roles in variable transformation. 
+    \vspace{0.1in}
+   \begin{itemize}
+       \item Summation: \\
+       If $X_i \sim \Gamma(\alpha_i, \beta)$, and $X_i$'s are independent, then $T = \sum_{i} {X_i} \sim \Gamma(\sum_{i}{\alpha_i}, \beta)$.\\
+       If $X_i \sim Exp(\lambda)$ (this is equivalently $\Gamma((\alpha_i = 1, \beta = \lambda))$ distribution), and $X_i$'s are independent, then $T = \sum_{i} {X_i} \sim \Gamma(n, \lambda)$.\\
+       \vspace{0.1in}
+       \item Scaling: \\
+       If $X \sim \Gamma(\alpha, \beta)$, then $Y = cX \sim \Gamma(\alpha, \frac{\beta}{c})$.\\
+   \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Change-of-variables using MGF}
+    \textbf{Example: $\chi^2$ distribution}\\
+    \begin{block}{$\chi^2$ distribution}
+       If $X \sim \mc{N}(0,1)$, then $X^2$ follows a $\chi^2(1)$ distribution. 
+    \end{block}
+     \vspace{0.1in}
+     \textbf{Find the distribution of $\chi^2(1)$ distribution}
+     \begin{itemize}
+         \item From PDF: (Module 4, Problem 2)\\
+          For $X$ with density function $f_X(x)$, the density function of $Y = X^2$ is
+     $$
+     f_Y(y) = \dfrac{1}{2\sqrt{y}}(f_X(-\sqrt{y}) + f_X(\sqrt{y}) ), \quad y \ge 0,
+     $$
+     this gives
+     $$
+     f_Y(y) = \frac{1}{\sqrt{2\pi}} y^{-\frac{1}{2}}exp(-\frac{y}{2}).
+     $$
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Change-of-variables using MGF}
+     \textbf{Find the distribution of $\chi^2(1)$ distribution (continued)}\\
+     \vspace{0.1in}
+     \begin{itemize}
+         \item From MGF: \\
+        \begin{equation*}
+        \begin{aligned}
+            M_Y(t) &= \mathbb{E}(e^{tX^2}) = \int_{-\infty}^{\infty} exp({tx^2})\frac{1}{\sqrt{2\pi}}exp(-\frac{x^2}{2})\; dx\\
+            & = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}exp\left(-\frac{x^2}{2(1-2t)^{-1}}\right)\; dx\\
+            & = (1-2t)^{-\frac{1}{2}} \int_{-\infty}^{\infty} \mc{N}(0, (1-2t)^{-1})\; dx, \quad t < \frac{1}{2}\\
+            & = (1-2t)^{-\frac{1}{2}}, \quad t < \frac{1}{2}.
+        \end{aligned}
+        \end{equation*}
+        By observation, $\chi^2(1) = \Gamma(\frac{1}{2}, \frac{1}{2})$.
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Change-of-variables using MGF}
+    \textbf{Generalize to the $\chi^2(d)$ distribution}
+    \begin{block}{$\chi^2(d)$ distribution}
+       If $X_i, i = 1, \cdots, d$ are i.i.d $\mc{N}(0,1)$ random variables, then $\sum_{i=1}^d X_i^2 \sim \chi^2(d)$.
+    \end{block}
+    \vspace{0.1in}
+    By properties of MGF, $\chi^2(d) = \Gamma(\frac{d}{2}, \frac{1}{2})$, and this gives the PDF of $\chi^2(d)$ distribution
+    $$
+    {\frac {x^{\frac{d}{2} -1}e^{-\frac{x}{2}}}{2^{\frac{d}{2}}\Gamma (\frac{d}{2} )}}\quad {\text{ for }}x>0.
+    $$
+\end{frame}
+
+\begin{frame}{Conditional expectation}
+    \textbf{From expectation to conditional expectation:}\\
+    How will the expectation change after conditioning on some information? 
+    \vspace{0.1in}
+    \uncover<2->{
+    \begin{block}{Conditional expectation}
+      If $X$ and $Y$ are both discrete random vectors, then for function $g(\cdot)$, 
+      \begin{itemize}
+          \item Discrete: 
+            \begin{equation*}
+            \mathbb{E} (g(X)\mid Y=y)=\sum _{x}g(x)p_{X\mid Y = y}(x)=\sum _{x}g(x){\frac {P(X=x,Y=y)}{P(Y=y)}}
+      \end{equation*}
+      \item Continuous:
+      \begin{equation*}
+          \mathbb{E}(g(X)\mid Y=y)=\int _{-\infty }^{\infty }g(x)f_{X|Y}(x|y)\mathrm {d} x={\frac {1}{f_{Y}(y)}}\int _{-\infty }^{\infty }g(x)f_{X,Y}(x,y)\mathrm {d} x.
+      \end{equation*}
+      \end{itemize}
+    \end{block}}
+\end{frame}
+
+
+\begin{frame}{Conditional expectation}
+    \textbf{Properties:}
+    \begin{itemize}
+        \item If $X$ and $Y$ are independent, then \\
+        $$
+        \mathbb{E}(X \mid Y = y) = \mathbb{E}(X).
+        $$
+        \item If $X$ is a function of $Y$, denote $X = g(Y)$, then 
+        $$
+        \mathbb{E}(X \mid Y = y) = g(y).
+        $$
+    \end{itemize}
+    \vspace{0.1in}
+    \textbf{Sketch of proof:}
+    \vspace{1.0in}
+\end{frame}
+
+\begin{frame}{Conditional expectation}
+\textbf{Remark:}\\
+By changing the value of $Y = y$, $\mathbb{E}(X \mid Y = y)$ also changes, and $\mathbb{E}(X \mid Y)$ is a random variable (the randomness comes from $Y$). \\
+\vspace{0.1in}
+\uncover<2->{
+\textbf{Total expectation and conditional expectation}
+\begin{block}{Law of total expectation}
+      $$\mathbb{E}(\mathbb{E}(X \mid Y)) =  \mathbb{E}(X)$$
+\end{block}
+\textbf{Proof: (discrete case)}
+\vspace{1in}}
+\end{frame}
+
+\begin{frame}{Conditional expectation}
+    \textbf{Total variance and conditional variance}
+    \begin{block}{Conditional variance}
+      $$
+      Var(Y \mid X) = \mathbb{E}(Y^2 \mid X) - \left(\mathbb{E}(Y \mid X)\right)^2.
+      $$
+    \end{block}
+    \uncover<2->{
+    \begin{block}{Law of total variance}
+      $${ {Var} (Y)=\mathbb{E} [\operatorname {Var} (Y\mid X)]+\operatorname {Var} (\mathbb{E} [Y\mid X]).}$$
+    \end{block}
+    \textbf{Remark:}
+    \vspace{1.0in}}
+\end{frame}
+
+\begin{frame}{Problem Set}
+    \textbf{Problem 1:}  Prove that $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$ when $X$ and $Y$ are independent. \\
+    (Hint: simply consider the continuous case, use the independent property of the joint pdf)\\
+    \vspace{0.1in}
+     \textbf{Problem 2:} For $X \sim Uniform(a, b)$, compute $\mathbb{E}(X)$ and Var($X$).
+    \vspace{0.1in}\\
+    \textbf{Problem 3:} Determine the MGF of $X \sim \mc{N}(\mu, \sigma^2)$. \\(Hint: Start by considering the MGF of $Z \sim \mc{N}(0,1)$, and then use the transformation $X = \mu + \sigma Z$)
+\end{frame}
+
+% when computing expectation and variance, can consider discrete uniform distribution
+
+\begin{frame}{Problem Set}
+
+\textbf{Problem 4:} 
+The citizens of Remuera withdraw money from a cash machine according to $X = 50, 100, 200$ with probability $0.3, 0.5, 0.2$, respectively. The number of customers per day has the distribution $N \sim Poisson(\lambda = 10)$.
+Let $T_N = X_1 + X2 + \cdots + X_N$ be the total amount of money withdrawn in a day, where each $X_i$ has the probability above, and $X_i$'s are independent of each other and of $N$.\\
+\begin{itemize}
+    \item Find $\mathbb{E}(T_N)$,
+    \item Find $Var(T_N)$.
+\end{itemize}
+\end{frame}
+
+
+\end{document}
