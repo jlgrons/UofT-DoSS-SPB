@@ -1,0 +1,450 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\usepackage{accents}
+
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+
+
+\beamertemplatenavigationsymbolsempty
+
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+% block
+% example block
+% alert block
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+\newcommand{\interior}{\accentset{\circ}}
+
+
+
+\title[]{Module 6: Metric Spaces IV \\ {\large Operational math bootcamp}\\ \includegraphics[width=7cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 17, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+      \setlength\itemsep{1em}
+    	\item Compactness
+	\item Extra properties of $\R$
+	\begin{itemize}
+	\setlength\itemsep{0.3em}
+	\item Right- and left-continuity
+	\item Lim sup and lim inf
+	\end{itemize}
+%	\item Start linear algebra
+%	\begin{itemize}
+%	\setlength\itemsep{0.3em}
+%	\item Vector spaces and subspaces
+%	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Last time}
+\begin{definition}
+Let $(X,d)$ be a metric space. A subset $A\subseteq X$ is called \emph{dense} if $\overline{A} = X$.
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{definition}
+A metric space $(X,d)$ is \emph{separable} if it contains a countable dense subset.
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{example}
+$\R$ is separable because $\Q$ is dense in $\R$
+\end{example}
+
+
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Define $\ell_\infty=\{ (x_n)_{n\in \N} \, : x_n \in \R , \; \sup_{n\in \N} \vert x_n \vert <\infty \}$, the space of bounded real valued sequences. Endow $\ell_\infty$ with a metric induced by the supremum norm, namely $d((x_n)_{n\in \N}, (y_n)_{n\in \N}) = \sup_{n\in \N} \vert x_n-y_n\vert$. 
+Then $\ell_\infty$ is \textbf{not separable} with respect to the topology induced by this metric. 
+\end{example}
+
+\vspace{0.5em}
+Note: this proof relies on content from the cardinality section. Specifically, Cantor's theorem gives us that $|A| < |\cP(A)|$ for any set $A$.
+
+\vspace{0.5em}
+\textit{Proof}.
+\vspace{2.5cm}
+
+\end{frame}
+
+
+\begin{frame}
+\textit{Proof continued}.
+\vspace{7cm}
+
+\end{frame}
+
+
+
+\begin{frame}{Compactness}
+\begin{definition}
+Let $(X,d)$ be a metric space and $K\subseteq X$. 
+
+\vspace{0.5em}
+
+A collection $\{U_i\}_{i\in I} $ of open sets is called \emph{open cover} of $K$ if $K\subseteq \cup_{i\in I} U_i$. 
+
+\vspace{0.5em}
+
+The set $K$ is called \emph{compact} if for all open covers $\{U_i\}_{i\in I}$ there exists a finite subcover, meaning there exists an $n\in \N$ and $\{U_1,\ldots,U_n\}\subseteq \{U_i\}_{i\in I}$ such that $K\subseteq \cup_{i=1}^n U_i$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{example}
+Let $S\subseteq X$ where $(X,d)$ is a metric space. If $S$ is finite, then it is compact. 
+\end{example}
+\textit{Proof.}
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+$(0,1)$ is not compact. 
+\end{example}
+\textit{Proof.}
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(X,d)$ be a metric space and take a non-empty subset $K\subseteq X$. The following holds:
+\begin{enumerate}
+    \item If $X$ is compact and $K$ is closed, then $K$ is compact (i.e. closed subsets of compact sets are compact).
+    \item If $K$ is compact, then $K$ is closed.
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\textit{Proof.}
+(1) If $X$ is compact and $K \subseteq X$ is closed, then $K$ is compact
+\vspace{6cm}
+
+\end{frame}
+
+
+\begin{frame}
+
+(2) $K \subseteq X$ compact $\Rightarrow$ $K$ is closed.
+\vspace{6cm}
+
+
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+Arbitrary compact metric spaces have some nice properties in general as the next proposition shows.
+
+\begin{exampleblock}{Proposition}
+    A compact metric space $(X,d)$ is complete and separable.
+\end{exampleblock}
+
+\vspace{1em}
+
+Also, just as we had a sequential characterization of the closure of a set in metric spaces, we similarly have a sequential characterization of compactness. 
+
+\begin{theorem}
+Let $(X,d)$ be a metric space. Then $K\subseteq X$ is compact with respect to the metric induced by $d$ if and only if every sequence in $K$ admits a subsequence converging to some point in $K$.
+\end{theorem}
+
+
+
+\end{frame}
+
+\begin{frame}{Compactness on $\R^n$}
+\begin{theorem}[Heine-Borel Theorem]
+Let $K\subseteq \R^n$. Then $K$ is compact with respect to the topology induced by the Euclidean distance if and only if it is closed and bounded.
+\end{theorem}
+
+\vspace{1em}
+
+A corollary of the last two theorems is the Bolzano-Weierstrass theorem.
+
+\begin{corollary}[Bolzano-Weierstrass]
+Any bounded sequence in $\R^n$ has a convergent subsequence.
+\end{corollary}
+\end{frame}
+
+
+\begin{frame}
+\vspace{1em}
+\begin{exampleblock}{Proposition}
+Let $(X,d_X)$ and $(Y, d_Y)$ be metric spaces. Suppose $K\subseteq X$ is compact and let $f\colon K \to Y$ be continuous. Then $f(K)$ is compact. 
+\end{exampleblock}
+
+Note: this is a generalization of the Extreme Value Theorem to metric spaces.
+
+\vspace{1em}
+
+Recall from the set theory section: \\
+If $f:X \to Y$:
+\begin{enumerate}
+\item $A \subseteq B \subseteq Y$ $\Rightarrow$ $f^{-1}(A) \subseteq f^{-1}(B)$ and  $A \subseteq B \subseteq X$ $\Rightarrow$ $f(A) \subseteq f(B)$
+\item $f^\inv(\cup_{i \in I}A_i) = \cup_{i \in I}f^\inv(A_i)$, where $A_i \subseteq Y \, \forall i \in I$
+\item $f(\cup_{i \in I}A_i) = \cup_{i \in I}f(A_i)$, where $A_i \subseteq X \, \forall i \in I$
+\item $A \subseteq X$ $\Rightarrow$  $A \subseteq f^{-1}(f(A))$
+\item $B \subseteq Y$ $\Rightarrow$   $f(f^{-1}(B)) \subseteq B$
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\textit{Proof.}
+\vspace{7cm}
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+\section{Extra properties of $\R$}
+
+
+\begin{frame}{Right and left continuous}
+Recall: $f\colon \R \to \R$ is continuous at $x_0\in \R$ if for all $\epsilon>0$ there exists a $\delta>0$ such that $\vert x_0-y\vert <\delta$ implies $\vert f(x_0)-f(y)\vert<\epsilon$.
+
+\vspace{1em}
+
+\begin{definition} Let $f\colon \R \to \R$.
+\begin{itemize}
+    \item $f$ is \emph{left continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $ x_0-\delta <x<x_0$.
+    \item $f$ is \emph{right continuous} at $x_0\in \R$ if for all $\epsilon >0$ there exists a $\delta>0$, such $\vert f(x_0)-f(x)\vert<\epsilon$ whenever $x_0<x<x_0+\delta$.
+\end{itemize}
+We say that $f$ is left continuous if it is left continuous at all points in the domain, and similar for right continuous.
+\end{definition}
+
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ A function $f\colon \R \to \R$ is continuous if and only if it is left and right continuous. 
+\end{exampleblock}
+\textit{Proof}.
+\vspace{5cm}
+\end{frame}
+
+
+\begin{frame}
+
+\vspace{7cm}
+
+\end{frame}
+
+
+\begin{frame}{Bounded sequences and monotone convergence}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We call $(x_n)_{n\in \N}$ \emph{bounded} if there exists an $M > 0$ such that $\vert x_n\vert<M$ for all $n\in \N$.
+\end{definition}
+
+\vspace{0.5em}
+
+\begin{theorem}[Monotone convergence theorem]
+\begin{itemize}
+\item[(i)] Suppose $(x_n)_{n\in \N}$ is an increasing sequence, i.e. $x_n\leq x_{n+1}$ for all $n\in \N$, and that it is bounded (above). Then the sequence converges. Furthermore, $\lim_{n\to \infty} x_n = \sup_{n\in \N} x_n$, where $\sup_{n\in \N} x_n := \sup\{x_n \; \colon \; n\in \N\}$.
+\item[(ii)] Suppose $(x_n)_{n\in \N}$ is a decreasing sequence, i.e. $x_n\geq x_{n+1}$ for all $n\in \N$, which is bounded (below). Then the sequence converges and $\lim_{n\to \infty} x_n = \inf_{n\in \N} x_n := \inf\{x_n \; \colon \; n\in \N\}$. 
+\end{itemize}
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}
+Convention: $\sup A = \infty$ if $A\subseteq \R$ is not bounded above and $\inf A= -\infty$ if $A$ is not bounded below.
+
+\vspace{0.5em}
+
+\begin{lemma}
+If $A \subseteq B \subseteq \R$ is non-empty, then $\inf A \leq \sup A$, $\sup A \leq \sup B$, and $\inf A \geq \inf B$.
+\end{lemma}
+
+\vspace{0.5em}
+The proof of this follows from the definition of greatest lower and least upper bound. 
+
+\end{frame}
+
+\begin{frame}
+\begin{definition}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. We define the \emph{limit superior} of $(x_n)_{n\in \N}$ as 
+$$\limsup_{n\to \infty} x_n: = \lim_{n\to \infty} \sup_{k\geq n} x_k.$$ 
+Similarly we define  the \emph{limit inferior} of $(x_n)_{n\in \N}$ as 
+$$\liminf_{n\to \infty} x_n: = \lim_{n\to \infty} \inf_{k\geq n} x_k.$$
+\end{definition}
+\vspace{1em}
+If the sequence $(x_n)_{n\in \N}$ is not bounded above, then $\limsup_{n\to \infty} x_n = \infty$. Similarly, if the sequence $(x_n)_{n\in \N}$ is not bounded below, then $\liminf_{n\to \infty} x_n = -\infty$. 
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $(x_n)_{n \in \N}$ be a sequence in $\R$.
+\begin{itemize} 
+\item The sequence of suprema, $s_n = \sup_{k\geq n} x_k$, is decreasing and the sequence of infima, $i_n = \inf_{k\geq n} x_k$, is increasing.
+\item The limit superior and the limit inferior of a bounded sequence always exist and are finite.
+\end{itemize}
+\end{exampleblock}
+\textit{Proof}.
+\vspace{2.5cm}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Let $(x_n)_{n\in \N}$ be a sequence in $\R$. Then the sequence converges to $x\in \R$ if and only if $\limsup_{n\to \infty} x_n= x =\liminf_{n\to \infty} x_n$.
+\end{theorem}
+
+\vspace{0.5em}
+Proof in notes.
+\end{frame}
+
+
+
+\begin{frame}
+\vspace{2em}
+We can extend this easily to a sequence of functions $f_n \colon X \to \R$ as follows:
+\vspace{0.5em}
+
+Define $f = \limsup_{n\to \infty } f_n$ to be the function defined pointwise by $f(x) = \limsup_{n\to \infty } (f_n (x)) $ and similar for the limit inferior. 
+
+\vspace{1em}
+
+There also exists a set theoretic version in terms of unions and intersections which you will encounter in probability.
+
+\end{frame}
+
+
+
+
+\begin{frame}{References}
+
+
+
+Runde, Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+
+
+\end{frame}
+
+
+
+
+\end{document}

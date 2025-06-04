@@ -1,0 +1,69 @@
+% commenting
+\newcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textit{#3}\textbf{]}}}
+\newcommand{\emma}[1]{\comment{purple}{EK}{#1}}
+\newcommand{\jesse}[1]{\comment{BurntOrange}{JG}{#1}}
+\newcommand{\miaoshiqi}[1]{\comment{ForestGreen}{ML}{#1}}
+\newcommand{\siyue}[1]{\comment{blue}{SY}{#1}}
+
+%For references using Lemma, Theorem, etc, use \cref
+\usepackage[nameinlink,capitalize,sort]{cleveref}
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+%theoremstyle{plain} %boldface title, italicized body. Commonly used in theorems, lemmas, corollaries, propositions and conjectures.
+%\theoremstyle{definition} %boldface title, Roman body. Commonly used in definitions, conditions, problems and examples
+\theoremstyle{remark} %italicized title, Roman body. Commonly used in remarks, notes, annotations, claims, cases, acknowledgments and conclusions.
+\newtheorem{exercise}[theorem]{Exercise}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+
+% weird hack to get rid of dot:
+\usepackage{xpatch}
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+
+
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\inv}{{-1}}
+
+% set theory & topology
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\interior}{\accentset{\circ}}
+
+
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}

@@ -1,0 +1,502 @@
+\documentclass [aspectratio=169, handout]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\cP}{\mathcal{P}}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\title[]{Module 2: Set Theory \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 9, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+    \begin{itemize}
+    \setlength \itemsep{1em}
+    	\item Review of basic set theory
+	\item Ordered Sets
+        \item Functions
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Introduction to Set Theory}
+\begin{itemize}
+  \setlength\itemsep{1em}
+\item We define a \emph{set} to be a collection of mathematical objects.
+\item  If $S$ is a set and $x$ is one of the objects in the set, we say $x$ is an element of $S$ and denote it by $x\in S$.
+\item The set of no elements is called empty set and is denoted by $\emptyset$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{definition}[Subsets, Union, Intersection]
+Let $S, T$ be sets. 
+\begin{itemize}
+    \item We say that $S$ is a \emph{subset} of $T$, denoted $S\subseteq T$, if $s\in S$ implies $s\in T$. 
+    \item We say that $S=T$ if $S\subseteq T$ and $T\subseteq S$.
+    \item We define the \emph{union} of $S$ and $T$, denoted $S \cup T$, as all the elements that are in \emph{either} $S$ or $T$.
+    \item We define the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, as all the elements that are in \emph{both} $S$ and $T$.
+    \item We say that $S$ and $T$ are \emph{disjoint} if $S \cap T = \emptyset$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Some examples}
+
+\begin{example}
+$\mathbb{N} \subseteq \mathbb{N}_0 \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}$
+\end{example}
+
+\vspace{1em}
+
+\begin{example}  Let $a, b \in \R$ such that $a < b$. \\
+Open interval: $(a,b) := \{x \in \R : a < x < b \}$  ($a,b$ may be $- \infty$ or $+ \infty$)\\
+Closed interval: $[a,b] := \{x \in \R : a \leq x \leq b \}$ \\
+We can also define half-open intervals. 
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+Let $A = \{x \in \N: 3 | x \}$ and $B = \{x \in \N: 6 | x \}$
+Show that $B \subseteq A$. 
+\end{example}
+\textit{Proof.}
+\vspace{7em}
+\end{frame}
+
+\begin{frame}{Difference of sets}
+\begin{definition}
+Let $A,B \subseteq X$. We define the \emph{set-theoretic difference} of $A$ and $B$, denoted $A \setminus B$ (sometimes $A-B$) as the elements of $X$ that are in $A$ but \emph{not} in $B$. 
+
+The complement of a set $A \subseteq X$ is the set $A^c := X \setminus A$.
+\end{definition}
+
+\vspace{1em}
+
+\begin{example}
+Let $X\subseteq\R$ be defined as $X = \{x \in \R: 0 < x \leq 40 \} = (0,40]$. Then 
+
+\vspace{0.5em}
+$X^c=$% \{x \in \R: x \leq 0 \text{ or } x > 40 \} = (-\infty, 0] \, \cup \, (40, \infty) $.
+\vspace{3em}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+
+Recall that for sets $S, T$:
+    \begin{itemize}
+    	\item  the \emph{union} of $S$ and $T$, denoted $S \cup T$, is all the elements that are in \emph{either} $S$ and $T$
+	\item  and the \emph{intersection} of $S$ and $T$, denoted $S \cap T$, is all the elements that are in \emph{both} $S$ and $T$.
+    \end{itemize}
+
+We extend the definition of union and intersection to an arbitrary family of sets as follows:
+
+\begin{definition}
+Let $S_\alpha$, $\alpha \in A$, be a family of sets. $A$ is called the \emph{index set}. We define
+\begin{equation*}
+    \bigcup_{\alpha \in A} S_\alpha := \{ x: \exists \alpha \text{ such that } x \in S_\alpha \},
+\end{equation*}
+\begin{equation*}
+    \bigcap_{\alpha \in A} S_\alpha := \{ x: x \in S_\alpha \text{ for all } \alpha \in A \}.
+\end{equation*}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{example}
+$$\bigcup_{n=1}^\infty [-n,n] = $$
+$$\bigcap_{n=1}^\infty \left( -\frac{1}{n},\frac{1}{n} \right) = $$
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}[De Morgan's Laws]
+Let $\{S_\alpha\}_{\alpha \in A}$ be an arbitrary collection of sets. Then 
+\begin{equation*}
+    \left( \bigcup_{\alpha \in A} S_\alpha \right)^c = \bigcap_{\alpha \in A}  S_\alpha^c \quad \text{and} \quad \left( \bigcap_{\alpha \in A} S_\alpha \right)^c = \bigcup_{\alpha \in A}  S_\alpha^c
+\end{equation*}
+\end{theorem}
+\textit{Proof.}
+\vspace{8em}
+
+\end{frame}
+
+\begin{frame}
+Since a set is itself a mathematical object, a set can itself contain sets.
+\begin{definition}
+The power set $\cP(S)$ of a set $S$ is the set of all subsets of $S$.
+\end{definition}
+
+\vspace{1em}
+
+\begin{example}
+Let $S = \{a,b,c\}$.  \\
+Then $\cP(S) = $ 
+\vspace{5em}
+\end{example}
+\end{frame}
+
+\begin{frame}
+Another way of building a new set from two old ones is the Cartesian product of two sets.
+
+\begin{definition}\label{def:cartes_prod}
+Let $S,T$ be sets. The \emph{Cartesian product} $S\times T$ is defined as the set of tuples with elements from $S,T$, i.e 
+\begin{equation*}
+    S\times T = \{ (s,t) \; \colon \; s \in S \; \text{ and } \; t \in T\}.
+\end{equation*}
+\end{definition}
+\vspace{1em}
+
+This can also be extended inductively to a finite family of sets. 
+
+\end{frame}
+
+\begin{frame}{Ordered set}
+\begin{definition}
+A \emph{relation} $R$ on a set $X$ is a subset of $X \times X$. A relation $\leq$ is called a \emph{partial order} on $X$ if it satisfies
+\begin{enumerate}
+\setlength\itemsep{1em}
+\item reflexivity: 
+\item transitivity: 
+\item anti-symmetry: 
+\end{enumerate}
+\vspace{1em}
+The pair $(X, \leq)$ is called a \emph{partially ordered set}.
+
+\vspace{1em}
+
+A \emph{chain} or \emph{totally ordered set} $C \subseteq X$ is a subset with the property $x \leq y$ or $y \leq x$ for any $x,y \in C$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\begin{example}
+The real numbers with the usual ordering, $(\R, \leq)$ are totally ordered. 
+\end{example}
+
+\begin{example}
+The power set of a set $X$ with the ordering given by $\subseteq$, $(\cP(X), \subseteq)$ is a partially ordered set. 
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Let $X = \{a,b,c,d\}$. What is $\cP(X)$? Find a chain in $\cP(X)$.
+
+\vspace{1em}
+\pause
+$\cP(X) = \{\emptyset,\{a\},\{b\},\{c\},\{d\},\{a,b\},\{b,c\},\{c,d\},\{b,d\},\{a,c\},\{a,d\},\{a,b,c\}, $
+ $ \{b,c,d\},\{a,b,d\},\{a,c,d\},X\}$
+
+
+\vspace{3cm}
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Consider the set $C([0,1],\R):= \{f:[0,1] \to \R : f \text{ is continuous}\}$.
+
+\vspace{1em}
+
+For two functions $f,g \in C([0,1],\R)$, we define the ordering as $f \leq g$ if $f(x) \leq g(x)$ for $x \in [0,1]$. Then $(C([0,1],\R),\leq)$ is a partially ordered set. 
+
+\vspace{1em}
+
+Can you think of a chain that is a subset of $(C([0,1],\R)$?
+\end{example}
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+A non-empty partially ordered set $(X,\leq)$ is \emph{well-ordered} if every non-empty subset $A \subseteq X$ has a mimimum element.
+\end{definition}
+
+\vspace{2em}
+
+Example: 
+\vspace{0.5em}
+
+$(\N, \leq)$ is... 
+\vspace{1em}
+
+$(\R,\leq)$ is...
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. 
+
+ \vspace{1em}
+
+Then $x\in X$ is an \emph{upper bound} for $S$ if for all $s \in S$ we have $s\leq x$.\\
+ Similarly, $y\in X$ is a \emph{lower bound} for $S$ if for all $s\in S$, $y\leq s$. 
+ 
+ \vspace{1em}
+ 
+ If there exists an upper bound for $S$, we call $S$ \emph{bounded above} and if there exists a lower bound for $S$, we call $S$ \emph{bounded below}. If $S$ is bounded above and bounded below, we say $S$ is \emph{bounded}. 
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+We can also ask if there exists a least upper bound or a greatest lower bound. 
+
+\begin{definition}%Marcoux Definition 2.12
+Let $(X,\leq)$ be a partially ordered set and $S\subseteq X$. 
+
+\vspace{1em}
+
+We call $x\in X$ \emph{least upper bound} or \emph{supremum}, denoted $x= \sup S$, if $x$ is an upper bound and for any other upper bound $y\in X$ of $S$ we have $x\leq y$. 
+
+\vspace{1em}
+
+Likewise, $x\in X$ is the \emph{greatest lower bound} or \emph{infimum} for $S$, denoted $x= \inf S$, if it is a lower bound and for any other lower bound $y\in X$, $y\leq x$.
+\end{definition}
+
+\vspace{1em}
+Note that the supremum and infimum of a bounded set do not necessarily need to exist. However, if they do exists they are unique, which justifies the article \emph{the} (exercise). Nevertheless, the reals have a remarkable property, which we will take as an axiom.
+
+\end{frame}
+
+\begin{frame}
+
+
+\begin{alertblock}{Completeness Axiom}
+Let $S\subseteq \R$ be bounded above. Then there exists $r\in \R$ such that $r= \sup S$, i.e. $S$ has a least upper bound. 
+\end{alertblock}
+
+\vspace{1em}
+
+By setting $S^\prime = -S:= \{ -s \; \colon \; s\in S\}$ and noting $\inf S = - \sup S^\prime$, we obtain a similar statement for infima if $S$ is bounded below. As mentioned above, this property is fairly special, for example it fails for the rationals.
+
+\vspace{1em}
+
+\begin{example}
+Let $S= \{q \in \Q \; \colon \; x^2 < 7 \}$. Then $S$ is bounded above in $\Q$, but there exists no least upper bound in $\Q$.
+\end{example}
+
+
+
+\end{frame}
+
+\begin{frame}
+There is a nice alternative characterization for suprema in the real numbers. 
+
+\begin{proposition}
+ Let $S\subseteq \R$ be bounded above. Then $r= \sup S$ if and only if $r$ is an upper bound and for all $\epsilon>0$ there exists an $s\in S$ such that $r-\epsilon <s$. 
+\end{proposition}
+
+\textit{Proof.}
+($\Rightarrow$) 
+\vspace{3cm}
+
+\end{frame}
+
+\begin{frame}
+
+\textit{Proof.}
+($\Leftarrow$) 
+\vspace{3cm}
+
+
+Using the same trick, we may obtain a similar result for infima.
+
+\vspace{1em}
+
+\begin{example}
+Consider $S = \{1/n \; \colon \; n\in \N\}$. Then $\sup S = 1$ and $\inf S = 0$.
+\end{example}
+\end{frame}
+
+\begin{frame}{Functions}
+\begin{definition}
+A function $f$ from a set $X$ to a set $Y$ is a subset of $X \times Y$ with the properties:
+\begin{enumerate}
+    \item For every $x \in X$, there exists a $y \in Y$ such that $(x,y) \in f$
+    \item If $(x,y) \in f$ and $(x,z) \in f$, then $y = z$.
+\end{enumerate}
+$X$ is called the \emph{domain} of $f$.
+\end{definition}
+How does this connect to other descriptions of functions you may have seen?
+\vspace{2em}
+
+\begin{example}
+For a set $X$, the identity function is:
+$$ 1_X: X \to X, \quad x \mapsto x $$
+\end{example}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}[Image and pre-image]
+Let $f:X \to Y$ and $A \subseteq X$ and $B \subseteq Y$. 
+\begin{itemize}
+\item The \emph{image} of $f$ is the set $f(A) := \{f(x): x \in A \}$.
+\item The \emph{pre-image} of $f$ is the set $f^{-1}(B) := \{x: f(x) \in B \}$.
+\end{itemize}
+\end{definition}
+
+\vspace{1em}
+
+Helpful way to think about it for proofs:
+
+\vspace{0.5em}
+\textbf{Image:} If $y \in f(A)$, then $y \in Y$, and there exists an $x \in A$ such that $y = f(x)$.
+
+\vspace{0.5em}
+\textbf{Pre-image:} If $x \in f^{-1}(B)$, then $x \in X$ and $f(x) \in B$.
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Surjective, injective and bijective]
+Let $f:X \to Y$, where $X$ and $Y$ are sets. Then
+\begin{itemize}
+    \item $f$ is \emph{injective} if $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$
+    \item $f$ is \emph{surjective} if for every $y \in Y$, there exists an $x \in X$ such that $y = f(x)$
+    \item $f$ is \emph{bijective} if it is both injective and surjective
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Let $f:X \to Y$, $ x \mapsto x^2$. \\
+$f$ is surjective if \\
+$f$ is injective if \\
+$f$ is bijective if \\
+$f$ is neither surjective nor injective if
+\end{example}
+\end{frame}
+
+
+\begin{frame}{References}
+
+Marcoux, Laurent W. (2019). \textit{PMATH 351 Notes}. url: \href{https://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}{https://www.math.uwaterloo.ca/~lwmarcou/notes/pmath351.pdf}
+
+\vspace{1em}
+
+
+Runde ,Volker (2005). \textit{A Taste of Topology}. Universitext.  url:  \href{https://link.springer.com/book/10.1007/0-387-28387-0}{https://link.springer.com/book/10.1007/0-387-28387-0} 
+
+\vspace{1em}
+
+Zwiernik, Piotr (2022). \textit{Lecture notes in Mathematics for Economics and Statistics}. url: \href{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf}{http://84.89.132.1/~piotr/docs/RealAnalysisNotes.pdf} \\
+
+
+
+
+\end{frame}
+
+
+
+\end{document}

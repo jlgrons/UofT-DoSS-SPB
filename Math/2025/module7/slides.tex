@@ -1,0 +1,599 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\setbeamercolor{coloredboxstuff}{fg=yellow,bg=uoftblue!10!white}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{coloredboxstuff}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
+
+\title[]{Module 7: Linear Algebra I \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 18, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+
+
+Today:
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+         \item Vector spaces and subspaces
+    	\item Linear independence and bases
+	\item Linear maps, null space, range
+    \end{itemize}
+\end{frame}
+
+\section{Vector spaces \& subspaces}
+
+\begin{frame}
+\begin{definition}
+We call $V$ a \textbf{vector space} if the following hold: \\
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(A)] \textit{Commutativity in addition:} $\bu + \bv = \bv + \bu$ for all $\bu, \bv \in V$
+    \item[(B)] \textit{Associativity in addition:} $\bu + (\bv + \bw) = (\bu + \bv) + \bw$ for all $\bu, \bv, \bw \in V$
+    \item[(C)] \textit{Existence of a neutral element, addition:} There exists a vector $\zerovec$ such that for any $\bv \in V$, $\zerovec + \bv = \bv$
+    \item[(D)] \textit{Additive inverse:} For every $\bv \in V$, there exists another vector, which we denote $-\bv$, such that $\bv + (-\bv) = \zerovec$.
+\end{enumerate}
+
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(E)] \textit{Existence of a neutral element, multiplication:} For any $\bv \in V$, $1\times \bv = \bv$
+    \item[(F)] \textit{Associativity in multiplication:} Let $\alpha, \beta \in \mathbb{F}$. For any $\bv \in V$, $(\alpha \beta) \bv = \alpha (\beta \bv)$ 
+\end{enumerate}
+
+\begin{enumerate}
+\setlength\itemsep{0.1em}
+    \item[(G)] Let $\alpha \in \mathbb{F}, \bu, \bv \in V$. $\alpha (\bu + \bv) = \alpha \bu + \alpha \bv$.
+    \item[(H)] Let $\alpha, \beta \in \mathbb{F}, \bv \in V$. $(\alpha + \beta) \bv = \alpha \bv + \beta \bv$.
+\end{enumerate}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+Elements of the vector space are called vectors.
+
+Most often we will assume $\mathbb{F} = \mathbb{C}$ or $\R$.
+
+\vspace{1em}
+
+\begin{example}
+The following are vector spaces:
+\begin{itemize}
+\item $\R^n$
+\item $\C^n$
+\item $C(\R;\R)$, continuous functions from $\R$ to $\R$
+\item $M_{n \times m}$, matrices of size $n \times m$
+\item $\mathbb{P}_n$ (polynomials of degree $n$, $p(x) = a_0 + a_1 x + \ldots + a_n x^n$).
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, $0 \bv= \zerovec$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+For every $\bv \in V$, we have $-\bv = (-1) \times \bv$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\begin{proof}
+\vspace{3cm}
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{definition}
+A subset $U$ of $V$ is called a \textbf{subspace} of of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
+\end{definition}
+
+
+\begin{exampleblock}{Proposition}
+A subset $U$ of $V$ is a subspace of $V$ if
+and only if $U$ satisfies the following three conditions:
+\begin{enumerate}
+\item  $\zerovec \in U$
+\item Closed under addition: $\bu, \bv \in U$ implies $\bu+\bv \in U$
+\item Closed under scalar multiplication: $\alpha \in\F$ and $\bu\in U$
+implies $\alpha \bu \in U$
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\textit{Proof}.
+($\Rightarrow$)
+
+\vspace{3cm}
+
+($\Leftarrow$)
+
+\vspace{3cm}
+
+\end{frame}
+
+\section{Linear (in)dependence and bases}
+
+
+\begin{frame}{Linear combinations}
+\begin{definition}
+A linear combination of vectors $\bv_{1},...,\bv_{n}$ of vectors in $V$ is a vector of the form 
+$$
+\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n} = \sum_{k=1}^n \alpha_k \bv_k
+$$
+ where $\alpha_{1},...,\alpha_{m} \in \F$.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Span}
+\begin{definition}
+The set of all linear combinations of a list of vectors
+$\bv_{1},...,\bv_{n}$ in $V$ is called the \textbf{span} of $\bv_{1},...,\bv_{n}$,
+denoted span$\{\bv_{1},...,\bv_{n}\}$. In other words, 
+$$
+\text{span}\{\bv_{1},...,\bv_{n}\}=\{\alpha_{1}\bv_{1}+...+\alpha_{m}\bv_{n} :\alpha_{1},...,\alpha_{n}\in\F\}
+$$
+\end{definition}
+The span of the empty list is defined to be $\{\zerovec\}$.
+
+
+
+\end{frame}
+
+\begin{frame}{Basis}
+\begin{definition}
+A system of vectors $\bv_1, \ldots, \bv_n$ is called a basis (for the vector space $V$ ) if any vector $\bv \in V$ admits a unique representation as a linear combination
+$$
+\bv = \alpha_1 \bv_1 + \ldots + \alpha_n \bv_n = \sum_{k=1}^n \alpha_k \bv_k.
+$$
+\end{definition}
+\begin{example}
+\begin{itemize}
+    \item For $\F^n$, $e_1 = (1,0,\ldots, 0), \; e_2 = (0,1,0,\ldots,0), \; \ldots, \; e_n = (0, \ldots, 0, 1)$ is a basis
+    \item The monomials $ 1, x, x^2, \ldots, x^n$ form a basis for $\mathbb{P}_n$.
+\end{itemize}
+\end{example}
+\end{frame}
+
+
+\begin{frame}{Linear independence}
+\begin{definition}
+A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{linearly independent} if $$\sum_{i=1}^n \alpha_i\bv_i = \zerovec$$ implies $\alpha_i=0$ for all $i=1,\ldots,n$. 
+\vspace{0.5em} 
+
+Otherwise, we call the system \emph{linearly dependent}.
+\end{definition}
+
+\vspace{1em} 
+
+Linear combinations  $\alpha_{1}\bv_{1}+...+\alpha_{n}\bv_{n}$  such that  $\alpha_k = 0$ for every $k$ are called trivial.
+
+\end{frame}
+
+\begin{frame}{Spanning set}
+\begin{definition}
+ A system of vectors $\bv_1,\ldots,\bv_n$ in $V$ is called \emph{spanning}  if any vector in $V$ can be written as a linear combination of $\bv_1,\ldots,\bv_n$. In other words,
+\begin{equation*}
+    V = \mathrm{span}\{\bv_1,\ldots,\bv_n\}.
+\end{equation*}
+\end{definition}
+
+Such a system is also often called generating or complete. The next proposition relates spanning and linearly independent to a basis. 
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ A system of vectors $\bv_1, \ldots \bv_n \in V$ is a basis if and only if it is linearly independent and spanning.
+ \end{exampleblock}
+\textit{Proof.}
+($\Rightarrow$)
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}
+($\Leftarrow$)
+\vspace{6.5cm}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+ Let $\bv_1,\ldots, \bv_n\in V$ be spanning. Then $\bv_1,\ldots, \bv_n$ contains a basis.
+ \end{exampleblock}
+ 
+ \vspace{1em}
+ 
+\textit{Sketch of proof.}
+\vspace{4cm}
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{definition}
+An $\F$-vector space $V$ is called \emph{finite dimensional} if there exists a finite list of vectors that span it, i.e. there exist $n\in \N$ and $\bv_1,\ldots, \bv_n\in V$ such that $V= \mathrm{span}\{\bv_1,\ldots,\bv_n\}$. Otherwise, we call $V$ \emph{infinite dimensional}.
+\end{definition}
+
+\begin{example}
+\begin{itemize}
+    \item $\F^n$, $M_{m\times n}$, $\mathbb{P}_n$ are examples of finite dimensional vector spaces
+    \item The $\F$-vector space $\mathbb{P} = \{ \sum_{i=1}^n \alpha_i x^i  \; \colon \; n\in \N, \alpha_i \in \F, i=1,\ldots,n\}$ is infinite dimensional. 
+\end{itemize}
+\end{example}
+\vspace{2.5cm}
+\end{frame}
+
+\begin{frame}
+\begin{corollary}
+Every finite dimensional vector space has a basis.
+\end{corollary}
+
+This follows from the fact that every spanning set for a vector space contains a basis.
+
+\vspace{1em}
+
+This can also be extended to infinite dimensional vector spaces, i.e. when we do not assume that there exists a finite spanning set. However, this relies on the Axiom of Choice and is beyond the scope of this course.
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+ \end{exampleblock}
+\textit{Proof.}
+\vspace{4cm}
+
+\end{frame}
+
+
+
+\begin{frame}{Dimension}
+\begin{exampleblock}{Proposition}
+Let $\bv_1,\ldots, \bv_n$ and $\bu_1,\ldots, \bu_m$ be a basis for $V$. Then $m=n$.
+ \end{exampleblock}
+
+The proof is omitted,. It relies on the fact that the number of elements in linearly independent systems are always less than or equal to the number of elements in spanning systems. 
+
+\begin{definition}
+Let $V$ be a finite dimensional $\F$-vector space. The number of elements in a basis of $V$ is called the \emph{dimension} of $V$ and is denoted $\mathrm{dim}(V)$.
+\end{definition}
+
+By the previous definition, the notion of dimension is well-defined. 
+\end{frame}
+
+\begin{frame}{Dimension}
+\begin{example}
+\begin{itemize}
+      \setlength\itemsep{0.7em}
+    \item $\dim(\F^n) = $
+    \item $\dim(\mathbb{P}_n)= $
+    \item $\dim \{ \zerovec \} = $ 
+\end{itemize}
+\vspace{2em}
+\end{example}
+\end{frame}
+
+\section{Linear maps}
+
+
+\begin{frame}{Linear Maps}
+\begin{definition}
+A map from a vector space $U$ to a vector space $V$ is \textbf{linear} if
+\begin{equation*}
+    T(\alpha \bu + \beta \bv) = \alpha T(\bu) + \beta T(\bv) \quad \text{for any } \bu, \bv \in V, \; \alpha, \beta \in \F
+\end{equation*}
+\end{definition}
+
+\vspace{1em}
+
+Notation: $\mathcal{L}(U,V)$ is the set of all linear maps from $\F$-vector space $U$ to $\F$-vector space $V$
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Example}
+
+\begin{itemize}
+\setlength\itemsep{4em}
+\item Zero map
+\item Identity map
+\item Differentiation
+\end{itemize}
+\vspace{5em}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Suppose $\bu_1, \ldots, \bu_n$ is a basis for $U$ and $\bv_1, \ldots, \bv_n$ is a basis for $V$. Then there exists a unique linear map $T:U \to V$ such that $T \bu_j = \bv_j$ for $j=1,\ldots, n$.
+\end{theorem}
+
+Proof in book.
+\vspace{1em}
+
+\begin{theorem}
+Let $S,T \in \mathcal{L}(U,V)$ and $\alpha \in \F$. $\mathcal{L}(U,V)$ is a vector space with addition defined as the sum $S+T$ and multiplication as the product $\alpha T$.
+\end{theorem}
+
+The proof follows from properties of linear maps and vector spaces. Note that the additive identity is the zero map.
+\end{frame}
+
+\begin{frame}
+\begin{alertblock}{Lemma}
+Let $T \in \cL(U,V)$. Then $T(\zerovec) = \zerovec$.
+\end{alertblock}
+
+\vspace{0.5em}
+
+\textit{Proof.}
+\vspace{3cm}
+
+\end{frame}
+
+
+\begin{frame}{Null space and range}
+\begin{definition}
+Let $T:U \to V$ be a linear transformation. We define the following important subspaces:
+\begin{itemize}
+\item \emph{Kernel or null space}: $\nullspace T = \{\bu \in U : T\bu = 0 \}$
+\item \emph{Range}: $\range \, T = \{\bv \in V : \exists \bu \in U \text{ such that } \bv = T \bu \}$
+\end{itemize}
+
+\vspace{1em}
+
+The dimensions of these spaces are often called the following:
+\begin{itemize}
+\item \emph{Nullity}: $\nullity(T) = \dim(\nullspace(T))$
+\item \emph{Rank}: $\rank(T) = \dim(\range(T))$
+\end{itemize}
+\end{definition}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $T: U \to V$. The null space of T is a subspace of $U$ and the range of T is a subspace of $V$.
+\end{exampleblock}
+\textit{Proof.} (i) the null space of T is a subspace of $U$ 
+\vspace{5cm}
+
+\end{frame}
+
+\begin{frame}
+(ii) the range of T is a subspace of $V$
+\vspace{6cm}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{example}
+Zero map from a vector space $U$ to a vector space $V$:
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item The null space is 
+    \item The range is 
+\end{itemize}
+\vspace{2em}
+
+Differentiation map from $\mathbb{P}(\R)$ to $\mathbb{P}(\R)$:
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item The null space is 
+    \item The range is 
+\end{itemize}
+\vspace{2em}
+\end{example}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{definition}[Injective and surjective]
+Let $T:U \to V$. $T$ is \emph{injective} if $T\bu = T\bv$ implies $\bu = \bv$ and $T$ is \emph{surjective} if $\forall \bv \in V, \, \exists \bu \in U$ such that $\bv = T\bu$, i.e. if $\range T = V$.
+\end{definition}
+
+\vspace{3em}
+
+\begin{theorem}
+$T \in \cL(U,v)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\textit{Proof}.
+($\Rightarrow$) 
+
+\vspace{3.5cm}
+
+($\Leftarrow$) 
+
+
+\vspace{3cm}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{theorem}[Rank Nullity Theorem]
+Let $T:U \to V$ be a linear transformation, where $U$ and $V$ are finite-dimensional vector spaces. Then  
+\begin{equation*}
+\rank T + \nullity  T = \dim U.
+\end{equation*}
+\end{theorem}
+\vspace{3em}
+
+Proof in the lecture notes (pg. 35).
+\vspace{3em}
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{References}
+
+Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
+Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
+%U of T login:  \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}
+
+\vspace{1em}
+
+
+\indent Treil S. \textit{Linear Algebra Done Wrong}. 2017. Available from: \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{https://www.math.brown.edu/streil/papers/LADW/LADW.html}
+\end{frame}
+
+
+
+
+\end{document}

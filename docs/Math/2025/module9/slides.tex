@@ -1,0 +1,506 @@
+\documentclass [aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+\definecolor{uoftblue}{RGB}{0,42,92} % official blue color for uoft
+\definecolor{deptgreen}{RGB}{114,192,148} 
+\definecolor{deptoran}{RGB}{252,103,63} 
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = uoftblue, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{{\mathbf{x}}}
+\newcommand{\by}{{\mathbf{y}}}
+\newcommand{\bz}{{\mathbf{z}}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+\newcommand{\innerprod}[1]{\langle #1 \rangle}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+
+% set theory
+\newcommand{\interior}{\accentset{\circ}}
+
+
+
+%\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullspace}{null}
+\DeclareMathOperator{\nullity}{nullity}
+
+\beamertemplatenavigationsymbolsempty
+
+% block
+% example block
+% alert block
+
+
+\title[]{Module 9: Linear Algebra III \\ {\large Operational math bootcamp}\\ \includegraphics[width=8cm]{dept_logo.png}\vspace{-1em}}
+\author[]{Ichiro Hashimoto}
+\institute[]{University of Toronto}
+\date{July 24, 2024}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uoftblue}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uoftblue}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor*{item}{fg=uoftblue}
+\setbeamercolor{block title}{bg=uoftblue}
+\setbeamercolor{block title}{fg=white}
+\setbeamercolor{block body}{bg=uoftblue!9!white}
+\setbeamercolor{block title example}{bg=deptgreen}
+\setbeamercolor{block title example}{fg=white}
+\setbeamercolor{block body example}{bg=deptgreen!13!white}
+\setbeamercolor{block title alerted}{bg=deptoran}
+\setbeamercolor{block title alerted}{fg=white}
+\setbeamercolor{block body alerted}{bg=deptoran!10!white}
+
+
+% set logo at non-title pages
+\logo{\includegraphics[height=0.8cm]{dept_logo.png}\vspace*{-.045\paperheight}\hspace*{.78\paperwidth}}
+
+% set margin
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\begin{document}
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    %\vspace{0.5in}
+    \titlepage
+    %\begin{textblock*}{10cm}(3.5cm,-7.5cm)
+      %  \includegraphics[width=8cm]{dept_logo.png}
+    %\end{textblock*}
+\end{frame}
+}
+
+\begin{frame}{Outline}
+
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Adjoints, unitaries and orthogonal matrices
+\item Orthogonal decomposition
+\item Spectral theory
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+    	\item Eigenvalues and eigenvectors
+	\item Algebraic and geometric multiplicity of eigenvalues
+	\item Matrix diagonalization
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Recall}
+\begin{definition}
+Let $V$ be an $\F$-vector space. A function $\innerprod{\cdot,\cdot} \colon V \times V \to \F$ is called \emph{inner product} on $V$ if the following holds:
+\begin{enumerate}
+\setlength\itemsep{0.5em}
+    \item (Conjugate) symmetry: $\innerprod{\bx,\by} = \overline{\innerprod{\by,\bx}}$ for all $\bx,\by\in V$, where $\overline{a}$ denotes the complex conjugate for $a\in \C$
+    \item Linearity in the first argument: $\innerprod{\alpha \bx + \beta \by, \bz} = \alpha \innerprod{\bx,\bz} + \beta \innerprod{\by,\bz}$ for all $\bx,\by,\bz\in V$ and $\alpha, \beta \in \F$
+    \item Positive definiteness: $\innerprod{\bx,\bx} \geq 0$ and $\innerprod{\bx,\bx} = 0$ if and only if $\bx = \zerovec$ 
+\end{enumerate}
+\vspace{1em}
+A vector space equipped with an inner product is called an \emph{inner product space}.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{Recall}
+\begin{example}
+\begin{itemize}
+      \setlength\itemsep{1.5em}
+    \item Standard inner product on $\R^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_iy_i$ for $\bx,\by\in \R^n$
+    \item Standard inner product on $\C^n$: $\innerprod{\bx,\by }= \sum_{i=1}^n x_i\overline{y}_i$ for $\bx,\by\in \C^n$
+    \item On the space of polynomials $\mathbb{P}_n(\R)$: $\innerprod{\boldsymbol{p},\boldsymbol{q}} = \int_{-1}^1 p(x) {q}(x) \mathrm{d}x$ for $\boldsymbol{p},\boldsymbol{q}\in \mathbb{P}_n(\R)$
+\end{itemize}
+\end{example}
+
+\begin{exampleblock}{Proposition}
+Let $V$ be an inner product space. Then 
+\begin{align*}
+    \vert \innerprod{\bx,\by}\vert \leq \sqrt{\innerprod{\bx,\bx}}\sqrt{\innerprod{\by,\by}}
+\end{align*}
+for all $\bx,\by\in V$.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $V$ be an inner product space. Then $\innerprod{\cdot,\cdot}$ induces a norm on $V$ via $\Vert \bx\Vert =\sqrt{\innerprod{\bx,\bx}} $ for all $\bx \in V$.
+\end{exampleblock}
+\textit{Proof}.
+\vspace{4cm}
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+\begin{frame}
+Note:
+With this identification the Cauchy-Schwarz inequality can be restated as: $ \vert \innerprod{\bx,\by}\vert \leq \Vert \bx \Vert \Vert \by \Vert$ for all $\bx, \by\in V$.
+
+\vspace{2em}
+
+\begin{exampleblock}{Example}
+The norm introduced by the standard inner product on $\R^n$ is the Euclidean distance. 
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{Adjoint}
+\begin{definition}
+Let $U,V$ be inner product spaces and $S\colon U \to V$ be a linear map. The \emph{adjoint} $S^*$ of $S$ is the linear map $S^*\colon V \to U$ defined such that 
+\begin{align*}
+    \innerprod{S\bu,\bv}_V = \innerprod{\bu,S^*\bv}_U \qquad \text{ for all } \bu\in U, \bv\in V.
+\end{align*}
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $U,V$ be inner product spaces and $S\colon U \to V$ be a linear map. Then $S^*$ is unique and linear.
+\end{exampleblock}
+
+\textit{Proof}.
+\vspace{5.5cm}
+
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+Define $S \colon \R^3 \to \R^2$ by $S\bx = (2x_1+x_3,-x_2)$. What is the adjoint operator $S^*$?
+\end{example}
+\vspace{5.5cm}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $A\in M_{m\times n}(\F)$ be a matrix and $T_A\colon \F^n\to F^m \colon \bx \mapsto A\bx$. Then, $T_A^*(\bx) = A^* \bx $, where $A^*\in M_{n\times m}(\F)$ with $(A^*)_{ij} = \overline{A_{ji}}$ for $i=1,\ldots,n$ and $j=1,\ldots,m$. 
+
+\vspace{1em}
+In particular, if $\F = \R$, the adjoint of the matrix is given by its transpose,denoted $A^T$, and if $\F = \C$, it is given by its conjugate transpose, denoted $A^*$.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\textit{Proof} for $\R$:
+\vspace{6.5cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+A matrix $O\in M_n(\R)$ is called \emph{orthogonal} if its inverse is given by its transpose, i.e. $O^T O = O O^T = I$. 
+
+\vspace{0.5em}
+A matrix $U\in M_n(\C)$ is called \emph{unitary} if the inverse is given by the conjugate transpose, i.e. $U^* U = U U^* = I$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}
+\begin{example}
+\begin{itemize}
+    \item Let $\varphi \in [0,2\pi]$. Then 
+    \begin{equation*}
+        \begin{pmatrix}
+            \cos(\varphi) & -\sin(\varphi) \\
+            \sin(\varphi) & \cos(\varphi)
+        \end{pmatrix}
+    \end{equation*}
+    is an orthogonal matrix. What does it describe geometrically?
+    \item The following is a unitary matrix:
+        \begin{equation*}
+        \begin{pmatrix}
+            0 & -i \\
+            i & 0
+        \end{pmatrix}
+    \end{equation*}
+\end{itemize}
+\end{example}
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}
+Let $A\in M_n(\F)$. We call $A$ \emph{self-adjoint} if $A^* = A$. In the case $\F = \R$, such an $A$ is called \emph{symmetric} and if $\F = \C$, such an $A$ is called \emph{Hermitian}.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Orthogonality and Gram-Schmidt}
+\begin{definition}
+Two vectors $\bx,\by \in V$ are called \emph{orthogonal} if $\innerprod{\bx,\by} = 0$, denoted $\bx \perp \by$. We call them \emph{orthonormal} if additionally the vectors are normalized, i.e. $\Vert \bx \Vert =\Vert \by\Vert = 1 $. A basis $\bx_1,\ldots, \bx_n$ of $V$ is called \emph{orthonormal basis (ONB)}, if the vectors are pairwise orthogonal and normalized.  
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition}
+Let $\bx_1,\ldots, \bx_k\in V$ be orthonormal. Then the system of vectors is linearly independent.
+\end{exampleblock}
+
+\textit{Proof}.
+\vspace{5.5cm}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Proposition (Orthogonal Decomposition)}
+Let $\bx,\by\in V$ with $\by \neq 0$. Then, there exist $c\in F$ and $\bz\in V$ such that $\bx = c\by + \bz$ with $\by \perp \bz$.
+\end{exampleblock}
+
+\vspace{1em}
+
+Given a basis, we can obtain an ONB from it using the Gram-Schmidt algorithm by repeating this orthogonal decomposition.
+\end{frame}
+
+\begin{frame}
+\begin{exampleblock}{Proposition (Gram-Schmidt Algorithm)}
+Let $\bx_1,\ldots, \bx_n \in V$ be a system of linearly independent vectors. Define $\by_1 = \bx_1/\Vert \bx_1 \Vert$. For $i = 2,\ldots,n$ define $\by_j$ inductively by
+\begin{align*}
+    \by_i = \frac{\bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k}{\Vert \bx_i-\sum_{k=1}^{i-1} \innerprod{\bx_i,\by_k}\by_k\Vert}.
+\end{align*}
+Then the $\by_1, \ldots, \by_n$ are orthonormal and 
+\begin{align*}
+    \mathrm{span}\{\bx_1,\ldots,\bx_n\} = \mathrm{span}\{\by_1,\ldots,\by_n\}.
+\end{align*}
+\end{exampleblock}
+
+The proof is omitted but can be found in the book.
+\end{frame}
+
+
+
+\begin{frame}{Recall: connection between matrices and linear maps}
+\begin{block}{Multiplication by a matrix defines a linear map}
+Let $A\in M_{m\times n}$ be a fixed matrix. Then, we can define a linear map $T_A \colon \F^n \to \F^m$ via $T_A(\bv) = A \bv$, where we recall matrix vector multiplication $(A\bv)_i = \sum_{k=1}^n A_{ik}v_k$ for $i=1, \ldots, m$.
+\end{block}
+
+\vspace{1em}
+
+\begin{block}{Given a bases for $U$ and $V$, $T: U \to V$ can be written as a matrix}
+Let $T \in \mathcal{L}(U,V)$ where $U$ and $V$ are vector spaces. Let $\bu_1, \ldots, \bu_n$ and $\bv_1, \ldots, \bv_m$ be bases for $U$ and $V$ respectively. The matrix of $T$ with respect to these bases is the $m \times n$ matrix $\mathcal{M}(T)$ with entries $A_{ij}$, $i = 1, \ldots, m$, $j = 1, \ldots, n$ defined by
+\begin{equation*}
+    T\bu_k = A_{1k} \bv_1 + \cdots + A_{mk} \bv_m.
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Eigenvalues}
+\begin{definition}
+Given an operator $A \colon V \to V$ and $\lambda \in \F$, $\lambda$ is called an \emph{eigenvalue} of $A$ if there exists a non-zero vector $\bv \in V\setminus\{\zerovec\}$ such that 
+$$A \bv = \lambda \bv.$$
+We call such $\bv$ an \emph{eigenvector} of $A$ with eigenvalue $\lambda$. We call the set of all eigenvalues of $A$ \emph{spectrum} of $A$ and denote it by $\sigma(A)$.
+\end{definition}
+
+\vspace{1em}
+
+Motivation in terms of linear maps: Let $T \colon V \to V$ be a linear map, where $V$ is a vector space.  We would like to describe the action of this linear map in a particularly ``nice'' way: such that $T$ acts only by scaling, i.e. $T\bv_i = \lambda_i \bv_i$ where $\lambda_i \in \F$ for $i = 1, \ldots, n$.
+\end{frame}
+
+\begin{frame}{Finding eigenvalues}
+
+Note: here we will assume $\F = \C$, so that we are working on an algebraically closed field.
+
+\vspace{0.5em}
+
+\begin{itemize}
+\item Rewrite $A \bv = \lambda \bv$ as  %$(A - \lambda I) \bv= 0$. 
+\item Thus, if $\lambda$ is an eigenvalue, we can find the corresponding eigenvectors by finding the null space of $A - \lambda I$.
+\item The subspace $\nullspace (A - \lambda I)$ is called the \emph{eigenspace}
+\item To find the eigenvalues of $A$, one must find the scalars $\lambda$ such that $\nullspace (A - \lambda I)$ contains non-trivial vectors (i.e. not $\zerovec$)
+\item Recall: We saw that $T \in \cL(U,V)$ is injective if and only if $\nullspace T = \{ \zerovec \}$.
+\item Thus $\lambda$ is an eigenvalue if and only if $A - \lambda I$ is not invertible.
+\item Recall: $|A| \neq 0$ if and only if $A$ is invertible.
+\item Thus $\lambda$ is an eigenvalue if and only if %$|A - \lambda I|=0$.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+The following are equivalent
+\begin{enumerate}
+    \item $\lambda\in \F$ is an eigenvalue of $A$,
+    \item $(A-\lambda I)\bv = 0$ has a non-trivial solution,
+    \item $|A-\lambda I|= 0$.
+\end{enumerate}
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Characteristic polynomial}
+\begin{definition}
+If $A$ is an $n\times n$ matrix, $p_A(\lambda) = |A-\lambda I|$ is a polynomial of degree $n$ called the \emph{characteristic polynomial} of $A$.
+\end{definition}
+
+To find the eigenvectors of $A$, one needs to find the roots of the characteristic polynomial.
+\end{frame}
+
+
+\begin{frame}{Example}
+Find the eigenvalues of
+$$ \begin{bmatrix} 4 & -2 \\ 5 & -3 \end{bmatrix}.$$
+\vspace{4cm}
+
+\end{frame}
+
+
+\begin{frame}{Multiplicity}
+\begin{definition}
+The multiplicity of the root $\lambda$ in the characteristic polynomial is called the \emph{algebraic multiplicity} of the eigenvalue $\lambda$. The dimension of the eigenspace $\nullspace (A - \lambda I)$ is called the \emph{geometric multiplicity} of the eigenvalue $\lambda$.
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{definition}[Similar matrices]
+Square matrices $A$ and $B$ are called \emph{similar} if there exists an invertible matrix $S$ such that
+$$A = SBS^\inv.$$
+\end{definition}
+
+\vspace{1em}
+
+Similar matrices have the same characteristic polynomials and hence the same eigenvalues (see exercise).
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Suppose $A$ is a square matrix with distinct eigenvalues $\lambda_1, \ldots, \lambda_n$. Let $\bv_1, \ldots, \bv_n$ be eigenvectors corresponding to these eigenvalues. Then $\bv_1, \ldots, \bv_n$ are linearly independent.
+\end{theorem}
+\textit{Proof}.
+\vspace{4cm}
+
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{corollary}
+If a $A\in M_n(\C)$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. That is there exists an invertible matrix $S\in M_n(\C)$ such that $A = SDS^\inv$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal.
+\end{corollary}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{theorem}
+Let $A:V\to V$ be an operator with $n$ eigenvalues. $A$ is diagonalizable if and only if for each eigenvalue $\lambda$, the geometric multiplicity of $\lambda$ and the algebraic multiplicity of $\lambda$ are the same.
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Example: a diagonalizable matrix}
+$$ \begin{bmatrix} 1 & 2 \\ 8 & 1\end{bmatrix} \; \text{is diagonalizable.}$$
+\vspace{5cm}
+\end{frame}
+
+
+\begin{frame}{Example continued}
+
+\end{frame}
+
+\begin{frame}{Example continued}
+
+\end{frame}
+
+
+\begin{frame}{Example: a matrix that is not diagonalizable}
+$$ \begin{bmatrix} 1 & 1 \\ 0 & 1\end{bmatrix} \; \text{is \emph{not} diagonalizable.}$$
+\vspace{5cm}
+\end{frame}
+
+%
+%\begin{frame}
+%\begin{theorem}
+%Let $A\in M_n(\R)$ be a symmetric matrix. Then, there exists an orthogonal matrix $O\in M_n(\R)$ such that $A=ODO^T$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+%\end{theorem}
+%
+%\vspace{1em}
+%
+%We can also state this for $M_n(\C)$: \\
+%Let $A\in M_n(\C)$ be a Hermitian matrix. Then, there exists a unitary matrix $U\in M_n(\C)$ such that $A = UDU^*$, where $D$ is a diagonal matrix with the eigenvalues of $A$ in the diagonal. Furthermore, all eigenvalues of $A$ are real.
+%\end{frame}
+
+
+
+\begin{frame}{References}
+
+Howard Anton and Chris Rorres. Elementary Linear Algebra. 11th ed. Wiley, 2014
+
+\vspace{1em}
+
+Axler S. \textit{Linear Algebra Done Right}. 3rd ed. Undergraduate Texts in Mathematics. Springer, 2015.
+Available from: \href{https://link.springer.com/book/10.1007/978-3-319-11080-6}{https://link.springer.com/book/10.1007/978-3-319-11080-6} 
+%U of T login:  \href{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}{https://link-springer-com.myaccess.library.utoronto.ca/book/10.1007/978-3-319-11080-6}
+
+\vspace{1em}
+
+
+\indent Treil S. \textit{Linear Algebra Done Wrong}. 2017. Available from: \href{https://www.math.brown.edu/streil/papers/LADW/LADW.html}{https://www.math.brown.edu/streil/papers/LADW/LADW.html}
+\end{frame}
+
+
+
+
+\end{document}
