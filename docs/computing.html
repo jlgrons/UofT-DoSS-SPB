@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -90,27 +90,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>DoSS SPB: Methods and Computing</title>
 
-  <meta property="description" itemprop="description" content="Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
+  <meta property="description" itemprop="description" content="Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="DoSS SPB: Methods and Computing"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
+  <meta property="og:description" content="Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="DoSS SPB"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="DoSS SPB: Methods and Computing"/>
-  <meta property="twitter:description" content="Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
+  <meta property="twitter:description" content="Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Methods and Computing"]},{"type":"character","attributes":{},"value":["Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Methods and Computing"]},{"type":"character","attributes":{},"value":["Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -458,8 +458,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -2408,7 +2408,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2428,7 +2428,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Methods and Computing","description":"Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))","authors":[]}
+{"title":"Methods and Computing","description":"Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2469,7 +2469,7 @@ Past courses
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>Instructor: Jianhui Gao, PhD student (<a href="mailto:jianhui.gao@mail.utoronto.ca">Email</a>)</p>
+<p>Instructor: Jianhui Gao, (<a href="mailto:jianhui.gao@mail.utoronto.ca">Email</a>)</p>
 </div>
 
 
@@ -2496,7 +2496,7 @@ Past courses
 </nav>
 </div>
 <h2 id="syllabus">Syllabus</h2>
-<p><a href="Computing/2025/syllabus_computing.pdf">Click here to download the syllabus</a></p>
+<p><a href="Computing/2025/Syllabus.pdf">Click here to download the syllabus</a></p>
 <h2 id="lectures">Lectures</h2>
 <p>Lecture materials will be updated prior to the start of the lecture. There will be exercises for you to test your knowledge, and solutions will be provided after the lecture. If you have any questions, feel free to send me an email.</p>
 <h3 id="module-1-basic-r-programming">Module 1: Basic R programming</h3>

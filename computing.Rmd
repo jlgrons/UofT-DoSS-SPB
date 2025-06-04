@@ -1,6 +1,6 @@
 ---
 title: "Methods and Computing"
-description: "Instructor: Jianhui Gao, PhD student ([Email](mailto:jianhui.gao@mail.utoronto.ca))"
+description: "Instructor: Jianhui Gao, ([Email](mailto:jianhui.gao@mail.utoronto.ca))"
 output:
   distill::distill_article:
     toc: true
@@ -10,9 +10,7 @@ output:
 
 ## Syllabus
 
-[Click here to download the syllabus](Computing/2025/syllabus_computing.pdf)
-
-
+[Click here to download the syllabus](Computing/2025/Syllabus.pdf) 
 
 ## Lectures
 
