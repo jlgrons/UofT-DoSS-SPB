@@ -7,9 +7,9 @@ output:
     toc_depth: 2
 ---
 
-Below is the course schedule for 2024 Summer Bootcamp. 
+Below is the course schedule for 2025 Summer Bootcamp. 
 
-The morning session will run from 11:00 am--1:00 pm and the night session will run from 9:00 pm--11:00 pm (all times EDT/Toronto time).  
+The morning session will run from 9:00 am--11:00 am and the night session will run from 8:00 pm--10:00 pm (all times EDT/Toronto time).  
 
 Zoom meeting information will be provided to all registered participants.
 
