@@ -1,7 +1,7 @@
 ---
 title: 'Exercise 1: Basic programming in R'
-author: "Yaqi Shi"
-date: "07/09/2024"
+author: "Jianhui Gao"
+date: "07/05/2024"
 output: pdf_document
 ---
 
@@ -47,15 +47,16 @@ E_m = 1 + \frac{1}{2} + \dots + \frac{1}{2^m} - \log(2^m)
 $$
 
 
-2. Let's draw a regular polygon of n sides, with a horizontal bottom side, and the corners of the polygon staying on the unit circle. For given $n = 5$ and $r = 0.6$, start the first point $p_1 = (x_1, y_1)$ as a random number in $(-0.5, 0.5) \times (-0.5, 0.5)$, generate $10^4$ points interactively. In the $j$th iteration, we choose one corner $z_*$ of the polygon randomly and let $p_{j+1} = (x_{j+1}, y_{j+1})$ be the point on the line segment between $p_j$ and $z_*$, with the distance from $p_{j+1}$ to $p_j$ being $r$ times the distance from $z_j$ to $p_j$ and then draw all these points as dots in the $xy$ panel. 
+<!-- I dont like this example, so deleted --> 
+<!-- 2. Let's draw a regular polygon of n sides, with a horizontal bottom side, and the corners of the polygon staying on the unit circle. For given $n = 5$ and $r = 0.6$, start the first point $p_1 = (x_1, y_1)$ as a random number in $(-0.5, 0.5) \times (-0.5, 0.5)$, generate $10^4$ points interactively. In the $j$th iteration, we choose one corner $z_*$ of the polygon randomly and let $p_{j+1} = (x_{j+1}, y_{j+1})$ be the point on the line segment between $p_j$ and $z_*$, with the distance from $p_{j+1}$ to $p_j$ being $r$ times the distance from $z_j$ to $p_j$ and then draw all these points as dots in the $xy$ panel.  -->
 
-Hint: Complex numbers can be used to represent points in the $xy$ plane. The following script works for even or odd $n$, and the polygon always has a flat bottom. 
+<!-- Hint: Complex numbers can be used to represent points in the $xy$ plane. The following script works for even or odd $n$, and the polygon always has a flat bottom.  -->
 
-```{r, fig.width=5}
-n <- 8
-t <- c(0:n) - 0.5
-z <-  exp(2i * pi * (t/n - 0.25))
+<!-- ```{r, fig.width=5} -->
+<!-- n <- 8 -->
+<!-- t <- c(0:n) - 0.5 -->
+<!-- z <-  exp(2i * pi * (t/n - 0.25)) -->
 
-plot(Re(z), Im(z))
-```
+<!-- plot(Re(z), Im(z)) -->
+<!-- ``` -->
 
