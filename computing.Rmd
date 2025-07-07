@@ -22,7 +22,7 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 - Exercises: [pdf](Computing/2025/Exercises/ex1.pdf), [Rmd](Computing/2025/Exercises/ex1.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol1.pdf), [Rmd](Computing/2025/Solutions/sol1.Rmd) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol1.pdf), [Rmd](Computing/2025/Solutions/sol1.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/embed/2512caddaa6f822e94ba7afc1cecba9b) -->
 
