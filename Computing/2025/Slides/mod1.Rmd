@@ -171,22 +171,6 @@ colnames(studentData) <- c("ID", "age", "gender")
 studentData
 ```
 
-```{r, eval = F}
-studentID <- c(1, 2, 3, 4)
-age <- c(17, 18, 16, 19)
-gender <-c("M", "F", "M", "M")
-studentData <- data.frame(studentID, age, gender)
-studentData
-studentData[1,  ]
-studentData[ , 2] 
-str(studentData)    # structure
-rownames(studentData)
-```
-
-```{r}
-studentData[, 2]
-```
-
 # Linear Regression
 
 $y_i = \beta^T x_i + \epsilon_i$
@@ -218,13 +202,7 @@ mylist <- list(title = g, ages = h, j, k)
 mylist[[2]]
 ```
 
-```{r, eval = F}
-g <- "My List"
-h <- c(2, 3, 5, 7)
-j <- matrix(1:10, nrow = 5, byrow = FALSE)
-k <- c("one", "two", "three")
-mylist <- list(title = g, ages = h, j, k)
-
+```{r}
 mylist$ages
 mylist[[1]] 
 ```
@@ -399,5 +377,4 @@ Available on course website.
 
 1. Matrix and vector operations - generate a $100 \times 100$ matrix for matrix inverse calculation. 
 
-2. For loops and plotting - understand for loops by plotting a complex polygon. 
-
+2. For loops 
