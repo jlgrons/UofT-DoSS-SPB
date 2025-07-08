@@ -1,7 +1,7 @@
 ---
 title: 'Exercise 2: Reporting, Data Wrangling and Graphing'
-author: "Yaqi Shi"
-date: "07/09/2024"
+author: "Jianhui Gao"
+date: "07/08/2025"
 output: pdf_document
 ---
 
@@ -20,7 +20,7 @@ Install the "nycflits13" package. The data comes from the US Bureau of Transport
 5. Sort flights that have the most delayed flights. Show the first 5 row. 
 6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(nycflights13)
 head(flights)
@@ -72,38 +72,38 @@ flights %>%
 
 \clearpage
 
-# Part 2: LaTeX.
+<!-- # Part 2: LaTeX. -->
 
-1. Finish the Markdown tutorial: https://www.markdowntutorial.com/
-2. (Tossing for a head, C&B Example 1.5.4) Suppose we do an experiment that consists of tossing a coin until a head appears. Let $p=$ probability of a head on any given toss, and define a random variable $X=$ number of tosses required to get a head. **Use Rmarkdown to type the the solution.**
+<!-- 1. Finish the Markdown tutorial: https://www.markdowntutorial.com/ -->
+<!-- 2. (Tossing for a head, C&B Example 1.5.4) Suppose we do an experiment that consists of tossing a coin until a head appears. Let $p=$ probability of a head on any given toss, and define a random variable $X=$ number of tosses required to get a head. **Use Rmarkdown to type the the solution.** -->
 
-  (i) What is $P(X = x)$?
-  (ii) For any positive integer $x$, calculate $P(X \leq x)$. 
-  (iii) Calculate the cdf $F_{X}(x)$. 
-  (iv) What is $\lim _{x \rightarrow \infty} F_{X}(x)$? 
-  
-**Solution**:
+<!--   (i) What is $P(X = x)$? -->
+<!--   (ii) For any positive integer $x$, calculate $P(X \leq x)$.  -->
+<!--   (iii) Calculate the cdf $F_{X}(x)$.  -->
+<!--   (iv) What is $\lim _{x \rightarrow \infty} F_{X}(x)$?  -->
 
-(i) 
-$$
-P(X=x)=(1-p)^{x-1} p
-$$
+<!-- **Solution**: -->
 
-(ii) 
-$$
-P(X \leq x)=\sum_{i=1}^{x} P(X=i)=\sum_{i=1}^{x}(1-p)^{i-1} p
-$$
+<!-- (i)  -->
+<!-- $$ -->
+<!-- P(X=x)=(1-p)^{x-1} p -->
+<!-- $$ -->
 
-(iii)
-$$
-\begin{aligned}
-F_{X}(x) &=P(X \leq x) \\
-&=\frac{1-(1-p)^{x}}{1-(1-p)} p \\
-&=1-(1-p)^{x}, \quad x=1,2, \ldots .
-\end{aligned}
-$$
+<!-- (ii)  -->
+<!-- $$ -->
+<!-- P(X \leq x)=\sum_{i=1}^{x} P(X=i)=\sum_{i=1}^{x}(1-p)^{i-1} p -->
+<!-- $$ -->
 
-(iv)
-$$
-\lim _{x \rightarrow \infty} F_{X}(x)=\lim _{x \rightarrow \infty} 1-(1-p)^{x}=1
-$$
+<!-- (iii) -->
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- F_{X}(x) &=P(X \leq x) \\ -->
+<!-- &=\frac{1-(1-p)^{x}}{1-(1-p)} p \\ -->
+<!-- &=1-(1-p)^{x}, \quad x=1,2, \ldots . -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+
+<!-- (iv) -->
+<!-- $$ -->
+<!-- \lim _{x \rightarrow \infty} F_{X}(x)=\lim _{x \rightarrow \infty} 1-(1-p)^{x}=1 -->
+<!-- $$ -->

@@ -37,7 +37,7 @@ LaTeX, tidyverse
 
 - Exercises: [pdf](Computing/2025/Exercises/ex2.pdf), [Rmd](Computing/2025/Exercises/ex2.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol2.pdf), [Rmd](Computing/2025/Solutions/sol2.Rmd) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol2.pdf), [Rmd](Computing/2025/Solutions/sol2.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90) -->
 
