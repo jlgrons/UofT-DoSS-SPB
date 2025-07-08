@@ -31,11 +31,11 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 LaTeX, tidyverse
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod2.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod2.pdf)
 
-<!-- - Data: [txt](Computing/2025/Slides/mtcars.txt) -->
+- Data: [txt](Computing/2025/Slides/mtcars.txt)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex2.pdf), [Rmd](Computing/2025/Exercises/ex2.Rmd) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex2.pdf), [Rmd](Computing/2025/Exercises/ex2.Rmd)
 
 <!-- - Solutions: [pdf](Computing/2025/Solutions/sol2.pdf), [Rmd](Computing/2025/Solutions/sol2.Rmd) -->
 
