@@ -36,6 +36,7 @@ Markdown is appealing for formatting, e.g. headings, bold text, text with codes,
 "R for Data Science: Import, Tidy, Transform, Visualize, and Model Data" by Hadley Wickham.  
 
 ![](r4data.png){height=50%}
+
 # Data import
 
 \tiny
