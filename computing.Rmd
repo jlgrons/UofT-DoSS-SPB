@@ -50,9 +50,11 @@ R style guide
 
 ggplot2
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod3.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod3.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex3.pdf), [Rmd](Computing/2025/Exercises/ex3.Rmd) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex3.pdf), [Rmd](Computing/2025/Exercises/ex3.Rmd)
+
+- Data: [csv](Computing/2025/Exercises/Data/Bus_Breakdown_and_Delays.csv)
 
 <!-- - Solutions: [pdf](Computing/2025/Solutions/sol3.pdf), [Rmd](Computing/2025/Solutions/sol3.Rmd) -->
 
