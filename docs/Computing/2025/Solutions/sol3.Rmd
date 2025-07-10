@@ -1,7 +1,7 @@
 ---
 title: 'Solution 3: Graphing'
-author: "Yaqi Shi"
-date: "07/12/2024"
+author: "Jianhui Gao"
+date: \today
 output: pdf_document
 ---
 
@@ -65,15 +65,18 @@ bus.delay$duration <- as.numeric(gsub("([0-9]{1,2}).*$", "\\1", bus.delay$How_Lo
 2. Plot the boxplot of duration. 
 
 ```{r}
-ggplot(data = bus.delay) + 
-  geom_boxplot(aes(x = duration)) + theme_classic()
+bus.delay %>%
+  ggplot(aes(y = duration)) + 
+  geom_boxplot()
 ```
 
 3. Plot a histogram of durations and group by "Boro".
 
 ```{r}
-ggplot(data = bus.delay) + 
-  geom_histogram(aes(x = duration, y = ..density.., fill = Boro), 
+bus.delay %>%
+  ggplot() + 
+  geom_histogram(aes(x = duration, 
+                     fill = Boro), 
                  position = 'dodge', 
                  bins = 3)  
 ```
@@ -81,9 +84,13 @@ ggplot(data = bus.delay) +
 4. Plot the density of duration, group by "occur_weekday" and use facet to stratify on" "Boro".
 
 ```{r}
-ggplot(data = bus.delay) + 
-  geom_density(aes(x = duration, color = occur_weekday), bw = .08) + 
-  facet_wrap(~Boro, ncol = 4) 
+bus.delay %>%
+  ggplot() +
+  geom_density(aes(x = duration,
+                   color = occur_weekday,
+                   fill = occur_weekday),
+               bw = 0.08) +
+  facet_wrap(~Boro, ncol = 4)
 ```
 
 5. Print top five Boro by mean delay.
@@ -91,21 +98,11 @@ ggplot(data = bus.delay) +
 ```{r}
 bus.delay %>% 
   group_by(Boro) %>% 
-  summarise(mean_delay = mean(duration), n_obs = n())
+  summarise(mean_delay = mean(duration, 
+                              na.rm = TRUE)) %>%
+  arrange(desc(mean_delay)) %>%
+  head(5)
 ```
 
-6. Look by week to see if there's any seasonality. i.e. create a plot that group by "Boro" and use facet to stratify by "Boro". 
-
-```{r}
-bus.delay %>% 
-  filter(duration > 0) %>% 
-  mutate(week = week(occur_date)) %>% 
-  group_by(week, Boro) %>% 
-  summarise(mean_delay = mean(duration)) %>% 
-  ggplot(aes(week, mean_delay, color = Boro)) + 
-  geom_point() + 
-  geom_smooth() + 
-  facet_wrap(~Boro, ncol = 4)
-```
 
 
