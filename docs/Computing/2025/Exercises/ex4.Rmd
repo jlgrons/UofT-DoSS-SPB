@@ -1,6 +1,6 @@
 ---
 title: 'Exercise 4: Statistical inference (I)'
-author: 
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---
