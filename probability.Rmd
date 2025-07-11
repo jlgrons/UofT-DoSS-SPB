@@ -31,6 +31,7 @@ Material will be added here as the course progresses.
 
  - Problem Set Solutions: [Module 2 Solution](Probability/2025/Solutions/Module_2_Solutions.pdf)  
 
+- Recordings: [Link](https://play.library.utoronto.ca/watch/36952b9ebbb8c8014e51e81fb7e9103f)
 
 ### Module 3: Common Random Variables
 
