@@ -65,11 +65,11 @@ ggplot2
 
 Bias, Consistency, and MSE
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod4.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod4.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex4.pdf), [Rmd](Computing/2025/Exercises/ex4.Rmd) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex4.pdf), [Rmd](Computing/2025/Exercises/ex4.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol4.pdf), [Rmd](Computing/2025/Solutions/sol4.Rmd) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol4.pdf), [Rmd](Computing/2025/Solutions/sol4.Rmd)
  
 <!-- - Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f) -->
 

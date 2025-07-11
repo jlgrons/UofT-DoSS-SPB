@@ -1,0 +1,407 @@
+---
+title: 'Module 4: Statistical inference (I)'
+author: "Jianhui Gao"
+date: \today
+output:
+  beamer_presentation:
+    colortheme: dolphin
+    theme: Madrid
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Outline
+
+This module we will review
+
+-   Basics of probability
+-   Fundamental concepts in inference
+
+# Probability distributions
+
+-   In statistics, we try to draw conclusions about a larger population
+    from a sample of observations.
+-   We use mathematical models to capture probabilistic behavior of a
+    population.
+-   This behavior is modeled using probability distributions.
+
+# Density/Distribution functions
+
+::: block
+### Definition (Cumulative Distribution Function)
+
+$$
+F_{X}(x)=P(X \leq x) \quad \forall x \in \mathbb{R}
+$$
+:::
+
+# Density/Distribution functions (cont'd)
+
+::: block
+### Definition (Probability Mass Function)
+
+For a discrete $R V$, the probability mass function (PMF) is: $$
+f_{X}(x)=P(X=x) \quad  \forall x \in \mathbb{R}
+$$
+:::
+
+::: block
+### Definition (Probability Density Function)
+
+For a continuous $\mathrm{RV}$, the probability density function (PDF)
+is: $$
+f_{X}(x)=\left.\frac{\partial}{\partial t} F(t)\right|_{t=x}
+$$ So
+$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t \forall x \in \mathbb{R}$.
+:::
+
+Note that $f_{X} \geq 0$ for $\forall x$, and thus $F_{X}$ is an
+increasing function.
+
+# Expectation and Variance
+
+::: block
+### Definition (Expectation)
+
+A measure of central tendancy (a weighted average of the values of $X$)
+$$
+\begin{aligned}
+&E[X]=\sum_{x \in S} x P(X=x) \text{ for discrete RV taking values from } S \\
+&E[X]=\int_{-\infty}^{\infty} x f_{X}(x) d x \text { for continuous RV} 
+\end{aligned}
+$$
+:::
+
+::: block
+### Definition (Variance)
+
+A measure of the spread of a distribution $$
+\begin{aligned}
+&\operatorname{Var}(X)=\sum_{x \in S}(x-E[X])^{2} P(X=x) \text { for discrete RV } \\
+&\operatorname{Var}(X)=\int_{-\infty}^{\infty}(x-E[X])^{2} f_{X}(x) d x \text { for continuous RV }
+\end{aligned}
+$$
+:::
+
+# Discreate random variable
+
+A discrete random variable has a countable number of possible values.
+
+# Bernoulli and Binomial random variable
+
+-   Consider the event of flipping a (possibly unfair) coin.
+-   $Y \in \{0, 1\}$ represents success and failure.
+-   Suppose we only flip the coin once,
+    -   We can express $P(Y=1) = p$ and $P(Y=0) = 1-p$
+-   Bernoulli distribution $$
+    P(Y=y)=p^{y}(1-p)^{1-y} \quad \text { for } \quad y=0,1
+    $$
+-   If we flip the coin $n$ times,
+-   Binomial distribution $$
+    P(Y=y)=\left(\begin{array}{c}
+    n \\
+    y
+    \end{array}\right) p^{y}(1-p)^{n-y} \quad \text { for } \quad y=0,1, \ldots, n
+    $$
+
+# Binomial distributions with different values of $n$ and $p$
+
+If $Y \sim \operatorname{Binomial}(n, p)$, then $\mathrm{E}(Y)=n p$ and
+$\operatorname{SD}(Y)=\sqrt{n p(1-p)}$.
+
+```{r, multBin, fig.align="center",out.width="70%",fig.cap= 'Binomial distributions with different values of $n$ and $p$.', echo=FALSE, warning=FALSE, message=FALSE}
+library(gridExtra)  
+library(tidyverse)
+
+plotBinomial=function(n,p){
+  y1 <- 0:n  # possible values
+  prob <- dbinom(y1, n, p)  # P(Y=y)
+  BBGdf <- data.frame(y1, prob)
+  ggplot(data = BBGdf, aes(x = y1, xend = y1, y = 0, yend = prob)) + 
+    geom_segment() + 
+    xlab("number of successes") + ylab("probability") + labs(title=paste("n = ", n, " p = ", p))
+}
+Binom1 <- plotBinomial(10,.25) + xlim(0, 10) + scale_y_continuous(breaks = c(0.00, 0.05, 0.10, 0.15, 0.20, 0.25))
+Binom2 <- plotBinomial(20,.2) + xlim(0, 15)
+Binom3 <- plotBinomial(10,.5) + xlim(0, 10)
+Binom4 <- plotBinomial(50,.2) + xlim(0, 25)
+grid.arrange(Binom1,Binom2,Binom3,Binom4,ncol=2)
+```
+
+# How to generate in R?
+
+All common distributions have four functions in R:
+
+-   Density
+
+    `dbinom(x, size, prob)`
+
+-   Distribution function
+
+    `pbinom(q, size, prob)`
+
+-   Quantile function
+
+    `qbinom(p, size, prob)`
+
+-   Random generaation
+
+    `rbinom(n, size, prob)`
+
+Not sure? Using `?` with any of the four functions, e.g. `?qbinom`
+
+# Example of binomial distribution computing
+
+**Question:** While taking a multiple choice test, a student encountered
+10 problems where she ended up completely guessing, randomly selecting
+one of the four options. What is the chance that she got exactly 2 of
+the 10 correct?
+
+\pause
+
+**Answer:** Knowing that the student randomly selected her answers, we
+assume she has a $25 \%$ chance of a correct response.
+$$P(Y=2)=\left(\begin{array}{c}10 \\ 2\end{array}\right)(.25)^{2}(.75)^{8}=0.282$$
+
+\pause
+
+**R computing:**
+
+```{r}
+dbinom(2, size = 10, prob = .25)
+```
+
+# Continuous random variable
+
+A continuous random variable can take on an uncountably infinite number
+of values. Given a pdf $f(y)$, $$
+P(a \leq Y \leq b)=\int_{a}^{b} f(y) d y
+$$ Properties:
+
+-   $\int_{-\infty}^{\infty} f(y)dy = 1$.\
+-   For any value $y$, $P(Y = y) = \int_y^y f(y)dy = 0$.
+    $P(y < Y) = P(y \le Y)$.
+
+
+# Example of Continuous Distribution (Normal)
+
+-   The normal distribution is a very important distribution because:
+    -   A lot of things look normal
+    -   Analytically tractable
+    -   Central limit theorem
+-   $\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)$
+-   Characterized by mean, $\mu$, and variance, $\sigma^2$.
+
+
+
+```{r, multNorm, fig.align="center",out.width="50%",fig.cap= '', echo=FALSE, warning=FALSE, message=FALSE}
+#normalPlots
+x <- seq(-10, 20, by = 0.01)
+norm1 <- dnorm(x, -5, 2)
+norm2 <- dnorm(x, 0 , 1)
+norm3 <- dnorm(x, 5, 5)
+norm4 <- dnorm(x, 0, 3)
+normDf <- tibble(x, norm1, norm2, norm3, norm4) %>%
+  rename(`N(-5, 2)` = norm1,
+         `N(0, 1)` = norm2,
+         `N(10, 5)` = norm3,
+         `N(0, 3)` = norm4) %>%
+  gather(2:5, key = "Distribution", value = "value") %>%
+  mutate(Distribution = factor(Distribution, 
+    levels = c("N(10, 5)","N(0, 3)", "N(0, 1)", "N(-5, 2)")))
+ggplot(data = normDf, 
+       aes(x = x, y = value, color = Distribution)) +
+  geom_line(aes(linetype = Distribution)) +
+  xlab("values") + ylab("density") + 
+  labs(title = "Normal Distributions")
+```
+
+# How to Generate Samples from Normal Distribution
+
+The following commands are for a normal random variable with mean $\mu$
+and variance $\sigma^2$, that is, $X \sim N(\mu, \sigma^2)$,
+
+-   To calculate the probability density function at a value x,
+    `dnorm(x,mu,sigma)`
+
+-    To calculate the cumulative distribution function at a value x,
+    `pnorm(x,mu,sigma)`
+
+-    To generate a size m sample from the normal distribution,
+    `rnorm(m,mu,sigma)`
+
+-   Note that the third argument is the **square root of the variance**,
+    this is because the R function for normal distribution asks for the
+    standard deviation, which is defined as the square root of the
+    variance
+
+# Some probability distributions in R
+
+Continuous
+
+-   Normal (`?rnorm`)
+-   Uniform (`?runif`)
+-   Beta (`?rbeta`)
+-   Chi-sq (`?rchisq`)
+-   Exponential (`?rexp`)
+-   t (`rt`)
+-   F (`?rf`)
+-   Logistic (`?rlogis`)
+-   Lognormal (`?rlnorm`)
+
+Discrete
+
+-   Poisson (`?rpois`)
+-   Binomial (`?rbinom`)
+-   Geometric (`?rgeom`)
+-   Negative Binomial (`?rnbinom`)
+-   Multinomial (`?rmultinom`)
+
+# Empirical vs. Theoretical CDF
+
+In statistics, an empirical distribution function is the distribution
+function associated with the empirical measure of a sample.
+
+-   Theoretical CDF $$
+    F_{X}(k)=\operatorname{Pr}(X \leq k)
+    $$
+
+-   Empirical CDF $$
+    \hat{F}_{n}(k)=\frac{\text { number of elements in the sample } \leq k}{n}=\frac{1}{n} \sum_{i=1}^{n} I_{X_{i} \leq k}
+    $$ where $X_{1}, \ldots, X_{n}$ make up some random sample from the
+    underlying distribution.
+
+# Probability and inference
+
+![](prob_stats.png)
+
+\pause
+
+-   Probability: Given a data generating process, what are the
+    properties of the outcomes?
+
+-   Statistical inference: Given the outcomes, what can we say about the
+    process that generated the data?
+
+# Parametric vs. Nonparametric models
+
+-   Statistical model $\mathfrak{F}$: a set of distributions (or
+    densities or regression functions)
+
+\pause
+
+-   Parametric model: a set $\mathfrak{F}$ that can be parameterized by
+    a finite number of parameters $$
+    \mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}
+    $$ where $\theta$ is an unknown parameter (or vector of parameters)
+    that can take values in the parameter space $\Theta$.
+    -   e.g. Normal distribution, a 2-parameter model with density as
+        $f(x; \mu, \sigma)$
+
+\pause
+
+-   Nonparametric model: a set $\mathfrak{F}$ that cannot be
+    parameterized by a finite number of parameters
+    -   e.g. $\mathfrak{F}_{\mathrm{ALL}}=\left\{\right.$ all
+        $\left.\mathrm{CDF}^{\prime} s\right\}$ is nonparametric.
+
+# Frequentist and Bayesian
+
+-   Frequentist: statistical methods with guaranteed frequency behavior
+
+-   Bayesian: statistical methods for using data to update beliefs
+
+
+# Point estimation
+
+-   Providing a single "best guess" of some quantity of interest
+-   Notations
+    -   Parameter $\theta$: fixed, unknown quantity
+    -   Point estimator $\hat{\theta}$: depends on data, random variable
+
+\pause
+
+::: block
+### Definition (Point estimator)
+
+Let $X_{1}, \ldots, X_{n}$ be $n$ IID data points from some distribution
+$F$. A point estimator $\hat{\theta}_{n}$ of a parameter $\theta$ is
+some function of $X_{1}, \ldots, X_{n}$ : $$
+\widehat{\theta}_{n}=g\left(X_{1}, \ldots, X_{n}\right)
+$$
+:::
+
+-   What is a good point estimate?
+
+# MSE
+
+-   Definition: $$
+    \mathrm{MSE}=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\theta\right)^{2}
+    $$
+
+-   No uniformly best estimator in terms of MSE
+
+-   It is NOT possible to have an estimator that is uniformly the best.
+
+# Bias and Variance
+
+-   Bias $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta
+    $$
+-   Variance $$
+    \textrm{Var}\left(\widehat{\theta}_{n}\right) = \mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\mathbb{E}\theta\right)^{2}
+    $$
+-   Theorem
+
+$$
+MSE = bias^2 + Var
+$$ 
+
+
+# Unbiasedness
+
+-   Definition $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta = 0
+    $$
+
+-   Unbiasedness is a small sample (finite sample) property
+
+-   An unbiased estimator may not exist
+
+-   An unbiased estimator is not necessarily a good estimator
+
+# Consistency
+
+-   Definition $$
+    \widehat{\theta}_{n} \stackrel{\mathrm{P}}{\longrightarrow} \theta
+    $$
+-   It is possible to be unbiased but not consistent.
+-   It is possible to be consistent but not unbiased.
+
+# Asypototic unbiasedness
+
+-   Definition $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta \to 0, \text{ as } n \to\infty
+    $$
+
+-   It is possible to be asypototically unbiased but not consistent.
+
+-   It is possible to be consistent but NOT asymptotically unbiased.
+
+-   Sufficient conditions: $MSE \to 0$.
+
+# Resources
+
+This tutorial is based on
+
+-   Havard Biostatistics Summer Pre Course
+    [[link]](https://isabelfulcher.github.io/methodsprep/)
+
+-   "Beyond Multiple Linear Regression" by Paul Roback and Julie Legler
+    [[link]](https://bookdown.org/roback/bookdown-BeyondMLR/)
+
