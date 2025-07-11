@@ -1,13 +1,14 @@
 ---
 title: 'Solution 4: Statistical inference (I)'
-author: "Jianhui Gao"
-date: \today
+author: "Yaqi Shi"
+date: "07/16/2024"
 output: pdf_document
 ---
 
 # Part 1: Probability distributions
 
-Question a: A contestant on a game show needs to answer 10 questions correctly to win the jackpot. However, if they get 4 incorrect answers, they are kicked off the show. Suppose one contestant consistently has a 80\% chance of correctly responding to any question. 
+\begin{enumerate}
+\item A contestant on a game show needs to answer 10 questions correctly to win the jackpot. However, if they get 4 incorrect answers, they are kicked off the show. Suppose one contestant consistently has a 80\% chance of correctly responding to any question. 
 
 \begin{enumerate}
 \item What is the probability distribution?
@@ -15,31 +16,7 @@ Question a: A contestant on a game show needs to answer 10 questions correctly t
 \item Write out the R code to calculate (b).
 \end{enumerate}
 
-**Solution** 
-
-1.  The experiment is modeled by the \textbf{Negative Binomial Distribution}, as it counts the number of failures ($k$) before a specified number of successes ($r$) occurs.
-    \begin{itemize}
-        \item Success: Correct answer, $p = 0.8$
-        \item Failure: Incorrect answer, $q = 1-p = 0.2$
-        \item Required successes: $r=10$
-        \item Losing condition: $k=4$ failures
-    \end{itemize}
-2. The contestant wins if she achieves $r=10$ successes before getting 4 failures. This means the total number of failures $k$ must be in the set $\{0, 1, 2, 3\}$. The probability mass function is $P(X=k) = \binom{k+r-1}{r-1} p^r q^k$. The total probability of winning is the sum over the allowed values of $k$:
-    $$ P(\text{Win}) = \sum_{k=0}^{3} \binom{k+10-1}{10-1} (0.8)^{10} (0.2)^k $$
-$$ P(\text{Win}) = \binom{9}{9}(0.8)^{10}(0.2)^0 + \binom{10}{9}(0.8)^{10}(0.2)^1 + \binom{11}{9}(0.8)^{10}(0.2)^2 + \binom{12}{9}(0.8)^{10}(0.2)^3 $$
-    $$ P(\text{Win}) \approx 0.1074 + 0.2147 + 0.2362 + 0.1890 \approx 0.7473 $$
-
-3. The calculation can be performed concisely using R's cumulative negative binomial function, \texttt{pnbinom}.
-
-\begin{verbatim}
-# Calculates the probability of 0, 1, 2, or 3 failures (q)
-# before 10 successes (size) are achieved.
-pnbinom(q = 3, size = 10, prob = 0.8)
-
-# Output: [1] 0.747323
-\end{verbatim}
-
-Question b: A small town’s police department issues 5 speeding tickets per month on average. 
+\item A small town’s police department issues 5 speeding tickets per month on average. 
 
 \begin{enumerate}
 \item Using a Poisson random variable, what is the likelihood that the police department issues 3 or fewer tickets in one month? 
@@ -47,11 +24,40 @@ Question b: A small town’s police department issues 5 speeding tickets per mon
 \item Write out the R code to calculate (a), (b).
 \end{enumerate}
 
+\end{enumerate}
+
 **Solution** 
 
-1. First, we note that here $P(Y \leq 3)=P(Y=0)+P(Y=1)+\cdots+P(Y=3)$.
-Applying the probability mass function for a Poisson distribution with $\lambda=5$, we find that
+1. Negative Binomial distribution.
 
+Letting $Y$ represent the number of incorrect responses, and setting $r=10$, we want
+$$
+\begin{aligned}
+P(Y<4)=& P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3) \\
+=&\left(\begin{array}{c}
+9 \\
+9
+\end{array}\right)(1-0.8)^{0}(0.8)^{10}+\left(\begin{array}{c}
+10 \\
+9
+\end{array}\right)(1-0.8)^{1}(0.8)^{10} \\
+&+\left(\begin{array}{c}
+11 \\
+9
+\end{array}\right)(1-0.8)^{2}(0.8)^{10} + \left(\begin{array}{c}
+12 \\
+9
+\end{array}\right)(1-0.8)^{3}(0.8)^{10}\\
+=& 0.97
+\end{aligned}
+$$
+
+```{r}
+sum(dnbinom(0:3, size = 10, prob = .8))
+```
+
+2. First, we note that here $P(Y \leq 3)=P(Y=0)+P(Y=1)+\cdots+P(Y=3)$.
+Applying the probability mass function for a Poisson distribution with $\lambda=5$, we find that
 $$
 \begin{aligned}
 P(Y \leq 3) &=P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3) \\
@@ -61,12 +67,10 @@ P(Y \leq 3) &=P(Y=0)+P(Y=1)+P(Y=2)+P(Y=3) \\
 $$
 
 ```{r}
-# q is the number of events (3 or fewer).
-# lambda is the average rate of events per interval.
-ppois(q = 3, lambda = 5)
+sum(dpois(0:3, lambda = 5))   # or use ppois(3, 5)
 ```
 
-2. We know the town's police issue 5 tickets per month. For simplicity's sake, assume each month has 30 days. Then, the town issues $\frac{1}{6}$ tickets per day. That is $\lambda=\frac{1}{6}$, and the average wait time between tickets is $\frac{1}{1 / 6}=6$ days. Therefore,
+We know the town's police issue 5 tickets per month. For simplicity's sake, assume each month has 30 days. Then, the town issues $\frac{1}{6}$ tickets per day. That is $\lambda=\frac{1}{6}$, and the average wait time between tickets is $\frac{1}{1 / 6}=6$ days. Therefore,
 $$
 P(Y<10)=\int_{0}^{10} \frac{1}{6} e^{-\frac{1}{6} y} d y=0.81
 $$
