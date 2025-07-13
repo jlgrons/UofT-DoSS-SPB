@@ -24,7 +24,7 @@ Lecture materials will be updated prior to the start of the lecture. There will 
 
 - Solutions: [pdf](Computing/2025/Solutions/sol1.pdf), [Rmd](Computing/2025/Solutions/sol1.Rmd)
 
-<!-- - Recording: [Link](https://play.library.utoronto.ca/embed/2512caddaa6f822e94ba7afc1cecba9b) -->
+- Recording: [Link](https://play.library.utoronto.ca/watch/dce3cab4acffac053266192e63141672)
 
 
 ### Module 2: Data wrangling (I)
@@ -39,7 +39,7 @@ LaTeX, tidyverse
 
 - Solutions: [pdf](Computing/2025/Solutions/sol2.pdf), [Rmd](Computing/2025/Solutions/sol2.Rmd)
 
-<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/8cff1267e03eabbdfb8765f07e7d4e90) -->
+- Recording: [Link](https://play.library.utoronto.ca/watch/3f6b0ac20d0ac47c721102f147fc76c3)
 
 
 
@@ -56,9 +56,9 @@ ggplot2
 
 - Data: [csv](Computing/2025/Exercises/Data/Bus_Breakdown_and_Delays.csv)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol3.pdf), [Rmd](Computing/2025/Solutions/sol3.Rmd) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol3.pdf), [Rmd](Computing/2025/Solutions/sol3.Rmd)
 
-<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/25639982c061c5bad7033589da27df40) -->
+- Recording: [Link](https://play.library.utoronto.ca/watch/1deb5821da55881e878a0198abd208f4)
 
  
 ### Module 4: Statistical inference (I)
