@@ -1,0 +1,37 @@
+---
+title: "Exercise 5: Statistical inference (II)"
+author: Jianhui Gao
+date: \today
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# EM and Newton-Raphson implementation
+
+The $\mathrm{ABO}$-gene or $\mathrm{ABO}$-locus is on chromosome 9. It has 3 alleles (antigens) $(A, B, O$) and it determines 4 blood type $(A, B, A B, O)$.
+
+![](abo.png){width=30% }
+
+We have a large random sample obtained from Berlin (Bernstein 1925, Sham's book page 44):
+
+- $n_{A}=9123$ blood type $A$
+- $n_{B}=2987$ blood type $B$
+- $n_{A B}=1269$ blood type $A B$
+- $n_{O}=7725$ blood type O
+
+For instance, $n_{A}=9123=n_{A A}+n_{A O}:$ Among 9123 blood type $A$ individuals, some have genotype $A A$ and the others have genotype $A O$. 
+
+Our interest is to estimate the allele frequencies of alleles A, B, and O. i.e. $p=$ freq $($allele $A)$, $q=$ freq $($allele $B)$, $1-p-q=$ freq $($allele $O)$.
+
+1. Write out the log-likelihood $L(p,q)$.
+
+2. Is there a closed-form solution of this log-likelihood function?
+
+3. Formulate the problem as a missing data problem and use the Newton-Raphson algorithm to find the MLEs, $\hat{p}$ and $\hat{q}$, that maximize the log-likelihood, $\ln L(p, q)$.
+
+4. (Advanced) Use the EM algorithm to find the Maximum Likelihood Estimates (MLEs) of parameters, $\hat{p}$ and $\hat{q}$. 
+
+Hint: Lei Sun's STA2080 Modern genetic statistics notes ([link](https://github.com/LeiSunUofT/TeachingStatGene/blob/main/statgene-module-3.2-EM-algorithm.pdf)).

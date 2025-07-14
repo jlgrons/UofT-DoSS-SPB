@@ -77,11 +77,13 @@ Bias, Consistency, and MSE
 
 MLE, Numerical Methods
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod5.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod5.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex5.pdf) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex5.pdf),
+[Rmd](Computing/2025/Exercises/ex5.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol5.pdf) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol5.pdf),
+[Rmd](Computing/2025/Solutions/sol5.Rmd)
 
 <!-- - Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400) -->
 
