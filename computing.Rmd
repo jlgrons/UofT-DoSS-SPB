@@ -92,11 +92,11 @@ MLE, Numerical Methods
 
 Wald, Score, and Likelihood Ratio Test
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod6.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod6.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex6.pdf) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex6.pdf), [Rmd](Computing/2025/Exercises/ex6.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2022/Solutions/sol6.pdf) -->
+- Solutions: [pdf](Computing/2022/Solutions/sol6.pdf), [Rmd](Computing/2025/Solutions/sol6.Rmd)
 
 <!-- - Recording：[Link](https://play.library.utoronto.ca/watch/47239f4d003313eddd2b843bff3a7760) -->
 
