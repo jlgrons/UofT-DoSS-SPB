@@ -45,13 +45,13 @@ Material will be added here as the course progresses.
 
  - Slides: [Module 4](Probability/2025/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2025/Slides/Module_4_annotated.pdf)  
 
-<!-- - Problem Set Solutions: [Module 4 Solution](Probability/2025/Solutions/Module_4_Solutions.pdf)  -->
+ - Problem Set Solutions: [Module 4 Solution](Probability/2025/Solutions/Module_4_Solutions.pdf)  
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3) -->
 
 ### Module 5: Expectation
 
-<!-- - Slides: [Module 5](Probability/2025/Slides/Module_5.pdf); [Module 5 Annotated](Probability/2025/Slides/Module_5_annotated.pdf)  -->
+- Slides: [Module 5](Probability/2025/Slides/Module_5.pdf); <!-- [Module 5 Annotated](Probability/2025/Slides/Module_5_annotated.pdf)  -->
 
 <!-- - Problem Set Solutions: [Module 5 Solution](Probability/2025/Solutions/Module_5_Solutions.pdf)  -->
 
