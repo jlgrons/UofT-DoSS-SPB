@@ -171,9 +171,20 @@ Divide the numerator and denominator by $W$:
 $$ \frac{W}{\lambda} = \frac{1}{1 + \frac{o_p\left((\hat{\theta} - \theta_0)^2\right)}{W}} $$
 We examine the remainder term in the denominator:
 $$ \frac{o_p\left((\hat{\theta} - \theta_0)^2\right)}{W} = \frac{o_p\left((\hat{\theta} - \theta_0)^2\right)}{(\hat{\theta} - \theta_0)^2\left(-\ell''(\hat{\theta})\right)} $$
+
 By standard MLE theory, $-\frac{1}{n}\ell''(\hat{\theta}) \stackrel{P}{\to} I(\theta_0)$, where $I(\theta_0)$ is a positive constant. This implies $-\ell''(\hat{\theta}) = O_p(n)$. Therefore, the term simplifies to:
 $$ \frac{o_p(1)}{-\ell''(\hat{\theta})} = \frac{o_p(1)}{O_p(n)} \stackrel{P}{\longrightarrow} 0 $$
 The remainder term vanishes as $n \to \infty$. The denominator of our ratio converges to 1:
 $$ 1 + \frac{o_p\left((\hat{\theta} - \theta_0)^2\right)}{W} \stackrel{P}{\longrightarrow} 1 + 0 = 1 $$
 This explicitly shows that:
 $$ \frac{W}{\lambda} \stackrel{\mathrm{P}}{\longrightarrow} 1 $$
+
+### Justification: Convergence to Fisher Information
+The key result that $-\frac{1}{n}\ell''(\hat{\theta}) \stackrel{P}{\to} I(\theta_0)$ is established in two main steps:
+\begin{enumerate}
+\item \textbf{Law of Large Numbers:} The term $-\frac{1}{n}\ell''(\theta_0)$, evaluated at the true parameter $\theta_0$, is an average of i.i.d. random variables. By the Law of Large Numbers, this average converges in probability to its expectation, which is the definition of the Fisher Information, $I(\theta_0)$.
+$$ -\frac{1}{n}\ell''(\theta_0) = -\frac{1}{n}\sum_{i=1}^{n} \frac{\partial^2}{\partial \theta^2}\log f(X_i; \theta_0) \stackrel{P}{\longrightarrow} -E\left[ \frac{\partial^2}{\partial \theta^2}\log f(X; \theta_0) \right] = I(\theta_0) $$
+\item \textbf{Consistency of the MLE:} The MLE is a consistent estimator, meaning $\hat{\theta} \stackrel{P}{\to} \theta_0$. Because the function is continuous, the \textbf{Continuous Mapping Theorem} allows us to substitute the consistent estimator $\hat{\theta}$ for the true parameter $\theta_0$ in the limit, and the convergence result still holds.
+\end{enumerate}
+This confirms that $-\frac{1}{n}\ell''(\hat{\theta}) \stackrel{P}{\to} I(\theta_0)$, which is a positive constant.
+
