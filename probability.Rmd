@@ -39,7 +39,7 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 3 Solution](Probability/2025/Solutions/Module_3_Solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2426b46beafb137d224e6d3840ae3882) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/d5b43bb0d2b66c8d443efba0dc32bba2) 
 
 ### Module 4: Distribution
 
@@ -47,11 +47,11 @@ Material will be added here as the course progresses.
 
  - Problem Set Solutions: [Module 4 Solution](Probability/2025/Solutions/Module_4_Solutions.pdf)  
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/085888a992e6c006c22738fe7d8224d3) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/d8cbfb9b4cd4244228d42396b142276e)
 
 ### Module 5: Expectation
 
-- Slides: [Module 5](Probability/2025/Slides/Module_5.pdf); <!-- [Module 5 Annotated](Probability/2025/Slides/Module_5_annotated.pdf)  -->
+- Slides: [Module 5](Probability/2025/Slides/Module_5.pdf);  [Module 5 Annotated](Probability/2025/Slides/Module_5_annotated.pdf)  
 
 <!-- - Problem Set Solutions: [Module 5 Solution](Probability/2025/Solutions/Module_5_Solutions.pdf)  -->
 
