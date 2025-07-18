@@ -69,7 +69,7 @@ Material will be added here as the course progresses.
 ### Module 7: Stochastic Convergence
 
 
-<!-- - Slides: [Module 7](Probability/2025/Slides/Module_7.pdf);  -->
+- Slides: [Module 7](Probability/2025/Slides/Module_7.pdf); 
 <!-- [Module 7 Annotated](Probability/2025/Slides/Module_7_annotated.pdf)  -->
 
 <!-- - Problem Set Solutions: [Module 7 Solution](Probability/2025/Solutions/Module_7_Solutions.pdf)  -->
