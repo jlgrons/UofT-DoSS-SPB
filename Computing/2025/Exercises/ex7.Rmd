@@ -1,6 +1,6 @@
 ---
 title: "Module 7: Linear regression"
-author: "Yaqi Shi"
+author: "Jianhui Gao"
 date: \today
 output: pdf_document
 ---
@@ -30,8 +30,7 @@ head(birthwt)
 3. Extract the following: estimated coefficients, standard errors, variance-covariance matrix, and confidence intervals.
 4. Plot the regression line and interpret the intercept and slope
 5. Does the interpretation of the intercept make sense? How might we change this?
-6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Write out the regression function we may be interested in.
-7. Use OLS to calculate the coefficient estimates in this model.
-8. Interpret all the coefficient estimates.
-9. Print the results in Rmarkdown using kable().
+6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Use OLS to calculate the coefficient estimates in this model.
+7. Interpret all the coefficient estimates.
+8. Print the results in Rmarkdown using kable().
 

@@ -1,12 +1,15 @@
 ---
 title: "Module 7: Linear regression"
-author: "Yaqi Shi"
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+                      fig.width = 8, fig.height = 6, 
+                      fig.align = "center")
+
 ```
 
 # Linear regression in R
@@ -26,31 +29,32 @@ head(birthwt)
 ```
 
 1. Plot a scatterplot of birthweight (bwt) and mother's weight (lwt).
-2. Use OLS to fit the regression of birthweight on mother's weight.
-3. Extract the following: estimated coefficients, standard errors, variance-covariance matrix, and confidence intervals.
-4. Plot the regression line and interpret the intercept and slope
-5. Does the interpretation of the intercept make sense? How might we change this?
-6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Write out the regression function we may be interested in.
-7. Use OLS to calculate the coefficient estimates in this model.
-8. Interpret all the coefficient estimates.
-9. Print the results in Rmarkdown using kable().
 
 **Solution**
 
-1. 
 ```{r}
-ggplot(birthwt, aes(x = lwt, y = bwt)) + 
+birthwt %>%
+ggplot(aes(x = lwt, y = bwt)) + 
   geom_point() +
   labs(x = "Mother's weight (pounds)", y = "Birthweight (grams)")
 ```
 
-2. 
+
+2. Use OLS to fit the regression of birthweight on mother's weight.
+
+**Solution**
+
 ```{r}
 fit <- lm(bwt ~ lwt, data = birthwt)
 summary(fit)
 ```
 
-3. 
+
+3. Extract the following: estimated coefficients, standard errors, variance-covariance matrix, and confidence intervals.
+
+
+**Solution**
+
 ```{r}
 # Estimated coefficients.
 coefficients(fit)
@@ -65,36 +69,88 @@ vcov(fit)
 confint(fit)
 ```
 
-4. 
+
+4. Plot the regression line and interpret the intercept and slope
+
+**Solution**
+
 ```{r}
-ggplot(birthwt, aes(x = lwt, y = bwt)) +
-  geom_point(color = "grey") +
-  stat_smooth(method = "lm", col = "red", se = FALSE)
+birthwt %>%
+ggplot(aes(x = lwt, y = bwt)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red", se = FALSE)
 ```
 
-5. 
 ```{r}
-birthwt <- birthwt %>% mutate(lwt_star = lwt - mean(lwt)) 
+# Or we can manually add the regression line with geom_abline()
+birthwt %>%
+ggplot(aes(x = lwt, y = bwt)) +
+  geom_point() +
+  geom_abline(slope = fit$coefficients[2], 
+              intercept = fit$coefficients[1], col = "red")
 
+```
+
+5. Does the interpretation of the intercept make sense? How might we change this?
+
+**Solution**
+
+No, the intercept does not make sense because it implies that if a mother has zero pounds of weight, the expected birthweight is 2369 grams, which is not realistic.
+
+We can center the mother's weight variable to make the intercept more interpretable. This means we will subtract the mean of mother's weight from each observation of mother's weight.
+
+```{r}
+birthwt <- birthwt %>% mutate(lwt_star = lwt - mean(lwt))
 fit.new <- lm(bwt ~ lwt_star, data = birthwt)
 summary(fit.new)
 ```
 
-7. 
+
+6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Use OLS to calculate the coefficient estimates in this model.
+
+**Solution**
+
+```{r}
+# wrrong
+summary(lm(bwt ~ race + age + smoke, data = birthwt))
+```
+
 ```{r}
 fit2 <- lm(bwt ~ as.factor(race) + age + smoke, data = birthwt)
 summary(fit2)
 ```
 
-8. 
+7. Interpret all the coefficient estimates.
 
-- The estimated mean birthweight among infants born to mothers who are non-smokers are zero years old (weird!), and white is $3281.7$ grams.
-- The estimated mean birthweight among infants with black mothers is $444.07$ grams lower than the mean birthweight among infants with white mothers, holding all other variables constant
-- The estimated mean birthweight among infants with mothers in the "other" race category is $444.86$ grams lower than the mean birthweight among infants with white mothers, holding all other variables constant
-- The estimated change in mean birthweight corresponding to a one year change in mother's age is $2.134$ grams, holding all other variables constant
-- The estimated mean birthweight among infants with mothers that smoke is $426.09$ grams lower than the mean birthweight among infants with mothers that do not smoke, holding all other variables constant.
+**Solution**
 
-9. 
+- **`(Intercept)`: 3281.673 grams**
+    - This is the estimated average birth weight in grams for a baseline individual. The "baseline" here refers to a mother who is White (`race = 1`, as it's the reference level for the `as.factor(race)` variable), does not smoke (`smoke = 0`), and has an age of 0.
+    - **Important Note:** An age of 0 is not practically meaningful, so the intercept is often best understood as the starting point for the model's predictions, from which the effects of other variables are then added or subtracted.
+
+- **`as.factor(race)2`: -444.069 grams**
+    - This coefficient represents the estimated average difference in birth weight for infants born to **Black mothers (`race = 2`)** compared to **White mothers (`race = 1`)**, *holding all other variables (age and smoking status) constant*.
+    - Specifically, on average, infants born to Black mothers are estimated to weigh approximately 444.069 grams less than infants born to White mothers, given the same age and smoking status.
+    - The p-value of 0.004973 (which is less than 0.05) indicates that this difference is statistically significant.
+
+- **`as.factor(race)3`: -447.858 grams**
+    - This coefficient represents the estimated average difference in birth weight for infants born to **mothers of other races (`race = 3`)** compared to **White mothers (`race = 1`)**, *holding all other variables (age and smoking status) constant*.
+    - On average, infants born to mothers of other races are estimated to weigh approximately 447.858 grams less than infants born to White mothers, given the same age and smoking status.
+    - The p-value of 0.000226 (which is much less than 0.05) indicates that this difference is highly statistically significant.
+
+- **`age`: 2.134 grams**
+    - This coefficient represents the estimated average change in birth weight for every **one-year increase in the mother's age**, *holding all other variables (race and smoking status) constant*.
+    - Specifically, for each additional year in the mother's age, the infant's birth weight is estimated to increase by approximately 2.134 grams.
+    - The p-value of 0.827326 (which is much greater than 0.05) indicates that this effect is **not statistically significant**. This suggests that, in this model, the mother's age does not have a significant linear relationship with birth weight when considering race and smoking status.
+
+- **`smoke`: -426.093 grams**
+    - This coefficient represents the estimated average difference in birth weight for infants born to **mothers who smoke (`smoke = 1`)** compared to **mothers who do not smoke (`smoke = 0`)**, *holding all other variables (race and age) constant*.
+    - On average, infants born to mothers who smoke are estimated to weigh approximately 426.093 grams less than infants born to mothers who do not smoke, given the same race and age.
+    - The p-value of 0.000149 (which is much less than 0.05) indicates that this difference is highly statistically significant.
+
+
+9. Print the results in Rmarkdown using kable().
+
 ```{r}
 table <- data.frame(summary(fit2)$coef)
 row.names(table) <- c("Intercept","White","Black","Mother's age", "Smoker")

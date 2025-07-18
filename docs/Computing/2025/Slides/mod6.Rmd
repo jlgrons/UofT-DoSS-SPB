@@ -187,7 +187,7 @@ The canonical example is when $\widehat{\theta}$ is taken to be the MLE.
 
 If the hypothesis involves only a single parameter restriction, then the
 Wald statistic takes the following form: $$
-W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta}_0)} ,
+W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta})} ,
 $$ which under the null hypothesis follows an asymptotic
 $\chi^2_1$-distribution with one degree of freedom.
 
@@ -292,7 +292,7 @@ We can show that (when there is no misspecification)
 
 # Discussion
 
-$$W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta}_0)} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
+$$W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta})} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
 
 $$S_n = \frac{U(\theta_0)^2}{\widehat{I}\left(\theta_{0}\right)} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
 

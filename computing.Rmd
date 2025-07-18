@@ -71,7 +71,7 @@ Bias, Consistency, and MSE
 
 - Solutions: [pdf](Computing/2025/Solutions/sol4.pdf), [Rmd](Computing/2025/Solutions/sol4.Rmd)
  
-<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/658b73dd8cac7c748e00a43c3b211a2f) -->
+- Recording：[Link](https://play.library.utoronto.ca/watch/7d208939c2ce265bc45edde98a08f942)
 
 ### Module 5: Statistical inference (II)
 
@@ -85,7 +85,7 @@ MLE, Numerical Methods
 - Solutions: [pdf](Computing/2025/Solutions/sol5.pdf),
 [Rmd](Computing/2025/Solutions/sol5.Rmd)
 
-<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/882a1e7804b0d04ad98bd006fcfdd400) -->
+- Recording：[Link](https://play.library.utoronto.ca/watch/09a74130149f74927218e0d39d9b2e53)
 
 
 ### Module 6: Statistical inference (III)
@@ -103,11 +103,11 @@ Wald, Score, and Likelihood Ratio Test
 
 ### Module 7: Linear regression 
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod7.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod7.pdf) 
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex7.pdf), [Rmd](Computing/2025/Exercises/ex7.Rmd) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex7.pdf), [Rmd](Computing/2025/Exercises/ex7.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2025/Solutions/sol7.pdf), [Rmd](Computing/2025/Solutions/sol7.Rmd) -->
+- Solutions: [pdf](Computing/2025/Solutions/sol7.pdf), [Rmd](Computing/2025/Solutions/sol7.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/c886222f7d08bc3b40f628338eba617d) -->
 
