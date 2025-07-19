@@ -55,16 +55,16 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 5 Solution](Probability/2025/Solutions/Module_5_Solutions.pdf) 
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/77c3ed5a60757a2304037a05a62b69b6) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/fd45f4ed44ba6b25283d5d8eb558cff5)
 
 ### Module 6: Inequalities
 
 - Slides: [Module 6](Probability/2025/Slides/Module_6.pdf); 
 [Module 6 Annotated](Probability/2025/Slides/Module_6_annotated.pdf)
 
-<!-- - Problem Set Solutions: [Module 6 Solution](Probability/2025/Solutions/Module_6_Solutions.pdf)  -->
+- Problem Set Solutions: [Module 6 Solution](Probability/2025/Solutions/Module_6_Solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/8b60b049e6569ac950ee840844ade3c9) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/c994fda8908d9f3ac1836aa1dcd52e0f)
 
 ### Module 7: Stochastic Convergence
 
