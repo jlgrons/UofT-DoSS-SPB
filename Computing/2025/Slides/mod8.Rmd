@@ -1,0 +1,220 @@
+---
+title: "Module 8: Generalized linear regression"
+author: Jianhui Gao
+date: \today
+output:
+  beamer_presentation:
+    colortheme: dolphin
+    theme: Madrid
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Outline
+
+In this module, we will review generalized linear regression. 
+
+# Logistic regression
+
+- Each response is binary: $y_i = 1, 0$
+- Explanatory variables $x_{i}^{T}$ as usual
+- Model
+$$
+P\left(y_{i}=1 \mid x_{i}\right)=\frac{\exp \left(x_{i}^{\top} \beta\right)}{1+\exp \left(x_{i}^{\top} \beta\right)}
+$$
+
+
+# Generalized linear models (GLMs)
+
+- Generalized Linear Models extend the classical set-up to allow for a wider range of distributions
+
+- GLMs have three pieces
+  1. random component: $y_{i} \sim$ some distribution with $E\left[y_{i} | \mathbf{x}_{i}\right]=\mu_{i}$
+  2. systematic component: $\mathbf{x}_{i}^{T} \beta$
+  3. The link function that links the random and systematic components $g\left(u_{i}\right)=\mathbf{x}_{i}^{T} \beta$
+  
+- Distributions of $y_i$ comes from exponential family. 
+
+# Exponential family
+
+The random variable $\mathrm{Y}$ belongs to the exponential family of distributions if its support does not depend upon any unknown parameters and its density or probability mass function takes the form
+$$
+f(y \mid \theta, \phi)=\exp \left(\frac{y \theta-b(\theta)}{a(\phi)}+c(y, \phi)\right)
+$$
+where $\theta$ is the canonical parameter (related to the mean), $\phi$ is a dispersion parameter (often related to the variance), $b(\theta)$  is the cumulant function (which helps derive the mean and variance), and $c(y, \phi)$ is a normalization term ensuring the density integrates (or sums) to 1.
+
+# Example 1 Gaussian distribution
+The Gaussian (Normal) distribution can be written in exponential family form as:
+
+\[
+f(y \mid \mu, \sigma^2) = \exp\left( \frac{y\mu - \frac{\mu^2}{2}}{\sigma^2} - \frac{y^2}{2\sigma^2} - \frac{1}{2}\log(2\pi\sigma^2) \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \mu \quad &\text{(natural parameter)} \\
+\phi &= \sigma^2 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= \frac{\theta^2}{2} \quad &\text{(cumulant function)} \\
+c(y, \phi) &= -\frac{y^2}{2\phi} - \frac{1}{2}\log(2\pi\phi) \quad &\text{(normalization term)}
+\end{align*}
+
+# Example 2 Poisson distribution
+The Poisson distribution with parameter $\lambda$ (rate parameter) can be written in exponential family form as:
+
+\[
+f(y \mid \lambda) = \exp\left( y\log\lambda - \lambda - \log(y!) \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \log\lambda \quad &\text{(natural parameter)} \\
+\phi &= 1 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= e^\theta \quad &\text{(cumulant function)} \\
+c(y, \phi) &= -\log(y!) \quad &\text{(normalization term)}
+\end{align*}
+
+
+# Example 3 Binomial distribution
+The Binomial distribution with parameters $n$ (number of trials) and $p$ (success probability) can be written in exponential family form as:
+
+\[
+f(y \mid p) = \exp\left( y\log\left(\frac{p}{1-p}\right) + n\log(1-p) + \log\binom{n}{y} \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \log\left(\frac{p}{1-p}\right) \quad &\text{(natural parameter, log-odds)} \\
+\phi &= 1 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= n\log(1 + e^\theta) \quad &\text{(cumulant function)} \\
+c(y, \phi) &= \log\binom{n}{y} \quad &\text{(normalization term)}
+\end{align*}
+
+# MGF of exponential family
+The MGF is given by:
+
+\begin{align*}
+M_Y(t) &= \mathbb{E}[e^{tY}] \\
+&= \int e^{ty} \exp\left(\frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
+&= \exp\left(-\frac{b(\theta)}{\phi}\right) \int \exp\left(y\frac{\theta + \phi t}{a(\phi)} + c(y, \phi)\right) dy \\
+&= \exp\left(-\frac{b(\theta)}{\phi}\right) \exp\left(\frac{b(\theta + \phi t)}{a(\phi)}\right) \int f(y \mid \theta + \phi t, \phi) dy \\
+&= \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
+\end{align*}
+where the integral equals 1 because $f(y \mid \theta + \phi t, \phi)$ is a valid density/pmf.
+
+# Mean of the exponential family
+
+
+Using the MGF:
+\[
+M'_Y(t) = \frac{d}{dt} \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right) = b'(\theta + \phi t) \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
+\]
+Evaluating at $t=0$:
+\[
+\mathbb{E}[Y] = M'_Y(0) = b'(\theta)
+\]
+
+# Variance of the exponential family
+
+The second derivative of the MGF:
+\[
+M''_Y(t) = \left[a(\phi) b''(\theta + \phi t) + (b'(\theta + \phi t))^2\right] \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
+\]
+Evaluating at $t=0$:
+\[
+\mathbb{E}[Y^2] = M''_Y(0) = a(\phi) b''(\theta) + (b'(\theta))^2
+\]
+Thus:
+\[
+\text{Var}(Y) = \mathbb{E}[Y^2] - (\mathbb{E}[Y])^2 = a(\phi) b''(\theta)
+\]
+
+
+# Link function
+The second element of the generalization is that instead of modeling the
+mean, as before, we will introduce a one-to-one continuous diﬀerentiable
+transformation $g(\mu_i)$ of the mean $\mu_i = E[y_i]$ and model that
+$$
+(\mu_i) = \eta_i =  x_i^{\top} \beta
+$$
+where $\eta_i$ is the linear predictor. The function $g(\cdot)$ is called the link function.
+
+# Link function
+
+Since $g(\cdot)$ is a one-to-one transformation, we can invert it to get the mean:
+$$
+\mu_i = g^{-1}(\eta_i) = g^{-1}(x_i^{\top} \beta)
+$$
+
+Note that we do not transform the response variable $y_i$ itself, but rather the mean of the response variable.
+
+# Link function in R
+
+"glm" has several options for family: 
+$$
+\begin{aligned}
+&\text { binomial (link }=\text { "logit") } \\
+&\text { gaussian(link }=\text { "identity") } \\
+&\text { Gamma(link }=\text { "inverse") } \\
+&\text { inverse.gaussian(link }=" 1 / \mathrm{mu}^{\wedge} 2") \\
+&\text { poisson(link }=\text { "log") } \\
+&\text { quasi (link }=\text { "identity", variance = "constant") } \\
+&\text { quasibinomial (link }=\text { "logit") } \\
+&\text { quasipoisson(link }=\text { "log") } 
+\end{aligned}
+$$
+
+# MLE
+
+An important practical feature of generalized linear models is that they can all be fit to data using the same algorithm, a form of iteratively re-weighted least squares (IRLS).
+
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\begin{enumerate}
+    \item Initialize $\hat{\mu}_i^{(0)} = y_i + \epsilon$, $\eta_i^{(0)} = g(\hat{\mu}_i^{(0)})$
+    
+    \item While not converged:
+    \begin{itemize}
+        \item Working response: $z_i = \eta_i^{(k)} + (y_i-\hat{\mu}_i^{(k)})\left(\frac{d\eta}{d\mu}\right)$
+        
+        \item Weights: $w_i = \left[V(\hat{\mu}_i^{(k)})\left(\frac{d\mu}{d\eta}\right)^2\right]^{-1}$
+        
+        \item Update: $\beta^{(k+1)} = (X^\top WX)^{-1}X^\top Wz$
+        
+        \item Update $\eta_i^{(k+1)}$, $\hat{\mu}_i^{(k+1)}$
+    \end{itemize}
+\end{enumerate}
+\end{minipage}
+
+# Gaussian Special Case of IRLS
+
+For linear regression ($Y \sim N(\mu, \sigma^2)$):
+\begin{itemize}
+    \item \textbf{Link}: Identity $g(\mu) = \mu$  
+    \item \textbf{Variance}: $V(\mu) = 1$ (constant)
+    \item \textbf{Weights}: $w_i = 1$ (equal weighting)
+    \item \textbf{Working response}: $z_i = y_i$ (original data)
+\end{itemize}
+
+\vspace{0.2cm}
+IRLS reduces to ordinary least squares:
+\[
+\beta^{(k+1)} = (X^\top X)^{-1}X^\top y \quad \text{(single iteration)}
+\]
+
+Key observations: 
+
+- Link derivative $\frac{d\mu}{d\eta}=1$ 
+- No reweighting needed (homoscedasticity) 
+- Exact solution in one step
+
+# Asymptotics
+
+The asymptotic distribution of the MLE $\hat{\beta}$ is given by:
+
+$$
+\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0, (X^\top W X)^{-1}\phi)
+$$
+
+In the case of the Gaussian distribution, $\phi$ is the variance $\sigma^2$, W is the identity matrix, and the covariance matrix simplifies to: $(X^\top  X)^{-1}\sigma^2$.

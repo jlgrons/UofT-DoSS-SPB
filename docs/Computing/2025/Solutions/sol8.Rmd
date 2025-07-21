@@ -1,6 +1,6 @@
 ---
 title: "Solution 8: Generalized linear regression"
-author: "Yaqi Shi"
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---
@@ -77,21 +77,23 @@ head(shuttle)
 **Solution**
 
 1-2. 
-```{r}
-str(shuttle)
 
+```{r}
+# not wrong, but needs to be careful with the interpretation of the coefficients
 fit1 <- glm(use ~ wind, family = binomial(link = logit), data = shuttle)
-summary(fit1)$coefficients 
+summary(fit1)$coefficients
 ```
 
 ```{r}
-shuttle$use.binary = as.integer(shuttle$use=="auto") 
+shuttle$use.binary <- as.integer(shuttle$use == "auto")
 fit2 <- glm(use.binary ~ wind, family = binomial(link = logit), data = shuttle)
 summary(fit2)$coefficients
 ```
 
 ```{r}
-exp(summary(fit2)$coefficients[1, 1])/exp(sum(summary(fit2)$coefficients[ , 1]))
+# exp(intercept + 0*coef(windtail))/exp(intercept + coef(windtail))
+exp(summary(fit2)$coefficients[1, 1]) / exp(sum(summary(fit2)$coefficients[, 1]))
+1 / exp(summary(fit2)$coefficients[2, 1])
 ```
 
 3. 
@@ -99,17 +101,23 @@ exp(summary(fit2)$coefficients[1, 1])/exp(sum(summary(fit2)$coefficients[ , 1]))
 fit3 <- glm(use.binary ~ wind + magn, family = binomial(link = logit), data = shuttle)
 summary(fit3)$coefficients
 
-exp(summary(fit3)$coefficients[1, 1])/exp(sum(summary(fit3)$coefficients[ 1:2, 1]))
+exp(summary(fit3)$coefficients[1, 1] +
+  summary(fit3)$coefficients[5, 1]) /
+  exp(sum(summary(fit3)$coefficients[1:2, 1]) + summary(fit3)$coefficients[5, 1])
 ```
 
 4. 
 ```{r}
-fit4 = glm(1 - use.binary ~ wind, family = binomial(link=logit), data = shuttle)
+fit4 <- glm(1 - use.binary ~ wind, family = binomial(link = logit), data = shuttle)
 summary(fit4)$coefficients
 
 summary(fit2)$coefficients
 ```
 
+```{r}
+fit5 <- lm(use.binary ~ wind, data = shuttle)
+summary(fit5)$coefficients
+```
 
 # Part 3: GLMs in R (Poisson regression)
 
@@ -125,12 +133,41 @@ head(InsectSprays)
 ```
 
 **Solution**:
+
 ```{r}
-df <- InsectSprays
-fit <- glm(count ~ spray  - 1, family='poisson', df)
-exp(fit$coef[1])/exp(fit$coef[2])
+# Load data and fit Poisson model
+model <- glm(count ~ spray, family = poisson, data = InsectSprays)
+
+# Extract coefficients
+coefs <- coef(model)
+# sprayB coefficient = log(rate_B / rate_A)
+rate_ratio_B_to_A <- exp(coefs["sprayB"])
+relative_rate_A_to_B <- 1 / rate_ratio_B_to_A
+
+# Result
+relative_rate_A_to_B
 ```
 
-As the Poisson regression fits log of expectation by the linear regression, when all the regressor data is multiplied by an offset, then the log of expectation is shifted, so the intercept is changes and the slope coefficients remains intact. So, the answer is:
-The coefficient estimate is unchanged.
 
+```{r}
+# Fit Poisson model with offset
+t <- rep(log(10), nrow(InsectSprays)) # Example offset
+model_offset <- glm(count ~ spray, offset = t, family = poisson, data = InsectSprays)
+
+# Fit Poisson model with modified offset
+t2 <- log(10) + t # Modified offset
+model_offset2 <- glm(count ~ spray, offset = t2, family = poisson, data = InsectSprays)
+
+# Compare coefficients
+coefs_offset <- coef(model_offset)
+coefs_offset2 <- coef(model_offset2)
+# Coefficients for all
+coefs_offset
+coefs_offset2
+```
+
+```{r}
+# The coefficients for spray A
+exp(coefs_offset["(Intercept)"] + t[1])
+exp(coefs_offset2["(Intercept)"] + t2[1])
+```

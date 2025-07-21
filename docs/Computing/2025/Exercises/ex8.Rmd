@@ -1,6 +1,6 @@
 ---
 title: "Module 8: Generalized linear regression"
-author: "Yaqi Shi"
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---
