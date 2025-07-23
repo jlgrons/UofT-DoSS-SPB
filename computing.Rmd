@@ -127,11 +127,11 @@ Wald, Score, and Likelihood Ratio Test
 ### Module 9: Parallel Computing in R
 
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod9.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod9.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex9.pdf) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex9.pdf), [Rmd](Computing/2025/Exercises/ex9.Rmd)
 
-<!-- - Solution: [pdf](Computing/2025/Solutions/sol9.pdf), [Rmd](Computing/2025/Solutions/sol9.Rmd) -->
+- Solution: [pdf](Computing/2025/Solutions/sol9.pdf), [Rmd](Computing/2025/Solutions/sol9.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/a09e6bad7e19ec53fde95e3395dc44c4) -->
 
