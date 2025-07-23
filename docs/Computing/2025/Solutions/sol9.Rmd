@@ -1,6 +1,6 @@
 ---
 title: "Solution 9: Parallel Computing and Simulations"
-author: 
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---
