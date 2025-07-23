@@ -92,44 +92,46 @@ c(y, \phi) &= \log\binom{n}{y} \quad &\text{(normalization term)}
 \end{align*}
 
 # MGF of exponential family
-The MGF is given by:
-
+\footnotesize
 \begin{align*}
 M_Y(t) &= \mathbb{E}[e^{tY}] \\
-&= \int e^{ty} \exp\left(\frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
-&= \exp\left(-\frac{b(\theta)}{\phi}\right) \int \exp\left(y\frac{\theta + \phi t}{a(\phi)} + c(y, \phi)\right) dy \\
-&= \exp\left(-\frac{b(\theta)}{\phi}\right) \exp\left(\frac{b(\theta + \phi t)}{a(\phi)}\right) \int f(y \mid \theta + \phi t, \phi) dy \\
-&= \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
+       &= \int e^{ty} f(y \mid \theta, \phi) dy \\
+       &= \int \exp\left(ty + \frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right) 
+          \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta + ta(\phi))}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right)
 \end{align*}
-where the integral equals 1 because $f(y \mid \theta + \phi t, \phi)$ is a valid density/pmf.
 
 # Mean of the exponential family
 
 
-Using the MGF:
+\begin{align*}
+M_Y'(t) &= \frac{d}{dt} \left[ \exp\left(\frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)}\right) \right] \\
+&= M_Y(t) \cdot \frac{d}{dt} \left( \frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)} \right) \quad \text{(Chain rule)} \\
+&= M_Y(t) \cdot \frac{b'(\theta + t a(\phi)) \cdot a(\phi)}{a(\phi)} \\
+&= M_Y(t) \cdot b'(\theta + t a(\phi))
+\end{align*}
+Evaluating at $t=0$ (since $M_Y(0)=1$):
 \[
-M'_Y(t) = \frac{d}{dt} \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right) = b'(\theta + \phi t) \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
-\]
-Evaluating at $t=0$:
-\[
-\mathbb{E}[Y] = M'_Y(0) = b'(\theta)
+M_Y'(0) = b'(\theta) = \mu = \mathbb{E}[Y]
 \]
 
 # Variance of the exponential family
 
-The second derivative of the MGF:
-\[
-M''_Y(t) = \left[a(\phi) b''(\theta + \phi t) + (b'(\theta + \phi t))^2\right] \exp\left(\frac{b(\theta + \phi t) - b(\theta)}{a(\phi)}\right)
-\]
+\begin{align*}
+M_Y''(t) &= \frac{d}{dt} \left[ M_Y(t) \cdot b'(\theta + t a(\phi)) \right] \\
+&= M_Y'(t) \cdot b'(\theta + t a(\phi)) + M_Y(t) \cdot b''(\theta + t a(\phi)) \cdot a(\phi)  \\
+&= M_Y(t) \cdot \left[ (b'(\theta + t a(\phi)))^2 + b''(\theta + t a(\phi)) \cdot a(\phi) \right]
+\end{align*}
 Evaluating at $t=0$:
 \[
-\mathbb{E}[Y^2] = M''_Y(0) = a(\phi) b''(\theta) + (b'(\theta))^2
+M_Y''(0) = \mu^2 + b''(\theta) a(\phi) = \mathbb{E}[Y^2]
 \]
-Thus:
+Thus the variance is:
 \[
-\text{Var}(Y) = \mathbb{E}[Y^2] - (\mathbb{E}[Y])^2 = a(\phi) b''(\theta)
+\text{Var}(Y) = M_Y''(0) - [M_Y'(0)]^2 = b''(\theta) a(\phi)
 \]
-
 
 # Link function
 The second element of the generalization is that instead of modeling the
