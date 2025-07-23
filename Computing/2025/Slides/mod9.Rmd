@@ -1,11 +1,14 @@
 ---
-title: "Module 7: Linear regression"
+title: "Module 9: Simulations and Parallel Computing"
 author: Jianhui Gao
 date: \today
 output:
   beamer_presentation:
     colortheme: dolphin
     theme: Madrid
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -14,154 +17,882 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Outline
 
-In this module, we will review linear regression. 
+In this module, we will review
 
-# Linear regression
+-   Simulation Study
+-   Rationale for Simulations
+-   Parallel Computing in R
 
-- Model:
-$$
-Y_{n \times 1}=X_{n \times p} \beta_{p \times 1}+\epsilon_{n \times 1}
-$$
-- Equivalently:
-$$
-y_{i}=x_{i}^{\mathrm{T}} \beta+\epsilon_{i}, \quad i=1, \ldots, n
-$$
+# Simulation study
+
+-   Simulation: A numerical techniques for conducting experiments on the
+    computer
+
+-   Monte Carlo simulation: Computer experiment involving random
+    sampling from probability distributions
+
+# Why simulation?
+
+To establish/validate the properties of statistical methods
+
+-   Exact analytical derivations of properties are **rarely** possible
+-   Large sample approximations to properties are **often possible**,
+    but need to evaluate their relevance to (finite) sample sizes likely
+    to be encountered in practice
 
 \pause
 
-- Standard assumptions
-  - $y_{i}$ independent (equivalently $\epsilon_{i}$ independent)
-  - $\mathbb{E}\left(\epsilon_{i}\right)=0$
-  - $\operatorname{var}\left(\epsilon_{i}\right)=\sigma^{2}$, constant
-  - $x_{i}$ known, $\beta$ to be estimated
+Moreover, analytical results may require **assumptions** (e.g.,
+normality)
 
-\pause
+-   But what happens when these assumptions are violated?
+-   Analytical results, even large sample ones, may not be possible
 
-- More concisely:
+# Considerations for simulation
+
+-   Is an estimator **biased** in finite samples? Is it still
+    **consistent** under departures from assumptions? What is its
+    **sampling variance**?
+-   How does it **compare** to competing estimators on the basis of
+    bias, precision, etc.? \pause
+-   Does a procedure for constructing a **confidence interval** for a
+    parameter achieve the advertised **nominal level of coverage**?
+-   Does a **hypothesis testing** procedure attain the advertised
+    **level** or **size**?
+-   If it does, what **power** is possible against different
+    alternatives to the null hypothesis? Do different test procedures
+    deliver different power?
+
+# Monte Carlo simulation
+
+-   Generate $S$ independent data sets under the conditions of interest
+-   Compute the numerical value of the estimator/test statistic $T$
+    (data) for each data set $\Rightarrow T_{1}, \ldots, T_{S}$
+-   If $S$ is large enough, **summary statistics** across
+    $T_{1}, \ldots, T_{S}$ should be good **approximations** to the true
+    sampling properties of the estimator/test statistic under the
+    conditions of interest
+
+# Simulations for properties of estimators
+
+Example: Compare 3 estimators for the **mean** $\mu$ of a distribution
+based on i.i.d. draws $Y_{1}, \ldots, Y_{n}$
+
+-   Sample mean $T^{(1)}$
+-   Sample 20% trimmed mean $T^{(2)}$
+-   Sample median $T^{(3)}$
+
+# Simulations for properties of estimators (cont'd)
+
+**Simulation procedure**: For a particular choice of $\mu, n$, and true
+underlying distribution
+
+-   Generate independent draws $Y_{1}, \ldots, Y_{n}$ from the
+    distribution
+
+-   Compute $T^{(1)}, T^{(2)}, T^{(3)}$
+
+-   Repeat $S$ times
+    $T_{1}^{(1)}, \ldots, T_{S}^{(1)} ; \quad T_{1}^{(2)}, \ldots, T_{S}^{(2)} ; \quad T_{1}^{(3)}, \ldots, T_{S}^{(3)}$
+
+-   Compute for $k=1,2,3$ $$
+    \widehat{\mu}=S^{-1} \sum_{s=1}^{S} T_{s}^{(k)}=\bar{T}^{(k)}, \widehat{\text { bias }}=\bar{T}^{(k)}-\mu
+    $$
+
 $$
-\mathbb{E}(Y \mid X)=X \beta, \quad \operatorname{var}(Y \mid X)=\sigma^{2} I
-$$
-
-# Interpretation of $\beta_j$
-
-- Effect on the expected response of a unit change in jth explanatory variable, all other variables held fixed
-
-# Least squares estimation
-
-- Definition (minimize the residuals)
-$$
-\hat{\beta}_{\mathrm{LS}}:=\min _{\beta} \sum_{i=1}^{n}\left(y_{i}-x_{i}^{\mathrm{T}} \beta\right)^{2}
-$$
-- Equivalently,
-$$
-\hat{\beta}_{L S}:=\min _{\beta}(y-X \beta)^{\mathrm{T}}(y-X \beta)
-$$
-- Equivalently (L2 distance),
-$$
-\hat{\beta}_{\mathrm{LS}}:=\min _{\beta}\|\mathrm{y}-X \beta\|_{2}^{2}
-$$
-
-- Equivalently, $\hat{\beta}$ is the solution of the score equation
-$$
-X^{\mathrm{T}}(y-X \beta)=0
-$$
-
-- Solution
-$$
-\hat{\beta}_{\mathrm{LS}}=\left(X^{\mathrm{T}} X\right)^{-1}\left(X^{\mathrm{T}} \boldsymbol{y}\right)
-$$
-
-# Another interpretation: the projection of $Y$ onto the linear subspace spanned by the columns of $\mathbf{X}$
-
-![](projection.jpeg)
-Elements of Statistical Learning, p46
-
-# Least squares estimation (cont'd)
-
-Assume $X$ is fixed, 
-
-- Expected value 
-
-$$\mathbb{E}\left(\hat{\beta}_{\mathrm{LS}}\right)=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \mathbb{E}(y)=\left(X^{\mathrm{T}} X\right)^{-1}\left(X^{\mathrm{T}} X\right) \beta=\beta$$
-
-- Variance
-$$
-\begin{aligned}
-\operatorname{var}\left(\hat{\beta}_{L S}\right) &=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \operatorname{var}(y) X\left(X^{\mathrm{T}} X\right)^{-1} \\
-&=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \sigma^{2} I X\left(X^{\mathrm{T}} X\right)^{-1} \\
-&=\sigma^{2}\left(X^{\mathrm{T}} X\right)^{-1}
-\end{aligned}
-$$
-
-# Assumptions for ordinary least squares
-
-- **Linearity**: the expectation of $Y$ is linear in $X_{1} \ldots X_{p}$
-- **Independence**: the $\epsilon_{i}$ are independent
-- **Mean zero errors**: the $\epsilon_{i}$ have mean zero, i.e. $E\left[\epsilon_{i}\right]=0$
-- **Equal variance (homoscedasticity)**: the $\epsilon_{i}$ have the same variance, i.e. $\operatorname{Var}\left[\epsilon_{i}\right]=\sigma^{2}$
-
-
-# What about normal distribution?
-
-- If we further assume $\epsilon_{i} \sim N\left(0, \sigma^{2}\right)$ (and independent across $i$), then
-
-- $y \mid X \sim N\left(X \beta, \sigma^{2} I\right)$, and
-- likelihood function is
-$$
-L\left(\beta, \sigma^{2} ; y\right)=\frac{1}{\left(2 \pi \sigma^{2}\right)^{n / 2}} \exp \left\{-\frac{1}{2 \sigma^{2}}(y-X \beta)^{T}(y-X \beta)\right\}
-$$
-- log-likelihood function is
-$$
-\ell\left(\beta, \sigma^{2} ; y\right)=-\frac{n}{2} \log \left(\sigma^{2}\right)-\frac{1}{2 \sigma^{2}}(y-X \beta)^{\mathrm{T}}(y-X \beta)
-$$
-- maximum likelihood estimate of $\beta$ is
-$$
-\hat{\beta}_{M L}=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \boldsymbol{y}=\hat{\beta}_{\mathrm{LS}}
+\widehat{\sigma}=\sqrt{(S-1)^{-1} \sum_{s=1}^{S}\left(T_{s}^{(k)}-\bar{T}^{(k)}\right)^{2}}
+$$ $$
+\widehat{\mathrm{MSE}}=S^{-1} \sum_{s=1}^{S}\left(T_{s}^{(k)}-\mu\right)^{2} \approx \widehat{\mathrm{SD}}^{2}+\widehat{\mathrm{bias}}^{2}
 $$
 
-# What about normal distribution? (cont'd)
+# Simulations for properties of estimators (cont'd)
 
-- distribution of $\hat{\beta}$ is normal
-$$
-\hat{\beta} \sim N_{p}\left(\beta, \sigma^{2}\left(X^{\mathrm{T}} X\right)^{-1}\right)
-$$
-- distribution of $\hat{\beta}_{j}$ is
-$$
-N\left(\beta_{j}, \sigma^{2}\left(X^{\mathrm{T}} X\right)_{j j}^{-1}\right), \quad j=1, \ldots, p
-$$
-- maximum likelihood estimate of $\sigma^{2}$ is 
-$$\frac{1}{n}(y-X \hat{\beta})^{\mathrm{T}}(y-X \hat{\beta})$$
-- but we use
-$$
-\tilde{\sigma}^{2}=\frac{1}{n-p}(y-X \hat{\beta})^{\mathrm{T}}(y-X \hat{\beta})
-$$
+Another important property we care about is the **relative efficiency**
+(RE).
+
+-   If the estimators are unbiased, $$
+    R E=\frac{\operatorname{var}\left(T^{(1)}\right)}{\operatorname{var}\left(T^{(2)}\right)}
+    $$
+
+-   If the estimators are biased, $$
+    R E=\frac{\operatorname{MSE}\left(T^{(1)}\right)}{\operatorname{MSE}\left(T^{(2)}\right)}
+    $$
+
+In either case $R E<1$ means estimator 1 is preferred (estimator 2 is
+inefficient relative to estimator 1 in this sense)
+
+# Set up parameters
+
+```{r}
+set.seed(123)
+# number of simulations
+S <- 1e5
+# sample size
+n <- 1000
+# mu and sigma
+mu <- 1
+sigma <- sqrt(5 / 3)
+# function
+trimmean <- function(Y) mean(Y, 0.2)
+```
+
+# Run Simulation (for loop)
+
+```{r cache = TRUE}
+start_time <- Sys.time()
+t1 <- t2 <- t3 <- c()
+for (s in 1:S) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- c(t1, mean(dat))
+  # calculate T2
+  t2 <- c(t2, trimmean(dat))
+  # calculate T3
+  t3 <- c(t3, median(dat))
+}
+end_time <- Sys.time()
+end_time - start_time
+```
+
+# Bias?
+
+```{r}
+mean(t1 - 1)
+mean(t2 - 1)
+mean(t3 - 1)
+```
+
+-   All estimators are shown minimal bias, why?
+
+# Sample Variance?
+
+```{r}
+var(t1)
+var(t2)
+var(t3)
+```
+
+# Relative Efficiency?
+
+```{r}
+cat("T1 vs T2", (mean(t2 - 1)^2 + var(t2)) /
+  (mean(t1 - 1)^2 + var(t1)), "\n")
+cat("T1 vs T3", (mean(t3 - 1)^2 + var(t3)) /
+  (mean(t1 - 1)^2 + var(t1)), "\n")
+cat("T2 vs T3", (mean(t3 - 1)^2 + var(t3)) /
+  (mean(t2 - 1)^2 + var(t2)), "\n")
+```
+
+# Run Simulation (lapply)
+
+\small
+
+```{r}
+start_time <- Sys.time()
+t <- lapply(1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+end_time <- Sys.time()
+end_time - start_time
+
+# convert t to a dataframe with column t1, t2, t3
+t_final <- do.call(rbind, t)
+```
+
+# Run Simulation (Vectorize)
+
+```{r}
+generate.normal <- function(S, n, mu, sigma) {
+  dat <- matrix(rnorm(n * S, mu, sigma), ncol = n, byrow = T)
+  out <- list(dat = dat)
+  return(out)
+}
+```
+
+```{r}
+start_time <- Sys.time()
+out <- generate.normal(S, n, mu, sigma)
+out_mean <- apply(out$dat, 1, mean)
+out_trimmean <- apply(out$dat, 1, trimmean)
+out_median <- apply(out$dat, 1, median)
+end_time <- Sys.time()
+end_time - start_time
+```
+
+# Introduction to Embarrassing Parallelism
+
+-   `for loop` execute each task sequentially
+
+-   Modern computers are built in with multiple cores that allows you do
+    the above jobs in parallel
+
+-   Rise of high performance computing (HPC) cluster
+
+-   The improvement is not linear!
+
+# Parallel in local computer (foreach)
+
+-   most intuitive parallel algorithm, just like `for loop`
+-   need to set-up the local cluster
+
+\tiny
+
+```{r}
+library(doParallel)
+detectCores()
+
+cl <- makeCluster(8)
+registerDoParallel(cl)
+start_time <- Sys.time()
+t <- foreach(s = 1:S, .combine = "rbind") %dopar% {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+
+  c(t1, t2, t3)
+}
+end_time <- Sys.time()
+end_time - start_time
+```
+
+# Parallel in local computer (mclapply)
+\tiny
+
+-   The `mclapply()` function essentially parallelizes calls to
+    `lapply()`
+
+```{r}
+library(parallel)
+
+start_time <- Sys.time()
+t <- mclapply(1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+}, mc.cores = 4)
+end_time <- Sys.time()
+end_time - start_time
+
+# convert t to a dataframe with column t1, t2, t3
+t_final <- do.call(rbind, t)
+```
+
+# Parallel in local computer (parLapply)
+\tiny
+```{r, error=TRUE}
+cl <- makeCluster(8)
+registerDoParallel(cl)
+start_time <- Sys.time()
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+end_time <- Sys.time()
+end_time - start_time
+
+# convert t to a data frame with column t1, t2, t3
+t_final <- do.call(rbind, t)
+```
+
+# parLapply continued
+\tiny
+-   need to export the environment
+
+```{r}
+clusterExport(cl, varlist = c("n", "mu", "sigma", "trimmean"))
+start_time <- Sys.time()
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+end_time <- Sys.time()
+end_time - start_time
+
+# convert t to a data frame with column t1, t2, t3
+t_final <- do.call(rbind, t)
+```
+
+# Error Handling (foreach)
+
+```{r, error=TRUE}
+t <- foreach(
+  i = 1:1e4, .combine = "rbind"
+) %dopar% {
+  # generate data
+  A <- matrix(data = rbinom(4, 1, 0.5), nrow = 2)
+  solve(A)
+}
+```
+
+-   The error may only occur occasionally
+-   You want to ignore the error and finish your job
+
+# Error Handling (foreach)
+
+```{r}
+t <- foreach(
+  i = 1:1e4,
+  .errorhandling = "pass"
+) %dopar% {
+  # generate data
+  A <- matrix(data = rbinom(4, 1, 0.5), nrow = 2)
+  solve(A)
+}
+
+head(t, 2)
+```
+
+# Error Handling (foreach)
+\small
+```{r}
+t <- foreach(
+  i = 1:1e4,
+  .errorhandling = "remove"
+) %dopar% {
+  # generate data
+  A <- matrix(data = rbinom(4, 1, 0.5), nrow = 2)
+  solve(A)
+}
+head(t, 2)
+```
+
+# Error Handling (tryCatch)
+\tiny
+-   `tryCatch` enables you to handle **errors** and **warnings**
+
+```{r}
+t <- parLapply(cl, X = 1:1e4, fun = function(x) {
+  # generate data
+  tryCatch(
+    {
+      A <- matrix(data = rbinom(4, 1, 0.5), nrow = 2)
+      solve(A)
+    },
+    error = function(e) {
+      # code that will be executed in the event of an error
+      return(NA)
+    }
+  )
+})
+
+head(t, 2)
+```
+
+# Error Handling (tryCatch)
+\tiny
+-   Often times, warning messages are not outputed in the parallel
+    process
+
+```{r}
+sigma <- -1
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+head(t, 2)
+```
+
+# Error Handling (tryCatch)
+\tiny
+```{r}
+sigma <- -1
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  tryCatch(
+    {
+      # generate data
+      dat <- rnorm(n, mu, sigma)
+      # calculate T1
+      t1 <- mean(dat)
+      # calculate T2
+      t2 <- trimmean(dat)
+      # calculate T3
+      t3 <- median(dat)
+      c(t1, t2, t3)
+    },
+    warning = function(w) {
+      # code that will be executed in the event of a warning
+      return(w)
+    }
+  )
+})
+head(t, 2)
+```
+
+# Parallel in HPC
+
+-   Using Niagara cluster (Compute Canada) as an example, it contains
+    2024 nodes, each with 40 cores, for a total of 80,640 cores.
+-   Say if you want to request 20 cores, there are two ways to request
+    it
+    -   1 node and all 20 cores on the node
+    -   different nodes
+    
+# One node Prallel
+
+\tiny
+
+```{r, eval=FALSE}
+cl <- makeCluster(20)
+registerDoParallel(cl)
+clusterExport(cl, varlist = c("n", "mu", "sigma", "trimmean"))
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+
+# convert t to a data frame with column t1, t2, t3
+t_final <- do.call(rbind, t)
+
+# save the results
+saveRDS(t_final, "t_final.rds")
+```
+
+save the R script as `example.R`
+
+# One node Prallel
+
+Use `module spider r` to check the requirement for loading R
+
+```bat
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=20
+#SBATCH --time=0-01:30           # time (DD-HH:MM)
+module load gcc/9.3.0 r/4.0.2              
+
+Rscript example.R
+```
+
+Save it as `submit.sh`
+
+Submit the job by `sbatch submit.sh`
+
+# Multiple Nodes
+
+- things are much more complicated
+- sometimes cannot be avoided, say if you want to request 800 cores
+- need to use `OpenMPI`
+
+
+# Multiple Nodes
+\tiny
+```{r, eval=FALSE}
+cl <- makeCluster(800, type = "MPI")
+registerDoParallel(cl)
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+
+# convert t to a data frame with column t1, t2, t3
+t_final <- do.call(rbind, t)
+
+# save the results
+saveRDS(t_final, "t_final.rds")
+```
+
+save the R script as `example.R`
+
+# Multiple Nodes
+\small
+```bat
+#!/bin/bash
+#SBATCH --nodes=20
+#SBATCH --ntasks-per-node=40
+#SBATCH --time=0-01:30           # time (DD-HH:MM)
+module load gcc/9.3.0 openmpi/4.0.3 r/4.0.2              
+
+R_PROFILE=${HOME}/R/x86_64-pc-linux-gnu-library/4.0/snow/
+RMPISNOWprofile; 
+export R_PROFILE
+mpirun -np 800 -bind-to core:overload-allowed R CMD BATCH 
+--no-save example.R
+```
+Save it as `submit.sh`
+
+Submit the job by `sbatch submit.sh`
+
+# Passing argument
+
+- sometimes you may want to run for a set of arguments
+- e.g. n = c(100, 200, 300, 400)
+
+\tiny 
+```{r, eval=FALSE}
+args <- commandArgs(TRUE)
+n <- args[1]
+
+cl <- makeCluster(800, type = "MPI")
+registerDoParallel(cl)
+clusterExport(cl, varlist = c("n", "mu", "sigma", "trimmean"))
+
+t <- parLapply(cl = cl, X = 1:S, function(s) {
+  # generate data
+  dat <- rnorm(n, mu, sigma)
+  # calculate T1
+  t1 <- mean(dat)
+  # calculate T2
+  t2 <- trimmean(dat)
+  # calculate T3
+  t3 <- median(dat)
+  c(t1, t2, t3)
+})
+
+# convert t to a data frame with column t1, t2, t3
+t_final <- do.call(rbind, t)
+# save the results
+saveRDS(t_final, "t_final.rds")
+```
+
+# Passing argument
+\tiny 
+```bat
+#!/bin/bash
+#SBATCH --nodes=20
+#SBATCH --ntasks-per-node=40
+#SBATCH --time=0-01:30           # time (DD-HH:MM)
+module load gcc/9.3.0 openmpi/4.0.3 r/4.0.2              
+
+R_PROFILE=${HOME}/R/x86_64-pc-linux-gnu-library/4.0/snow/RMPISNOWprofile; export R_PROFILE
+mpirun -np 800 -bind-to core:overload-allowed R CMD BATCH --no-save "--args $n" example.R
+```
+Save it as `submit.sh`
+
+Submit the job by 
+```bat
+for n in 100 200 300 400
+do
+  sbatch --export=n=$n submit.sh
+done
+```
 
 
 
-# Maximum likelihood estiamtion vs. OLS
+<!-- # View the estimator properties -->
 
-- We did not place any distributional assumptions on the outcome,
-  - We only required that $E\left[\epsilon_{i}\right]=0$ with constant variance
-  - In other words, OLS is a semiparametric method
-  
-\pause
+<!-- \tiny -->
 
-- Sometimes, people assume that $\epsilon_{i} \sim N\left(0, \sigma^{2}\right)$, which means
-$$
-Y_{i} \sim N\left(\beta_{0}+\beta_{1} X_{i 1}+\ldots+\beta_{1} X_{i p}, \sigma^{2}\right)
-$$
+<!-- ```{r} -->
+<!-- simsum <- function(dat, trueval) { -->
+<!--   S <- nrow(dat) -->
 
-  - If this additional assumption is made, then we can instead use maximum likelihood estimation for $\boldsymbol{\beta}$
-  - This connects to a whole other class of models called generalized linear models (GLMs)
-  - Interestingly, in this case, you will end up with the same estimates for $\boldsymbol{\beta}$
+<!--   MCmean <- apply(dat, 2, mean) -->
+<!--   MCbias <- MCmean - trueval -->
+<!--   MCrelbias <- MCbias / trueval -->
+<!--   MCstddev <- sqrt(apply(dat, 2, var)) -->
+<!--   MCMSE <- apply((dat - trueval)^2, 2, mean) -->
+<!--   #  MCMSE <- MCbias^2 + MCstddev^2   # alternative lazy calculation -->
+<!--   MCRE <- MCMSE[1] / MCMSE -->
 
+<!--   sumdat <- rbind( -->
+<!--     rep(trueval, 3), S, MCmean, MCbias, -->
+<!--     MCrelbias, MCstddev, MCMSE, MCRE -->
+<!--   ) -->
+<!--   names <- c( -->
+<!--     "true value", "# sims", "MC mean", "MC bias", "MC relative bias", -->
+<!--     "MC standard deviation", "MC MSE", "MC relative efficiency" -->
+<!--   ) -->
+<!--   ests <- c("Sample mean", "Trimmed mean", "Median") -->
 
-# Resources
+<!--   dimnames(sumdat) <- list(names, ests) -->
+<!--   round(sumdat, 5) -->
+<!-- } -->
+<!-- ``` -->
 
-This tutorial is based on 
+<!-- # View the estimator properties (cont'd) -->
 
-- Nancy Reid's STA2101 Methods of Applied Statistics [[links](https://utstat.toronto.edu/reid/sta2101f/sep15-annotated.pdf)]
+<!-- \tiny -->
 
-- Harvard's Biostatistics Preparatory Course Methods  [[links](https://isabelfulcher.github.io/methodsprep/slides/Lecture_5/2018_Lecture_05.pdf)].
+<!-- ```{r} -->
+<!-- results <- simsum(summary.sim, mu) -->
+<!-- results -->
+<!-- ``` -->
 
+<!-- # Performance of estimates of uncertainty -->
 
+<!-- How well do estimated standard errors represent the true sampling -->
+<!-- variation? -->
+
+<!-- -   Compare the average of the estimated standard errors to MC standard -->
+<!--     deviation. -->
+
+<!-- -   For sample mean $\bar{Y}$, -->
+<!--     $S E(\bar{Y})=\frac{s}{\sqrt{n}}, \quad s^{2}=(n-1)^{-1} \sum_{j=1}^{n}\left(Y_{j}-\bar{Y}\right)^{2}$ -->
+
+<!-- ```{r} -->
+<!-- results["MC standard deviation", "Sample mean"] -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- mean_se <- sqrt(apply(out$dat, 1, var) / n) -->
+<!-- ave_mean_se <- mean(mean_se) -->
+<!-- round(ave_mean_se, 3) -->
+<!-- ``` -->
+
+<!-- # Confidence interval -->
+
+<!-- Based on the sample mean, $$ -->
+<!-- \left[\bar{Y}-t_{1-\alpha / 2, n-1} \frac{s}{\sqrt{n}}, \bar{Y}+t_{1-\alpha / 2, n-1} \frac{s}{\sqrt{n}}\right] -->
+<!-- $$ -->
+
+<!-- Does the interval achieve the nominal level of coverage $1-\alpha$ ? -->
+
+<!-- ```{r} -->
+<!-- t05 <- qt(0.975, n - 1) -->
+
+<!-- coverage <- sum((out_mean - t05 * mean_se <= mu) & -->
+<!--   (out_mean + t05 * mean_se >= mu)) / S -->
+<!-- coverage -->
+<!-- ``` -->
+
+<!-- # Simulations for properties of hypothesis testing -->
+
+<!-- Example: Size and power of the usual $t$-test for the mean $$ -->
+<!-- H_{0}: \mu=\mu_{0} \quad \text { vs. } \quad H_{1}: \mu \neq \mu_{0} -->
+<!-- $$ \pause  To evaluate whether size/level of test achieves advertised -->
+<!-- $\alpha$ -->
+
+<!-- -   Approximates the true probability of rejecting $H_0$ when it is true -->
+<!-- -   Generate data under $H_0: \mu=\mu_{0}$ -->
+<!-- -   Calculate proportion of rejections of $H_{0}$, should -->
+<!--     $\approx \alpha$ -->
+
+<!-- \pause -->
+
+<!-- To evaluate the power -->
+
+<!-- -   Approximates the true probability of rejecting $H_{0}$ when the -->
+<!--     alternative is true (power) -->
+<!-- -   Generate data under some alternative $H_1: \mu \neq \mu_{0}$ -->
+<!-- -   Calculate proportion of rejections of $H_{0}$ -->
+
+<!-- # Parameters set up -->
+
+<!-- ```{r} -->
+<!-- set.seed(3) -->
+<!-- S <- 1000 -->
+<!-- n <- 15 -->
+<!-- sigma <- sqrt(5 / 3) -->
+<!-- ``` -->
+
+<!-- # Size/level of test -->
+
+<!-- ```{r} -->
+<!-- mu0 <- 1 -->
+<!-- mu <- 1 -->
+<!-- out <- generate.normal(S, n, mu, sigma) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- samp_mean <- apply(out$dat, 1, mean) -->
+<!-- mean_se <- sqrt(apply(out$dat, 1, var) / n) -->
+<!-- ttests <- (samp_mean - mu0) / mean_se -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- t05 <- qt(0.975, n - 1) -->
+<!-- sum(abs(ttests) > t05) / S -->
+<!-- ``` -->
+
+<!-- # Power of test -->
+
+<!-- ```{r} -->
+<!-- mu0 <- 1 -->
+<!-- mu <- 1.75 -->
+<!-- out <- generate.normal(S, n, mu, sigma) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- samp_mean <- apply(out$dat, 1, mean) -->
+<!-- mean_se <- sqrt(apply(out$dat, 1, var) / n) -->
+<!-- ttests <- (samp_mean - mu0) / mean_se -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- t05 <- qt(0.975, n - 1) -->
+<!-- sum(abs(ttests) > t05) / S -->
+<!-- ``` -->
+
+<!-- # Tips for Running Your Own Simulation Studies -->
+
+<!-- (1) Setting parameter values: -->
+
+<!-- -   First run your code under a favorable setting (make sure it works) -->
+<!-- -   Then choose parameter values that will challenge your method -->
+<!-- -   Is $S=1000$ large enough to get a feel for the true sampling -->
+<!--     properties? How "believable" are the results? -->
+
+<!-- # Carefully choosing $S$ -->
+
+<!-- Estimator for $\theta$ (true value $\theta_{0}$) e.g. mean of sampling -->
+<!-- distribution $$ -->
+<!-- \sqrt{\operatorname{var}\left(\bar{T}-\theta_{0}\right)}=\sqrt{\operatorname{var}(\bar{T})}=\sqrt{\operatorname{var}\left(S \sum_{s=1}^{S} T_{s}\right)}=\frac{\mathrm{SD}\left(T_{s}\right)}{\sqrt{S}}=d -->
+<!-- $$ where $d$ is the acceptable error $$ -->
+<!-- \Rightarrow S=\frac{\left\{\mathrm{SD}\left(T_{s}\right)\right\}^{2}}{d^{2}} -->
+<!-- $$ -->
+
+<!-- # Carefully choosing $S$ (cont'd) -->
+
+<!-- Coverage probabilities, size, power e.g. for a hypothesis testing $$ -->
+<!-- Z=\# \text { rejections } \sim \operatorname{binomial}(S, p) \Rightarrow \sqrt{\operatorname{var}\left(\frac{Z}{S}\right)}=\sqrt{\frac{p(1-p)}{S}} -->
+<!-- $$ -->
+
+<!-- -   Worst case is at $p=1 / 2 \Rightarrow 1 / \sqrt{4 S}$ -->
+<!-- -   $d$ acceptable error $\Rightarrow S=1 /\left(4 d^{2}\right)$; e.g., -->
+<!--     $d=0.01$ yields $S=2500$ -->
+<!-- -   For coverage, size, $p=0.05$ -->
+
+<!-- # Tips for Running Your Own Simulation Studies -->
+
+<!-- (1) Setting parameter values: -->
+
+<!-- -   First run your code under a favorable setting (make sure it works) -->
+<!-- -   Then choose parameter values that will challenge your method -->
+
+<!-- (2) Don't make $B$ too large to start $(\approx 500)$ \pause -->
+<!-- (3) Save all the estimates and not just the summary statistics -->
+
+<!-- # Save everything -->
+
+<!-- -   Save individual estimates in a file then analyze -->
+<!-- -   Useful when simulation takes a long time to run -->
+
+<!-- ```{r, eval = F} -->
+<!-- # Save txt file. -->
+<!-- file_name <- paste0( -->
+<!--   "ssl_binary", -->
+<!--   "_lab", n, -->
+<!--   "_beta", b, -->
+<!--   "_prev", p, -->
+<!--   "_setting", 1, -->
+<!--   "_reps", n_sim, -->
+<!--   ".txt" -->
+<!-- ) -->
+
+<!-- write.table(result, -->
+<!--   file = out_file, -->
+<!--   sep = "\t", row.names = FALSE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ```{r, eval = F} -->
+<!-- # Save .Rdata file -->
+<!-- save(result) -->
+<!-- ``` -->
+
+<!-- # Tips for Running Your Own Simulation Studies -->
+
+<!-- (1) Setting parameter values: -->
+
+<!-- -   First run your code under a favorable setting (make sure it works) -->
+<!-- -   Then choose parameter values that will challenge your method -->
+
+<!-- (2) Don't make $B$ too large to start $(\approx 500)$ -->
+<!-- (3) Save all the estimates and not just the summary statistics -->
+<!-- (4) Set the seed -->
+
+<!-- # Set a different seed for each run and keep records -->
+
+<!-- -   Ensure simulation runs are independent -->
+<!-- -   Runs may be replicated if necessary -->
+
+<!-- e.g. -->
+
+<!-- ```{r, eval = F} -->
+<!-- data_generation <- function(S) { -->
+<!--   for (i in c(1:S)) { -->
+<!--     set.seed(1234 + i) -->
+<!--     X <- ... -->
+<!--     Y <- ... -->
+<!--   } -->
+
+<!--   data.frame(X = X, Y = Y) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- # Tips for Running Your Own Simulation Studies -->
+
+<!-- (1) Setting parameter values: -->
+
+<!-- -   First run your code under a favorable setting (make sure it works) -->
+<!-- -   Then choose parameter values that will challenge your method -->
+
+<!-- (2) Don't make $B$ too large to start $(\approx 500)$ -->
+<!-- (3) Save all the estimates and not just the summary statistics -->
+<!-- (4) Set the seed -->
+<!-- (5) Document the code (i.e. comments) -->
+
+<!-- -   Keep track of the versions of the code you use (i.e. use GitHub) -->
+
+<!-- \pause -->
+
+<!-- (0) If you use Rmarkdown, use the cache=TRUE preamble -->
+
+<!-- -   Your code will only be knitted/run the first time or anytime after -->
+<!--     it updated. Saves time! -->
+
+<!-- # Resources -->
+
+<!-- This tutorial is based on -->
+
+<!-- -   Marie Davidian's STA810A Preparation for Statistical Research -->
+<!--     handout of simulation studies in statistics -->
+<!--     [[links](https://www4.stat.ncsu.edu/~davidian/st810a/simulation_handout.pdf)]. -->
+
+<!-- -   Harvard's Biostatistics Preparatory Course Methods -->
+<!--     [[links](https://isabelfulcher.github.io/methodsprep/slides/Lecture_6/2018_Lecture_06.pdf)]. -->
