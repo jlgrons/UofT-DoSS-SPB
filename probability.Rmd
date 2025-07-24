@@ -72,9 +72,9 @@ Material will be added here as the course progresses.
 - Slides: [Module 7](Probability/2025/Slides/Module_7.pdf); 
 [Module 7 Annotated](Probability/2025/Slides/Module_7_annotated.pdf)
 
-<!-- - Problem Set Solutions: [Module 7 Solution](Probability/2025/Solutions/Module_7_Solutions.pdf)  -->
+- Problem Set Solutions: [Module 7 Solution](Probability/2025/Solutions/Module_7_Solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/f79a75a5efdd714a90bc56ab73dec9c1) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/2cc02ef6e2e32a4d1afc366c257f19f9)
 
 ### Module 8: Limit Theorems
 
@@ -83,11 +83,11 @@ Material will be added here as the course progresses.
 
 <!-- - Problem Set Solutions: [Module 8 Solution](Probability/2025/Solutions/Module_8_Solutions.pdf)  -->
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d371f1cee0cfd578b707639e03cb3a99) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/c722834abacf9138703c523722c3d2ec)
 
-### Module 9: Counterexamples
+### Module 9 - 10: Counterexamples
 
-- Slides: [Module 9](Probability/2025/Slides/Module_9.pdf); 
+- Slides: [Module 9- 10](Probability/2025/Slides/Module_9.pdf); 
 <!-- [Module 9 Annotated](Probability/2025/Slides/Module_9_annotated.pdf) -->
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/1d8c92286b9b783cb444bb2b7763fa90) -->
