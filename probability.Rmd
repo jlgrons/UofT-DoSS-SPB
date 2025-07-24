@@ -88,6 +88,6 @@ Material will be added here as the course progresses.
 ### Module 9 - 10: Counterexamples
 
 - Slides: [Module 9- 10](Probability/2025/Slides/Module_9.pdf); 
-<!-- [Module 9 Annotated](Probability/2025/Slides/Module_9_annotated.pdf) -->
+ [Module 9 Annotated](Probability/2025/Slides/Module_9_annotated.pdf) 
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/1d8c92286b9b783cb444bb2b7763fa90) -->
