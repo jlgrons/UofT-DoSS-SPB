@@ -1,6 +1,6 @@
 ---
 title: "Solution 10: Bootstrap"
-author: Yaqi Shi
+author: Jianhui Gao
 date: \today
 output: pdf_document
 ---

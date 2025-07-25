@@ -139,10 +139,10 @@ Wald, Score, and Likelihood Ratio Test
 
 ### Module 10: Bootstrap
 
-<!-- - Slides: [pdf](Computing/2025/Slides/mod10.pdf)  -->
+- Slides: [pdf](Computing/2025/Slides/mod10.pdf)
 
-<!-- - Exercises: [pdf](Computing/2025/Exercises/ex10.pdf),  [Rmd](Computing/2025/Exercises/ex10.Rmd) -->
+- Exercises: [pdf](Computing/2025/Exercises/ex10.pdf),  [Rmd](Computing/2025/Exercises/ex10.Rmd)
 
-<!-- - Solution: [pdf](Computing/2025/Solutions/sol10.pdf), [Rmd](Computing/2025/Solutions/sol10.Rmd) -->
+- Solution: [pdf](Computing/2025/Solutions/sol10.pdf), [Rmd](Computing/2025/Solutions/sol10.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/b34a2c5d17a5c70f0f1524a748b745b5) -->
