@@ -95,7 +95,7 @@ Recordings: [link](https://play.library.utoronto.ca/watch/eee9158a68881177635449
 
  - Exercises: [pdf](Math/2025/module9/exercises.pdf), [LaTeX](Math/2025/module9/exercises.tex),  [solutions](Math/2025/module9/exercise_solutions.pdf) 
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/923255822fcdd588fd8424cd8dfb9132) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/bea2fcc02328ba8fc5b460fd0ac47fc7)
 
 ### Module 10: Differentiation and integration
 
@@ -105,4 +105,4 @@ Recordings: [link](https://play.library.utoronto.ca/watch/eee9158a68881177635449
  - Exercises: [pdf](Math/2025/module10/exercises.pdf), [LaTeX](Math/2025/module10/exercises.tex),
  [solutions](Math/2025/module10/exercise_solutions.pdf) 
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2adfc198708dc8fb93f25c6041f2d30f) -->
+ - Recordings: [link](https://play.library.utoronto.ca/watch/bd1a9b6d865b224b4dee53aedcdccdf6) 
