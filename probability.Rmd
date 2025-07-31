@@ -91,3 +91,5 @@ Material will be added here as the course progresses.
  [Module 9 Annotated](Probability/2025/Slides/Module_9_annotated.pdf) 
 
  - Recordings (Module 9): [link](https://play.library.utoronto.ca/watch/f901434b6fded8a4a8d899d167685661)
+ 
+ - Recordings (Module 10):[link](https://play.library.utoronto.ca/watch/0e151f10481d44f74d443cbd4414ac76)
