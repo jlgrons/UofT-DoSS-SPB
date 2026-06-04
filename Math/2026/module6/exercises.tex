@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{setspace}
+\pagenumbering{arabic}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{bbm}
+\usepackage{nth}
+\usepackage{dsfont}
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of boxes
+  urlcolor     = black, %Colour for external hyperlinks
+  linkcolor    = black, %Colour of internal links
+  citecolor   = black %Colour of citations
+}
+
+\allowdisplaybreaks % fixes align environment weird spacing on page
+\setlength{\parindent}{0cm}
+
+
+%For references using Lemma, Theorem, etc, use \cref
+\usepackage[nameinlink,capitalize,sort]{cleveref}
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{corollary}[theorem]{Corollary}
+%theoremstyle{plain} %boldface title, italicized body. Commonly used in theorems, lemmas, corollaries, propositions and conjectures.
+%\theoremstyle{definition} %boldface title, Roman body. Commonly used in definitions, conditions, problems and examples
+\theoremstyle{remark} %italicized title, Roman body. Commonly used in remarks, notes, annotations, claims, cases, acknowledgments and conclusions.
+\newtheorem{exercise}[theorem]{Exercise}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+
+% weird hack to get rid of dot:
+\usepackage{xpatch}
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+
+
+
+% lin alg
+\newcommand{\bu}{{\mathbf{u}}}
+\newcommand{\bv}{{\mathbf{v}}}
+\newcommand{\bw}{{\mathbf{w}}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\zerovec}{{\mathbf{0}}}
+
+% other useful stuff
+\newcommand{\Id}{{\mathds{1}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\inv}{{-1}}
+
+%\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+
+
+\begin{document}
+\begin{center}
+\Large{Exercises for Module 6: Metric Spaces IV}
+\end{center}
+
+1. Let $X$ be a set and define $d\colon X \times X \to [0,\infty)$ by 
+    \begin{align*}
+        d(x,y) = \begin{cases}
+            0, & \; x=y, \\
+            1, & \; x\neq y.
+        \end{cases}
+    \end{align*}
+    Show that $S\subseteq X$ is compact if and only if $S$ is finite.
+    
+    \vspace{10.5cm} % delete this
+
+
+2. Let $(X, d)$ be a metric space and $K \subset X$ compact. Show that for all $\epsilon>0$ there exists $\{x_1,x_2,\ldots, x_n\}\subseteq K$  such that for all $y\in K$ we have $d(y,x_i)<\epsilon$ for some $i=1,\ldots,n$.
+
+\vspace{11cm} % delete this
+
+
+3. Define the sequence $(a_n)_{n\in \N}$ by $a_1 =2$ and 
+    \begin{equation*}
+        a_{k+1} = \frac{a_k+5}{3}, \qquad k\geq 1.
+    \end{equation*}
+    Determine if the limit $\lim_{n\to \infty} a_n$ exists and, if so, calculate it.
+
+\vspace{21cm} % delete this
+
+
+4.   Let $(x_n)_{n\in \N}, (y_n)_{n\in \N}$ be bounded sequences in $\R$. Show that 
+    \begin{align*}
+        \limsup_{n\to \infty} (x_n + y_n) \leq \limsup_{n\to \infty} x_n + \limsup_{n\to \infty} y_n 
+    \end{align*}
+    and give an example where the inequality is strict. 
+
+\vspace{10.5cm} % delete this
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+5. Let $(x_n)_{n\in N}$ be a sequence in $\R$. Show that $\lim_{n\to \infty} x_n = 0$ if and only if $\limsup_{n\to \infty} \vert x_n\vert = 0$.
+
+\vspace{11cm} % delete this
+
+
+% \begin{proof}  
+% ADD your content 
+% \end{proof}  
+
+
+
+
+\end{document}
+
+

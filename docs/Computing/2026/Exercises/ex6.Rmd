@@ -1,0 +1,45 @@
+---
+title: "Exercise 6: Statistical inference (III)"
+author: Jianhui Gao
+date: \today
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Part 1: Wald, Score, and likelihood ratio test statistics
+
+```{r, echo = F}
+#https://www.cs.ubc.ca/~arnaud/stat461/lecture_stat461_WaldRaoLRtests_handouts_2008.pdf
+```
+
+Write out the likelihood function, and derive the test statistics of the Wald, Score, and likelihood ratio test. 
+
+1. $X_{i} \stackrel{\text { i.i.d. }}{\sim} f(x \mid \theta)$ 
+ 
+$$f(x \mid \theta)=\theta \exp (-x \theta) \mathbb{I}\{x>0\}$$ 
+
+2. $X_{i} \stackrel{\text { i.i.d. }}{\sim} f(x \mid \theta)$ 
+$$
+f(x \mid \theta)=\theta c^{\theta} x^{-(\theta+1)} \mathbb{I}\{x>c\} \quad \text { (Pareto distribution) }
+$$
+where $c$ is a known constant and $\theta$ is unknown.
+
+
+# Part 2: Test equivalence
+
+Let $\theta$ be a scalar parameter and suppose we test
+$$
+H_{0}: \theta=\theta_{0} \quad \text { versus } \quad H_{1}: \theta \neq \theta_{0} .
+$$
+Let $W$ be the Wald test statistic and let $\lambda$ be the likelihood ratio test statistic. Show that these tests are equivalent in the sense that
+$$
+\frac{W^{2}}{\lambda} \stackrel{\mathrm{P}}{\longrightarrow} 1
+$$
+as $n \rightarrow \infty$. Hint: Use a Taylor expansion of the log-likelihood $\ell(\theta)$ to show that
+$$
+\lambda \approx\left(\sqrt{n}\left(\widehat{\theta}-\theta_{0}\right)\right)^{2}\left(-\frac{1}{n} \ell^{\prime \prime}(\widehat{\theta})\right)
+$$
+
