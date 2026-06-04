@@ -18,6 +18,8 @@ navbar:
   right:
     - text: "Past courses"
       menu:
+      - text: "Summer 2025"
+        href: courses2025.html
       - text: "Summer 2024"
         href: courses2024.html
       - text: "Summer 2023"
