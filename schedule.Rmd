@@ -13,7 +13,7 @@ The morning session will run from 9:00 am--11:00 am and the night session will r
 
 Zoom meeting information will be provided to all registered participants.
 
-![](Schedule/Calendar_2025.png)
+![](Schedule/Bootcamp_Calendar_2026.png)
 
 <!-- # ```{r, echo=FALSE} -->
 <!-- # library(tidyverse) -->
