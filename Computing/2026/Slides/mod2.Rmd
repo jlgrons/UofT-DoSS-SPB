@@ -1,355 +1,1124 @@
 ---
-title: 'Module 2: Reporting, Data Wrangling and Graphing (I)'
-author: "Jianhui Gao"
-date: "07/08/2025"
+title: 'Module 2: Statistical inference (I)'
+author: "Benjamin Smith"
+date: "07/08/2026"
 output:
   beamer_presentation:
     colortheme: dolphin
     theme: Madrid
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 # Outline
 
-We will review R, Rstudio, and Syntax of R together. 
+This module we will review
 
-- LaTeX/Markdown
-- Tidy data, processing (tidyverse)
-- Graphing (ggplot2)
+-   Basics of probability
+-   Fundamental concepts in inference
 
-# LaTeX and Markdown
+# Probability distributions
 
-LaTeX is useful for documents with mathematical formulas. 
+-   In statistics, we try to draw conclusions about a larger population
+    from a sample of observations.
+-   We use mathematical models to capture probabilistic behavior of a
+    population.
+-   This behavior is modeled using probability distributions.
 
-- [Overleaf](www.overleaf.com) - an online, collaborative LaTeX editor 
-- LaTeX mathematical symbols
-- Inline equation e.g. (`$\alpha$`) returns $\alpha$
-- Equation e.g. (`$$e = mc^2$$`) returns $$e = mc^2$$
+# Density/Distribution functions
 
-Markdown is appealing for formatting, e.g. headings, bold text, text with codes, ...
+::: block
+### Definition (Cumulative Distribution Function)
 
-# Resources
+$$
+F_{X}(x)=P(X \leq x) \quad \forall x \in \mathbb{R}
+$$
+:::
 
-"R for Data Science: Import, Tidy, Transform, Visualize, and Model Data" by Hadley Wickham.  
+# Density/Distribution functions (cont'd)
 
-![](r4data.png){height=50%}
+::: block
+### Definition (Probability Mass Function)
 
-# Data import
+For a discrete $R V$, the probability mass function (PMF) is: $$
+f_{X}(x)=P(X=x) \quad  \forall x \in \mathbb{R}
+$$
+:::
 
-\tiny
-```{r}
-df <- read.table("mtcars.txt", header = TRUE)
-head(df) # Show the first 6 rows. 
-```
+::: block
+### Definition (Probability Density Function)
 
-# Other options 
+For a continuous $\mathrm{RV}$, the probability density function (PDF)
+is: $$
+f_{X}(x)=\left.\frac{\partial}{\partial t} F(t)\right|_{t=x}
+$$ So
+$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t \forall x \in \mathbb{R}$.
+:::
 
-CSV files. 
+Note that $f_{X} \geq 0$ for $\forall x$, and thus $F_{X}$ is an
+increasing function.
 
-- base::read.csv() in the base r.
-- readr::read.csv() in "readr" package (much faster). 
-- data.table::fread() in  "data.table" package (much more faster). 
+# Expectation and Variance
 
-Rdata. 
+::: block
+### Definition (Expectation)
 
-- load() in the base r. 
+A measure of central tendancy (a weighted average of the values of $X$)
+$$
+\begin{aligned}
+&E[X]=\sum_{x \in S} x P(X=x) \text{ for discrete RV taking values from } S \\
+&E[X]=\int_{-\infty}^{\infty} x f_{X}(x) d x \text { for continuous RV} 
+\end{aligned}
+$$
+:::
 
-# Tidy data 
+::: block
+### Definition (Variance)
 
-The goal is to clean the dataset so it is much easier to use. 
+A measure of the spread of a distribution $$
+\begin{aligned}
+&\operatorname{Var}(X)=\sum_{x \in S}(x-E[X])^{2} P(X=x) \text { for discrete RV } \\
+&\operatorname{Var}(X)=\int_{-\infty}^{\infty}(x-E[X])^{2} f_{X}(x) d x \text { for continuous RV }
+\end{aligned}
+$$
+:::
 
-Specifically, 
+# Discreate random variable
 
-- Each variable must have its own column.
-- Each observation must have its own row. 
-- Each value must have its own cell. 
+A discrete random variable has a countable number of possible values.
 
-We will focus on the functions from "tidyverse" package. 
+# Bernoulli and Binomial random variable
 
+-   Consider the event of flipping a (possibly unfair) coin.
+-   $Y \in \{0, 1\}$ represents success and failure.
+-   Suppose we only flip the coin once,
+    -   We can express $P(Y=1) = p$ and $P(Y=0) = 1-p$
+-   Bernoulli distribution $$
+    P(Y=y)=p^{y}(1-p)^{1-y} \quad \text { for } \quad y=0,1
+    $$
+-   If we flip the coin $n$ times,
+-   Binomial distribution $$
+    P(Y=y)=\left(\begin{array}{c}
+    n \\
+    y
+    \end{array}\right) p^{y}(1-p)^{n-y} \quad \text { for } \quad y=0,1, \ldots, n
+    $$
 
-```{r, message=FALSE}
+# Binomial distributions with different values of $n$ and $p$
+
+If $Y \sim \operatorname{Binomial}(n, p)$, then $\mathrm{E}(Y)=n p$ and
+$\operatorname{SD}(Y)=\sqrt{n p(1-p)}$.
+
+```{r, multBin, fig.align="center",out.width="70%",fig.cap= 'Binomial distributions with different values of $n$ and $p$.', echo=FALSE, warning=FALSE, message=FALSE}
+library(gridExtra)  
 library(tidyverse)
+
+plotBinomial=function(n,p){
+  y1 <- 0:n  # possible values
+  prob <- dbinom(y1, n, p)  # P(Y=y)
+  BBGdf <- data.frame(y1, prob)
+  ggplot(data = BBGdf, aes(x = y1, xend = y1, y = 0, yend = prob)) + 
+    geom_segment() + 
+    xlab("number of successes") + ylab("probability") + labs(title=paste("n = ", n, " p = ", p))
+}
+Binom1 <- plotBinomial(10,.25) + xlim(0, 10) + scale_y_continuous(breaks = c(0.00, 0.05, 0.10, 0.15, 0.20, 0.25))
+Binom2 <- plotBinomial(20,.2) + xlim(0, 15)
+Binom3 <- plotBinomial(10,.5) + xlim(0, 10)
+Binom4 <- plotBinomial(50,.2) + xlim(0, 25)
+grid.arrange(Binom1,Binom2,Binom3,Binom4,ncol=2)
 ```
 
+# How to generate in R?
 
-# Tidy data 1: pivoting 
+All common distributions have four functions in R:
 
-For a dataset having column names are not names of variables, but values of a variable, e.g. 
+-   Density
 
-\tiny
-```{r}
-table4a
-```
+    `dbinom(x, size, prob)`
 
-- Need to change 1999, 2000 to a column? named as "year".
-- Need to change the values of 1999, 2000 as "cases". 
+-   Distribution function
 
-We can use `pivot_longer()` from the "tidyverse" package. 
+    `pbinom(q, size, prob)`
 
-# Pivot longer
+-   Quantile function
 
-\tiny
-```{r}
-table4a %>% 
-  pivot_longer(c(`1999`, `2000`), 
-               names_to = "year", values_to = "cases")
-```
+    `qbinom(p, size, prob)`
 
-# Another example 
+-   Random generaation
 
-\tiny
-```{r}
-table2 %>% head(5)
-```
+    `rbinom(n, size, prob)`
 
-- case and population are two variables and should be converted into columns. 
+Not sure? Using `?` with any of the four functions, e.g. `?qbinom`
 
-We can use `pivot_wider()`.
+# Example of binomial distribution computing
 
-# Pivot wider
+**Question:** While taking a multiple choice test, a student encountered
+10 problems where she ended up completely guessing, randomly selecting
+one of the four options. What is the chance that she got exactly 2 of
+the 10 correct?
 
-\tiny
-```{r}
-table2 %>%
-    pivot_wider(names_from = type, values_from = count)
-```
+\pause
 
-# Transform data
+**Answer:** Knowing that the student randomly selected her answers, we
+assume she has a $25 \%$ chance of a correct response.
+$$P(Y=2)=\left(\begin{array}{c}10 \\ 2\end{array}\right)(.25)^{2}(.75)^{8}=0.282$$
 
-Use the "pipes" from the "tidyverse" package, a powerful tool for clearly expressing a sequence of multiple operations, with the combination of the following functions:
+\pause
 
-- `select()`
-- `filter()`
-- `arrange()`
-- `mutate()`
-- `summarise()`
-- `group_by()`
-
-# Dataset - Diamonds
-
-A dataset containing the prices and other attributes of almost 54,000 diamonds. 
-
-\tiny
-```{r}
-head(diamonds)
-```
-
-# Select
-
-Use `select()` to get a column, e.g. "color"
-
-\tiny
-```{r}
-diamonds %>%
-  select(color) %>%
-  head()
-```
+**R computing:**
 
 ```{r}
-# Equivalent to...
-head(diamonds$color)
+dbinom(2, size = 10, prob = .25)
 ```
 
+# Continuous random variable
 
-# Select
+A continuous random variable can take on an uncountably infinite number
+of values. Given a pdf $f(y)$, $$
+P(a \leq Y \leq b)=\int_{a}^{b} f(y) d y
+$$ Properties:
 
-Use `select()` to remove a column, e.g. "color"
+-   $\int_{-\infty}^{\infty} f(y)dy = 1$.\
+-   For any value $y$, $P(Y = y) = \int_y^y f(y)dy = 0$.
+    $P(y < Y) = P(y \le Y)$.
 
-\tiny
-```{r}
-diamonds %>%
-  select(-color)
+
+# Example of Continuous Distribution (Normal)
+
+-   The normal distribution is a very important distribution because:
+    -   A lot of things look normal
+    -   Analytically tractable
+    -   Central limit theorem
+-   $\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)$
+-   Characterized by mean, $\mu$, and variance, $\sigma^2$.
+
+
+
+```{r, multNorm, fig.align="center",out.width="50%",fig.cap= '', echo=FALSE, warning=FALSE, message=FALSE}
+#normalPlots
+x <- seq(-10, 20, by = 0.01)
+norm1 <- dnorm(x, -5, 2)
+norm2 <- dnorm(x, 0 , 1)
+norm3 <- dnorm(x, 5, 5)
+norm4 <- dnorm(x, 0, 3)
+normDf <- tibble(x, norm1, norm2, norm3, norm4) %>%
+  rename(`N(-5, 2)` = norm1,
+         `N(0, 1)` = norm2,
+         `N(10, 5)` = norm3,
+         `N(0, 3)` = norm4) %>%
+  gather(2:5, key = "Distribution", value = "value") %>%
+  mutate(Distribution = factor(Distribution, 
+    levels = c("N(10, 5)","N(0, 3)", "N(0, 1)", "N(-5, 2)")))
+ggplot(data = normDf, 
+       aes(x = x, y = value, color = Distribution)) +
+  geom_line(aes(linetype = Distribution)) +
+  xlab("values") + ylab("density") + 
+  labs(title = "Normal Distributions")
 ```
 
-```{r, eval = F}
-# Need to assign the change to the original dataset, otherwise, the deletion won't affect the dataset.
-diagmonds <- diamonds %>%
-  select(-color)
-```
+# How to Generate Samples from Normal Distribution
 
-# Filter 
+The following commands are for a normal random variable with mean $\mu$
+and variance $\sigma^2$, that is, $X \sim N(\mu, \sigma^2)$,
 
-Use `filter()` to filter by some condition, e.g. filter all price > 335
+-   To calculate the probability density function at a value x,
+    `dnorm(x,mu,sigma)`
 
-\tiny
-```{r}
-diamonds %>%
-  filter(price > 335)
-```
+-    To calculate the cumulative distribution function at a value x,
+    `pnorm(x,mu,sigma)`
 
-# Filters with multiple conditions 
+-    To generate a size m sample from the normal distribution,
+    `rnorm(m,mu,sigma)`
 
-\tiny
+-   Note that the third argument is the **square root of the variance**,
+    this is because the R function for normal distribution asks for the
+    standard deviation, which is defined as the square root of the
+    variance
 
-```{r}
-diamonds %>%
-  filter(price > 335 & depth < 64)
-```
+# Some probability distributions in R
 
-# Filters with multiple conditions 
+Continuous
 
-\tiny
+-   Normal (`?rnorm`)
+-   Uniform (`?runif`)
+-   Beta (`?rbeta`)
+-   Chi-sq (`?rchisq`)
+-   Exponential (`?rexp`)
+-   t (`rt`)
+-   F (`?rf`)
+-   Logistic (`?rlogis`)
+-   Lognormal (`?rlnorm`)
 
-```{r}
-diamonds %>%
-  filter(cut == "Very Good" | cut == "Fair")
-```
+Discrete
 
-# Filter after select
+-   Poisson (`?rpois`)
+-   Binomial (`?rbinom`)
+-   Geometric (`?rgeom`)
+-   Negative Binomial (`?rnbinom`)
+-   Multinomial (`?rmultinom`)
 
-This is an example of "a sequence of operations". 
+# Empirical vs. Theoretical CDF
 
-\tiny
-```{r}
-diamonds %>%
-  select(price) %>%
-  filter(price > 335)
-```
+In statistics, an empirical distribution function is the distribution
+function associated with the empirical measure of a sample.
 
-# Arrange 
+-   Theoretical CDF $$
+    F_{X}(k)=\operatorname{Pr}(X \leq k)
+    $$
 
-Use `arrange()` to order data. 
+-   Empirical CDF $$
+    \hat{F}_{n}(k)=\frac{\text { number of elements in the sample } \leq k}{n}=\frac{1}{n} \sum_{i=1}^{n} I_{X_{i} \leq k}
+    $$ where $X_{1}, \ldots, X_{n}$ make up some random sample from the
+    underlying distribution.
 
-\tiny
-```{r}
-diamonds %>%
-  arrange(price)
-```
+# Probability and inference
 
-# Arrange descending order
+![](prob_stats.png)
 
-e.g. from the cheapest! 
+\pause
 
-\tiny
-```{r}
-diamonds %>%
-  arrange(-price)
-```
+-   Probability: Given a data generating process, what are the
+    properties of the outcomes?
 
-# Arrange by multiple conditions 
+-   Statistical inference: Given the outcomes, what can we say about the
+    process that generated the data?
 
-\tiny
-```{r}
-diamonds %>%
-  arrange(price, cut)
-```
+# Parametric vs. Nonparametric models
 
-# Filter, select, arrange 
+-   Statistical model $\mathfrak{F}$: a set of distributions (or
+    densities or regression functions)
 
-\tiny
-```{r}
-diamonds %>%
-  filter(table < 340) %>%
-  select(carat, cut, price) %>%
-  arrange(price, cut)
-```
+\pause
 
-# Mutate 
+-   Parametric model: a set $\mathfrak{F}$ that can be parameterized by
+    a finite number of parameters $$
+    \mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}
+    $$ where $\theta$ is an unknown parameter (or vector of parameters)
+    that can take values in the parameter space $\Theta$.
+    -   e.g. Normal distribution, a 2-parameter model with density as
+        $f(x; \mu, \sigma)$
 
-Create new variables using `mutate()`.
+\pause
 
-- Create a boolean variable, 0 = not affordable, 1 = affordable. 
+-   Nonparametric model: a set $\mathfrak{F}$ that cannot be
+    parameterized by a finite number of parameters
+    -   e.g. $\mathfrak{F}_{\mathrm{ALL}}=\left\{\right.$ all
+        $\left.\mathrm{CDF}^{\prime} s\right\}$ is nonparametric.
 
-\tiny
-```{r}
-diamonds %>%
-  mutate(affordable = price < 400) 
-```
+# Frequentist and Bayesian
 
-# Mutate (cont'd)
+-   Frequentist: statistical methods with guaranteed frequency behavior
 
-- Create a variable containing string with `case_when()`:
+-   Bayesian: statistical methods for using data to update beliefs
 
-\tiny
-```{r}
-diamonds %>%
-  mutate(affordable = case_when(price<400 ~ "affordable", 
-                                TRUE ~ "not affordable")) 
-```
 
-# Group by and Summarise
+# Point estimation
 
-Use `group_by` and `summarise` to group variables:
+-   Providing a single "best guess" of some quantity of interest
+-   Notations
+    -   Parameter $\theta$: fixed, unknown quantity
+    -   Point estimator $\hat{\theta}$: depends on data, random variable
 
-\tiny
-```{r}
-diamonds %>%
-  group_by(cut) %>%
-  summarise(n = n())
-```
+\pause
 
-# More examples
+::: block
+### Definition (Point estimator)
 
-\tiny
-```{r}
-diamonds %>%
-  group_by(cut) %>%
-  summarise(n = n(), price_avg = mean(price))
-```
+Let $X_{1}, \ldots, X_{n}$ be $n$ IID data points from some distribution
+$F$. A point estimator $\hat{\theta}_{n}$ of a parameter $\theta$ is
+some function of $X_{1}, \ldots, X_{n}$ : $$
+\widehat{\theta}_{n}=g\left(X_{1}, \ldots, X_{n}\right)
+$$
+:::
 
-# Proportions 
+-   What is a good point estimate?
 
-\tiny
-```{r}
-diamonds %>%
-  group_by(cut) %>%
-  summarise(n = n(), price_avg = mean(price)) %>%
-  ungroup() %>%
-  mutate(prop = n/sum(n))
-```
+# MSE
 
-# With percentage
+-   Definition: $$
+    \mathrm{MSE}=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\theta\right)^{2}
+    $$
 
-Use `scales::percent()` to add `%`.
+-   No uniformly best estimator in terms of MSE
 
-\tiny
-```{r}
-diamonds %>%
-  group_by(cut) %>%
-  summarise(n = n(), price_avg = mean(price)) %>%
-  ungroup() %>%
-  mutate(prop = scales::percent(n/sum(n)))
-```
+-   It is NOT possible to have an estimator that is uniformly the best.
 
-# Graphing after transformation
+# Bias and Variance
 
-\tiny
-```{r, fig.width=4, fig.height= 2}
-diamonds %>%
-  group_by(cut) %>%
-  summarise(n = n(), price_avg = mean(price)) %>%
-  ggplot() +
-  geom_bar(aes(x = cut, y = n), stat = "identity")
-```
+-   Bias $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta
+    $$
+-   Variance $$
+    \textrm{Var}\left(\widehat{\theta}_{n}\right) = \mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\mathbb{E}\theta\right)^{2}
+    $$
+-   Theorem
 
-# ggplot
+$$
+MSE = bias^2 + Var
+$$ 
 
-Here we used functions from "ggplot2" package. Same pattern as "tidyverse", but using "+" to connect. 
 
-How to write? 
+# Unbiasedness
 
-- Specify the data using `ggplot(data = diamonds)`
-- Specify the x-/y-axis, `ggplot(data = diamonds, mapping = aes(x = cut))`
-- Specify the types of plots with `geom`, e.g. `+ geom_bar()`
+-   Definition $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta = 0
+    $$
 
-```{r, eval = F}
-ggplot(data = diamonds) +
-  geom_bar(mapping = aes(x = cut))
-```
+-   Unbiasedness is a small sample (finite sample) property
 
-# More plots
+-   An unbiased estimator may not exist
 
-- `geom_histogram()`, `geom_density()`, `geom_line()`, `geom_point()`
-- `geom_facet()` generates subplots 
-- color package 
-  - "RColorBrewer"
-  - "ggsci"
+-   An unbiased estimator is not necessarily a good estimator
+
+# Consistency
+
+-   Definition $$
+    \widehat{\theta}_{n} \stackrel{\mathrm{P}}{\longrightarrow} \theta
+    $$
+-   It is possible to be unbiased but not consistent.
+-   It is possible to be consistent but not unbiased.
+
+# Asypototic unbiasedness
+
+-   Definition $$
+    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta \to 0, \text{ as } n \to\infty
+    $$
+
+-   It is possible to be asypototically unbiased but not consistent.
+
+-   It is possible to be consistent but NOT asymptotically unbiased.
+
+-   Sufficient conditions: $MSE \to 0$.
 
 # Resources
 
-This module is based on
+This tutorial is based on
 
-- Brendan R. E. Ansell's "Introduction to R - tidyverse" [[link]](https://bookdown.org/ansellbr/WEHI_tidyR_course_book/) 
+-   Havard Biostatistics Summer Pre Course
+    [[link]](https://isabelfulcher.github.io/methodsprep/)
+
+-   "Beyond Multiple Linear Regression" by Paul Roback and Julie Legler
+    [[link]](https://bookdown.org/roback/bookdown-BeyondMLR/)
+    
+    
+
+# Break
+
+![](break2.png)
+
+# Outline
+
+This module we will review
+
+-   Basics of parametric inference
+-   Methods for generating parametric estimators
+-   Maximum likelihood estimators
+-   Delta method
+-   Optimization method for finding MLE in R (Newton-Raphson, EM
+    algorithm)
+
+# Parametric inference
+
+::: block
+### Definition (Parametric models)
+
+$$
+\mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}
+$$ where the $\Theta \subset \mathbb{R}^{k}$ is the parameter space and
+$\theta=\left(\theta_{1}, \ldots, \theta_{k}\right)$ is the parameter.
+:::
+
+Goal of parametric inference
+
+-   estimate the parametric $\theta$ (assume we known the form of the
+    density).
+
+# Parameter of interest and nuisance parameter
+
+Often, we are interested in estimating some function $T(\theta)$.
+
+For example, if $X \sim N(\mu, \sigma^2)$, then
+
+-   Parameters: $\theta = (\mu, \sigma)$
+-   Parameter space:
+    $\Theta = \{(\mu, \sigma): \mu \in \mathbb{R}, \sigma > 0\}$
+
+If the goal is to estimate the $\mu$ then
+
+-   Parameter of interest: $T(\theta) = \mu$
+-   Nuisance parameter: $\sigma$
+
+# Methods for generating parametric estimators
+
+1.  Method of moments
+2.  Maximum likelihood
+
+# Method of moments
+
+::: block
+### Definitions
+
+-   $\mathbb{E}(X^k)$ is the $k^{th}$ (theoretical) moment of the
+    distribution, for $k = 1,2,...$
+-   $M_k = \frac{1}{n} \sum_{i = 1}^n X_i^k$ is the $k^{th}$ sample
+    moment, for $k = 1,2,...$
+:::
+
+# Steps to find MoM
+
+The basic idea behind this form of the method is to:
+
+-   Equate the first sample moment about the origin
+    $M_1 = \frac{1}{n} \sum_{i = 1}^n X_i = \bar{X}$ to the first
+    theoretical moment $\mathbb{E}(X)$.
+-   Equate the second sample moment about the origin
+    $M_2 = \frac{1}{n} \sum_{i = 1}^n X_i^2$ to the second theoretical
+    moment $\mathbb{E}(X^2)$.
+-   Continue equating sample moments about the origin until you have as
+    many equations as you have parameters.
+-   Solve for the parameters
+
+# Example of MoM (Bernoulli)
+
+Let $X_1, ..., X_n$ be Bernoulli random variables with parameter $p$.
+What is the method of moments estimator of $p$?
+
+\pause
+
+Only one parameter $p$, so we only need to equate the first moment.
+
+$\mathbb{E}(X_i) = p = M_1 = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X}$.
+
+So, $$
+\hat{p}_{MoM} = \bar{X}
+$$
+
+# Example of MoM (Normal)
+
+Let $X_1, ..., X_n$ be normal random variables with mean $\mu$ and
+variance $\sigma^2$. What are the method of moments estimators of the
+mean $\mu$ and variance $\sigma^2$ ?
+
+\pause
+
+Two parameters, so we need to equate the first and the second moment.
+
+$E(X_i) = \mu = M_1, E(X_i^2) = \sigma^2 + \mu^2 = M_2$.
+
+So, $$
+\hat{\mu}_{MoM} = \bar{X}, \hat{\sigma}^2_{MoM} = \frac{1}{n}\sum_{i=1}^nX_i^2 - \bar{X}^2.
+$$
+
+# Asymptotic properties
+
+Under mild regularity conditions, MoM estimators are
+
+-   *Consistent* $\rightarrow$ converge to the true value in probability
+    as $n \rightarrow \infty$, i.e. $$
+    \lim _{n \rightarrow \infty} P(|\hat{\theta}-\theta| \leq \epsilon)=1 \quad \forall \epsilon>0
+    $$
+
+-   *Asymptotically Normal*
+    $\rightarrow \sqrt{n}(\hat{\theta}-\theta) \sim N\left(0, \sigma^{2}\right)$
+    for large $n$
+
+-   However, they are usually **NOT** *Asymptotically Efficient*
+
+# Maximum likelihood
+
+-   Parametric model: $f(x ; \theta)$, $X_{1}, \ldots, X_{n}$ iid
+
+-   Likelihood function $$
+    \mathcal{L}_{n}(\theta)=\prod_{i=1}^{n} f\left(X_{i} ; \theta\right)
+    $$
+
+-   The log-likelihood function
+
+$$\ell_{n}(\theta)=\log \mathcal{L}_{n}(\theta) =\sum_{i=1}^{n} \log f\left(X_{i} ; \theta\right)$$
+
+-   The maximum likelihood estimator (MLE) $$
+    \hat{\theta}_{M L E}=\arg \max _{\theta} \mathcal{L}(\theta)
+    $$
+
+# An example of MLE
+
+![](likelihood.png)
+
+Likelihood function for Bernoulli with $n=20$ and
+$\sum_{i=1}^{n} X_{i}=12$. The MLE is $\widehat{p}_{n}=12 / 20=0.6$.
+
+# Steps to find the MLE
+
+1.  Write out the likelihood $$
+    \mathcal{L}(\theta)=f\left(X_{1}, \ldots, X_{n} ; \theta\right)
+    $$
+2.  Simplify the log likelihood $$
+    \ell(\theta)=\log \mathcal{L}(\theta)
+    $$
+3.  Take the derivative of $\ell(\theta)$ with respect to the parameter
+    of interest, $\theta$ Set $=0$
+4.  Solve for $\theta$ (get $\hat{\theta}_{M L E}$ )
+5.  Check that $\hat{\theta}_{M L E}$ is a maximum
+    $\left(\frac{\partial^{2}}{\partial \theta^{2}} \ell(\theta)<0\right)$
+
+# Exercise
+
+Suppose we have an iid sample $\left\{X_{1}, \ldots, X_{n}\right\}$ with
+$X_{i} \sim \operatorname{Bernoulli}(p)$. Find the MLE for $p$.
+
+\pause
+1. The likelihood $$
+\mathcal{L}_{n}(p)=\prod_{i=1}^{n} f\left(X_{i} ; p\right)=\prod_{i=1}^{n} p^{X_{i}}(1-p)^{1-X_{i}}=p^{S}(1-p)^{n-S}
+$$ where $S=\sum_{i} X_{i}$
+
+\pause
+2. Log-likelihood $$
+\ell_{n}(p)=S \log p+(n-S) \log (1-p)
+$$
+
+\pause
+3. MLE $$
+\ell'_{n}(p) = 0
+$$ The MLE is $\widehat{p}_{n}=S / n$.
+
+# Asymptotics of MLE
+
+Under mild regularity conditions, MLEs are
+
+-   *Consistent* $\rightarrow$ converge to the true value in probability
+    as $n \rightarrow \infty$, i.e. $$
+    \lim _{n \rightarrow \infty} P(|\hat{\theta}-\theta| \leq \epsilon)=1 \quad \forall \epsilon>0
+    $$
+-   *Asymptotically normal*
+    $\rightarrow \sqrt{n}(\hat{\theta}-\theta) \sim N\left(0, \sigma^{2}\right)$
+    for large $n$
+-   *Asymptotically efficient*
+-   *equivariant* $\rightarrow$ if $\hat{\theta}$ is the MLE for
+    $\theta$ then $g(\hat{\theta})$ is the MLE for $g(\theta)$
+
+# Asymptotic Efficiency
+
+::: block
+### Cramér--Rao bound
+
+The variance of any *unbiased* estimator $\hat{\theta}$ of $\theta$ is
+bounded by the reciprocal of the Fisher information $I(\theta):$ $$
+\textrm{Var}(\hat{\theta}) \ge \frac{1}{I(\theta)},
+$$ where
+$I(\theta) = n \mathbb{E}\left[\left(\frac{\partial\ell}{\partial\theta}\right)^2\right]$.
+:::
+
+Both MoM estimators are asymptotically unbiased, but MLE estimators
+achieves the CR lower bound.
+
+# MLE in R
+
+Sometimes, there is no closed-form solution, so we need to use
+optimization methods to find the maximum of the log-likelihood.
+
+-   `optim()` find values of some parameters that **minimizes** some
+    function.
+-   Newton-Raphson
+-   EM-algorithm
+
+# Example using optim()
+
+\tiny
+
+```{r}
+set.seed(42) # For reproducibility
+sample_data <- rbinom(1000, size = 1, prob = 0.3) # Assuming success probability of 0.3
+
+# Log-likelihood function for Bernoulli distribution
+log_likelihood_bernoulli <- function(p, data) {
+  n <- length(data)
+  log_likelihood <- sum(data * log(p) + (1 - data) * log(1 - p))
+  return(-log_likelihood) # Negative to be used with optimization functions (minimization)
+}
+
+# Initial parameter value for optimization (probability of success)
+initial_param <- 0.8
+
+# Find MLE using optim
+result <- optim(
+  par = initial_param, fn = log_likelihood_bernoulli,
+  data = sample_data, method = "Brent", lower = 0, upper = 1
+) # If bounds aren't provided, use method="BFGS"
+
+
+# MLE estimate of p
+mle_p <- result$par
+
+# Print the result
+cat("MLE of p:", mle_p, "\n")
+```
+
+# Newton-Raphson
+
+Derivative of the log-likelihood around $\theta^j$ : $$
+0=\ell^{\prime}(\widehat{\theta}) \approx \ell^{\prime}\left(\theta^{j}\right)+\left(\widehat{\theta}-\theta^{j}\right) \ell^{\prime \prime}\left(\theta^{j}\right)
+$$ Solving for $\widehat{\theta}$ gives $$
+\widehat{\theta} \approx \theta^{j}-\frac{\ell^{\prime}\left(\theta^{j}\right)}{\ell^{\prime \prime}\left(\theta^{j}\right)} .
+$$ This suggests the following iterative scheme: $$
+\widehat{\theta}^{j+1}=\theta^{j}-\frac{\ell^{\prime}\left(\theta^{j}\right)}{\ell^{\prime \prime}\left(\theta^{j}\right)}
+$$
+
+# Illustration
+
+![](NR.png){width=50%}
+
+# NR algorithm in R
+
+\tiny
+
+```{r}
+# First derivative of the log-likelihood function
+log_likelihood_bernoulli_prime <- function(p, data) {
+  n <- length(data)
+  d_log_likelihood <- sum(data / p - (1 - data) / (1 - p))
+  return(-d_log_likelihood) # Negative to be used with optimization functions (minimization)
+}
+# Second derivative of the log-likelihood function
+log_likelihood_bernoulli_double_prime <- function(p, data) {
+  n <- length(data)
+  dd_log_likelihood <- sum(-data / p^2 - (1 - data) / (1 - p)^2)
+  return(-dd_log_likelihood) # Negative to be used with optimization functions (minimization)
+}
+# Initial parameter value for optimization (probability of success)
+initial_param <- 0.8
+# Newton-Raphson algorithm for optimization
+tolerance <- 1e-8
+max_iterations <- 1000
+p <- initial_param
+for (i in 1:max_iterations) {
+  p_new <- p - log_likelihood_bernoulli_prime(p, sample_data) /
+    log_likelihood_bernoulli_double_prime(p, sample_data)
+  if (abs(p_new - p) < tolerance) {
+    break
+  }
+  p <- p_new
+}
+# Print the result
+cat("MLE of p:", p, "\n")
+```
+
+# Solution Trajectory
+
+```{r, echo=FALSE}
+# Sample data (replace this with your observed data)
+set.seed(42) # For reproducibility
+sample_data <- rbinom(100, size = 1, prob = 0.3) # Assuming success probability of 0.3
+
+# Log-likelihood function for Bernoulli distribution
+log_likelihood_bernoulli <- function(p, data) {
+  n <- length(data)
+  log_likelihood <- sum(data * log(p) + (1 - data) * log(1 - p))
+  return(log_likelihood)
+}
+
+# First derivative of the log-likelihood function
+log_likelihood_bernoulli_prime <- function(p, data) {
+  n <- length(data)
+  d_log_likelihood <- sum(data / p - (1 - data) / (1 - p))
+  return(d_log_likelihood)
+}
+
+# Second derivative of the log-likelihood function
+log_likelihood_bernoulli_double_prime <- function(p, data) {
+  n <- length(data)
+  dd_log_likelihood <- sum(-data / p^2 - (1 - data) / (1 - p)^2)
+  return(dd_log_likelihood)
+}
+
+# Initial parameter value for optimization (probability of success)
+initial_param <- 0.8
+
+# Newton-Raphson algorithm for optimization
+tolerance <- 1e-8
+max_iterations <- 1000
+p <- initial_param
+p_values <- c(p) # To store the trajectory of updates
+log_likelihood_values <- c(log_likelihood_bernoulli(p, sample_data)) # To store the log-likelihood values
+
+for (i in 1:max_iterations) {
+  p_new <- p - log_likelihood_bernoulli_prime(p, sample_data) / log_likelihood_bernoulli_double_prime(p, sample_data)
+  p_values <- c(p_values, p_new) # Store the updated p
+  log_likelihood_values <- c(log_likelihood_values, log_likelihood_bernoulli(p_new, sample_data)) # Store the log-likelihood value for the updated p
+  if (abs(p_new - p) < tolerance) {
+    break
+  }
+  p <- p_new
+}
+
+# MLE estimate of p
+mle_p <- p
+
+# Plotting the likelihood function
+likelihood_function <- function(p) {
+  return(log_likelihood_bernoulli(p, sample_data))
+}
+
+p_grid <- seq(0, 1, length.out = 100)
+likelihood_values <- sapply(p_grid, likelihood_function)
+
+plot(p_grid, likelihood_values, type = "l", xlab = "p", ylab = "Likelihood", main = "Likelihood Function", col = "blue")
+
+# Plotting the solution trajectory during updates
+iterations <- length(p_values)
+
+# Aligning 'p_values' and 'log_likelihood_values' to have the same length
+log_likelihood_values_at_p_values <- sapply(p_values, function(p) log_likelihood_bernoulli(p, sample_data))
+
+for (i in 1:(iterations - 1)) {
+  points(p_values[i], log_likelihood_values_at_p_values[i], col = "blue", pch = 16)
+  lines(c(p_values[i], p_values[i + 1]), c(log_likelihood_values_at_p_values[i], log_likelihood_values_at_p_values[i + 1]), col = "blue")
+}
+
+points(mle_p, log_likelihood_bernoulli(mle_p, sample_data), col = "red", pch = 19)
+legend("topright", legend = c("Updates", "MLE"), col = c("blue", "red"), pch = c(16, 19), lty = c(1, NA), cex = 0.8)
+```
+
+<!-- # Expectation-Maximization (EM) algorithm -->
+
+<!-- -   We will introduce the expectation-maximization (EM) algorithm in the -->
+<!--     context of Gaussian mixture models. -->
+<!-- -   Let $N(\mu, \sigma^2)$ denote the probability distribution function -->
+<!--     for a normal random variable. -->
+<!-- -   In this scenario, we have that the conditional distribution -->
+<!--     $X_i|Z_i = k \sim N(\mu_k, \sigma^2_k)$ -->
+
+<!-- # Likelihood Function -->
+
+<!-- The marginal distribution of each $X_i$ is -->
+
+<!-- $$ -->
+<!-- P(X_i = x) = \sum_{k=1}^KP(Z_i =k)P(X_i = x|Z_i = k) = \sum_{k=1}^K \pi_kN(x;\mu_k,\sigma_k^2) -->
+<!-- $$ -->
+
+<!-- Given the data is independent, the likelihood is -->
+
+<!-- $$ -->
+<!-- L(\theta|X_1,…, X_n) = \prod_{i=1}^n \left[ \sum_{k=1}^K \pi_kN(x_i;\mu_k,\sigma_k^2) \right] -->
+<!-- $$ -->
+
+<!-- and the log-likelihood is -->
+
+<!-- $$ -->
+<!-- \ell(\theta) = \sum_{i=1}^n \log\left[\sum_{k=1}^K \pi_kN(x;\mu_k,\sigma_k^2)\right] -->
+<!-- $$ -->
+
+<!-- where -->
+<!-- $\theta = \{\mu_1,...,\mu_k,\sigma_1,...,\sigma_k,\pi_1,...,\pi_k\}$. -->
+
+<!-- # Complete Likelihood -->
+
+<!-- The complete likelihood takes the form -->
+
+<!-- $$ -->
+<!-- P(X, Z \mid \mu, \sigma, \pi)=\prod_{i=1}^n \prod_{k=1}^K \pi_k^{I\left(Z_i=k\right)} N\left(x_i \mid \mu_k, \sigma_k\right)^{I\left(Z_i=k\right)} -->
+<!-- $$ -->
+
+<!-- so the complete log-likelihood takes the form: -->
+
+<!-- $$ -->
+<!-- \log (P(X, Z \mid \mu, \sigma, \pi))=\sum_{i=1}^n \sum_{k=1}^K I\left(Z_i=k\right)\left(\log \left(\pi_k\right)+\log \left(N\left(x_i \mid \mu_k, \sigma_k\right)\right)\right) -->
+<!-- $$ -->
+
+<!-- # E-step -->
+
+<!-- In practice, we do not observe the latent variables, so we consider the -->
+<!-- expectation of the complete log-likelihood with respect to the posterior -->
+<!-- of the latent variables. The expected value of the complete -->
+<!-- log-likelihood is therefore: -->
+
+<!-- \small -->
+
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- & E_{Z \mid X}[\log (P(X, Z \mid \mu, \sigma, \pi))] \\ -->
+<!-- & =E_{Z \mid X}\left[\sum_{i=1}^n \sum_{k=1}^K I\left(Z_i=k\right)\left(\log \left(\pi_k\right)+\log \left(N\left(x_i \mid \mu_k, \sigma_k\right)\right)\right)\right] \\ -->
+<!-- & =\sum_{i=1}^n \sum_{k=1}^K P\left(Z_i=k \mid X\right)\left\{\log \left(\pi_k\right)+\log \left[N\left(x_i \mid \mu_k, \sigma_k\right)\right]\right\} -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+
+<!-- Note that $P(Z_i=k|X)$ is the posterior distribution of $Z_i$ given the -->
+<!-- observations: $$ -->
+<!-- P\left(Z_i=k \mid X_i\right)=\frac{P\left(X_i \mid Z_i=k\right) P\left(Z_i=k\right)}{P\left(X_i\right)}=\frac{\pi_k N\left(\mu_k, \sigma_k^2\right)}{\sum_{k=1}^K \pi_k N\left(\mu_k, \sigma_k\right)} -->
+<!-- $$ -->
+
+<!-- # M-estp -->
+
+<!-- -   First choose initial values for $\mu,\sigma,\pi$ so you can compute -->
+<!--     $P\left(Z_i=k \mid X_i\right)$. -->
+
+<!-- -   Then with $P\left(Z_i=k \mid X_i\right)$ fixed, maximize the -->
+<!--     expected complete log-likelihood above with respect to -->
+<!--     $\mu_k, \sigma_k, \pi_k$. -->
+
+<!-- # Example (Mixture of Two Normal) -->
+
+<!-- Assume we have $K=2$ components, so that: $$ -->
+<!-- \begin{gathered} -->
+<!-- X_i \mid Z_i=0 \sim N(5,1.5) \\ -->
+<!-- X_i \mid Z_i=1 \sim N(10,2) -->
+<!-- \end{gathered} -->
+<!-- $$ The true mixture proportions will be $P\left(Z_i=0\right)=0.25$ and -->
+<!-- $P\left(Z_i=1\right)=0.75$. First we simulate data from this mixture -->
+<!-- model -->
+
+<!-- # EM in R -->
+
+<!-- ```{r} -->
+<!-- # mixture components -->
+<!-- mu.true <- c(5, 10) -->
+<!-- sigma.true <- c(1.5, 2) -->
+
+<!-- # determine Z_i -->
+<!-- Z <- rbinom(10000, 1, 0.75) -->
+<!-- # sample from mixture model -->
+
+<!-- X <- rnorm(10000, -->
+<!--   mean = mu.true[Z + 1], -->
+<!--   sd = sigma.true[Z + 1] -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- ```{r, out.width="80%", fig.align='center'} -->
+<!-- hist(X, breaks = 15) -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- ```{r} -->
+<!-- log_likelihood_mixture <- function(theta, data) { -->
+<!--   mu1 <- theta[1] -->
+<!--   mu2 <- theta[2] -->
+<!--   sigma1 <- theta[3] -->
+<!--   sigma2 <- theta[4] -->
+<!--   pi <- theta[5] -->
+
+<!--   n <- length(data) -->
+<!--   log_likelihood <- sum( -->
+<!--     log(pi * dnorm(data, mean = mu1, sd = sigma1) + -->
+<!--       (1 - pi) * dnorm(data, mean = mu2, sd = sigma2)) -->
+<!--   ) -->
+
+<!--   return(log_likelihood) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # E-step: Compute the component proportions for each data point -->
+<!-- e_step <- function(data, mu1, mu2, sigma1, sigma2, pi) { -->
+<!--   p1 <- pi * dnorm(data, mean = mu1, sd = sigma1) -->
+<!--   p2 <- (1 - pi) * dnorm(data, mean = mu2, sd = sigma2) -->
+
+<!--   # Compute the proportions for each data point -->
+<!--   proportions <- p1 / (p1 + p2) -->
+
+<!--   return(proportions) -->
+<!-- } -->
+
+<!-- # M-step: Update the parameters (means, variances, and mixture proportion) -->
+<!-- m_step <- function(data, proportions) { -->
+<!--   pi <- mean(proportions) -->
+<!--   mu1 <- sum(proportions * data) / sum(proportions) -->
+<!--   mu2 <- sum((1 - proportions) * data) / sum(1 - proportions) -->
+<!--   sigma1 <- sqrt(sum(proportions * (data - mu1)^2) / sum(proportions)) -->
+<!--   sigma2 <- sqrt(sum((1 - proportions) * (data - mu2)^2) / sum(1 - proportions)) -->
+<!--   return(c(mu1, mu2, sigma1, sigma2, pi)) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # EM algorithm to estimate means and variances -->
+<!-- em_algorithm <- function(data, max_iterations = 1000, tolerance = 1e-8, initial_params = NULL) { -->
+
+<!--   # Initial guesses for the parameters -->
+<!--   if (is.null(initial_params)) { -->
+<!--     initial_params <- c(mean(data), mean(data), sd(data), sd(data), 0.5) -->
+<!--   } -->
+
+<!--   params <- initial_params -->
+<!--   log_likelihood_prev <- -Inf -->
+
+<!--   for (i in 1:max_iterations) { -->
+<!--     # E-step: Compute the component proportions -->
+<!--     proportions <- e_step(data, params[1], params[2], params[3], params[4], params[5]) -->
+
+<!--     # M-step: Update the parameters -->
+<!--     new_params <- m_step(data, proportions) -->
+
+<!--     # Compute the log-likelihood to check for convergence -->
+<!--     log_likelihood <- log_likelihood_mixture(new_params, data) -->
+
+<!--     # Check for convergence -->
+<!--     if (abs(log_likelihood - log_likelihood_prev) < tolerance) { -->
+<!--       cat("Total Number of Iterations:", i, "\n") -->
+<!--       break -->
+<!--     } -->
+
+
+<!--     # Update parameters and log-likelihood -->
+<!--     params <- new_params -->
+<!--     log_likelihood_prev <- log_likelihood -->
+<!--   } -->
+<!--   return(params) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # Run the EM algorithm on the generated data -->
+<!-- estimated_params <- em_algorithm(X) -->
+
+<!-- # Print the estimated parameters -->
+<!-- cat("Estimated mean 1:", estimated_params[1], "\n") -->
+<!-- cat("Estimated mean 2:", estimated_params[2], "\n") -->
+<!-- cat("Estimated variance 1:", estimated_params[3]^2, "\n") -->
+<!-- cat("Estimated variance 2:", estimated_params[4]^2, "\n") -->
+<!-- cat("Estimated mixture proportion:", estimated_params[5], "\n") -->
+<!-- ``` -->
+
+<!-- # What happened? -->
+
+<!-- -   There is no guarantee that the EM algorithm converges to a global -->
+<!--     maximum of the likelihood. -->
+<!-- -   To address this issue, one approach is to try different initial -->
+<!--     parameter values and run the EM algorithm multiple times. -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # Run the EM algorithm with random initial parameter -->
+<!-- estimated_params <- em_algorithm(X, -->
+<!--   initial_params = c(runif(2, min(X), max(X)),  -->
+<!--                     runif(2, 0, max(X) - min(X)),  -->
+<!--                     runif(1, 0, 1)) -->
+<!-- ) -->
+
+<!-- # Print the estimated parameters -->
+<!-- cat("Estimated mean 1:", estimated_params[1], "\n") -->
+<!-- cat("Estimated mean 2:", estimated_params[2], "\n") -->
+<!-- cat("Estimated variance 1:", estimated_params[3]^2, "\n") -->
+<!-- cat("Estimated variance 2:", estimated_params[4]^2, "\n") -->
+<!-- cat("Estimated mixture proportion:", estimated_params[5], "\n") -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # Run the EM algorithm with random initial parameter -->
+<!-- estimated_params <- em_algorithm(X, -->
+<!--   initial_params = c(runif(2, min(X), max(X)),  -->
+<!--                     runif(2, 0, max(X) - min(X)),  -->
+<!--                     runif(1, 0, 1)) -->
+<!-- ) -->
+
+<!-- # Print the estimated parameters -->
+<!-- cat("Estimated mean 1:", estimated_params[1], "\n") -->
+<!-- cat("Estimated mean 2:", estimated_params[2], "\n") -->
+<!-- cat("Estimated variance 1:", estimated_params[3]^2, "\n") -->
+<!-- cat("Estimated variance 2:", estimated_params[4]^2, "\n") -->
+<!-- cat("Estimated mixture proportion:", estimated_params[5], "\n") -->
+<!-- ``` -->
+
+<!-- # EM in R -->
+
+<!-- \tiny -->
+
+<!-- ```{r} -->
+<!-- # Run the EM algorithm with random initial parameter -->
+<!-- estimated_params <- em_algorithm(X, -->
+<!--   initial_params = c(runif(2, min(X), max(X)),  -->
+<!--                     runif(2, 0, max(X) - min(X)),  -->
+<!--                     runif(1, 0, 1)) -->
+<!-- ) -->
+
+<!-- # Print the estimated parameters -->
+<!-- cat("Estimated mean 1:", estimated_params[1], "\n") -->
+<!-- cat("Estimated mean 2:", estimated_params[2], "\n") -->
+<!-- cat("Estimated variance 1:", estimated_params[3]^2, "\n") -->
+<!-- cat("Estimated variance 2:", estimated_params[4]^2, "\n") -->
+<!-- cat("Estimated mixture proportion:", estimated_params[5], "\n") -->
+<!-- ``` -->
+
+# Delta method
+
+::: block
+### Theorem (The Delta Method).
+
+Suppose that $$
+\frac{\sqrt{n}\left(Y_{n}-\mu\right)}{\sigma} \rightsquigarrow N(0,1)
+$$ and that $g$ is a differentiable function such that
+$g^{\prime}(\mu) \neq 0$. Then $$
+\frac{\sqrt{n}\left(g\left(Y_{n}\right)-g(\mu)\right)}{\left|g^{\prime}(\mu)\right| \sigma} \rightsquigarrow N(0,1) .
+$$ In other words, $$
+Y_{n} \approx N\left(\mu, \frac{\sigma^{2}}{n}\right) \quad \text { implies that } \quad g\left(Y_{n}\right) \approx N\left(g(\mu),\left(g^{\prime}(\mu)\right)^{2} \frac{\sigma^{2}}{n}\right) .
+$$
+:::
+
+# Exercise
+
+Let $X_{1}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p)$ and let
+$\psi=g(p)=\log (p /(1-$ $p)$ ). Find the MLE of $\psi$ and its asymptotic distribution. 
+
+\pause
+
+The MLE of $p$ was derived previously as follows
+$$\hat{p}_{\text{MLE}} = \frac{1}{n} \sum_{i=1}^{n} X_i = \bar{X}$$
+Now, for $\psi = g(p) = \log\left(\frac{p}{1-p}\right)$, the MLE of $\psi$ is obtained by plugging in the MLE of $p$:
+$$\hat{\psi}_{\text{MLE}} = g(\hat{p}_{\text{MLE}}) = \log\left(\frac{\hat{p}_{\text{MLE}}}{1-\hat{p}_{\text{MLE}}}\right) = \log\left(\frac{\bar{X}}{1-\bar{X}}\right)$$
+
+# Exercise
+
+By the Central Limit Theorem, as $n \to \infty$:
+$$\sqrt{n}(\bar{X} - E[X_i]) \xrightarrow{D} N(0, \operatorname{Var}(X_i))$$
+Therefore,
+$$\sqrt{n}(\hat{p}_{\text{MLE}} - p) \xrightarrow{D} N(0, p(1-p))$$
+
+To apply delta method, we need to find the derivative of $g(p)$:
+$$g'(p) = \frac{1}{p(1-p)}$$
+and 
+$$[g'(p)]^2 \sigma^2 = \left(\frac{1}{p(1-p)}\right)^2 \cdot p(1-p) = \frac{1}{p^2(1-p)^2} \cdot p(1-p) = \frac{1}{p(1-p)}
+$$
+Therefore, 
+$$\sqrt{n}(\hat{\psi}_{\text{MLE}} - \psi) \xrightarrow{D} N\left(0, \frac{1}{p(1-p)}\right)$$
+
+
+
+# Resources
+
+This tutorial is based on
+
+-   Harvard Biostatistics Summer Pre Course
+    [[link]](https://isabelfulcher.github.io/methodsprep/)
+
+-   "All of Statistics" by Larry A. Wasserman
+    [[link]](https://www.stat.cmu.edu/~larry/all-of-statistics/index.html)
+
+# Exercises
+
+Available on course website. 

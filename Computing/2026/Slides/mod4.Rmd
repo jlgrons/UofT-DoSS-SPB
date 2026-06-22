@@ -1,407 +1,378 @@
 ---
-title: 'Module 4: Statistical inference (I)'
-author: "Jianhui Gao"
-date: \today
+title: "Module 4: Linear regression/Generalized linear regression"
+author: "Benjamin Smith"
+date: "07/15/2026"
 output:
   beamer_presentation:
     colortheme: dolphin
     theme: Madrid
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Outline
 
-This module we will review
+In this module, we will review linear regression. 
 
--   Basics of probability
--   Fundamental concepts in inference
+# Linear regression
 
-# Probability distributions
-
--   In statistics, we try to draw conclusions about a larger population
-    from a sample of observations.
--   We use mathematical models to capture probabilistic behavior of a
-    population.
--   This behavior is modeled using probability distributions.
-
-# Density/Distribution functions
-
-::: block
-### Definition (Cumulative Distribution Function)
-
+- Model:
 $$
-F_{X}(x)=P(X \leq x) \quad \forall x \in \mathbb{R}
+Y_{n \times 1}=X_{n \times p} \beta_{p \times 1}+\epsilon_{n \times 1}
 $$
-:::
-
-# Density/Distribution functions (cont'd)
-
-::: block
-### Definition (Probability Mass Function)
-
-For a discrete $R V$, the probability mass function (PMF) is: $$
-f_{X}(x)=P(X=x) \quad  \forall x \in \mathbb{R}
+- Equivalently:
 $$
-:::
+y_{i}=x_{i}^{\mathrm{T}} \beta+\epsilon_{i}, \quad i=1, \ldots, n
+$$
 
-::: block
-### Definition (Probability Density Function)
+\pause
 
-For a continuous $\mathrm{RV}$, the probability density function (PDF)
-is: $$
-f_{X}(x)=\left.\frac{\partial}{\partial t} F(t)\right|_{t=x}
-$$ So
-$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t \forall x \in \mathbb{R}$.
-:::
+- Standard assumptions
+  - $y_{i}$ independent (equivalently $\epsilon_{i}$ independent)
+  - $\mathbb{E}\left(\epsilon_{i}\right)=0$
+  - $\operatorname{var}\left(\epsilon_{i}\right)=\sigma^{2}$, constant
+  - $x_{i}$ known, $\beta$ to be estimated
 
-Note that $f_{X} \geq 0$ for $\forall x$, and thus $F_{X}$ is an
-increasing function.
+\pause
 
-# Expectation and Variance
+- More concisely:
+$$
+\mathbb{E}(Y \mid X)=X \beta, \quad \operatorname{var}(Y \mid X)=\sigma^{2} I
+$$
 
-::: block
-### Definition (Expectation)
+# Interpretation of $\beta_j$
 
-A measure of central tendancy (a weighted average of the values of $X$)
+- Effect on the expected response of a unit change in jth explanatory variable, all other variables held fixed
+
+# Least squares estimation
+
+- Definition (minimize the residuals)
+$$
+\hat{\beta}_{\mathrm{LS}}:=\min _{\beta} \sum_{i=1}^{n}\left(y_{i}-x_{i}^{\mathrm{T}} \beta\right)^{2}
+$$
+- Equivalently,
+$$
+\hat{\beta}_{L S}:=\min _{\beta}(y-X \beta)^{\mathrm{T}}(y-X \beta)
+$$
+- Equivalently (L2 distance),
+$$
+\hat{\beta}_{\mathrm{LS}}:=\min _{\beta}\|\mathrm{y}-X \beta\|_{2}^{2}
+$$
+
+- Equivalently, $\hat{\beta}$ is the solution of the score equation
+$$
+X^{\mathrm{T}}(y-X \beta)=0
+$$
+
+- Solution
+$$
+\hat{\beta}_{\mathrm{LS}}=\left(X^{\mathrm{T}} X\right)^{-1}\left(X^{\mathrm{T}} \boldsymbol{y}\right)
+$$
+
+# Another interpretation: the projection of $Y$ onto the linear subspace spanned by the columns of $\mathbf{X}$
+
+![](projection.jpeg)
+Elements of Statistical Learning, p46
+
+# Least squares estimation (cont'd)
+
+Assume $X$ is fixed, 
+
+- Expected value 
+
+$$\mathbb{E}\left(\hat{\beta}_{\mathrm{LS}}\right)=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \mathbb{E}(y)=\left(X^{\mathrm{T}} X\right)^{-1}\left(X^{\mathrm{T}} X\right) \beta=\beta$$
+
+- Variance
 $$
 \begin{aligned}
-&E[X]=\sum_{x \in S} x P(X=x) \text{ for discrete RV taking values from } S \\
-&E[X]=\int_{-\infty}^{\infty} x f_{X}(x) d x \text { for continuous RV} 
+\operatorname{var}\left(\hat{\beta}_{L S}\right) &=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \operatorname{var}(y) X\left(X^{\mathrm{T}} X\right)^{-1} \\
+&=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \sigma^{2} I X\left(X^{\mathrm{T}} X\right)^{-1} \\
+&=\sigma^{2}\left(X^{\mathrm{T}} X\right)^{-1}
 \end{aligned}
 $$
-:::
 
-::: block
-### Definition (Variance)
+# Assumptions for ordinary least squares
 
-A measure of the spread of a distribution $$
-\begin{aligned}
-&\operatorname{Var}(X)=\sum_{x \in S}(x-E[X])^{2} P(X=x) \text { for discrete RV } \\
-&\operatorname{Var}(X)=\int_{-\infty}^{\infty}(x-E[X])^{2} f_{X}(x) d x \text { for continuous RV }
-\end{aligned}
+- **Linearity**: the expectation of $Y$ is linear in $X_{1} \ldots X_{p}$
+- **Independence**: the $\epsilon_{i}$ are independent
+- **Mean zero errors**: the $\epsilon_{i}$ have mean zero, i.e. $E\left[\epsilon_{i}\right]=0$
+- **Equal variance (homoscedasticity)**: the $\epsilon_{i}$ have the same variance, i.e. $\operatorname{Var}\left[\epsilon_{i}\right]=\sigma^{2}$
+
+
+# What about normal distribution?
+
+- If we further assume $\epsilon_{i} \sim N\left(0, \sigma^{2}\right)$ (and independent across $i$), then
+
+- $y \mid X \sim N\left(X \beta, \sigma^{2} I\right)$, and
+- likelihood function is
 $$
-:::
-
-# Discreate random variable
-
-A discrete random variable has a countable number of possible values.
-
-# Bernoulli and Binomial random variable
-
--   Consider the event of flipping a (possibly unfair) coin.
--   $Y \in \{0, 1\}$ represents success and failure.
--   Suppose we only flip the coin once,
-    -   We can express $P(Y=1) = p$ and $P(Y=0) = 1-p$
--   Bernoulli distribution $$
-    P(Y=y)=p^{y}(1-p)^{1-y} \quad \text { for } \quad y=0,1
-    $$
--   If we flip the coin $n$ times,
--   Binomial distribution $$
-    P(Y=y)=\left(\begin{array}{c}
-    n \\
-    y
-    \end{array}\right) p^{y}(1-p)^{n-y} \quad \text { for } \quad y=0,1, \ldots, n
-    $$
-
-# Binomial distributions with different values of $n$ and $p$
-
-If $Y \sim \operatorname{Binomial}(n, p)$, then $\mathrm{E}(Y)=n p$ and
-$\operatorname{SD}(Y)=\sqrt{n p(1-p)}$.
-
-```{r, multBin, fig.align="center",out.width="70%",fig.cap= 'Binomial distributions with different values of $n$ and $p$.', echo=FALSE, warning=FALSE, message=FALSE}
-library(gridExtra)  
-library(tidyverse)
-
-plotBinomial=function(n,p){
-  y1 <- 0:n  # possible values
-  prob <- dbinom(y1, n, p)  # P(Y=y)
-  BBGdf <- data.frame(y1, prob)
-  ggplot(data = BBGdf, aes(x = y1, xend = y1, y = 0, yend = prob)) + 
-    geom_segment() + 
-    xlab("number of successes") + ylab("probability") + labs(title=paste("n = ", n, " p = ", p))
-}
-Binom1 <- plotBinomial(10,.25) + xlim(0, 10) + scale_y_continuous(breaks = c(0.00, 0.05, 0.10, 0.15, 0.20, 0.25))
-Binom2 <- plotBinomial(20,.2) + xlim(0, 15)
-Binom3 <- plotBinomial(10,.5) + xlim(0, 10)
-Binom4 <- plotBinomial(50,.2) + xlim(0, 25)
-grid.arrange(Binom1,Binom2,Binom3,Binom4,ncol=2)
-```
-
-# How to generate in R?
-
-All common distributions have four functions in R:
-
--   Density
-
-    `dbinom(x, size, prob)`
-
--   Distribution function
-
-    `pbinom(q, size, prob)`
-
--   Quantile function
-
-    `qbinom(p, size, prob)`
-
--   Random generaation
-
-    `rbinom(n, size, prob)`
-
-Not sure? Using `?` with any of the four functions, e.g. `?qbinom`
-
-# Example of binomial distribution computing
-
-**Question:** While taking a multiple choice test, a student encountered
-10 problems where she ended up completely guessing, randomly selecting
-one of the four options. What is the chance that she got exactly 2 of
-the 10 correct?
-
-\pause
-
-**Answer:** Knowing that the student randomly selected her answers, we
-assume she has a $25 \%$ chance of a correct response.
-$$P(Y=2)=\left(\begin{array}{c}10 \\ 2\end{array}\right)(.25)^{2}(.75)^{8}=0.282$$
-
-\pause
-
-**R computing:**
-
-```{r}
-dbinom(2, size = 10, prob = .25)
-```
-
-# Continuous random variable
-
-A continuous random variable can take on an uncountably infinite number
-of values. Given a pdf $f(y)$, $$
-P(a \leq Y \leq b)=\int_{a}^{b} f(y) d y
-$$ Properties:
-
--   $\int_{-\infty}^{\infty} f(y)dy = 1$.\
--   For any value $y$, $P(Y = y) = \int_y^y f(y)dy = 0$.
-    $P(y < Y) = P(y \le Y)$.
-
-
-# Example of Continuous Distribution (Normal)
-
--   The normal distribution is a very important distribution because:
-    -   A lot of things look normal
-    -   Analytically tractable
-    -   Central limit theorem
--   $\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)$
--   Characterized by mean, $\mu$, and variance, $\sigma^2$.
-
-
-
-```{r, multNorm, fig.align="center",out.width="50%",fig.cap= '', echo=FALSE, warning=FALSE, message=FALSE}
-#normalPlots
-x <- seq(-10, 20, by = 0.01)
-norm1 <- dnorm(x, -5, 2)
-norm2 <- dnorm(x, 0 , 1)
-norm3 <- dnorm(x, 5, 5)
-norm4 <- dnorm(x, 0, 3)
-normDf <- tibble(x, norm1, norm2, norm3, norm4) %>%
-  rename(`N(-5, 2)` = norm1,
-         `N(0, 1)` = norm2,
-         `N(10, 5)` = norm3,
-         `N(0, 3)` = norm4) %>%
-  gather(2:5, key = "Distribution", value = "value") %>%
-  mutate(Distribution = factor(Distribution, 
-    levels = c("N(10, 5)","N(0, 3)", "N(0, 1)", "N(-5, 2)")))
-ggplot(data = normDf, 
-       aes(x = x, y = value, color = Distribution)) +
-  geom_line(aes(linetype = Distribution)) +
-  xlab("values") + ylab("density") + 
-  labs(title = "Normal Distributions")
-```
-
-# How to Generate Samples from Normal Distribution
-
-The following commands are for a normal random variable with mean $\mu$
-and variance $\sigma^2$, that is, $X \sim N(\mu, \sigma^2)$,
-
--   To calculate the probability density function at a value x,
-    `dnorm(x,mu,sigma)`
-
--    To calculate the cumulative distribution function at a value x,
-    `pnorm(x,mu,sigma)`
-
--    To generate a size m sample from the normal distribution,
-    `rnorm(m,mu,sigma)`
-
--   Note that the third argument is the **square root of the variance**,
-    this is because the R function for normal distribution asks for the
-    standard deviation, which is defined as the square root of the
-    variance
-
-# Some probability distributions in R
-
-Continuous
-
--   Normal (`?rnorm`)
--   Uniform (`?runif`)
--   Beta (`?rbeta`)
--   Chi-sq (`?rchisq`)
--   Exponential (`?rexp`)
--   t (`rt`)
--   F (`?rf`)
--   Logistic (`?rlogis`)
--   Lognormal (`?rlnorm`)
-
-Discrete
-
--   Poisson (`?rpois`)
--   Binomial (`?rbinom`)
--   Geometric (`?rgeom`)
--   Negative Binomial (`?rnbinom`)
--   Multinomial (`?rmultinom`)
-
-# Empirical vs. Theoretical CDF
-
-In statistics, an empirical distribution function is the distribution
-function associated with the empirical measure of a sample.
-
--   Theoretical CDF $$
-    F_{X}(k)=\operatorname{Pr}(X \leq k)
-    $$
-
--   Empirical CDF $$
-    \hat{F}_{n}(k)=\frac{\text { number of elements in the sample } \leq k}{n}=\frac{1}{n} \sum_{i=1}^{n} I_{X_{i} \leq k}
-    $$ where $X_{1}, \ldots, X_{n}$ make up some random sample from the
-    underlying distribution.
-
-# Probability and inference
-
-![](prob_stats.png)
-
-\pause
-
--   Probability: Given a data generating process, what are the
-    properties of the outcomes?
-
--   Statistical inference: Given the outcomes, what can we say about the
-    process that generated the data?
-
-# Parametric vs. Nonparametric models
-
--   Statistical model $\mathfrak{F}$: a set of distributions (or
-    densities or regression functions)
-
-\pause
-
--   Parametric model: a set $\mathfrak{F}$ that can be parameterized by
-    a finite number of parameters $$
-    \mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}
-    $$ where $\theta$ is an unknown parameter (or vector of parameters)
-    that can take values in the parameter space $\Theta$.
-    -   e.g. Normal distribution, a 2-parameter model with density as
-        $f(x; \mu, \sigma)$
-
-\pause
-
--   Nonparametric model: a set $\mathfrak{F}$ that cannot be
-    parameterized by a finite number of parameters
-    -   e.g. $\mathfrak{F}_{\mathrm{ALL}}=\left\{\right.$ all
-        $\left.\mathrm{CDF}^{\prime} s\right\}$ is nonparametric.
-
-# Frequentist and Bayesian
-
--   Frequentist: statistical methods with guaranteed frequency behavior
-
--   Bayesian: statistical methods for using data to update beliefs
-
-
-# Point estimation
-
--   Providing a single "best guess" of some quantity of interest
--   Notations
-    -   Parameter $\theta$: fixed, unknown quantity
-    -   Point estimator $\hat{\theta}$: depends on data, random variable
-
-\pause
-
-::: block
-### Definition (Point estimator)
-
-Let $X_{1}, \ldots, X_{n}$ be $n$ IID data points from some distribution
-$F$. A point estimator $\hat{\theta}_{n}$ of a parameter $\theta$ is
-some function of $X_{1}, \ldots, X_{n}$ : $$
-\widehat{\theta}_{n}=g\left(X_{1}, \ldots, X_{n}\right)
+L\left(\beta, \sigma^{2} ; y\right)=\frac{1}{\left(2 \pi \sigma^{2}\right)^{n / 2}} \exp \left\{-\frac{1}{2 \sigma^{2}}(y-X \beta)^{T}(y-X \beta)\right\}
 $$
-:::
-
--   What is a good point estimate?
-
-# MSE
-
--   Definition: $$
-    \mathrm{MSE}=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\theta\right)^{2}
-    $$
-
--   No uniformly best estimator in terms of MSE
-
--   It is NOT possible to have an estimator that is uniformly the best.
-
-# Bias and Variance
-
--   Bias $$
-    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta
-    $$
--   Variance $$
-    \textrm{Var}\left(\widehat{\theta}_{n}\right) = \mathbb{E}_{\theta}\left(\widehat{\theta}_{n}-\mathbb{E}\theta\right)^{2}
-    $$
--   Theorem
-
+- log-likelihood function is
 $$
-MSE = bias^2 + Var
-$$ 
+\ell\left(\beta, \sigma^{2} ; y\right)=-\frac{n}{2} \log \left(\sigma^{2}\right)-\frac{1}{2 \sigma^{2}}(y-X \beta)^{\mathrm{T}}(y-X \beta)
+$$
+- maximum likelihood estimate of $\beta$ is
+$$
+\hat{\beta}_{M L}=\left(X^{\mathrm{T}} X\right)^{-1} X^{\mathrm{T}} \boldsymbol{y}=\hat{\beta}_{\mathrm{LS}}
+$$
+
+# What about normal distribution? (cont'd)
+
+- distribution of $\hat{\beta}$ is normal
+$$
+\hat{\beta} \sim N_{p}\left(\beta, \sigma^{2}\left(X^{\mathrm{T}} X\right)^{-1}\right)
+$$
+- distribution of $\hat{\beta}_{j}$ is
+$$
+N\left(\beta_{j}, \sigma^{2}\left(X^{\mathrm{T}} X\right)_{j j}^{-1}\right), \quad j=1, \ldots, p
+$$
+- maximum likelihood estimate of $\sigma^{2}$ is 
+$$\frac{1}{n}(y-X \hat{\beta})^{\mathrm{T}}(y-X \hat{\beta})$$
+- but we use
+$$
+\tilde{\sigma}^{2}=\frac{1}{n-p}(y-X \hat{\beta})^{\mathrm{T}}(y-X \hat{\beta})
+$$
 
 
-# Unbiasedness
 
--   Definition $$
-    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta = 0
-    $$
+# Maximum likelihood estiamtion vs. OLS
 
--   Unbiasedness is a small sample (finite sample) property
+- We did not place any distributional assumptions on the outcome,
+  - We only required that $E\left[\epsilon_{i}\right]=0$ with constant variance
+  - In other words, OLS is a semiparametric method
+  
+\pause
 
--   An unbiased estimator may not exist
+- Sometimes, people assume that $\epsilon_{i} \sim N\left(0, \sigma^{2}\right)$, which means
+$$
+Y_{i} \sim N\left(\beta_{0}+\beta_{1} X_{i 1}+\ldots+\beta_{1} X_{i p}, \sigma^{2}\right)
+$$
 
--   An unbiased estimator is not necessarily a good estimator
+  - If this additional assumption is made, then we can instead use maximum likelihood estimation for $\boldsymbol{\beta}$
+  - This connects to a whole other class of models called generalized linear models (GLMs)
+  - Interestingly, in this case, you will end up with the same estimates for $\boldsymbol{\beta}$
 
-# Consistency
-
--   Definition $$
-    \widehat{\theta}_{n} \stackrel{\mathrm{P}}{\longrightarrow} \theta
-    $$
--   It is possible to be unbiased but not consistent.
--   It is possible to be consistent but not unbiased.
-
-# Asypototic unbiasedness
-
--   Definition $$
-    \operatorname{bias}\left(\widehat{\theta}_{n}\right)=\mathbb{E}_{\theta}\left(\widehat{\theta}_{n}\right)-\theta \to 0, \text{ as } n \to\infty
-    $$
-
--   It is possible to be asypototically unbiased but not consistent.
-
--   It is possible to be consistent but NOT asymptotically unbiased.
-
--   Sufficient conditions: $MSE \to 0$.
 
 # Resources
 
-This tutorial is based on
+This tutorial is based on 
 
--   Havard Biostatistics Summer Pre Course
-    [[link]](https://isabelfulcher.github.io/methodsprep/)
+- Nancy Reid's STA2101 Methods of Applied Statistics [[links](https://utstat.toronto.edu/reid/sta2101f/sep15-annotated.pdf)]
 
--   "Beyond Multiple Linear Regression" by Paul Roback and Julie Legler
-    [[link]](https://bookdown.org/roback/bookdown-BeyondMLR/)
+- Harvard's Biostatistics Preparatory Course Methods  [[links](https://isabelfulcher.github.io/methodsprep/slides/Lecture_5/2018_Lecture_05.pdf)].
 
+# Break
+
+![](break3.png)
+
+# Outline
+
+In this module, we will review generalized linear regression. 
+
+# Logistic regression
+
+- Each response is binary: $y_i = 1, 0$
+- Explanatory variables $x_{i}^{T}$ as usual
+- Model
+$$
+P\left(y_{i}=1 \mid x_{i}\right)=\frac{\exp \left(x_{i}^{\top} \beta\right)}{1+\exp \left(x_{i}^{\top} \beta\right)}
+$$
+
+
+# Generalized linear models (GLMs)
+
+- Generalized Linear Models extend the classical set-up to allow for a wider range of distributions
+
+- GLMs have three pieces
+  1. random component: $y_{i} \sim$ some distribution with $E\left[y_{i} | \mathbf{x}_{i}\right]=\mu_{i}$
+  2. systematic component: $\mathbf{x}_{i}^{T} \beta$
+  3. The link function that links the random and systematic components $g\left(u_{i}\right)=\mathbf{x}_{i}^{T} \beta$
+  
+- Distributions of $y_i$ comes from exponential family. 
+
+# Exponential family
+
+The random variable $\mathrm{Y}$ belongs to the exponential family of distributions if its support does not depend upon any unknown parameters and its density or probability mass function takes the form
+$$
+f(y \mid \theta, \phi)=\exp \left(\frac{y \theta-b(\theta)}{a(\phi)}+c(y, \phi)\right)
+$$
+where $\theta$ is the canonical parameter (related to the mean), $\phi$ is a dispersion parameter (often related to the variance), $b(\theta)$  is the cumulant function (which helps derive the mean and variance), and $c(y, \phi)$ is a normalization term ensuring the density integrates (or sums) to 1.
+
+# Example 1 Gaussian distribution
+The Gaussian (Normal) distribution can be written in exponential family form as:
+
+\[
+f(y \mid \mu, \sigma^2) = \exp\left( \frac{y\mu - \frac{\mu^2}{2}}{\sigma^2} - \frac{y^2}{2\sigma^2} - \frac{1}{2}\log(2\pi\sigma^2) \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \mu \quad &\text{(natural parameter)} \\
+\phi &= \sigma^2 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= \frac{\theta^2}{2} \quad &\text{(cumulant function)} \\
+c(y, \phi) &= -\frac{y^2}{2\phi} - \frac{1}{2}\log(2\pi\phi) \quad &\text{(normalization term)}
+\end{align*}
+
+# Example 2 Poisson distribution
+The Poisson distribution with parameter $\lambda$ (rate parameter) can be written in exponential family form as:
+
+\[
+f(y \mid \lambda) = \exp\left( y\log\lambda - \lambda - \log(y!) \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \log\lambda \quad &\text{(natural parameter)} \\
+\phi &= 1 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= e^\theta \quad &\text{(cumulant function)} \\
+c(y, \phi) &= -\log(y!) \quad &\text{(normalization term)}
+\end{align*}
+
+
+# Example 3 Binomial distribution
+The Binomial distribution with parameters $n$ (number of trials) and $p$ (success probability) can be written in exponential family form as:
+
+\[
+f(y \mid p) = \exp\left( y\log\left(\frac{p}{1-p}\right) + n\log(1-p) + \log\binom{n}{y} \right)
+\]
+
+where:
+\begin{align*}
+\theta &= \log\left(\frac{p}{1-p}\right) \quad &\text{(natural parameter, log-odds)} \\
+\phi &= 1 \quad &\text{(dispersion parameter)} \\
+b(\theta) &= n\log(1 + e^\theta) \quad &\text{(cumulant function)} \\
+c(y, \phi) &= \log\binom{n}{y} \quad &\text{(normalization term)}
+\end{align*}
+
+# MGF of exponential family
+\footnotesize
+\begin{align*}
+M_Y(t) &= \mathbb{E}[e^{tY}] \\
+       &= \int e^{ty} f(y \mid \theta, \phi) dy \\
+       &= \int \exp\left(ty + \frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right) 
+          \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta + ta(\phi))}{a(\phi)} + c(y, \phi)\right) dy \\
+       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right)
+\end{align*}
+
+# Mean of the exponential family
+
+
+\begin{align*}
+M_Y'(t) &= \frac{d}{dt} \left[ \exp\left(\frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)}\right) \right] \\
+&= M_Y(t) \cdot \frac{d}{dt} \left( \frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)} \right) \quad \text{(Chain rule)} \\
+&= M_Y(t) \cdot \frac{b'(\theta + t a(\phi)) \cdot a(\phi)}{a(\phi)} \\
+&= M_Y(t) \cdot b'(\theta + t a(\phi))
+\end{align*}
+Evaluating at $t=0$ (since $M_Y(0)=1$):
+\[
+M_Y'(0) = b'(\theta) = \mu = \mathbb{E}[Y]
+\]
+
+# Variance of the exponential family
+
+\begin{align*}
+M_Y''(t) &= \frac{d}{dt} \left[ M_Y(t) \cdot b'(\theta + t a(\phi)) \right] \\
+&= M_Y'(t) \cdot b'(\theta + t a(\phi)) + M_Y(t) \cdot b''(\theta + t a(\phi)) \cdot a(\phi)  \\
+&= M_Y(t) \cdot \left[ (b'(\theta + t a(\phi)))^2 + b''(\theta + t a(\phi)) \cdot a(\phi) \right]
+\end{align*}
+Evaluating at $t=0$:
+\[
+M_Y''(0) = \mu^2 + b''(\theta) a(\phi) = \mathbb{E}[Y^2]
+\]
+Thus the variance is:
+\[
+\text{Var}(Y) = M_Y''(0) - [M_Y'(0)]^2 = b''(\theta) a(\phi)
+\]
+
+# Link function
+The second element of the generalization is that instead of modeling the
+mean, as before, we will introduce a one-to-one continuous diﬀerentiable
+transformation $g(\mu_i)$ of the mean $\mu_i = E[y_i]$ and model that
+$$
+(\mu_i) = \eta_i =  x_i^{\top} \beta
+$$
+where $\eta_i$ is the linear predictor. The function $g(\cdot)$ is called the link function.
+
+# Link function
+
+Since $g(\cdot)$ is a one-to-one transformation, we can invert it to get the mean:
+$$
+\mu_i = g^{-1}(\eta_i) = g^{-1}(x_i^{\top} \beta)
+$$
+
+Note that we do not transform the response variable $y_i$ itself, but rather the mean of the response variable.
+
+# Link function in R
+
+"glm" has several options for family: 
+$$
+\begin{aligned}
+&\text { binomial (link }=\text { "logit") } \\
+&\text { gaussian(link }=\text { "identity") } \\
+&\text { Gamma(link }=\text { "inverse") } \\
+&\text { inverse.gaussian(link }=" 1 / \mathrm{mu}^{\wedge} 2") \\
+&\text { poisson(link }=\text { "log") } \\
+&\text { quasi (link }=\text { "identity", variance = "constant") } \\
+&\text { quasibinomial (link }=\text { "logit") } \\
+&\text { quasipoisson(link }=\text { "log") } 
+\end{aligned}
+$$
+
+# MLE
+
+An important practical feature of generalized linear models is that they can all be fit to data using the same algorithm, a form of iteratively re-weighted least squares (IRLS).
+
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\begin{enumerate}
+    \item Initialize $\hat{\mu}_i^{(0)} = y_i + \epsilon$, $\eta_i^{(0)} = g(\hat{\mu}_i^{(0)})$
+    
+    \item While not converged:
+    \begin{itemize}
+        \item Working response: $z_i = \eta_i^{(k)} + (y_i-\hat{\mu}_i^{(k)})\left(\frac{d\eta}{d\mu}\right)$
+        
+        \item Weights: $w_i = \left[V(\hat{\mu}_i^{(k)})\left(\frac{d\mu}{d\eta}\right)^2\right]^{-1}$
+        
+        \item Update: $\beta^{(k+1)} = (X^\top WX)^{-1}X^\top Wz$
+        
+        \item Update $\eta_i^{(k+1)}$, $\hat{\mu}_i^{(k+1)}$
+    \end{itemize}
+\end{enumerate}
+\end{minipage}
+
+# Gaussian Special Case of IRLS
+
+For linear regression ($Y \sim N(\mu, \sigma^2)$):
+\begin{itemize}
+    \item \textbf{Link}: Identity $g(\mu) = \mu$  
+    \item \textbf{Variance}: $V(\mu) = 1$ (constant)
+    \item \textbf{Weights}: $w_i = 1$ (equal weighting)
+    \item \textbf{Working response}: $z_i = y_i$ (original data)
+\end{itemize}
+
+\vspace{0.2cm}
+IRLS reduces to ordinary least squares:
+\[
+\beta^{(k+1)} = (X^\top X)^{-1}X^\top y \quad \text{(single iteration)}
+\]
+
+Key observations: 
+
+- Link derivative $\frac{d\mu}{d\eta}=1$ 
+- No reweighting needed (homoscedasticity) 
+- Exact solution in one step
+
+# Asymptotics
+
+The asymptotic distribution of the MLE $\hat{\beta}$ is given by:
+
+$$
+\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0, (X^\top W X)^{-1}\phi)
+$$
+
+In the case of the Gaussian distribution, $\phi$ is the variance $\sigma^2$, W is the identity matrix, and the covariance matrix simplifies to: $(X^\top  X)^{-1}\sigma^2$.

@@ -42,19 +42,14 @@ This course will revisit foundational programming principles in `R` and review e
 
 # Tentative Lecture Schedule
 
-The Lecture Topcs and corresponding texts are outlined below. This schedule is tentative and may be changed as the course progresses. 
+The Lecture Topics and corresponding texts are outlined below. This schedule is tentative and may be changed as the course progresses. 
 
 \newpage
 
 | Module | Topics | References |
 | :- | :--- | :--- |
-| 1 | R, Rstudio, and Rmarkdown; Basic data types and structures | - |
-| 2 | Reporting, data wrangling and graphing (I); LaTeX, `tidyverse` | - |
-| 3 | Reporting, data wrangling and graphing (II); Elementary data analysis; `ggplot` and R style guide | - |
-| 4 | Probability distributions; Statistical inference (I); Fundamental concepts in inference | AoS Chp 1-5; AoS Chp 6 |
-| 5 | Statistical inference (II); Maximum likelihood estimation | C&B Chp 6.3, 7; AoS Chp 3-4 |
-| 6 | Statistical inference (III); Hypothesis testing | AoS Chp 8; C&B Chap 8 |
-| 7 | Statistical models (I); Linear regression models | AoS Chp 13; C&B Chp 11 |
-| 8 | Statistical models (II); Generalized linear models | C&B Chp 12; AoS Chp 13 |
-| 9 | Simulation and parallel computing | C&B Chap 10; AoS Chp 24 |
-| 10 | Bootstrap | AoS Chp 5 |
+| 1 | R, Rstudio, and Rmarkdown; data wrangling and graphing; LaTeX; Elementary data analysis| - |
+| 2 | Statistical inference (I) | AoS Chp 1-5; AoS Chp 6; C&B Chp 6.3, 7 |
+| 3 | Statistical inference (II) |  AoS Chp 8; C&B Chp 8 |
+| 4 | Linear Regression \& Generalized Linear Models | AoS Chp 13; C&B Chp 11-12 |
+| 5 | Simulation and parallel computing; Bootstrap | C&B Chap 10; AoS Chp 5, 24;|

@@ -1,9 +1,13 @@
 ---
-title: 'Exercise 1: Basic programming in R'
-author: "Jianhui Gao"
-date: "07/05/2024"
+title: 'Problem Set 1: Basic programming in R'
+author: "Benjamin Smith"
+date: "07/06/2025"
 output: pdf_document
 ---
+
+- [Quick R](https://www.statmethods.net/r-tutorial/index.html)
+- [Rstudio cheatsheet](https://www.rstudio.com/resources/cheatsheets/)
+- [Rstudio for beginners](https://education.rstudio.com/learn/beginner/)
 
 # Part 1: Matrix and vector operations. 
 
@@ -47,16 +51,82 @@ E_m = 1 + \frac{1}{2} + \dots + \frac{1}{2^m} - \log(2^m)
 $$
 
 
-<!-- I dont like this example, so deleted --> 
-<!-- 2. Let's draw a regular polygon of n sides, with a horizontal bottom side, and the corners of the polygon staying on the unit circle. For given $n = 5$ and $r = 0.6$, start the first point $p_1 = (x_1, y_1)$ as a random number in $(-0.5, 0.5) \times (-0.5, 0.5)$, generate $10^4$ points interactively. In the $j$th iteration, we choose one corner $z_*$ of the polygon randomly and let $p_{j+1} = (x_{j+1}, y_{j+1})$ be the point on the line segment between $p_j$ and $z_*$, with the distance from $p_{j+1}$ to $p_j$ being $r$ times the distance from $z_j$ to $p_j$ and then draw all these points as dots in the $xy$ panel.  -->
 
-<!-- Hint: Complex numbers can be used to represent points in the $xy$ plane. The following script works for even or odd $n$, and the polygon always has a flat bottom.  -->
+# Part 3: Analyze NYC flight delays.   
 
-<!-- ```{r, fig.width=5} -->
-<!-- n <- 8 -->
-<!-- t <- c(0:n) - 0.5 -->
-<!-- z <-  exp(2i * pi * (t/n - 0.25)) -->
 
-<!-- plot(Re(z), Im(z)) -->
-<!-- ``` -->
+Install the "nycflights13" package. The data comes from the US Bureau of Transportation Statistics. Using the data, complete the following tasks: 
 
+1. Find all flights that had an arrival delay of >4 hours, return the first 5 row. (Note: `arr_delay` is in mins)
+2. Find all flight names that flew from JFK to IAH, i.e. return only unique values of "flight" variable after filtering. Hint: `unique()` would help. 
+3. Find how many flights were operated by UA. 
+4. Find how many unique flights were operated by UA. 
+5. Sort flights that have the most delayed flights. Show the first 5 row. 
+6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
+
+```{r message=FALSE, warning=FALSE}
+library(nycflights13)
+head(flights)
+```
+
+
+# 4. NYC bus delays
+
+The data is from the kaggle dataset "Bus Breakdown and Delays NYC - When and why a bus was delayed? Bus delays 2015 to 2017". (https://www.kaggle.com/anthobau/busbreakdownanddelays).
+
+The Bus Breakdown and Delay system collects information from school bus vendors operating out in the field in real time. Bus staff that encounter delays during the route are instructed to radio the dispatcher at the bus vendor’s central office. The bus vendor staff are then instructed to log into the Bus Breakdown and Delay system to record the event and notify OPT. OPT customer service agents use this system to inform parents who call with questions regarding bus service. The Bus Breakdown and Delay system is publicly accessible and contains real time updates. All information in the system is entered by school bus vendor staff.
+
+You can find data for years 2015 to 2017.
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+bus.delay <- read_csv("Bus_Breakdown_and_Delays.csv")
+```
+
+Alternatively, you can install the `RKaggle` package to load the dataset directly into R.
+
+```{r message=FALSE, warning=FALSE}
+# Run this line to install RKaggle
+# install.packages("RKaggle")
+library(RKaggle)
+bus.delay<-get_dataset("anthobau/busbreakdownanddelays")
+```
+
+```{r}
+head(bus.delay)
+```
+
+
+The following code creates new features 
+
+```{r message=FALSE, warning=FALSE}
+library(lubridate)
+
+bus.delay$occur_date <- as.POSIXct(bus.delay$Occurred_On, format= "%m/%d/%Y %H:%M:%S %p")
+
+# Day of the week
+bus.delay$occur_weekday <- wday(bus.delay$occur_date, label = T)
+bus.delay$occur_month <- month(bus.delay$occur_date, label = T)
+bus.delay$occur_year <- year(bus.delay$occur_date)
+#head(bus.delay)
+```
+
+1. Group by `occur_month`, and generate a bar plot that showing the number of delays by month. 
+
+The following code generates a new variable called "duration" in mins. 
+
+```{r}
+bus.delay$duration <- as.numeric(gsub("([0-9]{1,2}).*$", "\\1", bus.delay$How_Long_Delayed))
+```
+
+
+2. Plot the boxplot of duration. 
+
+
+3. Plot a histogram of durations and group by "Boro".
+
+
+4. Plot the density of duration, group by "occur_weekday" and use facet to stratify on "Boro".
+
+
+5. Print top five Boro by mean delay.
