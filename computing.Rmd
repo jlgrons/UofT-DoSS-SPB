@@ -32,8 +32,6 @@ R style guide
 
 ### Module 2: Statistical inference (I)
 
-LaTeX, tidyverse
-
 <!-- - Slides: [pdf](Computing/2026/Slides/mod2.pdf) -->
 
 <!-- - Data: [txt](Computing/2026/Slides/mtcars.txt) -->
