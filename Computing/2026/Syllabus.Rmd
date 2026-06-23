@@ -48,7 +48,7 @@ The Lecture Topics and corresponding texts are outlined below. This schedule is 
 
 | Module | Topics | References |
 | :- | :--- | :--- |
-| 1 | R, Rstudio, and Rmarkdown; data wrangling and graphing; LaTeX; Elementary data analysis| - |
+| 1 | R, Rstudio, and Rmarkdown; Git; data wrangling and graphing; LaTeX; Elementary data analysis| - |
 | 2 | Statistical inference (I) | AoS Chp 1-5; AoS Chp 6; C&B Chp 6.3, 7 |
 | 3 | Statistical inference (II) |  AoS Chp 8; C&B Chp 8 |
 | 4 | Linear Regression \& Generalized Linear Models | AoS Chp 13; C&B Chp 11-12 |
