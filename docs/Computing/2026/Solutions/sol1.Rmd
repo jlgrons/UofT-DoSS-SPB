@@ -1,9 +1,10 @@
 ---
 title: 'Solution 1: Basic programming in R'
-author: "Jianhui Gao"
-date: "07/07/2025"
+author: "Benjamin Smith"
+date: "07/08/2025"
 output: pdf_document
 ---
+
 
 # Part 1: Matrix and vector operations. 
 
@@ -96,51 +97,173 @@ E_m(100)
 E_m2(100)
 ```
 
-<!-- \clearpage -->
-
-<!-- 2. Let's draw a regular polygon of $n$ sides, with a horizontal bottom side, and the corners of the polygon staying on the unit circle. For given $n = 5$ and $r = 0.6$, start the first point $p_1 = (x_1, y_1)$ as a random number in $(-0.5, 0.5) \times (-0.5, 0.5)$, generate $10^4$ points interactively. In the $j$th iteration, we choose one corner $z_*$ of the polygon randomly and let $p_{j+1} = (x_{j+1}, y_{j+1})$ be the point on the line segment between $p_j$ and $z_*$, with the distance from $p_{j+1}$ to $p_j$ being $r$ times the distance from $z_j$ to $p_j$ and then draw all these points as dots in the $xy$ panel.  -->
-
-<!-- Hint: Complex numbers can be used to represent points in the $xy$ plane. The following script works for even or odd $n$, and the polygon always has a flat bottom.  -->
-
-<!-- ```{r, fig.width=5} -->
-<!-- n <- 5 -->
-<!-- t <- c(0:n) - 0.5 -->
-<!-- z <- exp(2i * pi * (t/n - 0.25)) -->
 
 
-<!-- plot(Re(z), Im(z)) -->
-<!-- ``` -->
+# Part 3: Analyze NYC flight delays.   
 
-<!-- **Solution**: -->
-<!-- ```{r, fig.width=5} -->
-<!-- n_points <- 10000 -->
+Install the "nycflights13" package. The data comes from the US Bureau of Transportation Statistics. Using the data, complete the following tasks: 
 
-<!-- # generate 10000 points -->
-<!-- p <- rep(NA, n_points) -->
+1. Find all flights that had an arrival delay of >4 hours, return the first 5 row. (Note: `arr_delay` is in mins)
+2. Find all flight names that flew from JFK to IAH, i.e. return only unique values of "flight" variable after filtering. Hint: `unique()` would help. 
+3. Find how many flights were operated by UA. 
+4. Find how many unique flights were operated by UA. 
+5. Sort flights that have the most delayed flights. Show the first 5 row. 
+6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
 
-<!-- # starting from the 1st point from [-0.5, 0.5]x[-0.5, 0.5] -->
-<!-- rand <- runif(1, min = 0, max = 1) -->
-<!-- p[1] <- rand - 0.5 + 1i * (rand - 0.5) -->
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(nycflights13)
+head(flights)
+```
 
-<!-- # r x distance of d(z_j, p_j) -->
-<!-- r <- 0.6 -->
+**Solution**
 
-<!-- # set up the n sides polygon and n corners -->
-<!-- n <- 5 -->
-<!-- t <- c(0:n) - 0.5 -->
-<!-- z <- exp(2i * pi * (t/n - 0.25)) -->
+1. Find all flights that had an arrival delay of >4 hours, i.e. return the first 5 row. (Note: `arr_delay` is in mins)
 
-<!-- # in the jth iteration, randomly choose one corner and update p(j+1) -->
-<!-- for (j in c(2:n_points)) { -->
-<!--   # sample 1 corner -->
-<!--   zs <- z[sample(n, 1)] -->
-<!--   p[j] <- p[j-1] + r*(zs - p[j-1]) -->
-<!-- } -->
+```{r}
+flights %>% filter(arr_delay > 240) %>% head(5)
+```
 
-<!-- plot(Re(p), Im(p)) -->
-<!-- ``` -->
+2. Find all flight names that flew from JFK to IAH, i.e. return only unique values of "flight" variable after filtering. Hint: `unique()` would help. 
+
+```{r}
+df <- flights %>% filter(origin == "JFK" & dest == "IAH")
+unique(df$flight)
+```
+
+3. Find how many flights were operated by UA. 
+
+```{r}
+nrow(filter(flights, carrier %in% c("UA")))
+```
+
+4. Find how many unique flights were operated by UA. 
+
+```{r}
+df <- filter(flights, carrier %in% c("UA")) 
+length(unique(df$flight))
+```
+
+5. Sort flights that have the most delayed flights. Show the first 5 row. 
+
+```{r}
+flights %>% arrange(desc(dep_delay)) %>% head(5)
+```
+
+6. Generate a scatter plot with x-axis `dist` and y-axis `delay`, where each dot is a unique flights and destination, `dist` is the average distance of each destination `dest`, and `delay` is the average delay time `arr_delay`, with the size of `dot` equals to the count of delay records. 
+
+```{r}
+flights %>%
+  group_by(flight, dest) %>%
+  summarise(delay = mean(arr_delay), dist = mean(distance), n = n()) %>%
+  ggplot() +
+  geom_point(aes(x = dist, y = delay, size = n)) 
+```
 
 
+# 5. NYC bus delays
+
+The data is from the kaggle dataset "Bus Breakdown and Delays NYC - When and why a bus was delayed? Bus delays 2015 to 2017". (https://www.kaggle.com/anthobau/busbreakdownanddelays).
+
+The Bus Breakdown and Delay system collects information from school bus vendors operating out in the field in real time. Bus staff that encounter delays during the route are instructed to radio the dispatcher at the bus vendor’s central office. The bus vendor staff are then instructed to log into the Bus Breakdown and Delay system to record the event and notify OPT. OPT customer service agents use this system to inform parents who call with questions regarding bus service. The Bus Breakdown and Delay system is publicly accessible and contains real time updates. All information in the system is entered by school bus vendor staff.
+
+You can find data for years 2015 to 2017.
+
+```{r}
+bus.delay <- read_csv("Bus_Breakdown_and_Delays.csv")
+```
+
+Alternatively, you can install the `RKaggle` package to load the dataset directly into R.
+
+```{r message=FALSE, warning=FALSE}
+# Run this line to install RKaggle
+# install.packages("RKaggle")
+library(RKaggle)
+bus.delay<-get_dataset("anthobau/busbreakdownanddelays")
+```
+
+```{r}
+head(bus.delay)
+```
+
+The following code creates new features 
+
+```{r}
+library(lubridate)
+
+bus.delay$occur_date <- as.POSIXct(bus.delay$Occurred_On, format= "%m/%d/%Y %H:%M:%S %p")
+
+# Day of the week
+bus.delay$occur_weekday <- wday(bus.delay$occur_date, label = T)
+bus.delay$occur_month <- month(bus.delay$occur_date, label = T)
+bus.delay$occur_year <- year(bus.delay$occur_date)
+#head(bus.delay)
+```
+
+1. Group by `occur_month`, and generate a bar plot that showing the number of delays by month. 
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+#library(ggplot2)
+# tidyverse
+bus.delay %>%
+  group_by(occur_month) %>%
+  summarise(count = n()) %>%
+  ggplot(aes(x = occur_month, y = count)) + #axis
+  geom_bar(stat = 'identity') # stacked 
+```
+
+The following code generates a new variable called "duration" in mins. 
+
+```{r}
+bus.delay$duration <- as.numeric(gsub("([0-9]{1,2}).*$", "\\1", bus.delay$How_Long_Delayed))
+```
+
+
+2. Plot the boxplot of duration. 
+
+```{r}
+bus.delay %>%
+  ggplot(aes(y = duration)) + 
+  geom_boxplot()
+```
+
+3. Plot a histogram of durations and group by "Boro".
+
+```{r}
+bus.delay %>%
+  ggplot() + 
+  geom_histogram(aes(x = duration, 
+                     fill = Boro), 
+                 position = 'dodge', 
+                 bins = 3)  
+```
+
+4. Plot the density of duration, group by "occur_weekday" and use facet to stratify on" "Boro".
+
+```{r}
+bus.delay %>%
+  ggplot() +
+  geom_density(aes(x = duration,
+                   color = occur_weekday,
+                   fill = occur_weekday),
+               bw = 0.08) +
+  facet_wrap(~Boro, ncol = 4)
+```
+
+5. Print top five Boro by mean delay.
+
+```{r}
+bus.delay %>% 
+  group_by(Boro) %>% 
+  summarise(mean_delay = mean(duration, 
+                              na.rm = TRUE)) %>%
+  arrange(desc(mean_delay)) %>%
+  head(5)
+```
 
 
 

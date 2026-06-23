@@ -1,41 +1,79 @@
 ---
-title: 'Exercise 4: Statistical inference (I)'
-author: Jianhui Gao
+title: "Module 4: Linear regression; Generalized Linear regression"
+author: "Benjamin Smith"
 date: \today
 output: pdf_document
 ---
 
-# Part 1: Probability distributions
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
 
-\begin{enumerate}
-\item A contestant on a game show needs to answer 10 questions correctly to win the jackpot. However, if they get 4 incorrect answers, they are kicked off the show. Suppose one contestant consistently has a 80\% chance of correctly responding to any question. 
+# Part 1: Linear regression in R
 
-\begin{enumerate}
-\item What is the probability distribution?
-\item What is the probability that she will correctly answer 10 questions before 4 incorrect responses? 
-\item Write out the R code to calculate (b).
-\end{enumerate}
+```{r}
+library(tidyverse) #ggplot2, dplyr, etc.
+library(reshape2) #need this for melt()
+library(knitr) #need this for kable
+library(MASS) #contains dataset
+```
+
+Load the birthwt data. This data contains 189 observations, 9 predictors, and an outcome, birthweight, available both as a continuous measure and a binary indicator for low birth weight.
+
+```{r}
+data(birthwt)
+head(birthwt)
+```
+
+1. Plot a scatterplot of birthweight (bwt) and mother's weight (lwt).
+2. Use OLS to fit the regression of birthweight on mother's weight.
+3. Extract the following: estimated coefficients, standard errors, variance-covariance matrix, and confidence intervals.
+4. Plot the regression line and interpret the intercept and slope
+5. Does the interpretation of the intercept make sense? How might we change this?
+6. Now, we want to fit a model that includes race, mother's age, and smoking status in the model. Race takes on value 1 for white, 2 for black, and 3 for other. Mother's age is continuous. Smoking status is binary. Use OLS to calculate the coefficient estimates in this model.
+7. Interpret all the coefficient estimates.
+8. Print the results in Rmarkdown using kable().
 
 
-\item A small town’s police department issues 5 speeding tickets per month on average. 
+# Part 2: Generalized linear model 
 
-\begin{enumerate}
-\item Using a Poisson random variable, what is the likelihood that the police department issues 3 or fewer tickets in one month? 
-\item What is the probability that 10 days or fewer elapse between two tickets being issued?
-\item Write out the R code to calculate (a), (b).
-\end{enumerate}
+Suppose that 2500 pregnant women are enrolled in a study and the outcome is the occurrence of preterm birth. Possible predictors of preterm birth include age of the woman, smoking, socioeconomic status, body mass index, bleeding during pregnancy, serum level of dde, and several dietary factors. 
 
-\end{enumerate}
+1. Formulate the problem of selecting the important predictors of preterm birth in a generalized linear model (GLM) framework. 
+2. Show the components of the GLM, including the link function and distribution (in exponential family form). 
+3. Describe (briefly) how estimation and inference could proceed via a frequentist approach.
 
-# Part 2: Statistical inference
+# Part 3: GLMs in R (Logistic regression)
 
-\begin{enumerate}
-\item (AoS 6.6.2) Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta}=\max \left\{X_{1}, \ldots, X_{n}\right\}$. Find the bias, se and MSE of this estimator.
+Consider the space shuttle data in the MASS library. Consider modeling the use of the autolander as the outcome (variable name use). 
 
-\item (AoS 6.6.3) Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta}=2 \bar{X}_{n}$. Find the bias, se and MSE of this estimator.
+1. Fit a logistic regression model with autolander (variable auto) use (labeled as "auto" 1) versus not (0) as predicted by wind sign (variable wind). 
 
-\item Let $X_{1}, \ldots, X_{n} \sim \operatorname{Uniform}(0,1)$. Let $Y_{n}=\bar{X}_{n}^{2}$. Find the limiting distribution of $Y_{n}$. (Hint: CLT)
+2. Give the estimated odds ratio for autolander use comparing head winds, labeled as "head" in the variable headwind (numerator) to tail winds (denominator).
 
-\end{enumerate}
+3. Give the estimated odds ratio for autolander use comparing head winds (numerator) to tail winds (denominator) adjusting for wind strength from the variable magn.
+
+4. If you fit a logistic regression model to a binary variable, for example use of the autolander, then fit a logistic regression model for one minus the outcome (not using the autolander) what happens to the coefficients?
+
+```{r}
+library(MASS)
+?shuttle
+data(shuttle)
+head(shuttle)
+```
+
+
+# Part 4: GLMs in R (Poisson regression)
+
+Consider the insect spray data InsectSprays. Fit a Poisson model using spray as a factor level. 
+
+1. Report the estimated relative rate comapring spray A (numerator) to spray B (denominator).
+
+2. Consider a Poisson glm with an offset, t. So, for example, a model of the form glm(count $\sim x+$ offset(t), family = poisson) where $x$ is a factor variable comparing a treatment (1) to a control (0) and $t$ is the natural log of a monitoring time. What is impact of the coefficient for $x$ if we fit the model glm(count $\sim x+$ offset(t2), family $=$ poisson) where $t 2<-\log (10)+t$ ? In other words, what happens to the coefficients if we change the units of the offset variable. (Note, adding log(10) on the log scale is multiplying by 10 on the original scale.)
+
+```{r}
+data("InsectSprays")
+head(InsectSprays)
+```
 
 
