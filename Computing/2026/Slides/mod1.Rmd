@@ -30,7 +30,7 @@ We will cover 5 modules of statistical methods and computing.
 
 # What contents we will cover?
 
-![](syl.png){height=80%}
+![](syl.png)
 
 # What contents we will not cover?
 
@@ -44,7 +44,6 @@ We will cover 5 modules of statistical methods and computing.
 - Available for each module. 
 - Exercises can be difficult. 
 - Group discussion is recommended. 
-- Solutions are released during the last 10-20 mins. 
 
 # Module 1: Basic programming in R
 
@@ -87,7 +86,10 @@ Working directory is important since you might want to read and import data from
 - Method 2: Files -> Navigate to your directory.
 - Method 3: `setwd()`.
 
-Alternatives: Set R.project.
+Alternative: 
+- Make an Project
+- Files -> New Project;
+- This will create an .Rproj file
 
 # How to install packages? 
 
@@ -444,6 +446,9 @@ For a dataset having column names are not names of variables, but values of a va
 
 \tiny
 ```{r}
+# table4a documents the number 
+# of documented TB cases in 
+# Afghanistan, Brazil and China
 table4a
 ```
 

@@ -13,6 +13,9 @@ The following is a list of changes for how this course has been changed since la
 - Including the mention of Quarto and `qmd` files
 - Referencing "R for Data Science Books (2e)" book
 - replacing Google style Guide with Tidyverse style guide
+- Removing *when* solutions will be posted.
+  - Unsure about if there will be time for the class to work on exercises during lecture or not
+- Not including talking points about LLMs- I plan on talking about it in passing
 
 ### Exercises
 
@@ -31,6 +34,7 @@ The following is a list of changes for how this course has been changed since la
 # Module 3
 
 - Encapsulates Module 6 of the 2025 bootcamp
+- Adding explanation of the Fox (1997) visual comparing the LR, Wald and Score tests.
 
 # Module 4
  
@@ -39,3 +43,5 @@ The following is a list of changes for how this course has been changed since la
 # Module 5
  
 - Encapsulates Modules 9-10 of the 2025 bootcamp
+- Noting that `mclappy` does not work on Windows Machines
+- Removing Discussion on HPC (not relevant for many Msc students and first year PhD students)
