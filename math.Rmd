@@ -1,6 +1,6 @@
 ---
 title: "Operational Math"
-description: "Instructor: Huanlin Mao, PhD student, ([Email](mailto:hl.mao@mail.utoronto.ca))"
+description: "Instructor: [Huanlin Mao](mailto:hl.mao@mail.utoronto.ca), PhD student)"
 output:
   distill::distill_article:
     toc: true
@@ -25,6 +25,8 @@ You may download the [lecture notes](Math/2026/lecture_notes/math_notes.pdf), wh
 
 
 ### Module 1: Introduction to proofs
+
+Slides:   [fillable](Math/2026/module1/slides.pdf)
 
 <!--  - Slides: [fillable](Math/2026/module1/slides.pdf),   [filled](Math/2026/module1/slides_filled.pdf) -->
 
