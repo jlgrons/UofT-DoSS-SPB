@@ -25,7 +25,7 @@ Benjamin Smith [[benyamin.smith@mail.utoronto.ca](benyamin.smith@mail.utoronto.c
 
 # Course outline
 
-This course will revisit foundational programming principles in `R` and review essential concepts in likelihood inference.
+This course will revisit some basic programming principles in `R` and review essential concepts in likelihood inference. 
 
 # Textbooks
 
@@ -48,8 +48,8 @@ The Lecture Topics and corresponding texts are outlined below. This schedule is 
 
 | Module | Topics | References |
 | :- | :--- | :--- |
-| 1 | R, Rstudio, and Rmarkdown; Git; data wrangling and graphing; LaTeX; Elementary data analysis| - |
+| 1 | Tidyverse basics; data wrangling \& graphing; Using LLMs to generate R code| - |
 | 2 | Statistical inference (I) | AoS Chp 1-5; AoS Chp 6; C&B Chp 6.3, 7 |
 | 3 | Statistical inference (II) |  AoS Chp 8; C&B Chp 8 |
 | 4 | Linear Regression \& Generalized Linear Models | AoS Chp 13; C&B Chp 11-12 |
-| 5 | Simulation and parallel computing; Bootstrap | C&B Chap 10; AoS Chp 5, 24;|
+| 5 | Simulation and parallel computing | C&B Chap 10; AoS Chp 5, 24;|

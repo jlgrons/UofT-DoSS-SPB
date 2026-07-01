@@ -1,0 +1,214 @@
+---
+title: "2026 Detailed Syllabus and Changes - Updated."
+author: "Benjamin Smith"
+output:
+  pdf_document: 
+    toc: true
+header-includes:
+  - \usepackage{xcolor}
+---
+\newpage
+
+The following is a detailed breakdown of the topics covered in the 2025 bootcamp, organized according to the new modules. The major sections correspond to the new grouping of materials, while the subsections correspond to the individual modules and the materials covered in 2025 for each module. The [2025 Syllabus](https://github.com/jlgrons/UofT-DoSS-SPB/blob/main/Computing/2025/Syllabus.pdf) presents the material at a much higher level than what is provided here. \textcolor{red}{All comments related to changes or rearrangement of material are shown in red text.}
+
+# Module 0 - R Basics
+
+## 2025 Module 1 - Basic Programming in R
+
+- Introducton, Course Overview \textcolor{red}{Moving/Copying to Module 1}
+- Syllabus \textcolor{red}{Moving/Copying to Module 1}
+- Installations to Install R and RStudio
+- Navigating RStudio
+- Setting a working directory
+- Installing packages
+- Vectors
+- Matrices
+- Data Frame
+- Linear Regression (fitting + `summary()`)
+- List
+- Base Plotting
+- Mathematical Functions (`floor()`, `ceiling()`, etc.)
+- If/else
+- For Loops
+- While Loop
+- `next`
+- `break`
+- `apply`
+- `knitr`
+- YAML headers for Rmarkdown
+- Exercises
+
+# Module 1
+
+
+## 2025 Module 2 - Reporting Data Wrangling and Graphing (I)
+
+- LaTeX and Markdown \textcolor{red}{Moving/Copying to Module 0}
+- Reading Data in R \textcolor{red}{Moving/Copying to Module 0}
+- Tidy Data: Pivoting \textcolor{red}{The lecture material will start with this}
+- Pivot Longer
+- Pivot Wider
+- Transform Data
+  -  `select()`
+  - `filter()`
+  - `arrange()`
+  - `mutate()`
+  - `summarise()`
+  - `group_by()`
+  - `case_when()`
+  - `ungroup()`
+- Examples of Data transformation (`diamonds` dataset)
+- `ggplot2`
+- `ggsc` \text{adding mention of `ggthemes`}
+
+
+## 2025 Module 3 - Reporting Data Wrangling and Graphing (II)
+
+- `ggplot2` (continued)
+- `palmerpegnuins` data example
+- Plotting data (Scatterplot)
+- Adding Labels
+- Adding a Title
+- Subtitles
+- Changing colors
+- other aesthetics
+- Histogram
+- Boxplots
+- Barcharts
+- Faceting
+- Git + Github \textcolor{red}{Moving this to a suppliment.}
+
+
+\textcolor{red}{I will talk about using prompts to create a data transformation scripts and make a visual look nicer.}
+
+# Module 2 - Statistical Inference (I)
+
+## 2025 Module 4 - Statistical Inference (I)
+  
+  - Probability Distributions
+  - CDFs
+  - PMFs
+  - PDFs
+  - Expectation/Variance
+  - Discrete RVs
+    - Bernoulli/Binomial RVs
+    - How to generate them in R
+    - Example of Binomial Distribution Computing
+  - Continous RVs
+    - Normal Distribution
+    - Generating Samples in R
+  - List all probability distribution functions
+  - Empirical/Theoretical CDF
+  - Probability vs Statistical Inference
+  - Parametric vs Non-Parametric Models \textcolor{red}{removing}
+  - Frequentist vs Bayesian \textbf{red}{removing}
+  - Point Estimator Definition 
+  - MSE
+  - Bias + Variance Decomposition
+  - Unbiasedness
+  - Consistency
+  - Asymptotic Unbiasedness
+  
+    
+## 2025 Module 5 - Statistical Inference (II)
+
+- Parameteric Inference \textcolor{red}{removing; reframing as parameter estimation}
+- Parameter of Inference and Nuisance Parameter \textcolor{red}{removing; reframing as parameter estimation}
+- Methods of Moments Estimators \textcolor{red}{removing; will be covered in coursework}
+- Maximum Likelihood Estimators
+  - Steps to Find MLE
+  - Exercise
+  - Asymptotics of MLE
+  - Cramer Rao Lower Bound
+- Calculating MLE in R:
+  - `optim()`
+  - Newton-Raphson
+  - EM-Algorithm \textcolor{red}{removing; will be covered in coursework}
+- The Delta Method \textcolor{red}{removing; will be covered in coursework}
+
+# Module 3 - Statistical Inference (II)
+
+## 2025 Module 6 - Statistical Inference (III)
+
+- Hypothesis Testing
+- Rejection Region
+- Type 1 and Type 2 errors
+- Power Function $\beta$
+- Size of Test $\alpha$
+- Exercise using Power Function and Size of Test
+- Asymptotic Normality
+- Central Limit Theorem
+- Wald Test \textcolor{red}{removing; covered in coursework}
+- The Score Test \textcolor{red}{removing; covered in coursework}
+- Likelihood Ratio Test
+- UMP Test/Neyman-Pearson Lemma 
+- Test Equivalence of Wald/ Score /LR tests \textcolor{red}{removing}
+
+
+# Module 4 - Linear Regression; Generalized Linear Models
+
+## 2025 Module 7 - Linear Regression
+
+- Linear Regression Model Setup
+- Interpretation of $\beta_j$
+- Least Squares Estimation
+- Interpretation of LS Estimation - Projecting Y onto the linear subspace spanned by X
+- Assumptions of OLS.
+- Normal Example
+- MLE vs OLS
+
+## 2025 Module 8 - Generalized Linear Regression
+
+- GLMs Intro
+- Exponential Family
+  - Examples: Gaussian, Poisson, Binomial
+- MGF of exponential family \textcolor{red}{removing}
+- Mean of exponential family \textcolor{red}{removing}
+- Variance of exponential family \textcolor{red}{removing}
+- Link Function
+  - Link function in R
+- Calculating the MLE with IRLS \textcolor{red}{removing}
+- Gaussian Special Case of IRLS \textcolor{red}{removing}
+
+# Module 5
+
+## Module 9 - Simulations and Parallel Computing
+
+- Simulation Study
+- Why Simulation
+- Considerations for Simulation
+- Monte Carlo Simulation
+- Simulations for Properties of Estimators
+- Set up Parameters in R
+- Bias
+- Variance
+- Relative Effciency 
+- `lapply`
+- Vectorizing
+- Parallel Computing
+- `foreach`
+- `mclapply`
+- `parLapply`
+- Error Handling
+- Parallel Computing in HPC \textcolor{red}{Moving this to a suppliment.}
+  - One node parallel
+  - Multiple nodes
+  - Passing Argument
+  
+## Module 10 - Bootstrap
+
+\textcolor{red}{Removing all of this. I can put it in a supplement if desired; Coursework does not rely on any of this material}
+
+- What is Bootstrap
+- Why Bootstrap?
+- Example: Estimate variance of an estimator
+  - Algorithm 1: Bootstrap variance estimation algorithm
+- Bootstrap Principle
+- Why Bootstrap Works
+- Practical Implementation
+- Bootstrap CIs
+- Nonparametric Bootstrap
+- Parametric Bootstrap
+- Empirical Bootstrap (Paired Bootstrap)
+- Residual Bootstrap
+- Wild Bootstrap

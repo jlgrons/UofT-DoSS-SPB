@@ -1,6 +1,7 @@
 # Change Log
 
-The following is a list of changes for how this course has been changed since last year.
+The following is a list of changes for how this course has been changed
+since last year.
 
 ## 2026
 
@@ -9,33 +10,56 @@ The following is a list of changes for how this course has been changed since la
 ## Module 1
 
 - Encapsulates Modules 1-3 of the 2025 bootcamp
-- Including the addition of `devtools` and `pak` packages for installing packages.
+- Including the addition of `devtools` and `pak` packages for installing
+  packages.
 - Including the mention of Quarto and `qmd` files
-- Referencing "R for Data Science Books (2e)" book
+- Referencing “R for Data Science Books (2e)” book
 - replacing Google style Guide with Tidyverse style guide
+- Removing *when* solutions will be posted.
+  - Unsure about if there will be time for the class to work on
+    exercises during lecture or not
+- Not including talking points about LLMs- I plan on talking about it in
+  passing
 
 ### Exercises
 
-- Referencing the `RKaggle` package to download datasets directly from Kaggle without having to manually download the csv
-
+- Referencing the `RKaggle` package to download datasets directly from
+  Kaggle without having to manually download the csv
 
 # Module 2
 
 - Encapsulates Modules 4-5 of the 2025 bootcamp
-- Adding mention of `method="BFGS"` in comments for code for using he `optim` function
+- Remove the discussion of Parametric vs Nonparameteric Models &
+  Frequentist vs Bayesian Discussion
+- Remove Method of Moments Discussion
+- Adding mention of `method="BFGS"` in comments for code for using he
+  `optim` function
 - Removing discussion of the EM algorithm (Coursework will cover that)
   - Using the `optim()` function is useful
   - Newton Raphson is helpful to know as well.
-  
+  - Remove Delta Method
 
 # Module 3
 
 - Encapsulates Module 6 of the 2025 bootcamp
+- Remove Wald and Score Tests.
+- Remove Test Equivalence
+- Adding explanation of the Fox (1997) visual comparing the LR, Wald and
+  Score tests.
 
 # Module 4
- 
+
 - Encapsulates Modules 7-8 of the 2025 bootcamp
+- Removing Mean, Variance and MGF calculation of the mean of EFs
+  - Not relevant for applications
+  - It will be covered in coursework.
+- Removing Discussion of IRLS
+  - It will be covered in coursework.
 
 # Module 5
- 
+
 - Encapsulates Modules 9-10 of the 2025 bootcamp
+- Noting that `mclappy` does not work on Windows Machines
+- Removing Discussion on HPC (not relevant for many Msc students and
+  first year PhD students)
+- Removing Bootstrap

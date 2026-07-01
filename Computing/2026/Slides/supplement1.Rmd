@@ -1,0 +1,69 @@
+---
+title: "Suppliment 1: Git and GitHub"
+author: "Benjamin Smith"
+date: "07/06/2026"
+output:
+  beamer_presentation:
+    colortheme: dolphin
+    theme: Madrid
+urlcolor: blue
+linkcolor: blue
+---
+
+# Git + Github
+
+What is Git? 
+
+- A control system to manage projects 
+- Good for tracking history
+
+\pause
+
+What about Github?
+
+- Cloud-based service for managing Git repositories
+- Useful for teamwork
+- Just like "Dropbox"
+
+# Why Git + Github?
+
+- You can undo anything
+- You won't need to keep undo-ing things (merge/load difference)
+- You can identify exactly when and where changes were made
+- Teamwork
+
+# Some github terminology 
+
+- User: A Github account for you (e.g., jules32).
+- Organization: The Github account for one or more user (e.g., datacarpentry).
+- Repository: A folder within the organization that includes files dedicated to a project.
+- Local Github: Copies of Github files located your computer.
+- Remote Github: Github files located on the https://github.com website.
+
+# Basic Git commands and workflow
+
+When you are working on a your local machine you typically get started by:
+
+- `git clone`: Cloning a remote repository to work on locally. This is a way to work with an ongoing project or edit someone else's project that is available remotely (aka on GitHub).
+
+From there, the typical workflow involves:
+
+- `git add`: Adding files to your repo
+- `git commit`: Commiting changes you have made
+- `git push`: Pushing changes to a remote repository (aka GitHub)
+
+For a collaborative project, or work between desktop and personal laptop, you would use the following first before `git add`
+
+- `git pull`: Pulling changes from a remote repository 
+
+# Illustration diagram
+
+![](github.png)
+
+# Let's Git!
+
+Download Github and set up your github profile. 
+
+- Github Desktop, a GUI for using Github [[link]](https://docs.github.com/en/desktop)
+- (Optional) Learn how to use command line for Github management
+  - Command line tutorial [[link]](https://ubuntu.com/tutorials/command-line-for-beginners#3-opening-a-terminal)

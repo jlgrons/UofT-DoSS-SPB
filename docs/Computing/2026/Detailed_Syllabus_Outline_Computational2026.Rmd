@@ -1,0 +1,226 @@
+---
+title: 'Detailed Syllabus Outline of DoSS Methods of Computing Bootcamp'
+author: "Benjamin Smith"
+output:
+  pdf_document: 
+    toc: true
+---
+\newpage
+
+# Prior to Bootcamp
+
+## Survey
+
+A survey has been sent out to access the computational skills of students prior to the bootcamp. The questions are: 
+
+1. Your program is:
+  - [ ] MSc
+  - [ ] PhD
+  
+2. Indicate your highest level of completed degree
+  - [ ] Bachelors
+  - [ ] Masters
+  
+3. What did you major in?/ What was your concentration?
+  - (Open ended question)
+
+4.  Do you have experience with Git/Github
+  - [ ] No Experience
+  - [ ] Some Experience
+  - [ ] Advanced Experience
+
+5. Do you have coding experience with R?
+  - [ ] No Experience
+  - [ ] Some Experience
+  - [ ] Advanced Experience
+
+6. Do you have experience with the `tidyverse` library and relevant packages (e.g. dplyr, tidyr, ggplot2)?
+  - [ ] No Experience
+  - [ ] Some Experience
+  - [ ] Advanced Experience
+
+7. Do you have experience with RMarkdown/Quarto
+  - [ ] No Experience
+  - [ ] Some Experience
+  - [ ] Advanced Experience
+
+## Module 0 - R Basics
+
+Prior to the Bootcamp Starting, Module 0 will be posted with slides relevant to R basics. In particular the topics covered here will be: 
+
+1. Instructions to Download R and the RStudio IDE
+2. How to Navigate RStudio
+3. Setting a Working Directory
+4. Installing an R package
+5. Vectors
+6. Matrices (Add matrix operations as well)
+7. Data Frames
+8. Lists
+9. Running Linear Regression (no detail, just model fitting with `lm` and outputting with `summary()`)
+10. Plotting with Base R
+11. Some important math functions such as `floor()`, `ceiling()`, random variables generation (i.e. `rnorm()`, `rexp()`, `rbinom()`).
+12. Writing functions
+13. If/else
+14. `for` loops
+15. `while` loops
+16. `next`
+17. `break`
+18. `apply()` (include `sapply()` and `lapply()`)
+19. `knitr`- RMarkdown and Quarto
+20. LaTeX basics.
+21. Reading Data in R.
+22. `head()`
+23. The pipe operator (`|>` and `%>%`)
+24. Resources (books)
+
+# Bootcamp Core Modules
+
+## Module 1 - Tidyverse Basics
+
+1. Long and Wide form Data Definitions
+2. `pivot_longer()` and `pivot_wider()`
+3. Transforming data:
+  - `select()`
+  - `filter()`
+  - `arrange()`
+  - `mutate()`
+  - `summarise()`
+  - `group_by()`
+  - `case_when()`
+  - `ungroup()`
+4. Plotting with `ggplot2`
+  - Mention `ggsci` and `ggthemes`
+5. Example of Plotting with `ggplot2` (`palmerpenguins` example)
+  - Scatterplot
+  - Histogram
+  - Boxplots
+  - Barcharts
+6. Using LLMs to create Data Cleaning Scripts.
+  - Overview of major LLMs
+    - ChatGPT
+    - Gemeni
+    - Claude
+    - Grok
+  - Do not give LLM access to sensitive data!
+  - While using AI is inevitable, human contributions such as problem framing, key design decisions and thoughtful choices that make a data analysis meaningful are irreplacable.
+  - Formulating a prompt to construct a data wrangling script/make a visual look nicer.
+7. Exercises:
+  - Only if there is time
+  - Quiet work for a few minutes followed by sharing solutions.
+  - If not - post solutions after class or the next day
+  
+## Module 2 - Statistical Inference (I)
+
+1. Probability basics
+  - Cumulative Distribution Function (CDF)
+  - Probability Mass Function (PMF), Probability Density Function (PDF)
+  - Expectation & Variance Definitions
+  - Discrete R.Vs
+    - Bernoulli & Binomial R.Vs
+    - How to generate RVs in R
+        - `dbinom()`
+        - `pbinom()`
+        - `qbinom()`
+        - `rbinom()`
+    - Example of Binomial Distribution Computing
+  - Continuous RVs.
+    - Normal Distribution Examples
+    - How to Generate them in R:
+      - Will provide a briefer description
+  - General overview of all distributions
+2. Empirical and Theoretical CDF
+3. Relationship between Probabibalistic inference vs Statistical Inference.
+4. Point Estimator Definition
+  - I would change this to the "Definition of Statistics"
+5. MSE
+6. Bias/Variance Decomposition of MSE
+7. Unbiasedness
+8. Consistency 
+9. Asymptotic Unbiasedness
+10. Maximum Likelihood estimation
+11. Exercise to Calculate MLE
+12. Asymptotics of MLE
+13. Cramer-Rao Lower Bound.
+14. Calculating the MLE via
+  - `optim()`
+  - Newton Raphson
+15. Exercises:
+  - Only if there is time
+  - Quiet work for a few minutes followed by sharing solutions.
+  - If not - post solutions after class or the next day
+
+## Module 3 - Statistical Inference (II)
+
+1. Hypothesis Testing
+2. Rejection Region
+3. Type 1 error and Type 2 errors
+4. Power Function ($\beta(\theta)$) and Size of Test ($\alpha$)
+  - Shorten these definitions down to bullet points
+5. Exercise on Power Function and Size of Test
+6. Asymptotic Normality
+7. Central Limit Theorem
+8. Example of CLT
+9. Likelihood Ratio Test.
+10. Exercises:
+  - Only if there is time
+  - Quiet work for a few minutes followed by sharing solutions.
+  - If not - post solutions after class or the next day
+
+## Module 4 - Linear Regression/GLMs
+
+1. Linear Regression
+2. Interpretation of $\beta_j$ coefficients.
+3. Least Squares Estimation
+4. Visualization of Least Squares Estimation (Projection of $Y$ onto $X$)
+5. Assumptions around ordinary least squares.
+6. MLE vs OLS. GLMs
+7. Asymptotics of MLE.
+8. Logistic Regression
+9. Exponential Family
+  - Gaussian 
+  - Poisson
+  - Binomial
+10. Link Function
+  - Specification in R
+11. Exercises:
+  - Only if there is time
+  - Quiet work for a few minutes followed by sharing solutions.
+  - If not - post solutions after class or the next day
+
+## Module 5 - Simulation Studies and Parallel Computing
+
+NOTE: The content here is less essential for students so it may be omitted if material in prior modules has not been completed.
+
+1. Simulation Studies
+  - What is it
+  - Monte Carlo Simulation Definition
+  - Why preform simulation
+2. Simulations for properites of Estimators
+  - Relative Efficiency Definition
+3. Simple Examples
+  - Time difference
+  - Assessing Bias
+  - Sample Variance
+  - Relative Efficiency
+4. Using lapply and vectorizing
+  - tradeoff between using a for loop vs vectorizing:
+    - CPU load vs RAM load 
+    - (vectorizing uses more RAM, for loop uses more CPU)
+5. Parallel Computing
+  - `parallel` package
+  - `doParallel` package
+  - `mclapply()`
+  - `parLapply()`
+6. Error Handling
+  - `tryCatch()`
+
+# Supplementary Materials
+
+## Supplement 1
+
+- Cover Git and Github Basics.
+
+## Supplement 5. 
+
+- Discussion of how to use HPC Cluster
+- Discussion on Bootstrap

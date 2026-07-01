@@ -9,6 +9,8 @@ output:
 editor_options: 
   markdown: 
     wrap: 72
+urlcolor: blue
+linkcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -19,245 +21,12 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 This module we will review
 
-- Basics of probability
-- Fundamental concepts in inference
-
-# Probability distributions
-
-- In statistics, we try to draw conclusions about a larger population
-  from a sample of observations.
-- We use mathematical models to capture probabilistic behavior of a
-  population.
-- This behavior is modeled using probability distributions.
-
-# Density/Distribution functions
-
-::: block
-### Definition (Cumulative Distribution Function)
-
-$$F_{X}(x)=P(X \leq x) \quad \forall x \in \mathbb{R}$$
-:::
-
-# Density/Distribution functions (cont'd)
-
-::: block
-### Definition (Probability Mass Function)
-
-For a discrete $R V$, the probability mass function (PMF) is:
-$$f_{X}(x)=P(X=x) \quad  \forall x \in \mathbb{R}$$
-:::
-
-::: block
-### Definition (Probability Density Function)
-
-For a continuous $\mathrm{RV}$, the probability density function (PDF)
-is: $$f_{X}(x)=\left.\frac{\partial}{\partial t} F(t)\right|_{t=x}$$ So
-$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t \forall x \in \mathbb{R}$.
-:::
-
-Note that $f_{X} \geq 0$ for $\forall x$, and thus $F_{X}$ is an
-increasing function.
-
-# Expectation and Variance
-
-::: block
-### Definition (Expectation)
-
-A measure of central tendancy (a weighted average of the values of $X$)
-$$\begin{aligned}
-&E[X]=\sum_{x \in S} x P(X=x) \text{ for discrete RV taking values from } S \\
-&E[X]=\int_{-\infty}^{\infty} x f_{X}(x) d x \text { for continuous RV} 
-\end{aligned}$$
-:::
-
-::: block
-### Definition (Variance)
-
-A measure of the spread of a distribution $$\begin{aligned}
-&\operatorname{Var}(X)=\sum_{x \in S}(x-E[X])^{2} P(X=x) \text { for discrete RV } \\
-&\operatorname{Var}(X)=\int_{-\infty}^{\infty}(x-E[X])^{2} f_{X}(x) d x \text { for continuous RV }
-\end{aligned}$$
-:::
-
-# Discreate random variable
-
-A discrete random variable has a countable number of possible values.
-
-# Bernoulli and Binomial random variable
-
-- Consider the event of flipping a (possibly unfair) coin.
-- $Y \in \{0, 1\}$ represents success and failure.
-- Suppose we only flip the coin once,
-  - We can express $P(Y=1) = p$ and $P(Y=0) = 1-p$
-- Bernoulli distribution
-  $$P(Y=y)=p^{y}(1-p)^{1-y} \quad \text { for } \quad y=0,1$$
-- If we flip the coin $n$ times,
-- Binomial distribution $$P(Y=y)=\left(\begin{array}{c}
-  n \\
-  y
-  \end{array}\right) p^{y}(1-p)^{n-y} \quad \text { for } \quad y=0,1, \ldots, n$$
-
-# Binomial distributions with different values of $n$ and $p$
-
-If $Y \sim \operatorname{Binomial}(n, p)$, then $\mathrm{E}(Y)=n p$ and
-$\operatorname{SD}(Y)=\sqrt{n p(1-p)}$.
-
-```{r, multBin, fig.align="center",out.width="70%",fig.cap= 'Binomial distributions with different values of $n$ and $p$.', echo=FALSE, warning=FALSE, message=FALSE}
-library(gridExtra)  
-library(tidyverse)
-
-plotBinomial=function(n,p){
-  y1 <- 0:n  # possible values
-  prob <- dbinom(y1, n, p)  # P(Y=y)
-  BBGdf <- data.frame(y1, prob)
-  ggplot(data = BBGdf, aes(x = y1, xend = y1, y = 0, yend = prob)) + 
-    geom_segment() + 
-    xlab("number of successes") + ylab("probability") + labs(title=paste("n = ", n, " p = ", p))
-}
-Binom1 <- plotBinomial(10,.25) + xlim(0, 10) + scale_y_continuous(breaks = c(0.00, 0.05, 0.10, 0.15, 0.20, 0.25))
-Binom2 <- plotBinomial(20,.2) + xlim(0, 15)
-Binom3 <- plotBinomial(10,.5) + xlim(0, 10)
-Binom4 <- plotBinomial(50,.2) + xlim(0, 25)
-grid.arrange(Binom1,Binom2,Binom3,Binom4,ncol=2)
-```
-
-# How to generate in R?
-
-All common distributions have four functions in R:
-
-- Density
-
-  `dbinom(x, size, prob)`
-
-- Distribution function
-
-  `pbinom(q, size, prob)`
-
-- Quantile function
-
-  `qbinom(p, size, prob)`
-
-- Random generaation
-
-  `rbinom(n, size, prob)`
-
-Not sure? Using `?` with any of the four functions, e.g. `?qbinom`
-
-# Example of binomial distribution computing
-
-**Question:** While taking a multiple choice test, a student encountered
-10 problems where she ended up completely guessing, randomly selecting
-one of the four options. What is the chance that she got exactly 2 of
-the 10 correct?
-
-\pause
-
-**Answer:** Knowing that the student randomly selected her answers, we
-assume she has a $25 \%$ chance of a correct response.
-$$P(Y=2)=\left(\begin{array}{c}10 \\ 2\end{array}\right)(.25)^{2}(.75)^{8}=0.282$$
-
-\pause
-
-**R computing:**
-
-```{r}
-dbinom(2, size = 10, prob = .25)
-```
-
-# Continuous random variable
-
-A continuous random variable can take on an uncountably infinite number
-of values. Given a pdf $f(y)$,
-$$P(a \leq Y \leq b)=\int_{a}^{b} f(y) d y$$ Properties:
-
-- $\int_{-\infty}^{\infty} f(y)dy = 1$.\
-- For any value $y$, $P(Y = y) = \int_y^y f(y)dy = 0$.
-  $P(y < Y) = P(y \le Y)$.
-
-# Example of Continuous Distribution (Normal)
-
-- The normal distribution is a very important distribution because:
-  - A lot of things look normal
-  - Analytically tractable
-  - Central limit theorem
-- $\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right)$
-- Characterized by mean, $\mu$, and variance, $\sigma^2$.
-
-```{r, multNorm, fig.align="center",out.width="50%",fig.cap= '', echo=FALSE, warning=FALSE, message=FALSE}
-#normalPlots
-x <- seq(-10, 20, by = 0.01)
-norm1 <- dnorm(x, -5, 2)
-norm2 <- dnorm(x, 0 , 1)
-norm3 <- dnorm(x, 5, 5)
-norm4 <- dnorm(x, 0, 3)
-normDf <- tibble(x, norm1, norm2, norm3, norm4) %>%
-  rename(`N(-5, 2)` = norm1,
-         `N(0, 1)` = norm2,
-         `N(10, 5)` = norm3,
-         `N(0, 3)` = norm4) %>%
-  gather(2:5, key = "Distribution", value = "value") %>%
-  mutate(Distribution = factor(Distribution, 
-    levels = c("N(10, 5)","N(0, 3)", "N(0, 1)", "N(-5, 2)")))
-ggplot(data = normDf, 
-       aes(x = x, y = value, color = Distribution)) +
-  geom_line(aes(linetype = Distribution)) +
-  xlab("values") + ylab("density") + 
-  labs(title = "Normal Distributions")
-```
-
-# How to Generate Samples from Normal Distribution
-
-The following commands are for a normal random variable with mean $\mu$
-and variance $\sigma^2$, that is, $X \sim N(\mu, \sigma^2)$,
-
-- To calculate the probability density function at a value x,
-  `dnorm(x,mu,sigma)`
-
-- To calculate the cumulative distribution function at a value x,
-  `pnorm(x,mu,sigma)`
-
-- To generate a size m sample from the normal distribution,
-  `rnorm(m,mu,sigma)`
-
-- Note that the third argument is the **square root of the variance**,
-  this is because the R function for normal distribution asks for the
-  standard deviation, which is defined as the square root of the
-  variance
-
-# Some probability distributions in R
-
-Continuous
-
-- Normal (`?rnorm`)
-- Uniform (`?runif`)
-- Beta (`?rbeta`)
-- Chi-sq (`?rchisq`)
-- Exponential (`?rexp`)
-- t (`rt`)
-- F (`?rf`)
-- Logistic (`?rlogis`)
-- Lognormal (`?rlnorm`)
-
-Discrete
-
-- Poisson (`?rpois`)
-- Binomial (`?rbinom`)
-- Geometric (`?rgeom`)
-- Negative Binomial (`?rnbinom`)
-- Multinomial (`?rmultinom`)
-
-# Empirical vs. Theoretical CDF
-
-In statistics, an empirical distribution function is the distribution
-function associated with the empirical measure of a sample.
-
-- Theoretical CDF $$F_{X}(k)=\operatorname{Pr}(X \leq k)$$
-
-- Empirical CDF
-  $$\hat{F}_{n}(k)=\frac{\text { number of elements in the sample } \leq k}{n}=\frac{1}{n} \sum_{i=1}^{n} I_{X_{i} \leq k}$$
-  where $X_{1}, \ldots, X_{n}$ make up some random sample from the
-  underlying distribution.
-
+- Basics of parametric inference
+- Methods for generating parametric estimators
+- Maximum likelihood estimators
+- Delta method
+- Optimization method for finding MLE in R (`optim()`, Newton-Raphson)
+  
 # Probability and inference
 
 ![](prob_stats.png)
@@ -269,28 +38,7 @@ function associated with the empirical measure of a sample.
 
 - Statistical inference: Given the outcomes, what can we say about the
   process that generated the data?
-
-# Parametric vs. Nonparametric models
-
-- Statistical model $\mathfrak{F}$: a set of distributions (or densities
-  or regression functions)
-
-\pause
-
-- Parametric model: a set $\mathfrak{F}$ that can be parameterized by a
-  finite number of parameters
-  $$\mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}$$ where $\theta$
-  is an unknown parameter (or vector of parameters) that can take values
-  in the parameter space $\Theta$.
-  - e.g. Normal distribution, a 2-parameter model with density as
-    $f(x; \mu, \sigma)$
-
-\pause
-
-- Nonparametric model: a set $\mathfrak{F}$ that cannot be parameterized
-  by a finite number of parameters
-  - e.g. $\mathfrak{F}_{\mathrm{ALL}}=\left\{\right.$ all
-    $\left.\mathrm{CDF}^{\prime} s\right\}$ is nonparametric.
+  
 
 # Frequentist and Bayesian
 
@@ -366,34 +114,11 @@ $$MSE = bias^2 + Var$$
 
 - Sufficient conditions: $MSE \to 0$.
 
-# Resources
 
-This tutorial is based on
-
-- Havard Biostatistics Summer Pre Course
-  [[link]](https://isabelfulcher.github.io/methodsprep/)
-
-- "Beyond Multiple Linear Regression" by Paul Roback and Julie Legler
-  [[link]](https://bookdown.org/roback/bookdown-BeyondMLR/)
-
-# Break
-
-![](break2.png)
-
-# Outline
-
-This module we will review
-
-- Basics of parametric inference
-- Methods for generating parametric estimators
-- Maximum likelihood estimators
-- Delta method
-- Optimization method for finding MLE in R (Newton-Raphson, EM
-  algorithm)
-
-# Parametric inference
+# Parameter Estimation
 
 ::: block
+
 ### Definition (Parametric models)
 
 $$\mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}$$ where the
@@ -406,7 +131,7 @@ Goal of parametric inference
 - estimate the parametric $\theta$ (assume we known the form of the
   density).
 
-# Parameter of interest and nuisance parameter
+# Parameter of interest
 
 Often, we are interested in estimating some function $T(\theta)$.
 
@@ -421,77 +146,77 @@ If the goal is to estimate the $\mu$ then
 - Parameter of interest: $T(\theta) = \mu$
 - Nuisance parameter: $\sigma$
 
-# Methods for generating parametric estimators
+<!-- # Methods for generating parametric estimators -->
 
-1.  Method of moments
-2.  Maximum likelihood
+<!-- 1.  Method of moments -->
+<!-- 2.  Maximum likelihood -->
 
-# Method of moments
+<!-- # Method of moments -->
 
-::: block
-### Definitions
+<!-- ::: block -->
+<!-- ### Definitions -->
 
-- $\mathbb{E}(X^k)$ is the $k^{th}$ (theoretical) moment of the
-  distribution, for $k = 1,2,...$
-- $M_k = \frac{1}{n} \sum_{i = 1}^n X_i^k$ is the $k^{th}$ sample
-  moment, for $k = 1,2,...$
-:::
+<!-- - $\mathbb{E}(X^k)$ is the $k^{th}$ (theoretical) moment of the -->
+<!--   distribution, for $k = 1,2,...$ -->
+<!-- - $M_k = \frac{1}{n} \sum_{i = 1}^n X_i^k$ is the $k^{th}$ sample -->
+<!--   moment, for $k = 1,2,...$ -->
+<!-- ::: -->
 
-# Steps to find MoM
+<!-- # Steps to find MoM -->
 
-The basic idea behind this form of the method is to:
+<!-- The basic idea behind this form of the method is to: -->
 
-- Equate the first sample moment about the origin
-  $M_1 = \frac{1}{n} \sum_{i = 1}^n X_i = \bar{X}$ to the first
-  theoretical moment $\mathbb{E}(X)$.
-- Equate the second sample moment about the origin
-  $M_2 = \frac{1}{n} \sum_{i = 1}^n X_i^2$ to the second theoretical
-  moment $\mathbb{E}(X^2)$.
-- Continue equating sample moments about the origin until you have as
-  many equations as you have parameters.
-- Solve for the parameters
+<!-- - Equate the first sample moment about the origin -->
+<!--   $M_1 = \frac{1}{n} \sum_{i = 1}^n X_i = \bar{X}$ to the first -->
+<!--   theoretical moment $\mathbb{E}(X)$. -->
+<!-- - Equate the second sample moment about the origin -->
+<!--   $M_2 = \frac{1}{n} \sum_{i = 1}^n X_i^2$ to the second theoretical -->
+<!--   moment $\mathbb{E}(X^2)$. -->
+<!-- - Continue equating sample moments about the origin until you have as -->
+<!--   many equations as you have parameters. -->
+<!-- - Solve for the parameters -->
 
-# Example of MoM (Bernoulli)
+<!-- # Example of MoM (Bernoulli) -->
 
-Let $X_1, ..., X_n$ be Bernoulli random variables with parameter $p$.
-What is the method of moments estimator of $p$?
+<!-- Let $X_1, ..., X_n$ be Bernoulli random variables with parameter $p$. -->
+<!-- What is the method of moments estimator of $p$? -->
 
-\pause
+<!-- \pause -->
 
-Only one parameter $p$, so we only need to equate the first moment.
+<!-- Only one parameter $p$, so we only need to equate the first moment. -->
 
-$\mathbb{E}(X_i) = p = M_1 = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X}$.
+<!-- $\mathbb{E}(X_i) = p = M_1 = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X}$. -->
 
-So, $$\hat{p}_{MoM} = \bar{X}$$
+<!-- So, $$\hat{p}_{MoM} = \bar{X}$$ -->
 
-# Example of MoM (Normal)
+<!-- # Example of MoM (Normal) -->
 
-Let $X_1, ..., X_n$ be normal random variables with mean $\mu$ and
-variance $\sigma^2$. What are the method of moments estimators of the
-mean $\mu$ and variance $\sigma^2$ ?
+<!-- Let $X_1, ..., X_n$ be normal random variables with mean $\mu$ and -->
+<!-- variance $\sigma^2$. What are the method of moments estimators of the -->
+<!-- mean $\mu$ and variance $\sigma^2$ ? -->
 
-\pause
+<!-- \pause -->
 
-Two parameters, so we need to equate the first and the second moment.
+<!-- Two parameters, so we need to equate the first and the second moment. -->
 
-$E(X_i) = \mu = M_1, E(X_i^2) = \sigma^2 + \mu^2 = M_2$.
+<!-- $E(X_i) = \mu = M_1, E(X_i^2) = \sigma^2 + \mu^2 = M_2$. -->
 
-So,
-$$\hat{\mu}_{MoM} = \bar{X}, \hat{\sigma}^2_{MoM} = \frac{1}{n}\sum_{i=1}^nX_i^2 - \bar{X}^2.$$
+<!-- So, -->
+<!-- $$\hat{\mu}_{MoM} = \bar{X}, \hat{\sigma}^2_{MoM} = \frac{1}{n}\sum_{i=1}^nX_i^2 - \bar{X}^2.$$ -->
 
-# Asymptotic properties
+<!-- # Asymptotic properties -->
 
-Under mild regularity conditions, MoM estimators are
+<!-- Under mild regularity conditions, MoM estimators are -->
 
-- *Consistent* $\rightarrow$ converge to the true value in probability
-  as $n \rightarrow \infty$, i.e.
-  $$\lim _{n \rightarrow \infty} P(|\hat{\theta}-\theta| \leq \epsilon)=1 \quad \forall \epsilon>0$$
+<!-- - *Consistent* $\rightarrow$ converge to the true value in probability -->
+<!--   as $n \rightarrow \infty$, i.e. -->
+<!--   $$\lim _{n \rightarrow \infty} P(|\hat{\theta}-\theta| \leq \epsilon)=1 \quad \forall \epsilon>0$$ -->
 
-- *Asymptotically Normal*
-  $\rightarrow \sqrt{n}(\hat{\theta}-\theta) \sim N\left(0, \sigma^{2}\right)$
-  for large $n$
+<!-- - *Asymptotically Normal* -->
+<!--   $\rightarrow \sqrt{n}(\hat{\theta}-\theta) \sim N\left(0, \sigma^{2}\right)$ -->
+<!--   for large $n$ -->
 
-- However, they are usually **NOT** *Asymptotically Efficient*
+<!-- - However, they are usually **NOT** *Asymptotically Efficient* -->
 
 # Maximum likelihood
 
@@ -1160,46 +885,48 @@ legend("topright", legend = c("Updates", "MLE"), col = c("blue", "red"), pch = c
 
 <!-- ``` -->
 
-# Delta method
+<!-- # Delta method -->
 
-::: block
-### Theorem (The Delta Method).
+<!-- ::: block -->
+<!-- ### Theorem (The Delta Method). -->
 
-Suppose that
-$$\frac{\sqrt{n}\left(Y_{n}-\mu\right)}{\sigma} \rightsquigarrow N(0,1)$$
-and that $g$ is a differentiable function such that
-$g^{\prime}(\mu) \neq 0$. Then
-$$\frac{\sqrt{n}\left(g\left(Y_{n}\right)-g(\mu)\right)}{\left|g^{\prime}(\mu)\right| \sigma} \rightsquigarrow N(0,1) .$$
-In other words,
-$$Y_{n} \approx N\left(\mu, \frac{\sigma^{2}}{n}\right) \quad \text { implies that } \quad g\left(Y_{n}\right) \approx N\left(g(\mu),\left(g^{\prime}(\mu)\right)^{2} \frac{\sigma^{2}}{n}\right) .$$
-:::
+<!-- Suppose that -->
+<!-- $$\frac{\sqrt{n}\left(Y_{n}-\mu\right)}{\sigma} \rightsquigarrow N(0,1)$$ -->
+<!-- and that $g$ is a differentiable function such that -->
+<!-- $g^{\prime}(\mu) \neq 0$. Then -->
+<!-- $$\frac{\sqrt{n}\left(g\left(Y_{n}\right)-g(\mu)\right)}{\left|g^{\prime}(\mu)\right| \sigma} \rightsquigarrow N(0,1) .$$ -->
+<!-- In other words, -->
+<!-- $$Y_{n} \approx N\left(\mu, \frac{\sigma^{2}}{n}\right) \quad \text { implies that } \quad g\left(Y_{n}\right) \approx N\left(g(\mu),\left(g^{\prime}(\mu)\right)^{2} \frac{\sigma^{2}}{n}\right) .$$ -->
+<!-- ::: -->
 
-# Exercise
+<!-- # Exercise -->
 
-Let $X_{1}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p)$ and let
-$\psi=g(p)=\log (p /(1-$ $p)$ ). Find the MLE of $\psi$ and its
-asymptotic distribution.
+<!-- Let $X_{1}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p)$ and let -->
+<!-- $\psi=g(p)=\log (p /(1-$ $p)$ ). Find the MLE of $\psi$ and its -->
+<!-- asymptotic distribution. -->
 
-\pause
+<!-- \pause -->
 
-The MLE of $p$ was derived previously as follows
-$$\hat{p}_{\text{MLE}} = \frac{1}{n} \sum_{i=1}^{n} X_i = \bar{X}$$ Now,
-for $\psi = g(p) = \log\left(\frac{p}{1-p}\right)$, the MLE of $\psi$ is
-obtained by plugging in the MLE of $p$:
-$$\hat{\psi}_{\text{MLE}} = g(\hat{p}_{\text{MLE}}) = \log\left(\frac{\hat{p}_{\text{MLE}}}{1-\hat{p}_{\text{MLE}}}\right) = \log\left(\frac{\bar{X}}{1-\bar{X}}\right)$$
+<!-- The MLE of $p$ was derived previously as follows -->
+<!-- $$\hat{p}_{\text{MLE}} = \frac{1}{n} \sum_{i=1}^{n} X_i = \bar{X}$$ Now, -->
+<!-- for $\psi = g(p) = \log\left(\frac{p}{1-p}\right)$, the MLE of $\psi$ is -->
+<!-- obtained by plugging in the MLE of $p$: -->
+<!-- $$\hat{\psi}_{\text{MLE}} = g(\hat{p}_{\text{MLE}}) = \log\left(\frac{\hat{p}_{\text{MLE}}}{1-\hat{p}_{\text{MLE}}}\right) = \log\left(\frac{\bar{X}}{1-\bar{X}}\right)$$ -->
 
-# Exercise
+<!-- # Exercise -->
 
-By the Central Limit Theorem, as $n \to \infty$:
-$$\sqrt{n}(\bar{X} - E[X_i]) \xrightarrow{D} N(0, \operatorname{Var}(X_i))$$
-Therefore,
-$$\sqrt{n}(\hat{p}_{\text{MLE}} - p) \xrightarrow{D} N(0, p(1-p))$$
+<!-- By the Central Limit Theorem, as $n \to \infty$: -->
+<!-- $$\sqrt{n}(\bar{X} - E[X_i]) \xrightarrow{D} N(0, \operatorname{Var}(X_i))$$ -->
+<!-- Therefore, -->
+<!-- $$\sqrt{n}(\hat{p}_{\text{MLE}} - p) \xrightarrow{D} N(0, p(1-p))$$ -->
 
-To apply delta method, we need to find the derivative of $g(p)$:
-$$g'(p) = \frac{1}{p(1-p)}$$ and
-$$[g'(p)]^2 \sigma^2 = \left(\frac{1}{p(1-p)}\right)^2 \cdot p(1-p) = \frac{1}{p^2(1-p)^2} \cdot p(1-p) = \frac{1}{p(1-p)}$$
-Therefore,
-$$\sqrt{n}(\hat{\psi}_{\text{MLE}} - \psi) \xrightarrow{D} N\left(0, \frac{1}{p(1-p)}\right)$$
+<!-- To apply delta method, we need to find the derivative of $g(p)$: -->
+<!-- $$g'(p) = \frac{1}{p(1-p)}$$ and -->
+<!-- $$[g'(p)]^2 \sigma^2 = \left(\frac{1}{p(1-p)}\right)^2 \cdot p(1-p) = \frac{1}{p^2(1-p)^2} \cdot p(1-p) = \frac{1}{p(1-p)}$$ -->
+<!-- Therefore, -->
+<!-- $$\sqrt{n}(\hat{\psi}_{\text{MLE}} - \psi) \xrightarrow{D} N\left(0, \frac{1}{p(1-p)}\right)$$ -->
+
+
 
 # Resources
 
@@ -1210,6 +937,9 @@ This tutorial is based on
 
 - "All of Statistics" by Larry A. Wasserman
   [[link]](https://www.stat.cmu.edu/~larry/all-of-statistics/index.html)
+
+- "Beyond Multiple Linear Regression" by Paul Roback and Julie Legler
+  [[link]](https://bookdown.org/roback/bookdown-BeyondMLR/)
 
 # Exercises
 

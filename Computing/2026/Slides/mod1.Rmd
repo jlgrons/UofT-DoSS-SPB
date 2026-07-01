@@ -6,6 +6,8 @@ output:
   beamer_presentation:
     colortheme: dolphin
     theme: Madrid
+urlcolor: blue
+linkcolor: blue
 ---
 
 
@@ -26,7 +28,7 @@ Materials will be available at course website.  Lecture notes are created by Rma
 
 We will cover 5 modules of statistical methods and computing.  
 
-- Each module takes ~2.5 hours.
+- Each module takes ~1.75 hours.
 
 # What contents we will cover?
 
@@ -45,325 +47,13 @@ We will cover 5 modules of statistical methods and computing.
 - Exercises can be difficult. 
 - Group discussion is recommended. 
 
-# Module 1: Basic programming in R
-
-We will review R, Rstudio, and Syntax of R together. 
-
-- Rstudio (Knitr)
-- Basic data types
-- Basic data structures
-- Functions
-- For loops
-
-Useful resources:
-
-- [Tidyverse style guide](https://style.tidyverse.org/index.html)
-- [The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
-
-# Introduction to R and Rstudio
-
-R is a free statistical software.  We use R frequently/intensively during our study.
-
-First please download R and its IDE Rstudio (if you haven't).
-
-- https://www.r-project.org/
-- https://www.rstudio.com/
-
-# Studio
-
-- Editor: edit or save the file.
-- Console: outputs.
-- Values: store values of assigned.
-- Files/plots/packages/help.
-  
-![](rstudio.png){height=60%}
-
-# How to set working directory? 
-
-Working directory is important since you might want to read and import data from other files.  It is recommended to put these files under the same directory with your scripts. 
-
-- Method 1: Session -> set working directory.            
-- Method 2: Files -> Navigate to your directory.
-- Method 3: `setwd()`.
-
-Alternative: 
-- Make an Project
-- Files -> New Project;
-- This will create an .Rproj file
-
-# How to install packages? 
-
-Common packages in statistical analysis with R:
-
-- tidyverse/dpylr
-- ggplot
-- kableExtra or gridExtra
-
-Several options to install packages:
-
-- Method 1: Tools -> install packages
-- Method 2: Packages window. 
-- **Method 3:** `install.packages()`
-- Method 4: `devtools::install_github()`
-- Method 5: `pak::pkg_install()`
-
-Use Method 4 if you want to use a package on github. Use Method 5 if you are encountering dependency issues.
-
-# Ready with your Rstudio?
-
-Let's code! 
-
-# Vector 
-
-Can contain numerical, string, or Boolean value. 
-
-Store data = make an assignment.  `c()` is for component. 
-
-```{r}
-v <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
-v <- c("python", "mathlab", "R") 
-v <- c(6, 5, 4, 3, 2, 1)
-```
-
-Are you familiar with the output of these?
-
-```{r}
-which(v == 3)
-```
-
-```{r, eval = F}
-v[2]
-v[-2]
-v[2:3]
-v[v < 4]
-which(v == 3)
-```
-
-# Matrix
-
-```{r, eval = F}
-mymat <- matrix(c(1:10), nrow = 2, ncol = 5, 
-                byrow = TRUE)
-mymat
-mymat[1, 5]
-mymat[2, ]
-mymat[c(1:2), c(1:2)]
-```
-
-# Data frame
-
-```{r}
-studentID <- c(1, 2, 3, 4)
-age <- c(17, 18, 16, 19)
-gender <-c("M", "F", "M", "M")
-studentData <- data.frame(studentID, age, gender)
-```
-
-```{r}
-rownames(studentData) <- c("A", "B", "C", "D")
-```
-
-```{r}
-colnames(studentData) <- c("ID", "age", "gender")
-studentData
-```
-
-# Linear Regression
-
-$y_i = \beta^T x_i + \epsilon_i$
-
-```{r}
-x <- c(1:5)
-eps <- rnorm(5)
-y <- 2*x + eps
-mod <- lm(y ~ x)
-```
-
-# Linear Regression
-
-\footnotesize
-```{r}
-summary(mod)
-```
-
-# List
-
-```{r}
-g <- "My List"
-h <- c(2, 3, 5, 7)
-j <- matrix(1:10, nrow = 5, byrow = FALSE)
-k <- c("one", "two", "three")
-mylist <- list(title = g, ages = h, j, k)
-```
-
-```{r}
-mylist[[2]]
-```
-
-```{r}
-mylist$ages
-mylist[[1]] 
-```
-
-# Plotting 
-
-\tiny
-
-```{r, out.width = "80%"}
-y <- c(5, 4, 2, 3, 1) 
-x <- c(1, 2, 3, 4, 5)
-plot(x, y, type = "l")
-```
-
-# Other
-
-\footnotesize
-
-Important for stats research. 
-
-- `floor(v)`, `ceiling(v)`
-- `round(v, 2)`
-- `rnorm()`, `rexp()`, `rbinom()`, etc generate random variables 
-- Functions
- 
-```{r}
-rnorm(5, mean = 0, sd = 1) # 5 random numbers from N(0, 1)
-```
- 
-```{r}
-round(2.333333, 2)
-```
-
-```{r}
-func <- function(x1, x2) {
-   y <- 3 * x1^2 + 3 * x2^2 - 2* x1^2 *x2
-   return(y)
-}
-func(1, 2)
-```
-
-# If else
-
-What is the output?
-
-```{r, eval = F}
-p <- 3
-if (p <= 2) {
-  print("p <= 2!")
-} else {
-  print("p > 2!")
-}
-```
-
-# for loop
-
-```{r}
-v <- c(1, 2, 4, 3) 
-w <- c(0, 0, 0, 0) 
-t <- 0
-
-for (i in v) {
-  t <- t + 1
-  w[t] <- w[t] + i 
-  print(w)
-}
-
-w
-```
-
-# while loop
-
-```{r}
-i <- 1
-while (i <= 10) {
-  print(i)
-  i <- i + 1
-}
-```
-
-# next 
-
-```{r}
-alphabet <- LETTERS[1:6] 
-for (i in alphabet) {
-  if(i == 'D') {
-    next 
-  }
- print(i) 
-}
-```
-
-# break
-
-```{r}
-alphabet <- LETTERS[7:12] 
-for (i in alphabet) {
-  if (i == 'K') {
-    break 
-  }
-  print(i) 
-}
-```
-
-# apply
-
- It can be applied on matrix, vector, data frame, and loop through row or column (defined by the second input - `MARGIN`). 
-
-Syntax: `apply(X, MARGIN, FUN, ...)`
-
-\tiny
-```{r}
-f <- function(x) {
-  ts <- 2*x^2
-  return(ts)
-}
-
-ii <- matrix(1:4, nrow = 1)
-apply(ii, 1, f)
-```
-
-# Knit in Rstudio 
-
-Common types of R files: `.R`, `.Rmd`, `.qmd`
-
-- Simulations, e.g. for loops, functions, I use `.R`
-- Reporting, analysis, plotting, I use `.Rmd` or `.qmd`
-
-.Rmd/.qmd files can be converted to pdf, html through `knitr`. 
-
-- yaml style. 
-
-```{r, eval = F}
----
-title: 'Module 1: Basic programming in R'
-date: "04/15/2022"
-output:
-  beamer_presentation
----
-```
-
-# More yaml style 
-
-```{r, eval = F}
----
-title: "A summary of xx"
-date: "02/14/2022"
-output: 
-  pdf_document:
-    toc: true
-    number_sections: true
----
-```
-
-# Resources
-
-- "R Markdown Cookbook" by Yihui Xie. 
-  - https://bookdown.org/yihui/rmarkdown-cookbook/
-- "R for Data Science (2e)" by Hadley Wickham
-  - https://r4ds.hadley.nz/quarto.html
-
-![](rcook.png){height=50%} ![](r4data.png){height=50%}
-
+# Prerequisites: 
+
+<!--
+Add URL
+--->
+- Students are expected to have some basic experience with R, Rmarkdown and LaTeX.
+- See [Module 0]() for some background
 
 # Code style 
 
@@ -371,29 +61,12 @@ output:
 - `styler` software embedded in Rstudio - allows you to interactively restyle selected text, files, or entire projects.
 - `lintr` software embedded in Rstudio - performs automated checks to confirm that you conform to the style guide. 
 
-# Break
-
-![](break.png)
-
-
 # Outline
 
 We will review R, Rstudio, and Syntax of R together. 
 
-- LaTeX/Markdown
 - Tidy data, processing (tidyverse)
 - Graphing (ggplot2)
-
-# LaTeX and Markdown
-
-LaTeX is useful for documents with mathematical formulas. 
-
-- [Overleaf](www.overleaf.com) - an online, collaborative LaTeX editor 
-- LaTeX mathematical symbols
-- Inline equation e.g. (`$\alpha$`) returns $\alpha$
-- Equation e.g. (`$$e = mc^2$$`) returns $$e = mc^2$$
-
-Markdown is appealing for formatting, e.g. headings, bold text, text with codes, ...
 
 # Resources
 
@@ -432,10 +105,10 @@ Specifically,
 - Each observation must have its own row. 
 - Each value must have its own cell. 
 
-We will focus on the functions from "tidyverse" package. 
+We will focus on the functions from `tidyverse` package. 
 
 
-```{r, message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
@@ -678,7 +351,7 @@ diamonds %>%
 Use `scales::percent()` to add `%`.
 
 \tiny
-```{r}
+```{r message=FALSE, warning=FALSE}
 diamonds %>%
   group_by(cut) %>%
   summarise(n = n(), price_avg = mean(price)) %>%
@@ -689,7 +362,7 @@ diamonds %>%
 # Graphing after transformation
 
 \tiny
-```{r, fig.width=4, fig.height= 2}
+```{r fig.height=2, fig.width=4, message=FALSE, warning=FALSE}
 diamonds %>%
   group_by(cut) %>%
   summarise(n = n(), price_avg = mean(price)) %>%
@@ -707,7 +380,7 @@ How to write?
 - Specify the x-/y-axis, `ggplot(data = diamonds, mapping = aes(x = cut))`
 - Specify the types of plots with `geom`, e.g. `+ geom_bar()`
 
-```{r, eval = F}
+```{r eval=F, message=FALSE, warning=FALSE}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut))
 ```
@@ -739,7 +412,7 @@ From what we have learned so far, how to install package? What packages are we g
 install.packages("palmerpenguins")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 ```
@@ -751,8 +424,9 @@ How many observations? How many variables? What type?
 
 \pause
 
+\tiny
 ```{r}
-head(penguins)
+glimpse(penguins)
 ```
 
 # Scatter plot 
@@ -773,7 +447,7 @@ pdata <- penguins %>%
 `aes` stands for aesthetic and tells ggplot the main characteristics of your plot (x, y, and if the color or fill vary by group)
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g))
 ```
 
@@ -782,7 +456,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g))
 Add layers with ggplot using the `+`
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
@@ -790,7 +464,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 # Tidy up labels
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() + 
   xlab("Flipper length (mm)") +
@@ -802,7 +476,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 # Add a title
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() + 
   xlab("Flipper length (mm)") +
@@ -813,7 +487,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 # Subtitle
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() + 
   xlab("Flipper length (mm)") +
@@ -828,7 +502,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 To see all colors, type `colors()`
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(color = "darkorange") + 
   xlab("Flipper length (mm)") +
@@ -840,7 +514,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 # Size of points 
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(color = "darkorange",
              size = 3, 
@@ -856,7 +530,7 @@ ggplot(data = pdata, aes(x = flipper_length_mm, y = body_mass_g)) +
 Now use the whole data `penguins`. Specifying the color in `aes()` because it **depends on the data**.
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point(size = 3, alpha = 0.8) + 
   xlab("Flipper length (mm)") +
@@ -870,7 +544,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = spec
 Specifying the color in `aes()` because it **depends on the data**.
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point(size = 3, alpha = 0.8) +
   scale_color_manual(values = c("darkorange","purple","cyan4")) + 
@@ -883,7 +557,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = spec
 # Change the theme
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point(size = 3, alpha = 0.8) +
   scale_color_manual(values = c("darkorange","purple","cyan4")) + 
@@ -899,7 +573,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = spec
 Optional: try `ggsci` functions.
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point(size = 3, alpha = 0.8) +
   xlab("Flipper length (mm)") +
@@ -917,7 +591,7 @@ Other types are also available, e.g. histograms, bar charts, box plots, line gra
 # Histograms
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
   geom_histogram(alpha = 0.8) +
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
@@ -932,7 +606,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 Try `binwidth = ` and `bins == `
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
   geom_histogram(binwidth = 1, alpha = 0.8) +
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
@@ -945,7 +619,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
 # Boxplots
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = penguins, aes(x = species, y = flipper_length_mm)) +
   geom_boxplot(show.legend = FALSE) +
   xlab("Flipper length (mm)") +
@@ -971,7 +645,7 @@ gplot
 # Barcharts 
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(data = gplot, aes(x = species, y = prop))  + 
   geom_bar(stat = "identity") + 
   xlab("Species") +
@@ -983,7 +657,7 @@ ggplot(data = gplot, aes(x = species, y = prop))  +
 # Faceting
 
 \tiny
-```{r, out.height = '60%', fig.align = "center"}
+```{r fig.align="center", message=FALSE, warning=FALSE, out.height='60%'}
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color = sex)) +
   scale_color_manual(values = c("darkorange","cyan4"), na.translate = FALSE) +
@@ -995,63 +669,130 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   facet_wrap(~species)
 ```
 
-# Git + Github
+# Using LLMs for writing R code
 
-What is Git? 
+![](LLMs.png)
 
-- A control system to manage projects 
-- Good for tracking history
+# Popular LLMs
 
-\pause
+## Online LLMs
 
-What about Github?
+- [ChatGPT](https://chatgpt.com/) *
+- [Claude](https://claude.ai/new)
+- [Gemeni](https://gemini.google.com/) *
+- [Grok](https://grok.com/)
+- [DeepSeek](https://www.deepseek.com/)
 
-- Cloud-based service for managing Git repositories
-- Useful for teamwork
-- Just like "Dropbox"
+($*$: My preferred choices)
 
-# Why Git + Github?
+## Local LLMs
 
-- You can undo anything
-- You won't need to keep undo-ing things (merge/load difference)
-- You can identify exactly when and where changes were made
-- Teamwork
+- [Ollama](https://ollama.com/)
+  - Open source LLMs. 
+  - Performance depends on the model choice and your machine
+  - Secure, but generally not as good as Online LLMs
 
-# Some github terminology 
 
-- User: A Github account for you (e.g., jules32).
-- Organization: The Github account for one or more user (e.g., datacarpentry).
-- Repository: A folder within the organization that includes files dedicated to a project.
-- Local Github: Copies of Github files located your computer.
-- Remote Github: Github files located on the https://github.com website.
+# Important Tips
 
-# Basic Git commands and workflow
+- Never provide sensitive data to an LLM
+- Do not accept LLM responses for absolute truth (they still make mistakes and overcomplicate!)
+- YOU are fully responsible for the accuracy, originality, licensing, and ethical/legal compliance of work that you do.
+  - Failure to provide a complete and accurate disclosure of AI usage may be considered an ethical breach in research/work contexts.
 
-When you are working on a your local machine you typically get started by:
+# Example - Pivot Data
 
-- `git clone`: Cloning a remote repository to work on locally. This is a way to work with an ongoing project or edit someone else's project that is available remotely (aka on GitHub).
+\tiny
 
-From there, the typical workflow involves:
+**Prompt**
 
-- `git add`: Adding files to your repo
-- `git commit`: Commiting changes you have made
-- `git push`: Pushing changes to a remote repository (aka GitHub)
+```
+I have a wide dataset (called table4a) with the "country" column 
+as the id variable and columns named "1999" and "2000" that provide 
+the number of TB cases in each country for that year. 
 
-For a collaborative project, or work between desktop and personal laptop, you would use the following first before `git add`
+Provide R code that will convert 
+this wide dataset to long form 
+```
 
-- `git pull`: Pulling changes from a remote repository 
+```{r}
+library(tidyr)
 
-# Illustration diagram
+table4a_long <- table4a|> 
+  pivot_longer(
+    cols = c(`1999`, `2000`),
+    names_to = "year",
+    values_to = "cases"
+  )
 
-![](github.png)
+table4a_long
+```
 
-# Let's Git!
+# Example - Improve Visualizations
 
-Download Github and set up your github profile. 
+**Before**
 
-- Github Desktop, a GUI for using Github [[link]](https://docs.github.com/en/desktop)
-- (Optional) Learn how to use command line for Github management
-  - Command line tutorial [[link]](https://ubuntu.com/tutorials/command-line-for-beginners#3-opening-a-terminal)
+```{r echo=FALSE, message=FALSE, warning=FALSE, out.height="70%"}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = sex)) +
+  scale_color_manual(values = c("darkorange","cyan4"), na.translate = FALSE) +
+  labs(
+    title = "Penguin flipper and body mass",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Penguin sex"
+  ) +
+  facet_wrap(~species)
+```
+
+
+# Example - Improve Visualizations
+
+**After**
+\tiny
+**Prompt:**
+
+```
+I have the following R code:
+<PASTE R CODE HERE>
+
+Please update the code so that the rendered visual is publication ready
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, out.height="70%"}
+ggplot(penguins,aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = sex), size = 2.4, alpha = 0.8, na.rm = TRUE) +
+  scale_color_manual(values = c("female" = "#D55E00", "male"   = "#0072B2"), na.translate = FALSE) +
+  facet_wrap(~ species, nrow = 1) +
+  labs(
+    title = "Penguin flipper length and body mass",
+    subtitle = "Measurements for male and female Adelie, Chinstrap, and Gentoo penguins at Palmer Station LTER",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Sex"
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 15, margin = margin(b = 6)),
+    plot.subtitle = element_text(size = 10.5, color = "gray30", margin = margin(b = 12)),
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(
+      color = "gray20"
+    ),
+    strip.background = element_rect(
+      fill = "gray90",
+      color = NA
+    ),
+    strip.text = element_text(
+      face = "bold",
+      size = 11
+    ),
+    legend.position = "top",
+    legend.title = element_text(face = "bold"),
+    panel.spacing = unit(1.2, "lines"),
+    plot.margin = margin(10, 12, 10, 12)
+  )
+```
 
 # Exercises
 

@@ -40,7 +40,7 @@ output: pdf_document
 
 
 
-# Part 3: EM and Newton-Raphson implementation
+# Part 3: Newton-Raphson 
 
 The $\mathrm{ABO}$-gene or $\mathrm{ABO}$-locus is on chromosome 9. It has 3 alleles (antigens) $(A, B, O$) and it determines 4 blood type $(A, B, A B, O)$.
 

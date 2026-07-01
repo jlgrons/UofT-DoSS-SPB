@@ -247,47 +247,47 @@ b(\theta) &= n\log(1 + e^\theta) \quad &\text{(cumulant function)} \\
 c(y, \phi) &= \log\binom{n}{y} \quad &\text{(normalization term)}
 \end{align*}
 
-# MGF of exponential family
-\footnotesize
-\begin{align*}
-M_Y(t) &= \mathbb{E}[e^{tY}] \\
-       &= \int e^{ty} f(y \mid \theta, \phi) dy \\
-       &= \int \exp\left(ty + \frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
-       &= \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\
-       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right) 
-          \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta + ta(\phi))}{a(\phi)} + c(y, \phi)\right) dy \\
-       &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right)
-\end{align*}
+<!-- # MGF of exponential family -->
+<!-- \footnotesize -->
+<!-- \begin{align*} -->
+<!-- M_Y(t) &= \mathbb{E}[e^{tY}] \\ -->
+<!--        &= \int e^{ty} f(y \mid \theta, \phi) dy \\ -->
+<!--        &= \int \exp\left(ty + \frac{y\theta - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\ -->
+<!--        &= \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta)}{a(\phi)} + c(y, \phi)\right) dy \\ -->
+<!--        &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right)  -->
+<!--           \int \exp\left(\frac{y(\theta + ta(\phi)) - b(\theta + ta(\phi))}{a(\phi)} + c(y, \phi)\right) dy \\ -->
+<!--        &= \exp\left(\frac{b(\theta + ta(\phi)) - b(\theta)}{a(\phi)}\right) -->
+<!-- \end{align*} -->
 
-# Mean of the exponential family
+<!-- # Mean of the exponential family -->
 
 
-\begin{align*}
-M_Y'(t) &= \frac{d}{dt} \left[ \exp\left(\frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)}\right) \right] \\
-&= M_Y(t) \cdot \frac{d}{dt} \left( \frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)} \right) \quad \text{(Chain rule)} \\
-&= M_Y(t) \cdot \frac{b'(\theta + t a(\phi)) \cdot a(\phi)}{a(\phi)} \\
-&= M_Y(t) \cdot b'(\theta + t a(\phi))
-\end{align*}
-Evaluating at $t=0$ (since $M_Y(0)=1$):
-\[
-M_Y'(0) = b'(\theta) = \mu = \mathbb{E}[Y]
-\]
+<!-- \begin{align*} -->
+<!-- M_Y'(t) &= \frac{d}{dt} \left[ \exp\left(\frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)}\right) \right] \\ -->
+<!-- &= M_Y(t) \cdot \frac{d}{dt} \left( \frac{b(\theta + t a(\phi)) - b(\theta)}{a(\phi)} \right) \quad \text{(Chain rule)} \\ -->
+<!-- &= M_Y(t) \cdot \frac{b'(\theta + t a(\phi)) \cdot a(\phi)}{a(\phi)} \\ -->
+<!-- &= M_Y(t) \cdot b'(\theta + t a(\phi)) -->
+<!-- \end{align*} -->
+<!-- Evaluating at $t=0$ (since $M_Y(0)=1$): -->
+<!-- \[ -->
+<!-- M_Y'(0) = b'(\theta) = \mu = \mathbb{E}[Y] -->
+<!-- \] -->
 
-# Variance of the exponential family
+<!-- # Variance of the exponential family -->
 
-\begin{align*}
-M_Y''(t) &= \frac{d}{dt} \left[ M_Y(t) \cdot b'(\theta + t a(\phi)) \right] \\
-&= M_Y'(t) \cdot b'(\theta + t a(\phi)) + M_Y(t) \cdot b''(\theta + t a(\phi)) \cdot a(\phi)  \\
-&= M_Y(t) \cdot \left[ (b'(\theta + t a(\phi)))^2 + b''(\theta + t a(\phi)) \cdot a(\phi) \right]
-\end{align*}
-Evaluating at $t=0$:
-\[
-M_Y''(0) = \mu^2 + b''(\theta) a(\phi) = \mathbb{E}[Y^2]
-\]
-Thus the variance is:
-\[
-\text{Var}(Y) = M_Y''(0) - [M_Y'(0)]^2 = b''(\theta) a(\phi)
-\]
+<!-- \begin{align*} -->
+<!-- M_Y''(t) &= \frac{d}{dt} \left[ M_Y(t) \cdot b'(\theta + t a(\phi)) \right] \\ -->
+<!-- &= M_Y'(t) \cdot b'(\theta + t a(\phi)) + M_Y(t) \cdot b''(\theta + t a(\phi)) \cdot a(\phi)  \\ -->
+<!-- &= M_Y(t) \cdot \left[ (b'(\theta + t a(\phi)))^2 + b''(\theta + t a(\phi)) \cdot a(\phi) \right] -->
+<!-- \end{align*} -->
+<!-- Evaluating at $t=0$: -->
+<!-- \[ -->
+<!-- M_Y''(0) = \mu^2 + b''(\theta) a(\phi) = \mathbb{E}[Y^2] -->
+<!-- \] -->
+<!-- Thus the variance is: -->
+<!-- \[ -->
+<!-- \text{Var}(Y) = M_Y''(0) - [M_Y'(0)]^2 = b''(\theta) a(\phi) -->
+<!-- \] -->
 
 # Link function
 The second element of the generalization is that instead of modeling the
@@ -323,56 +323,56 @@ $$
 \end{aligned}
 $$
 
-# MLE
+<!-- # MLE -->
 
-An important practical feature of generalized linear models is that they can all be fit to data using the same algorithm, a form of iteratively re-weighted least squares (IRLS).
+<!-- An important practical feature of generalized linear models is that they can all be fit to data using the same algorithm, a form of iteratively re-weighted least squares (IRLS). -->
 
-\begin{minipage}{0.9\textwidth}
-\footnotesize
-\begin{enumerate}
-    \item Initialize $\hat{\mu}_i^{(0)} = y_i + \epsilon$, $\eta_i^{(0)} = g(\hat{\mu}_i^{(0)})$
-    
-    \item While not converged:
-    \begin{itemize}
-        \item Working response: $z_i = \eta_i^{(k)} + (y_i-\hat{\mu}_i^{(k)})\left(\frac{d\eta}{d\mu}\right)$
-        
-        \item Weights: $w_i = \left[V(\hat{\mu}_i^{(k)})\left(\frac{d\mu}{d\eta}\right)^2\right]^{-1}$
-        
-        \item Update: $\beta^{(k+1)} = (X^\top WX)^{-1}X^\top Wz$
-        
-        \item Update $\eta_i^{(k+1)}$, $\hat{\mu}_i^{(k+1)}$
-    \end{itemize}
-\end{enumerate}
-\end{minipage}
+<!-- \begin{minipage}{0.9\textwidth} -->
+<!-- \footnotesize -->
+<!-- \begin{enumerate} -->
+<!--     \item Initialize $\hat{\mu}_i^{(0)} = y_i + \epsilon$, $\eta_i^{(0)} = g(\hat{\mu}_i^{(0)})$ -->
 
-# Gaussian Special Case of IRLS
+<!--     \item While not converged: -->
+<!--     \begin{itemize} -->
+<!--         \item Working response: $z_i = \eta_i^{(k)} + (y_i-\hat{\mu}_i^{(k)})\left(\frac{d\eta}{d\mu}\right)$ -->
 
-For linear regression ($Y \sim N(\mu, \sigma^2)$):
-\begin{itemize}
-    \item \textbf{Link}: Identity $g(\mu) = \mu$  
-    \item \textbf{Variance}: $V(\mu) = 1$ (constant)
-    \item \textbf{Weights}: $w_i = 1$ (equal weighting)
-    \item \textbf{Working response}: $z_i = y_i$ (original data)
-\end{itemize}
+<!--         \item Weights: $w_i = \left[V(\hat{\mu}_i^{(k)})\left(\frac{d\mu}{d\eta}\right)^2\right]^{-1}$ -->
 
-\vspace{0.2cm}
-IRLS reduces to ordinary least squares:
-\[
-\beta^{(k+1)} = (X^\top X)^{-1}X^\top y \quad \text{(single iteration)}
-\]
+<!--         \item Update: $\beta^{(k+1)} = (X^\top WX)^{-1}X^\top Wz$ -->
 
-Key observations: 
+<!--         \item Update $\eta_i^{(k+1)}$, $\hat{\mu}_i^{(k+1)}$ -->
+<!--     \end{itemize} -->
+<!-- \end{enumerate} -->
+<!-- \end{minipage} -->
 
-- Link derivative $\frac{d\mu}{d\eta}=1$ 
-- No reweighting needed (homoscedasticity) 
-- Exact solution in one step
+<!-- # Gaussian Special Case of IRLS -->
 
-# Asymptotics
+<!-- For linear regression ($Y \sim N(\mu, \sigma^2)$): -->
+<!-- \begin{itemize} -->
+<!--     \item \textbf{Link}: Identity $g(\mu) = \mu$   -->
+<!--     \item \textbf{Variance}: $V(\mu) = 1$ (constant) -->
+<!--     \item \textbf{Weights}: $w_i = 1$ (equal weighting) -->
+<!--     \item \textbf{Working response}: $z_i = y_i$ (original data) -->
+<!-- \end{itemize} -->
 
-The asymptotic distribution of the MLE $\hat{\beta}$ is given by:
+<!-- \vspace{0.2cm} -->
+<!-- IRLS reduces to ordinary least squares: -->
+<!-- \[ -->
+<!-- \beta^{(k+1)} = (X^\top X)^{-1}X^\top y \quad \text{(single iteration)} -->
+<!-- \] -->
 
-$$
-\sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0, (X^\top W X)^{-1}\phi)
-$$
+<!-- Key observations:  -->
 
-In the case of the Gaussian distribution, $\phi$ is the variance $\sigma^2$, W is the identity matrix, and the covariance matrix simplifies to: $(X^\top  X)^{-1}\sigma^2$.
+<!-- - Link derivative $\frac{d\mu}{d\eta}=1$  -->
+<!-- - No reweighting needed (homoscedasticity)  -->
+<!-- - Exact solution in one step -->
+
+<!-- # Asymptotics -->
+
+<!-- The asymptotic distribution of the MLE $\hat{\beta}$ is given by: -->
+
+<!-- $$ -->
+<!-- \sqrt{n}(\hat{\beta}-\beta) \xrightarrow{d} N(0, (X^\top W X)^{-1}\phi) -->
+<!-- $$ -->
+
+<!-- In the case of the Gaussian distribution, $\phi$ is the variance $\sigma^2$, W is the identity matrix, and the covariance matrix simplifies to: $(X^\top  X)^{-1}\sigma^2$. -->

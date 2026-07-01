@@ -1,0 +1,139 @@
+---
+title: "Suppliment 3: Wald, Score and LR Test Equivalence"
+author: "Benjamin Smith"
+date: "07/07/2026"
+output:
+  beamer_presentation:
+    colortheme: dolphin
+    theme: Madrid
+urlcolor: blue
+linkcolor: blue
+---
+
+
+# The Wald test
+
+We are interested in testing the hypotheses in a parametric model: $$
+H_{0}: \theta=\theta_{0} \quad \text { versus } H_{1}: \theta \neq \theta_{0} .
+$$ The Wald test most generally is based on an asymptotically normal
+estimator, i.e. we suppose that we have access to an estimator
+$\widehat{\theta}$ which under the null satisfies the property that: $$
+\widehat{\theta} \stackrel{d}{\rightarrow} N\left(\theta_0, \sigma_0^2\right)
+$$ where $\sigma_0^2$ is the variance of the estimator under the null.
+The canonical example is when $\widehat{\theta}$ is taken to be the MLE.
+
+# The Wald statistic
+
+If the hypothesis involves only a single parameter restriction, then the
+Wald statistic takes the following form: $$
+W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta})} ,
+$$ which under the null hypothesis follows an asymptotic
+$\chi^2_1$-distribution with one degree of freedom.
+
+# Example
+
+Suppose we considered the problem of testing the parameter of a
+Bernoulli, i.e. we observe
+$X_1, \ldots, X_n \sim \operatorname{Ber}(p)$, and the null is that
+$p=p_0$. Defining $\widehat{p}=\frac{1}{n} \sum_{i=1}^n X_i$. A Wald
+test could be constructed based on the statistic: $$
+T_n=\frac{(\widehat{p}-p_0)^2}{\frac{p_0\left(1-p_0\right)}{n}},
+$$ which has an asymptotic $\chi^2_1$ distribution. An alternative would
+be to use a slightly different estimated standard deviation, i.e. to
+define,
+
+$$
+T_n=\frac{(\widehat{p}-p_0)^2}{\frac{\widehat{p}\left(1-\widehat{p}\right)}{n}},
+$$ Observe that this alternative test statistic also has an
+asymptotically $\chi^2_1$ distribution under the null.
+
+# The score test
+
+Score test is based on the value of the score function $U(\theta)$ under
+the null hypothesis $H_0$.
+
+Reminder: $U(\theta) = \ell^{\prime}(\theta)$.
+
+The score test statistic
+
+$$
+S_n = \frac{U(\theta_0)^2}{\operatorname{var}[U(\theta_0)]},
+$$ which has an asymptotic distribution of $\chi^2_1$ under the null.
+
+Reminder: the variance of the score function is the Fisher information.
+
+# The score test
+
+Similarly, we have
+
+$$
+\widehat{I}\left(\theta_{0}\right)=-\left.\frac{1}{n} \sum_{i=1}^{n} \frac{\partial^{2} \log f\left(x_{i} \mid \theta\right)}{\partial \theta^{2}}\right|_{\theta_{0}} \stackrel{\mathrm{P}}{\rightarrow} I\left(\theta_{0}\right)
+$$
+
+so that
+
+$$
+S_n = \frac{U(\theta_0)^2}{\widehat{I}\left(\theta_{0}\right)}
+$$
+
+also has an asymptotic distribution of $\chi^2_1$ under the null.
+
+# The likelihood ratio test
+
+Let $\hat{\theta}_n$ be the MLE of $\theta$.
+
+$$
+\Delta_{n}= \ell\left(\widehat{\theta}_{n}\right)-\ell\left(\theta_{0}\right) =\log \left(\frac{L(\hat{\theta}_n\mid\mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) =\log \left(\frac{\sup _{\theta \in \Theta}(\theta \mid \mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) \geq 0
+$$
+
+Under $H_0$,
+
+$$
+2 \Delta_{n} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}
+$$
+
+# The Wald test, score test, and likelihood ratio test
+
+![Fox, J. (1997) Applied regression analysis, linear models, and related
+methods. Thousand Oaks, CA: Sage Publications. P.
+570.](comparison.png){height="50%"}
+
+- Wald Test: Horizontal distance between $\hat{a}$ and $a_0$.
+- Likelihood-Ratio Test: Vertical drop from $\hat{a}$ to $a_0$.
+- Score Test: Slope at $a_0$.
+
+
+# Test equivalence
+
+We can show that (when there is no misspecification)
+
+-   The tests are asymptotically equivalent in the sense that under
+    $H_{0}$ they reach the same decision with probability 1 as
+    $n \rightarrow \infty$.
+-   For a finite sample size $n$, they have some relative advantages and
+    disadvantages with respect to one another.
+
+# Discussion
+
+$$W_n=\frac{\left(\hat{\theta}-\theta_0\right)^2}{\operatorname{var}(\hat{\theta})} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
+
+$$S_n = \frac{U(\theta_0)^2}{\widehat{I}\left(\theta_{0}\right)} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
+
+$$2\Delta_{n}=2 \left\{ \ell\left(\widehat{\theta}_{n}\right)-\ell\left(\theta_{0}\right) \right\} \stackrel{\mathrm{D}}{\rightarrow} \chi_{1}^{2}$$
+
+-   It is easy to create one-sided Wald and score tests.
+-   The score test does not require $\widehat{\theta}_{n}$ whereas the
+    other two tests do.
+-   The Wald test is most easily interpretable and yields immediate
+    confidence intervals.
+-   The score test and LR test are invariant under reparametrization,
+    whereas the Wald test is not.
+
+# Resources
+
+This tutorial is based on
+
+-   "All of statistics" Chapter 10 by Larry A. Wasserman.
+
+-   Arnaud Doucet's STA 461 Lecture notes
+    [[links](https://www.cs.ubc.ca/~arnaud/stat461/lecture_stat461_WaldRaoLRtests_handouts_2008.pdf)].
