@@ -88,7 +88,7 @@ head(df) # Show the first 6 rows.
 
 CSV files. 
 
-- base::read.csv() in the base r.
+- read.csv() in the base r.
 - readr::read.csv() in "readr" package (much faster). 
 - data.table::fread() in  "data.table" package (much more faster). 
 
