@@ -1,5 +1,5 @@
 ---
-title: "Module 1: Tidyverse Basic; Data Wrangling & Graphing; Using LLMs to generate R code"
+title: "Module 1: Tidyverse Basics; Data Wrangling & Graphing; Using LLMs to generate R code"
 author: "Benjamin Smith"
 date: "07/06/2026"
 output:
