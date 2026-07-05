@@ -29,9 +29,9 @@ This year, knowledge of basic R programming, RMarkdown, and RStudio will be assu
 R style guide
 - [Full Guide](https://style.tidyverse.org)
 
-<!-- - Slides: [pdf](Computing/2026/Slides/mod1.pdf) -->
+- Slides: [pdf](Computing/2026/Slides/mod1.pdf)
 
-<!-- - Exercises: [pdf](Computing/2026/Exercises/ex1.pdf), [Rmd](Computing/2026/Exercises/ex1.Rmd) -->
+- Exercises: [pdf](Computing/2026/Exercises/ex1.pdf), [Rmd](Computing/2026/Exercises/ex1.Rmd)
 
 <!-- - Solutions: [pdf](Computing/2026/Solutions/sol1.pdf), [Rmd](Computing/2026/Solutions/sol1.Rmd) -->
 

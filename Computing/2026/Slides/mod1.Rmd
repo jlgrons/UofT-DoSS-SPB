@@ -1,5 +1,5 @@
 ---
-title: "Module 1: Basic programming in R"
+title: "Module 1: Tidyverse Basic; Data Wrangling & Graphing; Using LLMs to generate R code"
 author: "Benjamin Smith"
 date: "07/06/2026"
 output:
@@ -34,6 +34,7 @@ We will cover 5 modules of statistical methods and computing.
 
 ![](syl.png)
 
+
 # What contents we will not cover?
 
 - Nonparametric inference (STA3000) 
@@ -53,7 +54,7 @@ We will cover 5 modules of statistical methods and computing.
 Add URL
 --->
 - Students are expected to have some basic experience with R, Rmarkdown and LaTeX.
-- See [Module 0]() for some background
+- See [Module 0](https://jlgrons.github.io/UofT-DoSS-SPB/computing.html#module-0-basic-r-programming) for some background
 
 # Code style 
 
