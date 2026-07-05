@@ -161,7 +161,7 @@ table2 %>%
 
 # Transform data
 
-Use the "pipes" from the "tidyverse" package, a powerful tool for clearly expressing a sequence of multiple operations, with the combination of the following functions:
+Use the "pipes" (i.e. `%>%`, `|>`) from the "tidyverse" package, a powerful tool for clearly expressing a sequence of multiple operations, with the combination of the following functions:
 
 - `select()`
 - `filter()`
