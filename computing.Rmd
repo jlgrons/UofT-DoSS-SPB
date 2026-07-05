@@ -24,7 +24,7 @@ This year, knowledge of basic R programming, RMarkdown, and RStudio will be assu
 
 - Slides: [pdf](Computing/2026/Slides/mod0.pdf)
 
-### Module 1: R, Rstudio, and Rmarkdown; Git; data wrangling and graphing; LaTeX
+### Module 1: Tidyverse basics; data wrangling & graphing; Using LLMs to generate R code
 
 R style guide
 - [Full Guide](https://style.tidyverse.org)
@@ -37,6 +37,9 @@ R style guide
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/dce3cab4acffac053266192e63141672) -->
 
+#### Suppliment 1: Git and Github
+
+- Slides: [pdf](Computing/2026/suppliment1.pdf)
 
 ### Module 2: Statistical inference (I)
 
