@@ -33,9 +33,10 @@ R style guide
 
 - Exercises: [pdf](Computing/2026/Exercises/ex1.pdf), [Rmd](Computing/2026/Exercises/ex1.Rmd)
 
+- Solutions: [pdf](Computing/2026/Solutions/sol1.pdf), [Rmd](Computing/2026/Solutions/sol1.Rmd)
+
 - Pipe Operator Video: [link](https://youtu.be/sohARFx6aTo?si=o_fnvaLPKP9H91vx)
 
-- Solutions: [pdf](Computing/2026/Solutions/sol1.pdf), [Rmd](Computing/2026/Solutions/sol1.Rmd)
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/dce3cab4acffac053266192e63141672) -->
 
