@@ -24,7 +24,7 @@
 \title[]{DoSS Summer Bootcamp Probability \\ Module 1}
 \author[]{Ichiro Hashimoto}
 \institute[]{University of Toronto}
-\date{July 8, 2025}
+\date{July 7, 2026}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -137,7 +137,255 @@
     \end{itemize}}
 \end{frame}
 
-\begin{frame}{Measurable spaces}
+\begin{frame}{Discrete and Continuous Probability}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{Discrete random variable}
+For a discrete random variable $X$,
+\[
+    \mathbb P(X \in A)
+    =
+    \sum_{x \in A} \mathbb P(X=x).
+\]
+
+The probability of an event is obtained by adding point probabilities.
+\end{block}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{block}{Continuous random variable}
+For a continuous random variable $X$ with density $f$,
+\[
+    \mathbb P(X \in A)
+    =
+    \int_A f(x)\,dx.
+\]
+
+The probability of an event is obtained by integrating the density.
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{4mm}
+
+\begin{center}
+\large
+Why do we have two different definitions?
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Discrete and Continuous Expectations}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{block}{Discrete random variable}
+For a discrete random variable $X$,
+\[
+    \mathbb E[X]
+    =
+    \sum_{x\in \mathbb{R}} x \mathbb P(X=x).
+\]
+\end{block}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{block}{Continuous random variable}
+For a continuous random variable $X$ with density $f$,
+\[
+    \mathbb E[X]
+    =
+    \int_{\mathbb R} x f(x)\,dx.
+\]
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{5mm}
+
+\large
+Again, a \textbf{sum} is used under discrete probability, while an \textbf{integral} is used under continuous probability.
+
+\end{frame}
+
+\begin{frame}{Why Can't We Always Use Sums?}
+
+Suppose $X$ is a continuous random variable. Then
+\[
+    \mathbb P(X=x)=0
+    \qquad
+    \text{for every } x \in \mathbb R.
+\]
+
+\vspace{2mm}
+
+If we imitate discrete probability, then
+\[
+    1= \mathbb P(X \in \mathbb{R})
+    =
+    \sum_{x \in \mathbb{R}} \mathbb P(X=x)
+    =
+    \sum_{x \in \mathbb{R}} 0.
+\]
+
+\vspace{2mm}
+
+This would suggest
+\[
+    1=0,
+\]
+which is an obvious contradiction.
+
+\vspace{3mm}
+
+\begin{block}{Key point}
+The problem is not that each point has probability zero.
+
+The problem is that we are trying to add \textbf{uncountably many} numbers.
+\end{block}
+
+
+\end{frame}
+
+\begin{frame}{Countability Is the Key}
+
+In ordinary calculus, infinite sums are defined for \textbf{countable} values:
+\[
+    \sum_{i=1}^{\infty} a_i.
+\]
+
+But an expression such as
+\[
+    \sum_{x \in [0,1]} a_x
+\]
+is not a countable sum but an \textbf{uncountable} sum.
+
+\vspace{3mm}
+
+\begin{block}{Motivation}
+Measure-theoretic probability is built around \textbf{countable} operations.
+
+This motivates the definition of a \textbf{$\sigma$-algebra}.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{A Countable Approximation of the Real Line}
+
+For each positive integer $n$, divide the real line into countably many intervals:
+\[
+    \left[\frac{i}{n}, \frac{i+1}{n}\right),
+    \qquad i \in \mathbb Z.
+\]
+
+Then
+\[
+    \mathbb R
+    =
+    \bigcup_{i=-\infty}^{\infty}
+    \left[\frac{i}{n}, \frac{i+1}{n}\right).
+\]
+
+These intervals are disjoint, so countable additivity gives
+\[
+    \mathbb P(X \in \mathbb R)
+    =
+    \sum_{i=-\infty}^{\infty}
+    \mathbb P\left(
+        X \in
+        \left[\frac{i}{n}, \frac{i+1}{n}\right)
+    \right).
+\]
+
+\vspace{3mm}
+
+\begin{block}{Key point}
+Even though $\mathbb R$ is uncountable, it can be decomposed into \textbf{countably many} intervals.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Approximating Expectation by Countable Sums}
+
+Using the same intervals,
+\[
+    \left[\frac{i}{n}, \frac{i+1}{n}\right),
+    \qquad i \in \mathbb Z,
+\]
+we approximate $X$ by the left endpoint of the interval containing it.
+
+That is,
+\[
+    X
+    \approx
+    \frac{i}{n}
+    \qquad
+    \text{when }
+    X \in
+    \left[\frac{i}{n}, \frac{i+1}{n}\right).
+\]
+
+Therefore,
+\[
+    \mathbb E[X]
+    \approx
+    \sum_{i=-\infty}^{\infty}
+    \frac{i}{n}
+    \mathbb P\left(
+        X \in
+        \left[\frac{i}{n}, \frac{i+1}{n}\right)
+    \right).
+\]
+
+\vspace{3mm}
+
+\begin{block}{Important observation}
+This formula uses only a \textbf{countable sum}, not an uncountable sum over individual points.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{From Approximation to Measure-Theoretic Probability}
+
+As $n$ becomes larger, the intervals
+\[
+    \left[\frac{i}{n}, \frac{i+1}{n}\right)
+\]
+become smaller.
+
+So the approximation should become more accurate
+\[
+    \mathbb E[X] \overset{?}{=} \lim_{n\to \infty}\sum_{i=-\infty}^{\infty}
+    \frac{i}{n}
+    \mathbb P\left(
+        X \in
+        \left[\frac{i}{n}, \frac{i+1}{n}\right)
+    \right).
+\]
+
+
+\end{frame}
+
+\begin{frame}{Key insights}
+
+These observations suggest that probabilities and expectations can be built from:
+
+\begin{itemize}
+    \item probabilities of sets,
+    \item countable unions of sets,
+    \item countable sums.
+\end{itemize}
+
+\vspace{3mm}
+
+\begin{block}{Main idea}
+Measure-theoretic probability gives one unified language for both discrete and continuous probability by focusing on \textbf{sets} and \textbf{countable operations}.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Introduction to Measure Theory}
     \begin{block}{$\sigma$-algebra}
   A $\sigma$-algebra ($\sigma$-field) $\mc{F}$ on $\Omega$ is a non-empty collection of subsets of $\Omega$ such that
     \begin{itemize}
@@ -197,6 +445,172 @@ If further $\sum_{i = 1}^\infty p_j = 1$, then $\mu$ is a probability measure.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Example: Tossing a Coin Twice}
+
+Consider the sample space $\Omega=\{HH,HT,TH,TT\}$. \vspace{2mm}
+
+One possible $\sigma$-algebra is the power set
+\[
+    2^\Omega,
+\]
+which contains all $2^4=16$ subsets of $\Omega$.
+
+\vspace{2mm}
+
+Another example is
+\[
+\mathcal F=
+\{
+\emptyset,
+\Omega,
+\{HH,HT\},
+\{TH,TT\}
+\}.
+\]
+
+This collection satisfies
+
+\begin{itemize}
+    \item $\emptyset,\Omega\in\mathcal F$,
+    \item complements remain in $\mathcal F$,
+    \item countable unions remain in $\mathcal F$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Smallest and Largest $\sigma$-Algebras}
+
+For any sample space $\Omega$, there are always two extreme examples.
+
+\vspace{3mm}
+
+\textbf{The trivial $\sigma$-algebra}
+\[
+\{
+\emptyset,\Omega
+\}.
+\]
+
+Only two events are measurable.
+
+\vspace{5mm}
+
+\textbf{The power set}
+\[
+2^\Omega
+=
+\{
+A:A\subseteq\Omega
+\}.
+\]
+
+Every subset of $\Omega$ is measurable.
+
+\vspace{5mm}
+
+\begin{block}{Observation}
+Every $\sigma$-algebra lies between these two extremes:
+\[
+\{\emptyset,\Omega\}
+\subseteq
+\mathcal F
+\subseteq
+2^\Omega.
+\]
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Generating a $\sigma$-Algebra}
+
+Instead of specifying every measurable set, we often begin with a collection of subsets.
+
+Suppose
+\[
+\mathcal C
+=
+\{
+A_1,A_2,\ldots
+\}.
+\]
+
+\vspace{3mm}
+
+We then define $\sigma(\mathcal C)$ to be the \textbf{smallest $\sigma$-algebra containing every set in $\mathcal C$.}
+
+\vspace{3mm}
+
+Intuitively, $\sigma(\mathcal C)$
+
+\begin{itemize}
+\item include every set in $\mathcal C$,
+\item include all complements,
+\item include all countable unions,
+\item repeat until no new sets are created.
+\end{itemize}
+
+\vspace{3mm}
+
+This construction allows us to build useful $\sigma$-algebras from simple building blocks.
+
+\end{frame}
+
+\begin{frame}{Example: The Borel $\sigma$-Algebra}
+
+On the real line, the most important $\sigma$-algebra is the
+\textbf{Borel $\sigma$-algebra}.
+
+It is generated by all open intervals:
+
+\[
+\mathcal B(\mathbb R)
+=
+\sigma
+\left(
+\{
+(a,b):a<b
+\}
+\right).
+\]
+
+\vspace{4mm}
+
+Therefore,
+
+\[
+(a,b)
+\in
+\mathcal B(\mathbb R)
+\]
+
+for every open interval, and so are all sets obtained by repeatedly taking
+
+\begin{itemize}
+\item complements,
+\item countable unions,
+\item countable intersections.
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{Examples of Borel sets}
+
+Examples of Borel sets include
+
+\[
+[a,b],\qquad
+(a,b],\qquad
+(-\infty,a],\qquad
+\mathbb Z,\qquad
+\mathbb Q.
+\]
+
+\vspace{5cm}
+
+\end{frame}
+
 \begin{frame}{Conditional probability}
 \vspace{0.1in}
 \textbf{Original problem}:
@@ -221,7 +635,7 @@ If further $\sum_{i = 1}^\infty p_j = 1$, then $\mu$ is a probability measure.
 
 
 \begin{frame}{Conditional probability}
-    \begin{block}{Bayes' rule}
+    \begin{block}{Definition}
     $$P(A \mid B) = \dfrac{P(A\cap B)}{P(B)}, \quad P(B) > 0$$
     \end{block}
     \vspace{0.1in}
@@ -243,9 +657,9 @@ $${P(A\cap B)} = P(A \mid B) P(B) = P(B \mid A) P(A)$$
 \end{frame}
 
 \begin{frame}{Problem Set}
-    \textbf{Problem 1:} Prove that for a $\sigma$-field $\mc{F}$, if $A_1, A_2, \cdots \in \mc{F}$, then $\cap_{i = 1}^\infty A_i \in \mc{F}$.\\
+    \textbf{Problem 1:} Prove that for a $\sigma$-algebra $\mc{F}$, if $A_1, A_2, \cdots \in \mc{F}$, then $\cap_{i = 1}^\infty A_i \in \mc{F}$.\\
     \vspace{0.1in}
-    \textbf{Problem 2:} Prove monotonicity and subadditivity of measure $\mu$ on $\sigma$-field. \\
+    \textbf{Problem 2:} Prove monotonicity and subadditivity of measure $\mu$ on $\sigma$-algebra. \\
     \vspace{0.1in}
     \textbf{Problem 3:} (Monty Hall problem) Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?\\
     (Assumptions: the host will not open the door we picked and the host will only open the door which has a goat.)
