@@ -1,6 +1,6 @@
 ---
 title: "Operational Math"
-description: "Instructor: [Huanlin Mao](mailto:hl.mao@mail.utoronto.ca), PhD student)"
+description: "Instructor: [Huanlin Mao](mailto:hl.mao@mail.utoronto.ca), PhD student"
 output:
   distill::distill_article:
     toc: true
