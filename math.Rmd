@@ -36,6 +36,8 @@ Slides:   [fillable](Math/2026/module1/slides.pdf)
 
 ### Module 2: Set theory I
 
+Slides: [fillable](Math/2026/module2/slides.pdf)
+
 <!-- - Slides: [fillable](Math/2026/module2/slides.pdf),  [filled](Math/2026/module2/slides_filled.pdf) -->
 
 <!-- - Exercises: [pdf](Math/2026/module2/exercises.pdf), [LaTeX template](Math/2026/module2/exercises.tex),  -->
