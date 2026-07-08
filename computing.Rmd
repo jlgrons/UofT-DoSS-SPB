@@ -42,7 +42,7 @@ R style guide
 
 #### Suppliment 1: Git and Github
 
-- Slides: [pdf](Computing/2026/Slides/suppliment1.pdf)
+- Slides: [pdf](Computing/2026/Slides/supplement1.pdf)
 
 ### Module 2: Statistical inference (I)
 
@@ -58,7 +58,7 @@ R style guide
 
 #### Suppliment 2: Probability Theory
 
-- Slides: [pdf](Computing/2026/Slides/suppliment2.pdf)
+- Slides: [pdf](Computing/2026/Slides/supplement2.pdf)
 
 
 ### Module 3: Statistical inference (II) 
