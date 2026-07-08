@@ -1,5 +1,5 @@
 ---
-title: "Module 4: Linear regression; Generalized Linear regression"
+title: "Exercise 4: Linear regression; Generalized Linear regression"
 author: "Benjamin Smith"
 date: \today
 output: pdf_document

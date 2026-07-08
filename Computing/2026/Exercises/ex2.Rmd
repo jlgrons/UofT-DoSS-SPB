@@ -1,5 +1,5 @@
 ---
-title: 'Exercise 4: Statistical inference (I)'
+title: 'Exercise 2: Statistical inference (I)'
 author: Benjamin Smith
 date: \today
 output: pdf_document

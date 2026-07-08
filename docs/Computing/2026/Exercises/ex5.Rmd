@@ -1,5 +1,5 @@
 ---
-title: "Module 5: Simulations"
+title: "Exercise 5: Simulations"
 author: Benjamin Smith
 date: \today
 output: pdf_document
