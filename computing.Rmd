@@ -46,16 +46,19 @@ R style guide
 
 ### Module 2: Statistical inference (I)
 
-<!-- - Slides: [pdf](Computing/2026/Slides/mod2.pdf) -->
+- Slides: [pdf](Computing/2026/Slides/mod2.pdf) 
 
-<!-- - Data: [txt](Computing/2026/Slides/mtcars.txt) -->
+<!-- - Data: [txt](Computing/2026/Slides/mtcars.txt)  -->
 
-<!-- - Exercises: [pdf](Computing/2026/Exercises/ex2.pdf), [Rmd](Computing/2026/Exercises/ex2.Rmd) -->
+- Exercises: [pdf](Computing/2026/Exercises/ex2.pdf), [Rmd](Computing/2026/Exercises/ex2.Rmd)
 
 <!-- - Solutions: [pdf](Computing/2026/Solutions/sol2.pdf), [Rmd](Computing/2026/Solutions/sol2.Rmd) -->
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/3f6b0ac20d0ac47c721102f147fc76c3) -->
 
+#### Suppliment 2: Probability Theory
+
+- Slides: [pdf](Computing/2026/suppliment2.pdf)
 
 
 ### Module 3: Statistical inference (II) 
