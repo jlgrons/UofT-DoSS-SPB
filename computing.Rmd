@@ -53,7 +53,7 @@ R style guide
 
 - Solutions: [pdf](Computing/2026/Solutions/sol2.pdf), [Rmd](Computing/2026/Solutions/sol2.Rmd)
 
-<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/3f6b0ac20d0ac47c721102f147fc76c3) -->
+ - Recording: [Link](https://play.library.utoronto.ca/watch/7c10583b6bd65afe9475dcaeba34f87f) 
 
 #### Suppliment 2: Probability Theory
 
