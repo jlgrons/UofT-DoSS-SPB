@@ -37,8 +37,7 @@ R style guide
 
 - Pipe Operator Video: [link](https://youtu.be/sohARFx6aTo?si=o_fnvaLPKP9H91vx)
 
-
-<!-- - Recording: [Link](https://play.library.utoronto.ca/watch/dce3cab4acffac053266192e63141672) -->
+- Recording: [Link](https://play.library.utoronto.ca/watch/fd3844c65c4b90c428a2f860b5496ea6)
 
 #### Suppliment 1: Git and Github
 
