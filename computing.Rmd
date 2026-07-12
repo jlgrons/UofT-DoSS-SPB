@@ -55,7 +55,7 @@ R style guide
 
  - Recording: [Link](https://play.library.utoronto.ca/watch/7c10583b6bd65afe9475dcaeba34f87f) 
 
-#### Suppliment 2: Probability Theory
+#### Supplement 2: Probability Theory
 
 - Slides: [pdf](Computing/2026/Slides/supplement2.pdf)
 
@@ -73,7 +73,7 @@ R style guide
 <!-- - Solutions: [pdf](Computing/2026/Solutions/sol3.pdf), [Rmd](Computing/2026/Solutions/sol3.Rmd) -->
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/1deb5821da55881e878a0198abd208f4) -->
-#### Suppliment 3: Wald, Score and LR Test Equivalence
+#### Supplement 3: Wald, Score and LR Test Equivalence
 
 - Slides: [pdf](Computing/2026/Slides/supplement3.pdf)
 

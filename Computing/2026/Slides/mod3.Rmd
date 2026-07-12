@@ -9,6 +9,8 @@ output:
 editor_options: 
   markdown: 
     wrap: 72
+urlcolor: blue
+linkcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -21,9 +23,9 @@ This module we will review
 
 -   Basics of hypothesis testing
 -   Central Limit Theorem
--   The Wald test
--   The score test
--   The likelihood ratio test
+-   The Likelihood Ratio test
+
+[Suppliment 3](https://jlgrons.github.io/UofT-DoSS-SPB/Computing/2026/Slides/supplement3.pdf) discusses the Wald test, the Score test and their equivalence to the LR test.
 
 # Hypothesis testing
 
