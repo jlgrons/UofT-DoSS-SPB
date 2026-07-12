@@ -1,7 +1,7 @@
 ---
 title: "Suppliment 3: Wald, Score and LR Test Equivalence"
 author: "Benjamin Smith"
-date: "07/07/2026"
+date: "07/13/2026"
 output:
   beamer_presentation:
     colortheme: dolphin

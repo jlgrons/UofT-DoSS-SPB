@@ -64,15 +64,18 @@ R style guide
 
 
 
-<!-- - Slides: [pdf](Computing/2026/Slides/mod3.pdf) -->
+- Slides: [pdf](Computing/2026/Slides/mod3.pdf)
 
-<!-- - Exercises: [pdf](Computing/2026/Exercises/ex3.pdf), [Rmd](Computing/2026/Exercises/ex3.Rmd) -->
+- Exercises: [pdf](Computing/2026/Exercises/ex3.pdf), [Rmd](Computing/2026/Exercises/ex3.Rmd)
 
 <!-- - Data: [csv](Computing/2026/Exercises/Data/Bus_Breakdown_and_Delays.csv) -->
 
 <!-- - Solutions: [pdf](Computing/2026/Solutions/sol3.pdf), [Rmd](Computing/2026/Solutions/sol3.Rmd) -->
 
 <!-- - Recording: [Link](https://play.library.utoronto.ca/watch/1deb5821da55881e878a0198abd208f4) -->
+#### Suppliment 3: Wald, Score and LR Test Equivalence
+
+- Slides: [pdf](Computing/2026/Slides/supplement3.pdf)
 
  
 ### Module 4: Linear Regression & Generalized Linear Models
