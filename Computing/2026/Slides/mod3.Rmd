@@ -246,7 +246,7 @@ $$
 Let $\hat{\theta}_n$ be the MLE of $\theta$.
 
 $$
-\Delta_{n}= \ell\left(\widehat{\theta}_{n}\right)-\ell\left(\theta_{0}\right) =\log \left(\frac{L(\hat{\theta}_n\mid\mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) =\log \left(\frac{\sup _{\theta \in \Theta}(\theta \mid \mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) \geq 0
+\Delta_{n}= \ell\left(\widehat{\theta}_{n}\right)-\ell\left(\theta_{0}\right) =\log \left(\frac{L(\hat{\theta}_n\mid\mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) =\log \left(\frac{\sup _{\theta \in \Theta}L(\theta \mid \mathbf{x})}{L\left(\theta_{0} \mid \mathbf{x}\right)}\right) \geq 0
 $$
 
 Under $H_0$,
