@@ -24,26 +24,26 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 1 Solution](Probability/2026/Solutions/Module_1_Solutions.pdf) 
 
-<!-- - Recordings: [Link](https://play.library.utoronto.ca/watch/c483fe6c4a2e358851e0a0c617a28fe2) -->
+- Recordings: [Link](https://play.library.utoronto.ca/watch/90750b0e69a4002f03a0f67a8f7dd895)
 
 ### Module 2: Random Variables
 - Slides: [Module 2](Probability/2026/Slides/Module_2.pdf); [Module 2 Annotated](Probability/2026/Slides/Module_2_annotated.pdf)
 
 - Problem Set Solutions: [Module 2 Solution](Probability/2026/Solutions/Module_2_Solutions.pdf)
 
-<!-- - Recordings: [Link](https://play.library.utoronto.ca/watch/36952b9ebbb8c8014e51e81fb7e9103f) -->
+- Recordings: [Link](https://play.library.utoronto.ca/watch/174ac7e0512fe7c0ecfaa73a237e117b)
 
 ### Module 3: Common Random Variables
 
 - Slides: [Module 3](Probability/2026/Slides/Module_3.pdf); [Module 3 Annotated](Probability/2026/Slides/Module_3_annotated.pdf)  
 
-<!-- - Problem Set Solutions: [Module 3 Solution](Probability/2026/Solutions/Module_3_Solutions.pdf) -->
+- Problem Set Solutions: [Module 3 Solution](Probability/2026/Solutions/Module_3_Solutions.pdf)
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d5b43bb0d2b66c8d443efba0dc32bba2)  -->
 
 ### Module 4: Distribution
 
-<!--  - Slides: [Module 4](Probability/2026/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2026/Slides/Module_4_annotated.pdf)   -->
+- Slides: [Module 4](Probability/2026/Slides/Module_4.pdf); <!--[Module 4 Annotated](Probability/2026/Slides/Module_4_annotated.pdf)   -->
 
 <!--  - Problem Set Solutions: [Module 4 Solution](Probability/2026/Solutions/Module_4_Solutions.pdf)   -->
 
