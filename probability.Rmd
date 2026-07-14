@@ -39,15 +39,15 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 3 Solution](Probability/2026/Solutions/Module_3_Solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d5b43bb0d2b66c8d443efba0dc32bba2)  -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/b6283f7d3bbceeac6fbf007b182ba2ab)
 
 ### Module 4: Distribution
 
-- Slides: [Module 4](Probability/2026/Slides/Module_4.pdf); <!--[Module 4 Annotated](Probability/2026/Slides/Module_4_annotated.pdf)   -->
+- Slides: [Module 4](Probability/2026/Slides/Module_4.pdf); [Module 4 Annotated](Probability/2026/Slides/Module_4_annotated.pdf)
 
 <!--  - Problem Set Solutions: [Module 4 Solution](Probability/2026/Solutions/Module_4_Solutions.pdf)   -->
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/d8cbfb9b4cd4244228d42396b142276e) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/d4c456bd6c7078cb7c6ed8040d34397e)
 
 ### Module 5: Expectation
 
