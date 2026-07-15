@@ -84,7 +84,7 @@ R style guide
 
 - Exercises: [pdf](Computing/2026/Exercises/ex4.pdf), [Rmd](Computing/2026/Exercises/ex4.Rmd)
 
-<!-- - Solutions: [pdf](Computing/2026/Solutions/sol4.pdf), [Rmd](Computing/2026/Solutions/sol4.Rmd) -->
+- Solutions: [pdf](Computing/2026/Solutions/sol4.pdf), [Rmd](Computing/2026/Solutions/sol4.Rmd)
 
 <!-- - Recording：[Link](https://play.library.utoronto.ca/watch/7d208939c2ce265bc45edde98a08f942) -->
 
