@@ -61,7 +61,7 @@ $$ where $T$ is a test statistic and $c$ is a critical value.
 
 - Type I error, also known as a “false positive”: the error of rejecting a null hypothesis when it is actually true. $P(X\in R|H_0)$.
 
-- Type II error, also known as a "false negative": the error of not rejecting a null hypothesis when the alternative hypothesis is the true state of nature. $P(X\notin R|H_0)$.
+- Type II error, also known as a "false negative": the error of not rejecting a null hypothesis when the alternative hypothesis is the true state of nature. $P(X\notin R|H_1)$.
 
 # Power function
 

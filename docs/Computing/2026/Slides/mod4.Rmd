@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Outline
 
-In this module, we will review linear regression. 
+In this module, we will review linear regression and generalized linear regression
 
 # Linear regression
 
