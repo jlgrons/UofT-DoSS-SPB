@@ -25,7 +25,7 @@
 \title[]{DoSS Summer Bootcamp Probability \\ Module 5}
 \author[]{Ichiro Hashimoto}
 \institute[]{University of Toronto}
-\date{July 16, 2025}
+\date{July 15, 2026}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -103,10 +103,69 @@ Learnt in last module:\\
 \end{frame}
 
 
-\begin{frame}{Moments}
+\begin{frame}{Measurable function}
+
+\begin{block}{Measurable function}
+A map $f: \mathbb{R}^n \to \mathbb{R}^m$ is called measurable if for any $B \in \mathcal{R}^m$ we have $f^{-1}(B) \in \mathcal{R}^n$. In other words, $f$ is measurable if the preimage of any Borel set in $\mathbb{R}^n$ is also a Borel set in $\mathbb{R}^n$.
+\end{block}
+
+\textbf{Remark:} Recall that Borel $\sigma$-algebra contains almost all "nice" sets such as open sets, closed sets, and any sets that can be obtained by repeated use of countable union, intersections, and complements.
+
+\end{frame}
+
+\begin{frame}{Function of random vector revisited}
+
+\begin{block}{Measurable function of random vector is a random variable}
+Let $X = (X_1, \ldots, X_n)$ is a random vector on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R^n$ and $f$ be a mesurable function on $\mathbb R^n$. Then $f(X)$ is a random variable on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R^n$.
+\end{block}
+
+\textbf{Remark:} The definition of a measurable function is given so that the above holds.
+
+\vspace{1mm}
+
+\textbf{Proof:}
+
+\vspace{1.2in}
+
+\end{frame}
+
+\begin{frame}{Expectation}
 \textbf{Intuition}: How do the random variables behave on average?\\
 \uncover<2->{
 \begin{block}{Expectation}
+Consider a random variable $X$ , the expectation of $X$ is defined by $\mathbb{E}(X)$, where 
+\begin{itemize}
+    \item Discrete random vector
+    $$
+    \mathbb{E}(X) = \sum_{x}xp_X(x),
+    $$
+    \item Continuous random vector in $\mathbb{R}^n$
+    $$
+    \mathbb{E}(X) = \int_{\mathbb{R}^n} x\;dF(x) = \int_{\mathbb{R}^n} x f_X(x)\;dx.
+    $$
+\end{itemize}
+\end{block}}
+\end{frame}
+
+
+\begin{frame}{Expectation}
+\textbf{Intuition}: How do the random variables behave on average?\\
+\uncover<2->{
+\begin{block}{Measure theoretic definition of Expectation (informal)}
+Consider a random variable $X$ , the expectation of $X$ is defined by $\mathbb{E}(X)$, where 
+
+\[
+\mathbb{E}(X) = \lim_{n\to \infty} \sum_{i=-\infty}^\infty \frac{i}{n}\mathbb{P}\left(X \in \left(\frac{i}{n}, \frac{i+1}{n}\right]\right).
+\]
+\end{block}}
+
+\textbf{Remark:} Recall that Borel $\sigma$-algebra and random variables are defined so that $\mathbb{P}\left(X \in \left(\frac{i}{n}, \frac{i+1}{n}\right]\right)$ is well defined.
+\end{frame}
+
+
+\begin{frame}{Expectation}
+
+\begin{block}{Expectation of function of random vector}
 Consider a random vector $X$ and function $g(\cdot)$, the expectation of $g(X)$ is defined by $\mathbb{E}(g(X))$, where 
 \begin{itemize}
     \item Discrete random vector
@@ -115,13 +174,13 @@ Consider a random vector $X$ and function $g(\cdot)$, the expectation of $g(X)$ 
     $$
     \item Continuous random vector in $\mathbb{R}^n$
     $$
-    \mathbb{E}(g(X)) = \int_{\mathbb{R}^n} g(x)\;dF(x) = \int_{\mathbb{R}^n} f_X(x)\;dx.
+    \mathbb{E}(g(X)) = \int_{\mathbb{R}^n} g(x)\;dF(x) = \int_{\mathbb{R}^n} g(x)f_X(x)\;dx.
     $$
 \end{itemize}
-\end{block}}
+\end{block}
 \end{frame}
 
-\begin{frame}{Moments}
+\begin{frame}{Expectation}
     \textbf{Examples (random variable)}
     \begin{itemize}
         \item $X \sim $ Bernoulli($p$): $\mathbb{E}(X) = p\cdot 1 + (1-p)\cdot 0 = p$.
@@ -140,7 +199,7 @@ Consider a random vector $X$ and function $g(\cdot)$, the expectation of $g(X)$ 
     \end{itemize}}
 \end{frame}
 
-\begin{frame}{Moments}
+\begin{frame}{Expectation}
 \textbf{Properties:} 
 \begin{itemize}
     \item $\mathbb{E}(X+Y) = \mathbb{E}(X) + \mathbb{E}(Y)$;
