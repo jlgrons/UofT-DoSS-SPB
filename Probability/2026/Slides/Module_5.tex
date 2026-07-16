@@ -106,7 +106,7 @@ Learnt in last module:\\
 \begin{frame}{Measurable function}
 
 \begin{block}{Measurable function}
-A map $f: \mathbb{R}^n \to \mathbb{R}^m$ is called measurable if for any $B \in \mathcal{R}^m$ we have $f^{-1}(B) \in \mathcal{R}^n$. In other words, $f$ is measurable if the preimage of any Borel set in $\mathbb{R}^n$ is also a Borel set in $\mathbb{R}^n$.
+A map $f: \mathbb{R}^n \to \mathbb{R}^m$ is called measurable if for any $B \in \mathcal{R}^m$ we have $f^{-1}(B) \in \mathcal{R}^n$. In other words, $f$ is measurable if the preimage of any Borel set in $\mathbb{R}^m$ is also a Borel set in $\mathbb{R}^n$.
 \end{block}
 
 \textbf{Remark:} Recall that Borel $\sigma$-algebra contains almost all "nice" sets such as open sets, closed sets, and any sets that can be obtained by repeated use of countable union, intersections, and complements.
@@ -116,7 +116,7 @@ A map $f: \mathbb{R}^n \to \mathbb{R}^m$ is called measurable if for any $B \in 
 \begin{frame}{Function of random vector revisited}
 
 \begin{block}{Measurable function of random vector is a random variable}
-Let $X = (X_1, \ldots, X_n)$ is a random vector on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R^n$ and $f$ be a mesurable function on $\mathbb R^n$. Then $f(X)$ is a random variable on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R^n$.
+Let $X = (X_1, \ldots, X_n)$ is a random vector on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R^n$ and $f$ be a mesurable function on $\mathbb R^n$. Then $f(X)$ is a random variable on $(\Omega, \mathcal F, \mathbb P) \to \mathbb R$.
 \end{block}
 
 \textbf{Remark:} The definition of a measurable function is given so that the above holds.
@@ -135,13 +135,13 @@ Let $X = (X_1, \ldots, X_n)$ is a random vector on $(\Omega, \mathcal F, \mathbb
 \begin{block}{Expectation}
 Consider a random variable $X$ , the expectation of $X$ is defined by $\mathbb{E}(X)$, where 
 \begin{itemize}
-    \item Discrete random vector
+    \item Discrete random variable
     $$
     \mathbb{E}(X) = \sum_{x}xp_X(x),
     $$
-    \item Continuous random vector in $\mathbb{R}^n$
+    \item Continuous random variable 
     $$
-    \mathbb{E}(X) = \int_{\mathbb{R}^n} x\;dF(x) = \int_{\mathbb{R}^n} x f_X(x)\;dx.
+    \mathbb{E}(X) = \int_{\mathbb{R}} x\;dF(x) = \int_{\mathbb{R}} x f_X(x)\;dx.
     $$
 \end{itemize}
 \end{block}}
@@ -150,14 +150,14 @@ Consider a random variable $X$ , the expectation of $X$ is defined by $\mathbb{E
 
 \begin{frame}{Expectation}
 \textbf{Intuition}: How do the random variables behave on average?\\
-\uncover<2->{
+
 \begin{block}{Measure theoretic definition of Expectation (informal)}
 Consider a random variable $X$ , the expectation of $X$ is defined by $\mathbb{E}(X)$, where 
 
 \[
 \mathbb{E}(X) = \lim_{n\to \infty} \sum_{i=-\infty}^\infty \frac{i}{n}\mathbb{P}\left(X \in \left(\frac{i}{n}, \frac{i+1}{n}\right]\right).
 \]
-\end{block}}
+\end{block}
 
 \textbf{Remark:} Recall that Borel $\sigma$-algebra and random variables are defined so that $\mathbb{P}\left(X \in \left(\frac{i}{n}, \frac{i+1}{n}\right]\right)$ is well defined.
 \end{frame}
