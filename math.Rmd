@@ -64,7 +64,7 @@ Slides: [fillable](Math/2026/module5/slides.pdf),  [filled](Math/2026/module5/sl
 
 Exercises: [pdf](Math/2026/module5/exercises.pdf), [LaTeX](Math/2026/module5/exercises.tex),  [solutions](Math/2026/module5/exercise_solutions.pdf)
 
-
+Recordings: [link](https://play.library.utoronto.ca/watch/bb0ee780f4f6dee2b6102c185fa1cdc9)
 
 ### Module 6: Metric spaces IV
 
@@ -72,7 +72,7 @@ Slides: [fillable](Math/2026/module6/slides.pdf) , [filled](Math/2026/module6/sl
 
 Exercises: [pdf](Math/2026/module6/exercises.pdf), [LaTeX](Math/2026/module6/exercises.tex),  [solutions](Math/2026/module6/exercise_solutions.pdf)
 
-<!-- Recordings: [link](https://play.library.utoronto.ca/watch/eee9158a68881177635449ebb191a6fb) -->
+Recordings: [link](https://play.library.utoronto.ca/watch/bfaf3b0039408e0f3161af75ab86747f)
 
 ### Module 7: Linear algebra I
 
