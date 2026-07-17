@@ -76,17 +76,17 @@ Recordings: [link](https://play.library.utoronto.ca/watch/bfaf3b0039408e0f3161af
 
 ### Module 7: Linear algebra I
 
-Slides: [fillable](Math/2026/module7/slides.pdf)
+Slides: [fillable](Math/2026/module7/slides.pdf),  [filled](Math/2026/module7/slides_filled.pdf)
 
-Exercises: [pdf](Math/2026/module7/exercises.pdf), [LaTeX](Math/2026/module7/exercises.tex)
-
-<!-- - Slides: [fillable](Math/2026/module7/slides.pdf),  [filled](Math/2026/module7/slides_filled.pdf)  -->
-
-<!-- - Exercises: [pdf](Math/2026/module7/exercises.pdf), [LaTeX](Math/2026/module7/exercises.tex),  [solutions](Math/2026/module7/exercise_solutions.pdf) -->
+Exercises: [pdf](Math/2026/module7/exercises.pdf), [LaTeX](Math/2026/module7/exercises.tex),  [solutions](Math/2026/module7/exercise_solutions.pdf)
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/07cb585709869911598a3ea34977f425) -->
 
 ### Module 8: Linear algebra II
+
+Slides: [fillable](Math/2026/module8/slides.pdf)
+
+Exercises: [pdf](Math/2026/module8/exercises.pdf), [LaTeX](Math/2026/module8/exercises.tex)
 
 <!-- - Slides: [fillable](Math/2026/module8/slides.pdf),  [filled](Math/2026/module8/slides_filled.pdf) -->
 
