@@ -89,19 +89,24 @@ R style guide
 
 - Recording：[Link](https://play.library.utoronto.ca/watch/ed69c39c2ff2738da4e792743fd0dcb1)
 
-### Suppliment 4:  Simple Linear Regression in Matrix Format
+#### Suppliment 4:  Simple Linear Regression in Matrix Format
 
 - Source: Cosma Shalizi, Carnagie Mellon University [pdf](https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/13/lecture-13.pdf)
 
-### Module 5: Simulation and parallel computing; Bootstrap
+
+### Module 5: Simulation and parallel computing
 
 
-<!-- - Slides: [pdf](Computing/2026/Slides/mod5.pdf) -->
+- Slides: [pdf](Computing/2026/Slides/mod5.pdf) 
 
-<!-- - Exercises: [pdf](Computing/2026/Exercises/ex5.pdf), -->
-<!-- [Rmd](Computing/2026/Exercises/ex5.Rmd) -->
+- Exercises: [pdf](Computing/2026/Exercises/ex5.pdf), [Rmd](Computing/2026/Exercises/ex5.Rmd) 
 
 <!-- - Solutions: [pdf](Computing/2026/Solutions/sol5.pdf), -->
 <!-- [Rmd](Computing/2026/Solutions/sol5.Rmd) -->
 
 <!-- - Recording：[Link](https://play.library.utoronto.ca/watch/09a74130149f74927218e0d39d9b2e53) -->
+
+#### Supplement 5: Parallel Computing with High Performance Computing (HPC)
+
+- Slides: [pdf](Computing/2026/Slides/supplement5.pdf) 
+
