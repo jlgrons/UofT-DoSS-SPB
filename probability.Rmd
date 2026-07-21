@@ -64,17 +64,17 @@ Material will be added here as the course progresses.
 
 - Problem Set Solutions: [Module 6 Solution](Probability/2026/Solutions/Module_6_Solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/c994fda8908d9f3ac1836aa1dcd52e0f) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/75d3530455bccc56d0cb86822c2e69fd)
 
 ### Module 7: Stochastic Convergence
 
 
 - Slides: [Module 7](Probability/2026/Slides/Module_7.pdf); 
-<!-- [Module 7 Annotated](Probability/2026/Slides/Module_7_annotated.pdf) -->
+ [Module 7 Annotated](Probability/2026/Slides/Module_7_annotated.pdf) 
 
 <!-- - Problem Set Solutions: [Module 7 Solution](Probability/2026/Solutions/Module_7_Solutions.pdf) -->
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/2cc02ef6e2e32a4d1afc366c257f19f9) -->
+- Recordings: [link](https://play.library.utoronto.ca/watch/4d79ad26f84b123bde13f1cff3547ded)
 
 ### Module 8: Limit Theorems
 
