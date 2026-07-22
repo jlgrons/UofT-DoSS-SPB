@@ -78,8 +78,7 @@ Material will be added here as the course progresses.
 
 ### Module 8: Limit Theorems
 
-- Slides: [Module 8](Probability/2026/Slides/Module_8.pdf);
-<!--  [Module 8 Annotated](Probability/2026/Slides/Module_8_annotated.pdf)  -->
+- Slides: [Module 8](Probability/2026/Slides/Module_8.pdf); [Module 8 Annotated](Probability/2026/Slides/Module_8_annotated.pdf) 
 
 <!-- <!-- - Problem Set Solutions: [Module 8 Solution](Probability/2026/Solutions/Module_8_Solutions.pdf)  -->
 
