@@ -46,7 +46,7 @@
 \title[]{DoSS Summer Bootcamp Probability \\ Module 8}
 \author[]{Ichiro Hashimoto}
 \institute[]{University of Toronto}
-\date{July 22, 2025}
+\date{July 22, 2026}
 
 % set color
 \setbeamercolor{title in head/foot}{bg=white}
@@ -152,6 +152,13 @@ Learnt in last module:\\
 \vspace{0.2in}
 \end{frame}
 
+\begin{frame}{Convergence of functions of random variables}
+\textbf{Proof of $X_n + Y_n \xrightarrow[]{a.s.} X + Y$:}
+
+\vspace{6cm}
+
+\end{frame}
+
 
 \begin{frame}{Convergence of functions of random variables}
     \begin{block}{Convergence of functions of random variables (probability)}
@@ -169,6 +176,13 @@ Learnt in last module:\\
 \end{frame}
 
 \begin{frame}{Convergence of functions of random variables}
+\textbf{Proof of $X_n + Y_n \xrightarrow[]{P} X + Y$:}
+
+\vspace{6cm}
+
+\end{frame}
+
+\begin{frame}{Convergence of functions of random variables}
     \begin{block}{Convergence of functions of random variables ($L^p$)}
      Suppose the probability space is complete, if $X_n  \xrightarrow[]{L^p} X, Y_n  \xrightarrow[]{L^p} Y$, then for any real numbers $a, b$, \begin{itemize}
         \item $aX_n + bY_n  \xrightarrow[]{L^p} aX + bY$;
@@ -183,6 +197,12 @@ Learnt in last module:\\
     \vspace{0.5in}
 \end{frame}
 
+\begin{frame}{Convergence of functions of random variables}
+\textbf{Proof of $X_n + Y_n \xrightarrow[]{L^p} X + Y$:}
+
+\vspace{6cm}
+
+\end{frame}
 
 
 \begin{frame}{Convergence of functions of random variables}
@@ -242,16 +262,14 @@ Learnt in last module:\\
 
 \begin{frame}{Law of large numbers}
     \begin{block}{Weak Law of Large Numbers (WLLN)}
-    If $X_1, X_2, \cdots, X_n$ are i.i.d. random variables, $\mu = \mathbb{E}(|X_i|) < \infty$, then
+    If $X_1, X_2, \cdots, X_n$ are i.i.d. random variables, $\mu = \mathbb{E}(X_i)$, and $ \mathbb{E}|X_i|< \infty$, then
     $$\bar{X} = \frac{\sum_{i = 1}^n X_i}{n} \quad \xrightarrow[]{P} \quad \mu.$$
     \end{block}
     \vspace{0.1in}
     \textbf{Remark:}\\
     A more easy-to-prove version is the $L^2$ weak law, where an additional assumption $Var(X_i) < \infty$ is required.\\
-    \vspace{0.1in}
-    \textbf{Sketch of the proof:}\\
-    \vspace{0.8in}
-\end{frame}
+    \vspace{1in}
+ \end{frame}
 
 \begin{frame}{Law of large numbers}
 \textbf{A generalization of the theorem: triangular array}
@@ -310,7 +328,7 @@ A more generalized version incorporates truncation, then the second-moment const
 \end{frame}
 
 \begin{frame}{Law of large numbers}
-    \textbf{Proof:}\\
+    \textbf{Proof of Glivenko-Cantelli theorem:}\\
     % https://www.math.stonybrook.edu/~rdhough/mat639-spring17/lectures/lecture3.pdf  P60
     \vspace{2.5in}
 \end{frame}
@@ -374,6 +392,12 @@ Suppose $X_i \sim Bernoulli(p)$, i.i.d.,  consider $Z_n = \frac{\sum_{i=1}^n {X_
     \end{block}
     \textbf{Proof under stronger assumption: } Here, we suppose $g$ is continuously differentiable on $\mathbb{R}$. If you are interested in a general proof refer to Robert Keener's \textit{Theoretical Statistics}.
     \vspace{1.8in}
+\end{frame}
+
+\begin{frame}{Delta Method}
+\textbf{Proof Cont'd:}
+\vspace{6cm}
+
 \end{frame}
 
 

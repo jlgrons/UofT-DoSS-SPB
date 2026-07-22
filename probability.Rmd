@@ -72,13 +72,13 @@ Material will be added here as the course progresses.
 - Slides: [Module 7](Probability/2026/Slides/Module_7.pdf); 
  [Module 7 Annotated](Probability/2026/Slides/Module_7_annotated.pdf) 
 
-<!-- - Problem Set Solutions: [Module 7 Solution](Probability/2026/Solutions/Module_7_Solutions.pdf) -->
+- Problem Set Solutions: [Module 7 Solution](Probability/2026/Solutions/Module_7_Solutions.pdf) 
 
 - Recordings: [link](https://play.library.utoronto.ca/watch/4d79ad26f84b123bde13f1cff3547ded)
 
 ### Module 8: Limit Theorems
 
-<!-- - Slides: [Module 8](Probability/2026/Slides/Module_8.pdf);  -->
+- Slides: [Module 8](Probability/2026/Slides/Module_8.pdf);
 <!--  [Module 8 Annotated](Probability/2026/Slides/Module_8_annotated.pdf)  -->
 
 <!-- <!-- - Problem Set Solutions: [Module 8 Solution](Probability/2026/Solutions/Module_8_Solutions.pdf)  -->
