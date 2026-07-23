@@ -80,7 +80,7 @@ Material will be added here as the course progresses.
 
 - Slides: [Module 8](Probability/2026/Slides/Module_8.pdf); [Module 8 Annotated](Probability/2026/Slides/Module_8_annotated.pdf) 
 
-<!-- <!-- - Problem Set Solutions: [Module 8 Solution](Probability/2026/Solutions/Module_8_Solutions.pdf)  -->
+- Problem Set Solutions: [Module 8 Solution](Probability/2026/Solutions/Module_8_Solutions.pdf) 
 
 <!-- - Recordings: [link](https://play.library.utoronto.ca/watch/c722834abacf9138703c523722c3d2ec) -->
 
