@@ -88,21 +88,22 @@ Slides: [fillable](Math/2026/module8/slides.pdf),  [filled](Math/2026/module8/sl
 
 Exercises: [pdf](Math/2026/module8/exercises.pdf), [LaTeX](Math/2026/module8/exercises.tex),  [solutions](Math/2026/module8/exercise_solutions.pdf)
 
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/ebf7e655e861fc1f2c4a3a1f0ab67e23) -->
+Recordings: [link](https://play.library.utoronto.ca/watch/3d25a6564c555180527a5daed46209aa)
 
 ### Module 9: Linear algebra III
 
-Slides: [fillable](Math/2026/module9/slides.pdf)
 
-Exercises: [pdf](Math/2026/module9/exercises.pdf), [LaTeX](Math/2026/module9/exercises.tex)
+Slides: [fillable](Math/2026/module9/slides.pdf),  [filled](Math/2026/module9/slides_filled.pdf)
 
-<!-- - Slides: [fillable](Math/2026/module9/slides.pdf),  [filled](Math/2026/module9/slides_filled.pdf)  -->
+Exercises: [pdf](Math/2026/module9/exercises.pdf), [LaTeX](Math/2026/module9/exercises.tex),  [solutions](Math/2026/module9/exercise_solutions.pdf)
 
-<!--  - Exercises: [pdf](Math/2026/module9/exercises.pdf), [LaTeX](Math/2026/module9/exercises.tex),  [solutions](Math/2026/module9/exercise_solutions.pdf)  -->
-
-<!-- - Recordings: [link](https://play.library.utoronto.ca/watch/bea2fcc02328ba8fc5b460fd0ac47fc7) -->
+Recordings: [link](https://play.library.utoronto.ca/watch/3d25a6564c555180527a5daed46209aa)
 
 ### Module 10: Differentiation and integration
+
+Slides: [fillable](Math/2026/module10/slides.pdf)
+
+Exercises: [pdf](Math/2026/module10/exercises.pdf), [LaTeX](Math/2026/module10/exercises.tex)
 
 <!-- - Slides: [fillable](Math/2026/module10/slides.pdf),  -->
 <!--  [filled](Math/2026/module10/slides_filled.pdf)  -->
