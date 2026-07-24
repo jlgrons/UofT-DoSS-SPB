@@ -101,10 +101,9 @@ R style guide
 
 - Exercises: [pdf](Computing/2026/Exercises/ex5.pdf), [Rmd](Computing/2026/Exercises/ex5.Rmd) 
 
-<!-- - Solutions: [pdf](Computing/2026/Solutions/sol5.pdf), -->
-<!-- [Rmd](Computing/2026/Solutions/sol5.Rmd) -->
+- Solutions: [pdf](Computing/2026/Solutions/sol5.pdf),  [Rmd](Computing/2026/Solutions/sol5.Rmd) 
 
-<!-- - Recording：[Link](https://play.library.utoronto.ca/watch/09a74130149f74927218e0d39d9b2e53) -->
+- Recording：[Link](https://play.library.utoronto.ca/watch/b1659a58954aa07375c3fe0bd55a1edf)
 
 #### Supplement 5: Parallel Computing with High Performance Computing (HPC)
 
