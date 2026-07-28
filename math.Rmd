@@ -106,4 +106,6 @@ Slides: [fillable](Math/2026/module10/slides.pdf), [filled](Math/2026/module10/s
 
 Exercises: [pdf](Math/2026/module10/exercises.pdf), [LaTeX](Math/2026/module10/exercises.tex), [solutions](Math/2026/module10/exercise_solutions.pdf)
 
-<!--  - Recordings: [link](https://play.library.utoronto.ca/watch/bd1a9b6d865b224b4dee53aedcdccdf6)  -->
+Recordings: [link](https://play.library.utoronto.ca/watch/f9bb026bfc377c9cee7caf5799c4ce62)
+
+
